@@ -5,7 +5,6 @@ title: 프로젝트 오일러 - 문제 2
 <div class="box">[피보나치 수열에서 4백만 이하이면서 짝수인 항의 합은?](http://euler.synap.co.kr/prob_detail.php?id=2)</div>
 
 피보나치 수열의 정의는 다음과 같다.
-<!--more-->
 
 {% math-block %}
 \begin{aligned}
@@ -14,7 +13,7 @@ F_2 &= F_1 = 1
 \end{aligned}
 {% endmath-block %}
 
-구현하기 쉬워 보인다.
+구현하기 쉬워 보인다.<!--more-->
 
 ```[clojure]
 (defn fibo [n]
