@@ -33,7 +33,7 @@ dx dy &= r dr d\theta
 \end{aligned}
 {% endmath-block %}
 
-$xy$ 평면 전체는 $ -\infty \lt x \lt \infty$, $-\infty \lt y \lt \infty$다. 극좌표로 나타내면 $r, \theta$의 범위는 $0 \le r \lt \infty$, $0 \le \theta \le 2\pi$라 할 수 있다. 따라서 정적분을 다음과 같이 고쳐 쓸 수 있다. 이제 적분을 쉽게 할 수 있다. (아래 식이 이해되지 않을 경우, $r^2=t$로 치환해 적분하면 쉽다)
+$xy$ 평면 전체는 $ -\infty \lt x \lt \infty$, $-\infty \lt y \lt \infty$다. 극좌표로 나타내면 $r, \theta$의 범위는 $0 \le r \lt \infty$, $0 \le \theta \lt 2\pi$라 할 수 있다. 따라서 정적분을 다음과 같이 고쳐 쓸 수 있다. 이제 적분을 쉽게 할 수 있다. (아래 식이 이해되지 않을 경우, $r^2=t$로 치환해 적분하면 쉽다)
 
 {% math-block %}
 \begin{aligned}
