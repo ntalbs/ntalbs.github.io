@@ -1,0 +1,27 @@
+tags: [project-euler, clojure]
+date: 2015-01-16
+title: 프로젝트 오일러 - 문제 5
+---
+<div class="box">[1 ~ 20 사이의 어떤 수로도 나누어 떨어지는 가장 작은 수는?](http://euler.synap.co.kr/prob_detail.php?id=5)</div>
+
+1~20의 최소공배수(least common multiple)를 구하는 문제다. 최소공배수는 다음 식으로 간단히 구할 수 있다.<!--more-->
+
+{% math-block %}
+lcm(a,b) = \frac{\lvert a \times b \rvert}{gcd(a,b)}
+{% endmath-block %}
+
+최대공약수(Greatest Common Divisor)를 구하면 최소공배수를 구할 수 있다. 최대공약수와 최소공배수를 구하는 함수는 다음과 같이 구현할 수 있다.
+
+```[clojure]
+(defn gcd [a b]
+  (if (= b 0) a (recur b (rem a b))))
+
+(defn lcm [a b]
+  (/ (* a b) (gcd a b)))
+```
+
+위 함수는 주어진 두 수의 최대공약수, 최소공배수를 구한다. 세 수에 대한 최소공배수를 구하려면 먼저 두 수에 대한 최소공배수를 구한 다음 그 결과와 나머지 수의 최소공배수를 구하면 된다. 따라서 1~20의 최소공배수는 다음과 같이 구할 수 있다.
+
+```[clojure]
+(reduce lcm (range 1 21)))
+```
