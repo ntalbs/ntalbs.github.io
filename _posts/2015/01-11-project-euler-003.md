@@ -35,6 +35,6 @@ Clojure의 `clojure.contrib.lazy-seqs`에는 소수(primes)에 대한 지연 시
 ```
 (defn solve []
   (->> (factorize 600851475143)
-       (map (fn [[n e]] n))
-       (apply max))))
+       (map first)
+       (apply max)))
 ```
