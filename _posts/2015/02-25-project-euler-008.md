@@ -1,8 +1,9 @@
 tags: [project-euler, clojure]
 date: 2015-02-25
-title: 프로젝트 오일러 - 문제 8
+title: 프로젝트 오일러 - 8
 ---
-<div class="box">[1000자리 숫자 안에서 이어지는 5자리 숫자의 곱 중 최대값은?](http://euler.synap.co.kr/prob_detail.php?id=8)</div>
+> 1000자리 숫자 안에서 이어지는 5자리 숫자의 곱 중 최대값은?
+> 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=8) [[영어]](https://projecteuler.net/problem=8)
 
 1,000자리 숫자라고 하지만 1,000개의 숫자 리스트로 보는 편이 문제를 풀기에 더 좋을 것 같다. Clojure에서는 문자열도 시퀀스로 다룰 수 있으므로 `bigint`를 쓰기 보다는 문자열로 만들어 작업하는 게 더 편하다.<!--more-->
 
@@ -62,9 +63,21 @@ user=> (partition 5 1 *1)
 리스트의 시퀀스를 구했다. 각 리스트는 이어지는 다섯 개의 숫자를 나타낸다. 각 리스트의 요소를 곱한 다음 최대값을 구하면 되므로 다음과 같이 하면 답을 구할 수 있다.
 
 ```[clojure]
-(->> s
-     (map to-int)
-     (partition 5 1)
-     (map #(apply * %))
-     (reduce max))
+(defn solve []
+  (->> s
+       (map to-int)
+       (partition 5 1)
+       (map #(apply * %))
+       (reduce max)))
 ```
+
+결과는 다음과 같다.
+
+<pre class="console">
+p008=> (time (solve))
+"Elapsed time: 11.636357 msecs"
+*****
+</pre>
+
+## 참고
+* [프로젝트 오일러 문제 8 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p008.clj)

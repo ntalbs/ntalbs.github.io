@@ -1,8 +1,9 @@
 tags: [project-euler, clojure]
 date: 2015-01-08
-title: 프로젝트 오일러 - 문제 2
+title: 프로젝트 오일러 - 2
 ---
-<div class="box">[피보나치 수열에서 4백만 이하이면서 짝수인 항의 합은?](http://euler.synap.co.kr/prob_detail.php?id=2)</div>
+> 피보나치 수열에서 4백만 이하이면서 짝수인 항의 합은?
+> 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=2) [[영어]](https://projecteuler.net/problem=2)
 
 피보나치 수열의 정의는 다음과 같다.
 
@@ -15,25 +16,40 @@ F_2 &= F_1 = 1
 
 구현하기 쉬워 보인다.<!--more-->
 
+## 방법 1
 ```[clojure]
-(defn fibo [n]
+(defn fibo-rec [n]
   (cond (= 1 n) 1
         (= 2 n) 1
-        :else (+' (fibo (- n 1)) (fibo (- n 2)))))
+        :else (+' (fibo-rec (- n 1)) (fibo-rec (- n 2)))))
 ```
 
-그러나 재귀를 이용한 단순한 구현은 인자가 커짐에 따라 답을 구하는 속도가 급격히 느려진다. `fibo` 함수 안에서 재귀 호출을 두 번 하는데, 인자가 커지면 재귀호출 회수가 지수적으로 증가하며 이미 구했던 값을 지속적으로 반복해 구하는 비효율이 생긴다.
+그러나 재귀를 이용한 단순한 구현은 인자가 커짐에 따라 답을 구하는 속도가 급격히 느려진다. `fibo-rec` 함수 안에서 재귀 호출을 두 번 하는데, 인자가 커지면 재귀호출 회수가 지수적으로 증가하며 이미 구했던 값을 지속적으로 반복해 구하는 비효율이 생긴다.
 
 이미 계산한 함수 값을 기억해두는 메모이제이션(memoization) 기법을 사용하면 부가적인 메모리를 사용하는 대신 속도를 빠르게 할 수 있다. Clojure에서는 다음과 같이 간단히 메모이제이션을 사용할 수 있다.
 
-```
-(def fibo (memoize fibo))
+```[clojure]
+(def fibo-rec (memoize fibo-rec))
 ```
 
-그러나 이 문제를 풀려면 $F_1, F_2, F_3, ...$을 계속해 구해야 하는데, 위 방법으로는 속도가 나오지 않는다. 다음과 같이 `(fn [[a b]] [b (+ a b)])`를 이용하면 좀더 효율적으로 피보나치 수열을 구할 수 있다.
+이렇게 하면 피보나치 수열의 n번째 항을 빠르게 구할 수 있다. 따라서 다음과 같이 문제를 풀 수 있다.
 
 ```[clojure]
-(def fibo
+(def limit 4000000)
+
+(defn using-memoization []
+  (->> (iterate inc 1)
+       (map fibo-rec)
+       (filter even?)
+       (take-while #(<= % limit))
+       (reduce +)))
+```
+
+## 방법 2
+다음과 같이 `(fn [[a b]] [b (+ a b)])`를 이용해 피보나치 수열을 구할 수도 있다.
+
+```[clojure]
+(def fibo-iter
   (->> (iterate (fn [[a b]] [b (+ a b)]) [1 1])
        (map first)))
 ```
@@ -51,8 +67,24 @@ user=>
 따라서 다음과 같이 하면 문제의 답을 구할 수 있다.
 
 ```[clojure]
-(->> fibo
-     (filter even?)               ; 짝수 항만 필터링
-     (take-while #(<= % 4000000)) ; 4백만 이하까지만
-     (apply +))))
+(defn using-iteration []
+  (->> fibo-iter
+       (filter even?)
+       (take-while #(<= % limit))
+       (apply +)))
 ```
+
+## 정리
+두 방식 모두 충분히 빠르게 답을 찾아낸다. 두 번째 방법이 두 배 빠른 것처럼 보이지만 여러 번 테스트해보면 꼭 그런 것만도 아님을 알 수 있다. 그러나 첫 번째 방법은 부가적 메모리를 사용한다. 두 번째 방식은 부가적 메모리를 사용하지 않으면서도 속도가 빠르다.
+
+<pre class="console">
+p002=> (time (using-memoization))
+"Elapsed time: 0.640021 msecs"
+*******
+p002=> (time (using-iteration))
+"Elapsed time: 0.307647 msecs"
+*******
+</pre>
+
+## 참고
+* [프로젝트 오일러 문제 2 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p002.clj)
