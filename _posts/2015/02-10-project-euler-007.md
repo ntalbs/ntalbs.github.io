@@ -1,6 +1,6 @@
 tags: [project-euler, clojure]
 date: 2015-02-10
-title: 프로젝트 오일러 - 7
+title: 프로젝트 오일러 7
 ---
 > 10001번째의 소수?
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=7) [[영어]](https://projecteuler.net/problem=7)
@@ -53,10 +53,10 @@ title: 프로젝트 오일러 - 7
 <pre class="console">
 p007=> (time (using-predicate))
 "Elapsed time: 239.324261 msecs"
-******
+104???
 p007=> (time (using-seq))
 "Elapsed time: 107.451821 msecs"
-******
+104???
 </pre>
 
 ## 참고

@@ -1,6 +1,6 @@
 tags: [project-euler, clojure]
 date: 2015-01-16
-title: 프로젝트 오일러 - 5
+title: 프로젝트 오일러 5
 ---
 > 1 ~ 20 사이의 어떤 수로도 나누어 떨어지는 가장 작은 수는?
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=5) [[영어]](https://projecteuler.net/problem=5)
@@ -33,7 +33,7 @@ lcm(a,b) = \frac{\lvert a \times b \rvert}{gcd(a,b)}
 <pre class="console">
 p005=> (time (solve))
 "Elapsed time: 0.163887 msecs"
-*********
+232792???
 </pre>
 
 

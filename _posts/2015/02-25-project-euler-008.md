@@ -1,6 +1,6 @@
 tags: [project-euler, clojure]
 date: 2015-02-25
-title: 프로젝트 오일러 - 8
+title: 프로젝트 오일러 8
 ---
 > 1000자리 숫자 안에서 이어지는 5자리 숫자의 곱 중 최대값은?
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=8) [[영어]](https://projecteuler.net/problem=8)
@@ -74,9 +74,9 @@ user=> (partition 5 1 *1)
 결과는 다음과 같다.
 
 <pre class="console">
-p008=> (time (solve))
+p008=> (time (solve-kr))
 "Elapsed time: 11.636357 msecs"
-*****
+40???
 </pre>
 
 ## 참고

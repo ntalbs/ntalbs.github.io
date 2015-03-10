@@ -1,6 +1,6 @@
 tags: [project-euler, clojure]
 date: 2015-01-01
-title: 프로젝트 오일러 - 1
+title: 프로젝트 오일러 1
 ---
 > 1000보다 작은 자연수 중에서 3 또는 5의 배수를 모두 더하면?
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=1) [[영어]](https://projecteuler.net/problem=1)
@@ -54,10 +54,10 @@ S(n, m) &= m + 2m + 3m + ... + n \\
 <pre class="console">
 p001=> (time (using-brute-force 1000))
 "Elapsed time: 0.743249 msecs"
-******
+233???
 p001=> (time (using-forumla 1000))
 "Elapsed time: 0.046294 msecs"
-******
+233???
 </pre>
 
 `int`, `long` 표현 가능 범위와 관련된 문제는 잠깐 접어두고, 숫자가 커짐에 따라 각 접근법이 어떻게 달라질지 생각해보자. 무식한 방법을 사용할 경우의 복잡도는 $O(n)$이다. 요즘 같이 컴퓨터 속도가 빠른 세상에 단순한 계산은 루프를 1,000이 아니라 1,000,000까지 돌려도 순식간에 답을 얻을 수 있다. 그러나 숫자가 커질수록 속도가 느려질 것이다. 공식을 이용할 경우의 복잡도는 $O(1)$으로, n 크기에 상관 없이 바로 답을 얻을 수 있다.

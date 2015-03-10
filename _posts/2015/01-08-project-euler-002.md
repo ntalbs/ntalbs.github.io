@@ -1,6 +1,6 @@
 tags: [project-euler, clojure]
 date: 2015-01-08
-title: 프로젝트 오일러 - 2
+title: 프로젝트 오일러 2
 ---
 > 피보나치 수열에서 4백만 이하이면서 짝수인 항의 합은?
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=2) [[영어]](https://projecteuler.net/problem=2)
@@ -80,10 +80,10 @@ user=>
 <pre class="console">
 p002=> (time (using-memoization))
 "Elapsed time: 0.640021 msecs"
-*******
+4613???
 p002=> (time (using-iteration))
 "Elapsed time: 0.307647 msecs"
-*******
+4613???
 </pre>
 
 ## 참고

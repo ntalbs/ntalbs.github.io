@@ -1,6 +1,6 @@
 tags: [project-euler, clojure]
 date: 2015-01-19
-title: 프로젝트 오일러 - 6
+title: 프로젝트 오일러 6
 ---
 > 1부터 100까지 "제곱의 합"과 "합의 제곱"의 차는?
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=6) [[영어]](https://projecteuler.net/problem=6)
@@ -76,10 +76,10 @@ $$
 <pre class="console">
 p006=> (time (using-brute-force 100))
 "Elapsed time: 0.076776 msecs"
-********
+25164???
 p006=> (time (using-formula 100))
 "Elapsed time: 0.042433 msecs"
-********
+25164???
 </pre>
 
 ## 참고

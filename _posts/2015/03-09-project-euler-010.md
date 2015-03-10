@@ -1,6 +1,6 @@
 tags: [project-euler, clojure]
 date: 2015-03-09
-title: 프로젝트 오일러 - 10
+title: 프로젝트 오일러 10
 ---
 > 이백만 이하 소수의 합은?
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=10) [[영어]](https://projecteuler.net/problem=10)
@@ -35,10 +35,10 @@ Clojure 라이브러리로 제공되는 `clojure.contrib.lazy-seqs/primes`를 �
 <pre class="console">
 p010=> (time (using-pred))
 "Elapsed time: 6076.604045 msecs"
-************
+142913828???
 p010=> (time (using-seq))
 "Elapsed time: 3864.48696 msecs"
-************
+142913828???
 </pre>
 
 `clojure.contrib.lazy-seqs/primes`를 사용한 경우에는 함수를 다시 실행시키면 매우 빠르게 결과가 나오는데, 이는 지연 시퀀스로 구한 결과가 캐시되기 때문일 것이다. 여기서는 처음 구할 때 걸린 시간을 기준으로 생각해야 한다.

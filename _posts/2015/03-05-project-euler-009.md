@@ -1,6 +1,6 @@
 tags: [project-euler, clojure]
 date: 2015-03-05
-title: 프로젝트 오일러 - 9
+title: 프로젝트 오일러 9
 ---
 > a + b + c = 1000 이 되는 피타고라스 수?
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=9) [[영어]](https://projecteuler.net/problem=9)
@@ -86,10 +86,10 @@ user=> (take 10 (primitive-triplets))
 <pre class="console">
 p009=> (time (using-brute-force))
 "Elapsed time: 42.426237 msecs"
-********
+318???00
 p009=> (time (using-formula))
 "Elapsed time: 0.600761 msecs"
-********
+318???00
 </pre>
 
 ## 참고

@@ -1,6 +1,6 @@
 tags: [project-euler, clojure]
 date: 2015-01-11
-title: 프로젝트 오일러 - 3
+title: 프로젝트 오일러 3
 ---
 > 600851475143의 가장 큰 소인수는?
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=3) [[영어]](https://projecteuler.net/problem=3)
@@ -41,7 +41,7 @@ title: 프로젝트 오일러 - 3
 <pre class="console">
 p003=> (time (solve))
 "Elapsed time: 0.636411 msecs"
-****
+68??
 </pre>
 
 ## 참고

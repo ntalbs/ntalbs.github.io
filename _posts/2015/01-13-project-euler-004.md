@@ -1,6 +1,6 @@
 tags: [project-euler, clojure]
 date: 2015-01-13
-title: 프로젝트 오일러 - 4
+title: 프로젝트 오일러 4
 ---
 > 세자리 수를 곱해 만들 수 있는 가장 큰 대칭수는?
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=4) [[영어]](https://projecteuler.net/problem=4)
@@ -54,10 +54,10 @@ a \times b &= 100000x + 10000y + 1000z + 100z + 10y + x \\
 <pre class="console">
 p004=> (time (initial-approach))
 "Elapsed time: 419.324513 msecs"
-******
+9????9
 p004=> (time (improved))
 "Elapsed time: 88.696111 msecs"
-******
+9????9
 </pre>
 
 ## 참고
