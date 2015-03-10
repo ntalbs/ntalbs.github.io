@@ -10,7 +10,7 @@ title: 프로젝트 오일러 - 10
 ## 방법 1
 2백만까지 수를 증가시키면서 `prime?`을 이용해 소수만 뽑아낸 다음 합하는 방식을 생각해볼 수 있다.
 
-```
+```[clojure]
 (def limit 2000000)
 
 (defn using-pred []
@@ -23,7 +23,7 @@ title: 프로젝트 오일러 - 10
 ## 방법 2
 Clojure 라이브러리로 제공되는 `clojure.contrib.lazy-seqs/primes`를 사용해 문제를 풀 수도 있다.
 
-```
+```[clojure]
 (defn using-seq []
   (->> (take-while #(< % limit) primes)
        (reduce +)))
