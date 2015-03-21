@@ -1,6 +1,7 @@
 title: 수작업 brew 포뮬러 업데이트
 date: 2014-07-17
-tags: [brew]
+tags:
+- open source
 
 ---
 [Homebrew](http://brew.sh/)는 Mac OS X를 위한 패키기 관리자다. Homebrew를 이용하면 Mac OS X에 설치되어 있지 않은 다양한 패키지를 쉽게 설치하고 관리할 수 있다. Homebrew로 설치한 패키지의 새 버전이 나왔다면 콘솔에서 `brew upgrade` 명령으로 쉽게 업그레이드 할 수 있다. 웬만한 것은 거의 brew를 통해 설치할 수 있고, 매우 빠르게 업데이트 된다.
