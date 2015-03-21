@@ -1,6 +1,6 @@
 tags: [project-euler, clojure]
 date:
-title: 프로젝트 오일러 - 13
+title: 프로젝트 오일러 13
 ---
 > 50자리 숫자 100개를 더한 값의 첫 10자리 구하기
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=13) [[영어]](https://projecteuler.net/problem=13)
