@@ -7,6 +7,7 @@ tags: [db, oracle]
 <!--more-->
 
 ### 1. 데이터를 로드할 테이블 생성(또는 확인)
+
 ```
 create table xxx (
   c1 number,
@@ -18,6 +19,7 @@ create table xxx (
 ```
 
 ### 2. 데이터 파일 확인 (xxx.dat)
+
 ```
 aaa aaa aaa
 bbb bbb bbb
@@ -25,6 +27,7 @@ ccc ccc ccc
 ```
 
 ### 3. 컨트롤 파일 작성 (xxx.ctl)
+
 ```
 load data
 infile 'xxx.dat'

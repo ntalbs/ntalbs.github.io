@@ -25,8 +25,10 @@ def cmd_option_parse():
             cmd_argv[arg] = ''
     return cmd_argv
 ```
+
 기본적으로 인수 입력 형식은 `=`을 기준으로 `key=value` 형식으로 주어지며,
 `-`와 `--`가 코드에 있는 것은 인수 중에 `-`와 `--`로 시작하는 경우 이를 제거하기 위한 코드다. 결국은 `key=value` 형식을 분석해 딕셔너리에 넣되 `-`를 제거하면 되는 것이다. 이는 과 같이 하는 것이 훨씬 단순하고 이해하기 쉽다.
+
 ```
 def getArgMap():
     argMap = {}
@@ -38,4 +40,5 @@ def getArgMap():
             argMap[a.lstrip('-')]=''
     return argMap
 ```
+
 기본적으로 `if`가 많이 들어가 있는 코드는 보기도 안 좋고 이해하기도 쉽지 않다.

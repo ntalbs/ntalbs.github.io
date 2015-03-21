@@ -14,6 +14,7 @@ JsTestDriver에 coverage 플러그인을 설치하면 단위테스트에 대한 
 
 ## jsTestCoverage.conf 설정
 jsTestCoverage.conf 파일에 다음 내용을 추가한다.
+
 ```
 plugin:
   - name: "coverage"

@@ -49,6 +49,7 @@ $ unzip -d stage target/test-app-0.1.0-SNAPSHOT-standalone.war
 </pre>
 
 `stage/WEB-INF` 디렉터리에 다음과 같은 내용으로 `appengine-web.xml` 파일을 만든다.
+
 ```
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
   <application>your-gae-application-id</application>

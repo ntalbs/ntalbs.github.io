@@ -7,6 +7,7 @@ database.sarang.net의 [PostgreSQL 게시판](http://database.sarang.net/?criter
 <!--more-->
 
 ## 간단한 날짜 관련 함수 및 날짜 연산:
+
 ```
 -- 오늘 (date)
 select current_date;
@@ -37,6 +38,7 @@ select '2010-07-05'::date - '2010-06-25'::date;
 ```
 
 ## 한 주의 첫날, 마지막 날 구하기:
+
 ```
 -- (주 첫 날을 월요일로 할 때 주) 첫날, 마지막 날
 -- date_trunc() 함수의 리턴 타입은 timestamp임
@@ -83,6 +85,7 @@ select
 ```
 
 ## 한 달의 첫날, 마지막 날 구하기:
+
 ```
 -- 한 달 전/후 날짜
 select
@@ -116,6 +119,7 @@ select
 ```
 
 ## 이번 주 첫날부터 마지막 날까지 날짜들:
+
 ```
 -- 이번 주 날짜
 select
@@ -144,6 +148,7 @@ from
 ```
 
 **week of month**: 이번 달의 첫날부터 마지막 날까지의 날짜와 week of month를 구하는 쿼리인데, 1일~7일까지는 첫째 주, 8일~14일까지는 둘째 주와 같은 식으로 된다. 역시 `generate_series()` 함수를 사용했는데, 위와 같이 첫 날과 마지막 날의 차를 구해 수열을 만들지 않고 0~30까지 만들어 무조건 더하면서 이번 달에 속하는 날짜만 where 절 조건으로 추려내게 했다.
+
 ```
 select dt, to_char(dt, 'W') "day of week"
 from (

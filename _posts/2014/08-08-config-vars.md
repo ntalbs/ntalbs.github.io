@@ -58,6 +58,7 @@ heroku-config installed
 </pre>
 
 `.env` 파일에 다음과 같은 식으로 변수명과 값을 지정할 수 있다.
+
 ```
 DB_URI=mongodb://id:pw@domain:port/db-name
 USERID=xxx

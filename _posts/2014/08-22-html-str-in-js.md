@@ -19,6 +19,7 @@ var html = '<div class="xxx">' +
 함께 일하는 신입사원이 몇 가지 대안을 제시했다.
 
 ## 1. `\`를 이용한 다중 행 문자열 표현
+
 ```
 var html = '<div class="xxx"> \
               <div class="yyy"> \

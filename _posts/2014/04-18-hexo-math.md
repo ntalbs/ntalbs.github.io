@@ -18,6 +18,7 @@ $ hexo math install
 </pre>
 
 그리고 `_config.yml` 파일을 열어 `plugins:` 설정부분을 찾아 `hexo-math`를 추가한다.
+
 ```
 plugins:
 - hexo-math

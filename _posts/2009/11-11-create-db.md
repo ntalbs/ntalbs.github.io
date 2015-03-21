@@ -51,6 +51,7 @@ undo tablespace undotbs1 datafile '/.../undotbs1.dbf' size 100M
 default temporary tablespace temp tempfile '/.../temp01.dbf'
 size 100M;
 ```
+
 ## 6. Data Dictionary View 생성 스크립트 실행
 <pre class="console">
 $ORACLE_HOME/rdbms/admin/CATALOG.sql

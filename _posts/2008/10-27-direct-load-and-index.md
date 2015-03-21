@@ -9,6 +9,7 @@ tags: [db, oracle, index]
 <!--more-->
 
 이를 확인하기 위해 간단히 테스트를 해봤다. 먼저 다음과 같이 테이블을 만든다.
+
 ```
 -- 로드할 데이터를 넣어 둘 테이블
 create table t (
@@ -36,6 +37,7 @@ create table t2 (
 ```
 
 테이블 `t`는 로드할 데이터를 담아둘 것이고, `t1`, `t2`는 위의 두 방법으로 로드하는 것을 비교하기 위한 테이블이다. `t`에 다음과 같이 데이터를 넣는다.
+
 ```
 insert into t
 select level,
@@ -46,6 +48,7 @@ connect by level <= 100000;
 ```
 
 그리고 다음과 같이 t1.sql과 t2.sql을 만들어둔다.
+
 ```
 -- t1.sql: 방법1
 insert /*+ append */ into t1 select * from t;
