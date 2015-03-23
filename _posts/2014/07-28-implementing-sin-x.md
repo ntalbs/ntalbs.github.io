@@ -6,12 +6,12 @@ date: 2014-07-28
 
 [뉴튼 법을 이용한 근사값 구하기](/2014/07/25/newtons-method/)에서 매클로린 급수를 이용해 $\sin x$와 같은 초월함수의 값을 구할 수 있다고 했다. 여기서 clojure를 이용해 직접 구현해보려 한다.<!--more--> $\sin x$의 매클로린 급수는 다음과 같다.
 
-{% block math %}
+{% math_block %}
 \begin{aligned}
 \sin x &= \sum\limits_{n=0}^\infty \frac{(-1)^n}{(2n+1)!}x^{2n+1}\\
        &= x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + ...
 \end{aligned}
-{% endblock %}
+{% endmath_block %}
 
 먼저 `factorial` 함수가 필요하다. `factorial` 함수는 매우 빠르게 증가하는 함수라 인자가 조금만 커져도 금방 정수 허용 범위를 넘는다. 여기서는 비교적 적은 수($n \le 10$)에 대해서만 고려할 것이므로 다음과 같이 간단하게 구현할 수 있다.
 

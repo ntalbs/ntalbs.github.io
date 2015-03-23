@@ -7,12 +7,12 @@ title: 프로젝트 오일러 2
 
 피보나치 수열의 정의는 다음과 같다.
 
-{% block math %}
+{% math_block %}
 \begin{aligned}
 F_n &= F_{n-1} + F_{n-2}, \\
 F_2 &= F_1 = 1
 \end{aligned}
-{% endblock %}
+{% endmath_block %}
 
 구현하기 쉬워 보인다.<!--more-->
 

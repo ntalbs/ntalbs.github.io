@@ -30,14 +30,14 @@ $$
 
 여기서 $a, b, c, d$를 구하면 제곱의 합 $f(n)$을 구할 수 있다. $f(0) = 0$, $f(1) = 1$, $f(2) = 5$, $f(3) = 14$이므로, 다음과 같이 네 개의 방정식을 얻을 수 있다.
 
-{% block math %}
+{% math_block %}
 \begin{aligned}
 d &= 0\\
 a + b + c + d &= 1 \\
 8a + 4b + 2c + d &= 5\\
 27a + 9b + 3c + d &= 14
 \end{aligned}
-{% endblock %}
+{% endmath_block %}
 
 이 방정식을 풀면 다음과 같은 결과를 얻을 수 있다.
 

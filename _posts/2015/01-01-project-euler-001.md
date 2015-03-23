@@ -22,19 +22,19 @@ title: 프로젝트 오일러 1
 ## 방법 2
 1부터 n까지 자연수의 합 $S(n)$을 구하는 공식은 다음과 같다.
 
-{% block math %}
+{% math_block %}
 S(n) = \frac{n(n+1)}{2}
-{% endblock %}
+{% endmath_block %}
 
 $n$이하 $m$의 배수의 합을 $S(n, m)$이라 하면, 다음과 같이 구할 수 있다.
 
-{% block math %}
+{% math_block %}
 \begin{aligned}
 S(n, m) &= m + 2m + 3m + ... + n \\
         &= m \times (1 + 2 + 3 + ... + n/m) \\
         &= m \times S(n/m)
 \end{aligned}
-{% endblock %}
+{% endmath_block %}
 
 3 또는 5의 배수의 합을 구해야 하므로, `(3의 배수의 합) + (5의 배수의 합) - (15의 배수의 합)`을 계산하면 된다.
 

@@ -24,13 +24,13 @@ a와 b가 정해지면 c도 정해진다. 따라서 a와 b에 대해 루프를 �
 ## 방법 2
 [Pythagorean Triplet](http://en.wikipedia.org/wiki/Pythagorean_triple#Parent.2Fchild_relationships)에 보면 (3, 4, 5)로부터 선형 변환(linear transformation)을 통해 다음 피타고라스 수 T1, T2, T3을 구하는 방법이 나와 있다.
 
-{% block math %}
+{% math_block %}
 \begin{aligned}
 T1 &= (a − 2b + 2c, 2a − b + 2c, 2a − 2b + 3c) \\
 T2 &= (a + 2b + 2c, 2a + b + 2c, 2a + 2b + 3c) \\
 T3 &= (−a + 2b + 2c, −2a + b + 2c, −2a + 2b + 3c)
 \end{aligned}
-{% endblock %}
+{% endmath_block %}
 
 공식을 그대로 적용해 다음과 같이 함수를 만들 수 있다.
 
