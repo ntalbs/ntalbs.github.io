@@ -8,7 +8,7 @@ title: 정규 표현식을 이용한 찾기/바꾸기 시 카운터 사용
 그러나 정규 표현식으로 문자열을 치환할 때 카운터를 사용하는 방법이 있었다. [gVim find/replace with counter](http://stackoverflow.com/questions/5942360/gvim-find-replace-with-counter)에 Vim에서 정규 표현식 사용 시 카운터를 사용하는 방법이 나와 있다. Emacs에서는 어떻게 할까 궁금해 구글에서 `emacs regexp counter`로 검색해 봤는데, 쉽게 방법을 찾을 수 있었다.
 
 ## 문제
-``` html
+```html
 <p>lorem</p>
 <p>ipsum</p>
 <p>dolor</p>
@@ -17,7 +17,7 @@ title: 정규 표현식을 이용한 찾기/바꾸기 시 카운터 사용
 
 위와 같은 텍스트를 정규 표현식을 사용해 다음과 같이 바꿀 수 있을까?
 
-``` html
+```html
 <p id="1">lorem</p>
 <p id="2">ipsum</p>
 <p id="3">dolor</p>
