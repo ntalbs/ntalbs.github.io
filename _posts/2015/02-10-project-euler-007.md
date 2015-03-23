@@ -10,7 +10,7 @@ title: 프로젝트 오일러 7
 ## 방법 1
 어떤 수가 소수인지 빠르게 판단할 수 있다면 숫자를 증가시켜가며 소수만 걸러내는 방법을 사용하는 것도 가능하다. 소수인지 판별하는 함수는 다음과 같이 작성할 수 있다.
 
-```[clojure]
+```
 (defn prime?
   "Returns true if n is prime."
   [n]
@@ -27,7 +27,7 @@ title: 프로젝트 오일러 7
 
 소수인지 판단하는 `prime?` 함수를 구현했다면 10,001번째 소수는 다음과 같이 구할 수 있다.
 
-```[clojure]
+```
 (defn using-predicate []
   (->> (iterate inc 2)
        (filter prime?)
@@ -38,7 +38,7 @@ title: 프로젝트 오일러 7
 ## 방법 2
 `clojure.contrib.lazy-seqs/primes`를 이용하는 간단한 방법도 있다. 이름이 암시하듯 모든 소수에 대한 지연 시퀀스를 나타낸다. 따라서 10,001번째 소수는 다음과 같이 구할 수도 있다.
 
-```[clojure]
+```
 (require '[clojure.contrib.lazy-seqs :refer [primes]])
 
 (defn using-seq []

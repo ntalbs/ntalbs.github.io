@@ -12,7 +12,7 @@ a와 b가 정해지면 c도 정해진다. 따라서 a와 b에 대해 루프를 �
 
 따라서 다음과 같이 간단한 방법으로 문제를 풀 수 있다.
 
-```[clojure]
+```
 (defn using-brute-force []
   (first (for [a (range 1 1000)
                b (range a 1000)
@@ -34,7 +34,7 @@ T3 &= (−a + 2b + 2c, −2a + b + 2c, −2a + 2b + 3c)
 
 공식을 그대로 적용해 다음과 같이 함수를 만들 수 있다.
 
-```[clojure]
+```
 (defn next-triplets [[a b c]]
   [(sort [(+ a (* -2 b) (* 2 c))
           (+ (* 2 a) (- b) (* 2 c))
@@ -51,7 +51,7 @@ T3 &= (−a + 2b + 2c, −2a + b + 2c, −2a + 2b + 3c)
 
 이제 피타고라스 수의 지연 시퀀스를 만들어보자. (3, 4, 5)를 시작으로 `next-triplets`을 반복해 다음 피타고라스 수 세 개를 생성해야 한다.
 
-```[clojure]
+```
 (defn primitive-triplets
   ([ts] (let [more (for [t ts, next-t (next-triplets t)] next-t)]
           (lazy-cat ts (primitive-triplets more))))
@@ -67,7 +67,7 @@ user=> (take 10 (primitive-triplets))
 
 그러나 위 함수를 이용해 생성한 피타고라스 수는 모두 원시 피타고라스 수다. 원시 피타고라스 수의 각 요소에 $k$를 곱해도 여전히 피타고라스 수이므로 문제를 풀 때는 이것도 확인해야 한다.
 
-```[clojure]
+```
 (defn side-sum-is-not [sum]
   (fn [[a b c]] (not= sum (+ a b c))))
 

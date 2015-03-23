@@ -7,26 +7,26 @@ title: 프로젝트 오일러 12
 
 삼각수의 시퀀스를 만들어 앞에서부터 하나씩 약수의 개수를 조사하면 될 것 같다. [문제 1](/2015/01/01/project-euler-001/)에서 1부터 n까지 정수 합을 구하는 공식을 살펴봤다. n번째 삼각수는 1부터 n까지 합이므로 공식을 이용해 다음과 같이 n번째 삼각수를 구하는 함수를 만들 수 있다.<!--more-->
 
-```[clojure]
+```
 (defn triangle-number [n]
   (/ (* n (+ n 1)) 2))    ; n(n+1)/2
 ```
 
 n번째 항을 구하는 함수가 있으므로 다음과 같이 삼각수의 시퀀스를 만들 수 있다.
 
-```[clojure]
+```
 (def triangle-numbers (map triangle-number (iterate inc 1)))
 ```
 
 이렇게 해도 되지만 다음과 같이 `reductions`를 사용해 누적합을 구하는 게 조금 더 단순해 보인다.
 
-```[clojure]
+```
 (def triangle-numbers (reductions + (iterate inc 1)))
 ```
 
 어떤 수의 약수가 몇 개인지는 어떻게 알 수 있을까? 인터넷 검색을 통해 간단한 공식을 찾을 수 있었다. 어떤 수 n이 $p^a q^b r^c...$로 소인수분해 된다면, 약수의 개수는 $(a+1)(b+1)(c+1)...$과 같이 된다는 것이다. [문제 3](/2015/01/11/project-euler-003/)에서 만들었던 `factorize` 함수를 사용하면 약수의 개수를 구하는 함수는 다음과 같이 구현할 수 있다.
 
-```[clojure]
+```
 (defn d [n]
   (->> (factorize n)
        (map (fn [[b e]] (+ e 1)))
@@ -35,7 +35,7 @@ n번째 항을 구하는 함수가 있으므로 다음과 같이 삼각수의 �
 
 이제 삼각수의 시퀀스를 앞에서부터 하나씩 조사하면서 약수의 개수가 500개를 초과하는지 확인하면 된다.
 
-```[clojure]
+```
 (defn solve []
   (->> triangle-numbers
        (drop-while #(< (d %) 500))

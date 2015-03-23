@@ -10,7 +10,7 @@ title: 프로젝트 오일러 3
 
 이 문제를 푸는 가장 쉽고 빠른 방법은 정말로 소인수 분해를 해보는 것이다. 소인수 분해 함수를 만들어 놓으면 다른 문제에서도 활용할 수 있을 것 같다. Clojure의 `clojure.contrib.lazy-seqs`에는 소수(primes)에 대한 지연 시퀀스가 있다. 이걸 이용하면 소인수 분해를 조금 더 쉽게 할 수 있다.
 
-```[clojure]
+```
 (ns util
   (:require [clojure.contrib.lazy-seqs :refer (primes)]))
 

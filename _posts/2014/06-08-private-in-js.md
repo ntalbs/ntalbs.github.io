@@ -6,7 +6,7 @@ tags: javascript
 JavaScript를 주로 사용하게 되면서 JavaScript에 대한 부정적인 생각이 줄어들었지만, 여전히 마음에 들지 않는 부분이 있다. 그 중 하나가 `private` 필드를 만들기가 애매하다는 점이다.
 <!--more-->
 
-```javascript
+```
 function User() {
   this.passwordHash = ...;
   ...
@@ -15,7 +15,7 @@ function User() {
 
 이렇게 하면 `passwordHash`을 객체 밖에서 마음대로 참조하고 덮어쓸 수 있다. 이렇게 하는 것은 왠지 불안하다.
 
-```javascript
+```
 function User() {
   var passwordHash;
   ...
@@ -24,7 +24,7 @@ function User() {
 
 이렇게 하면 `passwordHash`을 `User` 객체 밖에서 볼 수 없게 된다. 문제는 `User` 객체의 메서드에서도 볼 수 없다는 점이다. 메서드는 보통 `prototype`에 만들어주는 것이 좋다. 객체 인스턴스마다 중복된 함수 객체를 별도로 생성하지 않게 하기 때문이다.
 
-```javascript
+```
 User.prototype.setPasswordHash(passwd) {
   // 여기서 passwordHash을 참조하려면???
 }
@@ -32,7 +32,7 @@ User.prototype.setPasswordHash(passwd) {
 
 클로저를 이용하면 `private` 필드를 만드는 것이 가능하긴 하다. 다만 그렇게 하려면 메서드를 생성자 안으로 넣어야 한다.
 
-```javascript
+```
 function User() {
   var passwordHash;
   ...
@@ -47,7 +47,7 @@ function User() {
 
 필드를 읽기전용 속성으로 만드는 방법도 있긴 하다.
 
-```javascript
+```
 function User() {
   var passwordHash;
   ...
