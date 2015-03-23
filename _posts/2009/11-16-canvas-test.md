@@ -21,7 +21,7 @@ tags: canvas
 
 자바스크립트 코드는 다음과 같다.
 
-```javascript
+```js
 (function () {
   var timer;
   var DELAY = 20, LIMIT = 25, step = 0;

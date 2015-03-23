@@ -9,7 +9,7 @@ tags: [refactoring]
 
 때로는 아주 사소한 코드 중복이 큰 문제를 만드는 경우도 있다.
 
-```javascript
+```js
 var fnCallback = $Fn(function(bSuccess, sMessage, oData) {
   //...
   if (acrobat.isInstalled) {
@@ -27,7 +27,7 @@ var fnCallback = $Fn(function(bSuccess, sMessage, oData) {
 
 한참을 헤매다가 확인한 것은 어도비 리더가 설치된 PC에서는 제대로 동작하지 않고 어도비 리더가 설치되지 않은 PC에서는 제대로 동작한다는 것을 알게 되었다. 소스 코드에서 어도비 리더가 설치되어 있는지를 확인해 다르게 분기하는 부분을 찾았 확인했다. 앞에서 본 코드인데, 약간 수정되어 있었다.
 
-```javascript
+```js
 var fnCallback = $Fn(function(bSuccess, sMessage, oData) {
   // ...
   if (acrobat.isInstalled) {
@@ -45,7 +45,7 @@ var fnCallback = $Fn(function(bSuccess, sMessage, oData) {
 
 최근에 코드를 다시 살펴보니 원래의 모습으로 돌아가 있다. 그러나 마음에 들지 않는다. 다음과 같은 식이 낫지 않을까?
 
-```javascript
+```js
 var fnCallback = $Fn(function(bSuccess, sMessage, oData) {
   //...
   this.printUrl = oData.redirectURL
