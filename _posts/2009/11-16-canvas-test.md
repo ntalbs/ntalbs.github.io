@@ -11,7 +11,8 @@ tags: canvas
 </div>
 
 소스코드는 다음과 같다.
-```
+
+```html
 <canvas id="canvas" width="300" height="300"></canvas>
 <script type="text/javascript">
 // 자바스크립트 소스...

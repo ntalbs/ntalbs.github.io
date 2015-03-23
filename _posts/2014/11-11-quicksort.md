@@ -8,7 +8,7 @@ tags: [clojure, 상념]
 
 아주 오래 전에, 그러니까 C/C++, Java 외 다른 언어는 공부할 필요가 없다고 생각했던 때에, 잡지에서 다음과 같은  코드를 본 적이 있다.
 
-```
+```haskell
 qsort [] = []
 qsort (p:xs) = qsort [y | y <- xs, y < p] ++ [p] ++ qsort [y | y <- xs, y >= p]
 ```

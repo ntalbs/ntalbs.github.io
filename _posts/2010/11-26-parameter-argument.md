@@ -22,7 +22,7 @@ http://mindprod.com/jgloss/arguments.html
 
 코드를 보면 이해가 쉬울 것 같다.
 
-```
+```java
 ...
 public static int sum(int a, int b) {
   // a, b는 parameter로 함수 sum이 입력을 받는데 사용하는 변수다.
