@@ -72,4 +72,5 @@ partition p_max values
 );
 ```
 
-참고: http://www.orafaq.com/forum/t/6418/0/
+## 참고
+* http://www.orafaq.com/forum/t/6418/0/

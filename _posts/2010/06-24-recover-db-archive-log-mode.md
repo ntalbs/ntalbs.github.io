@@ -9,17 +9,17 @@ tags: [db, oracle, 복구]
 ## 데이터베이스가 닫힌 상태에서의 복구
 데이터베이스 전체를 복구하거나 손상된 파일이 SYSTEM 테이블스페이스나 UNDO 테이블스페이스에 포함된 경우에는 데이터베이스가 닫힌(closed) 상태에서 복구를 수행해야 한다.
 
-### 1. 데이터베이스가 SHUTDOWN 상태가 아니라면 다음 명령으로 SHUTDOWN 한다.
+#### 1. 데이터베이스가 SHUTDOWN 상태가 아니라면 다음 명령으로 SHUTDOWN 한다.
 <pre class="console">
 SQL> shutdown abort;
 </pre>
 
-### 2. OS 명령을 사용해 손상된 파일을 restore 한다.
+#### 2. OS 명령을 사용해 손상된 파일을 restore 한다.
 <pre class="console">
 $ cp /backup/system01.dbf /oradata
 </pre>
 
-### 3. 데이터베이스를 MOUNT 모드로 바꾼 후 복구를 시도한다.
+#### 3. 데이터베이스를 MOUNT 모드로 바꾼 후 복구를 시도한다.
 <pre class="console">
 SQL> startup mount;
 SQL> recover database;
@@ -27,7 +27,7 @@ SQL> recover database;
 
 데이터베이스를 실패 시점까지 복구하기 위해 아카이브 로그와 온라인 리두 로그 파일을 적용한다.
 
-### 4. 복구가 끝나면 모든 데이터 파일이 동기화되고 데이터베이스를 OPEN 할 수 있다.
+#### 4. 복구가 끝나면 모든 데이터 파일이 동기화되고 데이터베이스를 OPEN 할 수 있다.
 <pre class="console">
 SQL> alter database open;
 </pre>
@@ -36,7 +36,7 @@ SQL> alter database open;
 ## 데이터베이스가 열린 상태에서의 복구
 데이터베이스가 OPEN 상태이고, 복구하는 중에도 OPEN되어 있는 상태를 유지하려면 열린 상태에서의 복구를 시도할 수 있다. 손상된 데이터파일이 SYSTEM 테이블스페이스나 UNOD 테이블스페이스에 속한 것이면 안 된다.
 
-### 1. 다음 쿼리를 이용해 데이터파일을 오프라인으로 만들어야 하는지 확인한다.
+#### 1. 다음 쿼리를 이용해 데이터파일을 오프라인으로 만들어야 하는지 확인한다.
 <pre class="console">
 SQL> select d.file# f#, d.name, d.status, h.status
   2  from v$datafile d, v$datafile_header h
@@ -51,23 +51,24 @@ F#   D.NAME                    D.STATUS     H.STATUS
  ...
 </pre>
 
-### 2. 복구할 파일이 온라인인 경우는 오프라인으로 만든다.
+#### 2. 복구할 파일이 온라인인 경우는 오프라인으로 만든다.
 (이미 오프라인인 경우는 이 단계를 생략한다.)
 <pre class="console">
 SQL> alter database datafile '/oradata/tsd_img01.dbf' offline;
 </pre>
 
 또는
+
 <pre class="console">
 SQL> alter tablespace tsd_img offline;
 </pre>
 
-### 3. 백업으로부터 파일을 restore한다.
+#### 3. 백업으로부터 파일을 restore한다.
 <pre class="console">
 $ cp /backup/tsg_img01.dbf /oradata
 </pre>
 
-### 4. RECOVER 명령으로 아카이브 로그와 리두 로그를 적용해 파일을 복구한다.
+#### 4. RECOVER 명령으로 아카이브 로그와 리두 로그를 적용해 파일을 복구한다.
 <pre class="console">
 SQL> recover datafile '/oradata/tsd_img01.dbf';
 </pre>
