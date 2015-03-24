@@ -1,6 +1,6 @@
 title: DBMS_RANDOM 패키지 사용법
 date: 2008-10-29
-tags: [db, oracle]
+tags: [db, oracle, sql]
 
 ---
 랜덤한 숫자나 문자열을 만들 때 `DBMS_RANDOM` 패키지를 사용하면 된다.
