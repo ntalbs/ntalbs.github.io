@@ -1,7 +1,7 @@
 tags:
 - hexo
 - open source
-date: 2015-03-22
+date: 2015-03-24
 title: "Hexo: 3.0 업그레이드"
 ---
 정적 사이트 생성기로 [Hexo](http://hexo.io)를 사용하고 있는데, 최근 버전 3.0이 나왔다. 사용하는 소프트웨어를 항상 최신 버전으로 유지하고자 하는 마음 때문에 업그레이드 했는데, 블로그가 아예 뜨지도 않는 난감한 상황이 발생했다. 온갖 삽질 끝에 블로그를 제대로 뜨게 하는 데 며칠이나 허비했다. [Breaking Changes in Hexo 3.0](https://github.com/hexojs/hexo/wiki/Breaking-Changes-in-Hexo-3.0)에서의 Breaking이 기존 것을 다 깨먹는다는 뜻이었나 싶을 정도였다.<!--more-->
@@ -21,6 +21,12 @@ hexo-math는 CoffeeScript로 작성되었다. node.js도 모르고 CoffeeScript�
 
 ## 테마 수정
 다시 `hexo server` 명령으로 블로그를 띄워보니 에러 없이 잘 표시되는 것 같았다. 그런데 Archive 페이지에 가보니 글이 다섯 개만 표시되는 것이었다. Tags 페이지는 예외가 발생해 아예 표시되지도 않았다. Hexo 3.0으로 넘어가면서 내부에서 사용하는 객체 구조도 바뀐 모양이다. [Local Variables 문서](http://hexo.io/api/locals.html)를 참조하고 변수 값을 `console.log`로 찍어가며 디버깅해 제대로 나오도록 ejs 파일을 수정했다.
+
+* `archive.ejs`: `_config.yml`에서 한 페이지당 5개 글이 나오도록 설정되어 있다. 예전에는 Archives 페이지에 대한 페이징 설정이 따로 있었는데 Hexo 3.0에서는 해당 설정이 사용되지 않고 Archives 페이지에서도 목록에 글이 5개만 표시되는 문제가 있다. 나는 Archives 페이지에서 페이지 처리를 하지 않을 것이므로 `page.posts`를 쓰던 부분을 `site.posts`로 수정해 문제를 해결했다.
+* `tags.ejs`: `post.tags._index.indexOf(...)`를 사용해 현재 태그와 포스트의 태그가 같은지 확인하는 부분이 있는데, Hexo 3.0에서는 `post.tags._index`가 `undefined`로 넘어온다. 이 부분도 오류가 발생하지 않도록 코드를 수정해야 했다.
+* `tag.ejs` 추가: `archive.ejs`에서 `page.posts` 대신 `site.posts`를 쓰게 했더니 블로그에서 태그 클릭 시 태그에 해당하는 글 목록만 표시되는 게 아니라 계속 전체 글 목록이 표시되었다. 태그를 클릭했을 때도 실제로는 `archive.ejs`가 해당 페이지를 렌더링하게 되어 있어 그랬다. 태그별로 별도 페이지가 생기도록 하기 위해 `tag.ejs`를 추가했다.
+
+일단 블로그를 제대로 생성할 수 있게 만드는 것이 급선무였기 때문에 일단 돌아가게 만드는 데 주력했다. 올바르게 수정한 것인지는 모르겠다.
 
 ## 소스 코드 하이라이트
 이제 다 됐겠지 하고 살펴보니 코드 블록의 문법 강조가 제대로 표시되지 않은 게 보였다. 이 부분은 [highlight.js](https://highlightjs.org/)에 맞춰 Hexo의 소스코드를 직접 수정해 사용하던 부분이었는데, Hexo 3.0에서는 관련 부분이 어디인지 찾을 수 없었다. 할 수 없이 CSS 파일을 수정했다. 다행히 클래스 이름 앞에 붙어있던 `hljs` 접두사를 제거하니 해결되었다.
