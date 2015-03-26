@@ -1,7 +1,6 @@
-title: DBMS 성능 테스트
 date: 2009-02-16
-tags: [db, mysql, postgresql, oracle, 성능테스트]
-
+tags: [db, mysql, postgresql, oracle]
+title: DBMS 성능 테스트
 ---
 지금까지 주로 Oracle을 사용해왔으나, 현재의 회사에서는 MySQL을 주로 사용하며 일부 시스템에서 PostgreSQL을 사용한다. 현재 MySQL을 사용하는 부분에서 지속적인 성능 문제가 발생하고 있는데, 이는 MySQL을 충분히 알지 못해 나타나는 문제일 수도 있다. MySQL을 사용하면서 지금까지 알고 있던 DBMS에 대한 지식(주로 Oracle에 대한)이 무용지물인 경우가 많았기 때문이다.
 <!--more-->

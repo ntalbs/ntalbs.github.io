@@ -1,6 +1,6 @@
 title: 확률 문제
 date: 2011-04-05
-tags: 수학
+tags: math
 
 ---
 

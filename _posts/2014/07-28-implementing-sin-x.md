@@ -1,5 +1,5 @@
 title: 매클로린 급수를 이용한 sin(x) 구현
-tags: [수학, clojure]
+tags: [math, clojure]
 date: 2014-07-28
 
 ---

@@ -1,7 +1,6 @@
-title: Hudson에서 JsTestDriver를 이용한 커버리지 분석 설정
 date: 2010-11-24
-tags: [ci, hudson, jstestdriver, javascript, coverage, 테스트]
-
+tags: [ci, hudson, jstestdriver, javascript, coverage, test]
+title: Hudson에서 JsTestDriver를 이용한 커버리지 분석 설정
 ---
 [Hudson에서 JsTestDriver 설정](/2010/11/22/hudson-jstestdriver/)에서 Hudson에서 JsTestDriver를 설정하는 방법을 설명했다. 여기서는 Hudson에서 JsTestDriver를 이용해 테스트 커버리지 리포트를 생성하는 방법을 살펴보자.
 <!--more-->
