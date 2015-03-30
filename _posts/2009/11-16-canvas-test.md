@@ -1,7 +1,7 @@
-title: Canvas 테스트
 date: 2009-11-16
-tags: canvas
-
+tags:
+- javascript
+title: Canvas 테스트
 ---
 
 `<canvas>` 태그를 사용해 간단한 그림을 그려봤다. `<canvas>` 태그를 이용하면 브라우저에 자유자재로 그림을 그릴 수 있다. Firefox와 같은 Gecko 기반의 브라우저에서는 `<canvas>` 요소(element)를 지원하지만 IE에서는 아직 지원하지 않는다. Chrome 브라우저에서도 `<canvas>`가 잘 동작한다.
