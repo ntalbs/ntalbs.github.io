@@ -21,7 +21,7 @@ SQL> set define off
 (SQL*Plus User's Guide and Reference 참조.)
 
 ## 해결 방법 2
-다음과 같은 식으로 문자여 변경 (편법...)
+다음과 같은 식으로 문자열 변경 (편법...)
 
 <pre class="console">
 'hello&world' --> 'hello&'||'world'
