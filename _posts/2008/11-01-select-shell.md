@@ -1,6 +1,6 @@
 title: SELECT 결과를 shell 변수로 가져오기
 date: 2008-11-01
-tags: [db, oracle, shell, sql*plus]
+tags: [db, oracle, shell, sqlplus]
 
 ---
 select한 결과를 shell에서 참조해야 하는 경우 다음과 같이 하면 된다.

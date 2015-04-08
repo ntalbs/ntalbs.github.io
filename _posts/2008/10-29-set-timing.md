@@ -1,6 +1,6 @@
 title: set timing을 이용한 SQL 실행 속도 측정법
 date: 2008-10-29
-tags: [db, oracle, sql*plus]
+tags: [db, oracle, sqlplus]
 
 ---
 SQL*Plus에서 실행시킨 SQL 또는 PL/SQL 블록의 실행속도를 보려면 다음과 같이 `set timing on`을 사용하면 된다.
