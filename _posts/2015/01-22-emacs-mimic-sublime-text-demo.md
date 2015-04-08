@@ -1,6 +1,6 @@
 tags: [emacs]
 date: 2015-01-22
-title: Emacs에서 Sublime Text 데모 편집 흉내내기
+title: "Emacs: Sublime Text 데모 편집 흉내"
 ---
 [Sublime Text 에디터](http://www.sublimetext.com/) 홈페이지에 있는 데모 화면을 보고 감탄했던 적이 있다. 특히 데모 2/6에 감탄해 Emacs에서 비슷하게 해보려 했지만 성공하지 못했다. 그동안 에디터가 많이 발전했음을 느끼며 주 사용 에디터를 Sublime Text로 바꿔볼까 생각했다. 사용해보고 마음에 들면 기꺼이 정품을 구입할 생각이었다.<!--more-->
 

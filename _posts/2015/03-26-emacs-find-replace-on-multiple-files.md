@@ -1,6 +1,6 @@
 tags: [emacs]
 date: 2015-03-26
-title: "Emacs에서 여러 파일 안의 텍스트 찾기/바꾸기"
+title: "Emacs: 여러 파일 안의 텍스트 찾기/바꾸기"
 ---
 hexo-math 플러그인에서 사용해 수식을 표현하는데, 예전에는 `{% raw %}{% math-block %}...{% endmath-block %}{% endraw %}`로 수식 블록을 표시했지만 Hexo 3.0에서는 이 부분이 깨졌다. 결국 `{% raw %}{% math_block %}...{% endmath_block %}{% endraw %}`를 사용하도록 hexo-math가 수정되었다. 이에 따라 블로그의 모든 글에서 `math-block`을 사용하는 부분을 찾아 `math_block`으로 바꿔줘야 했다. Emacs를 사용하면서 버퍼 안에서 찾기/바꾸기는 많이 해봐 익숙했지만 여러 파일에 대해 찾기/바꾸기를 해본 적은 없었다.<!--more-->
 
