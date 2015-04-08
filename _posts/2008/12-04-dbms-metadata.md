@@ -1,7 +1,6 @@
-title: dbms_metadata 패키지를 이용한 DDL 추출
 date: 2008-12-04
-tags: [db, oracle, ddl]
-
+tags: [db, oracle]
+title: dbms_metadata를 이용한 DDL 추출
 ---
 `dbms_metadata` 패키지를 이용해 DDL 추출하는 방법이다. 특정 스키마의 모든 DB 객체에 대한 DDL을 추출하려면 export를 사용하는 것이 더 편하다. ([특정 스키마의 DDL 추출 참조](/2008/11/08/extract-ddl/))
 <!--more-->
