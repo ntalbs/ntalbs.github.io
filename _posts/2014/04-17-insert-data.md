@@ -1,5 +1,5 @@
 date: 2014-04-17
-tags: [javascript, 에디터 개발]
+tags: [javascript, 에디터_개발]
 title: 텍스트 노드 조작 insertData
 ---
 텍스트 노드에 텍스트를 삽입할 때 처음에는 텍스트 노드의 `textContent`를 직접 조작했다. 즉 `Range` 객체에서 텍스트를 삽입할 위치를 구한 다음 다음과 같이 `substr` 함수로 텍스트를 직접 조작했다.
