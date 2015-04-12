@@ -51,7 +51,10 @@ Factorial은 보통 다음과 같이 재귀적으로 정의된다.
 
 {% math_block %}
 \begin{aligned}
-n! = \begin{cases} 1 & \mbox{if } n = 0,\\ n \times (n-1)! & \mbox {if } n > 0 \end{cases}
+n! = \begin{cases}
+  1 & \mbox{if } n = 0,\\
+  n(n-1)! & \mbox {if } n > 0
+  \end{cases}
 \end{aligned}
 {% endmath_block %}
 
