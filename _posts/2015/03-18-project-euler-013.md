@@ -32,20 +32,24 @@ clojure.lang.BigInt
       (subs 0 10)))
 ```
 
-답을 구하는 데 0.05ms밖에 걸리지 않는다.
+다음과 같이 빠르게 답을 구한다.
 
 <pre class="console">
 p013=> (time (solve1))
-"Elapsed time: 0.056103 msecs"
+"Elapsed time: 0.356553 msecs"
 "5537376???"
 </pre>
 
 ## 방법 2
-`BigInt`를 사용하면 문제 풀이가 너무 쉽기 때문에 문제 본래의 의도를 회피한 것으로 보인다. 여기서는 `BigInt`를 사용하지 않고 큰 수를 숫자 시퀀스(sequence of digits)로 표현해 문제를 풀어보려 한다. 먼저 다음과 같이 숫자를 입력받아 시퀀스로 바꾸는 함수를 작성한다.
+`BigInt`를 사용하면 문제 풀이가 너무 쉽기 때문에 문제 본래의 의도를 회피한 것이다. 여기서는 `BigInt`를 사용하지 않고 큰 수를 숫자 시퀀스(sequence of digits)로 표현해 문제를 풀어 보자.
+
+먼저 다음과 같이 숫자를 입력받아 시퀀스로 바꾸는 함수를 작성한다.
 
 ```
-(defn- num->digits [n]
-  (loop [n n, acc '()]
+(defn digits
+  "Retruns the list of digits of n."
+  [n]
+  (loop [n n acc '()]
     (if (= n 0)
       acc
       (recur (quot n 10) (conj acc (int (rem n 10)))))))
@@ -53,34 +57,60 @@ p013=> (time (solve1))
 
 이미 `nums`에 `BigInt`로 숫자가 들어있는 것을 숫자 시퀀스로 바꾸려는 것인데, 이게 반칙이라 생각되면 문제에서 주어진 숫자 목록을 문자열로 만든 다음 이를 숫자 시퀀스로 바꿀 수 있다. 이렇게 하는 방법은 [문제 8](/2015/02/25/project-euler-008/)에서 이미 살펴봤으므로 여기서는 생략한다.
 
-이제 숫자 시퀀스 두 개를 더하는 방법을 생각해야 한다. 예를 들어, `(9 8 7 6)`과 `(8 7 6)`을 더하면 `(1 0 7 5 2)`이 나오도록 해야 한다. Java나 C와 같은 언어로 구현한다면 종이에 숫자를 써서 더할 때와 동일한 방법을 적용해, 배열에 숫자를 넣어놓고 각 자리별로 숫자를 더하면서 더한 수가 10을 넘을 때 윗 자리에 1을 더해주는 방법을 사용할 수 있을 것이다.
-
-Clojure로는 그런 식으로 풀 수 없다. 따라서 다음과 같은 방법을 생각했다.
+이제 숫자 시퀀스 두 개를 더하는 방법을 생각해야 한다. 예를 들어, `(9 8 7 6)`과 `(8 7 6)`을 더하면 `(1 0 7 5 2)`이 나오도록 해야 한다. 종이에 숫자를 써서 더할 때와 동일한 방법을 적용해, 각 자리별로 숫자를 더하면서 더한 수가 10을 넘을 때 윗 자리에 1을 더하는 작업을 모든 자리에 대해 수행해야 한다.
 
 1. 일단 두 시퀀스의 길이를 맞춘다. 더할 때 자리수가 맞아야 하므로 짧은 쪽 앞에 0을 덧붙여 자리수를 맞춰야 한다. `(9 8 7 6)`과 `(8 7 6)`을 더하려면 먼저 `(8 7 6)`을 `(0 8 7 6)`으로 만들어야 한다.
 2. 길이를 맞춘 두 시퀀스를 더한다. 간단히 `(map + seq1 seq2)`로 구할 수 있다. `(9 8 7 6)`과 `(0 8 7 6)`에 대해서는 `(9 16 14 12)`가 될 것이다.
-3. 뒤에서부터 10의 자리와 1의 자리로 숫자를 나눠 리스트에 넣는다. 리스트의 첫 항목과 10의 자리 수를 더해 이를 다시 10의 자리와 1의 자리수로 나눠 리스트에 넣어야 한다. `foldr` 같은 함수가 있다면 이를 쓰겠지만 표준 라이브러리에서 제공되지 않으므로 다음과 같이 결과를 `reverse`한 다음 `reduce`했다.
+3. 뒤에서부터 10의 자리와 1의 자리로 숫자를 나눠 1의 자리수는 `acc`에 누적하고 10의 자리수는 앞자리와 더한다.
+4. 모든 자리에 대해 단계 3을 반복한다. 맨 앞자리 수가 10 이상이면 이 또한 10의 자리와 1의 자리로 분해해 단계 3을 반복해야 한다.
+
+여기서 단계 3이 특히 중요하다. 단계 3을 수행하는 함수는 다음과 같이 구현할 수 있다.
 
 ```
-(defn- add-digits [dv1 dv2]
-  (let [cnt1 (count dv1)
-        cnt2 (count dv2)
-        dv1 (if (< cnt1 cnt2) (lpad dv1 (- cnt2 cnt1)) dv1)
-        dv2 (if (< cnt1 cnt2) dv2 (lpad dv2 (- cnt1 cnt2)))
-        added (reverse (map + dv1 dv2))]
-    (->> (reduce (fn [ls x]
-                   (if (empty? ls)
-                     (list (quot x 10) (rem x 10))
-                     (let [d10 (quot (+ x (first ls)) 10), d1 (rem (+ x (first ls)) 10)]
-                       (conj (conj (rest ls) d1) d10))))
-                 '()
-                 added)
-         (drop-while #(zero? %)))))
+(defn- canonicalize-digits
+  "Returns a canonicalized sequence of digits.
+  Canonicalized here means that every digit in the sequence is single digit."
+  [ds]
+  (loop [ds (reverse ds), acc '()]
+    (let [cur (first ds)
+          rst (rest ds)
+          d10 (quot cur 10)
+          d1 (rem cur 10)]
+      (if (empty? rst)
+        (if (= d10 0)
+          (conj acc d1)
+          (recur (list d10) (conj acc d1)))
+        (recur (add-to-first rst d10) (conj acc d1))))))
 ```
 
-두 시퀀스를 더한 결과도 역시 시퀀스다. 경우에 따라 시퀀스의 첫 요소가 0이 될 수도 있는데 이때는 0을 제거해줘야 한다. 제거하지 않으면 나중에 계산을 누적했을 때 결과 시퀀스 앞부분이 0으로 채워질 것이기 때문이다.
+각 자리를 뒤에서부터 (즉 1의자리부터) 처리해 올라가는 것이 직관적이므로 입력된 리스트를 `reverse` 한 다음 시작한다. 마지막 행에 있는 `add-to-first`는 리스트와 숫자를 받아 리스트의 맨 앞 요소에 숫자를 더하는 함수다.
 
-함수 안에서 사용하는 `lpad`는 다음과 같이 구현하면 된다.
+```
+(defn- add-to-first
+  "Returns a new list with its first element is (+ x (first ls)). "
+  [ls x]
+  {:pre [(list? ls)]}
+  (let [fv (first ls)]
+    (if (nil? fv)
+      nil
+      (conj (rest ls) (+ fv x)))))
+```
+
+`canonicalize-digits`가 있다면 두 시퀀스를 더하는 함수는 다음과 같이 쉽게 구할 수 있다.
+
+```
+(defn digits+
+  "Returns sum of two digits."
+  [ds1 ds2]
+  (let [cnt1 (count ds1)
+        cnt2 (count ds2)
+        ds1 (if (< cnt1 cnt2) (lpad ds1 (- cnt2 cnt1)) ds1)
+        ds2 (if (< cnt1 cnt2) ds2 (lpad ds2 (- cnt1 cnt2)))
+        added  (map + ds1 ds2)]
+    (canonicalize-digits added)))
+```
+
+두 시퀀스를 더한 결과도 역시 시퀀스다. 함수 안에서 사용하는 `lpad`는 다음과 같이 구현하면 된다.
 
 ```
 (defn- lpad [ds cnt]
@@ -101,11 +131,11 @@ Clojure로는 그런 식으로 풀 수 없다. 따라서 다음과 같은 방법
 
 <pre class="console">
 p013=> (time (solve2))
-"Elapsed time: 4.825091 msecs"
+"Elapsed time: 8.531118 msecs"
 "5537376???"
 </pre>
 
-이 방법으로는 대략 ~5ms 정도 걸렸는데, `BigInt`를 썼을 때(~0.05ms)보다 백배 정도 느리다. 어설프게 구현하는 것보다는 잘 구현되어 있는 라이브러리를 쓰는 게 훨씬 낫다.
+`BigInt`를 썼을 때보다 많이 느려졌다. 어설프게 구현하는 것보다는 잘 되어 있는 라이브러리를 쓰는 게 훨씬 낫다.
 
 ## 참고
 * [Clojure의 BigInt 소스 코드](https://github.com/clojure/clojure/blob/master/src/jvm/clojure/lang/BigInt.java)
