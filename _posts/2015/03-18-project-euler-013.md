@@ -67,9 +67,9 @@ p013=> (time (solve1))
 여기서 단계 3이 특히 중요하다. 단계 3을 수행하는 함수는 다음과 같이 구현할 수 있다.
 
 ```
-(defn- canonicalize-digits
-  "Returns a canonicalized sequence of digits.
-  Canonicalized here means that every digit in the sequence is single digit."
+(defn- normalize-digits
+  "Returns a normalized sequence of digits.
+  Normalized here means that every digit in the sequence is single digit."
   [ds]
   (loop [ds (reverse ds), acc '()]
     (let [cur (first ds)
@@ -106,7 +106,7 @@ p013=> (time (solve1))
       (conj (rest ls) (+ fv x)))))
 ```
 
-`canonicalize-digits`가 있다면 두 시퀀스를 더하는 함수는 다음과 같이 쉽게 구할 수 있다.
+`normalize-digits`가 있다면 두 시퀀스를 더하는 함수는 다음과 같이 쉽게 구할 수 있다.
 
 ```
 (defn digits+
@@ -117,7 +117,7 @@ p013=> (time (solve1))
         ds1 (if (< cnt1 cnt2) (lpad ds1 (- cnt2 cnt1)) ds1)
         ds2 (if (< cnt1 cnt2) ds2 (lpad ds2 (- cnt1 cnt2)))
         added  (map + ds1 ds2)]
-    (canonicalize-digits added)))
+    (normalize-digits added)))
 ```
 
 두 시퀀스를 더한 결과도 역시 시퀀스다. 함수 안에서 사용하는 `lpad`는 다음과 같이 구현하면 된다.
