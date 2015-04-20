@@ -57,9 +57,9 @@ F_2 &= F_1 = 1
 `iterate` 함수는 첫 번째 인자로 함수 `f`를, 두 번째 인자로 초기값 `x`를 받아 `x, (f x), (f (f x))...` 지연 시퀀스(lazy sequence)를 만든다. 위 경우는 `[1 1]`을 받아 `(fn [[a b]] [b (+ a b)])`를 적용하면 `[1 2]`가 되고 여기에 다시 함수를 적용하면 `[2 3]`이 되는 식이다. 각 벡터의 첫 항목만 빼내면(`(map first)`) 피보나치 수열이 된다. 이제 필요한 만큼 피보나치 수열을 만들 수 있다.
 
 <pre class="console">
-user=> (take 5 fibo)
+user=> (take 5 fibo-iter)
 (1 1 2 3 5)
-user=> (take 10 fibo)
+user=> (take 10 fibo-iter)
 (1 1 2 3 5 8 13 21 34 55)
 user=>
 </pre>
