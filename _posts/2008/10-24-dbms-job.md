@@ -8,7 +8,7 @@ tags: [db, oracle]
 
 그럼 문제를 풀기 전에 `DBMS_JOB.SUBMIT` 프로시저를 살펴보자. `DBMS_JOB`을 이용해 JOB을 등록시키려면 `SUBMIT` 프로시저를 사용해야 한다. 파라미터 중 `next_date`와 `interval`을 통해 작업 실행 시각을 조절할 수 있다.
 
-```
+```sql
 DBMS_JOB.SUBMIT (
   job       OUT BINARY_INTEGER,
   what      IN  VARCHAR2,
@@ -36,7 +36,7 @@ DBMS_JOB.SUBMIT (
 
 `interval` 파라미터는 문자열로 주어야 하므로 수식 내에 따옴표(single quotation)이 있으면 따옴표를 두 개 써줘야 하는 것에 유의해야 한다. interval 수식이 복잡할 때는 확인하기가 어려울 수 있는데, 그럴 때는 interval 수식으로 직접 쿼리를 작성해 확인할 수 있다.
 
-```
+```sql
 select trunc(sysdate, 'D') + 7 from dual;
 ```
 
@@ -50,7 +50,7 @@ select trunc(sysdate, 'D') + 7 from dual;
 
 1번은 쉽다. 일단 `next_date`를 이번 주 토요일 새벽 1시로 지정하고, 그 다음 실행될 날은 거기서 7일 후가 된다. 즉,
 
-```
+```sql
 ...
 next_date=>to_date('2007102701','YYYYMMDDHH24'),
 interval=>'sysdate + 7'
@@ -59,7 +59,7 @@ interval=>'sysdate + 7'
 
 월초나 월말의 경우는 `add_months`나 `last_day`를 이용해 구하면 된다.
 
-```
+```sql
 -- 매월1일 새벽 0시 작업 실행
 ...
 next_date=>add_months(trunc(sysdate,'MM'),1),
@@ -75,7 +75,7 @@ interval=>'last_day(trunc(sysdate)+1)+23/24'  -- 말일+1일은 다음달 1일
 
 평일만 실행되도록 하기 위해서는 interval이 좀더 복잡해진다.
 
-```
+```sql
 ...
 interval=>'trunc(sysdate) + decode(to_char(sysdate,''D''), ''6'', 3, ''7'', 2, 1) + 22/24'
 ...

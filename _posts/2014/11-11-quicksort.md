@@ -23,7 +23,7 @@ Haskell로 작성한 퀵정렬 코드였다. C나 Java로 구현했다면 스무
 
 눈으로 보고 이해하는 것만으로는 충분하지 않다. 직접 짜보고 실행해봐야 제대로 알 수 있다. 그래서 내가 좋아하는 Clojure로 직접 구현해보았다.
 
-```
+```clojure
 (defn qsort [[p & xs]]
   (if (nil? p)
     '()
@@ -35,7 +35,7 @@ Haskell 코드보다 조금 길지만 기본 로직은 같다.
 
 정렬할 리스트에 같은 값이 여러 번 나오는 경우도 고려한다면 `compare` 함수로 `group-by`하는 편이 좀더 효율적일 것 같다.
 
-```
+```clojure
 (defn qsort [[p :as coll]]
   (if (nil? p)
     '()

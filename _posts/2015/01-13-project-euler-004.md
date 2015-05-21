@@ -9,7 +9,7 @@ title: 프로젝트 오일러 4
 
 먼저 대칭수인지를 판단하는 함수를 만들어 놓으면 좋을 듯 하다. 대칭수인지 판단하는 간단한 방법은 문자열로 바꾼 다음 원래 문자열과 거꾸로 바꾼 문자열이 같은지 비교하는 것이다.
 
-```
+```clojure
 (defn palindrome? [n]
   (= (str n) (apply str (reverse (str n)))))
 ```
@@ -17,7 +17,7 @@ title: 프로젝트 오일러 4
 ## 방법1
 다음과 같이 무식하게 루프를 돌려도 비교적 빨리 답을 구할 수 있다.
 
-```
+```clojure
 (def limit 1000)
 
 (defn initial-approach []
@@ -39,7 +39,7 @@ a \times b &= 100000x + 10000y + 1000z + 100z + 10y + x \\
 
 11은 소수이므로 a 또는 b가 11의 배수가 되어야 한다. 따라서 a 또는 b가 11의 배수일 때만 계산하도록 하면 루프 회수를 줄일 수 있다.
 
-```
+```clojure
 (defn improved []
   (->> (for [a (range 100 limit) b (range a limit)
              :when (or (= 0 (mod a 11)) (= 0 (mod b 11)))]

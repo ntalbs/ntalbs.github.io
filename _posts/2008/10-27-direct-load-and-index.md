@@ -10,7 +10,7 @@ tags: [db, oracle, index]
 
 이를 확인하기 위해 간단히 테스트를 해봤다. 먼저 다음과 같이 테이블을 만든다.
 
-```
+```sql
 -- 로드할 데이터를 넣어 둘 테이블
 create table t (
   n number,
@@ -38,7 +38,7 @@ create table t2 (
 
 테이블 `t`는 로드할 데이터를 담아둘 것이고, `t1`, `t2`는 위의 두 방법으로 로드하는 것을 비교하기 위한 테이블이다. `t`에 다음과 같이 데이터를 넣는다.
 
-```
+```sql
 insert into t
 select level,
        dbms_random.string('U',10),
@@ -49,12 +49,12 @@ connect by level <= 100000;
 
 그리고 다음과 같이 t1.sql과 t2.sql을 만들어둔다.
 
-```
+```sql
 -- t1.sql: 방법1
 insert /*+ append */ into t1 select * from t;
 ```
 
-```
+```sql
 -- t2.sql: 방법2
 alter table t2 drop primary key;
 drop index t2_ix01;
@@ -88,7 +88,8 @@ PL/SQL procedure successfully completed.
 </pre>
 
 **방법1**(인덱스가 있는 상태에서 데이터를 로드한 것)이 **방법2**(인덱스가 없는 상태에서 데이터를 로드한 다음 인덱스를 생성하는 것)보다 시간이 20% 정도 적게 걸리는 것으로 나왔다. 약간은 의외다. 지금까지는 인덱스를 날리고 데이터를 로드한 다음 인덱스를 생성하는 것이 빠르다고 들었기 때문이다. 그러나 이 테스트 결과만 가지고 단정하기는 어려울 것 같다. 만약 인덱스를 병렬처리로 생성하면 어떻게 될까? 병렬처리로 이득을 보려면 처리량이 더 많아야 하므로 데이터를 10배 늘려놓는다.
-```
+
+```sql
 truncate table t;
 truncate table t1;
 truncate table t2;
@@ -102,7 +103,8 @@ insert into t
 ```
 
 그리고 t2.sql 스크립트도 다음과 같이 수정한다.
-```
+
+```sql
 alter table t2 drop primary key;
 drop index t2_ix01;
 
@@ -137,7 +139,8 @@ PL/SQL procedure successfully completed.
 </pre>
 
 이번에는 방법2가 빠르게 나왔다. 음... 그럼 인덱스를 parallel 4로 바꿔놓은 상태에서 방법 1은 어떨까? t1.sql을 다음과 같이 수정한다.
-```
+
+```sql
 alter index t1_pk parallel 4;
 alter index t1_ix01 parallel 4;
 
@@ -170,7 +173,7 @@ PL/SQL procedure successfully completed.
 
 **방법1**의 실행 시간이 약간 줄어들긴 했지만 여전히 **방법2**가 2배정도 빠르다. 역시 인덱스가 없는 상태에서 데이터를 로드하고 인덱스를 병렬로 생성하는 것이 빠른 방법이다. 그러나 이미 대량의 데이터가 있는 테이블에 데이처를 추가적으로 로드해야 하는 상황에서도 방법2가 효율적일까? 1백만 건이 있는 테이블에 다시 1백만 건을 넣을 경우에는 어떻게 되는지 테스트를 해보자. 먼저 PK가 중복되지 않도록 데이터 소스가 들어있는 테이블 t를 업데이트한다.
 
-```
+```sql
 update xxx.t
 set n = n+1000000;
 commit;
@@ -198,7 +201,8 @@ PL/SQL procedure successfully completed.
 </pre>
 
 방법1과 방법2의 실행시간 차이가 줄어들긴 했지만 여전히 방법2가 빠르다. 이제 t1, t2에 각각 2백만 건의 데이터가 들어있는데 여기에 다시 1백만 건을 넣을 때는 어떻게 되는지 확인해보자. PK가 중복되지 않도록 테이블 t를 업데이트한다.
-```
+
+```sql
 update xxx.t
 set n = n+1000000;
 commit;

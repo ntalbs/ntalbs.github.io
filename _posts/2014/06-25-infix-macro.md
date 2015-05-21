@@ -16,7 +16,7 @@ tags: clojure
 
 먼저 다음과 같이 주어진 수식이 유효한지 확인하는 함수를 만들었다. 리스트 안의 요소가 홀수개인지, 연산자 종류가 모두 같은지 확인한다.
 
-```
+```clojure
 (defn- valid? [ops]
   (and (odd? (count ops))
        (->> ops
@@ -27,7 +27,7 @@ tags: clojure
 
 그리고 다음과 같이 매크로를 작성했다. 처음 작성해보는 것이라 어렵지 않을까 생각했는데, 의외로 단순했다.
 
-```
+```clojure
 (defmacro infix [ops]
   (if (coll? ops)
     (if (valid? ops)

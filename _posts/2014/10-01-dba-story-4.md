@@ -18,7 +18,7 @@ date: 2014-10-01
 
 데이터가 많은 것도 아니어서 금방 끝날 작업이었다. 컬럼 추가 작업은 그 전에도 많이 했었다. 아무 문제 될 게 없었다.
 
-```
+```sql
 alter table ... add (...);
 drop materialized view log on ...;
 create materialized view log on ...;
@@ -26,7 +26,7 @@ create materialized view log on ...;
 
 주 데이터베이스에서 컬럼을 추가한 다음 바로 보조 데이터베이스에 들어갔다. 전산센터에 연락해 보조 데이터베이스로 들어오는 거래를 주 데이터베이스로 전환하라고 한 다음 MView 재생성 작업을 시작했다.
 
-```
+```sql
 drop materialized view ...;
 create materialized view ...;
 ```

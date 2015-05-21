@@ -19,7 +19,7 @@ order_date | order_amt
 
 연도별, 월별 거래금액은 `group by`를 사용해 쉽게 구할 수 있다. 날짜를 조작하는 부분은 DBMS마다 조금씩 다를 수 있는데, 기본 로직은 날짜에서 월만 뽑아내 `group by`하는 것이다. 여기서는 PostgreSQL을 예로 사용한다.
 
-```
+```sql
 select to_char(order_date, 'yyyy-mm') "yyyy-mm", sum(order_amt) amt
 from orders
 where order_date between '2013-01-01' and '2014-12-31'
@@ -56,7 +56,7 @@ order by 1;
 ## 준비
 테스트를 위해 다음과 같이 테이블과 샘플 데이터를 준비한다.
 
-```
+```sql
 -- 테이블 생성
 create table orders (
   order_date date,
@@ -72,7 +72,7 @@ from generate_series(0, 1000) as t(n);
 ## 방법1: Aggregate 함수와 CASE문을 사용하는 방법
 먼저 각 열에 원하는 데이터만 나오도록 해야 한다. 예전에 Oracle에서는 `decode` 함수를 많이 사용했고, 표준 SQL에서는 `case~when` 구문을 사용하면 된다. 각 열에 해당 월의 데이터만 들어가도록 다음과 같이 쿼리를 작성할 수 있다.
 
-```
+```sql
 select
   extract(year from order_date) "year",
   case when extract(month from order_date) =  1 then order_amt end as "Jan",
@@ -93,7 +93,7 @@ where order_date between '2013-01-01' and '2014-12-31';
 
 `extract(...)`가 반복되는 것이 보기 싫다면 다음과 같이 쿼리를 수정할 수 있다.
 
-```
+```sql
 select
   "year",
   case when mm =  1 then order_amt end as "Jan",
@@ -132,7 +132,7 @@ from (select extract(year from order_date) "year",
 
 아직 원하는 결과가 아니지만 거의 다 한 것이나 마찬가지다. 위 결과를 `"year"`로 `group by` 하고 각 컬럼을 `sum()`으로 감싸 데이터를 더해주기만 하면 끝난다.
 
-```
+```sql
 select
   "year",
   sum(case when mm =  1 then order_amt end) as "Jan",
@@ -169,7 +169,7 @@ group by "year";
 ## 방법2: WITH와 스칼라 서브쿼리를 사용하는 방법
 `with`와 스칼라 서브쿼리를 이용해 다음과 같은 쿼리를 작성할 수도 있다.
 
-```
+```sql
 with m as (
   select
     extract(year from order_date) "year",
@@ -202,13 +202,13 @@ order by 1;
 ## 방법3: PIVOT을 사용하는 방법
 Oracle, PostgreSQL 등의 DBMS는 쿼리에서 pivot을 지원한다. Oracle에는 11g부터 `pivot`, `unpivot` 기능이 추가되었다. PostgreSQL에서는 `tablefunc` 모듈에 있는 `crosstab`을 이용해 pivot된 결과를 만들 수 있다. pivot 기능을 사용하려면 먼저 `tablefunc` 확장기능을 활성화해야 한다.
 
-```
+```sql
 CREATE EXTENSION tablefunc;
 ```
 
 이제 다음과 같이 `crosstab` 함수를 사용할 수 있다.
 
-```
+```sql
 select * from crosstab(
   'select
      extract(year from order_date) as year,

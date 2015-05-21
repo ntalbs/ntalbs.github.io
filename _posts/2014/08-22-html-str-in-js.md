@@ -6,7 +6,7 @@ tags: [javascript]
 JavaScript 코드에 HTML 문자열을 써야 하는 경우가 종종 있다. 문자열이 짧을 때는 그냥 한 줄로 써도 크게 상관 없다. 복잡한 계층 구조를 가지는 긴 HTML 문자열을 써야 할 경우에는 한 줄로 작성하지 않는다. 작성하기도 어렵고 알아보기도 어렵기 때문이다. 보통 다음과 같이 여러 줄로 문자열을 만들고 `+`로 연결해 변수에 저장한다.
 <!--more-->
 
-```
+```js
 var html = '<div class="xxx">' +
               '<div class="yyy">' +
                  '<span class="zzz"></span>' +
@@ -20,7 +20,7 @@ var html = '<div class="xxx">' +
 
 ## 1. `\`를 이용한 다중 행 문자열 표현
 
-```
+```js
 var html = '<div class="xxx"> \
               <div class="yyy"> \
                 <span class="zzz"></span> \
@@ -32,7 +32,7 @@ var html = '<div class="xxx"> \
 
 ## 2. 각 행 앞에 공백 추가
 
-```
+```js
 var html = '<div class="xxx">' +
            '  <div class="yyy">' +
            '    <span class="zzz"></span>' +
@@ -44,7 +44,7 @@ var html = '<div class="xxx">' +
 
 ## 3. 각 행을 배열에 담기
 
-```
+```js
 var html = [
   '<div class="xxx">',
   '  <span>Hello</span>',
@@ -54,7 +54,7 @@ var html = [
 
 마지막 방법은 각 행을 배열에 저장하고 `join()`을 이용해 연결하는 것이다. 나는 이 방법이 가장 마음에 들었다. 앞서 언급했던 불필요한 텍스트 노드가 추가되는 문제는 다음과 같이 해결할 수 있다.
 
-```
+```js
 var html = [
   ...
 ].map(function (s) { return s.trim(); }).join('');

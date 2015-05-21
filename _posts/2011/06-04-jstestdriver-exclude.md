@@ -27,7 +27,7 @@ end_of_record
 
 이런 작업은 스크립트 언어로 처리하면 쉬울 것 같다. 회사 CI 서버에 python이 깔려 있어 python으로 간단하게 작성해봤다. (다듬을 여지가 많다. 예를 들어 input_file을 명령행 인수로 받도록 처리할 수도 있겠다.)
 
-```
+```python
 import shutil
 excludeList = open('exclude_coverage.txt').readlines()
 input_file = '/.../.../jsTestDriver.conf-coverage.dat'

@@ -7,12 +7,12 @@ tags: [db, oracle]
 <!--more-->
 
 #### 1. 컬럼 추가시 default 값을 지정하는 경우
-```
+```sql
 alter table t add(c1 char(1) default 'X');
 ```
 
 #### 2. 컬럼을 추가한 다음 default 값을 지정하는 경우
-```
+```sql
 alter table t add(c1 char(1));
 alter table t modify (c1 default 'X');
 ```

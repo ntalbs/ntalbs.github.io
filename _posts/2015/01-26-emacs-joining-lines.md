@@ -4,7 +4,7 @@ title: "Emacs: 행 연결"
 ---
 코드를 편집하다 보면 여러 줄을 한 줄로 합치고 싶을 때가 종종 생긴다. 예를 들어 다음과 같은 코드가 있다고 하자.
 
-```
+```js
 func(arg1,
      arg2,
      arg3);
@@ -12,7 +12,7 @@ func(arg1,
 
 이걸 다음과 같이 바꾸고 싶다.
 
-```
+```js
 func(arg1, arg2, arg3);
 ```
 <!--more-->
@@ -28,7 +28,7 @@ Emacs에서도 작업이 불가능한 것은 아니지만, 기본으로 제공�
 
 그러나 [Joining Lines](http://emacsredux.com/blog/2013/05/30/joining-lines/)에 더 좋은 방법이 정리되어 있다. 현재 행을 다음 행과 합치는 기능을 구현해 놓았는데, 댓글 중에 선택 영역의 행을 합쳐주는 기능의 코드가 보였다. 이 둘을 통합해 다음과 같이 코드를 작성했다.
 
-```
+```clojure
 (defun join-lines-in-region (beg end)
   "Apply join-line over region."
   (interactive "r")

@@ -5,7 +5,7 @@ title: 교활한 XML
 XML 파일이 프로그램을 죽일 수도 있다는 생각은 하지 못했다. XML은 그저 텍스트일 뿐이고 프로그램은 그저 파일을 읽어서 처리할 뿐인데... 그런데 다음과 같은 파일을 보고서야 그럴 수도 있다는 것을 알게 되었다.
 <!-- more -->
 
-```
+```xml
 <?xml version="1.0"?>
 <!DOCTYPE billion [
 <!ELEMENT billion (#PCDATA)>

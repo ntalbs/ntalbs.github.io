@@ -12,13 +12,13 @@ Clojure는 LISP 방언으로 LISP이 가진 한계(?)를 그대로 가지고 있
 ## 괄호
 괄호에 대해서는 억울한 면이 있다. 사람들은 코드 블록 뒤에 `))))`와 같이 괄호가 무더기로 붙어 있는 것을 보고 기겁을 하지만, 알고보면 중괄호(`{`와 `}`)를 사용하는 언어에 비해 괄호가 많은 것이 결코 아니기 때문이다. 간단히 코드를 비교해보면 알 수 있다. 다음은 절대값을 구하는 다음 함수를 Clojure와 Java로 구현한 것이다.
 
-```
+```clojure
 (defn abs [x]
   (if (>= x 0) x (- x)))
 ```
 Clojure 코드에는 모두 다섯 개의 괄호 쌍이 있다. 같은 함수를 Java로 구현해보자.
 
-```
+```java
 public double abs(double x) {
   if (x >= 0) {
     return x;
@@ -29,20 +29,20 @@ public double abs(double x) {
 ```
 Java 또한 (둥근)괄호, 중괄호를 모두 세면 다섯 개의 괄호 쌍을 사용한다. Java는 위와 같이 함수만 있을 수 없고 모든 코드를 클래스로 감싸야 하기 때문에 클래스 정의에 필요한 중괄호까지 포함시키면 괄고 개수가 하나 들어난다. 물론 Java에서 삼항연산자를 사용해 다음과 같이 간단하게 할 수도 있다.
 
-```
+```java
 public static double abs(double x) {
   return (x >= 0) ? x : -x;
 }
 ```
 물론 이건 특별한 경우다. 조금 다른 경우를 생각해보자. 정수 `n`을 입력받아 1부터 n까지 합을 구하는 함수를 구현해보자. Clojure 구현은 다음과 같다.
 
-```
+```clojure
 (defn sum-to [n]
   (apply + (range 1 n)))
 ```
 대괄호까지 포함해 네 개의 괄호쌍이 사용되었다. 같은 함수를 Java로 구현하면 다음과 같다.
 
-```
+```java
 public static int sumTo(int n) {
   int sum = 0;
   for (int i=1; i <= n; i++) {
@@ -57,7 +57,7 @@ public static int sumTo(int n) {
 
 중괄호를 사용하는 언어도 조금 복잡한 프로그램의 경우 다음과 같은 식으로 끝나는 경우도 많다.
 
-```
+```java
         ...
       }
     }

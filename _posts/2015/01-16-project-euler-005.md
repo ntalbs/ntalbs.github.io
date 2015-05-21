@@ -13,7 +13,7 @@ lcm(a,b) = \frac{\lvert a \times b \rvert}{gcd(a,b)}
 
 최대공약수(Greatest Common Divisor)를 구하면 최소공배수를 구할 수 있다. 최대공약수와 최소공배수를 구하는 함수는 다음과 같이 구현할 수 있다.
 
-```
+```clojure
 (defn gcd [a b]
   (if (= b 0) a (recur b (rem a b))))
 
@@ -23,7 +23,7 @@ lcm(a,b) = \frac{\lvert a \times b \rvert}{gcd(a,b)}
 
 위 함수는 주어진 두 수의 최대공약수, 최소공배수를 구한다. 세 수에 대한 최소공배수를 구하려면 먼저 두 수에 대한 최소공배수를 구한 다음 그 결과와 나머지 수의 최소공배수를 구하면 된다. 따라서 1~20의 최소공배수는 다음과 같이 구할 수 있다.
 
-```
+```clojure
 (defn solve []
   (reduce lcm (range 1 21)))
 ```

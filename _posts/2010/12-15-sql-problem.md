@@ -6,7 +6,7 @@ tags: [db, sql]
 1부터 100까지 더하는 프로그램을 짜라면 많은 프로그래머들이 다음과 같이 `for` 루프로 1부터 100까지 돌면서 합을 구하는 형식으로 코드를 작성할 것이다. (Python으로 구현)
 <!--more-->
 
-```
+```python
 def sum1(n):
   s = 0
   for i in range(1, n+1):
@@ -16,14 +16,14 @@ def sum1(n):
 
 컴퓨터는 이런 식의 반복 계산을 잘 하므로 작은 수에 대해서는 이렇게 작성해도 큰 상관은 없을 것이다. 물론 비효율적이기는 하지만. 좀더 효율적으로 작성하려면 간단한 공식을 이용하면 된다.
 
-```
+```python
 def sum2(n):
   return n * (n + 1) / 2
 ```
 
 [Set-based Approach](http://ukja.tistory.com/362)에서 주문 간격 평균을 구하는 문제도 사실은 위와 비슷한 경우라 할 수 있다. (문제는 원래 페이지 참조) 테이블은 다음과 같다. (컬럼 이름을 약간 수정했다.)
 
-```
+```sql
 create table orders(
   member_no int, -- 회원번호
   order_no  int, -- 주문번호
@@ -33,7 +33,7 @@ create table orders(
 
 테스트를 위해 샘플 데이터도 넣었다. (테스트는 PostgreSQL에서 진행)
 
-```
+```sql
 insert into orders values
 (100, 1, '2010-12-01'),
 (100, 2, '2010-12-10'),
@@ -42,7 +42,7 @@ insert into orders values
 
 개발자라면 주문 간격의 평균을 구하라는 문제를 보는 순간 먼저 날짜 간격을 계산한 다음 그에 대한 평균을 구해야겠다고 생각할 것이다. SQL의 윈도우 함수(window function 또는 windowing function, 오라클에서는 analytic function)을 모르면 약간 고민을 하겠지만 이를 알고 있다면 망설임 없이 날짜로 정렬한 다음 현재 날짜에서 바로 전 레코드의 날짜를 빼서 기간을 구하고 이 기간에 대한 평균을 구하려 할 것이다.
 
-```
+```sql
 select avg(order_dt - priv_order_dt)
 from (
   select
@@ -68,7 +68,7 @@ d<sub>2</sub>-d<sub>1</sub>, d<sub>3</sub>-d<sub>2</sub>, ..., d<sub>n</sub> - d
 
 그러나 마지막의 단순한 식을 이용하면 SQL도 단순해진다.
 
-```
+```sql
 select (max(order_dt) - min(order_dt)) / (count(*)-1)
 from orders
 where member_no = 100;

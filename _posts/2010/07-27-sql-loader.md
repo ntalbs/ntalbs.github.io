@@ -8,7 +8,7 @@ tags: [db, oracle]
 
 ### 1. 데이터를 로드할 테이블 생성(또는 확인)
 
-```
+```sql
 create table xxx (
   c1 number,
   c2 varchar2(10),

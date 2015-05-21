@@ -22,7 +22,7 @@ $ uncompress < exp.dmp.Z > $pipe
 
 이를 응용해 다음과 같은 스크립트를 만들 수 있다.
 
-```
+```sh
 #!/bin/ksh
 if [ "$1" -eq "" ]; then
     print "usage: restore.sh inputfile"

@@ -59,20 +59,20 @@ user=> (map max *1 *2)
 
 이걸 다음과 같이 함수로 만들 수 있다.
 
-```
+```clojure
 (fn [ls us] (map max (map + ls us) (map + (rest ls) us)))
 ```
 
 위 함수를 맨 아래 층과 그 위층에 적용하고, 그 결과와 바로 위층에 적용하며 위로 올라가야 한다. 이런 작업에는 `reduce`를 사용하는 것이 알맞다. 따라서 다음과 같이 `find-max` 함수를 정의할 수 있다.
 
-```
+```clojure
 (defn find-max [t]
   (reduce (fn [ls us] (map max (map + ls us) (map + (rest ls) us))) t))
 ```
 
 이제 문제를 다 푼 것과 마찬가지다. 삼각형은 다음과 같이 `vector`의 `vector`로 정의할 수 있다. 삼각형의 밑에서부터 올라가며 작업해야 한다. `fold-right`가 있다면 좋겠지만 Clojure 기본 함수에는 `fold-right`가 없으므로 `reverse`한 후 `reduce` 하면 같은 효과를 얻을 수 있다. 여기서는 계산 편의를 위해 미리 `reverse` 해 두었다.
 
-```
+```clojure
 (def triangle
   (reverse
    [[75]
@@ -94,7 +94,7 @@ user=> (map max *1 *2)
 
 `find-max` 함수에 `triangle`을 인자로 주어 호출하면 답을 구할 수 있다.
 
-```
+```clojure
 (defn solve []
   (find-max triangle))
 ```

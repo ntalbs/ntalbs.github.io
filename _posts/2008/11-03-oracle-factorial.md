@@ -6,7 +6,7 @@ tags: [db, oracle, sql]
 오라클에 `factorial` 함수가 없지만 다음과 같이 구할 수 있다.
 <!--more-->
 
-```
+```sql
 select exp(sum(ln(level)))
 from dual
 connect by level <= N

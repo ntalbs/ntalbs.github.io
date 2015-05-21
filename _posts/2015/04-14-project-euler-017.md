@@ -14,7 +14,7 @@ title: 프로젝트 오일러 17
 
 즉 주어진 숫자를 문자열로 바꾸는 함수를 구현하면 문제를 간단히 풀 수 있다.<!--more--> 먼저 다음과 같이 1~19까지 숫자를 영어로 표현한 벡터를 만든다. 1~19까지는 특이한 패턴이 없기 때문에 다 써줘야 한다.
 
-```
+```clojure
 (def one2nineteen
   ["" "one" "two" "three" "four" "five" "six" "seven" "eight" "nine" "ten"
    "eleven" "twelve" "thirteen" "fourteen" "fifteen"
@@ -23,7 +23,7 @@ title: 프로젝트 오일러 17
 
 숫자와 인덱스를 일치시키기 위해 맨 앞에 빈 문자열을 추가했다. 이제 20 이하의 수에 대해 다음 함수를 이용해 영어로 바꿀 수 있다.
 
-```
+```clojure
 (defn s-under20 [n]
   {:pre [(<= 0 n)]}
   (one2nineteen n))
@@ -31,7 +31,7 @@ title: 프로젝트 오일러 17
 
 20 이상 100 미만의 수는 10의 자리 수와 1의 자리 수를 나누어 영어로 매핑할 수 있다.
 
-```
+```clojure
 (def deca
   ["" "ten" "twenty" "thirty" "forty" "fifty" "sixty" "seventy" "eighty" "ninety"])
 
@@ -47,7 +47,7 @@ title: 프로젝트 오일러 17
 
 100 이상 1000 미만의 수는 100의 자리 수와 나머지 자리 수로 나누어 생각할 수 있다. 100 이상의 수는 항상 "X hundred" 또는 "X hundred and Y"의 패턴으로 표현된다. 100의 자리 수인 X에 대해서는 앞에서 구현한 `s-under20`를, 나머지 자리 수에 대해서는 `s-under100`을 재활용할 수 있다.
 
-```
+```clojure
 (defn s-under1000 [n]
   (if (< n 100)
     (s-under100 n)
@@ -60,7 +60,7 @@ title: 프로젝트 오일러 17
 
 문제의 범위가 1000까지이므로, 1000 이하의 숫자를 영어 문자열로 바꿔주는 `num2str`을 다음과 같이 구현한다.
 
-```
+```clojure
 (defn num2str [n]
   (cond (< n 1000) (s-under1000 n)
         (= n 1000) "one thousand"
@@ -71,7 +71,7 @@ title: 프로젝트 오일러 17
 
 이제 다음과 같이 1부터 1000까지 숫자를 문자열로 변환해 공백을 제거한 다음 글자수를 세면 문제의 답을 구할 수 있다.
 
-```
+```clojure
 (defn solve []
   (->> (range 1 (inc 1000))
        (map num2str)

@@ -10,7 +10,7 @@ title: 프로젝트 오일러 6
 ## 방법 1
 가장 쉽게 생각할 수 있는 방법은 1부터 100까지 루프를 돌리면서 **제곱의 합**을 구하고, 또 1부터 100까지 루프를 돌려 합을 구한 다음 그 결과를 제곱해 **합의 제곱**을 구한 다음, 두 값의 차를 구하는 것이다.
 
-```
+```clojure
 (defn using-brute-force [n]
   (let [s (range 1 (inc n))
         sum-of-sq (reduce + (map (fn [n] (* n n)) s))
@@ -55,7 +55,7 @@ $$
 
 따라서 **합의 제곱**과 **제곱의 합**을 구하는 함수는 다음과 같이 구현할 수 있다.
 
-```
+```clojure
 (defn sq-of-sum [n]
   (let [s (/ (* n (+ n 1)) 2)]
     (* s s)))
@@ -66,7 +66,7 @@ $$
 
 여기까지 했으면 문제의 답은 다음과 같이 쉽게 구할 수 있다.
 
-```
+```clojure
 (defn using-formula [n]
   (- (sq-of-sum n) (sum-of-sq n)))
 ```

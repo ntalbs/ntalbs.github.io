@@ -30,7 +30,7 @@ drrd, drdr, ddrr
 
 `n!`을 구하는 함수가 있다면 답을 구한 것이나 마찬가지다. `factorial`이 구현되어 있다고 한다면 답은 다음과 같이 구할 수 있다.
 
-```
+```clojure
 (defn solve []
   (let [f40 (factorial 40) f20 (factorial 20)]
     (/ f40 (*' f20 f20))))
@@ -60,7 +60,7 @@ n! = \begin{cases}
 
 Clojure 코드로는 다음과 같이 구현할 수 있다.
 
-```
+```clojure
 (defn fact1 [n]
   (if (= 0 n)
     1
@@ -77,7 +77,7 @@ StackOverflowError   clojure.lang.Util.equiv (Util.java:30)
 
 꼬리재귀(Tail Recursion)을 사용하면 `StackOverflowError`를 피할 수 있다. Clojure에서 꼬리재귀를 사용하려면 `recur` Special Form을 사용해야 한다. `recur`는 tail position에서만 사용할 수 있는데, 위 `factorial` 구현에서 재귀호출하는 부분은 tail position이 아니다. 따라서 꼬리재귀를 사용하려면 다음과 같이 보조 함수를 도입해 함수 형태를 변경할 수 있다.
 
-```
+```clojure
 (defn fact-helper [n acc]
   (if (= 0 n)
     acc
@@ -96,7 +96,7 @@ user=> (factorial 20000)
 
 그러나 `fact-helper`와 같은 보조 함수가 `factorial` 밖에서 보이는 게 불만이다. `letfn`을 사용하면 보조 함수를 `factorial` 함수 안으로 숨길 수 있다.
 
-```
+```clojure
 (defn fact3 [n]
   (letfn [(f [n acc]
             (if (= 0 n)
@@ -107,7 +107,7 @@ user=> (factorial 20000)
 
 또는 `loop`를 사용할 수도 있다.
 
-```
+```clojure
 (defn fact4 [n]
   (loop [n n, acc 1]
     (if (= 0 n)
@@ -117,7 +117,7 @@ user=> (factorial 20000)
 
 Factorial 함수는 0 또는 양의 정수에 대해서만 유효하다. `fact1`의 경우 인자가 음수일 경우 `StackOverflowError`가 발생할 것이고, `fact2`, `fact3`, `fact4`는 무한루프에 빠질 것이다. 따라서 다음과 같이 선행조건(precondition)을 추가할 수 있다.
 
-```
+```clojure
 (defn fact4 [n]
   {:pre [(or (pos? n) (zero? n)) (integer? n)]}
   ...
@@ -133,7 +133,7 @@ n! = \prod_{k=1}^n k = 1 \times 2\, \times ... \times\, n
 
 이 정의를 그대로 Clojure 코드로 옮기면 다음과 같다.
 
-```
+```clojure
 (defn factorial [n]
   (apply *' (range 1 (inc n))))
 ```

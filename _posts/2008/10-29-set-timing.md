@@ -19,7 +19,7 @@ SQL> select count(*) from all_objects;
 
 그런데, SQL 하나하나의 속도가 하니라 한 블록의 SQL 실행속도를 알고 싶을 때는 어떻게 해야 할까? 예를 들어 다음과 같이 work.sql에 여러 SQL이 들어 있다고 생각해보자.
 
-```
+```sql
 -- work.sql
 insert into t values ('2007-01-01', 'aaa');
 insert into t values ('2007-01-02', 'bbb');
@@ -62,7 +62,7 @@ Elapsed: 00:00:00.00
 
 전체 SQL의 실행 속도를 보고 싶다면 `begin ~ end`를 써서 SQL을 묶어주면 된다. 즉 work.sql 파일의 시작과 끝을 `begin ~ end`로 묶어준 다음 실행시키면 된다.
 
-```
+```sql
 -- work.sql
 begin
 insert into t values ('2007-01-01', 'aaa');
@@ -114,7 +114,7 @@ Elapsed: 00:00:00.03
 `set echo on` 상태라면 @work.sql을 입력한 후 엔터키를 누르면 위와 같이 파일 내용이 표시된다.
 `set timing on` 대신 `timing` 명령을 사용해 여러 SQL의 실행속도를 측정할 수도 있다.
 
-```
+```sql
 timing start
 insert into t values ('2007-01-01', 'aaa');
 insert into t values ('2007-01-02', 'bbb');

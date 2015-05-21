@@ -25,7 +25,7 @@ $ exp system/pw owner=scott direct=y file=/tmp/expimp_pipe
 
 pipe를 이용해 export 하는 동시에 compress로 압축 저장해 백업을 받는 스크립트는 다음과 같이 작성할 수 있다. (named pipe는 미리 만들어두어야 한다.)
 
-```
+```sh
 #!/bin/ksh
 date=$(date +"%m%d")
 pipe=/tmp/expimp_pipe

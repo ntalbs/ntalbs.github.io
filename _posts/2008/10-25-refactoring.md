@@ -5,7 +5,7 @@ tags: refactoring
 ---
 소스코드를 보다가 다음과 같은 코드를 발견했다. 명령행 인수 분석해 딕셔너리에 넣는 코드인데, 이렇게 복잡할 필요가 있을까 생각되어 잠시 코드를 들여다 봤다.
 <!--more-->
-```
+```python
 def cmd_option_parse():
     cmd_argv = {}
     argv = sys.argv[1:]
@@ -29,7 +29,7 @@ def cmd_option_parse():
 기본적으로 인수 입력 형식은 `=`을 기준으로 `key=value` 형식으로 주어지며,
 `-`와 `--`가 코드에 있는 것은 인수 중에 `-`와 `--`로 시작하는 경우 이를 제거하기 위한 코드다. 결국은 `key=value` 형식을 분석해 딕셔너리에 넣되 `-`를 제거하면 되는 것이다. 이는 과 같이 하는 것이 훨씬 단순하고 이해하기 쉽다.
 
-```
+```python
 def getArgMap():
     argMap = {}
     for a in sys.argv[1:]:

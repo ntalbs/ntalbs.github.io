@@ -7,7 +7,7 @@ select한 결과를 shell에서 참조해야 하는 경우 다음과 같이 하�
 <!--more-->
 
 #### 방법 1
-```
+```sh
 #!/bin/ksh
 VALUE=`sqlplus -silent "user/passwd@sid" < set pagesize 0 \
 feedback off verify off heading off echo off
@@ -24,7 +24,7 @@ fi
 ```
 
 #### 방법 2
-```
+```sh
 #!/bin/ksh
 sqlplus -s > null "usr/passwd@sid" < column num_rows \
 new_value num_rows format 9999

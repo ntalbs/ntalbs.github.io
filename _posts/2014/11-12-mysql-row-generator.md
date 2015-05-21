@@ -5,19 +5,19 @@ tags: [db, postgresql, mysql, sql]
 ---
 Oracle에서는 `connect by`를 사용해 필요한 만큼 행(row)을 생성할 수 있다.
 
-```
+```sql
 select level from dual connect by level <= 100;
 ```
 
 PostgreSQL에서도 `generate_series`를 사용해 쉽게 행을 만들 수 있다.
 
-```
+```sql
 select * from generate_series(1, 100);
 ```
 
 재귀적 CTE(Common Table Expressions)를 사용하면 특정 DBMS에서만 제공하는 기능을 사용하지 않고 표준 SQL만 사용해 행 생성기(row generator)를 만들 수 있다.<!--more--> PostgreSQL에서는 다음과 같은 식으로 원하는 만큼 행을 생성할 수 있다.
 
-```
+```sql
 with recursive a(n) as (
   select 1
   union all
@@ -33,7 +33,7 @@ CTE는 SQL-99 표준이지만, MySQL은 CTE를 구현하지 않아 이 방식을
 ## MySQL 행 생성기
 먼저 노가다 작업을 통해 16행짜리 뷰를 만든다.
 
-```
+```sql
 create or replace view generator_16 as
   select 0 n union all select 1  union all select 2  union all
   select 3   union all select 4  union all select 5  union all
@@ -45,14 +45,14 @@ create or replace view generator_16 as
 
 더 많은 행은 `generator_16` 뷰로 카테시안 곱을 반복해 만든다. 즉 `generator_16` 두 개를 카테시안 조인하면 256개의 행이 생긴다. 숫자가 순차 증가하게 하려면 간단한 계산이 필요하다.
 
-```
+```sql
 select (hi.n*16 + lo.n) as n
 from generator_16 hi, generator_16 lo;
 ```
 
 위 쿼리를 실행해보면 0부터 255까지 숫자가 나온다. 따라서 다음과 같이 256행을 가지는 뷰를 만들 수 있다.
 
-```
+```sql
 create or replace view generator_256 as
   select (hi.n*16 + lo.n) as n
   from generator_16 hi, generator_16 lo;
@@ -60,7 +60,7 @@ create or replace view generator_256 as
 
 마찬가지로 `generator_256`과 `generator_16`을 이용해 4k 행을 가지는 뷰를 만들 수 있다.
 
-```
+```sql
 create or replace view generator_4k as
   select (hi.n*256 + lo.n) as n
   from generator_16 hi, generator_256 lo;
@@ -68,7 +68,7 @@ create or replace view generator_4k as
 
 이런 식으로 1M(=2<sup>20</sup>) 행을 가지는 뷰도 만들 수 있다.
 
-```
+```sql
 create or replace view generator_4k as
   select (hi.n*256 + lo.n) as n
   from generator_16 hi, generator_256 lo;

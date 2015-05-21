@@ -17,7 +17,7 @@ F_2 &= F_1 = 1
 구현하기 쉬워 보인다.<!--more-->
 
 ## 방법 1
-```
+```clojure
 (defn fibo-rec [n]
   (cond (= 1 n) 1
         (= 2 n) 1
@@ -28,13 +28,13 @@ F_2 &= F_1 = 1
 
 이미 계산한 함수 값을 기억해두는 메모이제이션(memoization) 기법을 사용하면 부가적인 메모리를 사용하는 대신 속도를 빠르게 할 수 있다. Clojure에서는 다음과 같이 간단히 메모이제이션을 사용할 수 있다.
 
-```
+```clojure
 (def fibo-rec (memoize fibo-rec))
 ```
 
 이렇게 하면 피보나치 수열의 n번째 항을 빠르게 구할 수 있다. 따라서 다음과 같이 문제를 풀 수 있다.
 
-```
+```clojure
 (def limit 4000000)
 
 (defn using-memoization []
@@ -48,7 +48,7 @@ F_2 &= F_1 = 1
 ## 방법 2
 다음과 같이 `(fn [[a b]] [b (+ a b)])`를 이용해 피보나치 수열을 구할 수도 있다.
 
-```
+```clojure
 (def fibo-iter
   (->> (iterate (fn [[a b]] [b (+ a b)]) [1 1])
        (map first)))
@@ -66,7 +66,7 @@ user=>
 
 따라서 다음과 같이 하면 문제의 답을 구할 수 있다.
 
-```
+```clojure
 (defn using-iteration []
   (->> fibo-iter
        (filter even?)

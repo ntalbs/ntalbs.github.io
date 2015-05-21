@@ -138,7 +138,7 @@ where
 
 이렇게 하면 조회는 되겠지만, `create_dt+create_tm`으로 인덱스가 걸려 있는 경우 인덱스를 타지 못한다. 인덱스 컬럼이 가공되기 때문이다. 인덱스를 타게 하기 위해서는 아마도 다음과 같이 좀더 복잡한 쿼리를 작성해야 할 것이다.
 
-```
+```sql
 select * from t
 where (create_dt = '20080201' and create_tm >= '100000')
    or (create_dt between '20080202' and '20080204')
@@ -147,7 +147,7 @@ where (create_dt = '20080201' and create_tm >= '100000')
 
 만약 `create_dt`를 `DATE` 타입으로 했고, 여기에 날짜와 시간을 함께 저장한다면 다음과 같이 단순하고 직관적으로 쿼리할 수 있다.
 
-```
+```sql
 select * from t
 where
   create_dt between to_date('20080201100000','yyyymmddhh24miss')

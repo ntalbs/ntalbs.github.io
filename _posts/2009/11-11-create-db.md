@@ -38,7 +38,7 @@ SQL> startup nomount
 </pre>
 
 ## 5. `CREATE DATABASE` 문 실행
-```
+```sql
 create database test
 dblogfile group 1 ('/.../redo1.log') size 100M,
 group 2 ('/.../redo2.log') size 100M,

@@ -7,7 +7,7 @@ title: 프로젝트 오일러 8
 
 1,000자리 숫자라고 하지만 1,000개의 숫자 리스트로 보는 편이 문제를 풀기에 더 좋을 것 같다. Clojure에서는 문자열도 시퀀스로 다룰 수 있으므로 `bigint`를 쓰기 보다는 문자열로 만들어 작업하는 게 더 편하다.<!--more-->
 
-```
+```clojure
 (def s
   (str "73167176531330624919225119674426574742355349194934"
        "96983520312774506326239578318016984801869478851843"
@@ -42,7 +42,7 @@ user=> (seq s)
 
 문자열 시퀀스의 각 요소는 `Character`이므로 이를 숫자(정수)로 바꿔주는 함수가 필요하다. 이 함수는 [Character#digit](http://docs.oracle.com/javase/8/docs/api/java/lang/Character.html#digit-char-int-)를 이용해 간단히 작성할 수 있다.
 
-```
+```clojure
 (defn to-int [c] (Character/digit c 10))
 ```
 
@@ -62,7 +62,7 @@ user=> (partition 5 1 *1)
 
 리스트의 시퀀스를 구했다. 각 리스트는 이어지는 다섯 개의 숫자를 나타낸다. 각 리스트의 요소를 곱한 다음 최대값을 구하면 되므로 다음과 같이 하면 답을 구할 수 있다.
 
-```
+```clojure
 (defn solve-kr []
   (->> s
        (map to-int)
@@ -82,7 +82,7 @@ p008=> (time (solve-kr))
 ## 업데이트
 Project Euler 사이트 [[Problem 8]](https://projecteuler.net/problem=8)을 보면 문제가 살짝 바뀌어 있다. 처음에는 인접한 다섯 개의 숫자를 곱하는 것이었는데 지금은 13개의 숫자를 곱한 최대값을 구하라고 되어 있다. 그런다고 문제가 어려워지는 것은 아니다. 다섯 개씩 자르던 부분을 13개씩 자르도록 바꿔주기만 하면 된다.
 
-```
+```clojure
 (defn solve-en []
   (->> s
        (map to-int)

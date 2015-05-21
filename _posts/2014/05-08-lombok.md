@@ -14,7 +14,7 @@ Eclipse와 같은 IDE에서도 보일러플레이트 코드를 생성하는 기�
 
 IntelliJ를 쓰던 팀원에게 불평을 듣긴 했지만, 내가 애용했던(?) `val`도 유용하다. `val`을 이용하면 Scala에서 `val`을 쓰는 것과 비슷하게 변수(아니 상수)를 정의할 수 있다. Java에서 변수를 선언할 때 똑같은 타입을 반복적으로 써야 하는데, `val`을 사용하면 코드를 깔끔하게 할 수 있다.
 
-```
+```java
 // vanila java
 final List<String> list = new ArrayList<String>();
 

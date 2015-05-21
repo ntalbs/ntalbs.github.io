@@ -5,7 +5,7 @@ tags: [db, oracle, tablespace]
 ---
 테이블을 다른 테이블스페이스로 이동시키기 위해서는 다음과 같이 한다.
 
-```
+```sql
 ALTER TABLE t MOVE TABLESPACE ts_name;
 ```
 

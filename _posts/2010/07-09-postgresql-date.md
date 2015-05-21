@@ -8,7 +8,7 @@ database.sarang.net의 [PostgreSQL 게시판](http://database.sarang.net/?criter
 
 ## 간단한 날짜 관련 함수 및 날짜 연산:
 
-```
+```sql
 -- 오늘 (date)
 select current_date;
 
@@ -39,7 +39,7 @@ select '2010-07-05'::date - '2010-06-25'::date;
 
 ## 한 주의 첫날, 마지막 날 구하기:
 
-```
+```sql
 -- (주 첫 날을 월요일로 할 때 주) 첫날, 마지막 날
 -- date_trunc() 함수의 리턴 타입은 timestamp임
 
@@ -86,7 +86,7 @@ select
 
 ## 한 달의 첫날, 마지막 날 구하기:
 
-```
+```sql
 -- 한 달 전/후 날짜
 select
   current_date - interval '1 months' "전 달",
@@ -120,7 +120,7 @@ select
 
 ## 이번 주 첫날부터 마지막 날까지 날짜들:
 
-```
+```sql
 -- 이번 주 날짜
 select
   date_trunc('week', current_date)::date -1 + i "일~토",
@@ -130,7 +130,7 @@ from generate_series(0,6) as t(i);
 
 이번 달 첫날부터 마지막 날까지 날짜들. `generate_series()` 함수를 사용한다. 한 달이 28일, 29일, 30일, 31일 중 어떤 것이 될지 알 수 없기 때문에 월의 마지막날을 구해 generate_series()의 두번째 인수로 넣어준다.
 
-```
+```sql
 -- 이번 달 날짜 (첫날 ~ 마지막 날)
 select date_trunc('month', current_date)::date + (i - 1)
 from
@@ -149,7 +149,7 @@ from
 
 **week of month**: 이번 달의 첫날부터 마지막 날까지의 날짜와 week of month를 구하는 쿼리인데, 1일~7일까지는 첫째 주, 8일~14일까지는 둘째 주와 같은 식으로 된다. 역시 `generate_series()` 함수를 사용했는데, 위와 같이 첫 날과 마지막 날의 차를 구해 수열을 만들지 않고 0~30까지 만들어 무조건 더하면서 이번 달에 속하는 날짜만 where 절 조건으로 추려내게 했다.
 
-```
+```sql
 select dt, to_char(dt, 'W') "day of week"
 from (
     select date_trunc('month', current_date)::date + i dt

@@ -19,7 +19,7 @@ clojure.lang.BigInt
 
 `BigInt`라도 Java에서처럼 별도의 메서드를 사용할 필요는 없다. Clojure에서는 `+`도 함수이며 `BigInt`에 대해서도 `+`를 그대로 사용할 수 있다. 따라서 다음과 같이 간단히 문제를 풀 수 있다.
 
-```
+```clojure
 (def nums [37107287533902102798797998220837590246510135740250
            46376937677490009712648124896970078050417018260538
            74324986199524741059474233309513058123726617309629
@@ -45,7 +45,7 @@ p013=> (time (solve1))
 
 먼저 다음과 같이 숫자를 입력받아 시퀀스로 바꾸는 함수를 작성한다.
 
-```
+```clojure
 (defn digits
   "Retruns the list of digits of n."
   [n]
@@ -66,7 +66,7 @@ p013=> (time (solve1))
 
 여기서 단계 3이 특히 중요하다. 단계 3을 수행하는 함수는 다음과 같이 구현할 수 있다.
 
-```
+```clojure
 (defn- normalize-digits
   "Returns a normalized sequence of digits.
   Normalized here means that every digit in the sequence is single digit."
@@ -95,7 +95,7 @@ p013=> (time (solve1))
 
 함수의 마지막 행에 있는 `add-to-first`는 리스트와 숫자를 받아 리스트의 맨 앞 요소에 숫자를 더하는 함수다.
 
-```
+```clojure
 (defn- add-to-first
   "Returns a new list with its first element is (+ x (first ls)). "
   [ls x]
@@ -108,7 +108,7 @@ p013=> (time (solve1))
 
 `normalize-digits`가 있다면 두 시퀀스를 더하는 함수는 다음과 같이 쉽게 구할 수 있다.
 
-```
+```clojure
 (defn digits+
   "Returns sum of two digits."
   [ds1 ds2]
@@ -122,14 +122,14 @@ p013=> (time (solve1))
 
 두 시퀀스를 더한 결과도 역시 시퀀스다. 함수 안에서 사용하는 `lpad`는 다음과 같이 구현하면 된다.
 
-```
+```clojure
 (defn- lpad [ds cnt]
   (concat (repeat cnt 0) ds))
 ```
 
 여기까지 했다면, 답은 다음과 같이 구할 수 있다.
 
-```
+```clojure
 (defn solve2 []
   (->> (map num->digits nums)
        (reduce add-digits)

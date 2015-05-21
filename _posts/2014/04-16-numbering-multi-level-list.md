@@ -20,7 +20,7 @@ MS워드에는 다단계 번호매기기 기능을 사용하면 다음과 같은
 
 다단계 번호는 어떻게 구현할 수 있을까? 문서 모델이 다음과 같이 되어 있다면 목록(list)을 선택해 수준(level)의 배열을 만들어 각 수준에 맞는 번호를 생성하면 될 것 같다.
 
-```
+```html
 <p class="list" level="1">항목 1</p>
 <p class="list" level="2">항목 11</p>
 <p class="list" level="2">항목 12</p>
@@ -32,11 +32,11 @@ MS워드에는 다단계 번호매기기 기능을 사용하면 다음과 같은
 
 따라서 이 예제 모델에 대한 다단계 번호를 생성한다면 입력을 다음과 같이 줄 수 있다.
 
-```
+```clojure
 (def levels [1 2 2 3 3 2 1])
 ```
 목록의 번호는 **이전 번호**(`ns`)와 현재 항목의 **수준**(`level`)에 따라 결정되므로 항목의 번호를 구하는 함수는 다음과 같이 구현할 수 있다.
-```
+```clojure
 (defn item-number [level ns]
   (if (<= level (count ns))
     (let [ns (vec (take level ns))]
@@ -48,7 +48,7 @@ MS워드에는 다단계 번호매기기 기능을 사용하면 다음과 같은
 
 이제 `levels`를 받아 항목 번호를 생성하는 함수를 만들 수 있다.
 
-```
+```clojure
 (defn numbers [levels]
   (loop [prev-number [0], levels levels, acc []]
     (if (seq levels)
