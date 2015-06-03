@@ -22,3 +22,4 @@ tags: [db, oracle]
 
 ### 참고
 * Thomas Kyte, Effective Oracle by Design, p374~ (Use the Correct Datatype)
+* [날짜 데이터 저장](/2008/10/28/storing-dates/)

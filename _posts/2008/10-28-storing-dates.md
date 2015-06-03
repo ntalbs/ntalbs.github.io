@@ -161,3 +161,4 @@ where
 
 ## 참고
 * Thomas Kyte, Effective Oracle by Design, p374~ (Use the Correct Datatype)
+* [올바른 데이터 타입 사용하기](/2008/10/28/data-type/)
