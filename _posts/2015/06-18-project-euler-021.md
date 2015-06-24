@@ -35,7 +35,7 @@ title: 프로젝트 오일러 21
 진약수 목록을 구했다면 그 합을 구하는 것은 식은 죽 먹기다.
 
 ```clojure
-(defn aliquot-sum
+(defn aliquot-sum1
   "Returns the sum of n's proper divisors."
   [n]
   (apply + (proper-divisors n)))
@@ -55,12 +55,12 @@ title: 프로젝트 오일러 21
 
 ```clojure
 (defn solve1 []
-  (apply + (filter #(amicable? % aliquot-sum) (range 1 10000))))
+  (apply + (filter #(amicable? % aliquot-sum1) (range 1 10000))))
 ```
 
 실행 결과는 다음과 같다.
-<pre class="console">p021=> (time (solve))
-"Elapsed time: 179.28238 msecs"
+<pre class="console">p021=> (time (solve1))
+"Elapsed time: 175.725515 msecs"
 316??
 </pre>
 
@@ -86,7 +86,7 @@ n = \prod_k p_k^{a_k}
 따라서 진약수의 합은 360에서 120을 뺀 240이 된다. 이 방식을 이용해 진약수의 합을 구하는 함수는 다음과 같이 구현할 수 있다.
 
 ```clojure
-(defn aliquot-sum-by-formula [n]
+(defn aliquot-sum2 [n]
   (if (<= n 1) 0
       (->> (factorize n)
            (map (fn [[p a]] (reduce + (for [i (range (inc a))] (pow p i)))))
@@ -98,19 +98,47 @@ n = \prod_k p_k^{a_k}
 
 ```clojure
 (defn solve2 []
-  (apply + (filter #(amicable? % aliquot-sum-by-formula) (range 1 10000))))
+  (apply + (filter #(amicable? % aliquot-sum2) (range 1 10000))))
 ```
 
 실행 결과는 다음과 같다.
 
 <pre class="console">p021=> (time (solve2))
-"Elapsed time: 218.358744 msecs"
+"Elapsed time: 201.757973 msecs"
 316??
 </pre>
 
 실행시간이 약간 느려졌다. 여러 번 실행해봐도 **방법 1**과 비슷하거나 조금 느리다.
 
+## 방법 3
+약수의 합을 구하는 다른 공식도 있다. 이 공식이 **방법 2**의 공식보다 계산이 빠를 것 같다.
+
+{% math_block %}
+\sigma(n)=\prod_k\frac{p_k^{a_k+1}-1}{p_k-1}
+{% endmath_block %}
+
+이 공식은 다음과 같이 구현할 수 있다. 방법 2에서와 마찬가지로 자신을 빼줘야 진약수의 합이 된다.
+
+```clojure
+(defn aliquot-sum3 [n]
+  (if (<= n 1) 0
+      (->> (factorize n)
+           (map (fn [[p a]] (/ (dec (pow p (inc a))) (dec p))))
+           (reduce *)
+           (#(- % n)))))
+```
+
+실행 결과는 다음과 같다.
+<pre class="console">p021=> (time (solve3))
+"Elapsed time: 151.324716 msecs"
+316??
+</pre>
+
+예상했던 대로 방법 2보다 빠르다. 그리고 방법 1보다도 빠르다. 공식을 사용한 보람이 있다.
+
 ## 참고
 * [프로젝트 오일러 문제 21 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p021.clj)
-* [Is there a formula to calculate the sum of all proper divisors of a number?](http://math.stackexchange.com/questions/22721/is-there-a-formula-to-calculate-the-sum-of-all-proper-divisors-of-a-number) 공식을 이용해 진약수의 합을 구하는 방법이 잘 설명되어 있다. 본문에서 120을 예로 들어 설명한 것도 이 글에 설명된 내용을 그대로 참조한 것이다.
+* [Is there a formula to calculate the sum of all proper divisors of a number?](http://math.stackexchange.com/questions/22721/is-there-a-formula-to-calculate-the-sum-of-all-proper-divisors-of-a-number) 공식을 이용해 진약수의 합을 구하는 방법이 잘 설명되어 있다. **방법 2**에서 120을 예로 들어 설명한 것도 이 글에 설명된 내용을 그대로 참조한 것이다.
+* [Finding sum of factors of a number using prime factorization](http://math.stackexchange.com/questions/163245/finding-sum-of-factors-of-a-number-using-prime-factorization)
+* [Divisor Function -- Wolfram MathWorld](http://mathworld.wolfram.com/DivisorFunction.html)
 * [프로젝트 오일러 15](/2015/04/06/project-euler-015/) 글의 끝부분에 항등원에 대해 설명하는 부분을 참조.
