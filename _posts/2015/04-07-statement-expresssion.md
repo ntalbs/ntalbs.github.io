@@ -16,5 +16,8 @@ statement는 값을 산출하지 않으며 부수효과(side effect)를 일으�
 많은 프로그래밍 언어에서 함수가 부수효과를 포함할 수 있는데, 부수효과를 포함한 함수는 보통 참조 투명성(referential transparency)이 없다. 순수 함수형 프로그래밍에서는 statement가 없고 모두 expression이다.
 
 ## 참고
-* [Statement (Computer Science)](http://en.wikipedia.org/wiki/Statement_(computer_science))
-* [Expression (Computer Science)](http://en.wikipedia.org/wiki/Expression_(computer_science))
+* [Statement][1]
+* [Expression][2]
+
+[1]: http://en.wikipedia.org/wiki/Statement_(computer_science)
+[2]: http://en.wikipedia.org/wiki/Expression_(computer_science)
