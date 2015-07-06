@@ -1,6 +1,6 @@
 tags: [clojure]
 date: 2015-06-11
-title: if, cond, condpcondp, case
+title: if, cond, condp, case
 ---
 흔히 접하는 프로그래밍 언어에는 `if`~`else if`가 연달아 나온다고 해서 코드 모양이 이상해지지는 않는다. 다음 Java 코드와 같이 그냥 순서대로 쓰면 되고 코드를 읽는 것도 어렵지 않다.<!--more-->
 
