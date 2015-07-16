@@ -46,7 +46,7 @@ title: 프로젝트 오일러 22
 
 실행 결과는 다음과 같다.
 
-<pre class="console">user> (time (p022/solve))
+<pre class="console">p022> (time (solve))
 "Elapsed time: 17.689125 msecs"
 8711982??
 </pre>

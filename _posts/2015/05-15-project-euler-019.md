@@ -117,7 +117,7 @@ Java에서 제공하는 `Calendar`를 사용하면 쉽게 답을 구할 수 있�
 실행 결과는 다음과 같다.
 
 <pre class="console">
-user=> (do
+p019=> (do
   #_=>   (time (print "1: " (solve1) "\t"))
   #_=>   (time (print "2: " (solve2) "\t"))
   #_=>   (time (print "3: " (solve3) "\t"))

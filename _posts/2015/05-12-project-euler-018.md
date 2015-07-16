@@ -102,7 +102,7 @@ user=> (map max *1 *2)
 실행 결과는 다음과 같다.
 
 <pre class="console">
-user=> (time (solve))
+p018=> (time (solve))
 "Elapsed time: 0.382559 msecs"
 (1074)
 </pre>
