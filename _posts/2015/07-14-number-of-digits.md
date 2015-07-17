@@ -1,4 +1,4 @@
-tags: [clojure]
+tags: [algorithm, clojure]
 date: 2015-07-14
 title: 정수 자릿수 구하기
 ---

@@ -1,6 +1,6 @@
 title: 뉴튼 법을 이용한 근사값 구하기
 date: 2014-07-25
-tags: [math]
+tags: [algorithm, math]
 
 ---
 
