@@ -15,7 +15,7 @@ $$I = \int_{-\infty}^{\infty} e^{-x^2} dx $$
 I^2
 &= \left(\int_{-\infty}^{\infty} e^{-x^2} dx\right)^2 \\
 &= \int_{-\infty}^{\infty} e^{-x^2} dx \cdot \int_{-\infty}^{\infty} e^{-y^2} dy \\
-&= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-(x^2+y^2)} dx dy \\
+&= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-(x^2+y^2)} dx\,dy \\
 \end{aligned}
 {% endmath_block %}
 
@@ -29,7 +29,7 @@ I^2
 \begin{aligned}
 x &= r\cos \theta \\
 y &= r\sin \theta \\
-dx dy &= r dr d\theta
+dx\,dy &= r\,dr\,d\theta
 \end{aligned}
 {% endmath_block %}
 
@@ -38,8 +38,8 @@ $xy$ 평면 전체는 $ -\infty \lt x \lt \infty$, $-\infty \lt y \lt \infty$다
 {% math_block %}
 \begin{aligned}
 I^2
-&= \int_0^{2\pi}\int_0^\infty e^{-r^2} r dr d\theta \\
-&= 2\pi \int_0^\infty e^{-r^2} r dr \\
+&= \int_0^{2\pi}\int_0^\infty e^{-r^2} r\,dr\,d\theta \\
+&= 2\pi \int_0^\infty e^{-r^2} r\,dr \\
 &= 2\pi \left[-\frac{e^{-r^2}}{2}\right]_{r=0}^{r=\infty} \\
 &= {\pi}
 \end{aligned}
