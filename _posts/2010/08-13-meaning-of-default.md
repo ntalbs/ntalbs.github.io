@@ -8,7 +8,7 @@ tags: 영어
 
 네이버 사전에서 찾아보니 다음과 같은 뜻이 나와있다. (명사와 동사가 있는데, 여기서는 명사 뜻만 다룬다.)
 
-> default
+> [default](http://endic.naver.com/enkrEntry.nhn?sLn=kr&entryId=5ecd3da98805455e98989a5fee021e5e)
 > 1. 채무 불이행
 >    (예문 생략...)
 > 2. (주로 단수로 특히 컴퓨터) 디폴트
@@ -16,7 +16,7 @@ tags: 영어
 
 이런 식으로 나온다면 별 도움이 안 된다. 다른 사전을 찾아보면 좀더 자세하게 나오기는 한다. 그러나 영어 단어의 뜻을 정확히 알려면 역시 **영영사전**을 찾아봐야 한다. 내가 좋아하는 [Longman](http://www.ldoceonline.com/) 사전을 찾아보니 다음과 같이 설명되어 있다.
 
-> default
+> [default](http://www.ldoceonline.com/dictionary/default_1)
 > 1. by default
 >    * if you win a game, competition etc **by default**, you win it because your opponent did not play or because there were no other competitors
 >    * if something happens by default, it happens because you did not do anything to change it
