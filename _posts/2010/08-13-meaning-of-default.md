@@ -20,17 +20,16 @@ tags: 영어
 > 1. by default
 >    * if you win a game, competition etc **by default**, you win it because your opponent did not play or because there were no other competitors
 >    * if something happens by default, it happens because you did not do anything to change it
-> 2. [uncountable and countable]	formal	failure to pay money that you owe at the right time
+> 2. [uncountable and countable] <span style="color:#808;font-style:italic">formal</span> failure to pay money that you owe at the right time
 >    **in default**
 >    *The company is in default on its loan agreement.*
 >    **default in**
 >    *The bank can seize the asset in the event of a default in payment.*
 >    *the risk of default by borrowers*
-> 3. [uncountable] ***law***	failure to do something that you are supposed to do according to the law or because it is your duty
-> 4. [countable usually singular] ***technical***	the way in which things are arranged on a computer screen unless you decide to change them:
+> 3. [uncountable] <span style="color:#808;font-style:italic">law</span> to do something that you are supposed to do according to the law or because it is your duty
+> 4. [countable usually singular] <span style="color:#808;font-style:italic">technical</span> the way in which things are arranged on a computer screen unless you decide to change them:
 > You can change the	default settings	to suit your needs.
-> 5. **in default of something** ***	formal***	because of the lack or absence of something
-
+> 5. **in default of something** <span style="color:#808;font-style:italic">formal</span> because of the lack or absence of something
 
 우리 프로그래머들이 자주 사용하는 뜻은 네 번째 뜻이다. 그러나 다른 뜻에서도 일맥상통하는 면이 있다. 단어의 뜻을 하나씩 살펴보자.
 
