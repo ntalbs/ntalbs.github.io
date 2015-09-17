@@ -46,4 +46,5 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.25-b02, mixed mode)
 ## 참고
 * [Multiple Java JDK(s), on your MacOSX environment](http://www.javacodegeeks.com/2013/02/multiple-java-jdks-on-your-macosx-environment.html)
 * [Java 1.8 ASM ClassReader failed to parse class file - probably due to a new Java class file version that isn't supported yet](http://stackoverflow.com/questions/22526695/java-1-8-asm-classreader-failed-to-parse-class-file-probably-due-to-a-new-java)
-* [java_home](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/java_home.1.html) 콘솔에서 `man java_home`을 실행해도 `java_home`에 대한 설명을 볼 수 있다.
+* [java_home](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/java_home.1.html)
+콘솔에서 `man java_home`을 실행해도 `java_home`에 대한 설명을 볼 수 있다.

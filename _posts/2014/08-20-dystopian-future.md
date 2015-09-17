@@ -20,5 +20,6 @@ IT 분야는 기술 발전이 빠르기 때문에 뒤쳐지지 않으려면 끊�
 내가 언제까지 프로그래머로 남아 있을 수 있을까? 10년 후에도 여전히 프로그래밍을 할 수 있을까? 그때도 내 지식과 기술에 비용을 지불할 회사가 남아있으면 좋겠다. 10년 후에도 내가 뭔가에 기여할 수 있으면 좋겠다.
 
 ## 참고
-* [The Developer's Dystopian Future](https://the-pastry-box-project.net/ed-finkler/2014-july-6) 이 글을 읽고 깊이 공감해 내 생각을 대입해서 몇 글자 적어 봤다.
+* [The Developer's Dystopian Future](https://the-pastry-box-project.net/ed-finkler/2014-july-6)
+이 글을 읽고 깊이 공감해 내 생각을 대입해서 몇 글자 적어 봤다.
 * 무용지식(obsoledge): obsolete와 knowledge를 합성해 만든 신조어

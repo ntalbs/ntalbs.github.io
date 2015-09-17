@@ -29,6 +29,9 @@ Emacs에서 데이터베이스 쿼리를 할 수 있으면 좋겠다는 생각�
 잘 모르는 Perl 모듈이 왕창 깔리는 부담이 있지만, 사용성은 edbi가 훨씬 좋은 듯 하다.
 
 ## 참고
-* [Using Emacs as a Database Client](http://emacsredux.com/blog/2013/06/13/using-emacs-as-a-database-client/) SQLi를 사용해 데이터베이스에 접근하는 방법을 설명한다.
-* [Emacs DBI](https://github.com/kiwanami/emacs-edbi) edbi는 SQLi를 썼을 때보다 훨씬 다양한 기능을 제공한다.
-* [Connect to a PostgreSQL database using Perl DBI](http://www.microhowto.info/howto/connect_to_a_postgresql_database_using_perl_dbi.html) 중간 쯤에 PostgreSQL 접속을 위한 Data Source 설정 방법이 나온다.
+* [Using Emacs as a Database Client](http://emacsredux.com/blog/2013/06/13/using-emacs-as-a-database-client/)
+SQLi를 사용해 데이터베이스에 접근하는 방법을 설명한다.
+* [Emacs DBI](https://github.com/kiwanami/emacs-edbi)
+edbi는 SQLi를 썼을 때보다 훨씬 다양한 기능을 제공한다.
+* [Connect to a PostgreSQL database using Perl DBI](http://www.microhowto.info/howto/connect_to_a_postgresql_database_using_perl_dbi.html)
+중간 쯤에 PostgreSQL 접속을 위한 Data Source 설정 방법이 나온다.

@@ -64,8 +64,12 @@ M-x query-replace-regexp-eval RET <p> RET (format "<p id=\"%d\">" replace-count)
 수식 입력 모드에서는 입력 내용이 수식으로 인식된다. 문자열을 `"`로 감싸줘야 하므로 입력하는 내용이 조금 지저분해진다. 매치되는 텍스트와 치환될 텍스트가 버퍼에 바로 표시되는 점을 고려한다면 이 정도 불편은 충분히 감수할 수 있을 것이다.
 
 ## 참고자료
-* [ReplaceCount](http://www.emacswiki.org/emacs/ReplaceCount) Emacs에서 정규 표현식 치환 시 카운터를 사용하는 방법
-* [visual-regexp-steroids](https://github.com/benma/visual-regexp-steroids.el/) visual-regexp-steroids에서 정규 표현식 치환 시 카운터를 사용하는 방법. README.md의 마지막 부분에 수식 사용 예제가 있음
-* [Using a regular expression in VIM, how do I replace the asterisks of an unordered list with numbers?](http://stackoverflow.com/questions/27308231/using-a-regular-expression-in-vim-how-do-i-replace-the-asterisks-of-an-unordere) 스택오버플로우에서 발견한 질문. 다른 질문과 중복 처리됨
-* [gVim find/replace with counter](http://stackoverflow.com/questions/5942360/gvim-find-replace-with-counter) Vim에서 정규 표현식 치환 시 카운터를 사용하는 방법에 대한 질문과 대답
+* [ReplaceCount](http://www.emacswiki.org/emacs/ReplaceCount)
+Emacs에서 정규 표현식 치환 시 카운터를 사용하는 방법
+* [visual-regexp-steroids](https://github.com/benma/visual-regexp-steroids.el/)
+visual-regexp-steroids에서 정규 표현식 치환 시 카운터를 사용하는 방법. README.md의 마지막 부분에 수식 사용 예제가 있음
+* [Using a regular expression in VIM, how do I replace the asterisks of an unordered list with numbers?](http://stackoverflow.com/questions/27308231/using-a-regular-expression-in-vim-how-do-i-replace-the-asterisks-of-an-unordere)
+스택오버플로우에서 발견한 질문. 다른 질문과 중복 처리됨
+* [gVim find/replace with counter](http://stackoverflow.com/questions/5942360/gvim-find-replace-with-counter)
+Vim에서 정규 표현식 치환 시 카운터를 사용하는 방법에 대한 질문과 대답
 * [visual-regexp](/2014/04/25/visual-regexp/)

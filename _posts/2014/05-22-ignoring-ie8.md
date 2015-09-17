@@ -64,7 +64,8 @@ IE8 점유율은 계속 줄어들 것이다. 기대만큼 빠르게 줄어들지
 * **가볍고 빠르게 움직여야 한다.** 세상은 빠르게 변하고 있다. IE8은 우리를 무겁게 한다. IE8을 덜어내면 달려갈 수 있지만 IE8을 업고 간다면 기어갈 수밖에 없다.
 
 ## 참고 자료
-1. [StatCounter](http://gs.statcounter.com/) -- 브라우저 점유율 통계. 지역별, 브라우저 버전별로 점유율을 확인할 수 있다.
+1. [StatCounter](http://gs.statcounter.com/)
+브라우저 점유율 통계. 지역별, 브라우저 버전별로 점유율을 확인할 수 있다.
 2. [IE8 is Going the Way of the Dodo, So Why Support a Dying Species?](http://zurb.com/article/1265/ie8-is-going-the-way-of-the-dodo-so-why-s)
 3. [Is It Time To Drop Support For IE8?](http://www.allwebcafe.com/blog/time-to-drop-support-for-ie8)
 4. [Joel on Software: Rick Chapman is In Search of Stupidity](http://www.joelonsoftware.com/articles/Stupidity.html)

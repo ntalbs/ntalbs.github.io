@@ -132,4 +132,5 @@ p019=> (do
 
 ## 참고
 * [프로젝트 오일러 문제 19 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p019.clj)
-* [What's wrong with Java Date & Time API?](http://stackoverflow.com/questions/1969442/whats-wrong-with-java-date-time-api) Java의 `Date`와 `Calendar` 클래스의 잘못된 점이 잘 정리되어 있다.
+* [What's wrong with Java Date & Time API?](http://stackoverflow.com/questions/1969442/whats-wrong-with-java-date-time-api)
+Java의 `Date`와 `Calendar` 클래스의 잘못된 점이 잘 정리되어 있다.

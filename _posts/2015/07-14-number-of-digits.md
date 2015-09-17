@@ -62,4 +62,5 @@ $log_{10} 0 = -\infty$이므로 입력이 0인 경우에 대해서는 별도로 
 이 코드는 11자리 이상의 숫자에 대해서는 제대로 동작하지 않는다. `if` 브랜치를 계속 늘려갈 수 있겠지만 (여기서는 `cond` 안에 조건절) 아름다운 방법이라 할 수는 없겠다.
 
 ## 참고
-* [Is there a Scala-way to get the length of a number?](http://stackoverflow.com/questions/11922686/is-there-a-scala-way-to-get-the-length-of-a-number/11922854#11922854) Scala로 정수 자릿수를 구하는 방법을 묻는 질문. 답변 중 위의 `if`를 사용한 것과 비슷한 방법이 있다.
+* [Is there a Scala-way to get the length of a number?](http://stackoverflow.com/questions/11922686/is-there-a-scala-way-to-get-the-length-of-a-number/11922854#11922854)
+Scala로 정수 자릿수를 구하는 방법을 묻는 질문. 답변 중 위의 `if`를 사용한 것과 비슷한 방법이 있다.

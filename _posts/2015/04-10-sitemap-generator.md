@@ -27,7 +27,9 @@ title: Sitemap 생성기
 이제 사이트를 생성할 때마다 Hexo가 `sitemap.xml`도 함께 만들어준다. `sitemap.xml`을 갱신하기 위한 무식한 절차를 거치지 않아도 된다. 간만에 쓸모있는 프로그램을 만들게 됐다고 생각했는데... 이미 똑같은 프로그램이 1,400개 이상 존재하는데다 Hexo 원작자가 제공하는 플러그인까지 있는 상황에서 내가 또 삽질할 필요는 없겠다는 생각이 들었다. 그냥 node.js로 이렇게 할 수 있다 정도를 확인한 선에서 만족했다.
 
 ## 참고
-* [hexo-generator-sitemap](https://github.com/hexojs/hexo-generator-sitemap) Hexo의 sitemap 생성기 플러그인. 사이트 생성 시 sitemap.xml도 함께 생성해준다.
-* [xml-sitemaps.com](https://www.xml-sitemaps.com) 지금까지 이 사이트를 이용해 sitemap.xml을 생성했다.
+* [hexo-generator-sitemap](https://github.com/hexojs/hexo-generator-sitemap)
+Hexo의 sitemap 생성기 플러그인. 사이트 생성 시 sitemap.xml도 함께 생성해준다.
+* [xml-sitemaps.com](https://www.xml-sitemaps.com)
+지금까지 이 사이트를 이용해 sitemap.xml을 생성했다.
 * [Sitemaps](http://en.wikipedia.org/wiki/Sitemaps)
 * [Can I use jQuery with Node.js?](http://stackoverflow.com/questions/1801160/can-i-use-jquery-with-node-js)

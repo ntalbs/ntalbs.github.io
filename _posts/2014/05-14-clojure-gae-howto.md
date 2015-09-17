@@ -90,5 +90,7 @@ $ appcfg.sh update stage
 ## 참고
 * [Create and deploy a Clojure app to Google App Engine](http://flowa.fi/blog/2014/04/25/clojure-gae-howto.html)
 * [Uploading and Managing a Java App](https://developers.google.com/appengine/docs/java/tools/uploadinganapp)
-* Dmitri Sotnikov, Clojure Web Development -- 얇지만 Clojure로 웹 애플리케이션을 만드는 방법이 자세히 나와있다
-* Chas Emerick, Brian Carper, Christophe Grand, Clojure Programming, p557~555 -- 여기서는 Hiccup 대신 [Enlive](https://github.com/cgrand/enlive)를 사용한다
+* [Dmitri Sotnikov, Clojure Web Development](https://pragprog.com/book/dswdcloj/web-development-with-clojure)
+얇지만 Clojure로 웹 애플리케이션을 만드는 방법이 자세히 나와있다
+* [Chas Emerick, Brian Carper, Christophe Grand, Clojure Programming](http://shop.oreilly.com/product/0636920013754.do)
+p557~555, Hiccup 대신 [Enlive](https://github.com/cgrand/enlive)를 사용한다

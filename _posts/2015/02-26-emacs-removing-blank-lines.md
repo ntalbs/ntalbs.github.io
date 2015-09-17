@@ -32,7 +32,8 @@ M-x flush-lines RET ^\s-*$ RET
 비슷한 방식으로 빈 줄 여럿을 하나로 합치는 것도 가능하다. `^\n{2,}`를 찾아 `\n`으로 바꾸면 되기 때문이다.
 
 ## 참고
-* [Removing blank lines in a buffer](http://www.masteringemacs.org/article/removing-blank-lines-buffer) 단순히 빈 줄을 지우는 방법뿐 아니라 빈 줄 여럿을 빈 줄 하나로 합치는 방법도 설명한다.
+* [Removing blank lines in a buffer](http://www.masteringemacs.org/article/removing-blank-lines-buffer)
+빈 줄을 지우는 방법뿐 아니라 빈 줄 여럿을 빈 줄 하나로 합치는 방법도 설명한다.
 * [Emacs Wiki - Regular Expression](http://www.emacswiki.org/emacs/RegularExpression)
 * [visual-regexp](/2014/04/25/visual-regexp/)
 * [Stackoverflow - Vim delete blank lines](http://stackoverflow.com/questions/706076/vim-delete-blank-lines)

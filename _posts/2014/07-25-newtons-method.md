@@ -65,6 +65,9 @@ e^x &= \sum\limits_{n=0}^\infty \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{
 함수를 다항식 형태로 만들었으므로 이를 계산하는 프로그램은 쉽게 작성할 수 있다.
 
 ## 참고
-* [Functional Programming Principle in Scala](https://www.coursera.org/course/progfun): 함수형 프로그래밍 개념을 이해하는 데 아주 좋은 강의다. Scala에 관심이 없더라도 함수형 프로그래밍에 관심이 있다면 들어볼 만 하다.
-* [Methods of computing square roots](http://en.wikipedia.org/wiki/Methods_of_computing_square_roots): 제곱근을 구하는 방법은 뉴튼 법 외에도 많다. 물론 다 살펴본 것은 아니고, 다른 방법도 많다는 것을 확인하는 정도만.
-* [Maclaurin Series](http://mathworld.wolfram.com/MaclaurinSeries.html): 테일러 급수에서 $a=0$인 경우를 특별히 매클로린 급수라 한다.
+* [Functional Programming Principle in Scala](https://www.coursera.org/course/progfun)
+함수형 프로그래밍 개념을 이해하는 데 아주 좋은 강의다. Scala에 관심이 없더라도 함수형 프로그래밍에 관심이 있다면 들어볼 만 하다.
+* [Methods of computing square roots](http://en.wikipedia.org/wiki/Methods_of_computing_square_roots)
+제곱근을 구하는 방법은 뉴튼 법 외에도 많다. 물론 다 살펴본 것은 아니고, 다른 방법도 많다는 것을 확인하는 정도만.
+* [Maclaurin Series](http://mathworld.wolfram.com/MaclaurinSeries.html)
+테일러 급수에서 $a=0$인 경우를 특별히 매클로린 급수라 한다.

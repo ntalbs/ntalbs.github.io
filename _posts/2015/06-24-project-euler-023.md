@@ -56,4 +56,5 @@ title: 프로젝트 오일러 23
 
 ## 참고
 * [프로젝트 오일러 문제 23 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p023.clj)
-* [문제 21](/2015/06/18/project-euler-021/) 약수의 합을 구하는 방법 참조.
+* [프로젝트 오일러 21](/2015/06/18/project-euler-021/)
+약수의 합을 구하는 방법 참조.

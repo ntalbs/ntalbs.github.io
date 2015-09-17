@@ -90,4 +90,5 @@ p017=> (time (solve))
 
 ## 참고
 * [프로젝트 오일러 문제 17 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p017.clj)
-* [17번 다른 풀이](http://www.mathblog.dk/project-euler-17-letters-in-the-numbers-1-1000/) 컴퓨터를 사용하지 않고 문자열 패턴 분석과 간단한 계산으로 답을 구한다. 이 풀이를 보면 위와 같이 푼 것이 무식해 보인다.
+* [17번 다른 풀이](http://www.mathblog.dk/project-euler-17-letters-in-the-numbers-1-1000/)
+컴퓨터를 사용하지 않고 문자열 패턴 분석과 간단한 계산으로 답을 구한다. 이 풀이를 보면 위와 같이 푼 것이 무식해 보인다.

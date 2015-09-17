@@ -50,5 +50,7 @@ Haskell로 작성된 퀵정렬 코드를 처음 봤던 그때, Haskell을, 함�
 후회된다. 그때 함수형 언어에 관심을 가지고 공부를 시작했더라면 훨씬 넓은 세상을 봤을 테고, 훨씬 나은 프로그래머가 되어 있을지도 모르겠다는 생각이 든다. 동료들에게 함수형 프로그래밍을 공부하자고 꼬셔봤지만 넘어온 사람은 거의 없다. 그 친구들이 나와 같은 후회를 하지 않기 바란다.
 
 ## 참고
-* [Sorting algorithms/Quicksort](http://rosettacode.org/wiki/Sorting_algorithms/Quicksort) 다양한 언어로 구현한 퀵정렬 코드를 볼 수 있다. 함수형 언어로 작성된 코드는 여기서 설명한 코드와 모양이 거의 비슷하다.
-* [Quicksort in Haskell](https://www.haskell.org/haskellwiki/Introduction#Quicksort_in_Haskell) Haskell과 C로 구현한 퀵정렬 코드를 비교하며 함수형 언어의 장점을 설명한다.
+* [Sorting algorithms/Quicksort](http://rosettacode.org/wiki/Sorting_algorithms/Quicksort)
+다양한 언어로 구현한 퀵정렬 코드를 볼 수 있다. 함수형 언어로 작성된 코드는 여기서 설명한 코드와 모양이 거의 비슷하다.
+* [Quicksort in Haskell](https://www.haskell.org/haskellwiki/Introduction#Quicksort_in_Haskell)
+Haskell과 C로 구현한 퀵정렬 코드를 비교하며 함수형 언어의 장점을 설명한다.

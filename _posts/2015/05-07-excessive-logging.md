@@ -22,4 +22,5 @@ title: 과도한 로깅
 예외가 발생했다고 아무런 고민 없이 무조건 에러 메시지와 스택 트레이스만 찍어대는 수준이라면 별로 도움이 되지 않는다.
 
 ## 참고
-* [The Problem With Logging](http://blog.codinghorror.com/the-problem-with-logging/) 이 글에서 제프 앳우드는 과도한 로깅이 오히려 문제를 유발할 수 있음을 지적하면서, 모든 것을 로깅하려 하지 말고 주의 깊게 꼭 필요한 것만 로깅하도록 권고한다.
+* [The Problem With Logging](http://blog.codinghorror.com/the-problem-with-logging/)
+이 글에서 제프 앳우드는 과도한 로깅이 오히려 문제를 유발할 수 있음을 지적하면서, 모든 것을 로깅하려 하지 말고 주의 깊게 꼭 필요한 것만 로깅하도록 권고한다.

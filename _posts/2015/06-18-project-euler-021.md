@@ -138,7 +138,9 @@ n = \prod_k p_k^{a_k}
 
 ## 참고
 * [프로젝트 오일러 문제 21 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p021.clj)
-* [Is there a formula to calculate the sum of all proper divisors of a number?](http://math.stackexchange.com/questions/22721/is-there-a-formula-to-calculate-the-sum-of-all-proper-divisors-of-a-number) 공식을 이용해 진약수의 합을 구하는 방법이 잘 설명되어 있다. **방법 2**에서 120을 예로 들어 설명한 것도 이 글에 설명된 내용을 그대로 참조한 것이다.
+* [Is there a formula to calculate the sum of all proper divisors of a number?](http://math.stackexchange.com/questions/22721/is-there-a-formula-to-calculate-the-sum-of-all-proper-divisors-of-a-number)
+공식을 이용해 진약수의 합을 구하는 방법이 잘 설명되어 있다. **방법 2**에서 120을 예로 들어 설명한 것도 이 글에 설명된 내용을 그대로 참조한 것이다.
 * [Finding sum of factors of a number using prime factorization](http://math.stackexchange.com/questions/163245/finding-sum-of-factors-of-a-number-using-prime-factorization)
 * [Divisor Function -- Wolfram MathWorld](http://mathworld.wolfram.com/DivisorFunction.html)
-* [프로젝트 오일러 15](/2015/04/06/project-euler-015/) 글의 끝부분에 항등원에 대해 설명하는 부분을 참조.
+* [프로젝트 오일러 15](/2015/04/06/project-euler-015/)
+글의 끝부분에 항등원에 대해 설명하는 부분을 참조.
