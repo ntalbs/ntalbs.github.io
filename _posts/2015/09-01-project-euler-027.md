@@ -78,4 +78,4 @@ $b$가 소수인지,  확인하기 위해 `prime?` 함수를 사용하고 있는
 방법 1보다 3배 이상 빨라졌다.
 
 ## 참고
-* [프로젝트 오일러 문제 27 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p027.clj)
+* [프로젝트 오일러 27 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p027.clj)

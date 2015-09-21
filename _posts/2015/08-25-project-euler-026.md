@@ -44,4 +44,4 @@ $1 \over d$의 순환마디를 구하려면 어떻게 해야 할까? 이 문제�
 </pre>
 
 ## 참고
-* [프로젝트 오일러 문제 26 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p026.clj)
+* [프로젝트 오일러 26 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p026.clj)

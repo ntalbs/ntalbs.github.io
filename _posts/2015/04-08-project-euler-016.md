@@ -101,6 +101,6 @@ p016=> (time (solve2))
 `BigInt`를 사용한 해법보다 거의 백배는 느려졌지만, 그래도 비교적 빠른 시간 안에 답을 구한다.
 
 ## 참고
-* [프로젝트 오일러 문제 16 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p016.clj)
+* [프로젝트 오일러 16 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p016.clj)
 * [How to do exponentiation in clojure?](http://stackoverflow.com/questions/5057047/how-to-do-exponentiation-in-clojure)
 * [프로젝트 오일러 13](/2015/03/18/project-euler-013/)

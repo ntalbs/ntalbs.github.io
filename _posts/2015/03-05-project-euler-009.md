@@ -95,4 +95,4 @@ p009=> (time (using-formula))
 ## 참고
 * [피타고라스 수](http://ko.wikipedia.org/wiki/피타고라스_수)
 * [Pythagorean Triplet > Parent/child relationships](http://en.wikipedia.org/wiki/Pythagorean_triple#Parent.2Fchild_relationships)
-* [프로젝트 오일러 문제 9 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p009.clj)
+* [프로젝트 오일러 9 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p009.clj)

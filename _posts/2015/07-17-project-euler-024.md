@@ -25,6 +25,6 @@ title: 프로젝트 오일러 24
 순열을 직접 구현해 풀이를 시도했는데, 답을 구하기는 했지만 결과가 만족스럽지는 못했다. 순열을 구하는 방법은 [순열 구하기](/2015/07/17/permutations/)에 따로 정리했다.
 
 ## 참고
-* [프로젝트 오일러 문제 24 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p024.clj)
+* [프로젝트 오일러 24 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p024.clj)
 * [clojure.math.combinatorics](https://github.com/clojure/math.combinatorics/)
 * [순열 구하기](/2015/07/17/permutations/)

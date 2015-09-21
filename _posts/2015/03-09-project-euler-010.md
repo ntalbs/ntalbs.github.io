@@ -44,4 +44,4 @@ p010=> (time (using-seq))
 `using-seq`를 다시 실행시키면 매우 빠르게 결과가 나오는데, 이는 지연 시퀀스로 구한 결과가 캐시되기 때문일 것이다. 여기서는 처음 구할 때 걸린 시간을 기준으로 생각해야 한다.
 
 ## 참고
-* [프로젝트 오일러 문제 10 풀이 코드](https://github.com/ntalbs/euler/blob/master/src/p010.clj)
+* [프로젝트 오일러 10 풀이 코드](https://github.com/ntalbs/euler/blob/master/src/p010.clj)

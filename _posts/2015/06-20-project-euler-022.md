@@ -52,4 +52,4 @@ title: 프로젝트 오일러 22
 </pre>
 
 ## 참고
-* [프로젝트 오일러 문제 22 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p022.clj)
+* [프로젝트 오일러 22 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p022.clj)

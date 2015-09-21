@@ -60,7 +60,7 @@ p020=> (time (solve2))
 </pre>
 
 ## 참고
-* [프로젝트 오일러 문제 20 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p020.clj)
+* [프로젝트 오일러 20 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p020.clj)
 * [프로젝트 오일러 16](/2015/04/08/project-euler-016/)
 * [프로젝트 오일러 15](/2015/04/06/project-euler-015/)
 * [프로젝트 오일러 13](/2015/03/18/project-euler-013/)

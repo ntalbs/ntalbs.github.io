@@ -61,4 +61,4 @@ p012=> (time (solve))
 
 ## 참고
 * [How many divisors does a number have?](http://mathschallenge.net/library/number/number_of_divisors)
-* [프로젝트 오일러 문제 12 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p012.clj)
+* [프로젝트 오일러 12 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p012.clj)

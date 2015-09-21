@@ -98,4 +98,4 @@ p008=> (time (solve-en))
 </pre>
 
 ## 참고
-* [프로젝트 오일러 문제 8 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p008.clj)
+* [프로젝트 오일러 8 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p008.clj)

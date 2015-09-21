@@ -131,6 +131,6 @@ p019=> (do
 예상대로 `solve3`이 가장 느리다. `solve4`가 다른 방식에 비해 월등히 빠르다는 점이 놀랍다. `Calendar`나 `LocalDate`는 날짜 외의 다른 부가정보를 가지고 있어 정수 네 개만 담은 Clojure의 `vector`보다 무거워서 그런게 아닐까 추측해본다.
 
 ## 참고
-* [프로젝트 오일러 문제 19 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p019.clj)
+* [프로젝트 오일러 19 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p019.clj)
 * [What's wrong with Java Date & Time API?](http://stackoverflow.com/questions/1969442/whats-wrong-with-java-date-time-api)
 Java의 `Date`와 `Calendar` 클래스의 잘못된 점이 잘 정리되어 있다.

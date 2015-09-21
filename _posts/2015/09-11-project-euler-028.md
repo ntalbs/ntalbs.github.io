@@ -100,4 +100,4 @@ k &= 0, 1, 2, 3
 정답을 구하는 것으로 미루어 위에서 유도한 함수 $d(n,k)$의 식이 정확함을 알 수 있다.
 
 ## 참고
-* [프로젝트 오일러 문제 28 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p028.clj)
+* [프로젝트 오일러 28 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p028.clj)

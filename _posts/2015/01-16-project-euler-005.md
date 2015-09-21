@@ -38,4 +38,4 @@ p005=> (time (solve))
 
 
 ## 참고
-* [프로젝트 오일러 문제 5 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p005.clj)
+* [프로젝트 오일러 5 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p005.clj)

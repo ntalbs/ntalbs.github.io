@@ -61,4 +61,4 @@ p004=> (time (improved))
 </pre>
 
 ## 참고
-* [프로젝트 오일러 문제 4 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p004.clj)
+* [프로젝트 오일러 4 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p004.clj)

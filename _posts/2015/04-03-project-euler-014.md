@@ -105,4 +105,4 @@ p014=> (time (solve3))
 물론 한 번 실행한 다음 다시 실행하면 매우 빠르게 답을 구한다. 그러나 이런 퀴즈 문제의 답을 구할 때 그런 식으로 성능이 개선되었다고 말하기는 곤란할 것이다. 처음 답을 빨리 구해야 의미가 있다.
 
 ## 참고
-* [프로젝트 오일러 문제 14 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p014.clj)
+* [프로젝트 오일러 14 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p014.clj)

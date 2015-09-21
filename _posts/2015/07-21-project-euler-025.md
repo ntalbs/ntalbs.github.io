@@ -31,6 +31,6 @@ title: 프로젝트 오일러 25
 </pre>
 
 ## 참고
-* [프로젝트 오일러 문제 25 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p025.clj)
+* [프로젝트 오일러 25 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p025.clj)
 * [프로젝트 오일러 2](/2015/01/08/project-euler-002/)
 * [정수 자릿수 구하기](/2015/07/14/number-of-digits/)

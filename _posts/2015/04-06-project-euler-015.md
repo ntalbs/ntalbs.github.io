@@ -152,4 +152,4 @@ user=> (factorial 0)
 ## 참고
 * [Factorial](http://en.wikipedia.org/wiki/Factorial)
 * [Navigate a Grid Using Combinations And Permutations](http://betterexplained.com/articles/navigate-a-grid-using-combinations-and-permutations/)
-* [프로젝트 오일러 문제 15 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p015.clj)
+* [프로젝트 오일러 15 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p015.clj)

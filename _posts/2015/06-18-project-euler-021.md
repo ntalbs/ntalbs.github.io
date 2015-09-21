@@ -137,7 +137,7 @@ n = \prod_k p_k^{a_k}
 예상했던 대로 방법 2보다 빠르다. 그리고 방법 1보다도 빠르다. 공식을 사용한 보람이 있다.
 
 ## 참고
-* [프로젝트 오일러 문제 21 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p021.clj)
+* [프로젝트 오일러 21 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p021.clj)
 * [Is there a formula to calculate the sum of all proper divisors of a number?](http://math.stackexchange.com/questions/22721/is-there-a-formula-to-calculate-the-sum-of-all-proper-divisors-of-a-number)
 공식을 이용해 진약수의 합을 구하는 방법이 잘 설명되어 있다. **방법 2**에서 120을 예로 들어 설명한 것도 이 글에 설명된 내용을 그대로 참조한 것이다.
 * [Finding sum of factors of a number using prime factorization](http://math.stackexchange.com/questions/163245/finding-sum-of-factors-of-a-number-using-prime-factorization)

@@ -55,6 +55,6 @@ title: 프로젝트 오일러 23
 실행 시간이 썩 만족스럽지는 않다. 아직 더 빠르게 하는 방법을 찾지 못했다.
 
 ## 참고
-* [프로젝트 오일러 문제 23 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p023.clj)
+* [프로젝트 오일러 23 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p023.clj)
 * [프로젝트 오일러 21](/2015/06/18/project-euler-021/)
 약수의 합을 구하는 방법 참조.

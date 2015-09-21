@@ -108,4 +108,4 @@ p018=> (time (solve))
 </pre>
 
 ## 참고
-* [프로젝트 오일러 문제 18 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p018.clj)
+* [프로젝트 오일러 18 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p018.clj)

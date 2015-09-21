@@ -149,4 +149,4 @@ p013=> (time (solve2))
 
 ## 참고
 * [Clojure의 BigInt 소스 코드](https://github.com/clojure/clojure/blob/master/src/jvm/clojure/lang/BigInt.java)
-* [프로젝트 오일러 문제 13 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p013.clj)
+* [프로젝트 오일러 13 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p013.clj)
