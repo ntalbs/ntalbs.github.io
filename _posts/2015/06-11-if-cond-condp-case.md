@@ -6,13 +6,13 @@ title: if, cond, condp, case
 
 ```java
 if (a == 1) {
-  return f1();
+  return v1;
 } else if (a == 2) {
-  return f2();
+  return v2;
 } else if (a == 3) {
-  return f3();
+  return v3;
 } else {
-  return fx();
+  return vx;
 }
 ```
 
@@ -20,51 +20,51 @@ if (a == 1) {
 
 ```clojure
 (if (= a 1)
-  (f1)
+  v1
   (if (= a 2)
-    (f2)
+    v2
     (if (= a 3)
-      (f3)
-      (f4))))
+      v3
+      vx)))
 ```
 
 다행히 `cond`를 사용하면 위 코드를 다음과 같이 바꿀 수 있다. `cond`는 매크로다. 확장하면 위 `if`로 작성한 것과 동일한 코드가 된다.
 
 ```clojure
-(cond (= a 1) (f1)
-      (= a 2) (f2)
-      (= a 3) (f3)
-      :else   (fx))
+(cond (= a 1) v1
+      (= a 2) v2
+      (= a 3) v3
+      :else   vx)
 ```
 
 코드를 보면 `(= a ?)` 패턴이 반복된다. `condp`를 이용하면 이런 반복도 제거할 수 있다. `condp` 역시 매크로로 확장하면 위 `if`로 작성한 것과 동일한 코드가 나온다.
 
 ```clojure
 (condp = a
-  1 (f1)
-  2 (f2)
-  3 (f3)
-  (fx))
+  1 v1
+  2 v2
+  3 v3
+  vx)
 ```
 
 predicate이 `=`이라면 다음과 같이 `case`를 사용할 수도 있다. `case`도 매크로이긴 하지만 확장했을 때의 모양이 `cond`나 `condp`와는 다르다. 그러나 실행 결과는 동일하다.
 
 ```clojure
 (case a
-  1 (f1)
-  2 (f2)
-  3 (f3)
-  (fx))
+  1 v1
+  2 v2
+  3 v3
+  vx)
 ```
 
 처음에 나온 Java 코드와 비교해보기 바란다. 얼마나 간결한가! Java도 `switch~case`를 사용하면 코드를 좀더 간결하게 만들 수 있긴 하다.
 
 ```java
 switch (a) {
-  case 1: return f1();
-  case 2: return f2();
-  case 3: return f3();
-  default: return fx();
+  case 1:  return v1;
+  case 2:  return v2;
+  case 3:  return v3;
+  default: return vx;
 }
 ```
 
