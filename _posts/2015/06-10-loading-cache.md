@@ -95,7 +95,7 @@ public Map<Key, Product> getProducts(Iterable<Key> keys) throws ExecuteException
 }
 ```
 
-코드가 훨씬 단순해 졌다. 길이만 짧아진게 아니라 이해하기도 쉬워졌다. 수정 전의 코드는 길이도 길뿐 아니라 쓸데없는 잡음으로 이해도 어렵게 했다.
+코드가 훨씬 단순해 졌다. 길이만 짧아진게 아니라 이해하기도 쉬워졌다. 수정 전의 코드는 길이도 길었을뿐 아니라 쓸데없는 잡음으로 이해하기도 어려웠다.
 
 참고로, `getProducts`의 파라미터 타입을 `List<Key>`에서 `Iterable<Key>`로, 리턴 타입은 `List<Product>`에서 `Map<Key, Product>`로 바꾸었다. 파라미터 타입을 바꾼 이유는 `LoadingCache.getAll` 메서드의 파라미터 타입과 맞추기 위해서다. `getAll` 메서드가 `Iterable<Key>`을 파라미터로 받을 수 있는데 `getProducts`의 파라미터를 `List<Key>`로 제한할 필요는 없어 보인다. 물론 `getProducts`를 호출할 때 `List<Key>`를 전달하는 것은 가능하다.
 
