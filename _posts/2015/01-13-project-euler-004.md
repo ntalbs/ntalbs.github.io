@@ -10,9 +10,21 @@ title: 프로젝트 오일러 4
 먼저 대칭수인지를 판단하는 함수를 만들어 놓으면 좋을 듯 하다. 대칭수인지 판단하는 간단한 방법은 문자열로 바꾼 다음 원래 문자열과 거꾸로 바꾼 문자열이 같은지 비교하는 것이다.
 
 ```clojure
+(ns p004
+    (:require [clojure.string :as s]))
+
+(defn palindrome? [n]
+  (= (str n) (s/reverse (str n))))
+```
+
+`clojure.string/reverse` 대신 `clojure.core/reverse`를 사용할 수도 있다.
+
+```clojure
 (defn palindrome? [n]
   (= (str n) (apply str (reverse (str n)))))
 ```
+
+그러나 `clojure.core/reverse`는 `Character`의 시퀀스를 리턴하므로 `str` 함수를 이용해 다시 문자열로 연결해줘야 한다. 번거로울 뿐 아니라 코드도 너저분해 지고 속도도 느리다. `clojure.core/reverse`를 쓰는 편이 낫다.
 
 ## 방법1
 다음과 같이 무식하게 루프를 돌려도 비교적 빨리 답을 구할 수 있다.
@@ -20,7 +32,7 @@ title: 프로젝트 오일러 4
 ```clojure
 (def limit 1000)
 
-(defn initial-approach []
+(defn solve1 []
   (->> (for [a (range 100 limit) b (range a limit)] (* a b))
        (filter palindrome?)
        (apply max)))
@@ -40,7 +52,7 @@ a \times b &= 100000x + 10000y + 1000z + 100z + 10y + x \\
 11은 소수이므로 a 또는 b가 11의 배수가 되어야 한다. 따라서 a 또는 b가 11의 배수일 때만 계산하도록 하면 루프 회수를 줄일 수 있다.
 
 ```clojure
-(defn improved []
+(defn solve2 []
   (->> (for [a (range 100 limit) b (range a limit)
              :when (or (= 0 (mod a 11)) (= 0 (mod b 11)))]
          (* a b))
@@ -49,15 +61,15 @@ a \times b &= 100000x + 10000y + 1000z + 100z + 10y + x \\
 ```
 
 ## 정리
-두 방식을 실행해본 결과는 다음과 같다. 두 번째 방법으로 실행한 결과가 첫 번째 방법보다 네 배 정도 빠르다.
+두 방식을 실행해본 결과는 다음과 같다. 두 번째 방법으로 실행한 결과가 첫 번째 방법보다 두 배 정도 빠르다.
 
 <pre class="console">
-p004=> (time (initial-approach))
-"Elapsed time: 419.324513 msecs"
-9????9
-p004=> (time (improved))
-"Elapsed time: 88.696111 msecs"
-9????9
+p004=> (time (solve1))
+"Elapsed time: 78.756448 msecs"
+9066??
+p004=> (time (solve2))
+"Elapsed time: 36.815226 msecs"
+9066??
 </pre>
 
 ## 참고
