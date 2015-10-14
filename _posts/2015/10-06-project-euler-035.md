@@ -79,7 +79,7 @@ title: 프로젝트 오일러 35
 (defn solve1 []
   (->> primes
        (take-while #(< % 1000000))
-       (filter circular-prime?)
+       (filter circular-prime1?)
        count))
 ```
 
