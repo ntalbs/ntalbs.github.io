@@ -5,7 +5,7 @@ title: There are known knowns...
 책을 읽다가 재미있는 인용구를 발견했다. [SQL Antipatterns](http://pragprog.com/book/bksqla/sql-antipatterns) 14장 Fear of the Unknown의 시작부분에 있는 인용문인데, 상당히 쉬운 영어로 오묘한 뜻을 전달하는 것 같은 느낌이 들었다.
 <!--more-->
 
-> There are known knowns; there are things we know we know. We also know there are known unknowns; that is to say we know there are some things we do not know. But there are also unknown unknowns ? the ones we don't know we don't know.
+> There are known knowns; there are things we know we know. We also know there are known unknowns; that is to say we know there are some things we do not know. But there are also unknown unknowns -- the ones we don't know we don't know.
 > -- Former United States Secretary of Defense Donald Rumsfeld
 
 그런데 장하준 교수의 [그들이 말하지 않는 23가지](http://www.yes24.com/24/goods/4242688)를 읽다보니 여기에도 같은 문구가 인용된 것을 발견했다. 그러나 번역문은 '알려진 기지수'니 '알려진 미지수'니 하는 어려운 말을 써서 원문의 재미있는 느낌은 다 없어져버렸다.
