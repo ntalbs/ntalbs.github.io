@@ -1,7 +1,6 @@
-title: There are known knowns...
 date: 2011-03-03
 tags: 영어
-
+title: There are known knowns...
 ---
 책을 읽다가 재미있는 인용구를 발견했다. [SQL Antipatterns](http://pragprog.com/book/bksqla/sql-antipatterns) 14장 Fear of the Unknown의 시작부분에 있는 인용문인데, 상당히 쉬운 영어로 오묘한 뜻을 전달하는 것 같은 느낌이 들었다.
 <!--more-->
