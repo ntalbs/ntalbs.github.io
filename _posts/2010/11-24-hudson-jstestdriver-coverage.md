@@ -27,14 +27,14 @@ plugin:
 LCOV의 `genhtml`로 생성한 HTML 리포트를 Hudson에서 보는 데 필요하다
 플러그인을 설치한 다음 Hudson을 재시작해야 한다.
 2. 프로젝트 설정 페이지의 Build 섹션에 genhtml 실행 명령 추가
-![](2010-11-24-1.png)
+{% asset_img 2010-11-24-1.png %}
 이렇게 하면 빌드 실행 후 `report/js_coverage_report` 디렉터리에 HTML 형식의 테스트 커버리지 리포트가 생성된다.
 <div style="background-color:#eeeeee;padding:10px">**JsTestDriver 실행 시 주의사항**
 coverage를 설정한 경우 임의의 위치에서 JsTestDriver를 실행시키면 `com.google.jstestdriver.coverage.CoverageModule` 클래스를 찾지 못하는 문제(`ClassNotFoundException`)가 발생한다. 실행 위치를 JsTestDriver 설치 디렉터리(`/opt/jsTestDriver`)로 옮긴 다음 JsTestDriver를 실행하면 이런 문제가 발생하지 않는다.
 따라서 그림과 같이 cd 명령으로 jsTestDriver 설치 디렉터리로 이동한 다음 JsTestDriver를 실행하고, 옵션에서 허드슨 환경변수(`$WORKSPACE`)를 사용해 설정 파일과 테스트 결과 파일의 위치를 지정한다.
 </div>
 3. 프로젝트 설정 페이지의 Post-build Actions 섹션에서 HTML Publisher Plugin 설정을 추가한다.
-![](2010-11-24-2.png)
+{% asset_img 2010-11-24-2.png %}
   * `HTML directory to archive` - HTML 리포트를 포함하는 디렉터리를 입력. 여기서는 trunk/report/js_coverage_report
   * `Index page[s]` - 표시할 파일 (디폴트는 index.html)
   * `Report title` - 리포트 제목, 여기서는 JsCoverage

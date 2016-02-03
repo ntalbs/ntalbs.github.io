@@ -9,11 +9,11 @@ Eclipse에서 혹시 종료 단축키를 바꿀 수 있을까 열심히 찾아 �
 ## 종료 단축키 변경 방법
 
 1. `System Preferences > Keyboard > Shortcuts > App Shortcuts`로 이동해 `+` 버튼 클릭
-![](1.png)
+{% asset_img 1.png %}
 2. Application 항목에 Eclipse를 지정하고, 메뉴 이름과 단축키 지정
-![](2.png)
+{% asset_img 2.png %}
 3. Eclipse에서 변경된 단축키 확인
-![](3.png)
+{% asset_img 3.png %}
 
 Mac OS X에서는 OS에서 애플리케이션에 대한 단축키를 제어할 수 있다는 점이 특이하게 생각됐다. 이제 `Cmd+1`을 누르려다 실수로 `Cmd+Q`를 눌러 Eclipse를 종료시켜 놓고 황당해하지 않을 수 있게 되었다.
 

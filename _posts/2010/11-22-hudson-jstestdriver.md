@@ -21,9 +21,9 @@ JsTestDriver를 사용하면 CI(Continuous Integration) 서버에서 Javascript 
 
 ## 단위 테스트 실행 설정
 1. `Hudson 초기화면 > {프로젝트} > Configure` 페이지의 Build 섹션에서 Add build step을 클릭해서 **Execute shell** 항목 선택
-![](2010-11-22-1.png)
+{% asset_img 2010-11-22-1.png %}
 2. Command 항목에 JsTestDriver를 이용해 JavaScript 테스트를 실행시킬 명령 작성
-![](2010-11-22-2.png)
+{% asset_img 2010-11-22-2.png %}
   * `$WORKSPACE` - Hudson 워크스페이스 절대경로
   * `--server http://localhost:4224` 테스트 실행시 JsTestDriver가 접근할 JsTestDriver 서버. **여기서는 다음과 같이 미리 JsTestDriver 서버를 띄워 놓고 여기에 IE, FF, Chrome 등의 브라우저를 attach 시켜놓아야 함.**
     `$ java -jar JsTestDriver-1.2.2.jar --port 4224` JsTestDriver 서버, attach한 브라우저가 모두 다른 머신에 있어도 상관 없음

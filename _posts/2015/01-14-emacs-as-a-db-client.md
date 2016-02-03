@@ -21,9 +21,9 @@ Emacs에서 데이터베이스 쿼리를 할 수 있으면 좋겠다는 생각�
 2. `cpan`으로 `RPC::EPC::Service`, `DBI`, 데이터베이스 드라이버 등의 Perl 모듈을 설치한다. EPC 모듈뿐 아니라 SQLite, PostgreSQL, MySQL 데이터베이스 드라이버가 함께 설치된다.<pre class="console">$ cpan RPC::EPC::Service DBI DBD::SQLite DBD::Pg DBD::mysql</pre>
 3. `M-x edbi:open-db-viewer`를 실행한다.
 4. 설정창에서 `Data Source`, `User Name`, `Auth` 항목을 입력한 후 `[OK]`를 선택한다. 연결 설정 정보는 History에 저장되어 나중에 불러쓸 수 있다.
-![](1.png)
+{% asset_img 1.png %}
 5. 데이터베이스에 접속되면 테이블 목록이 표시된다. `RET`키를 누르면 테이블 데이터가 표시되고, `c`를 누르면 쿼리 편집 버퍼로 이동한다. `j`, `k` 또는 `n`, `p`로 행을 이동할 수 있다.
-![](2.png)
+{% asset_img 2.png %}
 
 ## 결론
 잘 모르는 Perl 모듈이 왕창 깔리는 부담이 있지만, 사용성은 edbi가 훨씬 좋은 듯 하다.
