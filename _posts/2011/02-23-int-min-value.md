@@ -20,7 +20,7 @@ tags: java
          11100 --> 100 = MIN
 ```
 
-따라서 MIN 값을 -1과 곱하면 다시 자기 자신이 되는 것이다. 실제 `Integer`나 `Long`도 자리수만 더 많다뿐이지 원리는 동일하다. 따라서 `Integer.MIN_VALUE = -Integer.MIN_VALUE`다. 테스트해보지 않아도 알겠지만 `Long`도 마찬가지다
+따라서 MIN 값을 -1과 곱하면 다시 자기 자신이 되는 것이다. 실제 `Integer`나 `Long`도 자릿수만 더 많다뿐이지 원리는 동일하다. 따라서 `Integer.MIN_VALUE = -Integer.MIN_VALUE`다. 테스트해보지 않아도 알겠지만 `Long`도 마찬가지다
 
 ```java
 Integer.MIN_VALUE == -Integer.MIN_VALUE
