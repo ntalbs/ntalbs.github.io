@@ -1,7 +1,6 @@
-title: 인덱스 중복과 클러스터링 팩터
 date: 2008-10-31
-tags: [db, oracle, index]
-
+tags: [DB, Oracle]
+title: 인덱스 중복과 클러스터링 팩터
 ---
 테이블 T에 다음과 같은 인덱스가 있다면 `ix01`은 삭제해야 한다고 생각했다.
 * `ix01`: `a`

@@ -1,4 +1,4 @@
-tags: [algorithm, clojure]
+tags: [알고리즘, Clojure]
 date: 2015-07-17
 title: 순열 구하기
 ---

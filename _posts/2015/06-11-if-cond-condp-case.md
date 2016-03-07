@@ -1,4 +1,4 @@
-tags: [clojure]
+tags: [Clojure]
 date: 2015-06-11
 title: if, cond, condp, case
 ---

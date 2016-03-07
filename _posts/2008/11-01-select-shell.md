@@ -1,7 +1,6 @@
-title: SELECT 결과를 shell 변수로 가져오기
 date: 2008-11-01
-tags: [db, oracle, shell, sqlplus]
-
+tags: [DB, Oracle, Shell, SqlPlus]
+title: SELECT 결과를 shell 변수로 가져오기
 ---
 select한 결과를 shell에서 참조해야 하는 경우 다음과 같이 하면 된다.
 <!--more-->

@@ -1,4 +1,4 @@
-tags: emacs
+tags: Emacs
 date: 2015-01-14
 title: Emacs를 데이터베이스 클라이언트로 사용하기
 ---

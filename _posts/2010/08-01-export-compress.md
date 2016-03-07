@@ -1,7 +1,6 @@
-title: export와 동시에 압축하기
 date: 2010-08-01
-tags: [db, oracle]
-
+tags: [DB, Oracle, Shell]
+title: export와 동시에 압축하기
 ---
 다음과 같이 하면 export를 받은 후 압축하지 않고 export와 동시에 압축을 할 수 있다. export 파일 크기가 크고 디스크 용량이 충분하지 않을 때 사용하면 유용하다.
 <!-- more -->

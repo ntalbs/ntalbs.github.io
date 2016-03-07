@@ -1,7 +1,6 @@
-title: LONG형 컬럼을 가진 테이블의 테이블스페이스 이동
 date: 2008-10-31
-tags: [db, oracle, tablespace]
-
+tags: [DB, Oracle]
+title: LONG형 컬럼을 가진 테이블의 테이블스페이스 이동
 ---
 테이블을 다른 테이블스페이스로 이동시키기 위해서는 다음과 같이 한다.
 

@@ -1,7 +1,6 @@
-title: SQL*Plus 프롬프트 설정
 date: 2008-10-31
-tags: [db, oracle, sqlplus]
-
+tags: [DB, Oracle, SqlPlus]
+title: "SQL*Plus 프롬프트 설정"
 ---
 SQL*Plus의 프롬프트를 `username@INSTANCE_NAME >`과 같은 식으로 설정하면 현재 로그인한 인스턴스와 사용자 이름을 확인할 수 있어 편하다. logn.sql 스크립트를 만들어 여기에 프롬프트 설정 코드를 넣어두면 된다. Effective Oracle 책(p79)에는 설정 코드가 조금 복잡하게 나와 있다.
 <!--more-->

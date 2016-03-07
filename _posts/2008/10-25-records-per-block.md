@@ -1,7 +1,6 @@
-title: MINIMIZE RECORDS_PER_BLOCK
 date: 2008-10-25
-tags: [db, oracle]
-
+tags: [DB, Oracle]
+title: MINIMIZE RECORDS_PER_BLOCK
 ---
 SQL Reference에 보면 `records_per_block`절에 대해 다음과 같이 설명되어 있다.
 

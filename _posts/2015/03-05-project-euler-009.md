@@ -1,4 +1,4 @@
-tags: [project-euler, clojure]
+tags: [Project-Euler, Clojure]
 date: 2015-03-05
 title: 프로젝트 오일러 9
 ---

@@ -1,7 +1,6 @@
-title: login.sql
 date: 2009-08-20
-tags: [db, oracle, sqlplus]
-
+tags: [DB, Oracle, SqlPlus]
+title: login.sql
 ---
 `SQLPATH` 환경 변수 설정하고 `SQLPATH`에 다음 내용으로 login.sql 파일을 만들어 놓는다.
 <!--more-->

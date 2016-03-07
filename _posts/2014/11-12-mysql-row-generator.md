@@ -1,7 +1,6 @@
-title: MySQL Row Generator
 date: 2014-11-12
-tags: [db, postgresql, mysql, sql]
-
+tags: [DB, PostgreSQL, MySql, SQL]
+title: MySQL Row Generator
 ---
 Oracle에서는 `connect by`를 사용해 필요한 만큼 행(row)을 생성할 수 있다.
 

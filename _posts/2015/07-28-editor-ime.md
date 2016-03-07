@@ -1,4 +1,4 @@
-tags: [에디터_개발, javascript]
+tags: [에디터_개발, JavaScript]
 date: 2015-07-28
 title: 에디터 입력기 만들기
 ---

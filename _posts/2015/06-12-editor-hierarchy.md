@@ -1,4 +1,4 @@
-tags: [emacs]
+tags: [Emacs]
 date: 2015-06-12
 title: 에디터 우월성 계층
 ---

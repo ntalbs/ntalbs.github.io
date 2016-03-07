@@ -1,4 +1,4 @@
-tags: [emacs]
+tags: [Emacs]
 date: 2015-03-26
 title: "Emacs: 여러 파일 안의 텍스트 찾기/바꾸기"
 ---

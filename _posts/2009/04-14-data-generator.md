@@ -1,7 +1,6 @@
-title: 데이터 생성 SQL
 date: 2009-04-14
-tags: [db, sql, oracle, postgresql]
-
+tags: [DB, SQL, Oracle, PostgreSQL]
+title: 데이터 생성 SQL
 ---
 Oracle에서라면 다음 쿼리로 row를 생성할 수 있다.
 

@@ -1,7 +1,6 @@
-title: 무한 row 생성 쿼리
 date: 2008-11-03
-tags: [db, oracle, sql]
-
+tags: [DB, Oracle, SQL]
+title: 무한 row 생성 쿼리
 ---
 Oracle에서는 다음과 같이 `connect by`절을 사용해 원하는 만큼 row를 만들어낼 수 있다.
 <!--more-->

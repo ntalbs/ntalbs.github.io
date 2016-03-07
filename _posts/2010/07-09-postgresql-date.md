@@ -1,7 +1,6 @@
-title: PostgreSQL 날짜 연산
 date: 2010-07-09
-tags: [db, postgresql, sql]
-
+tags: [DB, PostgreSQL, SQL]
+title: PostgreSQL 날짜 연산
 ---
 database.sarang.net의 [PostgreSQL 게시판](http://database.sarang.net/?criteria=pgsql)에 PostgreSQL에서 [날짜 연산 관련 질문](http://database.sarang.net/?inc=read&aid=8678&criteria=pgsql&subcrit=qna&id=&limit=20&keyword=&page=1)이 올라왔다. 답을 생각해보면서 PostgreSQL에서 날짜 관련 함수 및 연산 방법을 간단히 정리해봤다.
 <!--more-->

@@ -1,5 +1,5 @@
 date: 2010-06-24
-tags: [db, oracle]
+tags: [DB, Oracle]
 title: Archivelog mode에서의 복구
 ---
 아카이브로그 모드에서 복구는 데이터베이스가 닫힌 상태에서 작업할 수도 있고 열린 상태에서 작업할 수도 있다.

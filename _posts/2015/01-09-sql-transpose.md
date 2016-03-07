@@ -1,4 +1,4 @@
-tags: [db, sql, postgresql]
+tags: [DB, SQL, PostgreSQL]
 date: 2015-01-09
 title: SQL에서 행을 열로 바꾸는 방법
 ---

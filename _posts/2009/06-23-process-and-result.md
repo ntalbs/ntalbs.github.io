@@ -1,7 +1,6 @@
-title: 과정과 결과 - 과정을 위한 변명
 date: 2009-06-23
 tags: 상념
-
+title: 과정과 결과 - 과정을 위한 변명
 ---
 <blockquote class="blockquote-reverse">아무리 나쁜 결과로 끝난 일이라 해도 애초에 그 일을 시작한 동기는 선의였다.
 - 율리우스 카이사르</blockquote>

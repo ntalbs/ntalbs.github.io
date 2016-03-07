@@ -1,7 +1,6 @@
-title: 매클로린 급수를 이용한 sin(x) 구현
-tags: [algorithm, math, clojure]
+tags: [알고리즘, 수학, Clojure]
 date: 2014-07-28
-
+title: 매클로린 급수를 이용한 sin(x) 구현
 ---
 
 [뉴튼 법을 이용한 근사값 구하기](/2014/07/25/newtons-method/)에서 매클로린 급수를 이용해 $\sin x$와 같은 초월함수의 값을 구할 수 있다고 했다. 여기서 clojure를 이용해 직접 구현해보려 한다.<!--more--> $\sin x$의 매클로린 급수는 다음과 같다.

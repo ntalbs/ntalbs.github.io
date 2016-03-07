@@ -1,4 +1,4 @@
-tags: [emacs]
+tags: [Emacs]
 date: 2015-01-22
 title: "Emacs: Sublime Text 데모 편집 흉내"
 ---

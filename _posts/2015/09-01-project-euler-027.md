@@ -1,4 +1,4 @@
-tags: [project-euler, clojure]
+tags: [Project-Euler, Clojure]
 date: 2015-09-01
 title: 프로젝트 오일러 27
 ---

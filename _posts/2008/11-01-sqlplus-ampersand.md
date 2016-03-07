@@ -1,7 +1,6 @@
-title: SQL*Plus에서 '&'가 포함된 문자열을 변수로 인식하지 않게 하기
 date: 2008-11-01
-tags: [db, oracle, sqlplus]
-
+tags: [DB, Oracle, SqlPlus]
+title: SQL*Plus에서 '&'가 포함된 문자열을 변수로 인식하지 않게 하기
 ---
 문자열 자체에 `&`가 포함되어 있는 경우 SQL*Plus에서 `&` 뒤의 단어를 변수로 인식해 그에 대한 값의 입력을 요구한다.
 <!--more-->

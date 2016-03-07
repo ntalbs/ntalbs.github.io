@@ -1,5 +1,5 @@
 date: 2011-08-23
-tags: [java]
+tags: [Java]
 title: 지역 변수에 final을 붙여야 하나
 ---
 회사에서 작성하는 모든 소스 코드에 대해 Quality Practice(이하 QP)를 적용하려 하고 있다. Java 코드에 대해서는 [Findbugs](http://findbugs.sourceforge.net/), [PMD](http://pmd.sourceforge.net/), [Checkstyle](http://checkstyle.sourceforge.net/)과 같은 도구를 사용해 소스 코드를 분석한다. 물론 각 도구를 적용할 때의 규칙(rule)은 QP 담당자였던 내 주관적 판단(또는 취향)에 따라 조정한다.<!--more--> <span style="color:lightgray">(지금은 QP 담당자가 다른 사람으로 바뀌었지만, 각 규칙을 조정할 정도로 관심을 가지지는 않는 듯 하다.)</span>

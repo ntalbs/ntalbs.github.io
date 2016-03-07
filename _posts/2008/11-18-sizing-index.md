@@ -1,5 +1,5 @@
 date: 2008-11-18
-tags: [db, oracle]
+tags: [DB, Oracle]
 title: 오라클 인덱스 용량 산정 방법
 ---
 인덱스 용량을 산정하기 위한 방법인데 조금 복잡하다.

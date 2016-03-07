@@ -1,4 +1,4 @@
-tags: [emacs, regexp]
+tags: [Emacs, 정규표현식]
 date: 2014-12-05
 title: 정규 표현식을 이용한 찾기/바꾸기 시 카운터 사용
 ---

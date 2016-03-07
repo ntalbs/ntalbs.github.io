@@ -1,4 +1,4 @@
-tags: [hexo, 상념]
+tags: [Hexo, 상념]
 date: 2015-04-10
 title: Sitemap 생성기
 ---

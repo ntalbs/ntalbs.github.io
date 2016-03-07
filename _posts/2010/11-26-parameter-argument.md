@@ -1,7 +1,6 @@
-title: parameter와 argument
 date: 2010-11-26
 tags: [용어]
-
+title: parameter와 argument
 ---
 일하다가 갑자기 "**parameter**와 **argument**가 어떻게 다를까? 각각의 정확한 뜻은 뭘까?" 하는 궁금증이 생겼다. parameter는 그냥 '파라미터' 또는 '매개변수'고 argument는 '인수' 또는 '인자'란 정도까지만 생각나고 정확한 뜻이나 구체적인 차이점 같은 것은 모르고 있다는 것을 깨달았다.
 <!--more-->

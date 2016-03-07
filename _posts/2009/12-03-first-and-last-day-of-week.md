@@ -1,7 +1,6 @@
-title: 주어진 주의 첫 날과 마지막 날 구하기
 date: 2009-12-03
-tags: [db, oracle, sql]
-
+tags: [DB, Oracle, SQL]
+title: 주어진 주의 첫 날과 마지막 날 구하기
 ---
 [Database.Sarang.net](http://database.sarang.net/) Q&A 게시판에 특정 주(몇월 몇째주)를 주면 이 주의 첫 날과 마지막 날을 구하는 방법에 대한 질문이 올라왔다. 열심히 머리를 굴려본 결과 해당 주에 포함된 날짜를 구하면 그 주의 첫 날과 마지막 날을 구할 수 있음을 알게 됐고, 다음과 같은 쿼리를 작성했다.
 <!--more-->

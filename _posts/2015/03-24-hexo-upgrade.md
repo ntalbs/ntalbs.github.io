@@ -1,6 +1,4 @@
-tags:
-- hexo
-- contrib
+tags: [Hexo, 오픈소스]
 date: 2015-03-24
 title: "Hexo: 3.0 업그레이드"
 ---

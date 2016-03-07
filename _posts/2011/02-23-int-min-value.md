@@ -1,7 +1,6 @@
-title: Integer.MIN_VALUE
 date: 2011-02-23
-tags: java
-
+tags: Java
+title: Integer.MIN_VALUE
 ---
 
 [Effective Java](http://www.amazon.com/Effective-Java-2nd-Joshua-Bloch/dp/0321356683)로 유명한 [Joshua Bloch](https://twitter.com/joshbloch)의 트윗에 재미있는 글이 올라왔다. 엥, 어떤 수에 -1을 곱했는데 자기 자신이 된다고? 곧장 테스트 프로그램을 만들어 돌려봤더니 정말 그렇다.

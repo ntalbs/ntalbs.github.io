@@ -1,4 +1,4 @@
-tags: [tip, shell]
+tags: [팁, Shell]
 date: 2015-04-28
 title: tail은 이제 그만
 ---

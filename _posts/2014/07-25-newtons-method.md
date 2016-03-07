@@ -1,7 +1,6 @@
-title: 뉴튼 법을 이용한 근사값 구하기
 date: 2014-07-25
-tags: [algorithm, math]
-
+tags: [알고리즘, 수학]
+title: 뉴튼 법을 이용한 근사값 구하기
 ---
 
 $\sqrt x$ 함수의 값을 어떻게 계산할 수 있을까? Java라면 `Math.sqrt(x)` 함수를 통해 제곱근을 구할 수 있는데, `Math.sqrt(x)` 함수는 어떻게 구현한 것일까?

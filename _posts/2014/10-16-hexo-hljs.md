@@ -1,7 +1,6 @@
-title: "Hexo: 소스 코드 하이라이팅 스타일 변경"
-tags: hexo
+tags: Hexo
 date: 2014-10-16
-
+title: "Hexo: 소스 코드 하이라이팅 스타일 변경"
 ---
 블로그 테마를 수정하면서 소스 코드 하이라이팅 스타일도 바꾸고 싶었다. 내 테마의 스타일은 [stylus](http://learnboost.github.io/stylus/)로 되어 있는데, 파일을 살펴보니 중간에 다음과 같은 부분이 보였다.
 <!--more-->

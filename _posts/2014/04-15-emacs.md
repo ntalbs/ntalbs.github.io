@@ -1,7 +1,6 @@
-title: Emacs
 date: 2014-04-15
-tags: [상념, emacs]
-
+tags: [상념, Emacs]
+title: Emacs
 ---
 [Emacs](http://www.gnu.org/software/emacs/)를 시작한 것은 꽤 오래 전이지만, 그동안 계속 사용한 것은 아니어서 지금도 Emacs 초보자 수준을 벗어나지 못하고 있다. 예전에 Java를 많이 사용할 때는 [Eclipse](http://www.eclipse.org/)를 썼는데, 요즘은 주로 JavaScript로 작업하다보니 다시 Emacs로 돌아오게 되었다. JavaScript(또는 다른 스크립트 언어)로 개발할 때 Eclipse는 무겁기만 하고 편하지도 않다.
 <!-- more -->

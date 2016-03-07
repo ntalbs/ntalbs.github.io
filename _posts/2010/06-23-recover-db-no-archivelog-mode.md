@@ -1,5 +1,5 @@
 date: 2010-06-23
-tags: [db, oracle]
+tags: [DB, Oracle]
 title: noarchivelog mode에서의 복구
 ---
 redo log 백업이 있을 때와 없을 때의 절차가 다르다.

@@ -1,7 +1,6 @@
-title: Project Lombok
 date: 2014-05-08
-tags: java
-
+tags: Java
+title: Project Lombok
 ---
 Java로 프로그램을 작성할 때 [Lombok](http://projectlombok.org/)을 이용하면 보일러플레이트 코드를 줄여 코드를 깔끔하게 유지할 수 있다. 사용하기도 편하고 IDE와도 잘 통합되기 때문에(안타깝게 IntelliJ와는 궁합이 안 맞는듯 하다. 하지만 난 Eclipse를 사용하니까...) 널리 사용될 줄 알았는데 의외로 모르는 개발자가 많은 것 같다.
 <!--more-->

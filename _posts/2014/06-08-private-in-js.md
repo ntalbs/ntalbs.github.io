@@ -1,7 +1,6 @@
-title: JavaScript에서 private 필드
 date: 2014-06-08
-tags: javascript
-
+tags: JavaScript
+title: JavaScript에서 private 필드
 ---
 JavaScript를 주로 사용하게 되면서 JavaScript에 대한 부정적인 생각이 줄어들었지만, 여전히 마음에 들지 않는 부분이 있다. 그 중 하나가 `private` 필드를 만들기가 애매하다는 점이다.
 <!--more-->

@@ -1,5 +1,5 @@
 date: 2010-11-22
-tags: [ci, javascript, test]
+tags: [CI, JavaScript, 테스팅]
 title: Hudson에서 JsTestDriver 설정
 ---
 JsTestDriver를 사용하면 CI(Continuous Integration) 서버에서 Javascript 코드에 대한 단위 테스트를 실행하고 코드 커버리지 리포트를 생성할 수 있다.

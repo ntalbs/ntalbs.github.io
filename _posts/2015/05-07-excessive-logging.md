@@ -1,4 +1,4 @@
-tags: [java, 상념]
+tags: [Java, 상념]
 date: 2015-05-07
 title: 과도한 로깅
 ---

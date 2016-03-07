@@ -1,7 +1,6 @@
-title: 코드 중복과 보이스카우트 규칙
 date: 2010-05-16
-tags: [refactoring]
-
+tags: [리팩터링]
+title: 코드 중복과 보이스카우트 규칙
 ---
 <blockquote class="blockquote-reverse">캠핑 장은 처음 왔을 때보다 더 깨끗하게 해놓고 떠나라!
 보이스카우트 규칙 (클린 코드, p50)

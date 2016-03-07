@@ -1,4 +1,4 @@
-tags: java
+tags: Java
 date: 2015-02-02
 title: Java REPL
 ---

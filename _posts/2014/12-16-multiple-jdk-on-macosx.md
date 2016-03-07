@@ -1,4 +1,4 @@
-tags: java
+tags: Java
 date: 2014-12-16
 title: MacOS X에서 JDK 버전 전환
 ---

@@ -1,7 +1,6 @@
-title: SQL*Loader 사용법 (초간단 정리)
 date: 2010-07-27
-tags: [db, oracle]
-
+tags: [DB, Oracle]
+title: SQL*Loader 사용법 (초간단 정리)
 ---
 간단히 참조할 용도로 정리한다. 자세한 사용법은 [매뉴얼](http://docs.oracle.com/cd/E11882_01/server.112/e22490/ldr_concepts.htm#SUTIL003)을 참조해야 한다.
 <!--more-->

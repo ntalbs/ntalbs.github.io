@@ -1,7 +1,6 @@
-title: 압축 해제와 동시에 import 하기
 date: 2010-08-02
-tags: [db, oracle]
-
+tags: [DB, Oracle, Shell]
+title: 압축 해제와 동시에 import 하기
 ---
 압축된 덤프 파일을 압축 해제와 동시에 import 하는 방법이다. 압축을 해제할 만큼 디스크 공간이 충분하지 않을 때 유용하게 사용할 수 있다.
 <!-- more -->

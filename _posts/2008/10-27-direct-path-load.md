@@ -1,7 +1,6 @@
-title: Direct-path Insert시 주의사항
 date: 2008-10-27
-tags: [db, oracle]
-
+tags: [DB, Oracle]
+title: Direct-path Insert시 주의사항
 ---
 뭔가에 대해 어설프게 아는 것은 큰 위험을 초래할 수 있다. 이번에는 Direct-path Insert에 대한 어설픈 지식으로 큰 사고를 낼 뻔 했다. 지금까지 알고 있었던 사실은 Direct-path Insert를 이용하면 redo와 undo 로깅을 생략해 성능을 향상시킬 수 있다는 것이었다. 따라서 테이블에 대량의 데이터를 넣을 때 이 방법을 활용하곤 했다.<!--more--> 그러나 **Direct-path INSERT를 하는 동안 테이블에는 LOCK이 걸리고 작업이 끝날 때까지 해당 테이블에 DML 작업을 할 수 없게 된다**는 사실은 알지 못했다. 만약 확인하지 않고 거래 데이터를 전환해 넣을 때 Direct-path INSERT를 썼더라면 장애가 생길 뻔 했다. 참고로 Direct-path INSERT와 Direct-path Load를 거의 같은 것으로 생각했었는데 다음과 같이 약간의 차이가 있다.
 

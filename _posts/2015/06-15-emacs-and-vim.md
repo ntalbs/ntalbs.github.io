@@ -1,4 +1,4 @@
-tags: [emacs, 상념]
+tags: [Emacs, 상념]
 date: 2015-06-15
 title: Emacs와 Vim
 ---

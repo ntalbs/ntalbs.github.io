@@ -1,7 +1,6 @@
-title: visual-regexp
 date: 2014-04-25
-tags: [emacs, regexp]
-
+tags: [Emacs, 정규표현식]
+title: visual-regexp
 ---
 Emacs나 Vim을 사용할 때 **정규표현식**을 자주 활용한다. Vim의 정규표현식에는 조금 익숙해 졌는데 Emacs의 정규표현식은 Vim과 미묘하게 달라 가끔 애를 먹일 때가 있다. 그런데 최근 [visual-regexp](https://github.com/benma/visual-regexp.el)를 알게 되었다.<!--more--> Emacs에 원래 있는 `replace-regexp`와 비슷한 녀석인데 정규표현식을 입력하면 편집중인 버퍼에 피드백이 즉시 표시된다. 따라서 입력하고 있는 정규표현식에 대응되는 문자열, 캡쳐링되는 부분까지 바로 확인할 수 있다.
 

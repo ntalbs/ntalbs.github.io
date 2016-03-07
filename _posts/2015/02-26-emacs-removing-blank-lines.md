@@ -1,4 +1,4 @@
-tags: [emacs]
+tags: [Emacs]
 date: 2015-02-26
 title: "Emacs: 빈 줄 지우기"
 ---

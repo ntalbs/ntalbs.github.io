@@ -1,7 +1,6 @@
-title: 인덱스 비교
 date: 2008-11-03
-tags: [db, oracle, index, sql]
-
+tags: [DB, Oracle, SQL]
+title: 인덱스 비교
 ---
 개발DB와 테스트DB, 또는 테스트DB와 운영DB간 인덱스를 비교할 때는 다음 쿼리를 사용할 수 있다.
 <!--more-->

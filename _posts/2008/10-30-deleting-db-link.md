@@ -1,5 +1,5 @@
 date: 2008-10-30
-tags: [db, oracle]
+tags: [DB, Oracle]
 title: DB 링크 삭제 시 제약사항
 ---
 불필요한 데이터베이스 링크가 난무하는 것 같아 정리하기로 마음을 먹었다. 일단 개발DB에서 운영DB로의 데이터베이스 링크는 허용할 수 없으므로 이것부터 삭제하기로 했다. 개발DB에 sys 계정으로 로그인한 다음 `dba_db_links` 테이블을 조회해 개발DB에서 운영DB로 연결되는 데이터베이스 링크를 하나씩 확인했다.<!--more--> public 데이터베이스 링크를 삭제할 때는 `drop public database link ...` 명령으로 간단하게 삭제했다. 그리고 xxx 스키마에 있는 데이터베이스 링크를 삭제하기 위해 `drop database link xxx.{db_link_name}` 명령을 날렸는데, 데이터베이스 링크를 찾을 수 없다며 ora-02024 에러가 났다.

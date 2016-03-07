@@ -1,7 +1,6 @@
-title: Google 첫 페이지 되돌아오다!
 date: 2010-09-06
-tags: [상념, google]
-
+tags: [상념, Google]
+title: Google 첫 페이지 되돌아오다!
 ---
 Google 첫 페이지가 예전 모습으로 돌아왔다. 한동안 이도저도 아닌 이상한 모양이었는데 다시 깔끔한 모습으로 되돌아와 기쁘다.
 <!--more-->

@@ -1,4 +1,4 @@
-tags: [tip]
+tags: [팁]
 date: 2015-01-12
 title: Mac OS X에서 Eclipse 종료 단축키 변경
 ---

@@ -1,6 +1,5 @@
 date: 2009-11-16
-tags:
-- javascript
+tags: JavaScript
 title: Canvas 테스트
 ---
 

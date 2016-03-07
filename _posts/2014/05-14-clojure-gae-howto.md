@@ -1,7 +1,6 @@
-title: 구글 앱 엔진에 Clojure 앱 올리기
 date: 2014-05-14
-tags: [clojure, google-app-engine]
-
+tags: [Clojure, Google-App-Engine]
+title: 구글 앱 엔진에 Clojure 앱 올리기
 ---
 [구글 앱 엔진(Google App Engine)](https://cloud.google.com/products/app-engine/)은 Clojure를 위한 SDK를 따로 제공하지는 않지만 Clojure는 JVM에서 실행되므로 Java가 실행되는 환경이라면 Clojure도 실행할 수 있다.
 <!--more-->

@@ -1,4 +1,4 @@
-tags: [상념, emacs]
+tags: [상념, Emacs]
 date: 2015-09-22
 title: Emacs를 쓰는 이유?
 ---

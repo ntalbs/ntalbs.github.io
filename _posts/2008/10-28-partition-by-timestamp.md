@@ -1,5 +1,5 @@
 date: 2008-10-28
-tags: [db, oracle]
+tags: [DB, Oracle]
 title: TIMESTAMP 컬럼으로 파티션 하는 방법
 ---
 일반적으로 range 파티션 테이블을 만들 때는 다음과 같이 한다.

@@ -1,7 +1,6 @@
-title: infix 매크로
 date: 2014-06-25
-tags: clojure
-
+tags: Clojure
+title: infix 매크로
 ---
 [Clojure에 대한 오해](/2014/04/08/clojure-fallacy/)에서 LISP 언어가 널리 사용되지 않는 주요 이유 중 하나로 **전위 표기법**(prefix notation)을 들었다. LISP의 표현력이 뛰어난 이유 중 하나가 전위 표기법 때문인데 이것 때문에 LISP이 널리 사용되지 못한다니 역설이 아닐 수 없다.
 <!--more-->

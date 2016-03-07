@@ -1,4 +1,4 @@
-tags: [emacs]
+tags: [Emacs]
 date: 2015-01-26
 title: "Emacs: 행 연결"
 ---

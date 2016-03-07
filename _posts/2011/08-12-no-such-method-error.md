@@ -1,7 +1,6 @@
-title: NoSuchMethodError
 date: 2011-08-12
-tags: java
-
+tags: Java
+title: NoSuchMethodError
 ---
 
 CI서버에서 대략 삼분의 일 정도의 테스트가 실패하고 있었다. 로그를 확인해보니 어이없게도 실패하는 테스트에서 `NoSuchMethodError`가 발생했고, 모두 Google의 컬렉션 라이브러리를 사용하는 부분이었다. 이클립스에서 테스트를 실행시킬 때는 아무런 문제가 없는데 CI 서버에서는 실패하는 것이었다.

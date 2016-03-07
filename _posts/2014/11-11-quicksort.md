@@ -1,7 +1,6 @@
-title: 함수형 언어로 구현한 퀵정렬
 date: 2014-11-11
-tags: [algorithm, clojure, 상념]
-
+tags: [알고리즘, Clojure, 상념]
+title: 함수형 언어로 구현한 퀵정렬
 ---
 <blockquote class="blockquote-reverse">언어의 한계가 사고의 한계다.
 - 비트겐슈타인</blockquote>

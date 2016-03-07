@@ -1,4 +1,4 @@
-tags: [emacs]
+tags: [Emacs]
 date: 2015-10-30
 title: "Emacs에서 £ 기호 입력하기"
 ---

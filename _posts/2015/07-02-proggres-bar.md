@@ -1,4 +1,4 @@
-tags: [javascript, hexo]
+tags: [JavaScript, Hexo]
 date: 2015-07-02
 title: 블로그에 Progress Bar 추가하기
 ---

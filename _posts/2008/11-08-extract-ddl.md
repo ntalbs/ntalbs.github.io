@@ -1,5 +1,5 @@
 date: 2008-11-08
-tags: [db, oracle]
+tags: [DB, Oracle]
 title: 특정 스키마 DDL 추출
 ---
 다음과 같이 하면 exp/imp 도구를 사용해 특정 스키마의 DDL을 추출할 수 있다.

@@ -1,7 +1,6 @@
-title: 다단계 번호 매기기
 date: 2014-04-16
-tags: [에디터_개발, algorithm, clojure]
-
+tags: [에디터_개발, 알고리즘, Clojure]
+title: 다단계 번호 매기기
 ---
 요즘은 간단한 로직을 테스트할 때 Clojure로 코드를 작성해 확인해보곤 한다. 다단계 번호매기기도 Clojure를 사용해 로직을 구현해보고 생각대로 잘 되는 것을 확인한 다음 JavaScript로 옮기는 방법을 사용했다.
 
