@@ -27,4 +27,8 @@ plugins:
 
 시험 삼아 간단한 수식을 입력해봤는데, 잘 나온다.
 
-$$\frac{\partial L}{\partial q_j} - \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_j}\right) = 0$$
+{% math %}
+\begin{aligned}
+\frac{\partial L}{\partial q_j} - \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_j}\right) = 0
+\end{aligned}
+{% endmath %}

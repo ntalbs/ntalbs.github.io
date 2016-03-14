@@ -8,16 +8,20 @@ title: 프로젝트 오일러 44
 어떤 수가 오각수인지 빠르게 판단할 수 있다면 $i$와 $j$를 계속 늘려가며 $P_i$와 $P_j$를 구하고 그 합과 차 역시 오각수인 경우를 찾을 수 있다. $P_n ≡ x$로 놓고 근의 공식을 이용해 $n$에 대한 이차방정식을 풀면 다음과 같은 결과를 얻는다.
 <!--more-->
 
-{% math_block %}
+{% math %}
+\begin{aligned}
 \frac{n(3n-1)}{2} = x \\
 \therefore n = \frac{1 \pm \sqrt{1+24x}}{6}
-{% endmath_block %}
+\end{aligned}
+{% endmath %}
 
 제곱근 안의 수가 1보다 크므로 $n$이 양수가 되려면 다음과 같이 되어야 한다.
 
-{% math_block %}
+{% math %}
+\begin{aligned}
 n = \frac{1 + \sqrt{1 + 24x}}{6}
-{% endmath_block %}
+\end{aligned}
+{% endmath %}
 
 어떤 수 $x$가 주어졌을 때 위 공식을 만족하는 정수 $n$을 구할 수 있다면 $x$를 오각수라 할 수 있다. 따라서 어떤 수가 오각수인지 확인하는 함수는 다음과 같이 작성할 수 있다.
 

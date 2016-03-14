@@ -14,13 +14,13 @@ connect by level <= N
 ## 원리
 $a = e^{\ln a}$임을 이용하면 $n!$을 다음과 같이 표현할 수 있다.
 
-{% math_block %}
+{% math %}
 \begin{aligned}
 n! &= 1 \times\ 2 \times\ ... \times\ n \\
 &= e^{\ln 1} \times\ e^{\ln 2} \times\ ... \times\ e^{\ln n} \\
 &= e^{\ln 1 + \ln 2 + \ ... \ + \ln n}
 \end{aligned}
-{% endmath_block %}
+{% endmath %}
 
 ```
 n! =  1 * 2 * ... * n

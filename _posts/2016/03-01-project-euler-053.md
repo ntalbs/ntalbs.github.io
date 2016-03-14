@@ -40,13 +40,13 @@ p053=> (time (solve))
 ## 방법 2
 $_nC_r$을 구할 때 팩토리얼을 먼저 계산하지 않고 나눗셈을 먼저 계산하면 계산 과정에서 숫자가 지나치게 커지는 문제를 피할 수 있다.
 
-{% math_block %}
+{% math %}
 \begin{aligned}
 _nC_r &= \frac{n!}{r!(n-r)!} \\
 &= \frac{n \times (n-1) \times ... \times 1}{r \times (r-1)\times ... \times 1 \times (n-r) \times (n-r-1) \times ... \times 1} \\
 &= \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times ... \times \left(\frac{n-r}{n-r}\right) \times ... \times \left(\frac{1}{1}\right)
 \end{aligned}
-{% endmath_block %}
+{% endmath %}
 
 수식을 잘 보면 알겠지만 분모와 분자의 항 수가 항상 같다. 그리고 C/C++ 또는 Java의 `/` 연산자는 결과가 항상 정수인 것과 달리 Clojure의 `/` 함수는 분수(`clojure.lang.Ratio`)를 리턴할 수 있다. 이 두 가지를 이용하면 다음과 같이 나눗셈을 먼저 계산하로록 함수를 작성할 수 있다.
 
@@ -68,13 +68,13 @@ p053=> (time (solve))
 
 수식을 자세히 살펴보면 뒷부분은 1로 약분되기 때문에 굳이 계산하지 않아도 된다.
 
-{% math_block %}
+{% math %}
 \begin{aligned}
 \require{cancel}
 _nC_r &= \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times ... \times \left(\frac{\cancel{n-r}}{\cancel{n-r}}\right) \times ... \times \left(\frac{\cancel{1}}{\cancel{1}}\right) \\
 & = \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times ... \times \left(\frac{n-r+1}{1}\right)
 \end{aligned}
-{% endmath_block %}
+{% endmath %}
 
 따라서 함수를 다음과 같이 수정할 수 있다.
 

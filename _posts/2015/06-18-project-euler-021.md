@@ -67,21 +67,27 @@ title: 프로젝트 오일러 21
 ## 방법 2
 어떤 수 $n$을 소인수분해 한 결과는 다음과 같이 나타낼 수 있다.
 
-{% math_block %}
+{% math %}
+\begin{aligned}
 n = \prod_k p_k^{a_k}
-{% endmath_block %}
+\end{aligned}
+{% endmath %}
 
 이때 약수의 합은 다음과 같다.
 
-{% math_block %}
+{% math %}
+\begin{aligned}
 \sigma(n)=\prod_k\left(\sum_{i=0}^{a_k}p_k^i\right)
-{% endmath_block %}
+\end{aligned}
+{% endmath %}
 
 진약수의 합은 위 결과에서 $n$을 빼주면 된다. 예를 들어, 120을 소인수분해하면 $120=2^3 \cdot 3 \cdot 5$이 되므로, 약수의 합은 다음과 같이 구할 수 있다.
 
-{% math_block %}
+{% math %}
+\begin{aligned}
 (2^0 + 2^1 + 2^2 + 2^3) \cdot (3^0 + 3^1) \cdot (5^0 + 5^1) =15 \cdot 4 \cdot 6 =360
-{% endmath_block %}
+\end{aligned}
+{% endmath %}
 
 따라서 진약수의 합은 360에서 120을 뺀 240이 된다. 이 방식을 이용해 진약수의 합을 구하는 함수는 다음과 같이 구현할 수 있다.
 
@@ -113,9 +119,9 @@ n = \prod_k p_k^{a_k}
 ## 방법 3
 약수의 합을 구하는 다른 공식도 있다. 이 공식이 **방법 2**의 공식보다 계산이 빠를 것 같다.
 
-{% math_block %}
+{% math %}
 \sigma(n)=\prod_k\frac{p_k^{a_k+1}-1}{p_k-1}
-{% endmath_block %}
+{% endmath %}
 
 이 공식은 다음과 같이 구현할 수 있다. 방법 2에서와 마찬가지로 자신을 빼줘야 진약수의 합이 된다.
 

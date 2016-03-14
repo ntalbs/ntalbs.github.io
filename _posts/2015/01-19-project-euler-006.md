@@ -24,32 +24,38 @@ title: 프로젝트 오일러 6
 ## 방법 2
 [문제 1](/2015/01/01/project-euler-001/)에서 공식을 이용해 합을 구하는 방법을 설명했다. 따라서 공식을 이용하면 루프 없이 $O(1)$ 복잡도로 합의 제곱을 구할 수 있다. 그런데 제곱의 합도 이런 식으로 구할 수 있을까? 1부터 n까지 제곱의 합을 다음과 같은 형태라고 가정해보자.
 
-$$
+{% math %}
+\begin{aligned}
 f(n) = an^3 + bn^2 + cn + d
-$$
+\end{aligned}
+{% endmath %}
 
 여기서 $a, b, c, d$를 구하면 제곱의 합 $f(n)$을 구할 수 있다. $f(0) = 0$, $f(1) = 1$, $f(2) = 5$, $f(3) = 14$이므로, 다음과 같이 네 개의 방정식을 얻을 수 있다.
 
-{% math_block %}
+{% math %}
 \begin{aligned}
 d &= 0\\
 a + b + c + d &= 1 \\
 8a + 4b + 2c + d &= 5\\
 27a + 9b + 3c + d &= 14
 \end{aligned}
-{% endmath_block %}
+{% endmath %}
 
 이 방정식을 풀면 다음과 같은 결과를 얻을 수 있다.
 
-$$
+{% math %}
+\begin{aligned}
 a=\frac{1}{3}, b=\frac{1}{2}, c=\frac{1}{6}, d=0
-$$
+\end{aligned}
+{% endmath %}
 
 $a, b, c, d$ 값을 대입해 정리하면 다음과 같은 식을 얻을 수 있다.
 
-$$
+{% math %}
+\begin{aligned}
 f(n) = \frac{1}{6}n(n+1)(2n+1)
-$$
+\end{aligned}
+{% endmath %}
 
 (이 결과가 맞는지 수학적 귀납법으로 증명할 수 있지만, 증명은 생략한다.)
 

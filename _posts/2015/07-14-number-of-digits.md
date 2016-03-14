@@ -26,9 +26,11 @@ title: 정수 자릿수 구하기
 ## 상용로그 사용
 상용로그(밑이 10인 로그)를 사용해 자릿수를 구하는 것도 가능하다.
 
-{% math_block %}
+{% math %}
+\begin{aligned}
 (number\,of\,digits) = \lfloor\log_{10} n\rfloor + 1
-{% endmath_block %}
+\end{aligned}
+{% endmath %}
 
 따라서 코드는 다음과 같이 쓸 수 있다.
 

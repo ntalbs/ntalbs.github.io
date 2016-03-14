@@ -7,9 +7,11 @@ title: 프로젝트 오일러 5
 
 1~20의 최소공배수(least common multiple)를 구하는 문제다. 최소공배수는 다음 식으로 간단히 구할 수 있다.<!--more-->
 
-{% math_block %}
+{% math %}
+\begin{aligned}
 lcm(a,b) = \frac{\lvert a \times b \rvert}{gcd(a,b)}
-{% endmath_block %}
+\end{aligned}
+{% endmath %}
 
 최대공약수(Greatest Common Divisor)를 구하면 최소공배수를 구할 수 있다. 최대공약수와 최소공배수를 구하는 함수는 다음과 같이 구현할 수 있다.
 

@@ -67,15 +67,19 @@ title: 블로그에 Progress Bar 추가하기
 
 글의 안보이는 부분을 기준으로 생각하면 진행률 쉽게 구할 수 있다. 안 보이는 부분이 없으면 `100%`가 되는 것이다. 다만 안 보이는 부분의 높이를 바로 알 수는 없으므로 약간의 계산이 필요하다. $h_w$를 브라우저 창의 높이, $h_p$를 글(post content)의 높이라 하면 처음 페이지가 표시됐을 때 글의 안 보이는 부분의 높이는 다음과 같이 구할 수 있다. 이 값을 기준으로 진행률을 계산할 것이므로 이 값을 $base$라 하자. 글은 문서의 맨 위에 딱 붙어 있는게 아니므로 $offsetTop + h_p$를 전체 높이로 볼 수 있고 여기서 $h_w$를 빼주면 안 보이는 부분의 높이가 된다.
 
-{% math_block %}
+{% math %}
+\begin{aligned}
 base = offsetTop + h_p - h_w
-{% endmath_block %}
+\end{aligned}
+{% endmath %}
 
 $base$를 기준으로 스크롤 된 양($y$)의 비율을 구하면 진행률을 구할 수 있다.
 
-{% math_block %}
+{% math %}
+\begin{aligned}
 progress = \frac{y}{base} \times 100\, (\%)
-{% endmath_block %}
+\end{aligned}
+{% endmath %}
 
 ## JavaScript
 실제 적용된 JavaScript 코드는 다음과 같다. 설명한 공식을 이용했지만, `base`가 음수가 되거나 `progress`가 100 이상이 되는 것은 의미가 없으므로 `Math.max`, `Math.min`을 사용해 `base`와 `progress`가 특정 범위를 벗어나지 않도록 했다.

@@ -7,21 +7,21 @@ title: 프로젝트 오일러 50
 
 소수의 누적 합을 만들어두면 문제를 쉽게 풀 수 있다. $p_i$를 $i$번째 소수라 하고 $s(n)$을 $n$번째 소수까지의 누적 합이라 하자.
 
-{% math_block %}
+{% math %}
 \begin{aligned}
 s(n) = p_1 + p_2 + ... + p_n
 \end{aligned}
-{% endmath_block %}
+{% endmath %}
 <!--more-->
 
 $s(m, n)$를 $p_m$부터 $p_n$까지($m \le n$)의 합이라 하면, $s(m, n)$는 다음과 같이 나타낼 수 있다. $m=n$인 경우 $s(n, n) = p_n$이 된다. 그러나 문제를 풀 때는 이런 경우를 고려하지 않아도 된다.
 
-{% math_block %}
+{% math %}
 \begin{aligned}
 s(m, n) &= p_m + p_{m+1} + ... + p_n \\
         &= s(n) - s(m-1)
 \end{aligned}
-{% endmath_block %}
+{% endmath %}
 
 따라서 1백만 이하의 소수에 대해 누적 합을 구해 놓으면 이를 이용해 $s(m, n)$을 구할 수 있다. 여기서 $s(m, n)$ 역시 소수이면서 $n-m$이 최대가 되는 $s(m, n)$을 구하면 된다.
 
