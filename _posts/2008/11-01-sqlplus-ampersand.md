@@ -6,15 +6,15 @@ title: SQL*Plus에서 '&'가 포함된 문자열을 변수로 인식하지 않�
 <!--more-->
 
 <pre class="console">
-SQL> update tbl set a = 'hello&world' where ...
-Enter value for world: _  < -- 입력을 기다림
+SQL&gt; update tbl set a = 'hello&amp;world' where ...
+Enter value for world: _  &lt -- 입력을 기다림
 </pre>
 
 ## 해결 방법 1
 다음 명령을 실행시킨 후 SQL 실행.
 
 <pre class="console">
-SQL> set define off
+SQL&gt; set define off
 </pre>
 
 (SQL*Plus User's Guide and Reference 참조.)
@@ -23,7 +23,7 @@ SQL> set define off
 다음과 같은 식으로 문자열 변경 (편법...)
 
 <pre class="console">
-'hello&world' --> 'hello&'||'world'
+'hello&world' --&gt; 'hello&'||'world'
 </pre>
 
 (문자열이 많을 경우 노가다 작업이 될 수 있음.)

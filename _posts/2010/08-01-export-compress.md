@@ -14,7 +14,7 @@ $ mknod /tmp/expimp_pipe p
 이 명령은 백그라운드로 실행되도록 한다.
 
 <pre class="console">
-$ compress < /tmp/expimp_pipe > exp.dmp.Z &
+$ compress &lt; /tmp/expimp_pipe &gt; exp.dmp.Z &
 </pre>
 
 ## 3. pipe에 데이터를 쓴다.

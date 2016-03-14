@@ -16,7 +16,7 @@ $ imp system/pw fromuser=scott file=pipe log=imp_${dump_file}.log ignore=y &
 `uncompress`로 압축 해제한 다음 `$pipe`로 넘긴다.
 
 <pre class="console">
-$ uncompress < exp.dmp.Z > $pipe
+$ uncompress &lt; exp.dmp.Z &gt; $pipe
 </pre>
 
 이를 응용해 다음과 같은 스크립트를 만들 수 있다.
