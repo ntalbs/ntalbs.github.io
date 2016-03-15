@@ -13,8 +13,8 @@ title: 프로젝트 오일러 57
 \end{aligned}
 {% endmath %}
 
-처음부터 한 단계씩 확장해보면 다음과 같이 된다.
 <!--more-->
+처음부터 한 단계씩 확장해보면 다음과 같이 된다.
 
 {% math %}
 \begin{aligned}
