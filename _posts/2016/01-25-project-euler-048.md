@@ -26,9 +26,9 @@ p048=> (time (solve))
 9110??6700N
 </pre>
 
-물론 이렇게 푸는 것은 문제의 의도를 회피한 것이겠지만, `BigInteger`를 사용하지 않고 큰 수를 다루는 방법은 문제 [20](/2015/05/20/project-euler-020/), [16](/2015/04/08/project-euler-016/), [13](/2015/03/18/project-euler-013/)에서 충분히 시도해 봤으므로, 여기서는 생략한다.
+물론 이렇게 푸는 것은 문제의 의도를 회피한 것이겠지만, `BigInteger`를 사용하지 않고 큰 수를 다루는 방법은 문제 [20](/2015/project-euler-020/), [16](/2015/project-euler-016/), [13](/2015/project-euler-013/)에서 충분히 시도해 봤으므로, 여기서는 생략한다.
 
 ## 참고
 * [프로젝트 오일러 48 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p048.clj)
-* 프로젝트 오일러 [20](/2015/05/20/project-euler-020/), [16](/2015/04/08/project-euler-016/), [13](/2015/03/18/project-euler-013/)
+* 프로젝트 오일러 [20](/2015/project-euler-020/), [16](/2015/project-euler-016/), [13](/2015/project-euler-013/)
 `BigInteger`를 사용하지 않고 큰 수를 다루는 방법을 설명했다.

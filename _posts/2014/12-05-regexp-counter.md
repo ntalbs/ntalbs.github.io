@@ -72,4 +72,4 @@ visual-regexp-steroids에서 정규 표현식 치환 시 카운터를 사용하�
 스택오버플로우에서 발견한 질문. 다른 질문과 중복 처리됨
 * [gVim find/replace with counter](http://stackoverflow.com/questions/5942360/gvim-find-replace-with-counter)
 Vim에서 정규 표현식 치환 시 카운터를 사용하는 방법에 대한 질문과 대답
-* [visual-regexp](/2014/04/25/visual-regexp/)
+* [visual-regexp](/2014/visual-regexp/)

@@ -2,7 +2,7 @@ date: 2011-06-04
 tags: [CI, JavaScript, 커버리지, 테스팅]
 title: 커버리지 분석 시 불필요한 js 파일 제외하기
 ---
-[Hudson에서 JsTestDriver를 이용한 커버리지 분석 설정](/2010/11/24/hudson-jstestdriver-coverage/)에서 JsTestDriver로 작성한 테스트에 대해 커버리지를 어떻게 볼 수 있는지 설명했다. 그런데 이렇게 테스트 커버리지를 분석할 때 문제가 하나 있다. 외부 라이브러리가 커버리지 분석 리포트에 포함되어 커버리지 결과가 왜곡된다는 점이다.
+[Hudson에서 JsTestDriver를 이용한 커버리지 분석 설정](/2010/hudson-jstestdriver-coverage/)에서 JsTestDriver로 작성한 테스트에 대해 커버리지를 어떻게 볼 수 있는지 설명했다. 그런데 이렇게 테스트 커버리지를 분석할 때 문제가 하나 있다. 외부 라이브러리가 커버리지 분석 리포트에 포함되어 커버리지 결과가 왜곡된다는 점이다.
 <!--more-->
 
 이 문제는 의외로 간단하게 해결할 수 있다. JsTestDriver의 coverage 플러그인은 JsTestDriver 실행시 지정한 testOutput 디렉터리에 LCOV 포맷의 <config filename>-coverage.dat 파일을 생성하는데, 이 파일을 적절히 조작하면 된다. 파일은 텍스트 파일이며 다음과 같은 형식으로 되어 있다.
@@ -69,5 +69,5 @@ external-lib3.js
 빌드해보면 JavaScript 커버리지 리포트에 제외하고 싶었던 파일에 대한 커버리지가 빠져 있는 것을 확인할 수 있다.
 
 ## 참조
-* [Hudson에서 JsTestDriver를 이용한 커버리지 분석 설정](/2010/11/24/hudson-jstestdriver-coverage/)
-* [Hudson에서 JsTestDriver 설정](/2010/11/22/hudson-jstestdriver/)
+* [Hudson에서 JsTestDriver를 이용한 커버리지 분석 설정](/2010/hudson-jstestdriver-coverage/)
+* [Hudson에서 JsTestDriver 설정](/2010/hudson-jstestdriver/)

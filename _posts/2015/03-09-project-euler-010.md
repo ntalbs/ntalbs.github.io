@@ -5,7 +5,7 @@ title: 프로젝트 오일러 10
 > 이백만 이하 소수의 합은?
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=10) [[영어]](https://projecteuler.net/problem=10)
 
-[문제 7](/2015/02/10/project-euler-007/)에서 어떤 수가 소수인지 판별하는 함수와 Clojure 라이브버리로 제공되는 소수의 지연 시퀀스를 살펴봤다.<!--more-->
+[문제 7](/2015/project-euler-007/)에서 어떤 수가 소수인지 판별하는 함수와 Clojure 라이브버리로 제공되는 소수의 지연 시퀀스를 살펴봤다.<!--more-->
 
 ## 방법 1
 2백만까지 수를 증가시키면서 `prime?`을 이용해 소수만 뽑아낸 다음 합하는 방식을 생각해볼 수 있다.

@@ -38,5 +38,5 @@ Hexo 작성자를 비난하려는 의도는 없다. Hexo는 node.js 기반의 �
 * [hexo-math 수정 부분 Pull Request](https://github.com/akfish/hexo-math/pull/4)
 `hexo.theme_dir` 부분은 해결하지 못해 저자에게 잘 해결해달라고 부탁했다.
 * [hexo-renderer-mathjax 수정 부분 Pull Request](https://github.com/phoenixcw/hexo-renderer-mathjax/pull/2)
-* [Hexo: 소스 코드 하이라이팅 스타일 변경](/2014/10/16/hexo-hljs/)
+* [Hexo: 소스 코드 하이라이팅 스타일 변경](/2014/hexo-hljs/)
 이때 정리했던 내용은 더 이상 유효하지 않지만, 이때 배운 지식을 바탕으로 이번 문제를 해결할 수 있었다.

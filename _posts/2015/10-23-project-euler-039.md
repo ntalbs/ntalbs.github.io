@@ -67,5 +67,5 @@ p039=> (time (solve))
 ## 참고
 * [프로젝트 오일러 39 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p039.clj)
 * [Pythagorean triple > Generating a triple](https://en.wikipedia.org/wiki/Pythagorean_triple#Generating_a_triple)
-* [프로젝트 오일러 9](/2015/03/05/project-euler-009/)
+* [프로젝트 오일러 9](/2015/project-euler-009/)
 피타고라스 수와 관련된 다른 문제. 여기서는 다른 공식을 이용해 피타고라스 수를 생성했다.

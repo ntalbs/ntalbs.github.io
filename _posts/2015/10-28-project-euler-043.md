@@ -5,7 +5,7 @@ title: 프로젝트 오일러 43
 > 부분열에 관련된 특이한 성질을 가진 모든 팬디지털 숫자의 합
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=43) [[영어]](https://projecteuler.net/problem=43)
 
-언듯 보면 복잡해 보이지만 조건만 많을 뿐 아주 단순한 문제다. [문제 32](/2015/10/03/project-euler-032/), [문제 41](/2015/10/26/project-euler-041/)에서 `clojure.contrib.combinatorics`의 `permutations`를 사용해 팬디지털 수를 만드는 방법을 살펴봤다. 이 문제에서도 0-9 팬디지털 수를 구해 문제에서 설명한 조건을 만족하는 수만 걸러낸 다음 그 합을 구하면 된다.
+언듯 보면 복잡해 보이지만 조건만 많을 뿐 아주 단순한 문제다. [문제 32](/2015/project-euler-032/), [문제 41](/2015/project-euler-041/)에서 `clojure.contrib.combinatorics`의 `permutations`를 사용해 팬디지털 수를 만드는 방법을 살펴봤다. 이 문제에서도 0-9 팬디지털 수를 구해 문제에서 설명한 조건을 만족하는 수만 걸러낸 다음 그 합을 구하면 된다.
 <!--more-->
 
 `permutations`는 벡터의 시퀀스를 리턴한다. 시퀀스 안의 벡터 하나 하나가 팬디지털 수다. 이 벡터에서 필요한 자릿수를 꺼내 조건에 맞는지 확인해야 한다.
@@ -78,4 +78,4 @@ p043=> (time (solve))
 
 ## 참고
 * [프로젝트 오일러 43 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p043.clj)
-* [프로젝트 오일러 41](/2015/10/26/project-euler-041/)
+* [프로젝트 오일러 41](/2015/project-euler-041/)

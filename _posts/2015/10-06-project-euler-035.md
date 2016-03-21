@@ -124,7 +124,7 @@ title: 프로젝트 오일러 35
 
 ## 참고
 * [프로젝트 오일러 35 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p035.clj)
-* [프로젝트 오일러 13](/2015/03/18/project-euler-013/)
+* [프로젝트 오일러 13](/2015/project-euler-013/)
 `digits` 함수 구현을 확인할 수 있다.
-* [프로젝트 오일러 7](/2015/02/10/project-euler-007/)
+* [프로젝트 오일러 7](/2015/project-euler-007/)
 `prime?` 함수 구현에 대한 설명을 볼 수 있다.

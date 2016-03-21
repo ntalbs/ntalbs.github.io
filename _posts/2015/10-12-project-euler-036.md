@@ -5,7 +5,7 @@ title: 프로젝트 오일러 36
 > 10진법과 2진법으로 모두 대칭수인 1,000,000 이하 숫자의 합
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=36) [[영어]](https://projecteuler.net/problem=36)
 
-어떤 수가 대칭인지 확인하는 방법은 이미 [문제 4](/2015/01/13/project-euler-004/)에서 설명했다. 이진수는 어차피 문자열로 표현해야 하므로 여기서는 다음과 같이 문자열을 인자로 받아 대칭인지 확인하는 함수를 만들어 두는 것이 좋겠다.<!--more-->
+어떤 수가 대칭인지 확인하는 방법은 이미 [문제 4](/2015/project-euler-004/)에서 설명했다. 이진수는 어차피 문자열로 표현해야 하므로 여기서는 다음과 같이 문자열을 인자로 받아 대칭인지 확인하는 함수를 만들어 두는 것이 좋겠다.<!--more-->
 
 ```clojure
 (ns p036
@@ -109,4 +109,4 @@ user=> (to-binary-str (inc' Long/MAX_VALUE))
 
 ## 참고
 * [프로젝트 오일러 36 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p036.clj)
-* [프로젝트 오일러 4](/2015/01/13/project-euler-004/)
+* [프로젝트 오일러 4](/2015/project-euler-004/)

@@ -73,7 +73,7 @@ p016=> (time (solve1))
 </pre>
 
 ## 방법 2
-이 문제도 `BigInt`를 사용하면 풀이가 너무 쉬워진다. [문제 13](/2015/03/18/project-euler-013/)에서와 마찬가지로 `BigInt`를 사용하지 말고 풀어보자. 다행히 [문제 13](/2015/03/18/project-euler-013/)에서 만들었던 `digits+` 함수를 활용하면 문제를 쉽게 풀 수 있다. 어떤 수에 2를 곱하는 것은 그 수를 두 번 더하는 것과 같다. 즉 $2x = x + x$이므로, 이를 이용해 다음과 같은 코드를 작성할 수 있다.
+이 문제도 `BigInt`를 사용하면 풀이가 너무 쉬워진다. [문제 13](/2015/project-euler-013/)에서와 마찬가지로 `BigInt`를 사용하지 말고 풀어보자. 다행히 [문제 13](/2015/project-euler-013/)에서 만들었던 `digits+` 함수를 활용하면 문제를 쉽게 풀 수 있다. 어떤 수에 2를 곱하는 것은 그 수를 두 번 더하는 것과 같다. 즉 $2x = x + x$이므로, 이를 이용해 다음과 같은 코드를 작성할 수 있다.
 
 ```clojure
 (defn twice-digits [x]
@@ -103,4 +103,4 @@ p016=> (time (solve2))
 ## 참고
 * [프로젝트 오일러 16 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p016.clj)
 * [How to do exponentiation in clojure?](http://stackoverflow.com/questions/5057047/how-to-do-exponentiation-in-clojure)
-* [프로젝트 오일러 13](/2015/03/18/project-euler-013/)
+* [프로젝트 오일러 13](/2015/project-euler-013/)

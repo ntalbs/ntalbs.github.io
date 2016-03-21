@@ -2,7 +2,7 @@ date: 2010-11-24
 tags: [CI, JavaScript, 커버리지, 테스팅]
 title: Hudson에서 JsTestDriver를 이용한 커버리지 분석 설정
 ---
-[Hudson에서 JsTestDriver 설정](/2010/11/22/hudson-jstestdriver/)에서 Hudson에서 JsTestDriver를 설정하는 방법을 설명했다. 여기서는 Hudson에서 JsTestDriver를 이용해 테스트 커버리지 리포트를 생성하는 방법을 살펴보자.
+[Hudson에서 JsTestDriver 설정](/2010/hudson-jstestdriver/)에서 Hudson에서 JsTestDriver를 설정하는 방법을 설명했다. 여기서는 Hudson에서 JsTestDriver를 이용해 테스트 커버리지 리포트를 생성하는 방법을 살펴보자.
 <!--more-->
 
 JsTestDriver에 coverage 플러그인을 설치하면 단위테스트에 대한 라인 커버리지를 볼 수 있다. Hudson에서 JsTestDriver 설정에서 설명한 대로 설치했다면 이미 coverage 플러그인도 설치되어 있는 상태다. coverage 플러그인은 JsTestDriver 실행시 지정한 testOutput 디렉터리에 LCOV 포맷의 <config filename>-coverage.dat 파일을 생성한다. 이 파일은 LCOV의 genhtml을 통해 HTML 형식의 리포트로 만들 수 있다.

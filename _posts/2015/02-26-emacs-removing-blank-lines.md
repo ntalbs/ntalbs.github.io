@@ -35,5 +35,5 @@ M-x flush-lines RET ^\s-*$ RET
 * [Removing blank lines in a buffer](http://www.masteringemacs.org/article/removing-blank-lines-buffer)
 빈 줄을 지우는 방법뿐 아니라 빈 줄 여럿을 빈 줄 하나로 합치는 방법도 설명한다.
 * [Emacs Wiki - Regular Expression](http://www.emacswiki.org/emacs/RegularExpression)
-* [visual-regexp](/2014/04/25/visual-regexp/)
+* [visual-regexp](/2014/visual-regexp/)
 * [Stackoverflow - Vim delete blank lines](http://stackoverflow.com/questions/706076/vim-delete-blank-lines)

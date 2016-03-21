@@ -2,7 +2,7 @@ tags: [알고리즘, Clojure]
 date: 2015-07-17
 title: 순열 구하기
 ---
-[프로젝트 오일러 24번](/2015/07/17/project-euler-024/)은 `clojure.math.combinatorics`에 있는 `nth-permutation`을 이용해 문제를 너무 쉽게 풀었다. 그런데 순열을 직접 구하려면 어떻게 해야 할까?<!--more-->
+[프로젝트 오일러 24번](/2015/project-euler-024/)은 `clojure.math.combinatorics`에 있는 `nth-permutation`을 이용해 문제를 너무 쉽게 풀었다. 그런데 순열을 직접 구하려면 어떻게 해야 할까?<!--more-->
 
 ## 알고리즘
 한참 동안 고민한 끝에 다음과 같은 알고리즘을 생각해냈다.

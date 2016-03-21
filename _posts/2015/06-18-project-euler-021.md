@@ -100,7 +100,7 @@ n = \prod_k p_k^{a_k}
            (#(- % n)))))
 ```
 
-`if` 폼을 사용해 `n`이 1 이하인 경우 0을 리턴하게 했다. `factorize` 함수에 0 또는 1을 인자로 주면 빈 시퀀스를 리턴하는데, 이때 `if`가 없다면 함수가 기대한 대로 동작하지 않는다. 인자로 1을 주면 진약수의 합이 0으로 리턴되는데 애매하기는 하지만 받아들일 수 있다, 그러나 인자로 0을 주었을 때 진약수의 합이 1로 리턴되는 것은 수용하기 어렵다. 이렇게 되는 데는 [이유](/2015/04/06/project-euler-015/)가 있지만 그렇다고 계산 결과를 올바른 것으로 볼 수는 없다. 따라서 0, 1인 경우에는 그냥 `if`로 걸러냈다.
+`if` 폼을 사용해 `n`이 1 이하인 경우 0을 리턴하게 했다. `factorize` 함수에 0 또는 1을 인자로 주면 빈 시퀀스를 리턴하는데, 이때 `if`가 없다면 함수가 기대한 대로 동작하지 않는다. 인자로 1을 주면 진약수의 합이 0으로 리턴되는데 애매하기는 하지만 받아들일 수 있다, 그러나 인자로 0을 주었을 때 진약수의 합이 1로 리턴되는 것은 수용하기 어렵다. 이렇게 되는 데는 [이유](/2015/project-euler-015/)가 있지만 그렇다고 계산 결과를 올바른 것으로 볼 수는 없다. 따라서 0, 1인 경우에는 그냥 `if`로 걸러냈다.
 
 ```clojure
 (defn solve2 []
@@ -148,5 +148,5 @@ n = \prod_k p_k^{a_k}
 공식을 이용해 진약수의 합을 구하는 방법이 잘 설명되어 있다. **방법 2**에서 120을 예로 들어 설명한 것도 이 글에 설명된 내용을 그대로 참조한 것이다.
 * [Finding sum of factors of a number using prime factorization](http://math.stackexchange.com/questions/163245/finding-sum-of-factors-of-a-number-using-prime-factorization)
 * [Divisor Function -- Wolfram MathWorld](http://mathworld.wolfram.com/DivisorFunction.html)
-* [프로젝트 오일러 15](/2015/04/06/project-euler-015/)
+* [프로젝트 오일러 15](/2015/project-euler-015/)
 글의 끝부분에 항등원에 대해 설명하는 부분을 참조.

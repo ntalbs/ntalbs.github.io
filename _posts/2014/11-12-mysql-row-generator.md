@@ -91,5 +91,5 @@ create or replace view generator_1m as
 ## 참고
 * [MySQL Row Generator](http://use-the-index-luke.com/blog/2011-07-30/mysql-row-generator)
 * MySQL Feature request: [SQL-99 Derived table WITH clause (CTE)](http://bugs.mysql.com/bug.php?id=16244)
-* [무한 row 생성 쿼리](/2008/11/03/row-generator/)
-* [데이터 생성 SQL](/2009/04/14/data-generator/)
+* [무한 row 생성 쿼리](/2008/row-generator/)
+* [데이터 생성 SQL](/2009/data-generator/)

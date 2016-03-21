@@ -5,17 +5,17 @@ title: 프로젝트 오일러 20
 > 100! 의 자릿수를 모두 더하면?
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=20) [[영어]](https://projecteuler.net/problem=20)
 
-100!은 150자리가 넘는 매우 큰 수라 기본 데이터 타입으로는 이 문제를 해결할 수 없다. 물론 `BigInt`를 사용하면 아주 쉽게 문제를 풀 수 있다. [문제 16](/2015/04/08/project-euler-016/), [문제 13](/2015/03/18/project-euler-013/)에서 썼던 방법을 응용하면 `BigInt`를 사용하지 않고 문제를 풀 수 있다.<!--more-->
+100!은 150자리가 넘는 매우 큰 수라 기본 데이터 타입으로는 이 문제를 해결할 수 없다. 물론 `BigInt`를 사용하면 아주 쉽게 문제를 풀 수 있다. [문제 16](/2015/project-euler-016/), [문제 13](/2015/project-euler-013/)에서 썼던 방법을 응용하면 `BigInt`를 사용하지 않고 문제를 풀 수 있다.<!--more-->
 
 ## 방법 1
-`*'`로 곱셈을 하면 `long`의 범위를 넘는 경우 자동으로 `BigInt`로 전환된다. 따라서 다음과 같이 `factorial` 함수를 작성하면 자릿수에 관계 없이 큰 수를 다룰 수 있다. `factorial` 함수 구현에 대해서는 [문제 15](/2015/04/06/project-euler-015/)에서도 다루었다.
+`*'`로 곱셈을 하면 `long`의 범위를 넘는 경우 자동으로 `BigInt`로 전환된다. 따라서 다음과 같이 `factorial` 함수를 작성하면 자릿수에 관계 없이 큰 수를 다룰 수 있다. `factorial` 함수 구현에 대해서는 [문제 15](/2015/project-euler-015/)에서도 다루었다.
 
 ```clojure
 (defn factorial [n]
   (apply *' (range 1 (inc n))))
 ```
 
-100!를 계산한 다음 [문제 16](/2015/04/08/project-euler-016/)에서 작성한 `digits` 함수를 이용해 자릿수를 시퀀스로 만들어 모두 더하면 된다.
+100!를 계산한 다음 [문제 16](/2015/project-euler-016/)에서 작성한 `digits` 함수를 이용해 자릿수를 시퀀스로 만들어 모두 더하면 된다.
 
 ```clojure
 (defn solve1 []
@@ -33,7 +33,7 @@ p020=> (time (solve1))
 </pre>
 
 ## 방법 2
-[문제 13](/2015/03/18/project-euler-013/)에서 만들었던 `normalize-digits` 함수를 이용하면 다음과 같이 숫자 시퀀스를 곱하는 함수를 작성할 수 있다.
+[문제 13](/2015/project-euler-013/)에서 만들었던 `normalize-digits` 함수를 이용하면 다음과 같이 숫자 시퀀스를 곱하는 함수를 작성할 수 있다.
 
 ```clojure
 (defn digits*
@@ -61,6 +61,6 @@ p020=> (time (solve2))
 
 ## 참고
 * [프로젝트 오일러 20 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p020.clj)
-* [프로젝트 오일러 16](/2015/04/08/project-euler-016/)
-* [프로젝트 오일러 15](/2015/04/06/project-euler-015/)
-* [프로젝트 오일러 13](/2015/03/18/project-euler-013/)
+* [프로젝트 오일러 16](/2015/project-euler-016/)
+* [프로젝트 오일러 15](/2015/project-euler-015/)
+* [프로젝트 오일러 13](/2015/project-euler-013/)

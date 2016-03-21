@@ -18,6 +18,6 @@ hexo-math 플러그인에서 사용해 수식을 표현하는데, 예전에는 `
 작업 후 파일을 저장할 때 `ibuffer`를 사용하지 않고 `C-x s !`로 수정한 파일을 한번에 저장할 수 있다. `C-x s`를 하면 수정한 파일이 하나식 미니버퍼에 표시되며 저장할 것인지를 묻는데 이때 `!`를 누르면 대상 파일을 모두 저정한다. 그러나 `ibuffer`를 사용하는 쪽이 좀더 편한 것 같다.
 
 ## 참고
-* [Hexo: 3.0 업그레이드](/2015/03/24/hexo-upgrade/)
+* [Hexo: 3.0 업그레이드](/2015/hexo-upgrade/)
 * [Using Emacs to recursively find and replace in text files not already open](http://stackoverflow.com/questions/270930/using-emacs-to-recursively-find-and-replace-in-text-files-not-already-open)
 * [Emacs: Interactively Find/Replace String Patterns on Multiple Files](http://ergoemacs.org/emacs/find_replace_inter.html)

@@ -88,5 +88,5 @@ _nC_r &= \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times ...
 
 ## 참고
 * [프로젝트 오일러 53 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p053.clj)
-* [프로젝트 오일러 15](/2015/04/06/project-euler-015/)
+* [프로젝트 오일러 15](/2015/project-euler-015/)
 팩토리얼 함수를 구현하는 방법에 대해 설명했다.

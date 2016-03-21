@@ -5,7 +5,7 @@ title: 프로젝트 오일러 11
 > 20×20 격자에서 연속된 네 숫자의 곱 중 최대값?
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=11) [[영어]](https://projecteuler.net/problem=11)
 
-[문제 8](/2015/02/25/project-euler-008/)에서 살펴봤듯이 `partition` 함수를 사용하면 연속된 숫자를 네 개씩 묶어낼 수 있다.<!--more-->
+[문제 8](/2015/project-euler-008/)에서 살펴봤듯이 `partition` 함수를 사용하면 연속된 숫자를 네 개씩 묶어낼 수 있다.<!--more-->
 
 <pre class="console">
 user=> (partition 4 1 (range 20))
