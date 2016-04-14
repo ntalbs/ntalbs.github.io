@@ -2,13 +2,13 @@ sitemap: false
 title: Math Expressions
 ---
 
-### [프로젝트 오일러 51](/2016/02/24/project-euler-051/)
+### [프로젝트 오일러 51](/2016/project-euler-051/)
 
 {% math %}
-\begin{aligned}
-(a \bmod n) \bmod n &= a \bmod n \\
-((a \bmod n) + b) \bmod n &= (a + b) \bmod n
-\end{aligned}
+  \begin{aligned}
+    (a \bmod n) \bmod n &= a \bmod n \\
+    ((a \bmod n) + b) \bmod n &= (a + b) \bmod n
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -18,12 +18,12 @@ title: Math Expressions
 ```
 <br>
 
-### [프로젝트 오일러 50](/2016/02/09/project-euler-050/)
+### [프로젝트 오일러 50](/2016/project-euler-050/)
 
 {% math %}
-\begin{aligned}
-s(n) = p_1 + p_2 + ... + p_n
-\end{aligned}
+  \begin{aligned}
+    s(n) = p_1 + p_2 + ... + p_n
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -33,10 +33,10 @@ s(n) = p_1 + p_2 + ... + p_n
 <br>
 
 {% math %}
-\begin{aligned}
-s(m, n) &= p_m + p_{m+1} + ... + p_n \\
-        &= s(n) - s(m-1)
-\end{aligned}
+  \begin{aligned}
+    s(m, n) &= p_m + p_{m+1} + ... + p_n \\
+    &= s(n) - s(m-1)
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -46,15 +46,15 @@ s(m, n) &= p_m + p_{m+1} + ... + p_n \\
 ```
 <br>
 
-### [프로젝트 오일러 45](/2015/11/04/project-euler-045/)
+### [프로젝트 오일러 45](/2015/project-euler-045/)
 
 {% math %}
-\begin{aligned}
-H_n &= n(2n-1) \\
+  \begin{aligned}
+    H_n &= n(2n-1) \\
     &= \frac{2n(2n-1)}{2} \\
     &= \frac{(2n-1)(2n-1+1)}{2} \\
-\therefore H_n &= T_{2n-1}
-\end{aligned}
+    \therefore H_n &= T_{2n-1}
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -66,7 +66,7 @@ H_n &= n(2n-1) \\
 ```
 <br>
 
-### [프로젝트 오일러 44](/2015/11/03/project-euler-044/)
+### [프로젝트 오일러 44](/2015/project-euler-044/)
 
 {% math %}
 \frac{n(3n-1)}{2} = x \\
@@ -79,23 +79,23 @@ H_n &= n(2n-1) \\
 <br>
 
 {% math %}
-\begin{aligned}
-n = \frac{1 + \sqrt{1 + 24x}}{6}
-\end{aligned}
+  \begin{aligned}
+    n = \frac{1 + \sqrt{1 + 24x}}{6}
+  \end{aligned}
 {% endmath %}
 ```tex
 n = \frac{1 + \sqrt{1 + 24x}}{6}
 ```
 <br>
 
-### [프로젝트 오일러 39](/2015/10/23/project-euler-039/)
+### [프로젝트 오일러 39](/2015/project-euler-039/)
 
 {% math %}
-\begin{aligned}
-a &= k \cdot (m^2 - n^2)\\
-b &= k \cdot (2mn)\\
-c &= k \cdot (m^2 + n^2)
-\end{aligned}
+  \begin{aligned}
+    a &= k \cdot (m^2 - n^2)\\
+    b &= k \cdot (2mn)\\
+    c &= k \cdot (m^2 + n^2)
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -107,11 +107,11 @@ c &= k \cdot (m^2 + n^2)
 <br>
 
 {% math %}
-\begin{aligned}
- b = & 2mn, m \approx n \\
-& 2m^2 < 500 \\
-\therefore\,\,\, & m < \sqrt{250}
-\end{aligned}
+  \begin{aligned}
+    b = & 2mn, m \approx n \\
+    & 2m^2 < 500 \\
+    \therefore\,\,\, & m < \sqrt{250}
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -122,14 +122,14 @@ c &= k \cdot (m^2 + n^2)
 ```
 <br>
 
-### [프로젝트 오일러 28](/2015/09/11/project-euler-028/)
+### [프로젝트 오일러 28](/2015/project-euler-028/)
 
 {% math %}
-\begin{matrix}
-7 & 8 & 9 \\
-6 &   & 2 \\
-5 & 4 & 3
-\end{matrix}
+  \begin{matrix}
+    7 & 8 & 9 \\
+    6 &   & 2 \\
+    5 & 4 & 3
+  \end{matrix}
 {% endmath %}
 ```tex
 \begin{matrix}
@@ -141,6 +141,15 @@ c &= k \cdot (m^2 + n^2)
 <br>
 
 {% math %}
+  \begin{matrix}
+    21 & 22 & 23 & 24 & 25 \\
+    20 &    &    &    & 10 \\
+    19 &    &    &    & 11 \\
+    18 &    &    &    & 12 \\
+    17 & 16 & 15 & 14 & 13
+  \end{matrix}
+{% endmath %}
+```tex
 \begin{matrix}
 21 & 22 & 23 & 24 & 25 \\
 20 &    &    &    & 10 \\
@@ -148,23 +157,15 @@ c &= k \cdot (m^2 + n^2)
 18 &    &    &    & 12 \\
 17 & 16 & 15 & 14 & 13
 \end{matrix}
-{% endmath %}
-```tex
-\begin{matrix}
-21 & 22 & 23 & 24 & 25 \\
-20 &    &    &    & 10 \\
-19 &    &    &    & 11 \\
-18 &    &    &    & 12 \\
-17 & 16 & 15 & 14 & 13
-\end{matrix}
 ```
 <br>
 
 {% math %}
-\begin{aligned}
-d(1, k) &= 2k + 3 \\
-        &= 2(k+1) + 1^2
-\end{aligned}
+  \begin{aligned}
+    d(1, k)
+    &= 2k + 3 \\
+    &= 2(k+1) + 1^2
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -176,9 +177,10 @@ d(1, k) &= 2k + 3 \\
 
 {% math %}
 \begin{aligned}
-d(2, k) &= 4k + 13 \\
-        &= 4(k+1) + 9 \\
-        &= 2 \cdot 2(k+1) + 3^2
+  d(2, k)
+  &= 4k + 13 \\
+  &= 4(k+1) + 9 \\
+  &= 2 \cdot 2(k+1) + 3^2
 \end{aligned}
 {% endmath %}
 ```tex
@@ -192,9 +194,10 @@ d(2, k) &= 4k + 13 \\
 
 {% math %}
 \begin{aligned}
-d(3, k) &= 6k + 31 \\
-        &= 6(k+1) + 25 \\
-        &= 2 \cdot 3(k+1) + 5^2
+  d(3, k)
+  &= 6k + 31 \\
+  &= 6(k+1) + 25 \\
+  &= 2 \cdot 3(k+1) + 5^2
 \end{aligned}
 {% endmath %}
 ```tex
@@ -207,11 +210,11 @@ d(3, k) &= 6k + 31 \\
 <br>
 
 {% math %}
-\begin{aligned}
-d(n,k) &= 2n(k+1) + (2n-1)^2 \\
-n &= 1, 2, 3, ... \\
-k &= 0, 1, 2, 3
-\end{aligned}
+  \begin{aligned}
+    d(n,k) &= 2n(k+1) + (2n-1)^2 \\
+    n &= 1, 2, 3, ... \\
+    k &= 0, 1, 2, 3
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -222,24 +225,24 @@ k &= 0, 1, 2, 3
 ```
 <br>
 
-### [정수 자릿수 구하기](/2015/07/14/number-of-digits/)
+### [정수 자릿수 구하기](/2015/number-of-digits/)
 
 {% math %}
-\begin{aligned}
-(number\,of\,digits) = \lfloor\log_{10} n\rfloor + 1
-\end{aligned}
+  \begin{aligned}
+    (number\,of\,digits) = \lfloor\log_{10} n\rfloor + 1
+  \end{aligned}
 {% endmath %}
 ```tex
 (number\,of\,digits) = \lfloor\log_{10} n\rfloor + 1
 ```
 <br>
 
-### [블로그에 Progress Bar 추가하기](/2015/07/02/proggres-bar/)
+### [블로그에 Progress Bar 추가하기](/2015/proggres-bar/)
 
 {% math %}
-\begin{aligned}
-base = offsetTop + h_p - h_w
-\end{aligned}
+  \begin{aligned}
+    base = offsetTop + h_p - h_w
+  \end{aligned}
 {% endmath %}
 ```tex
 base = offsetTop + h_p - h_w
@@ -247,21 +250,21 @@ base = offsetTop + h_p - h_w
 <br>
 
 {% math %}
-\begin{aligned}
-progress = \frac{y}{base} \times 100\, (\%)
-\end{aligned}
+  \begin{aligned}
+    progress = \frac{y}{base} \times 100\, (\%)
+  \end{aligned}
 {% endmath %}
 ```tex
 progress = \frac{y}{base} \times 100\, (\%)
 ```
 <br>
 
-### [프로젝트 오일러 21](/2015/06/18/project-euler-021/)
+### [프로젝트 오일러 21](/2015/project-euler-021/)
 
 {% math %}
-\begin{aligned}
-n = \prod_k p_k^{a_k}
-\end{aligned}
+  \begin{aligned}
+    n = \prod_k p_k^{a_k}
+  \end{aligned}
 {% endmath %}
 ```tex
 n = \prod_k p_k^{a_k}
@@ -269,9 +272,9 @@ n = \prod_k p_k^{a_k}
 <br>
 
 {% math %}
-\begin{aligned}
-\sigma(n)=\prod_k\left(\sum_{i=0}^{a_k}p_k^i\right)
-\end{aligned}
+  \begin{aligned}
+    \sigma(n)=\prod_k\left(\sum_{i=0}^{a_k}p_k^i\right)
+  \end{aligned}
 {% endmath %}
 ```tex
 \sigma(n)=\prod_k\left(\sum_{i=0}^{a_k}p_k^i\right)
@@ -279,10 +282,10 @@ n = \prod_k p_k^{a_k}
 <br>
 
 {% math %}
-\begin{aligned}
-(2^0 + 2^1 + 2^2 + 2^3) \cdot (3^0 + 3^1) \cdot (5^0 + 5^1)
- = 15 \cdot 4 \cdot 6 =360
-\end{aligned}
+  \begin{aligned}
+    (2^0 + 2^1 + 2^2 + 2^3) \cdot (3^0 + 3^1) \cdot (5^0 + 5^1)
+    = 15 \cdot 4 \cdot 6 =360
+  \end{aligned}
 {% endmath %}
 ```tex
 (2^0 + 2^1 + 2^2 + 2^3) \cdot (3^0 + 3^1) \cdot (5^0 + 5^1)
@@ -291,21 +294,21 @@ n = \prod_k p_k^{a_k}
 <br>
 
 {% math %}
-\begin{aligned}
-\sigma(n)=\prod_k\frac{p_k^{a_k+1}-1}{p_k-1}
-\end{aligned}
+  \begin{aligned}
+    \sigma(n)=\prod_k\frac{p_k^{a_k+1}-1}{p_k-1}
+  \end{aligned}
 {% endmath %}
 ```tex
 \sigma(n)=\prod_k\frac{p_k^{a_k+1}-1}{p_k-1}
 ```
 <br>
 
-### [프로젝트 오일러 15](/2015/04/06/project-euler-015/)
+### [프로젝트 오일러 15](/2015/project-euler-015/)
 
 {% math %}
-\begin{aligned}
-(number\, of\, paths) &= \frac{4!}{2! \times 2!} = 6
-\end{aligned}
+  \begin{aligned}
+    (number\, of\, paths) &= \frac{4!}{2! \times 2!} = 6
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -315,9 +318,9 @@ n = \prod_k p_k^{a_k}
 <br>
 
 {% math %}
-\begin{aligned}
-(number\, of\, paths) &= \frac{40!}{20! \times 20!}
-\end{aligned}
+  \begin{aligned}
+    (number\, of\, paths) &= \frac{40!}{20! \times 20!}
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -327,12 +330,12 @@ n = \prod_k p_k^{a_k}
 <br>
 
 {% math %}
-\begin{aligned}
-n! = \begin{cases}
-  1 & \mbox{if } n = 0,\\
-  n(n-1)! & \mbox {if } n > 0
-  \end{cases}
-\end{aligned}
+  \begin{aligned}
+    n! = \begin{cases}
+      1 & \mbox{if } n = 0,\\
+      n(n-1)! & \mbox {if } n > 0
+    \end{cases}
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -345,9 +348,9 @@ n! = \begin{cases}
 <br>
 
 {% math %}
-\begin{aligned}
-n! = \prod_{k=1}^n k = 1 \times 2\, \times ... \times\, n
-\end{aligned}
+  \begin{aligned}
+    n! = \prod_{k=1}^n k = 1 \times 2\, \times ... \times\, n
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -356,14 +359,14 @@ n! = \prod_{k=1}^n k = 1 \times 2\, \times ... \times\, n
 ```
 <br>
 
-### [프로젝트 오일러 9](/2015/03/05/project-euler-009/)
+### [프로젝트 오일러 9](/2015/project-euler-009/)
 
 {% math %}
-\begin{aligned}
-T1 &= (a − 2b + 2c, 2a − b + 2c, 2a − 2b + 3c) \\
-T2 &= (a + 2b + 2c, 2a + b + 2c, 2a + 2b + 3c) \\
-T3 &= (−a + 2b + 2c, −2a + b + 2c, −2a + 2b + 3c)
-\end{aligned}
+  \begin{aligned}
+    T1 &= (a − 2b + 2c, 2a − b + 2c, 2a − 2b + 3c) \\
+    T2 &= (a + 2b + 2c, 2a + b + 2c, 2a + 2b + 3c) \\
+    T3 &= (−a + 2b + 2c, −2a + b + 2c, −2a + 2b + 3c)
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -374,12 +377,12 @@ T3 &= (−a + 2b + 2c, −2a + b + 2c, −2a + 2b + 3c)
 ```
 <br>
 
-### [프로젝트 오일러 6](/2015/01/19/project-euler-006/)
+### [프로젝트 오일러 6](/2015/project-euler-006/)
 
 {% math %}
-\begin{aligned}
-f(n) = an^3 + bn^2 + cn + d
-\end{aligned}
+  \begin{aligned}
+    f(n) = an^3 + bn^2 + cn + d
+  \end{aligned}
 {% endmath %}
 ```tex
 f(n) = an^3 + bn^2 + cn + d
@@ -387,12 +390,12 @@ f(n) = an^3 + bn^2 + cn + d
 <br>
 
 {% math %}
-\begin{aligned}
-d &= 0\\
-a + b + c + d &= 1 \\
-8a + 4b + 2c + d &= 5\\
-27a + 9b + 3c + d &= 14
-\end{aligned}
+  \begin{aligned}
+    d &= 0\\
+    a + b + c + d &= 1 \\
+    8a + 4b + 2c + d &= 5\\
+    27a + 9b + 3c + d &= 14
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -405,9 +408,9 @@ a + b + c + d &= 1 \\
 <br>
 
 {% math %}
-\begin{aligned}
-a=\frac{1}{3}, b=\frac{1}{2}, c=\frac{1}{6}, d=0
-\end{aligned}
+  \begin{aligned}
+    a=\frac{1}{3}, b=\frac{1}{2}, c=\frac{1}{6}, d=0
+  \end{aligned}
 {% endmath %}
 ```tex
 a=\frac{1}{3}, b=\frac{1}{2}, c=\frac{1}{6}, d=0
@@ -415,35 +418,35 @@ a=\frac{1}{3}, b=\frac{1}{2}, c=\frac{1}{6}, d=0
 <br>
 
 {% math %}
-\begin{aligned}
-f(n) = \frac{1}{6}n(n+1)(2n+1)
-\end{aligned}
+  \begin{aligned}
+    f(n) = \frac{1}{6}n(n+1)(2n+1)
+  \end{aligned}
 {% endmath %}
 ```tex
 f(n) = \frac{1}{6}n(n+1)(2n+1)
 ```
 <br>
 
-### [프로젝트 오일러 5](/2015/01/16/project-euler-005/)
+### [프로젝트 오일러 5](/2015/project-euler-005/)
 
 {% math %}
-\begin{aligned}
-lcm(a,b) = \frac{\lvert a \times b \rvert}{gcd(a,b)}
-\end{aligned}
+  \begin{aligned}
+    lcm(a,b) = \frac{\lvert a \times b \rvert}{gcd(a,b)}
+  \end{aligned}
 {% endmath %}
 ```tex
 lcm(a,b) = \frac{\lvert a \times b \rvert}{gcd(a,b)}
 ```
 <br>
 
-### [프로젝트 오일러 4](/2015/01/13/project-euler-004/)
+### [프로젝트 오일러 4](/2015/project-euler-004/)
 
 {% math %}
-\begin{aligned}
-a \times b &= 100000x + 10000y + 1000z + 100z + 10y + x \\
-&= 100001x + 10010y + 1100z \\
-&= 11(9091x + 910y + 100z)
-\end{aligned}
+  \begin{aligned}
+    a \times b &= 100000x + 10000y + 1000z + 100z + 10y + x \\
+    &= 100001x + 10010y + 1100z \\
+    &= 11(9091x + 910y + 100z)
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -454,13 +457,13 @@ a \times b &= 100000x + 10000y + 1000z + 100z + 10y + x \\
 ```
 <br>
 
-### [프로젝트 오일러 2](/2015/01/08/project-euler-002/)
+### [프로젝트 오일러 2](/2015/project-euler-002/)
 
 {% math %}
-\begin{aligned}
-F_n &= F_{n-1} + F_{n-2}, \\
-F_2 &= F_1 = 1
-\end{aligned}
+  \begin{aligned}
+    F_n &= F_{n-1} + F_{n-2}, \\
+    F_2 &= F_1 = 1
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -470,12 +473,12 @@ F_2 &= F_1 = 1
 ```
 <br>
 
-### [프로젝트 오일러 1](/2015/01/01/project-euler-001/)
+### [프로젝트 오일러 1](/2015/project-euler-001/)
 
 {% math %}
-\begin{aligned}
-S(n) = \frac{n(n+1)}{2}
-\end{aligned}
+  \begin{aligned}
+    S(n) = \frac{n(n+1)}{2}
+  \end{aligned}
 {% endmath %}
 ```tex
 S(n) = \frac{n(n+1)}{2}
@@ -483,11 +486,11 @@ S(n) = \frac{n(n+1)}{2}
 <br>
 
 {% math %}
-\begin{aligned}
-S(n, m) &= m + 2m + 3m + ... + n \\
-        &= m \times (1 + 2 + 3 + ... + n/m) \\
-        &= m \times S(n/m)
-\end{aligned}
+  \begin{aligned}
+    S(n, m) &= m + 2m + 3m + ... + n \\
+    &= m \times (1 + 2 + 3 + ... + n/m) \\
+    &= m \times S(n/m)
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -498,13 +501,14 @@ S(n, m) &= m + 2m + 3m + ... + n \\
 ```
 <br>
 
-### [매클로린 급수를 이용한 sin(x) 구현](/2014/07/28/implementing-sin-x/)
+### [매클로린 급수를 이용한 sin(x) 구현](/2014/implementing-sin-x/)
 
 {% math %}
-\begin{aligned}
-\sin x &= \sum\limits_{n=0}^\infty \frac{(-1)^n}{(2n+1)!}x^{2n+1}\\
-       &= x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + ...
-\end{aligned}
+  \begin{aligned}
+    \sin x
+    &= \sum\limits_{n=0}^\infty \frac{(-1)^n}{(2n+1)!}x^{2n+1}\\
+    &= x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + ...
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -514,12 +518,12 @@ S(n, m) &= m + 2m + 3m + ... + n \\
 ```
 <br>
 
-### [뉴튼 법을 이용한 근사값 구하기](/2014/07/25/newtons-method/)
+### [뉴튼 법을 이용한 근사값 구하기](/2014/newtons-method/)
 
 {% math %}
-\begin{aligned}
-x_{n+1} = \frac{x_n + \frac{2}{x_n}}{2}
-\end{aligned}
+  \begin{aligned}
+    x_{n+1} = \frac{x_n + \frac{2}{x_n}}{2}
+  \end{aligned}
 {% endmath %}
 ```tex
 x_{n+1} = \frac{x_n + \frac{2}{x_n}}{2}
@@ -527,9 +531,9 @@ x_{n+1} = \frac{x_n + \frac{2}{x_n}}{2}
 <br>
 
 {% math %}
-\begin{aligned}
-x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
-\end{aligned}
+  \begin{aligned}
+    x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
+  \end{aligned}
 {% endmath %}
 ```tex
 x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
@@ -537,11 +541,11 @@ x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
 <br>
 
 {% math %}
-\begin{aligned}
-f(x) &= x^2 - X \\
-f'(x) &= 2x \\
-\therefore x_{n+1} &= x_n - \frac{x_n^2 - X}{2x_n}
-\end{aligned}
+  \begin{aligned}
+    f(x) &= x^2 - X \\
+    f'(x) &= 2x \\
+    \therefore x_{n+1} &= x_n - \frac{x_n^2 - X}{2x_n}
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -553,12 +557,12 @@ f'(x) &= 2x \\
 <br>
 
 {% math %}
-\begin{aligned}
-x_1 &= x_0 - \frac{f(x_0)}{f'(x_0)} = 1 - \frac{1^2 - 2}{2 \cdot 1} = 1.5\\
-x_2 &= x_1 - \frac{f(x_1)}{f'(x_1)} = 1.5 - \frac{1.5^2 - 2}{2 \cdot 1.5} = 1.4167\\
-x_3 &= x_2 - \frac{f(x_2)}{f'(x_2)} = 1.4167 - \frac{1.4167^2 - 2}{2 \cdot 1.4167} = \color{red}{1.4142}\\
-...
-\end{aligned}
+  \begin{aligned}
+    x_1 &= x_0 - \frac{f(x_0)}{f'(x_0)} = 1 - \frac{1^2 - 2}{2 \cdot 1} = 1.5\\
+    x_2 &= x_1 - \frac{f(x_1)}{f'(x_1)} = 1.5 - \frac{1.5^2 - 2}{2 \cdot 1.5} = 1.4167\\
+    x_3 &= x_2 - \frac{f(x_2)}{f'(x_2)} = 1.4167 - \frac{1.4167^2 - 2}{2 \cdot 1.4167} = \color{red}{1.4142}\\
+    ...
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -571,10 +575,10 @@ x_3 &= x_2 - \frac{f(x_2)}{f'(x_2)} = 1.4167 - \frac{1.4167^2 - 2}{2 \cdot 1.416
 <br>
 
 {% math %}
-\begin{aligned}
-f(x) &= \frac{f'(a)}{1!}(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \frac{f^{(3)}(a)}{3!}(x-a)^3 + ... \\
-&= \sum\limits_{n=0}^\infty \frac{f^{(n)}(a)}{n!} (x-a)^n
-\end{aligned}
+  \begin{aligned}
+    f(x) &= \frac{f'(a)}{1!}(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \frac{f^{(3)}(a)}{3!}(x-a)^3 + ... \\
+    &= \sum\limits_{n=0}^\infty \frac{f^{(n)}(a)}{n!} (x-a)^n
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -585,11 +589,11 @@ f(x) &= \frac{f'(a)}{1!}(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \frac{f^{(3)}(a)}{3!}
 <br>
 
 {% math %}
-\begin{aligned}
-e^x &= \sum\limits_{n=0}^\infty \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + ...\\
-\sin x &= \sum\limits_{n=0}^\infty \frac{(-1)^n}{(2n+1)!}x^{2n+1} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - ...\\
-\cos x &= \sum\limits_{n=0}^\infty \frac{(-1)^n}{(2n)!}x^{2n} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - ...\\
-\end{aligned}
+  \begin{aligned}
+    e^x &= \sum\limits_{n=0}^\infty \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + ...\\
+    \sin x &= \sum\limits_{n=0}^\infty \frac{(-1)^n}{(2n+1)!}x^{2n+1} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - ...\\
+    \cos x &= \sum\limits_{n=0}^\infty \frac{(-1)^n}{(2n)!}x^{2n} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - ...\\
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -600,12 +604,12 @@ e^x &= \sum\limits_{n=0}^\infty \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{
 ```
 <br>
 
-### [정적분 문제](/2014/04/22/integral-problem/)
+### [정적분 문제](/2014/integral-problem/)
 
 {% math %}
-\begin{aligned}
-I = \int_{-\infty}^{\infty} e^{-x^2} dx
-\end{aligned}
+  \begin{aligned}
+    I = \int_{-\infty}^{\infty} e^{-x^2} dx
+  \end{aligned}
 {% endmath %}
 ```tex
 I = \int_{-\infty}^{\infty} e^{-x^2} dx
@@ -613,12 +617,12 @@ I = \int_{-\infty}^{\infty} e^{-x^2} dx
 <br>
 
 {% math %}
-\begin{aligned}
-I^2
-&= \left(\int_{-\infty}^{\infty} e^{-x^2} dx\right)^2 \\
-&= \int_{-\infty}^{\infty} e^{-x^2} dx \cdot \int_{-\infty}^{\infty} e^{-y^2} dy \\
-&= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-(x^2+y^2)} dx\,dy \\
-\end{aligned}
+  \begin{aligned}
+    I^2
+    &= \left(\int_{-\infty}^{\infty} e^{-x^2} dx\right)^2 \\
+    &= \int_{-\infty}^{\infty} e^{-x^2} dx \cdot \int_{-\infty}^{\infty} e^{-y^2} dy \\
+    &= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-(x^2+y^2)} dx\,dy \\
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -631,11 +635,11 @@ I^2
 <br>
 
 {% math %}
-\begin{aligned}
-x &= r\cos \theta \\
-y &= r\sin \theta \\
-dx\,dy &= r\,dr\,d\theta
-\end{aligned}
+  \begin{aligned}
+    x &= r\cos \theta \\
+    y &= r\sin \theta \\
+    dx\,dy &= r\,dr\,d\theta
+  \end{aligned}
 {% endmath %}
 ```tex
 \begin{aligned}
@@ -647,6 +651,15 @@ dx\,dy &= r\,dr\,d\theta
 <br>
 
 {% math %}
+  \begin{aligned}
+    I^2
+    &= \int_0^{2\pi}\int_0^\infty e^{-r^2} r\,dr\,d\theta \\
+    &= 2\pi \int_0^\infty e^{-r^2} r\,dr \\
+    &= 2\pi \left[-\frac{e^{-r^2}}{2}\right]_{r=0}^{r=\infty} \\
+    &= {\pi}
+  \end{aligned}
+{% endmath %}
+```tex
 \begin{aligned}
 I^2
 &= \int_0^{2\pi}\int_0^\infty e^{-r^2} r\,dr\,d\theta \\
@@ -654,36 +667,27 @@ I^2
 &= 2\pi \left[-\frac{e^{-r^2}}{2}\right]_{r=0}^{r=\infty} \\
 &= {\pi}
 \end{aligned}
-{% endmath %}
-```tex
-\begin{aligned}
-I^2
-&= \int_0^{2\pi}\int_0^\infty e^{-r^2} r\,dr\,d\theta \\
-&= 2\pi \int_0^\infty e^{-r^2} r\,dr \\
-&= 2\pi \left[-\frac{e^{-r^2}}{2}\right]_{r=0}^{r=\infty} \\
-&= {\pi}
-\end{aligned}
 ```
 <br>
 
 {% math %}
-\begin{aligned}
-I = \sqrt \pi
-\end{aligned}
+  \begin{aligned}
+    I = \sqrt \pi
+  \end{aligned}
 {% endmath %}
 ```tex
 $I = \sqrt \pi
 ```
 <br>
 
-### [Hexo: 블로그에 수식 표현하기](/2014/04/18/hexo-math/)
+### [Hexo: 블로그에 수식 표현하기](/2014/hexo-math/)
 
 {% math %}
-\begin{aligned}
-\frac{\partial L}{\partial q_j}
- - \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_j}\right)
- = 0
-\end{aligned}
+  \begin{aligned}
+    \frac{\partial L}{\partial q_j}
+    - \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_j}\right)
+    = 0
+  \end{aligned}
 {% endmath %}
 ```tex
 \frac{\partial L}{\partial q_j}
