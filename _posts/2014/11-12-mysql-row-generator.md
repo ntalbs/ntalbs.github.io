@@ -14,7 +14,8 @@ PostgreSQL에서도 `generate_series`를 사용해 쉽게 행을 만들 수 있�
 select * from generate_series(1, 100);
 ```
 
-재귀적 CTE(Common Table Expressions)를 사용하면 특정 DBMS에서만 제공하는 기능을 사용하지 않고 표준 SQL만 사용해 행 생성기(row generator)를 만들 수 있다.<!--more--> PostgreSQL에서는 다음과 같은 식으로 원하는 만큼 행을 생성할 수 있다.
+재귀적 CTE(Common Table Expressions)를 사용하면 특정 DBMS에서만 제공하는 기능을 사용하지 않고 표준 SQL만 사용해 행 생성기(row generator)를 만들 수 있다. PostgreSQL에서는 다음과 같은 식으로 원하는 만큼 행을 생성할 수 있다.
+<!--more-->
 
 ```sql
 with recursive a(n) as (
