@@ -12,7 +12,7 @@ $ exp xxx/xxx owner=xxx file=xxx.dmp rows=n
 </pre>
 
 ## 2. indexfile 옵션을 사용해 DDL 파일을 만든다.
-다음과 같이 하면 실제 import를 하지 않으면서  xxx.sql 파일이 생성된다. 생성된 DDL에서 owner는 touser로 지정한 xxx가 될 것이다.
+다음과 같이 하면 실제 import를 하지 않으면서  xxx.sql 파일이 생성된다. 생성된 DDL에서 owner는 `touser`로 지정한 `xxx`가 될 것이다.
 
 <pre class="console">
 $ imp xxx/xxx file=xxx.dmp fromuser=xxx touser=xxx indexfile=xxx.sql

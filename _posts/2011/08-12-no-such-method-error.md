@@ -24,4 +24,4 @@ java -verbose:class <other args=>
 
 정확한 문제 해결 방법을 정리하자면 다음과 같은 정도가 될 것 같다:
 
-**java를 실행시킬 때 `-verbose:class` 옵션을 주어 에러가 발생하는 클래스가 원하는 jar 파일(또는 클래스패스)에서 로딩되었는지를 확인한다.**
+<div class="box">java를 실행시킬 때 **`-verbose:class`** 옵션을 주어 에러가 발생하는 클래스가 원하는 jar 파일(또는 클래스패스)에서 로딩되었는지를 확인한다.</div>

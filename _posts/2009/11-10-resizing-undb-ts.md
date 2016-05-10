@@ -2,7 +2,7 @@ date: 2009-11-10
 tags: [DB, Oracle]
 title: Undo 테이블스페이스 크기 변경 방법
 ---
-Oracle9i에서 UNDO Tablespace를 auto mode로 사용할 때, UNDO Tablespace를 변경하는 방법이다. Undo Tablespace의 데이터 파일이 너무 커진 경우 데이터 파일 크기를 줄이고 싶지만, 데이터 파일의 크기를 직접 줄일 수는 없다. 따라서 새로운 UNDO Tablespace를 만들고 크기를 적절히 지정한 데이터 파일을 할당하고, 데이터베이스에 지정된 UNDO Tablespace를 변경해야 한다.
+Oracle9i에서 `UNDO` 테비블스페이스를 `auto mode`로 사용할 때, `UNDO` 테이블스페이스를 변경하는 방법이다. `Undo` 테이블스페이스의 데이터 파일이 너무 커진 경우 데이터 파일 크기를 줄이고 싶지만, 데이터 파일의 크기를 직접 줄일 수는 없다. 따라서 새로운 `UNDO` 테이블스페이스를 만들고 크기를 적절히 지정한 데이터 파일을 할당한 다음, 데이터베이스에 지정된 `UNDO` 테이블스페이스를 변경해야 한다.
 <!--more-->
 
 #### 1. 다음과 같이 새로운 undo tablespace 생성.

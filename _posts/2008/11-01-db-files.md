@@ -67,7 +67,7 @@ NAME      TYPE     VALUE
 db_files  integer  10
 </pre>
 
-어라? 가뿐하게 수정된다. 이는 위의 모든 파일이 db_files의 영향을 받는 것이 아님을 의미한다. 이제 테이블스페이스를 만들어 데이터 파일을 계속 추가해보자.
+어라? 가뿐하게 수정된다. 이는 위의 모든 파일이 `db_files`의 영향을 받는 것이 아님을 의미한다. 이제 테이블스페이스를 만들어 데이터 파일을 계속 추가해보자.
 
 <pre class="console">
 sys@TESTDB> create tablespace ts_xxx

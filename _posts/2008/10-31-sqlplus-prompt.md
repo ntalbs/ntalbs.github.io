@@ -26,11 +26,10 @@ select lower(user) user_name from dual;
 set sqlprompt '&uname@&_CONNECT_IDENTIFIER> '
 ```
 
-그러나 9i에서는 처음 로그인할 때만 프롬프트가 제대로 설정되고, SQL*Plus 내에서 `connect` 명령으로 다시 접속할 경우 프롬프트가 갱신되지 않는다. 10g에서는 `connect`를 새로 하면 그에 맞게 프롬프트가 바뀐다.
-10g에서 사용자 이름이 대문자로 나오는 것이 상관 없다면 다음과 같이 더 간단하게 할 수 있다.
+그러나 9i에서는 처음 로그인할 때만 프롬프트가 제대로 설정되고, SQL*Plus 내에서 `connect` 명령으로 다시 접속할 경우 프롬프트가 갱신되지 않는다. 10g에서는 `connect`를 새로 하면 그에 맞게 프롬프트가 바뀐다. 10g에서 사용자 이름이 대문자로 나오는 것이 상관 없다면 다음과 같이 더 간단하게 할 수 있다.
 
 ```sql
 set sqlprompt '&_user@&_CONNECT_IDENTIFIER> '
 ```
 
-`_CONNECT_IDENTIFIER`는 실제로 인스턴스 이름이 아니라 `TNSNAME`이다. SID가 XXXDB더라도 TNSNAME을 XXX로 해놓는다면 프롬프트에도 XXX로 보일 것이다.
+`_CONNECT_IDENTIFIER`는 실제로 인스턴스 이름이 아니라 TNSNAME이다. SID가 `XXXDB`더라도 TNSNAME을 `XXX`로 해놓는다면 프롬프트에도 `XXX`로 보일 것이다.
