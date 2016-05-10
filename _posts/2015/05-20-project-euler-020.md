@@ -2,7 +2,7 @@ tags: [Project-Euler, Clojure]
 date: 2015-05-20
 title: 프로젝트 오일러 20
 ---
-> 100! 의 자릿수를 모두 더하면?
+> $100!$ 의 자릿수를 모두 더하면?
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=20) [[영어]](https://projecteuler.net/problem=20)
 
 100!은 150자리가 넘는 매우 큰 수라 기본 데이터 타입으로는 이 문제를 해결할 수 없다. 물론 `BigInt`를 사용하면 아주 쉽게 문제를 풀 수 있다. [문제 16](/2015/project-euler-016/), [문제 13](/2015/project-euler-013/)에서 썼던 방법을 응용하면 `BigInt`를 사용하지 않고 문제를 풀 수 있다.<!--more-->

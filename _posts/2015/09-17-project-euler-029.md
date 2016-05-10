@@ -2,7 +2,7 @@ tags: [Project-Euler, Clojure]
 date: 2015-09-17
 title: 프로젝트 오일러 29
 ---
-> $2 \le a \le 100$ 이고 $2 \le b \le 100$인 a, b로 만들 수 있는 $a^b$의 개수
+> $2 \le a \le 100$ 이고 $2 \le b \le 100$인 $a$, $b$로 만들 수 있는 $a^b$의 개수
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=29) [[영어]](https://projecteuler.net/problem=29)
 
 $a$가 대략 100가지, $b$가 대략 100가지이므로 $a^b$는 대략 10,000가지 수가 나올 것이다. 여기서 중복을 제거하면 답을 구할 수 있다.<!--more-->

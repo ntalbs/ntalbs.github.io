@@ -2,7 +2,7 @@ tags: [Project-Euler, Clojure]
 date: 2016-03-11
 title: 프로젝트 오일러 56
 ---
-> a<sup>b</sup> 형태의 자연수에 대해 자릿수 합의 최대값 구하기
+> $a^b$ 형태의 자연수에 대해 자릿수 합의 최대값 구하기
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=56) [[영어]](https://projecteuler.net/problem=56)
 
 [문제 16](/2015/project-euler-016/)에서 만든 `pow` 함수를 이용하면 문제를 쉽게 풀 수 있다.

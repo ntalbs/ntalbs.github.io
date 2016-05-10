@@ -2,7 +2,7 @@ tags: [Project-Euler, Clojure]
 date: 2016-03-01
 title: 프로젝트 오일러 53
 ---
-> 1 ≤ n ≤ 100 일때 nCr의 값이 1백만을 넘는 경우는 모두 몇 번?
+> $1 \le n \le 100$ 일때 $_nC_r$의 값이 1백만을 넘는 경우는 모두 몇 번?
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=53) [[영어]](https://projecteuler.net/problem=53)
 
 $r \le n$이므로 $n$, $r$의 범위는 각각 $1 \le n \le 100$, $1 \le r \le 100$이다. 모든 $n$, $r$ 조합에 대해 $_nC_r$을 구한다 해도 경우의 수는 $100 \times 100 = 10,000$이므로 금방 구할 수 있다.<!--more-->

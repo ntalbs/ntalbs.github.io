@@ -2,7 +2,7 @@ tags: [Project-Euler, Clojure]
 date: 2016-01-25
 title: 프로젝트 오일러 48
 ---
-> 1<sup>1</sup> + 2<sup>2</sup> + 3<sup>3</sup> + ... + 1000<sup>1000</sup> 의 마지막 10자리는?
+> $1^1 + 2^2 + 3^3 + ... + 1000^{1000}$의 마지막 10자리는?
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=48) [[영어]](https://projecteuler.net/problem=48)
 
 이 문제 역시 아주 큰 숫자를 다루는 문제지만, Java의 `BigInteger`나 Clojure의 `BigInt`를 쓰면 쉽게 풀 수 있다.<!--more-->

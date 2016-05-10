@@ -2,7 +2,7 @@ tags: [Project-Euler, Clojure]
 date: 2016-04-14
 title: 프로젝트 오일러 63
 ---
-> n자리 숫자이면서 n제곱수도 되는 양의 정수는 모두 몇 개?
+> $n$자리 숫자이면서 $n$제곱수도 되는 양의 정수는 모두 몇 개?
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=63) [[영어]](https://projecteuler.net/problem=63)
 
 어떤 수가 $n$제곱수라면 $x^n$으로 표현할 수 있다. 어떤 수가 $n$제곱수인 동시에 $n$자리 숫자가 되려면 다음 부등식을 만족해야 한다.

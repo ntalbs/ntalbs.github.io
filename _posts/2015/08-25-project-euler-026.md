@@ -2,7 +2,7 @@ tags: [Project-Euler, Clojure]
 date: 2015-08-25
 title: 프로젝트 오일러 26
 ---
-> 1000 이하의 d 중에서 1/d 이 가장 긴 순환마디를 갖는 수는?
+> 1000 이하의 $d$ 중에서 $1/d$ 이 가장 긴 순환마디를 갖는 수는?
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=26) [[영어]](https://projecteuler.net/problem=26)
 
 $1 \over d$의 순환마디를 구하려면 어떻게 해야 할까? 이 문제를 풀려면 초등학교때 배웠던 나눗셈 절차를 잘 분석하고 이를 수행하는 프로그램을 만들어야 한다. 예를 들어 $\frac{1}{54}$를 구하는 과정을 자세히 살펴보자.<!--more-->
