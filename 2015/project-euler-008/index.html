@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>프로젝트 오일러 8 | ntalbs&#39; stuff</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <meta name="generator" content="ntalbs' stuff"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+  
+  
+
+  
+</head>
+
+  <body class="home-template">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+      <a class="navbar-brand" href="/">@ntalbs' stuff</a>
+    </div>
+    <div class="navbar-items collapsed" id="nav-items">
+      <ul>
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="progress">
+  <div id="bar"></div>
+  <div class="container">
+    <div id="scroll-title">프로젝트 오일러 8</div>
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="container">
+    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+  </div>
+</header>
+
+
+
+<main class="container" role="main">
+  <article class="post">
+    <header>
+      <p class="post-meta">
+        <time datetime="2015-02-25T00:00:00.000Z" itemprop="datePublished">2015-02-25</time>
+         on <a href='/tags/Project-Euler/' style='margin:0 5px;'>Project-Euler</a><a href='/tags/Clojure/' style='margin:0 5px;'>Clojure</a>
+      </p>
+      <h1 class="post-title">프로젝트 오일러 8</h1>
+    </header>
+
+    
+
+    <section class="post-content">
+      <blockquote>
+<p>1000자리 숫자 안에서 이어지는 5자리 숫자의 곱 중 최대값은?<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=8" target="_blank" rel="external">[국어]</a></p>
+</blockquote>
+<p>1,000자리 숫자라고 하지만 1,000개의 숫자 리스트로 보는 편이 문제를 풀기에 더 좋을 것 같다. Clojure에서는 문자열도 시퀀스로 다룰 수 있으므로 <code>bigint</code>를 쓰기 보다는 문자열로 만들어 작업하는 게 더 편하다.<a id="more"></a></p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">def</span></span> s</span><br><span class="line">  (<span class="name"><span class="builtin-name">str</span></span> <span class="string">"73167176531330624919225119674426574742355349194934"</span></span><br><span class="line">       <span class="string">"96983520312774506326239578318016984801869478851843"</span></span><br><span class="line">       <span class="string">"85861560789112949495459501737958331952853208805511"</span></span><br><span class="line">       <span class="string">"12540698747158523863050715693290963295227443043557"</span></span><br><span class="line">       <span class="string">"66896648950445244523161731856403098711121722383113"</span></span><br><span class="line">       <span class="string">"62229893423380308135336276614282806444486645238749"</span></span><br><span class="line">       <span class="string">"30358907296290491560440772390713810515859307960866"</span></span><br><span class="line">       <span class="string">"70172427121883998797908792274921901699720888093776"</span></span><br><span class="line">       <span class="string">"65727333001053367881220235421809751254540594752243"</span></span><br><span class="line">       <span class="string">"52584907711670556013604839586446706324415722155397"</span></span><br><span class="line">       <span class="string">"53697817977846174064955149290862569321978468622482"</span></span><br><span class="line">       <span class="string">"83972241375657056057490261407972968652414535100474"</span></span><br><span class="line">       <span class="string">"82166370484403199890008895243450658541227588666881"</span></span><br><span class="line">       <span class="string">"16427171479924442928230863465674813919123162824586"</span></span><br><span class="line">       <span class="string">"17866458359124566529476545682848912883142607690042"</span></span><br><span class="line">       <span class="string">"24219022671055626321111109370544217506941658960408"</span></span><br><span class="line">       <span class="string">"07198403850962455444362981230987879927244284909188"</span></span><br><span class="line">       <span class="string">"84580156166097919133875499200524063689912560717606"</span></span><br><span class="line">       <span class="string">"05886116467109405077541002256983155200055935729725"</span></span><br><span class="line">       <span class="string">"71636269561882670428252483600823257530420752963450"</span>))</span><br></pre></td></tr></table></figure>
+<p>일단 문자열을 만들어 놓으면 다음과 같이 시퀀스로 다룰 수 있다.</p>
+<pre class="console">
+user=> s
+"731671765313306249192251196744265..."
+user=> (seq s)
+(\7 \3 \1 \6 \7 \1 \7 \6 \5 \3 ...)
+</pre>
+
+<p>문자열 시퀀스의 각 요소는 <code>Character</code>이므로 이를 숫자(정수)로 바꿔주는 함수가 필요하다. 이 함수는 <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Character.html#digit-char-int-" target="_blank" rel="external">Character#digit</a>를 이용해 간단히 작성할 수 있다.</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> to-int [c] (<span class="name">Character/digit</span> c <span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+<p><code>to-int</code>를 이용하면 다음과 같이 숫자 시퀀스를 얻을 수 있다.</p>
+<pre class="console">
+user=> (map to-int s)
+(7 3 1 6 7 1 7 6 5 3 ...)
+</pre>
+
+<p>이제 숫자 시퀀스에서 연속된 숫자 다섯 개씩 불러오면 되는데, <code>partition</code> 함수를 사용하면 쉽게 풀 수 있다. <code>partition</code> 함수는 <code>n</code>개의 아이템을 가지는 리스트의 지연 시퀀스를 리턴하며, <code>step</code>을 지정할 수 있다. 여기서는 <code>step</code>을 1로 지정하면 된다.</p>
+<pre class="console">
+user=> (partition 5 1 *1)
+((7 3 1 6 7) (3 1 6 7 1) (1 6 7 1 7) ...)
+</pre>
+
+<p>리스트의 시퀀스를 구했다. 각 리스트는 이어지는 다섯 개의 숫자를 나타낸다. 각 리스트의 요소를 곱한 다음 최대값을 구하면 되므로 다음과 같이 하면 답을 구할 수 있다.</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve-kr []</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> s</span><br><span class="line">       (<span class="name"><span class="builtin-name">map</span></span> to-int)</span><br><span class="line">       (<span class="name"><span class="builtin-name">partition</span></span> <span class="number">5</span> <span class="number">1</span>)</span><br><span class="line">       (<span class="name"><span class="builtin-name">map</span></span> #(<span class="name"><span class="builtin-name">apply</span></span> * %))</span><br><span class="line">       (<span class="name"><span class="builtin-name">reduce</span></span> max)))</span><br></pre></td></tr></table></figure>
+<p>결과는 다음과 같다.</p>
+<pre class="console">
+p008=> (time (solve-kr))
+"Elapsed time: 11.636357 msecs"
+40???
+</pre>
+
+<h2 id="업데이트"><a href="#업데이트" class="headerlink" title="업데이트"></a>업데이트</h2><p>Project Euler 사이트 <a href="https://projecteuler.net/problem=8" target="_blank" rel="external">[Problem 8]</a>을 보면 문제가 살짝 바뀌어 있다. 처음에는 인접한 다섯 개의 숫자를 곱하는 것이었는데 지금은 13개의 숫자를 곱한 최대값을 구하라고 되어 있다. 그런다고 문제가 어려워지는 것은 아니다. 다섯 개씩 자르던 부분을 13개씩 자르도록 바꿔주기만 하면 된다.</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve-en []</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> s</span><br><span class="line">       (<span class="name"><span class="builtin-name">map</span></span> to-int)</span><br><span class="line">       (<span class="name"><span class="builtin-name">partition</span></span> <span class="number">13</span> <span class="number">1</span>)</span><br><span class="line">       (<span class="name"><span class="builtin-name">map</span></span> #(<span class="name"><span class="builtin-name">apply</span></span> * %))</span><br><span class="line">       (<span class="name"><span class="builtin-name">reduce</span></span> max)))</span><br></pre></td></tr></table></figure>
+<pre class="console">
+p008=> (time (solve-en))
+"Elapsed time: 8.101594 msecs"
+23514???000
+</pre>
+
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
+<li><a href="https://github.com/ntalbs/euler/blob/master/src/p008.clj" target="_blank" rel="external">프로젝트 오일러 8 풀이 소스 코드</a></li>
+</ul>
+
+    </section>
+
+    <footer class="post-footer">
+      
+      <nav id="article-nav">
+        
+        <a href="/2015/emacs-removing-blank-lines/" id="article-nav-newer" class="article-nav-link-wrap">
+          <strong class="article-nav-caption label label-default">Prev</strong>
+          <span class="article-nav-title">Emacs: 빈 줄 지우기</span>
+        </a>
+        
+        
+        <a href="/2015/project-euler-007/" id="article-nav-older" class="article-nav-link-wrap">
+          <span class="article-nav-title">프로젝트 오일러 7</span>
+          <strong class="article-nav-caption label label-default">Next</strong>
+        </a>
+        
+      </nav>
+      
+
+      <section id="comment">
+        
+        <div id="disqus_thread">
+          <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+        
+      </section>
+    </footer>
+  </article>
+</main>
+
+
+    <footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">&copy; 2008-2015 <a href="/about">ntalbs</a></section>
+     <section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section>
+  </div>
+</footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-2098194-3', 'auto');
+  ga('require', 'displayfeatures');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'ntalbs-stuff';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+  <!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

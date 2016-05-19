@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Ways 프로그램 | ntalbs&#39; stuff</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <meta name="generator" content="ntalbs' stuff"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+  
+  
+
+  
+</head>
+
+  <body class="home-template">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+      <a class="navbar-brand" href="/">@ntalbs' stuff</a>
+    </div>
+    <div class="navbar-items collapsed" id="nav-items">
+      <ul>
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="progress">
+  <div id="bar"></div>
+  <div class="container">
+    <div id="scroll-title">Ways 프로그램</div>
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="container">
+    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+  </div>
+</header>
+
+
+
+<main class="container" role="main">
+  <article class="post">
+    <header>
+      <p class="post-meta">
+        <time datetime="2012-02-02T00:00:00.000Z" itemprop="datePublished">2012-02-02</time>
+         on <a href='/tags/상념/' style='margin:0 5px;'>상념</a><a href='/tags/JavaScript/' style='margin:0 5px;'>JavaScript</a>
+      </p>
+      <h1 class="post-title">Ways 프로그램</h1>
+    </header>
+
+    
+
+    <section class="post-content">
+      <p>이건 내가 새로운 프로그래밍 언어를 배울 때마다 해당 언어로 만들어 본 간단한 데모 프로그램이다. 그냥 화면에 미리 정해진 규칙에 따라 계속 그림을 그리는 프로그램이다.<br><a id="more"></a></p>
+<div style="margin:auto; width:300px; padding:0;"><br>  <canvas id="canvas5" width="300" height="150"></canvas><br></div>
+
+<p>처음에는 Apple Basic, 그 다음에는 Apple Pascal, C로 작성했다. 그때만 해도 윈도우 환경이 아니어서 화면을 그래픽 모드로 바꾼 다음 그림을 그렸다. 나중에는 C로 Window에서도 돌아가게 만들었다. 이 프로그램을 처음 만들었을 때만해도 컴퓨터 속도가 느려 무식하게 루프만 돌려도 그림을 그리는 과정이 그대로 보였지만, 지금은 컴퓨터 속도가 빨라 일부러 천천히 그리게 하지 않으면 순식간에 화면을 채워버린다.</p>
+<p>예전 소스 코드를 지금 보면 재미있을 것 같은데… 아쉽게도 제대로 보관해놓지 않았다.</p>
+<script type="text/javascript">
+(function () {
+    var DELAY = 100, THICKNESS = 10, LANE = 5;
+    var SPACE = THICKNESS / LANE;
+
+    var canvas = document.getElementById("canvas5");
+    var w = canvas.width, h = canvas.height;
+    var g = canvas.getContext("2d");
+    var counter = 0;
+
+    g.translate(0.5, 0.5);
+    go(0, prepareLines(nextX(), nextY(), nextX(), nextY()), nextColor());
+
+    function go(stage, lines, c) {
+        if (counter >= 50*LANE*2) {
+            counter = 0;
+            clear(g);
+        }
+
+        var l = lines[stage];
+        drawLine(g, l.x1, l.y1, l.x2, l.y2, c);
+
+        if (stage+1 >= LANE*2) { // move to next point
+            setTimeout(function(){go(0, prepareLines(lines[0].x2, lines[LANE].y2, nextX(), nextY()), nextColor());}, DELAY);
+        } else {                 // shift line
+            setTimeout(function(){go(stage+1, lines, c)}, DELAY);
+        }
+        counter++;
+    }
+
+    function prepareLines(x1, y1, x2, y2) {
+        var lines = [];
+        for(var i=0; i<LANE; i++) {
+            var d = SPACE * i;
+            var hls = {} // horizontal line segment
+            hls.x1 = x1-d, hls.y1 = y1+d;
+            hls.x2 = x2-d, hls.y2 = y1+d;
+            lines[i] = hls;
+
+            var vls = {} // vertical line segment
+            vls.x1 = x2-d, vls.y1 = y1+d;
+            vls.x2 = x2-d, vls.y2 = y2+d;
+            lines[i+LANE] = vls
+        }
+        return lines;
+    }
+
+    function drawLine(g, x1, y1, x2, y2, color) {
+        g.strokeStyle = color;
+        g.beginPath();
+        g.moveTo(x1, y1);
+        g.lineTo(x2, y2);
+        g.stroke();
+    }
+
+    function random(min, max) {
+        return Math.floor(Math.random()*(max-min)) + min;
+    }
+
+    function nextColor() {
+        return "rgb("+random(0,255)+","+random(0,255)+","+random(0,255)+")";
+    }
+
+    function nextX() {
+        return random(THICKNESS, w);
+    }
+
+    function nextY() {
+        return random(0, h-THICKNESS);
+    }
+
+    function clear(g) {
+        g.fillStyle = "white";
+        g.fillRect(-1, -1, w+1, h+1);
+        g.fill();
+    }
+})();
+</script>
+
+    </section>
+
+    <footer class="post-footer">
+      
+      <nav id="article-nav">
+        
+        <a href="/2012/gmail-plus/" id="article-nav-newer" class="article-nav-link-wrap">
+          <strong class="article-nav-caption label label-default">Prev</strong>
+          <span class="article-nav-title">쥐메일 주소에 &#39;+&#39; 추가하기</span>
+        </a>
+        
+        
+        <a href="/2011/final-local-var/" id="article-nav-older" class="article-nav-link-wrap">
+          <span class="article-nav-title">지역 변수에 final을 붙여야 하나</span>
+          <strong class="article-nav-caption label label-default">Next</strong>
+        </a>
+        
+      </nav>
+      
+
+      <section id="comment">
+        
+        <div id="disqus_thread">
+          <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+        
+      </section>
+    </footer>
+  </article>
+</main>
+
+
+    <footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">&copy; 2008-2015 <a href="/about">ntalbs</a></section>
+     <section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section>
+  </div>
+</footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-2098194-3', 'auto');
+  ga('require', 'displayfeatures');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'ntalbs-stuff';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+  <!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

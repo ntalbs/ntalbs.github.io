@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>ntalbs&#39; stuff</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <meta name="generator" content="ntalbs' stuff"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+  
+  
+
+  
+</head>
+
+  <body class="home-template">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+      <a class="navbar-brand" href="/">@ntalbs' stuff</a>
+    </div>
+    <div class="navbar-items collapsed" id="nav-items">
+      <ul>
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="site-head">
+  <div class="container">
+    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+  </div>
+</header>
+
+
+<main class="container" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+        <time datetime="2010-06-22T23:00:00.000Z" itemprop="datePublished">2010-06-23</time>
+         on <a href='/tags/DB/' style='margin:0 5px;'>DB</a><a href='/tags/Oracle/' style='margin:0 5px;'>Oracle</a>
+      </span>
+      <h1 class="post-title"><a href="/2010/recover-db-no-archivelog-mode/">noarchivelog mode에서의 복구</a></h1>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>redo log 백업이 있을 때와 없을 때의 절차가 다르다.<br>
+      
+      </p>
+      
+      <p>
+          <a href="/2010/recover-db-no-archivelog-mode/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+        <time datetime="2010-05-15T23:00:00.000Z" itemprop="datePublished">2010-05-16</time>
+         on <a href='/tags/리팩터링/' style='margin:0 5px;'>리팩터링</a>
+      </span>
+      <h1 class="post-title"><a href="/2010/duplicated-codes/">코드 중복과 보이스카우트 규칙</a></h1>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <blockquote class="blockquote-reverse">캠핑 장은 처음 왔을 때보다 더 깨끗하게 해놓고 떠나라!<br>보이스카우트 규칙 (클린 코드, p50)<br></blockquote>
+
+<p>때로는 아주 사소한 코드 중복이 큰 문제를 만드는 경우도 있다.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> fnCallback = $Fn(<span class="function"><span class="keyword">function</span>(<span class="params">bSuccess, sMessage, oData</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  <span class="keyword">if</span> (acrobat.isInstalled) &#123;</span><br><span class="line">      <span class="keyword">this</span>.printUrl = oData.redirectURL + <span class="string">"&amp;isSilent=true"</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.printUrl = oData.redirectURL;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, <span class="keyword">this</span>).bind();</span><br></pre></td></tr></table></figure>
+<p>중복 코드에 민감한 개발자라면 당장에 중복된 부분이 눈에 들어올 것이다. 4째 줄과 6째 줄에 <code>this.printUrl = oData.redirectURL</code> 부분이 중복이다. 단순한 코드라서 언듯 보기에는 별 문제가 없어 보일는지 모르겠다. 그러나 꼭 그렇지만은 않다. <strong>문제가 생길 가능성이 있다면 꼭 문제가 생긴다.</strong> 결과가 심각할수록 발생할 확율도 높아지는 것 같다.<br>
+      
+      </p>
+      
+      <p>
+          <a href="/2010/duplicated-codes/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+        <time datetime="2010-02-04T00:00:00.000Z" itemprop="datePublished">2010-02-04</time>
+         on <a href='/tags/상념/' style='margin:0 5px;'>상념</a><a href='/tags/보안/' style='margin:0 5px;'>보안</a>
+      </span>
+      <h1 class="post-title"><a href="/2010/id-2/">아이디 2</a></h1>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>카드 사용 정보를 인터넷에서 편하게 조회하기 위해 외환카드 홈페이지에 들어가 인터넷 회원 가입을 하다가 황당한 일을 겪었다. 회원 아이디가 이메일 아이디와 같으면 안 된다며 가입이 안 되는 것이었다. 지금까지 여러 사이트에 가입해봤지만 이런 경우는 처음이었다.<br>
+      
+      </p>
+      
+      <p>
+          <a href="/2010/id-2/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+        <time datetime="2010-01-26T00:00:00.000Z" itemprop="datePublished">2010-01-26</time>
+         on <a href='/tags/상념/' style='margin:0 5px;'>상념</a><a href='/tags/보안/' style='margin:0 5px;'>보안</a>
+      </span>
+      <h1 class="post-title"><a href="/2010/id-1/">아이디 1</a></h1>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>얼마전 우체국에 연리 5% 정도의 정기예금 상품이 있어 가입하러 갔다. 우체국 직원이 버벅대는 것을 참아가며 거의 30분 정도를 기다려 겨우 신청서를 작성했는데, 처리가 안된다는 것이었다. 이유인 즉 인터넷 뱅킹 아이디에는 반드시 숫자가 포함되어야 한다는 것이었다.<br>
+      
+      </p>
+      
+      <p>
+          <a href="/2010/id-1/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+        <time datetime="2009-12-23T00:00:00.000Z" itemprop="datePublished">2009-12-23</time>
+         on <a href='/tags/상념/' style='margin:0 5px;'>상념</a><a href='/tags/Google/' style='margin:0 5px;'>Google</a>
+      </span>
+      <h1 class="post-title"><a href="/2009/google-main-page/">어설퍼진 Google 첫 페이지</a></h1>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>Google의 첫 페이지는 단순하고 깔끔한 것으로 유명하다. Google을 좋아하는 것은 당연히 검색을 잘 해주기 때문이지만, Google을 좋아하는 사람이라면 단순하고 깔끔한 첫 페이지도 좋아할 것이다. 그런데 얼마 전 Google의 첫 페이지가 바뀌었다.
+      
+      </p>
+      
+      <p>
+          <a href="/2009/google-main-page/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+        <time datetime="2009-12-03T00:00:00.000Z" itemprop="datePublished">2009-12-03</time>
+         on <a href='/tags/DB/' style='margin:0 5px;'>DB</a><a href='/tags/Oracle/' style='margin:0 5px;'>Oracle</a><a href='/tags/SQL/' style='margin:0 5px;'>SQL</a>
+      </span>
+      <h1 class="post-title"><a href="/2009/first-and-last-day-of-week/">주어진 주의 첫 날과 마지막 날 구하기</a></h1>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><a href="http://database.sarang.net/">Database.Sarang.net</a> Q&amp;A 게시판에 특정 주(몇월 몇째주)를 주면 이 주의 첫 날과 마지막 날을 구하는 방법에 대한 질문이 올라왔다. 열심히 머리를 굴려본 결과 해당 주에 포함된 날짜를 구하면 그 주의 첫 날과 마지막 날을 구할 수 있음을 알게 됐고, 다음과 같은 쿼리를 작성했다.<br>
+      
+      </p>
+      
+      <p>
+          <a href="/2009/first-and-last-day-of-week/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+        <time datetime="2009-11-16T00:00:00.000Z" itemprop="datePublished">2009-11-16</time>
+         on <a href='/tags/JavaScript/' style='margin:0 5px;'>JavaScript</a>
+      </span>
+      <h1 class="post-title"><a href="/2009/canvas-test/">Canvas 테스트</a></h1>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><code>&lt;canvas&gt;</code> 태그를 사용해 간단한 그림을 그려봤다. <code>&lt;canvas&gt;</code> 태그를 이용하면 브라우저에 자유자재로 그림을 그릴 수 있다. Firefox와 같은 Gecko 기반의 브라우저에서는 <code>&lt;canvas&gt;</code> 요소(element)를 지원하지만 IE에서는 아직 지원하지 않는다. Chrome 브라우저에서도 <code>&lt;canvas&gt;</code>가 잘 동작한다.<br>
+      
+      </p>
+      
+      <p>
+          <a href="/2009/canvas-test/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+        <time datetime="2009-11-11T00:00:00.000Z" itemprop="datePublished">2009-11-11</time>
+         on <a href='/tags/DB/' style='margin:0 5px;'>DB</a><a href='/tags/Oracle/' style='margin:0 5px;'>Oracle</a>
+      </span>
+      <h1 class="post-title"><a href="/2009/create-db/">오라클 데이터베이스 생성하기</a></h1>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>오라클 데이터베이스를 생성할 때 보통은 DBCA를 이용한다. 그러나 DBCA만 사용해 DB를 생성하다보면, DBCA를 사용할 수 없는 상황에는 당황하게 된다. 다음은 DBCA를 이용할 수 없는 경우 오라클 데이터베이스를 생성하는 절차다.<br>
+      
+      </p>
+      
+      <p>
+          <a href="/2009/create-db/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+        <time datetime="2009-11-10T00:00:00.000Z" itemprop="datePublished">2009-11-10</time>
+         on <a href='/tags/DB/' style='margin:0 5px;'>DB</a><a href='/tags/Oracle/' style='margin:0 5px;'>Oracle</a>
+      </span>
+      <h1 class="post-title"><a href="/2009/resizing-undb-ts/">Undo 테이블스페이스 크기 변경 방법</a></h1>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>Oracle9i에서 <code>UNDO</code> 테비블스페이스를 <code>auto mode</code>로 사용할 때, <code>UNDO</code> 테이블스페이스를 변경하는 방법이다. <code>Undo</code> 테이블스페이스의 데이터 파일이 너무 커진 경우 데이터 파일 크기를 줄이고 싶지만, 데이터 파일의 크기를 직접 줄일 수는 없다. 따라서 새로운 <code>UNDO</code> 테이블스페이스를 만들고 크기를 적절히 지정한 데이터 파일을 할당한 다음, 데이터베이스에 지정된 <code>UNDO</code> 테이블스페이스를 변경해야 한다.<br>
+      
+      </p>
+      
+      <p>
+          <a href="/2009/resizing-undb-ts/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+        <time datetime="2009-08-26T23:00:00.000Z" itemprop="datePublished">2009-08-27</time>
+        
+      </span>
+      <h1 class="post-title"><a href="/2009/terms-and-reliability/">정확한 용어 사용과 신뢰도</a></h1>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>어떤 사람이 특정 분야에 대해 얼마나 잘 알고 있을지를 어떻게 평가할 수 있을까? 여러 가지 방법이 있을 수 있겠지만, 나는 다음 두 가지 정도로 평가할 수 있다고 생각한다.<br>
+      
+      </p>
+      
+      <p>
+          <a href="/2009/terms-and-reliability/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/16/"><strong class="label label-default">Prev</strong></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/18/"><strong class="label label-default">Next</strong></a>
+  </nav>
+</main>
+
+
+    <footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">&copy; 2008-2015 <a href="/about">ntalbs</a></section>
+     <section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section>
+  </div>
+</footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-2098194-3', 'auto');
+  ga('require', 'displayfeatures');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'ntalbs-stuff';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+  <!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

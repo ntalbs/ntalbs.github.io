@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Oracle XDB 비활성화 방법 | ntalbs&#39; stuff</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <meta name="generator" content="ntalbs' stuff"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+  
+  
+
+  
+</head>
+
+  <body class="home-template">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+      <a class="navbar-brand" href="/">@ntalbs' stuff</a>
+    </div>
+    <div class="navbar-items collapsed" id="nav-items">
+      <ul>
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="progress">
+  <div id="bar"></div>
+  <div class="container">
+    <div id="scroll-title">Oracle XDB 비활성화 방법</div>
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="container">
+    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+  </div>
+</header>
+
+
+
+<main class="container" role="main">
+  <article class="post">
+    <header>
+      <p class="post-meta">
+        <time datetime="2008-10-30T00:00:00.000Z" itemprop="datePublished">2008-10-30</time>
+         on <a href='/tags/DB/' style='margin:0 5px;'>DB</a><a href='/tags/Oracle/' style='margin:0 5px;'>Oracle</a>
+      </p>
+      <h1 class="post-title">Oracle XDB 비활성화 방법</h1>
+    </header>
+
+    
+
+    <section class="post-content">
+      <p>Oracle9i부터는 XML DB가 포함되어 있는데, 이 녀석은 HTTP/WebDAV과 FTP 포트로 각각 <code>8080</code>과 <code>2100</code> 포트를 사용한다. 데이터베이스 서버에 Oracle만 실행 중이라면 XML DB가 떠있다고 해서 당장 문제될 것이 없으니 그냥 무시할 수도 있다(보안을 생각한다면 내려야 하겠지만). 개발 서버나 테스트 서버의 경우 <code>8080</code> 포트를 쓰는 다른 서버 프로그램(가령 Tomcat 같은)을 띄워야 하는 경우 포트가 충돌해 문제가 발생할 수 있다. Oracle9i에는 그나마 DBCA를 이용해 DB를 생성할 때 XML DB를 제외할 수 있는 옵션이 있었던 것 같은데, 10g에는 그 옵션이 사라져버렸다.<br><a id="more"></a></p>
+<p>Oracle이 <code>8080</code> 포트를 사용하지 않게 하려면 XML DB가 뜨지 않게 해야 하는데, 이에 대한 방법이 정확히 나와 있지 않고, Metalink 등을 찾아봐도 설명이 정확하지 않아 다른 인터넷 사이트에서 알아낸 정보와 테스트 결과를 다음과 같이 정리한다.</p>
+<p>참고) 원격 사용자가 비정상적인 HTTP 헤더로 Oracle XDB 서버에 HTTP 요청을 보내면 DoS 상태에 빠지게 할 수 있다. 즉 권한이 없는 사용자가 Oracle 데이터베이스 인스턴스의 서비스를 중지시킬 수 있다는 뜻이다. 또한 XDB가 실행중인 시스템에서는 원격 사용자가 임의의 코드를 Oracle 서버 프로세스 권한으로 실행시킬 수 있는 문제도 있다. 이에 대한 패치가 있는지는 확인하지 못했지만, 사용하지 않는다면 XDB 서비스를 중지시키는 것이 좋겠다.</p>
+<h2 id="1-포트-사용-여부-확인"><a href="#1-포트-사용-여부-확인" class="headerlink" title="1. 포트 사용 여부 확인"></a>1. 포트 사용 여부 확인</h2><p>UNIX의 <code>netstat</code> 명령이나 Oracle의 <code>lsnrctl</code>을 사용해 다음과 같이 확인할 수 있다.</p>
+<pre class="console">
+$ netstat -a | grep LISTEN | grep 8080
+tcp      0    0  *.8080     *.*        LISTEN
+
+$ lsnrctl status
+
+LSNRCTL for HPUX: Version 10.1.0.2.0 - Production on 09-MAY-2005 16:24:20
+
+Copyright (c) 1991, 2004, Oracle.  All rights reserved.
+
+Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=chantest)(PORT=1521)))
+STATUS of the LISTENER
+------------------------
+Alias              LISTENER
+Version            TNSLSNR for HPUX: Version 10.1.0.2.0 - Production
+Start Date         09-MAY-2005 11:37:58
+Uptime             0 days 4 hr. 46 min. 21 sec
+Trace Level        off
+Security           ON: Local OS Authentication
+SNMP               OFF
+Listener Parameter File   /oracle/ora10g/network/admin/listener.ora
+Listener Log File        /oracle/ora10g/network/log/listener.log
+Listening Endpoints Summary...
+  (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=chantest)(PORT=1521)))
+  (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=chantest)(PORT=2100))
+(Presentation=FTP)(Session=RAW))
+  (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=chantest)(PORT=8080))
+(Presentation=HTTP)(Session=RAW))
+Services Summary...
+Service "ORA10G" has 2 instance(s).
+  Instance "ORA10G", status UNKNOWN, has 1 handler(s) for this service...
+  Instance "ORA10G", status READY, has 2 handler(s) for this service...
+Service "ORA10GXDB" has 1 instance(s).
+  Instance "ORA10G", status READY, has 0 handler(s) for this service...
+The command completed successfully
+</pre>
+
+<h2 id="2-XML-DB-비활성화"><a href="#2-XML-DB-비활성화" class="headerlink" title="2. XML DB 비활성화"></a>2. XML DB 비활성화</h2><p>SQL*Plus로 DBA 권한으로 로그인한 다음 <code>dispatchers</code> 파라미터를 확인하면 다음과 같이 설정되어 있을 것이다.</p>
+<pre class="console">
+SQL> show parameter dispatchers
+
+ NAME              TYPE     VALUE
+ ---------------   -------  ---------------------------
+ dispatchers       string   (PROTOCOL=TCP)(SERVICE=XDB)
+ max_dispatchers   integer
+</pre>
+
+<p>이 파라미터 값을 변경 또는 제거한 다음 DBMS를 다시 시작하면 된다. PFILE을 사용하는 경우 init.ora 파일을 텍스트 에디터로 편집하면 되고, SPFILE을 사용하는 경우에는 다음과 같이 파라미터를 수정한 후 DBMS를 다시 시작한다.</p>
+<pre class="console">
+SQL> alter system set dispatchers='' scope=both;
+</pre>
+
+<p>SPFILE을 사용하는 경우 <code>alter system</code> 명령으로 파라미터 값을 바꿀 수는 있지만, 파라미터 값만 바꾼다고 XDB가 바로 비활성화 되는 것은 아니다. DBMS를 다시 시작해줘야 XDB가 비활성화 된다. 데이터베이스를 재기동한 후 <code>netstat</code> 또는 <code>lsnrctl</code>로 확인해보면 <code>8080</code> 포트를 사용하지 않음을 확인할 수 있다.<br>Metalink와 일부 문서에는 <code>dispatchers</code> 파라미터에서 <code>&quot;(SERVICE=XDB)&quot;</code> 부분만 제거하면 된다고 되어있지만, Oracle10g에서는 <code>dispatchers</code> 파라미터를 ‘’로 만들어줘야 했다.</p>
+<h2 id="3-HTTP-FTP-포트-바꾸기"><a href="#3-HTTP-FTP-포트-바꾸기" class="headerlink" title="3. HTTP, FTP 포트 바꾸기"></a>3. HTTP, FTP 포트 바꾸기</h2><p>다음과 같이 하면 HTTP와 FTP 포트를 바꿔줄 수 있다. 이렇게 한 경우에는 DBMS를 다시 시작시킬 필요가 없다. 프로시저를 실행시킨 후 <code>netstat</code>, <code>lsnrctl</code> 명령을 통해 결과를 바로 확인할 수 있다. 포트를 <code>0</code>으로 설정하면 XML DB를 비활성화 시킬 수 있다.</p>
+<pre class="console">
+-- HTTP/WEBDAV 포트를 8081로 변경
+SQL> call dbms_xdb.cfg_update(updateXML(
+  2   dbms_xdb.cfg_get(),
+  3   '/xdbconfig/sysconfig/protocolconfig/httpconfig/http-port/text()',
+  4   8081))
+  5  /
+
+Call completed.
+
+-- FTP 포트를 2111로 변경
+SQL> call dbms_xdb.cfg_update(updateXML(
+  2   dbms_xdb.cfg_get(),
+  3  '/xdbconfig/sysconfig/protocolconfig/ftpconfig/ftp-port/text()',
+  4   2111))
+  5  /
+
+Call completed.
+</pre>
+
+<p>테스트 결과 여기까지만 해도 포트가 변경된다. DBMS를 다시 시작해도 결과는 그대로 남아 있다. 그런데 참조한 문서에는 다음 과정이 있어 참고로 남겨둔다.</p>
+<pre class="console">
+SQL> COMMIT;
+Commit complete.
+
+SQL> EXEC dbms_xdb.cfg_refresh;
+PL/SQL procedure successfully completed.
+</pre>
+
+<p>결과를 확인하는 단계다. <code>netstat</code>이나 <code>lsnrctl</code>로 확인할 수도 있지만, 다음 SQL을 통해서도 확인할 수 있다. 결과가 매우 길기 때문에 중간에 불필요한 부분은 제거했다. <code>long</code>과 <code>pagesize</code>를 충분히 설정해줘야 결과가 제대로 보인다. 결과를 자세히 보고 싶으면 SPOOL해서 에디터에서 보는 편이 좋겠다.</p>
+<pre class="console">
+SQL> -- Verify the change
+SQL> set long 100000
+SQL> set pagesize 9000
+SQL> SELECT dbms_xdb.cfg_get FROM dual;
+
+ CFG_GET
+ -------------------------------------------------------------
+ &lt;xdbconfig xmlns="http://xmlns.oracle.com/xdb/xdbconfig.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.oracle.com/xdb/xdbconfig.xsd http://xmlns.oracle.com/xdb/xdbconfig.xsd">
+  &lt;sysconfig>
+    &lt;acl-max-age>900&lt;/acl-max-age>
+    &lt;acl-cache-size>32&lt;/acl-cache-size>
+    &lt;invalid-pathname-chars>,&lt;/invalid-pathname-chars>
+    &lt;call-timeout>300&lt;/call-timeout>
+    &lt;max-session-use>100&lt;/max-session-use>
+    &lt;default-lock-timeout>3600&lt;/default-lock-timeout>
+    &lt;resource-view-cache-size>1048576&lt;/resource-view-cache-size>
+    &lt;protocolconfig>
+      &lt;common>
+      ...생략...
+      &lt;/common>
+      &lt;ftpconfig>
+        <span style="color:black;background-color:yellow">&lt;ftp-port>2111&lt;/ftp-port></span>
+        &lt;ftp-listener>local_listener&lt;/ftp-listener>
+        &lt;ftp-protocol>tcp&lt;/ftp-protocol>
+        &lt;session-timeout>6000&lt;/session-timeout>
+      &lt;/ftpconfig>
+      &lt;httpconfig>
+        <span style="color:black;background-color:yellow">&lt;http-port>8081&lt;/http-port></span>
+        &lt;http-listener>local_listener&lt;/http-listener>
+        &lt;http-protocol>tcp&lt;/http-protocol>
+        &lt;session-timeout>6000&lt;/session-timeout>
+        &lt;server-name>XDB HTTP Server&lt;/server-name>
+        ...생략...
+    &lt;/protocolconfig>
+  &lt;/sysconfig>
+&lt;/xdbconfig>
+</pre>
+
+    </section>
+
+    <footer class="post-footer">
+      
+      <nav id="article-nav">
+        
+        <a href="/2008/not-to-do-things/" id="article-nav-newer" class="article-nav-link-wrap">
+          <strong class="article-nav-caption label label-default">Prev</strong>
+          <span class="article-nav-title">하지 말 것 목록</span>
+        </a>
+        
+        
+        <a href="/2008/deleting-db-link/" id="article-nav-older" class="article-nav-link-wrap">
+          <span class="article-nav-title">DB 링크 삭제 시 제약사항</span>
+          <strong class="article-nav-caption label label-default">Next</strong>
+        </a>
+        
+      </nav>
+      
+
+      <section id="comment">
+        
+        <div id="disqus_thread">
+          <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+        
+      </section>
+    </footer>
+  </article>
+</main>
+
+
+    <footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">&copy; 2008-2015 <a href="/about">ntalbs</a></section>
+     <section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section>
+  </div>
+</footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-2098194-3', 'auto');
+  ga('require', 'displayfeatures');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'ntalbs-stuff';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+  <!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,89 @@
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #fff;
+}
+
+.comment,
+.quote {
+  color: #777;
+  font-style: italic;
+}
+
+.keyword,
+.selector-tag,
+.subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.number,
+.literal {
+  color: #777;
+}
+
+.string,
+.doctag,
+.formula {
+  color: #333;
+}
+
+.title,
+.section,
+.selector-id {
+  color: #000;
+  font-weight: bold;
+}
+
+.subst {
+  font-weight: normal;
+}
+
+.class .title,
+.type,
+.name {
+  color: #333;
+  font-weight: bold;
+}
+
+.tag {
+  color: #333;
+}
+
+.regexp {
+    color: #333;
+}
+
+.symbol,
+.bullet,
+.link {
+  color: #000;
+}
+
+.built_in,
+.builtin-name {
+  color: #000;
+}
+
+.meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.deletion {
+  color: #fff;
+}
+
+.addition {
+  color: #000;
+}
+
+.emphasis {
+  font-style: italic;
+}
+
+.strong {
+  font-weight: bold;
+}
