@@ -59,28 +59,6 @@
         <time datetime="2008-10-30T00:00:00.000Z" itemprop="datePublished">2008-10-30</time>
          on <a href='/tags/DB/' style='margin:0 5px;'>DB</a><a href='/tags/Oracle/' style='margin:0 5px;'>Oracle</a>
       </span>
-      <h1 class="post-title"><a href="/2008/disabling-xdb-in-oracle/">Oracle XDB 비활성화 방법</a></h1>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>Oracle9i부터는 XML DB가 포함되어 있는데, 이 녀석은 HTTP/WebDAV과 FTP 포트로 각각 <code>8080</code>과 <code>2100</code> 포트를 사용한다. 데이터베이스 서버에 Oracle만 실행 중이라면 XML DB가 떠있다고 해서 당장 문제될 것이 없으니 그냥 무시할 수도 있다(보안을 생각한다면 내려야 하겠지만). 개발 서버나 테스트 서버의 경우 <code>8080</code> 포트를 쓰는 다른 서버 프로그램(가령 Tomcat 같은)을 띄워야 하는 경우 포트가 충돌해 문제가 발생할 수 있다. Oracle9i에는 그나마 DBCA를 이용해 DB를 생성할 때 XML DB를 제외할 수 있는 옵션이 있었던 것 같은데, 10g에는 그 옵션이 사라져버렸다.<br>
-      
-      </p>
-      
-      <p>
-          <a href="/2008/disabling-xdb-in-oracle/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-        <time datetime="2008-10-30T00:00:00.000Z" itemprop="datePublished">2008-10-30</time>
-         on <a href='/tags/DB/' style='margin:0 5px;'>DB</a><a href='/tags/Oracle/' style='margin:0 5px;'>Oracle</a>
-      </span>
       <h1 class="post-title"><a href="/2008/deleting-db-link/">DB 링크 삭제 시 제약사항</a></h1>
     </header>
     <section class="post-excerpt">
@@ -92,6 +70,28 @@
       
       <p>
           <a href="/2008/deleting-db-link/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+        <time datetime="2008-10-30T00:00:00.000Z" itemprop="datePublished">2008-10-30</time>
+         on <a href='/tags/DB/' style='margin:0 5px;'>DB</a><a href='/tags/Oracle/' style='margin:0 5px;'>Oracle</a>
+      </span>
+      <h1 class="post-title"><a href="/2008/disabling-xdb-in-oracle/">Oracle XDB 비활성화 방법</a></h1>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>Oracle9i부터는 XML DB가 포함되어 있는데, 이 녀석은 HTTP/WebDAV과 FTP 포트로 각각 <code>8080</code>과 <code>2100</code> 포트를 사용한다. 데이터베이스 서버에 Oracle만 실행 중이라면 XML DB가 떠있다고 해서 당장 문제될 것이 없으니 그냥 무시할 수도 있다(보안을 생각한다면 내려야 하겠지만). 개발 서버나 테스트 서버의 경우 <code>8080</code> 포트를 쓰는 다른 서버 프로그램(가령 Tomcat 같은)을 띄워야 하는 경우 포트가 충돌해 문제가 발생할 수 있다. Oracle9i에는 그나마 DBCA를 이용해 DB를 생성할 때 XML DB를 제외할 수 있는 옵션이 있었던 것 같은데, 10g에는 그 옵션이 사라져버렸다.<br>
+      
+      </p>
+      
+      <p>
+          <a href="/2008/disabling-xdb-in-oracle/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -213,6 +213,31 @@
         <time datetime="2008-10-27T00:00:00.000Z" itemprop="datePublished">2008-10-27</time>
          on <a href='/tags/DB/' style='margin:0 5px;'>DB</a><a href='/tags/Oracle/' style='margin:0 5px;'>Oracle</a>
       </span>
+      <h1 class="post-title"><a href="/2008/direct-load-and-index/">다이렉트 로드와 인덱스</a></h1>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>대량 데이터를 로드할 때 항상 궁금했던 것이 있다. 다음 두 가지 방법 중 어떤 것이 빠를까 하는 것이다.</p>
+<ul>
+<li>방법1: 인덱스가 있는 상태에서 그냥 다이렉트 모드로 로드</li>
+<li>방법2: 인덱스를 날리고 로드한 다음 인덱스를 생성
+      
+      </p>
+      
+      <p>
+          <a href="/2008/direct-load-and-index/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+        <time datetime="2008-10-27T00:00:00.000Z" itemprop="datePublished">2008-10-27</time>
+         on <a href='/tags/DB/' style='margin:0 5px;'>DB</a><a href='/tags/Oracle/' style='margin:0 5px;'>Oracle</a>
+      </span>
       <h1 class="post-title"><a href="/2008/add-column-and-default-value/">컬럼 추가와 디폴트 값</a></h1>
     </header>
     <section class="post-excerpt">
@@ -246,31 +271,6 @@
       
       <p>
           <a href="/2008/direct-path-load/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-        <time datetime="2008-10-27T00:00:00.000Z" itemprop="datePublished">2008-10-27</time>
-         on <a href='/tags/DB/' style='margin:0 5px;'>DB</a><a href='/tags/Oracle/' style='margin:0 5px;'>Oracle</a>
-      </span>
-      <h1 class="post-title"><a href="/2008/direct-load-and-index/">다이렉트 로드와 인덱스</a></h1>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>대량 데이터를 로드할 때 항상 궁금했던 것이 있다. 다음 두 가지 방법 중 어떤 것이 빠를까 하는 것이다.</p>
-<ul>
-<li>방법1: 인덱스가 있는 상태에서 그냥 다이렉트 모드로 로드</li>
-<li>방법2: 인덱스를 날리고 로드한 다음 인덱스를 생성
-      
-      </p>
-      
-      <p>
-          <a href="/2008/direct-load-and-index/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
