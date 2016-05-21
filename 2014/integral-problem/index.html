@@ -1,262 +1,29 @@
-<!DOCTYPE html>
-<html>
-  
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>정적분 문제 | ntalbs&#39; stuff</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <link rel="shortcut icon" href="/images/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css">
-
-  <meta name="generator" content="ntalbs' stuff"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-  
-  
-  
-
-  
-</head>
-
-  <body class="home-template">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
-      <a class="navbar-brand" href="/">@ntalbs' stuff</a>
-    </div>
-    <div class="navbar-items collapsed" id="nav-items">
-      <ul>
-        
-        <li><a href="/archives">Archives</a></li>
-        
-        <li><a href="/tags">Tags</a></li>
-        
-        <li><a href="/about">About</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div id="progress">
-  <div id="bar"></div>
-  <div class="container">
-    <div id="scroll-title">정적분 문제</div>
-  </div>
-</div>
-
-<header class="site-head">
-  <div class="container">
-    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-  </div>
-</header>
-
-
-
-<main class="container" role="main">
-  <article class="post">
-    <header>
-      <p class="post-meta">
-        <time datetime="2014-04-21T23:00:00.000Z" itemprop="datePublished">2014-04-22</time>
-         on <a href='/tags/수학/' style='margin:0 5px;'>수학</a>
-      </p>
-      <h1 class="post-title">정적분 문제</h1>
-    </header>
-
-    
-
-    <section class="post-content">
-      <p>학교를 졸업한지 오래되어 지금은 미적분이 거의 생각나지 않지만, 아직도 기억하고 있는 적분 문제가 하나 있다. 다음 정적분 값을 구하는 문제인데, 적분 자체는 어렵지 않지만 발상의 전환이 필요하다. 선배에게 이 문제 풀이 설명을 듣었을 때의 감동이 아직도 생생하다.</p>
-<span>$$\begin{aligned}
-I = \int_{-\infty}^{\infty} e^{-x^2} dx
-\end{aligned}$$</span><!-- Has MathJax -->
-<a id="more"></a>
-<p>그냥 $I$ 값을 구하려 하면 문제가 풀리지 않는다. 그러나 $I^2$ 값은 다음과 같은 식으로 구할 수 있다.</p>
-<span>$$\begin{aligned}
-I^2
-&amp;= \left(\int_{-\infty}^{\infty} e^{-x^2} dx\right)^2 \\
-&amp;= \int_{-\infty}^{\infty} e^{-x^2} dx \cdot \int_{-\infty}^{\infty} e^{-y^2} dy \\
-&amp;= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-(x^2+y^2)} dx\,dy \\
-\end{aligned}$$</span><!-- Has MathJax -->
-<p>정적분 값은 적분변수와 상관 없으므로 $x$를 $y$로 바꿔도 상관 없다. 여기서 굳이 $x, y$로 바꾸는 것은 문제를 $xy$ 평면에서의 적분으로 생각하기 위해서다. 이렇게 하면 문제를 기하학적으로 생각할 수 있게 된다.</p>
-<img src="/2014/integral-problem/graph.png" alt="graph.png" title="">
-<p>일단 평면에 대한 적분 문제라 생각하고 나면, $xy$ 좌표계에서 극좌표계로 바꿔 평면 전체에 대해 적분해도 결과는 같을 것이다.</p>
-<span>$$\begin{aligned}
-x &amp;= r\cos \theta \\
-y &amp;= r\sin \theta \\
-dx\,dy &amp;= r\,dr\,d\theta
-\end{aligned}$$</span><!-- Has MathJax -->
-<p>$xy$ 평면 전체는 $ -\infty \lt x \lt \infty$, $-\infty \lt y \lt \infty$다. 극좌표로 나타내면 $r, \theta$의 범위는 $0 \le r \lt \infty$, $0 \le \theta \lt 2\pi$라 할 수 있다. 따라서 정적분을 다음과 같이 고쳐 쓸 수 있다. 이제 적분을 쉽게 할 수 있다. (아래 식이 이해되지 않을 경우, $r^2=t$로 치환해 적분하면 쉽다)</p>
-<span>$$\begin{aligned}
-I^2
-&amp;= \int_0^{2\pi}\int_0^\infty e^{-r^2} r\,dr\,d\theta \\
-&amp;= 2\pi \int_0^\infty e^{-r^2} r\,dr \\
-&amp;= 2\pi \left[-\frac{e^{-r^2}}{2}\right]_{r=0}^{r=\infty} \\
-&amp;= {\pi}
-\end{aligned}$$</span><!-- Has MathJax -->
-<p>따라서…</p>
-<span>$$\begin{aligned}
-I = \sqrt \pi
-\end{aligned}$$</span><!-- Has MathJax -->
-<p>수학도 그렇고 물리학도 그렇고 좌표를 변환하면 어렵던 문제가 쉽게 풀리는 경우가 많다. 이 적분 문제는 좌표 변환을 통해 어려운 문제를 쉬운 문제로 바꾼 대표적인 예라 할 수 있겠다.</p>
-<p>좌표계는 <strong>생각하는 방식</strong> 또는 <strong>생각의 기준</strong>이라 할 수 있다. 프로그램을 작성할 때도 복잡해보이는 문제가 생각의 방식을 바꾸면 쉽게 풀리는 경우가 많다. <strong>어떤 문제가 지나치게 복잡하다면 부적절한 좌표계에서 문제 풀이를 시도하고 있는 것이 아닌지 확인해볼 필요가 있다.</strong></p>
-
-    </section>
-
-    <footer class="post-footer">
-      
-      <nav id="article-nav">
-        
-        <a href="/2014/visual-regexp/" id="article-nav-newer" class="article-nav-link-wrap">
-          <strong class="article-nav-caption label label-default">Prev</strong>
-          <span class="article-nav-title">visual-regexp</span>
-        </a>
-        
-        
-        <a href="/2014/hexo-math/" id="article-nav-older" class="article-nav-link-wrap">
-          <span class="article-nav-title">Hexo: 블로그에 수식 표현하기</span>
-          <strong class="article-nav-caption label label-default">Next</strong>
-        </a>
-        
-      </nav>
-      
-
-      <section id="comment">
-        
-        <div id="disqus_thread">
-          <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        </div>
-        
-      </section>
-    </footer>
-  </article>
-</main>
-
-
-    <footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">&copy; 2008-2015 <a href="/about">ntalbs</a></section>
-     <section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section>
-  </div>
-</footer>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
+<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>정적분 문제 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">정적분 문제</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2014-04-21T23:00:00.000Z" itemprop="datePublished">2014-04-22</time> on <a href="/tags/수학/" style="margin:0 5px">수학</a></p><h1 class="post-title">정적분 문제</h1></header><section class="post-content"><p>학교를 졸업한지 오래되어 지금은 미적분이 거의 생각나지 않지만, 아직도 기억하고 있는 적분 문제가 하나 있다. 다음 정적분 값을 구하는 문제인데, 적분 자체는 어렵지 않지만 발상의 전환이 필요하다. 선배에게 이 문제 풀이 설명을 듣었을 때의 감동이 아직도 생생하다.</p><span>$$\begin{aligned} I = \int_{-\infty}^{\infty} e^{-x^2} dx \end{aligned}$$</span><a id="more"></a><p>그냥 $I$ 값을 구하려 하면 문제가 풀리지 않는다. 그러나 $I^2$ 값은 다음과 같은 식으로 구할 수 있다.</p><span>$$\begin{aligned} I^2 &amp;= \left(\int_{-\infty}^{\infty} e^{-x^2} dx\right)^2 \\ &amp;= \int_{-\infty}^{\infty} e^{-x^2} dx \cdot \int_{-\infty}^{\infty} e^{-y^2} dy \\ &amp;= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-(x^2+y^2)} dx\,dy \\ \end{aligned}$$</span><p>정적분 값은 적분변수와 상관 없으므로 $x$를 $y$로 바꿔도 상관 없다. 여기서 굳이 $x, y$로 바꾸는 것은 문제를 $xy$ 평면에서의 적분으로 생각하기 위해서다. 이렇게 하면 문제를 기하학적으로 생각할 수 있게 된다.</p><img src="/2014/integral-problem/graph.png" alt="graph.png"><p>일단 평면에 대한 적분 문제라 생각하고 나면, $xy$ 좌표계에서 극좌표계로 바꿔 평면 전체에 대해 적분해도 결과는 같을 것이다.</p><span>$$\begin{aligned} x &amp;= r\cos \theta \\ y &amp;= r\sin \theta \\ dx\,dy &amp;= r\,dr\,d\theta \end{aligned}$$</span><p>$xy$ 평면 전체는 $ -\infty \lt x \lt \infty$, $-\infty \lt y \lt \infty$다. 극좌표로 나타내면 $r, \theta$의 범위는 $0 \le r \lt \infty$, $0 \le \theta \lt 2\pi$라 할 수 있다. 따라서 정적분을 다음과 같이 고쳐 쓸 수 있다. 이제 적분을 쉽게 할 수 있다. (아래 식이 이해되지 않을 경우, $r^2=t$로 치환해 적분하면 쉽다)</p><span>$$\begin{aligned} I^2 &amp;= \int_0^{2\pi}\int_0^\infty e^{-r^2} r\,dr\,d\theta \\ &amp;= 2\pi \int_0^\infty e^{-r^2} r\,dr \\ &amp;= 2\pi \left[-\frac{e^{-r^2}}{2}\right]_{r=0}^{r=\infty} \\ &amp;= {\pi} \end{aligned}$$</span><p>따라서…</p><span>$$\begin{aligned} I = \sqrt \pi \end{aligned}$$</span><p>수학도 그렇고 물리학도 그렇고 좌표를 변환하면 어렵던 문제가 쉽게 풀리는 경우가 많다. 이 적분 문제는 좌표 변환을 통해 어려운 문제를 쉬운 문제로 바꾼 대표적인 예라 할 수 있겠다.</p><p>좌표계는 <strong>생각하는 방식</strong> 또는 <strong>생각의 기준</strong>이라 할 수 있다. 프로그램을 작성할 때도 복잡해보이는 문제가 생각의 방식을 바꾸면 쉽게 풀리는 경우가 많다. <strong>어떤 문제가 지나치게 복잡하다면 부적절한 좌표계에서 문제 풀이를 시도하고 있는 것이 아닌지 확인해볼 필요가 있다.</strong></p></section><footer class="post-footer"><nav id="article-nav"><a href="/2014/visual-regexp/" id="article-nav-newer" class="article-nav-link-wrap"><strong class="article-nav-caption label label-default">Prev</strong> <span class="article-nav-title">visual-regexp</span> </a><a href="/2014/hexo-math/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">Hexo: 블로그에 수식 표현하기</span> <strong class="article-nav-caption label label-default">Next</strong></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2015 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script type="text/javascript" src="/js/jquery.fitvids.js"></script><script type="text/javascript" src="/js/index.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
       processEscapes: true
     }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
+  });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
       tex2jax: {
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
+    });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
         var all = MathJax.Hub.getAllJax(), i;
         for(i=0; i < all.length; i += 1) {
             all[i].SourceElement().parentNode.className += ' has-jax';
         }
-    });
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-2098194-3', 'auto');
-  ga('require', 'displayfeatures');
-  ga('send', 'pageview');
-
-</script>
-
-
-<script type="text/javascript">
-    var disqus_shortname = 'ntalbs-stuff';
-
-    (function(){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-  <!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
+    });</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script>!function(e,a,t,n,c,s,o){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,s=a.createElement(t),o=a.getElementsByTagName(t)[0],s.async=1,s.src=n,o.parentNode.insertBefore(s,o)}(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
       processEscapes: true
     }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
+  });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
       tex2jax: {
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
+    });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
         var all = MathJax.Hub.getAllJax(), i;
         for(i=0; i < all.length; i += 1) {
             all[i].SourceElement().parentNode.className += ' has-jax';
         }
-    });
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-</body>
-</html>
+    });</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

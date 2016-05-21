@@ -1,246 +1,36 @@
-<!DOCTYPE html>
-<html>
-  
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>SQL*Plus에서 &#39;&amp;&#39;가 포함된 문자열을 변수로 인식하지 않게 하기 | ntalbs&#39; stuff</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <link rel="shortcut icon" href="/images/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css">
-
-  <meta name="generator" content="ntalbs' stuff"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-  
-  
-  
-
-  
-</head>
-
-  <body class="home-template">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
-      <a class="navbar-brand" href="/">@ntalbs' stuff</a>
-    </div>
-    <div class="navbar-items collapsed" id="nav-items">
-      <ul>
-        
-        <li><a href="/archives">Archives</a></li>
-        
-        <li><a href="/tags">Tags</a></li>
-        
-        <li><a href="/about">About</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div id="progress">
-  <div id="bar"></div>
-  <div class="container">
-    <div id="scroll-title">SQL*Plus에서 '&'가 포함된 문자열을 변수로 인식하지 않게 하기</div>
-  </div>
-</div>
-
-<header class="site-head">
-  <div class="container">
-    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-  </div>
-</header>
-
-
-
-<main class="container" role="main">
-  <article class="post">
-    <header>
-      <p class="post-meta">
-        <time datetime="2008-11-01T00:00:00.000Z" itemprop="datePublished">2008-11-01</time>
-         on <a href='/tags/DB/' style='margin:0 5px;'>DB</a><a href='/tags/Oracle/' style='margin:0 5px;'>Oracle</a><a href='/tags/SqlPlus/' style='margin:0 5px;'>SqlPlus</a>
-      </p>
-      <h1 class="post-title">SQL*Plus에서 '&'가 포함된 문자열을 변수로 인식하지 않게 하기</h1>
-    </header>
-
-    
-
-    <section class="post-content">
-      <p>문자열 자체에 <code>&amp;</code>가 포함되어 있는 경우 SQL*Plus에서 <code>&amp;</code> 뒤의 단어를 변수로 인식해 그에 대한 값의 입력을 요구한다.<br><a id="more"></a></p>
-<pre class="console">
+<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>SQL*Plus에서 &#39;&amp;&#39;가 포함된 문자열을 변수로 인식하지 않게 하기 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">SQL*Plus에서 '&'가 포함된 문자열을 변수로 인식하지 않게 하기</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2008-11-01T00:00:00.000Z" itemprop="datePublished">2008-11-01</time> on <a href="/tags/DB/" style="margin:0 5px">DB</a><a href="/tags/Oracle/" style="margin:0 5px">Oracle</a><a href="/tags/SqlPlus/" style="margin:0 5px">SqlPlus</a></p><h1 class="post-title">SQL*Plus에서 '&'가 포함된 문자열을 변수로 인식하지 않게 하기</h1></header><section class="post-content"><p>문자열 자체에 <code>&amp;</code>가 포함되어 있는 경우 SQL*Plus에서 <code>&amp;</code> 뒤의 단어를 변수로 인식해 그에 대한 값의 입력을 요구한다.<br><a id="more"></a></p><pre class="console">
 SQL&gt; update tbl set a = 'hello&amp;world' where ...
 Enter value for world: _  &lt -- 입력을 기다림
-</pre>
-
-<h2 id="해결-방법-1"><a href="#해결-방법-1" class="headerlink" title="해결 방법 1"></a>해결 방법 1</h2><p>다음 명령을 실행시킨 후 SQL 실행.</p>
-<pre class="console">
+</pre><h2 id="해결-방법-1"><a href="#해결-방법-1" class="headerlink" title="해결 방법 1"></a>해결 방법 1</h2><p>다음 명령을 실행시킨 후 SQL 실행.</p><pre class="console">
 SQL&gt; set define off
-</pre>
-
-<p>(SQL*Plus User’s Guide and Reference 참조.)</p>
-<h2 id="해결-방법-2"><a href="#해결-방법-2" class="headerlink" title="해결 방법 2"></a>해결 방법 2</h2><p>다음과 같은 식으로 문자열 변경 (편법…)</p>
-<pre class="console">
+</pre><p>(SQL*Plus User’s Guide and Reference 참조.)</p><h2 id="해결-방법-2"><a href="#해결-방법-2" class="headerlink" title="해결 방법 2"></a>해결 방법 2</h2><p>다음과 같은 식으로 문자열 변경 (편법…)</p><pre class="console">
 'hello&world' --&gt; 'hello&'||'world'
-</pre>
-
-<p>(문자열이 많을 경우 노가다 작업이 될 수 있음.)</p>
-
-    </section>
-
-    <footer class="post-footer">
-      
-      <nav id="article-nav">
-        
-        <a href="/2008/comp-indexes/" id="article-nav-newer" class="article-nav-link-wrap">
-          <strong class="article-nav-caption label label-default">Prev</strong>
-          <span class="article-nav-title">인덱스 비교</span>
-        </a>
-        
-        
-        <a href="/2008/select-shell/" id="article-nav-older" class="article-nav-link-wrap">
-          <span class="article-nav-title">SELECT 결과를 shell 변수로 가져오기</span>
-          <strong class="article-nav-caption label label-default">Next</strong>
-        </a>
-        
-      </nav>
-      
-
-      <section id="comment">
-        
-        <div id="disqus_thread">
-          <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        </div>
-        
-      </section>
-    </footer>
-  </article>
-</main>
-
-
-    <footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">&copy; 2008-2015 <a href="/about">ntalbs</a></section>
-     <section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section>
-  </div>
-</footer>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
+</pre><p>(문자열이 많을 경우 노가다 작업이 될 수 있음.)</p></section><footer class="post-footer"><nav id="article-nav"><a href="/2008/select-shell/" id="article-nav-newer" class="article-nav-link-wrap"><strong class="article-nav-caption label label-default">Prev</strong> <span class="article-nav-title">SELECT 결과를 shell 변수로 가져오기</span> </a><a href="/2008/long-move-ts/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">LONG형 컬럼을 가진 테이블의 테이블스페이스 이동</span> <strong class="article-nav-caption label label-default">Next</strong></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2015 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script type="text/javascript" src="/js/jquery.fitvids.js"></script><script type="text/javascript" src="/js/index.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
       processEscapes: true
     }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
+  });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
       tex2jax: {
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
+    });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
         var all = MathJax.Hub.getAllJax(), i;
         for(i=0; i < all.length; i += 1) {
             all[i].SourceElement().parentNode.className += ' has-jax';
         }
-    });
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-2098194-3', 'auto');
-  ga('require', 'displayfeatures');
-  ga('send', 'pageview');
-
-</script>
-
-
-<script type="text/javascript">
-    var disqus_shortname = 'ntalbs-stuff';
-
-    (function(){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-  <!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
+    });</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script>!function(e,a,t,n,c,s,o){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,s=a.createElement(t),o=a.getElementsByTagName(t)[0],s.async=1,s.src=n,o.parentNode.insertBefore(s,o)}(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
       processEscapes: true
     }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
+  });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
       tex2jax: {
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
+    });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
         var all = MathJax.Hub.getAllJax(), i;
         for(i=0; i < all.length; i += 1) {
             all[i].SourceElement().parentNode.className += ' has-jax';
         }
-    });
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-</body>
-</html>
+    });</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

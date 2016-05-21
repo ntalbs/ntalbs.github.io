@@ -1,271 +1,37 @@
-<!DOCTYPE html>
-<html>
-  
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>프로젝트 오일러 53 | ntalbs&#39; stuff</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <link rel="shortcut icon" href="/images/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css">
-
-  <meta name="generator" content="ntalbs' stuff"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-  
-  
-  
-
-  
-</head>
-
-  <body class="home-template">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
-      <a class="navbar-brand" href="/">@ntalbs' stuff</a>
-    </div>
-    <div class="navbar-items collapsed" id="nav-items">
-      <ul>
-        
-        <li><a href="/archives">Archives</a></li>
-        
-        <li><a href="/tags">Tags</a></li>
-        
-        <li><a href="/about">About</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div id="progress">
-  <div id="bar"></div>
-  <div class="container">
-    <div id="scroll-title">프로젝트 오일러 53</div>
-  </div>
-</div>
-
-<header class="site-head">
-  <div class="container">
-    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-  </div>
-</header>
-
-
-
-<main class="container" role="main">
-  <article class="post">
-    <header>
-      <p class="post-meta">
-        <time datetime="2016-03-01T00:00:00.000Z" itemprop="datePublished">2016-03-01</time>
-         on <a href='/tags/Project-Euler/' style='margin:0 5px;'>Project-Euler</a><a href='/tags/Clojure/' style='margin:0 5px;'>Clojure</a>
-      </p>
-      <h1 class="post-title">프로젝트 오일러 53</h1>
-    </header>
-
-    
-
-    <section class="post-content">
-      <blockquote>
-<p>$1 \le n \le 100$ 일때 $_nC_r$의 값이 1백만을 넘는 경우는 모두 몇 번?<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=53" target="_blank" rel="external">[국어]</a> <a href="https://projecteuler.net/problem=53" target="_blank" rel="external">[영어]</a></p>
-</blockquote>
-<p>$r \le n$이므로 $n$, $r$의 범위는 각각 $1 \le n \le 100$, $1 \le r \le 100$이다. 모든 $n$, $r$ 조합에 대해 $_nC_r$을 구한다 해도 경우의 수는 $100 \times 100 = 10,000$이므로 금방 구할 수 있다.<a id="more"></a></p>
-<h2 id="방법-1"><a href="#방법-1" class="headerlink" title="방법 1"></a>방법 1</h2><p><code>factorial</code> 함수를 이용하면 $_nC_r$을 구하는 함수는 다음과 같이 간단히 작성할 수 있다.</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">ns</span></span> p053</span><br><span class="line">  (<span class="symbol">:require</span> [util <span class="symbol">:refer</span> [factorial]]))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> c [n r]</span><br><span class="line">  (/ (<span class="name">factorial</span> n) (<span class="name">*'</span> (<span class="name">factorial</span> r) (<span class="name">factorial</span> (<span class="name"><span class="builtin-name">-</span></span> n r)))))</span><br></pre></td></tr></table></figure>
-<p>이제 $n$과 $r$을 $1$부터 $100$까지 바꿔가며 $_nC_r$ 값을 구한 다음 $1,000,000$ 이상의 값만 필터링해 개수를 세면 된다.</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve []</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">for</span></span> [n (<span class="name"><span class="builtin-name">range</span></span> <span class="number">1</span> <span class="number">101</span>) r (<span class="name"><span class="builtin-name">range</span></span> <span class="number">1</span> <span class="number">101</span>)] (<span class="name">c</span> n r))</span><br><span class="line">       (<span class="name"><span class="builtin-name">filter</span></span> #(<span class="name"><span class="builtin-name">&gt;=</span></span> % <span class="number">1000000</span>))</span><br><span class="line">       count))</span><br></pre></td></tr></table></figure>
-<p>실행 결과는 다음과 같다.</p>
-<pre class="console">
+<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>프로젝트 오일러 53 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">프로젝트 오일러 53</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2016-03-01T00:00:00.000Z" itemprop="datePublished">2016-03-01</time> on <a href="/tags/Project-Euler/" style="margin:0 5px">Project-Euler</a><a href="/tags/Clojure/" style="margin:0 5px">Clojure</a></p><h1 class="post-title">프로젝트 오일러 53</h1></header><section class="post-content"><blockquote><p>$1 \le n \le 100$ 일때 $_nC_r$의 값이 1백만을 넘는 경우는 모두 몇 번?<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=53" target="_blank" rel="external">[국어]</a> <a href="https://projecteuler.net/problem=53" target="_blank" rel="external">[영어]</a></p></blockquote><p>$r \le n$이므로 $n$, $r$의 범위는 각각 $1 \le n \le 100$, $1 \le r \le 100$이다. 모든 $n$, $r$ 조합에 대해 $_nC_r$을 구한다 해도 경우의 수는 $100 \times 100 = 10,000$이므로 금방 구할 수 있다.<a id="more"></a></p><h2 id="방법-1"><a href="#방법-1" class="headerlink" title="방법 1"></a>방법 1</h2><p><code>factorial</code> 함수를 이용하면 $_nC_r$을 구하는 함수는 다음과 같이 간단히 작성할 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">ns</span></span> p053</span><br><span class="line">  (<span class="symbol">:require</span> [util <span class="symbol">:refer</span> [factorial]]))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> c [n r]</span><br><span class="line">  (/ (<span class="name">factorial</span> n) (<span class="name">*'</span> (<span class="name">factorial</span> r) (<span class="name">factorial</span> (<span class="name"><span class="builtin-name">-</span></span> n r)))))</span><br></pre></td></tr></table></figure><p>이제 $n$과 $r$을 $1$부터 $100$까지 바꿔가며 $_nC_r$ 값을 구한 다음 $1,000,000$ 이상의 값만 필터링해 개수를 세면 된다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve []</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">for</span></span> [n (<span class="name"><span class="builtin-name">range</span></span> <span class="number">1</span> <span class="number">101</span>) r (<span class="name"><span class="builtin-name">range</span></span> <span class="number">1</span> <span class="number">101</span>)] (<span class="name">c</span> n r))</span><br><span class="line">       (<span class="name"><span class="builtin-name">filter</span></span> #(<span class="name"><span class="builtin-name">&gt;=</span></span> % <span class="number">1000000</span>))</span><br><span class="line">       count))</span><br></pre></td></tr></table></figure><p>실행 결과는 다음과 같다.</p><pre class="console">
 p053=> (time (solve))
 "Elapsed time: 485.574244 msecs"
 40??
-</pre>
-
-<p>이렇게 풀고 나니 문제가 너무 쉽다. 사실 이 문제의 의도는 큰 수를 계산하는 방법에 관한 것일 듯 하다. 팩토리얼은 매우 빠르게 증가하기 때문에 $21!$ 정도만 돼도 <code>Long/MAX_VALUE</code>를 가볍게 넘는다. 따라서 Clojure의 <code>BigInt</code>와 <code>*&#39;</code> 함수가 아니었다면 답을 구하기가 쉽지 않았을 것이다.</p>
-<h2 id="방법-2"><a href="#방법-2" class="headerlink" title="방법 2"></a>방법 2</h2><p>$_nC_r$을 구할 때 팩토리얼을 먼저 계산하지 않고 나눗셈을 먼저 계산하면 계산 과정에서 숫자가 지나치게 커지는 문제를 피할 수 있다.</p>
-<span>$$\begin{aligned}
-_nC_r &amp;= \frac{n!}{r!(n-r)!} \\
-&amp;= \frac{n \times (n-1) \times ... \times 1}{r \times (r-1)\times ... \times 1 \times (n-r) \times (n-r-1) \times ... \times 1} \\
-&amp;= \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times ... \times \left(\frac{n-r}{n-r}\right) \times ... \times \left(\frac{1}{1}\right)
-\end{aligned}$$</span><!-- Has MathJax -->
-<p>수식을 잘 보면 알겠지만 분모와 분자의 항 수가 항상 같다. 그리고 C/C++ 또는 Java의 <code>/</code> 연산자는 결과가 항상 정수인 것과 달리 Clojure의 <code>/</code> 함수는 분수(<code>clojure.lang.Ratio</code>)를 리턴할 수 있다. 이 두 가지를 이용하면 다음과 같이 나눗셈을 먼저 계산하로록 함수를 작성할 수 있다.</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> c [n r]</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> [nu (<span class="name"><span class="builtin-name">range</span></span> <span class="number">1</span> (<span class="name"><span class="builtin-name">inc</span></span> n))</span><br><span class="line">        de (<span class="name"><span class="builtin-name">concat</span></span> (<span class="name"><span class="builtin-name">range</span></span> <span class="number">1</span> (<span class="name"><span class="builtin-name">inc</span></span> r)) (<span class="name"><span class="builtin-name">range</span></span> <span class="number">1</span> (<span class="name"><span class="builtin-name">inc</span></span> (<span class="name"><span class="builtin-name">-</span></span> n r))))]</span><br><span class="line">    (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">map</span></span> / nu de)</span><br><span class="line">         (<span class="name"><span class="builtin-name">reduce</span></span> *))))</span><br></pre></td></tr></table></figure>
-<p><code>factorial</code>을 사용하지 않고도 비교적 간단하게 $_nC_r$을 계산할 수 있게 되었다. 계산하면서 중간 결과가 <code>BigInt</code>로 확장되지 않아서 그런지 실행 속도도 빨라졌다.</p>
-<pre class="console">
+</pre><p>이렇게 풀고 나니 문제가 너무 쉽다. 사실 이 문제의 의도는 큰 수를 계산하는 방법에 관한 것일 듯 하다. 팩토리얼은 매우 빠르게 증가하기 때문에 $21!$ 정도만 돼도 <code>Long/MAX_VALUE</code>를 가볍게 넘는다. 따라서 Clojure의 <code>BigInt</code>와 <code>*&#39;</code> 함수가 아니었다면 답을 구하기가 쉽지 않았을 것이다.</p><h2 id="방법-2"><a href="#방법-2" class="headerlink" title="방법 2"></a>방법 2</h2><p>$_nC_r$을 구할 때 팩토리얼을 먼저 계산하지 않고 나눗셈을 먼저 계산하면 계산 과정에서 숫자가 지나치게 커지는 문제를 피할 수 있다.</p><span>$$\begin{aligned} _nC_r &amp;= \frac{n!}{r!(n-r)!} \\ &amp;= \frac{n \times (n-1) \times ... \times 1}{r \times (r-1)\times ... \times 1 \times (n-r) \times (n-r-1) \times ... \times 1} \\ &amp;= \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times ... \times \left(\frac{n-r}{n-r}\right) \times ... \times \left(\frac{1}{1}\right) \end{aligned}$$</span><p>수식을 잘 보면 알겠지만 분모와 분자의 항 수가 항상 같다. 그리고 C/C++ 또는 Java의 <code>/</code> 연산자는 결과가 항상 정수인 것과 달리 Clojure의 <code>/</code> 함수는 분수(<code>clojure.lang.Ratio</code>)를 리턴할 수 있다. 이 두 가지를 이용하면 다음과 같이 나눗셈을 먼저 계산하로록 함수를 작성할 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> c [n r]</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> [nu (<span class="name"><span class="builtin-name">range</span></span> <span class="number">1</span> (<span class="name"><span class="builtin-name">inc</span></span> n))</span><br><span class="line">        de (<span class="name"><span class="builtin-name">concat</span></span> (<span class="name"><span class="builtin-name">range</span></span> <span class="number">1</span> (<span class="name"><span class="builtin-name">inc</span></span> r)) (<span class="name"><span class="builtin-name">range</span></span> <span class="number">1</span> (<span class="name"><span class="builtin-name">inc</span></span> (<span class="name"><span class="builtin-name">-</span></span> n r))))]</span><br><span class="line">    (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">map</span></span> / nu de)</span><br><span class="line">         (<span class="name"><span class="builtin-name">reduce</span></span> *))))</span><br></pre></td></tr></table></figure><p><code>factorial</code>을 사용하지 않고도 비교적 간단하게 $_nC_r$을 계산할 수 있게 되었다. 계산하면서 중간 결과가 <code>BigInt</code>로 확장되지 않아서 그런지 실행 속도도 빨라졌다.</p><pre class="console">
 p053=> (time (solve))
 "Elapsed time: 161.206506 msecs"
 40??
-</pre>
-
-<p>수식을 자세히 살펴보면 뒷부분은 1로 약분되기 때문에 굳이 계산하지 않아도 된다.</p>
-<span>$$\begin{aligned}
-\require{cancel}
-_nC_r &amp;= \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times ... \times \left(\frac{\cancel{n-r}}{\cancel{n-r}}\right) \times ... \times \left(\frac{\cancel{1}}{\cancel{1}}\right) \\
-&amp; = \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times ... \times \left(\frac{n-r+1}{1}\right)
-\end{aligned}$$</span><!-- Has MathJax -->
-<p>따라서 함수를 다음과 같이 수정할 수 있다.</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> c [n r]</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> [nu (<span class="name"><span class="builtin-name">range</span></span> (<span class="name"><span class="builtin-name">inc</span></span> (<span class="name"><span class="builtin-name">-</span></span> n r)) (<span class="name"><span class="builtin-name">inc</span></span> n))</span><br><span class="line">        de (<span class="name"><span class="builtin-name">range</span></span> <span class="number">1</span> (<span class="name"><span class="builtin-name">inc</span></span> r))]</span><br><span class="line">    (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">map</span></span> / nu de)</span><br><span class="line">         (<span class="name"><span class="builtin-name">reduce</span></span> *))))</span><br></pre></td></tr></table></figure>
-<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
-<li><a href="https://github.com/ntalbs/euler/blob/master/src/p053.clj" target="_blank" rel="external">프로젝트 오일러 53 풀이 소스 코드</a></li>
-<li><a href="/2015/project-euler-015/">프로젝트 오일러 15</a><br>팩토리얼 함수를 구현하는 방법에 대해 설명했다.</li>
-</ul>
-
-    </section>
-
-    <footer class="post-footer">
-      
-      <nav id="article-nav">
-        
-        <a href="/2016/emacs-recent-files/" id="article-nav-newer" class="article-nav-link-wrap">
-          <strong class="article-nav-caption label label-default">Prev</strong>
-          <span class="article-nav-title">Emacs: 최근 사용한 파일 목록</span>
-        </a>
-        
-        
-        <a href="/2016/project-euler-052/" id="article-nav-older" class="article-nav-link-wrap">
-          <span class="article-nav-title">프로젝트 오일러 52</span>
-          <strong class="article-nav-caption label label-default">Next</strong>
-        </a>
-        
-      </nav>
-      
-
-      <section id="comment">
-        
-        <div id="disqus_thread">
-          <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        </div>
-        
-      </section>
-    </footer>
-  </article>
-</main>
-
-
-    <footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">&copy; 2008-2015 <a href="/about">ntalbs</a></section>
-     <section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section>
-  </div>
-</footer>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
+</pre><p>수식을 자세히 살펴보면 뒷부분은 1로 약분되기 때문에 굳이 계산하지 않아도 된다.</p><span>$$\begin{aligned} \require{cancel} _nC_r &amp;= \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times ... \times \left(\frac{\cancel{n-r}}{\cancel{n-r}}\right) \times ... \times \left(\frac{\cancel{1}}{\cancel{1}}\right) \\ &amp; = \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times ... \times \left(\frac{n-r+1}{1}\right) \end{aligned}$$</span><p>따라서 함수를 다음과 같이 수정할 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> c [n r]</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> [nu (<span class="name"><span class="builtin-name">range</span></span> (<span class="name"><span class="builtin-name">inc</span></span> (<span class="name"><span class="builtin-name">-</span></span> n r)) (<span class="name"><span class="builtin-name">inc</span></span> n))</span><br><span class="line">        de (<span class="name"><span class="builtin-name">range</span></span> <span class="number">1</span> (<span class="name"><span class="builtin-name">inc</span></span> r))]</span><br><span class="line">    (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">map</span></span> / nu de)</span><br><span class="line">         (<span class="name"><span class="builtin-name">reduce</span></span> *))))</span><br></pre></td></tr></table></figure><h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p053.clj" target="_blank" rel="external">프로젝트 오일러 53 풀이 소스 코드</a></li><li><a href="/2015/project-euler-015/">프로젝트 오일러 15</a><br>팩토리얼 함수를 구현하는 방법에 대해 설명했다.</li></ul></section><footer class="post-footer"><nav id="article-nav"><a href="/2016/emacs-recent-files/" id="article-nav-newer" class="article-nav-link-wrap"><strong class="article-nav-caption label label-default">Prev</strong> <span class="article-nav-title">Emacs: 최근 사용한 파일 목록</span> </a><a href="/2016/project-euler-052/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">프로젝트 오일러 52</span> <strong class="article-nav-caption label label-default">Next</strong></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2015 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script type="text/javascript" src="/js/jquery.fitvids.js"></script><script type="text/javascript" src="/js/index.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
       processEscapes: true
     }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
+  });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
       tex2jax: {
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
+    });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
         var all = MathJax.Hub.getAllJax(), i;
         for(i=0; i < all.length; i += 1) {
             all[i].SourceElement().parentNode.className += ' has-jax';
         }
-    });
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-2098194-3', 'auto');
-  ga('require', 'displayfeatures');
-  ga('send', 'pageview');
-
-</script>
-
-
-<script type="text/javascript">
-    var disqus_shortname = 'ntalbs-stuff';
-
-    (function(){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-  <!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
+    });</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script>!function(e,a,t,n,c,s,o){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,s=a.createElement(t),o=a.getElementsByTagName(t)[0],s.async=1,s.src=n,o.parentNode.insertBefore(s,o)}(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
       processEscapes: true
     }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
+  });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
       tex2jax: {
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
+    });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
         var all = MathJax.Hub.getAllJax(), i;
         for(i=0; i < all.length; i += 1) {
             all[i].SourceElement().parentNode.className += ' has-jax';
         }
-    });
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-</body>
-</html>
+    });</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

@@ -1,263 +1,33 @@
-<!DOCTYPE html>
-<html>
-  
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>프로젝트 오일러 17 | ntalbs&#39; stuff</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <link rel="shortcut icon" href="/images/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css">
-
-  <meta name="generator" content="ntalbs' stuff"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-  
-  
-  
-
-  
-</head>
-
-  <body class="home-template">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
-      <a class="navbar-brand" href="/">@ntalbs' stuff</a>
-    </div>
-    <div class="navbar-items collapsed" id="nav-items">
-      <ul>
-        
-        <li><a href="/archives">Archives</a></li>
-        
-        <li><a href="/tags">Tags</a></li>
-        
-        <li><a href="/about">About</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div id="progress">
-  <div id="bar"></div>
-  <div class="container">
-    <div id="scroll-title">프로젝트 오일러 17</div>
-  </div>
-</div>
-
-<header class="site-head">
-  <div class="container">
-    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-  </div>
-</header>
-
-
-
-<main class="container" role="main">
-  <article class="post">
-    <header>
-      <p class="post-meta">
-        <time datetime="2015-04-13T23:00:00.000Z" itemprop="datePublished">2015-04-14</time>
-         on <a href='/tags/Project-Euler/' style='margin:0 5px;'>Project-Euler</a><a href='/tags/Clojure/' style='margin:0 5px;'>Clojure</a>
-      </p>
-      <h1 class="post-title">프로젝트 오일러 17</h1>
-    </header>
-
-    
-
-    <section class="post-content">
-      <blockquote>
-<p>1부터 1000까지 영어로 썼을 때 사용된 글자의 개수는?<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=17" target="_blank" rel="external">[국어]</a> <a href="https://projecteuler.net/problem=17" target="_blank" rel="external">[영어]</a></p>
-</blockquote>
-<p>별로 어려운 문제는 아니다. 다음과 같은 절차로 풀 수 있다.</p>
-<ol>
-<li>숫자를 입력하면 그 수에 대한 영어 문자열을 리턴하는 함수를 작성한 다음</li>
-<li>이 함수를 이용해 1~1000을 영어 문자열로 매핑</li>
-<li>문자열을 모두 연결해 문자열에서 공백과 하이픈(‘-‘)을 제거</li>
-<li>3에서 구한 문자열의 길이 계산</li>
-</ol>
-<p>즉 주어진 숫자를 문자열로 바꾸는 함수를 구현하면 문제를 간단히 풀 수 있다.<a id="more"></a> 먼저 다음과 같이 1~19까지 숫자를 영어로 표현한 벡터를 만든다. 1~19까지는 특이한 패턴이 없기 때문에 다 써줘야 한다.</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">def</span></span> one2nineteen</span><br><span class="line">  [<span class="string">""</span> <span class="string">"one"</span> <span class="string">"two"</span> <span class="string">"three"</span> <span class="string">"four"</span> <span class="string">"five"</span> <span class="string">"six"</span> <span class="string">"seven"</span> <span class="string">"eight"</span> <span class="string">"nine"</span> <span class="string">"ten"</span></span><br><span class="line">   <span class="string">"eleven"</span> <span class="string">"twelve"</span> <span class="string">"thirteen"</span> <span class="string">"fourteen"</span> <span class="string">"fifteen"</span></span><br><span class="line">   <span class="string">"sixteen"</span> <span class="string">"seventeen"</span> <span class="string">"eighteen"</span> <span class="string">"nineteen"</span>])</span><br></pre></td></tr></table></figure>
-<p>숫자와 인덱스를 일치시키기 위해 맨 앞에 빈 문자열을 추가했다. 이제 20 이하의 수에 대해 다음 함수를 이용해 영어로 바꿀 수 있다.</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> s-under20 [n]</span><br><span class="line">  &#123;<span class="symbol">:pre</span> [(<span class="name"><span class="builtin-name">&lt;=</span></span> <span class="number">0</span> n)]&#125;</span><br><span class="line">  (<span class="name">one2nineteen</span> n))</span><br></pre></td></tr></table></figure>
-<p>20 이상 100 미만의 수는 10의 자리 수와 1의 자리 수를 나누어 영어로 매핑할 수 있다.</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">def</span></span> deca</span><br><span class="line">  [<span class="string">""</span> <span class="string">"ten"</span> <span class="string">"twenty"</span> <span class="string">"thirty"</span> <span class="string">"forty"</span> <span class="string">"fifty"</span> <span class="string">"sixty"</span> <span class="string">"seventy"</span> <span class="string">"eighty"</span> <span class="string">"ninety"</span>])</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> s-under100 [n]</span><br><span class="line">  (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">&lt;</span></span> n <span class="number">20</span>)</span><br><span class="line">    (<span class="name">s-under20</span> n)</span><br><span class="line">    (<span class="name"><span class="builtin-name">let</span></span> [d1 (<span class="name">deca</span> (<span class="name"><span class="builtin-name">quot</span></span> n <span class="number">10</span>))</span><br><span class="line">          d2 (<span class="name">s-under20</span> (<span class="name"><span class="builtin-name">mod</span></span> n <span class="number">10</span>))]</span><br><span class="line">      (<span class="name"><span class="builtin-name">format</span></span> <span class="string">"%s %s"</span> d1 d2))))</span><br></pre></td></tr></table></figure>
-<p><code>deca</code> 벡터에서 앞 두 요소에 빈 문자열과 <code>&quot;ten&quot;</code> 역시 숫자와 인덱스를 맞추기 위한 것이다. 인자가 20보다 작으면 <code>s-under20</code>을 호출한다. 1의 자리 수를 영어로 매핑하는 데도 <code>s-under20</code>을 재활용했다.</p>
-<p>100 이상 1000 미만의 수는 100의 자리 수와 나머지 자리 수로 나누어 생각할 수 있다. 100 이상의 수는 항상 “X hundred” 또는 “X hundred and Y”의 패턴으로 표현된다. 100의 자리 수인 X에 대해서는 앞에서 구현한 <code>s-under20</code>를, 나머지 자리 수에 대해서는 <code>s-under100</code>을 재활용할 수 있다.</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> s-under1000 [n]</span><br><span class="line">  (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">&lt;</span></span> n <span class="number">100</span>)</span><br><span class="line">    (<span class="name">s-under100</span> n)</span><br><span class="line">    (<span class="name"><span class="builtin-name">let</span></span> [d1 (<span class="name">s-under20</span> (<span class="name"><span class="builtin-name">quot</span></span> n <span class="number">100</span>))</span><br><span class="line">          last-two-digits (<span class="name">s-under100</span> (<span class="name"><span class="builtin-name">mod</span></span> n <span class="number">100</span>))]</span><br><span class="line">      (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">empty?</span></span> last-two-digits)</span><br><span class="line">        (<span class="name"><span class="builtin-name">format</span></span> <span class="string">"%s hundred"</span> d1)</span><br><span class="line">        (<span class="name"><span class="builtin-name">format</span></span> <span class="string">"%s hundred and %s"</span> d1 last-two-digits)))))</span><br></pre></td></tr></table></figure>
-<p>문제의 범위가 1000까지이므로, 1000 이하의 숫자를 영어 문자열로 바꿔주는 <code>num2str</code>을 다음과 같이 구현한다.</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> num2str [n]</span><br><span class="line">  (<span class="name"><span class="builtin-name">cond</span></span> (<span class="name"><span class="builtin-name">&lt;</span></span> n <span class="number">1000</span>) (<span class="name">s-under1000</span> n)</span><br><span class="line">        (<span class="name"><span class="builtin-name">=</span></span> n <span class="number">1000</span>) <span class="string">"one thousand"</span></span><br><span class="line">        <span class="symbol">:else</span> <span class="literal">nil</span>))</span><br></pre></td></tr></table></figure>
-<p>구현이 단순하고 별도 로직이 없으므로 <code>num2str</code>을 <code>s-under1000</code>과 합칠 수도 있겠지만, 함수 이름과 숫자 범위의 일관성을 고려해 이렇게 남겨 두었다.</p>
-<p>이제 다음과 같이 1부터 1000까지 숫자를 문자열로 변환해 공백을 제거한 다음 글자수를 세면 문제의 답을 구할 수 있다.</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve []</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">range</span></span> <span class="number">1</span> (<span class="name"><span class="builtin-name">inc</span></span> <span class="number">1000</span>))</span><br><span class="line">       (<span class="name"><span class="builtin-name">map</span></span> num2str)</span><br><span class="line">       (<span class="name"><span class="builtin-name">apply</span></span> str)</span><br><span class="line">       (<span class="name"><span class="builtin-name">filter</span></span> #(<span class="name"><span class="builtin-name">not=</span></span> % \space))</span><br><span class="line">       count))</span><br></pre></td></tr></table></figure>
-<p>실행 결과는 다음과 같다.</p>
-<pre class="console">
+<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>프로젝트 오일러 17 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">프로젝트 오일러 17</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2015-04-13T23:00:00.000Z" itemprop="datePublished">2015-04-14</time> on <a href="/tags/Project-Euler/" style="margin:0 5px">Project-Euler</a><a href="/tags/Clojure/" style="margin:0 5px">Clojure</a></p><h1 class="post-title">프로젝트 오일러 17</h1></header><section class="post-content"><blockquote><p>1부터 1000까지 영어로 썼을 때 사용된 글자의 개수는?<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=17" target="_blank" rel="external">[국어]</a> <a href="https://projecteuler.net/problem=17" target="_blank" rel="external">[영어]</a></p></blockquote><p>별로 어려운 문제는 아니다. 다음과 같은 절차로 풀 수 있다.</p><ol><li>숫자를 입력하면 그 수에 대한 영어 문자열을 리턴하는 함수를 작성한 다음</li><li>이 함수를 이용해 1~1000을 영어 문자열로 매핑</li><li>문자열을 모두 연결해 문자열에서 공백과 하이픈(‘-‘)을 제거</li><li>3에서 구한 문자열의 길이 계산</li></ol><p>즉 주어진 숫자를 문자열로 바꾸는 함수를 구현하면 문제를 간단히 풀 수 있다.<a id="more"></a> 먼저 다음과 같이 1~19까지 숫자를 영어로 표현한 벡터를 만든다. 1~19까지는 특이한 패턴이 없기 때문에 다 써줘야 한다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">def</span></span> one2nineteen</span><br><span class="line">  [<span class="string">""</span> <span class="string">"one"</span> <span class="string">"two"</span> <span class="string">"three"</span> <span class="string">"four"</span> <span class="string">"five"</span> <span class="string">"six"</span> <span class="string">"seven"</span> <span class="string">"eight"</span> <span class="string">"nine"</span> <span class="string">"ten"</span></span><br><span class="line">   <span class="string">"eleven"</span> <span class="string">"twelve"</span> <span class="string">"thirteen"</span> <span class="string">"fourteen"</span> <span class="string">"fifteen"</span></span><br><span class="line">   <span class="string">"sixteen"</span> <span class="string">"seventeen"</span> <span class="string">"eighteen"</span> <span class="string">"nineteen"</span>])</span><br></pre></td></tr></table></figure><p>숫자와 인덱스를 일치시키기 위해 맨 앞에 빈 문자열을 추가했다. 이제 20 이하의 수에 대해 다음 함수를 이용해 영어로 바꿀 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> s-under20 [n]</span><br><span class="line">  &#123;<span class="symbol">:pre</span> [(<span class="name"><span class="builtin-name">&lt;=</span></span> <span class="number">0</span> n)]&#125;</span><br><span class="line">  (<span class="name">one2nineteen</span> n))</span><br></pre></td></tr></table></figure><p>20 이상 100 미만의 수는 10의 자리 수와 1의 자리 수를 나누어 영어로 매핑할 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">def</span></span> deca</span><br><span class="line">  [<span class="string">""</span> <span class="string">"ten"</span> <span class="string">"twenty"</span> <span class="string">"thirty"</span> <span class="string">"forty"</span> <span class="string">"fifty"</span> <span class="string">"sixty"</span> <span class="string">"seventy"</span> <span class="string">"eighty"</span> <span class="string">"ninety"</span>])</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> s-under100 [n]</span><br><span class="line">  (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">&lt;</span></span> n <span class="number">20</span>)</span><br><span class="line">    (<span class="name">s-under20</span> n)</span><br><span class="line">    (<span class="name"><span class="builtin-name">let</span></span> [d1 (<span class="name">deca</span> (<span class="name"><span class="builtin-name">quot</span></span> n <span class="number">10</span>))</span><br><span class="line">          d2 (<span class="name">s-under20</span> (<span class="name"><span class="builtin-name">mod</span></span> n <span class="number">10</span>))]</span><br><span class="line">      (<span class="name"><span class="builtin-name">format</span></span> <span class="string">"%s %s"</span> d1 d2))))</span><br></pre></td></tr></table></figure><p><code>deca</code> 벡터에서 앞 두 요소에 빈 문자열과 <code>&quot;ten&quot;</code> 역시 숫자와 인덱스를 맞추기 위한 것이다. 인자가 20보다 작으면 <code>s-under20</code>을 호출한다. 1의 자리 수를 영어로 매핑하는 데도 <code>s-under20</code>을 재활용했다.</p><p>100 이상 1000 미만의 수는 100의 자리 수와 나머지 자리 수로 나누어 생각할 수 있다. 100 이상의 수는 항상 “X hundred” 또는 “X hundred and Y”의 패턴으로 표현된다. 100의 자리 수인 X에 대해서는 앞에서 구현한 <code>s-under20</code>를, 나머지 자리 수에 대해서는 <code>s-under100</code>을 재활용할 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> s-under1000 [n]</span><br><span class="line">  (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">&lt;</span></span> n <span class="number">100</span>)</span><br><span class="line">    (<span class="name">s-under100</span> n)</span><br><span class="line">    (<span class="name"><span class="builtin-name">let</span></span> [d1 (<span class="name">s-under20</span> (<span class="name"><span class="builtin-name">quot</span></span> n <span class="number">100</span>))</span><br><span class="line">          last-two-digits (<span class="name">s-under100</span> (<span class="name"><span class="builtin-name">mod</span></span> n <span class="number">100</span>))]</span><br><span class="line">      (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">empty?</span></span> last-two-digits)</span><br><span class="line">        (<span class="name"><span class="builtin-name">format</span></span> <span class="string">"%s hundred"</span> d1)</span><br><span class="line">        (<span class="name"><span class="builtin-name">format</span></span> <span class="string">"%s hundred and %s"</span> d1 last-two-digits)))))</span><br></pre></td></tr></table></figure><p>문제의 범위가 1000까지이므로, 1000 이하의 숫자를 영어 문자열로 바꿔주는 <code>num2str</code>을 다음과 같이 구현한다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> num2str [n]</span><br><span class="line">  (<span class="name"><span class="builtin-name">cond</span></span> (<span class="name"><span class="builtin-name">&lt;</span></span> n <span class="number">1000</span>) (<span class="name">s-under1000</span> n)</span><br><span class="line">        (<span class="name"><span class="builtin-name">=</span></span> n <span class="number">1000</span>) <span class="string">"one thousand"</span></span><br><span class="line">        <span class="symbol">:else</span> <span class="literal">nil</span>))</span><br></pre></td></tr></table></figure><p>구현이 단순하고 별도 로직이 없으므로 <code>num2str</code>을 <code>s-under1000</code>과 합칠 수도 있겠지만, 함수 이름과 숫자 범위의 일관성을 고려해 이렇게 남겨 두었다.</p><p>이제 다음과 같이 1부터 1000까지 숫자를 문자열로 변환해 공백을 제거한 다음 글자수를 세면 문제의 답을 구할 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve []</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">range</span></span> <span class="number">1</span> (<span class="name"><span class="builtin-name">inc</span></span> <span class="number">1000</span>))</span><br><span class="line">       (<span class="name"><span class="builtin-name">map</span></span> num2str)</span><br><span class="line">       (<span class="name"><span class="builtin-name">apply</span></span> str)</span><br><span class="line">       (<span class="name"><span class="builtin-name">filter</span></span> #(<span class="name"><span class="builtin-name">not=</span></span> % \space))</span><br><span class="line">       count))</span><br></pre></td></tr></table></figure><p>실행 결과는 다음과 같다.</p><pre class="console">
 p017=> (time (solve))
 "Elapsed time: 29.426658 msecs"
 211??
-</pre>
-
-<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
-<li><a href="https://github.com/ntalbs/euler/blob/master/src/p017.clj" target="_blank" rel="external">프로젝트 오일러 17 풀이 소스 코드</a></li>
-<li><a href="http://www.mathblog.dk/project-euler-17-letters-in-the-numbers-1-1000/" target="_blank" rel="external">17번 다른 풀이</a><br>컴퓨터를 사용하지 않고 문자열 패턴 분석과 간단한 계산으로 답을 구한다. 이 풀이를 보면 위와 같이 푼 것이 무식해 보인다.</li>
-</ul>
-
-    </section>
-
-    <footer class="post-footer">
-      
-      <nav id="article-nav">
-        
-        <a href="/2015/stop-using-tail/" id="article-nav-newer" class="article-nav-link-wrap">
-          <strong class="article-nav-caption label label-default">Prev</strong>
-          <span class="article-nav-title">tail은 이제 그만</span>
-        </a>
-        
-        
-        <a href="/2015/sitemap-generator/" id="article-nav-older" class="article-nav-link-wrap">
-          <span class="article-nav-title">Sitemap 생성기</span>
-          <strong class="article-nav-caption label label-default">Next</strong>
-        </a>
-        
-      </nav>
-      
-
-      <section id="comment">
-        
-        <div id="disqus_thread">
-          <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        </div>
-        
-      </section>
-    </footer>
-  </article>
-</main>
-
-
-    <footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">&copy; 2008-2015 <a href="/about">ntalbs</a></section>
-     <section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section>
-  </div>
-</footer>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
+</pre><h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p017.clj" target="_blank" rel="external">프로젝트 오일러 17 풀이 소스 코드</a></li><li><a href="http://www.mathblog.dk/project-euler-17-letters-in-the-numbers-1-1000/" target="_blank" rel="external">17번 다른 풀이</a><br>컴퓨터를 사용하지 않고 문자열 패턴 분석과 간단한 계산으로 답을 구한다. 이 풀이를 보면 위와 같이 푼 것이 무식해 보인다.</li></ul></section><footer class="post-footer"><nav id="article-nav"><a href="/2015/stop-using-tail/" id="article-nav-newer" class="article-nav-link-wrap"><strong class="article-nav-caption label label-default">Prev</strong> <span class="article-nav-title">tail은 이제 그만</span> </a><a href="/2015/sitemap-generator/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">Sitemap 생성기</span> <strong class="article-nav-caption label label-default">Next</strong></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2015 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script type="text/javascript" src="/js/jquery.fitvids.js"></script><script type="text/javascript" src="/js/index.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
       processEscapes: true
     }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
+  });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
       tex2jax: {
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
+    });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
         var all = MathJax.Hub.getAllJax(), i;
         for(i=0; i < all.length; i += 1) {
             all[i].SourceElement().parentNode.className += ' has-jax';
         }
-    });
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-2098194-3', 'auto');
-  ga('require', 'displayfeatures');
-  ga('send', 'pageview');
-
-</script>
-
-
-<script type="text/javascript">
-    var disqus_shortname = 'ntalbs-stuff';
-
-    (function(){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-  <!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
+    });</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script>!function(e,a,t,n,c,s,o){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,s=a.createElement(t),o=a.getElementsByTagName(t)[0],s.async=1,s.src=n,o.parentNode.insertBefore(s,o)}(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
       processEscapes: true
     }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
+  });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
       tex2jax: {
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
+    });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
         var all = MathJax.Hub.getAllJax(), i;
         for(i=0; i < all.length; i += 1) {
             all[i].SourceElement().parentNode.className += ' has-jax';
         }
-    });
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-</body>
-</html>
+    });</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

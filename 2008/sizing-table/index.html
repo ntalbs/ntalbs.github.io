@@ -1,241 +1,29 @@
-<!DOCTYPE html>
-<html>
-  
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>오라클 테이블 용량 산정 방법 | ntalbs&#39; stuff</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <link rel="shortcut icon" href="/images/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css">
-
-  <meta name="generator" content="ntalbs' stuff"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-  
-  
-  
-
-  
-</head>
-
-  <body class="home-template">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
-      <a class="navbar-brand" href="/">@ntalbs' stuff</a>
-    </div>
-    <div class="navbar-items collapsed" id="nav-items">
-      <ul>
-        
-        <li><a href="/archives">Archives</a></li>
-        
-        <li><a href="/tags">Tags</a></li>
-        
-        <li><a href="/about">About</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div id="progress">
-  <div id="bar"></div>
-  <div class="container">
-    <div id="scroll-title">오라클 테이블 용량 산정 방법</div>
-  </div>
-</div>
-
-<header class="site-head">
-  <div class="container">
-    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-  </div>
-</header>
-
-
-
-<main class="container" role="main">
-  <article class="post">
-    <header>
-      <p class="post-meta">
-        <time datetime="2008-11-17T00:00:00.000Z" itemprop="datePublished">2008-11-17</time>
-         on <a href='/tags/DB/' style='margin:0 5px;'>DB</a><a href='/tags/Oracle/' style='margin:0 5px;'>Oracle</a>
-      </p>
-      <h1 class="post-title">오라클 테이블 용량 산정 방법</h1>
-    </header>
-
-    
-
-    <section class="post-content">
-      <p>테이블 용량을 산정하기 위한 방법인데 조금 복잡하다. 어차피 추정이므로 간단하게 $(평균\ row \ 크기) \times (데이터\ 건수) \times 1.3$ 정도로 해도 되지 않을까 싶다.<br><a id="more"></a></p>
-<h4 id="①-블록-헤더-크기-계산"><a href="#①-블록-헤더-크기-계산" class="headerlink" title="① 블록 헤더 크기 계산"></a>① 블록 헤더 크기 계산</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(Block header) = (fixed header) + (variable transaction header)</span><br><span class="line">    + (table directory) + (row directory)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(fixed header) = 57</span><br><span class="line">(variable transaction header) = 23 * initrans</span><br><span class="line">(table header) = 4 * n,	n은 테이블 개수, clustered table이 아닌 경우 1</span><br><span class="line">(row directory) = 2 * x, x는 블록당 row 수</span><br></pre></td></tr></table></figure>
-<h4 id="②-블록당-가용-데이터-공간-크기-계산"><a href="#②-블록당-가용-데이터-공간-크기-계산" class="headerlink" title="② 블록당 가용 데이터 공간 크기 계산"></a>② 블록당 가용 데이터 공간 크기 계산</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(Available data space)</span><br><span class="line">  = ((Block size) - (Block header)) * (1 - pctfeee/100)</span><br><span class="line">  = ((Block size) - ①) * (1 - pctfeee/100)</span><br></pre></td></tr></table></figure>
-<h4 id="③-평균-row-크기-계산"><a href="#③-평균-row-크기-계산" class="headerlink" title="③ 평균 row 크기 계산"></a>③ 평균 row 크기 계산</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(Average row size) = (row header) + F + 3*V + D</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(row header) = clustered table이 아닌 경우 3</span><br><span class="line">F = 크기가 250byte 미만인 컬럼 수</span><br><span class="line">V = 크기가 250byte 이상인 컬럼 수</span><br><span class="line">D = combined column length</span><br></pre></td></tr></table></figure>
-<h4 id="④-블록당-평균-row-수-계산"><a href="#④-블록당-평균-row-수-계산" class="headerlink" title="④ 블록당 평균 row 수 계산"></a>④ 블록당 평균 row 수 계산</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(Average number of rows per block) = x = TRUNC( ② / ③ )</span><br></pre></td></tr></table></figure>
-<p>이 식에서 x를 구함.</p>
-<h4 id="⑤-테이블당-필요-블록-수-계산"><a href="#⑤-테이블당-필요-블록-수-계산" class="headerlink" title="⑤ 테이블당 필요 블록 수 계산"></a>⑤ 테이블당 필요 블록 수 계산</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(Number of blocks for table) = (total number of rows) / ④</span><br></pre></td></tr></table></figure>
-<h4 id="⑥-테이블-용량-계산"><a href="#⑥-테이블-용량-계산" class="headerlink" title="⑥ 테이블 용량 계산"></a>⑥ 테이블 용량 계산</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(Table size) = ⑤ * (Block size)</span><br></pre></td></tr></table></figure>
-<h3 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h3><ul>
-<li>Meta-Link: Doc ID: 10640.1</li>
-</ul>
-
-    </section>
-
-    <footer class="post-footer">
-      
-      <nav id="article-nav">
-        
-        <a href="/2008/v$session/" id="article-nav-newer" class="article-nav-link-wrap">
-          <strong class="article-nav-caption label label-default">Prev</strong>
-          <span class="article-nav-title">v$session과 주변 테이블 정리</span>
-        </a>
-        
-        
-        <a href="/2008/extract-ddl/" id="article-nav-older" class="article-nav-link-wrap">
-          <span class="article-nav-title">특정 스키마 DDL 추출</span>
-          <strong class="article-nav-caption label label-default">Next</strong>
-        </a>
-        
-      </nav>
-      
-
-      <section id="comment">
-        
-        <div id="disqus_thread">
-          <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        </div>
-        
-      </section>
-    </footer>
-  </article>
-</main>
-
-
-    <footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">&copy; 2008-2015 <a href="/about">ntalbs</a></section>
-     <section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section>
-  </div>
-</footer>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
+<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>오라클 테이블 용량 산정 방법 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">오라클 테이블 용량 산정 방법</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2008-11-17T00:00:00.000Z" itemprop="datePublished">2008-11-17</time> on <a href="/tags/DB/" style="margin:0 5px">DB</a><a href="/tags/Oracle/" style="margin:0 5px">Oracle</a></p><h1 class="post-title">오라클 테이블 용량 산정 방법</h1></header><section class="post-content"><p>테이블 용량을 산정하기 위한 방법인데 조금 복잡하다. 어차피 추정이므로 간단하게 $(평균\ row \ 크기) \times (데이터\ 건수) \times 1.3$ 정도로 해도 되지 않을까 싶다.<br><a id="more"></a></p><h4 id="①-블록-헤더-크기-계산"><a href="#①-블록-헤더-크기-계산" class="headerlink" title="① 블록 헤더 크기 계산"></a>① 블록 헤더 크기 계산</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(Block header) = (fixed header) + (variable transaction header)</span><br><span class="line">    + (table directory) + (row directory)</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(fixed header) = 57</span><br><span class="line">(variable transaction header) = 23 * initrans</span><br><span class="line">(table header) = 4 * n,	n은 테이블 개수, clustered table이 아닌 경우 1</span><br><span class="line">(row directory) = 2 * x, x는 블록당 row 수</span><br></pre></td></tr></table></figure><h4 id="②-블록당-가용-데이터-공간-크기-계산"><a href="#②-블록당-가용-데이터-공간-크기-계산" class="headerlink" title="② 블록당 가용 데이터 공간 크기 계산"></a>② 블록당 가용 데이터 공간 크기 계산</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(Available data space)</span><br><span class="line">  = ((Block size) - (Block header)) * (1 - pctfeee/100)</span><br><span class="line">  = ((Block size) - ①) * (1 - pctfeee/100)</span><br></pre></td></tr></table></figure><h4 id="③-평균-row-크기-계산"><a href="#③-평균-row-크기-계산" class="headerlink" title="③ 평균 row 크기 계산"></a>③ 평균 row 크기 계산</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(Average row size) = (row header) + F + 3*V + D</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(row header) = clustered table이 아닌 경우 3</span><br><span class="line">F = 크기가 250byte 미만인 컬럼 수</span><br><span class="line">V = 크기가 250byte 이상인 컬럼 수</span><br><span class="line">D = combined column length</span><br></pre></td></tr></table></figure><h4 id="④-블록당-평균-row-수-계산"><a href="#④-블록당-평균-row-수-계산" class="headerlink" title="④ 블록당 평균 row 수 계산"></a>④ 블록당 평균 row 수 계산</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(Average number of rows per block) = x = TRUNC( ② / ③ )</span><br></pre></td></tr></table></figure><p>이 식에서 x를 구함.</p><h4 id="⑤-테이블당-필요-블록-수-계산"><a href="#⑤-테이블당-필요-블록-수-계산" class="headerlink" title="⑤ 테이블당 필요 블록 수 계산"></a>⑤ 테이블당 필요 블록 수 계산</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(Number of blocks for table) = (total number of rows) / ④</span><br></pre></td></tr></table></figure><h4 id="⑥-테이블-용량-계산"><a href="#⑥-테이블-용량-계산" class="headerlink" title="⑥ 테이블 용량 계산"></a>⑥ 테이블 용량 계산</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(Table size) = ⑤ * (Block size)</span><br></pre></td></tr></table></figure><h3 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h3><ul><li>Meta-Link: Doc ID: 10640.1</li></ul></section><footer class="post-footer"><nav id="article-nav"><a href="/2008/v$session/" id="article-nav-newer" class="article-nav-link-wrap"><strong class="article-nav-caption label label-default">Prev</strong> <span class="article-nav-title">v$session과 주변 테이블 정리</span> </a><a href="/2008/extract-ddl/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">특정 스키마 DDL 추출</span> <strong class="article-nav-caption label label-default">Next</strong></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2015 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script type="text/javascript" src="/js/jquery.fitvids.js"></script><script type="text/javascript" src="/js/index.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
       processEscapes: true
     }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
+  });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
       tex2jax: {
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
+    });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
         var all = MathJax.Hub.getAllJax(), i;
         for(i=0; i < all.length; i += 1) {
             all[i].SourceElement().parentNode.className += ' has-jax';
         }
-    });
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-2098194-3', 'auto');
-  ga('require', 'displayfeatures');
-  ga('send', 'pageview');
-
-</script>
-
-
-<script type="text/javascript">
-    var disqus_shortname = 'ntalbs-stuff';
-
-    (function(){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-  <!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
+    });</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script>!function(e,a,t,n,c,s,o){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,s=a.createElement(t),o=a.getElementsByTagName(t)[0],s.async=1,s.src=n,o.parentNode.insertBefore(s,o)}(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
       processEscapes: true
     }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
+  });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
       tex2jax: {
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
+    });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
         var all = MathJax.Hub.getAllJax(), i;
         for(i=0; i < all.length; i += 1) {
             all[i].SourceElement().parentNode.className += ' has-jax';
         }
-    });
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-</body>
-</html>
+    });</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

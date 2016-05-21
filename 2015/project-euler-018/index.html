@@ -1,283 +1,46 @@
-<!DOCTYPE html>
-<html>
-  
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>프로젝트 오일러 18 | ntalbs&#39; stuff</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <link rel="shortcut icon" href="/images/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css">
-
-  <meta name="generator" content="ntalbs' stuff"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-  
-  
-  
-
-  
-</head>
-
-  <body class="home-template">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
-      <a class="navbar-brand" href="/">@ntalbs' stuff</a>
-    </div>
-    <div class="navbar-items collapsed" id="nav-items">
-      <ul>
-        
-        <li><a href="/archives">Archives</a></li>
-        
-        <li><a href="/tags">Tags</a></li>
-        
-        <li><a href="/about">About</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div id="progress">
-  <div id="bar"></div>
-  <div class="container">
-    <div id="scroll-title">프로젝트 오일러 18</div>
-  </div>
-</div>
-
-<header class="site-head">
-  <div class="container">
-    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-  </div>
-</header>
-
-
-
-<main class="container" role="main">
-  <article class="post">
-    <header>
-      <p class="post-meta">
-        <time datetime="2015-05-11T23:00:00.000Z" itemprop="datePublished">2015-05-12</time>
-         on <a href='/tags/Project-Euler/' style='margin:0 5px;'>Project-Euler</a><a href='/tags/Clojure/' style='margin:0 5px;'>Clojure</a>
-      </p>
-      <h1 class="post-title">프로젝트 오일러 18</h1>
-    </header>
-
-    
-
-    <section class="post-content">
-      <blockquote>
-<p>삼각형을 따라 내려가면서 합이 최대가 되는 경로 찾기<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=18" target="_blank" rel="external">[국어]</a> <a href="https://projecteuler.net/problem=18" target="_blank" rel="external">[영어]</a></p>
-</blockquote>
-<p>문제를 언듯 보면 합이 최대가 되는 경로를 찾아야 할 것 같지만, 명시적으로 경로를 구하지 않더라도 경로의 합이 최대가 되는 값을 찾을 수 있다.<a id="more"></a></p>
-<h2 id="알고리즘"><a href="#알고리즘" class="headerlink" title="알고리즘"></a>알고리즘</h2><p>삼각형 꼭데기에 서 있다면 왼쪽 또는 오른쪽으로 내려갈 수 있다. 합이 최대가 되는 경로로 가려면 왼쪽으로 갔을 때의 합이 큰지 오른쪽으로 갔을 때의 합이 큰지 알아야 한다. 합이 최대가 되는 경로에 있는 숫자의 합을 그 삼각형의 <strong>최대합</strong>이라 한다면, 왼쪽 삼각형의 최대합이 큰지 오른쪽 삼각형의 최대합이 큰지 알아야 한다.</p>
-<img src="/2015/project-euler-018/triangle1.png" alt="triangle1.png" title="">
-<p>오른쪽 삼각형과 왼쪽 삼각형의 꼭데기에서도 마찬가지다. 다시 말해 왼쪽으로 갈지 오른쪽으로 갈지를 결정하려면 그 아래 단계에 있는 삼각형의 최대합을 구할 수 있어야 한다. 아래 단계의 삼각형 역시 여러 층으로 되어 있다면 바로 최대합을 구할 수 없다. 계속해서 아래 단계로 내려가 거의 바닥까지 내려가면 아래 단계 삼각형이 이층 삼각형이 된다.</p>
-<img src="/2015/project-euler-018/triangle2.png" alt="triangle2.png" title="">
-<p>이층 삼각형이라면 왼쪽으로 갔을 때의 합과 오른쪽으로 갔을 때의 합을 바로 구할 수 있다. 맨 아래 단계에 있는 각 삼각형에 대해 왼쪽 합과 오른쪽의 합을 구해 큰 값을 꼭데기에 쓴다면 다음 그림과 같이 될 것이다. 맨 아래층은 더 이상 필요하지 않으므로 지울 수 있다.</p>
-<img src="/2015/project-euler-018/triangle3.png" alt="triangle3.png" title="">
-<p>다시 맨 아래 두 층에 대해서 같은 작업을 반복한다. 이런 식으로 밑에서부터 왼쪽 합과 오른쪽 합 중 큰 값을 계속해 위로 올리는 식으로 작업할 수 있다.</p>
-<img src="/2015/project-euler-018/triangle4.png" alt="triangle4.png" title="">
-<p>계속 올라가다보면 결국 맨 위 두 층만 남을 것이다. 여기서 왼쪽과 오른쪽의 합 중 큰 값을 구하면 그 값이 합이 최대가 되는 경로의 합이 된다.</p>
-<h2 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h2><p>다음 그림과 같이 맨 아래층과 그 위층의 숫자에 대해 한 번은 왼쪽으로, 또 한 번은 오른쪽으로 더한 다음 큰 값을 구하는 작업을 반복해 문제를 풀 수 있다.</p>
-<img src="/2015/project-euler-018/triangle5.png" alt="triangle5.png" title="">
-<p>각 층을 <code>vector</code>로 표현하면, 위 그림의 맨 아래층은 <code>[8 5 9 3]</code>으로, 그 윗층은 <code>[2 4 6]</code>으로 나타낼 수 있다.</p>
-<pre class="console">
+<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>프로젝트 오일러 18 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">프로젝트 오일러 18</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2015-05-11T23:00:00.000Z" itemprop="datePublished">2015-05-12</time> on <a href="/tags/Project-Euler/" style="margin:0 5px">Project-Euler</a><a href="/tags/Clojure/" style="margin:0 5px">Clojure</a></p><h1 class="post-title">프로젝트 오일러 18</h1></header><section class="post-content"><blockquote><p>삼각형을 따라 내려가면서 합이 최대가 되는 경로 찾기<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=18" target="_blank" rel="external">[국어]</a> <a href="https://projecteuler.net/problem=18" target="_blank" rel="external">[영어]</a></p></blockquote><p>문제를 언듯 보면 합이 최대가 되는 경로를 찾아야 할 것 같지만, 명시적으로 경로를 구하지 않더라도 경로의 합이 최대가 되는 값을 찾을 수 있다.<a id="more"></a></p><h2 id="알고리즘"><a href="#알고리즘" class="headerlink" title="알고리즘"></a>알고리즘</h2><p>삼각형 꼭데기에 서 있다면 왼쪽 또는 오른쪽으로 내려갈 수 있다. 합이 최대가 되는 경로로 가려면 왼쪽으로 갔을 때의 합이 큰지 오른쪽으로 갔을 때의 합이 큰지 알아야 한다. 합이 최대가 되는 경로에 있는 숫자의 합을 그 삼각형의 <strong>최대합</strong>이라 한다면, 왼쪽 삼각형의 최대합이 큰지 오른쪽 삼각형의 최대합이 큰지 알아야 한다.</p><img src="/2015/project-euler-018/triangle1.png" alt="triangle1.png"><p>오른쪽 삼각형과 왼쪽 삼각형의 꼭데기에서도 마찬가지다. 다시 말해 왼쪽으로 갈지 오른쪽으로 갈지를 결정하려면 그 아래 단계에 있는 삼각형의 최대합을 구할 수 있어야 한다. 아래 단계의 삼각형 역시 여러 층으로 되어 있다면 바로 최대합을 구할 수 없다. 계속해서 아래 단계로 내려가 거의 바닥까지 내려가면 아래 단계 삼각형이 이층 삼각형이 된다.</p><img src="/2015/project-euler-018/triangle2.png" alt="triangle2.png"><p>이층 삼각형이라면 왼쪽으로 갔을 때의 합과 오른쪽으로 갔을 때의 합을 바로 구할 수 있다. 맨 아래 단계에 있는 각 삼각형에 대해 왼쪽 합과 오른쪽의 합을 구해 큰 값을 꼭데기에 쓴다면 다음 그림과 같이 될 것이다. 맨 아래층은 더 이상 필요하지 않으므로 지울 수 있다.</p><img src="/2015/project-euler-018/triangle3.png" alt="triangle3.png"><p>다시 맨 아래 두 층에 대해서 같은 작업을 반복한다. 이런 식으로 밑에서부터 왼쪽 합과 오른쪽 합 중 큰 값을 계속해 위로 올리는 식으로 작업할 수 있다.</p><img src="/2015/project-euler-018/triangle4.png" alt="triangle4.png"><p>계속 올라가다보면 결국 맨 위 두 층만 남을 것이다. 여기서 왼쪽과 오른쪽의 합 중 큰 값을 구하면 그 값이 합이 최대가 되는 경로의 합이 된다.</p><h2 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h2><p>다음 그림과 같이 맨 아래층과 그 위층의 숫자에 대해 한 번은 왼쪽으로, 또 한 번은 오른쪽으로 더한 다음 큰 값을 구하는 작업을 반복해 문제를 풀 수 있다.</p><img src="/2015/project-euler-018/triangle5.png" alt="triangle5.png"><p>각 층을 <code>vector</code>로 표현하면, 위 그림의 맨 아래층은 <code>[8 5 9 3]</code>으로, 그 윗층은 <code>[2 4 6]</code>으로 나타낼 수 있다.</p><pre class="console">
 user=> (def ls [8 5 9 3])
 #'user/ls
 user=> (def us [2 4 6])
 #'user/us
-</pre>
-
-<p>왼쪽으로 갔을 때의 합과 오른쪽으로 갔을 때의 합은 다음과 같이 간단히 구할 수 있다.</p>
-<pre class="console">
+</pre><p>왼쪽으로 갔을 때의 합과 오른쪽으로 갔을 때의 합은 다음과 같이 간단히 구할 수 있다.</p><pre class="console">
 user=> (map + ls us)
 (10 9 15)
 user=> (map + (rest ls) us)
 (7 13 9)
-</pre>
-
-<p>그리고 두 합 중 큰 값은 다음과 같이 구할 수 있다.</p>
-<pre class="console">
+</pre><p>그리고 두 합 중 큰 값은 다음과 같이 구할 수 있다.</p><pre class="console">
 user=> (map max *1 *2)
 (10 13 15)
-</pre>
-
-<p>이걸 다음과 같이 함수로 만들 수 있다.</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">fn</span></span> [ls us] (<span class="name"><span class="builtin-name">map</span></span> max (<span class="name"><span class="builtin-name">map</span></span> + ls us) (<span class="name"><span class="builtin-name">map</span></span> + (<span class="name"><span class="builtin-name">rest</span></span> ls) us)))</span><br></pre></td></tr></table></figure>
-<p>위 함수를 맨 아래 층과 그 위층에 적용하고, 그 결과와 바로 위층에 적용하며 위로 올라가야 한다. 이런 작업에는 <code>reduce</code>를 사용하는 것이 알맞다. 따라서 다음과 같이 <code>find-max</code> 함수를 정의할 수 있다.</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> find-max [t]</span><br><span class="line">  (<span class="name"><span class="builtin-name">reduce</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [ls us] (<span class="name"><span class="builtin-name">map</span></span> max (<span class="name"><span class="builtin-name">map</span></span> + ls us) (<span class="name"><span class="builtin-name">map</span></span> + (<span class="name"><span class="builtin-name">rest</span></span> ls) us))) t))</span><br></pre></td></tr></table></figure>
-<p>이제 문제를 다 푼 것과 마찬가지다. 삼각형은 다음과 같이 <code>vector</code>의 <code>vector</code>로 정의할 수 있다. 삼각형의 밑에서부터 올라가며 작업해야 한다. <code>fold-right</code>가 있다면 좋겠지만 Clojure 기본 함수에는 <code>fold-right</code>가 없으므로 <code>reverse</code>한 후 <code>reduce</code> 하면 같은 효과를 얻을 수 있다. 여기서는 계산 편의를 위해 미리 <code>reverse</code> 해 두었다.</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">def</span></span> triangle</span><br><span class="line">  (<span class="name"><span class="builtin-name">reverse</span></span></span><br><span class="line">   [[<span class="number">75</span>]</span><br><span class="line">    [<span class="number">95</span> <span class="number">64</span>]</span><br><span class="line">    [<span class="number">17</span> <span class="number">47</span> <span class="number">82</span>]</span><br><span class="line">    [<span class="number">18</span> <span class="number">35</span> <span class="number">87</span> <span class="number">10</span>]</span><br><span class="line">    [<span class="number">20</span>  <span class="number">4</span> <span class="number">82</span> <span class="number">47</span> <span class="number">65</span>]</span><br><span class="line">    [<span class="number">19</span>  <span class="number">1</span> <span class="number">23</span> <span class="number">75</span>  <span class="number">3</span> <span class="number">34</span>]</span><br><span class="line">    [<span class="number">88</span>  <span class="number">2</span> <span class="number">77</span> <span class="number">73</span>  <span class="number">7</span> <span class="number">63</span> <span class="number">67</span>]</span><br><span class="line">    [<span class="number">99</span> <span class="number">65</span>  <span class="number">4</span> <span class="number">28</span>  <span class="number">6</span> <span class="number">16</span> <span class="number">70</span> <span class="number">92</span>]</span><br><span class="line">    [<span class="number">41</span> <span class="number">41</span> <span class="number">26</span> <span class="number">56</span> <span class="number">83</span> <span class="number">40</span> <span class="number">80</span> <span class="number">70</span> <span class="number">33</span>]</span><br><span class="line">    [<span class="number">41</span> <span class="number">48</span> <span class="number">72</span> <span class="number">33</span> <span class="number">47</span> <span class="number">32</span> <span class="number">37</span> <span class="number">16</span> <span class="number">94</span> <span class="number">29</span>]</span><br><span class="line">    [<span class="number">53</span> <span class="number">71</span> <span class="number">44</span> <span class="number">65</span> <span class="number">25</span> <span class="number">43</span> <span class="number">91</span> <span class="number">52</span> <span class="number">97</span> <span class="number">51</span> <span class="number">14</span>]</span><br><span class="line">    [<span class="number">70</span> <span class="number">11</span> <span class="number">33</span> <span class="number">28</span> <span class="number">77</span> <span class="number">73</span> <span class="number">17</span> <span class="number">78</span> <span class="number">39</span> <span class="number">68</span> <span class="number">17</span> <span class="number">57</span>]</span><br><span class="line">    [<span class="number">91</span> <span class="number">71</span> <span class="number">52</span> <span class="number">38</span> <span class="number">17</span> <span class="number">14</span> <span class="number">91</span> <span class="number">43</span> <span class="number">58</span> <span class="number">50</span> <span class="number">27</span> <span class="number">29</span> <span class="number">48</span>]</span><br><span class="line">    [<span class="number">63</span> <span class="number">66</span>  <span class="number">4</span> <span class="number">68</span> <span class="number">89</span> <span class="number">53</span> <span class="number">67</span> <span class="number">30</span> <span class="number">73</span> <span class="number">16</span> <span class="number">69</span> <span class="number">87</span> <span class="number">40</span> <span class="number">31</span>]</span><br><span class="line">    [ <span class="number">4</span> <span class="number">62</span> <span class="number">98</span> <span class="number">27</span> <span class="number">23</span>  <span class="number">9</span> <span class="number">70</span> <span class="number">98</span> <span class="number">73</span> <span class="number">93</span> <span class="number">38</span> <span class="number">53</span> <span class="number">60</span>  <span class="number">4</span> <span class="number">23</span>]]))</span><br></pre></td></tr></table></figure>
-<p><code>find-max</code> 함수에 <code>triangle</code>을 인자로 주어 호출하면 답을 구할 수 있다.</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve []</span><br><span class="line">  (<span class="name">find-max</span> triangle))</span><br></pre></td></tr></table></figure>
-<p>실행 결과는 다음과 같다.</p>
-<pre class="console">
+</pre><p>이걸 다음과 같이 함수로 만들 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">fn</span></span> [ls us] (<span class="name"><span class="builtin-name">map</span></span> max (<span class="name"><span class="builtin-name">map</span></span> + ls us) (<span class="name"><span class="builtin-name">map</span></span> + (<span class="name"><span class="builtin-name">rest</span></span> ls) us)))</span><br></pre></td></tr></table></figure><p>위 함수를 맨 아래 층과 그 위층에 적용하고, 그 결과와 바로 위층에 적용하며 위로 올라가야 한다. 이런 작업에는 <code>reduce</code>를 사용하는 것이 알맞다. 따라서 다음과 같이 <code>find-max</code> 함수를 정의할 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> find-max [t]</span><br><span class="line">  (<span class="name"><span class="builtin-name">reduce</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [ls us] (<span class="name"><span class="builtin-name">map</span></span> max (<span class="name"><span class="builtin-name">map</span></span> + ls us) (<span class="name"><span class="builtin-name">map</span></span> + (<span class="name"><span class="builtin-name">rest</span></span> ls) us))) t))</span><br></pre></td></tr></table></figure><p>이제 문제를 다 푼 것과 마찬가지다. 삼각형은 다음과 같이 <code>vector</code>의 <code>vector</code>로 정의할 수 있다. 삼각형의 밑에서부터 올라가며 작업해야 한다. <code>fold-right</code>가 있다면 좋겠지만 Clojure 기본 함수에는 <code>fold-right</code>가 없으므로 <code>reverse</code>한 후 <code>reduce</code> 하면 같은 효과를 얻을 수 있다. 여기서는 계산 편의를 위해 미리 <code>reverse</code> 해 두었다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">def</span></span> triangle</span><br><span class="line">  (<span class="name"><span class="builtin-name">reverse</span></span></span><br><span class="line">   [[<span class="number">75</span>]</span><br><span class="line">    [<span class="number">95</span> <span class="number">64</span>]</span><br><span class="line">    [<span class="number">17</span> <span class="number">47</span> <span class="number">82</span>]</span><br><span class="line">    [<span class="number">18</span> <span class="number">35</span> <span class="number">87</span> <span class="number">10</span>]</span><br><span class="line">    [<span class="number">20</span>  <span class="number">4</span> <span class="number">82</span> <span class="number">47</span> <span class="number">65</span>]</span><br><span class="line">    [<span class="number">19</span>  <span class="number">1</span> <span class="number">23</span> <span class="number">75</span>  <span class="number">3</span> <span class="number">34</span>]</span><br><span class="line">    [<span class="number">88</span>  <span class="number">2</span> <span class="number">77</span> <span class="number">73</span>  <span class="number">7</span> <span class="number">63</span> <span class="number">67</span>]</span><br><span class="line">    [<span class="number">99</span> <span class="number">65</span>  <span class="number">4</span> <span class="number">28</span>  <span class="number">6</span> <span class="number">16</span> <span class="number">70</span> <span class="number">92</span>]</span><br><span class="line">    [<span class="number">41</span> <span class="number">41</span> <span class="number">26</span> <span class="number">56</span> <span class="number">83</span> <span class="number">40</span> <span class="number">80</span> <span class="number">70</span> <span class="number">33</span>]</span><br><span class="line">    [<span class="number">41</span> <span class="number">48</span> <span class="number">72</span> <span class="number">33</span> <span class="number">47</span> <span class="number">32</span> <span class="number">37</span> <span class="number">16</span> <span class="number">94</span> <span class="number">29</span>]</span><br><span class="line">    [<span class="number">53</span> <span class="number">71</span> <span class="number">44</span> <span class="number">65</span> <span class="number">25</span> <span class="number">43</span> <span class="number">91</span> <span class="number">52</span> <span class="number">97</span> <span class="number">51</span> <span class="number">14</span>]</span><br><span class="line">    [<span class="number">70</span> <span class="number">11</span> <span class="number">33</span> <span class="number">28</span> <span class="number">77</span> <span class="number">73</span> <span class="number">17</span> <span class="number">78</span> <span class="number">39</span> <span class="number">68</span> <span class="number">17</span> <span class="number">57</span>]</span><br><span class="line">    [<span class="number">91</span> <span class="number">71</span> <span class="number">52</span> <span class="number">38</span> <span class="number">17</span> <span class="number">14</span> <span class="number">91</span> <span class="number">43</span> <span class="number">58</span> <span class="number">50</span> <span class="number">27</span> <span class="number">29</span> <span class="number">48</span>]</span><br><span class="line">    [<span class="number">63</span> <span class="number">66</span>  <span class="number">4</span> <span class="number">68</span> <span class="number">89</span> <span class="number">53</span> <span class="number">67</span> <span class="number">30</span> <span class="number">73</span> <span class="number">16</span> <span class="number">69</span> <span class="number">87</span> <span class="number">40</span> <span class="number">31</span>]</span><br><span class="line">    [ <span class="number">4</span> <span class="number">62</span> <span class="number">98</span> <span class="number">27</span> <span class="number">23</span>  <span class="number">9</span> <span class="number">70</span> <span class="number">98</span> <span class="number">73</span> <span class="number">93</span> <span class="number">38</span> <span class="number">53</span> <span class="number">60</span>  <span class="number">4</span> <span class="number">23</span>]]))</span><br></pre></td></tr></table></figure><p><code>find-max</code> 함수에 <code>triangle</code>을 인자로 주어 호출하면 답을 구할 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve []</span><br><span class="line">  (<span class="name">find-max</span> triangle))</span><br></pre></td></tr></table></figure><p>실행 결과는 다음과 같다.</p><pre class="console">
 p018=> (time (solve))
 "Elapsed time: 0.382559 msecs"
 (1074)
-</pre>
-
-<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
-<li><a href="https://github.com/ntalbs/euler/blob/master/src/p018.clj" target="_blank" rel="external">프로젝트 오일러 18 풀이 소스 코드</a></li>
-</ul>
-
-    </section>
-
-    <footer class="post-footer">
-      
-      <nav id="article-nav">
-        
-        <a href="/2015/project-euler-019/" id="article-nav-newer" class="article-nav-link-wrap">
-          <strong class="article-nav-caption label label-default">Prev</strong>
-          <span class="article-nav-title">프로젝트 오일러 19</span>
-        </a>
-        
-        
-        <a href="/2015/excessive-logging/" id="article-nav-older" class="article-nav-link-wrap">
-          <span class="article-nav-title">과도한 로깅</span>
-          <strong class="article-nav-caption label label-default">Next</strong>
-        </a>
-        
-      </nav>
-      
-
-      <section id="comment">
-        
-        <div id="disqus_thread">
-          <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        </div>
-        
-      </section>
-    </footer>
-  </article>
-</main>
-
-
-    <footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">&copy; 2008-2015 <a href="/about">ntalbs</a></section>
-     <section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section>
-  </div>
-</footer>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
+</pre><h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p018.clj" target="_blank" rel="external">프로젝트 오일러 18 풀이 소스 코드</a></li></ul></section><footer class="post-footer"><nav id="article-nav"><a href="/2015/project-euler-019/" id="article-nav-newer" class="article-nav-link-wrap"><strong class="article-nav-caption label label-default">Prev</strong> <span class="article-nav-title">프로젝트 오일러 19</span> </a><a href="/2015/excessive-logging/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">과도한 로깅</span> <strong class="article-nav-caption label label-default">Next</strong></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2015 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script type="text/javascript" src="/js/jquery.fitvids.js"></script><script type="text/javascript" src="/js/index.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
       processEscapes: true
     }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
+  });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
       tex2jax: {
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
+    });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
         var all = MathJax.Hub.getAllJax(), i;
         for(i=0; i < all.length; i += 1) {
             all[i].SourceElement().parentNode.className += ' has-jax';
         }
-    });
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-2098194-3', 'auto');
-  ga('require', 'displayfeatures');
-  ga('send', 'pageview');
-
-</script>
-
-
-<script type="text/javascript">
-    var disqus_shortname = 'ntalbs-stuff';
-
-    (function(){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-  <!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
+    });</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script>!function(e,a,t,n,c,s,o){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,s=a.createElement(t),o=a.getElementsByTagName(t)[0],s.async=1,s.src=n,o.parentNode.insertBefore(s,o)}(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
       processEscapes: true
     }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
+  });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
       tex2jax: {
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
+    });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
         var all = MathJax.Hub.getAllJax(), i;
         for(i=0; i < all.length; i += 1) {
             all[i].SourceElement().parentNode.className += ' has-jax';
         }
-    });
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-</body>
-</html>
+    });</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

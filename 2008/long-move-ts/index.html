@@ -1,81 +1,4 @@
-<!DOCTYPE html>
-<html>
-  
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>LONG형 컬럼을 가진 테이블의 테이블스페이스 이동 | ntalbs&#39; stuff</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <link rel="shortcut icon" href="/images/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css">
-
-  <meta name="generator" content="ntalbs' stuff"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-  
-  
-  
-
-  
-</head>
-
-  <body class="home-template">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
-      <a class="navbar-brand" href="/">@ntalbs' stuff</a>
-    </div>
-    <div class="navbar-items collapsed" id="nav-items">
-      <ul>
-        
-        <li><a href="/archives">Archives</a></li>
-        
-        <li><a href="/tags">Tags</a></li>
-        
-        <li><a href="/about">About</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div id="progress">
-  <div id="bar"></div>
-  <div class="container">
-    <div id="scroll-title">LONG형 컬럼을 가진 테이블의 테이블스페이스 이동</div>
-  </div>
-</div>
-
-<header class="site-head">
-  <div class="container">
-    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-  </div>
-</header>
-
-
-
-<main class="container" role="main">
-  <article class="post">
-    <header>
-      <p class="post-meta">
-        <time datetime="2008-10-31T00:00:00.000Z" itemprop="datePublished">2008-10-31</time>
-         on <a href='/tags/DB/' style='margin:0 5px;'>DB</a><a href='/tags/Oracle/' style='margin:0 5px;'>Oracle</a>
-      </p>
-      <h1 class="post-title">LONG형 컬럼을 가진 테이블의 테이블스페이스 이동</h1>
-    </header>
-
-    
-
-    <section class="post-content">
-      <p>테이블을 다른 테이블스페이스로 이동시키기 위해서는 다음과 같이 한다.</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t <span class="keyword">MOVE</span> <span class="keyword">TABLESPACE</span> ts_name;</span><br></pre></td></tr></table></figure>
-<p>그러나 테이블에 <code>LONG</code>형 컬럼이 포함되어 있는 테이블에 대해서는 이와 같은 방법을 사용할 수 없다. (<code>ora-00997</code> 에러 발생) <code>LONG</code>형 컬럼이 포함된 테이블은 CTAS를 사용해 데이터를 복사할 수도 없다. (역시 <code>ora-00997</code> 에러 발생)<br><a id="more"></a></p>
-<pre class="console">
+<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>LONG형 컬럼을 가진 테이블의 테이블스페이스 이동 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">LONG형 컬럼을 가진 테이블의 테이블스페이스 이동</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2008-10-31T00:00:00.000Z" itemprop="datePublished">2008-10-31</time> on <a href="/tags/DB/" style="margin:0 5px">DB</a><a href="/tags/Oracle/" style="margin:0 5px">Oracle</a></p><h1 class="post-title">LONG형 컬럼을 가진 테이블의 테이블스페이스 이동</h1></header><section class="post-content"><p>테이블을 다른 테이블스페이스로 이동시키기 위해서는 다음과 같이 한다.</p><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t <span class="keyword">MOVE</span> <span class="keyword">TABLESPACE</span> ts_name;</span><br></pre></td></tr></table></figure><p>그러나 테이블에 <code>LONG</code>형 컬럼이 포함되어 있는 테이블에 대해서는 이와 같은 방법을 사용할 수 없다. (<code>ora-00997</code> 에러 발생) <code>LONG</code>형 컬럼이 포함된 테이블은 CTAS를 사용해 데이터를 복사할 수도 없다. (역시 <code>ora-00997</code> 에러 발생)<br><a id="more"></a></p><pre class="console">
 SQL> create table t (n number, l long);
 Table created.
 
@@ -84,11 +7,7 @@ alter table t move
 *
 ERROR at line 1:
 ORA-00997: illegal use of LONG datatype
-</pre>
-
-<p><code>LONG</code>형 컬럼을 포함한 테이블을 다른 테이블스페이스로 옮길때는 다음 두 가지 방법을 사용할 수 있다.</p>
-<h2 id="1-LONG형을-LOB-형으로-변경"><a href="#1-LONG형을-LOB-형으로-변경" class="headerlink" title="1. LONG형을 LOB 형으로 변경"></a>1. <code>LONG</code>형을 <code>LOB</code> 형으로 변경</h2><p><code>to_lob</code> 함수를 사용해 <code>LONG</code>형을 <code>LOB</code>형으로 바꿔 <code>SELECT</code>해 테이블을 생성한다. <code>to_lob</code> 함수 옆에 컬럼 alias를 써줘야 에러가 발생하지 않고 해당 alias가 새로 만드는 테이블의 컬럼 이름이 된다.</p>
-<pre class="console">
+</pre><p><code>LONG</code>형 컬럼을 포함한 테이블을 다른 테이블스페이스로 옮길때는 다음 두 가지 방법을 사용할 수 있다.</p><h2 id="1-LONG형을-LOB-형으로-변경"><a href="#1-LONG형을-LOB-형으로-변경" class="headerlink" title="1. LONG형을 LOB 형으로 변경"></a>1. <code>LONG</code>형을 <code>LOB</code> 형으로 변경</h2><p><code>to_lob</code> 함수를 사용해 <code>LONG</code>형을 <code>LOB</code>형으로 바꿔 <code>SELECT</code>해 테이블을 생성한다. <code>to_lob</code> 함수 옆에 컬럼 alias를 써줘야 에러가 발생하지 않고 해당 alias가 새로 만드는 테이블의 컬럼 이름이 된다.</p><pre class="console">
 SQL> create table t_lob as select n, to_lob(l) l from t
 
 Table created.
@@ -99,10 +18,7 @@ SQL> desc t_lob
  ------------------------ -------- ---------
  N                                 NUMBER
  L                                 CLOB
-</pre>
-
-<h2 id="2-exp-imp-활용"><a href="#2-exp-imp-활용" class="headerlink" title="2. exp/imp 활용"></a>2. exp/imp 활용</h2><p>테이블을 export 했다가 다시 import 한다.</p>
-<pre class="console">
+</pre><h2 id="2-exp-imp-활용"><a href="#2-exp-imp-활용" class="headerlink" title="2. exp/imp 활용"></a>2. exp/imp 활용</h2><p>테이블을 export 했다가 다시 import 한다.</p><pre class="console">
 SQL> !exp xxx/xxx tables=t file=t.dmp
 ...
 About to export specified tables via Conventional Path ...
@@ -126,162 +42,32 @@ SQL> desc t
  ------------------------ -------- ---------
  N                        NUMBER
  L                        LONG
-</pre>
-
-<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
-<li><a href="http://www.orafaq.com/forum/t/21725/0/" target="_blank" rel="external">http://www.orafaq.com/forum/t/21725/0/</a></li>
-</ul>
-
-    </section>
-
-    <footer class="post-footer">
-      
-      <nav id="article-nav">
-        
-        <a href="/2008/sqlplus-prompt/" id="article-nav-newer" class="article-nav-link-wrap">
-          <strong class="article-nav-caption label label-default">Prev</strong>
-          <span class="article-nav-title">SQL*Plus 프롬프트 설정</span>
-        </a>
-        
-        
-        <a href="/2008/index-dup-and-clustering-factor/" id="article-nav-older" class="article-nav-link-wrap">
-          <span class="article-nav-title">인덱스 중복과 클러스터링 팩터</span>
-          <strong class="article-nav-caption label label-default">Next</strong>
-        </a>
-        
-      </nav>
-      
-
-      <section id="comment">
-        
-        <div id="disqus_thread">
-          <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        </div>
-        
-      </section>
-    </footer>
-  </article>
-</main>
-
-
-    <footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">&copy; 2008-2015 <a href="/about">ntalbs</a></section>
-     <section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section>
-  </div>
-</footer>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
+</pre><h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul><li><a href="http://www.orafaq.com/forum/t/21725/0/" target="_blank" rel="external">http://www.orafaq.com/forum/t/21725/0/</a></li></ul></section><footer class="post-footer"><nav id="article-nav"><a href="/2008/sqlplus-ampersand/" id="article-nav-newer" class="article-nav-link-wrap"><strong class="article-nav-caption label label-default">Prev</strong> <span class="article-nav-title">SQL*Plus에서 &#39;&amp;&#39;가 포함된 문자열을 변수로 인식하지 않게 하기</span> </a><a href="/2008/index-dup-and-clustering-factor/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">인덱스 중복과 클러스터링 팩터</span> <strong class="article-nav-caption label label-default">Next</strong></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2015 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script type="text/javascript" src="/js/jquery.fitvids.js"></script><script type="text/javascript" src="/js/index.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
       processEscapes: true
     }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
+  });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
       tex2jax: {
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
+    });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
         var all = MathJax.Hub.getAllJax(), i;
         for(i=0; i < all.length; i += 1) {
             all[i].SourceElement().parentNode.className += ' has-jax';
         }
-    });
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-2098194-3', 'auto');
-  ga('require', 'displayfeatures');
-  ga('send', 'pageview');
-
-</script>
-
-
-<script type="text/javascript">
-    var disqus_shortname = 'ntalbs-stuff';
-
-    (function(){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-  <!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
+    });</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script>!function(e,a,t,n,c,s,o){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,s=a.createElement(t),o=a.getElementsByTagName(t)[0],s.async=1,s.src=n,o.parentNode.insertBefore(s,o)}(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
       processEscapes: true
     }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
+  });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
       tex2jax: {
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
+    });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
         var all = MathJax.Hub.getAllJax(), i;
         for(i=0; i < all.length; i += 1) {
             all[i].SourceElement().parentNode.className += ' has-jax';
         }
-    });
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-</body>
-</html>
+    });</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
