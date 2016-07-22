@@ -58,7 +58,7 @@ $\phi(2)$부터 $\phi(1000000)$까지 더하는 코드는 다음과 같이 작�
 <pre class="console">
 p072=> (time (solve))
 "Elapsed time: 191991.51059 msecs"
-3039635??391N
+303963??2391N
 </pre>
 
 이렇게 속도가 느린 이유는 `phi`를 구할 때 같은 계산을 반복하는 회수가 많기 때문일 것이다. 숫자의 앞부분부터 $\phi(n)$이 어떻게 계산되는지를 살펴보면 힌트를 얻을 수 있을지도 모르겠다.
@@ -108,15 +108,23 @@ public long solve() {
       (if (= i (aget phi i))
         (loop [j i]
           (if (<= j limit)
-            (do (aset phi j (/ (* (aget phi j) (dec i)) i))
+            (do (aset-int phi j (/ (* (aget phi j) (dec i)) i))
                 (recur (+ j i))))))
       (if (< i limit)
         (recur (inc i) (+ acc (aget phi i)))
         acc))))
 ```
 
-이 코드는 논리적으로는 Java 코드와 동일하지만 답을 구하는 데는 25초가 넘게 걸린다. 처음 방법보다는 많이 나아졌지만 Java 구현과 차이가 크다. 안타깝게도 Clojure로는 답을 더 빠르게 구하는 방법을 찾지 못했다.
+이 코드는 논리적으로 Java 코드와 동일하지만 속도는 두 배 이상 느리다. 그래도 처음 방법에 비하면 엄청난 발전이라 할 수 있겠다.
+
+<pre class="console">
+p072=> (time (solve3))
+"Elapsed time: 350.048542 msecs"
+303963??2391
+</pre>
 
 ## 참고
 * [프로젝트 오일러 72 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p072.clj)
 * [Euler’s totient function](https://en.wikipedia.org/wiki/Euler%27s_totient_function)
+* [Clojure performance for solving Project Euler 72 (counting proper reduced fractions)](http://codereview.stackexchange.com/questions/135238/clojure-performance-for-solving-project-euler-72-counting-proper-reduced-fracti)
+`aset-int` 대신 `aset`을 쓰면 답을 구하는 데 25초 이상 걸린다. `aset-int`으로 나아졌지만 여전히 Java보다 두 배 이상 느린 것은 `(aget phi i)`가 `phi[i]`보다 느리기 때문일 것 같다. 아직 이 부분을 개선할 방법을 찾지 못했다.
