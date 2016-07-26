@@ -55,7 +55,7 @@ private void reloadIfNecessary(List<Key> keys) {
 
 `reloadIfNecessary` 메서드가 하는 일은, 요청한 키 목록에 대한 아이템이 캐시에 있는지 살펴보고 없는 키에 대해서는 다른 서비스를 통해 아이템을 구해 캐시에 채워 넣는 것이다.
 
-왜 이렇게 했을까? 캐시에 없는 데이터를 캐시로 로드하는 기능은 `LoadingCache`에 있는 기능이다. 이미 Guava 캐시 라이브러리에 구현되어 있는 것을 쓸데없이 다시 구현했다. 이와 거의 동일한 코드가 `LoadingCache`에 이미 구현되어 있으므로 위 코드는 불필요하다. 단지 캐시를 생성할 때 `CacheLoader`를 만들어 넣어주면 된다.
+왜 이렇게 했을까? 캐시에 없는 데이터를 캐시로 로드하는 기능은 `LoadingCache`에 있는 기능이다. 이와 동일한 코드가 `LoadingCache`에 이미 있으므로 위 코드는 불필요하다. 단지 캐시를 생성할 때 `CacheLoader`를 만들어 넣어주면 된다.
 
 ```java
 private LoadingCache<Key, Product> productCache = CacheBuilder.newBuilder()
