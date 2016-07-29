@@ -5,13 +5,14 @@ title: 프로젝트 오일러 64
 > 제곱근을 연분수로 나타낼 때 반복 주기가 홀수인 경우 세기
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=64) [[영어]](https://projecteuler.net/problem=64)
 
-[위키피디아](https://en.wikipedia.org/wiki/Methods_of_computing_square_roots#Algorithm)에 연분수로 제곱근을 구하는 방법이 자세히 설명되어 있다.<!--more-->
+[위키피디아](https://en.wikipedia.org/wiki/Methods_of_computing_square_roots#Algorithm)에 연분수로 제곱근을 구하는 방법이 자세히 설명되어 있다.
 
 {% math %}
   \begin{aligned}
     \sqrt{N} = a_0 + \cfrac{1}{a_1 + \cfrac{1}{a_2 + \cfrac{1}{a_3 + \cfrac{1}{\ddots}}}}
   \end{aligned}
 {% endmath %}
+<!--more-->
 
 제곱근을 위와 같이 연분수로 나타냈을 때 다음 알고리즘으로 $a_n$을 구할 수 있다. $N$은 자연수이고 완전제곱수가 아니어야 한다.
 
