@@ -1,4 +1,4 @@
-tags: [Java, 상념]
+tags: [Java]
 date: 2015-06-10
 title: Guava Cache 제대로 사용하기
 ---
