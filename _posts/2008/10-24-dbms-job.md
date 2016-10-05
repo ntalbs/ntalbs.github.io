@@ -5,7 +5,7 @@ title: 원하는 시간에만 DB 작업 실행하기
 예전에 [database.sarang.net 오라클 게시판](http://database.sarang.net/?criteria=oracle)에 `DBMS_JOB`을 이용해 원하는 작업을 08시, 14시, 20시에 실행시키는 방법을 묻는 질문이 올라왔다. 작업 간격이 규칙적일 때는 문제가 간단하지만 원하는 시간 간격이 불규칙하므로 그냥 JOB을 세 개 등록하면 어떻겠냐고 답했더니 이번에는 이 작업을 평일에만 실행시키게 하고 싶다고 했다. 즉 평일 08시, 14시, 20시에 작업이 실행되도록 하고 싶다는 것이었다.
 <!--more-->
 
-그럼 문제를 풀기 전에 `DBMS_JOB.SUBMIT` 프로시저를 살펴보자. `DBMS_JOB`을 이용해 JOB을 등록시키려면 `SUBMIT` 프로시저를 사용해야 한다. 파라미터 중 `next_date`와 `interval`을 통해 작업 실행 시각을 조절할 수 있다.
+문제를 풀기 전에 `DBMS_JOB.SUBMIT` 프로시저를 살펴보자. `DBMS_JOB`을 이용해 작업을 등록하려면 `SUBMIT` 프로시저를 사용해야 한다. 파라미터 중 `next_date`와 `interval`을 통해 작업 실행 시각을 조절할 수 있다.
 
 ```sql
 DBMS_JOB.SUBMIT (
