@@ -2,13 +2,12 @@ date: 2011-02-23
 tags: Java
 title: Integer.MIN_VALUE
 ---
-
-[Effective Java](http://www.amazon.com/Effective-Java-2nd-Joshua-Bloch/dp/0321356683)로 유명한 [Joshua Bloch](https://twitter.com/joshbloch)의 트윗에 재미있는 글이 올라왔다. 엥, 어떤 수에 -1을 곱했는데 자기 자신이 된다고? 곧장 테스트 프로그램을 만들어 돌려봤더니 정말 그렇다.
-
-<!--more-->
 {% asset_img 2011-02-23-1.png %}
 
-확인을 해보니 예전에 학교에서 배웠던 게 생각이 났다. 정수형을 표현할 때 **2의 보수법**을 사용해 표현한다는 것! 정확한 내용이 생각나지 않아 잠시 인터넷에서 검색해보니 잘 설명된 자료(2의 보수 표기법)가 있다.
+[Effective Java](http://www.amazon.com/Effective-Java-2nd-Joshua-Bloch/dp/0321356683)로 유명한 [Joshua Bloch](https://twitter.com/joshbloch)의 트윗에 재미있는 글이 올라왔다. 엥, 어떤 수에 -1을 곱했는데 자기 자신이 된다고? 곧장 테스트 프로그램을 만들어 돌려봤더니 정말 그렇다.
+<!--more-->
+
+확인 해보니 예전에 학교에서 배웠던 게 생각이 났다. 정수형을 표현할 때 **2의 보수법**을 사용해 표현한다는 것! 정확한 내용이 생각나지 않아 잠시 인터넷에서 검색해보니 잘 설명된 자료(2의 보수 표기법)가 있다.
 
 3비트 정수를 2의 보수법으로 표현했을 때 MIN_VALUE=100, -1=111이 될 것이다.
 
