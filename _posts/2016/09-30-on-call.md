@@ -5,8 +5,7 @@ title: On Call
 아마존에 오기 전 아마존이 다닐만한 회사인지 조사하는 데, 온콜에 대한 불만을 토로하는 글이 많이 보였다. 온콜이 뭐길래 그러지? 사전을 찾아보니 다음과 같이 설명되어 있다. 우리 말로 하면 '당직'과 비슷한 개념일 것 같다.
 
 <!--more-->
-<div class="box">**on call**: (of a person) able to be contacted in order to provide a professional service if necessary, but not formally on duty. *Your local GP may be on call round the clock.*
-</div>
+> **on call**: (of a person) able to be contacted in order to provide a professional service if necessary, but not formally on duty. *Your local GP may be on call round the clock.*
 
 온콜은 서비스 긴급 상황에 대응할 전담 인원으로 팀원들이 한 주씩 돌아가며 맡는다. 온콜을 맡은 한 주 동안은 프로젝트 업무 대신 장애 대응 및 운영 업무를 하게 된다. 평상 업무 시간에는 서비스 점검, 배포, 운영 매뉴얼 업데이트 등의 작업를 하고, 긴급 상황이 발생하면 즉시 해당 이슈에 대응한다. 한밤중이나 새벽, 주말에 상관 없이 항상 대응해야 하니 분명 달가운 일은 아니다.
 
