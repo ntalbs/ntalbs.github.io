@@ -1,6 +1,6 @@
 sitemap: false
 layout: about
-title: About
+title: "About @ntalbs"
 ---
 <blockquote class="blockquote-reverse">아무리 흐린 연필로 기록한 내용도
 정확한 기억력보다 오래 간다.</blockquote>
