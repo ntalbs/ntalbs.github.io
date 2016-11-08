@@ -85,9 +85,9 @@ create or replace view generator_1m as
 [MySQL Row Generator](http://use-the-index-luke.com/blog/2011-07-30/mysql-row-generator)에서는 약간의 성능 향상을 위해 비트 연산을 사용했지만, 여기서는 그냥 곱셈을 사용했다. 대세에 영향을 미칠 정도는 아닐 것 같다.
 
 ## 결론
-이 방식은 별로 우아하지 않다. 각 뷰에서 생성하는 행의 범위가 정해져 있어, 뷰를 사용하기 전에 얼마나 많은 행이 필요할지에 생각하고 다른 뷰를 사용해야 한다. 그러나 테스트 데이터를 대량 생성하는 경우가 아니라면 보통 `generator_256` 정도만 사용해도 충분하지 않을까 생각된다.
+이 방식은 별로 우아하지 않다. 각 뷰에서 생성하는 행의 범위가 정해져 있어, 뷰를 사용하기 전에 얼마나 많은 행이 필요할지에 생각해야 한다. 테스트 데이터를 대량 생성하는 경우가 아니라면 보통 `generator_256` 정도만 사용해도 충분하지 않을까 생각된다.
 
-무식한 방법이긴 하지만, 당장은 MySQL에서 이보다 좋은 방법이 없는 것 같다.
+무식한 방법이긴 하지만, MySQL에서는 더 좋은 방법이 없는 것 같다.
 
 ## 참고
 * [MySQL Row Generator](http://use-the-index-luke.com/blog/2011-07-30/mysql-row-generator)
