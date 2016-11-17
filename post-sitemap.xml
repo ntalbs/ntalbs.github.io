@@ -7,6 +7,22 @@
     </url>
 
     <url>
+        <loc>http://ntalbs.github.io/2008/dbms-job/</loc>
+        <lastmod>2016-11-17T23:51:32.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2016/persuading/</loc>
+        <lastmod>2016-11-17T13:01:49.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://ntalbs.github.io/2016/project-euler-078/</loc>
         <lastmod>2016-11-16T22:57:23.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -143,14 +159,6 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2016/persuading/</loc>
-        <lastmod>2016-10-12T20:52:46.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://ntalbs.github.io/2015/emacs-and-vim/</loc>
         <lastmod>2016-10-09T15:56:46.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -185,14 +193,6 @@
     <url>
         <loc>http://ntalbs.github.io/2008/records-per-block/</loc>
         <lastmod>2016-09-18T14:51:46.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2008/dbms-job/</loc>
-        <lastmod>2016-09-18T14:48:18.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
