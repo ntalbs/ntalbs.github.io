@@ -58,10 +58,10 @@ $log_{10} 0 = -\infty$이므로 입력이 0인 경우에 대해서는 별도로 
         (< n 100000000) 8
         (< n 1000000000) 9
         (< n 10000000000) 10
-        :else (throw (IllegalArgumentException.))))
+        :else (count (str n))))
 ```
 
-이 코드는 11자리 이상의 숫자에 대해서는 제대로 동작하지 않는다. `if` 브랜치를 계속 늘려갈 수 있겠지만 (여기서는 `cond` 안에 조건절) 아름다운 방법이라 할 수는 없겠다.
+11자리 이상의 숫자에 대해서는 문자열로 변환해 길이를 구하도록 했다. 다른 방법에 비해 길이는 길지만 코드는 직관적이라 할 수 있겠다.
 
 ## 참고
 * [Is there a Scala-way to get the length of a number?](http://stackoverflow.com/questions/11922686/is-there-a-scala-way-to-get-the-length-of-a-number/11922854#11922854)
