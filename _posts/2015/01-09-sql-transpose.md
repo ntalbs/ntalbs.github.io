@@ -240,5 +240,5 @@ select * from crosstab(
 쿼리로 행/열을 전환하는 방법을 살펴봤다. 약간의 기교가 필요하지만 원리를 파악하면 이해하기 어려울 정도는 아니다. Oracle 11g에서는 `pivot`, `unpivot`, PostgreSQL에서는 `crosstab`을 이용하면 다른 방법보다 깔끔하게 행/열을 전환할 수 있다.
 
 ## 참고
-* [Three Ways To Transpose Rows Into Columns in Oracle SQL](http://oracletuts.net/sql/three-ways-to-transpose-rows-into-columns-in-oracle-sql/)
+* [Three Ways To Transpose Rows Into Columns in Oracle SQL](http://oraclecoder.com/tutorials/how-to-transpose-columns-to-rows-in-oracle--2435)
 Oracle에서 행/열을 전환하는 방법을 설명한다.

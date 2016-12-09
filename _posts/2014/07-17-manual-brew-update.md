@@ -11,7 +11,7 @@ title: 수작업 brew 포뮬러 업데이트
 * `PATH` 잡기도 귀찮다.
 * 나중에 직접 업그레이드 해야 한다.
 
-어떻게 직접 설치하지 않고 문제를 해결할 수 없을까 고민하면서 구글로 검색하다가 깃헙에서  `app-engine-java-sdk` [포뮬러 소스 코드](https://github.com/Homebrew/homebrew/blob/master/Library/Formula/app-engine-java-sdk.rb)를 발견했다. ruby를 아는 건 아니지만 `url`과 `sha1`만 수정하면 동작할 것 같았다. ruby니까 아마 내 노트북에 소스 코드가 있겠다 싶어 찾아 보았다. 다행히 포뮬러 위치를 쉽게 찾을 수 있었다. `/usr/local/Library/Formula`에 모든 포뮬러 파일이 모여 있었다. 여기서 `app-engine-java-sdk.rb` 파일을 다음과 같이 수정했다.
+어떻게 직접 설치하지 않고 문제를 해결할 수 없을까 고민하면서 구글로 검색하다가 깃헙에서  `app-engine-java-sdk` 포뮬러 소스 코드를 발견했다. ruby를 아는 건 아니지만 `url`과 `sha1`만 수정하면 동작할 것 같았다. ruby니까 아마 내 노트북에 소스 코드가 있겠다 싶어 찾아 보았다. 다행히 포뮬러 위치를 쉽게 찾을 수 있었다. `/usr/local/Library/Formula`에 모든 포뮬러 파일이 모여 있었다. 여기서 `app-engine-java-sdk.rb` 파일을 다음과 같이 수정했다.
 
 ```ruby
 class AppEngineJavaSdk < Formula

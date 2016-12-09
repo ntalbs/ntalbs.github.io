@@ -15,7 +15,7 @@ title: "Hexo: 3.0 업그레이드"
 ## Hexo-math 문제 해결
 hexo-math는 CoffeeScript로 작성되었다. node.js도 모르고 CoffeeScript도 모르고 Hexo 플러그인 구조도 잘 모르지만 JavaScript를 조금 아니 해결을 시도해볼 수 있었다. CoffeeScript로 생성한 JavaScript 코드는 읽을 만 했다. 예외 발생 부분을 보니 역시 hexo-renderer-mathjax와 같은 문제였다. 예전에 `hexo.file`, `hexo.util`로 쓰던 부분을 `require 'hexo-fs'`, `require 'hexo-util'`로 수정하니 해당 부분에서 예외가 발생하지 않았다. `Command.coffee`에서 `hexo.theme_dir`을 참조하는 부분은 해결하지 못했다. Hexo 3.0에서는 여기로 `hexo` 객체가 넘어오지 않았다. 이 부분은 어쩔 수 없이 하드코딩으로 해결했다.
 
-여러 줄의 수식을 써야 하는 경우 예전에는 마크다운 파일에서 `{% raw %}{% math-block %}{% endraw %} ... {% raw %}{% endmath-block %}{% endraw %}`을 사용했는데, 이 부분도 문제가 되었다. 중간에 `-`가 들어간 부분이 제대로 처리되지 않는 것 같았다. [Swig 문서](http://paularmstrong.github.io/swig/docs/#tags)를 찾아보니 수식 블록을 `{% raw %}{% block math %}{% endraw %} ... {% raw %}{% endblock %}{% endraw %}`으로 써도 될 것 같았다. 수정해 확인해보니 에러는 발생하지 않지만 한 파일에 여러 수식 블록이 있는 경우 모든 수식 블록이 마지막 수식으로 표시되는 문제가 있었다. 저자가 설명한 대로 `{% raw %}{% math_block %} ... {% endmath_block %}{% endraw %}`를 사용하도록 문서를 업데이트했다.
+여러 줄의 수식을 써야 하는 경우 예전에는 마크다운 파일에서 `{% raw %}{% math-block %}{% endraw %} ... {% raw %}{% endmath-block %}{% endraw %}`을 사용했는데, 이 부분도 문제가 되었다. 중간에 `-`가 들어간 부분이 제대로 처리되지 않는 것 같았다. Swig 문서를 찾아보니 수식 블록을 `{% raw %}{% block math %}{% endraw %} ... {% raw %}{% endblock %}{% endraw %}`으로 써도 될 것 같았다. 수정해 확인해보니 에러는 발생하지 않지만 한 파일에 여러 수식 블록이 있는 경우 모든 수식 블록이 마지막 수식으로 표시되는 문제가 있었다. 저자가 설명한 대로 `{% raw %}{% math_block %} ... {% endmath_block %}{% endraw %}`를 사용하도록 문서를 업데이트했다.
 
 ## 테마 수정
 다시 `hexo server` 명령으로 블로그를 띄워보니 에러 없이 잘 표시되는 것 같았다. 그런데 Archive 페이지에 가보니 글이 다섯 개만 표시되는 것이었다. Tags 페이지는 예외가 발생해 아예 표시되지도 않았다. Hexo 3.0으로 넘어가면서 내부에서 사용하는 객체 구조도 바뀐 모양이다. [Local Variables 문서](http://hexo.io/api/locals.html)를 참조하고 변수 값을 `console.log`로 찍어가며 디버깅해 제대로 나오도록 ejs 파일을 수정했다.
