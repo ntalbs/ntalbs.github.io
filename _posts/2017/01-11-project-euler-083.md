@@ -109,7 +109,7 @@ title: 프로젝트 오일러 83
          pq      (sorted-set-by node-comparator start-node)
          current (first pq)]
     (if (destination? current)
-        (current :sum)
+      (current :sum)
       (let [prev1 (current :prev)
             prev2 (if prev1 (prev1 :prev))
             ns    (->> (neighbors current)
