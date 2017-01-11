@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://ntalbs.github.io/2017/project-euler-083/</loc>
+        <lastmod>2017-01-11T12:15:24.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://ntalbs.github.io/2017/project-euler-082/</loc>
         <lastmod>2017-01-10T23:12:27.000Z</lastmod>
         <changefreq>weekly</changefreq>
