@@ -62,7 +62,7 @@ SQL> select dbms_random.string('P', 20) str from dual;
  STR
  --------------------
  ~F&D9%C=,9*%Bw&zj],s
-</pre></section><footer class="post-footer"><nav id="article-nav"><a href="/2008/set-timing/" id="article-nav-newer" class="article-nav-link-wrap"><span class="article-nav-title">set timing을 이용한 SQL 실행 속도 측정법</span> </a><a href="/2008/storing-dates/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">날짜 데이터 저장</span></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2015 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script type="text/javascript" src="/js/jquery.fitvids.js"></script><script type="text/javascript" src="/js/index.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+</pre></section><footer class="post-footer"><nav id="article-nav"><a href="/2008/disabling-xdb-in-oracle/" id="article-nav-newer" class="article-nav-link-wrap"><span class="article-nav-title">Oracle XDB 비활성화 방법</span> </a><a href="/2008/set-timing/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">set timing을 이용한 SQL 실행 속도 측정법</span></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2015 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script type="text/javascript" src="/js/jquery.fitvids.js"></script><script type="text/javascript" src="/js/index.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
       processEscapes: true
@@ -90,4 +90,9 @@ SQL> select dbms_random.string('P', 20) str from dual;
         for(i=0; i < all.length; i += 1) {
             all[i].SourceElement().parentNode.className += ' has-jax';
         }
-    });</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+    });</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });</script><script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
