@@ -21,7 +21,7 @@ final List<String> list = new ArrayList<String>();
 val list = new ArrayList<String>();
 ```
 
-Project Lombok에 대해서는 논란이 있는 듯하다. 어노테이션을 이런 식으로 사용해선 안된다, Lombok의 구현이 non-public API를 사용했기 때문에 향후 JDK 새 버전이나 IDE에서 제대로 동작하지 않을 수 있다 등등. 나는 Lombok의 기능이 JDK에 흡수되어야 하는 게 아닌가 하는 생각이 든다. 그렇게 한다면 논란도 잠재우고, Java도 한단계 더 발전할 수 있지 않을까 생각된다.
+Project Lombok에 대해서는 논란이 있는 듯하다. 어노테이션을 이런 식으로 사용해선 안된다, Lombok의 구현이 non-public API를 사용했기 때문에 향후 JDK 새 버전이나 IDE에서 제대로 동작하지 않을 수 있다 등등. 나는 Lombok의 기능이 JDK에 흡수되어야 하는 게 아닌가 하는 생각이 든다. 그렇게 한다면 논란도 잠재우고, Java도 한단계 더 발전하게 된다.
 
 Lombok과 관련해 다음 글을 읽으면 도움이 될 것 같다.
 
