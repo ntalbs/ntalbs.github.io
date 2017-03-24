@@ -7,6 +7,22 @@
     </url>
 
     <url>
+        <loc>http://ntalbs.github.io/2017/project-euler-086/</loc>
+        <lastmod>2017-03-24T13:07:24.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2014/restart/</loc>
+        <lastmod>2017-02-21T12:58:53.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://ntalbs.github.io/2014/ignoring-ie8/</loc>
         <lastmod>2017-02-14T12:36:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -257,14 +273,6 @@
     <url>
         <loc>http://ntalbs.github.io/2010/postgresql-date/</loc>
         <lastmod>2016-11-08T07:30:34.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2014/restart/</loc>
-        <lastmod>2016-10-31T19:04:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -599,7 +607,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2008/direct-load-and-index/</loc>
+        <loc>http://ntalbs.github.io/2008/storing-dates/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -607,7 +615,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2008/data-type/</loc>
+        <loc>http://ntalbs.github.io/2008/direct-load-and-index/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -631,31 +639,15 @@
     </url>
 
     <url>
+        <loc>http://ntalbs.github.io/2008/data-type/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://ntalbs.github.io/2008/dbms-random/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2008/storing-dates/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2008/set-timing/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2008/deleting-db-link/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -687,23 +679,23 @@
     </url>
 
     <url>
+        <loc>http://ntalbs.github.io/2008/deleting-db-link/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2008/set-timing/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://ntalbs.github.io/2008/sqlplus-prompt/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2008/select-shell/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2008/sqlplus-ampersand/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -719,7 +711,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2008/comp-indexes/</loc>
+        <loc>http://ntalbs.github.io/2008/select-shell/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -727,7 +719,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2008/comp-tables/</loc>
+        <loc>http://ntalbs.github.io/2008/comp-indexes/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -743,7 +735,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2008/row-generator/</loc>
+        <loc>http://ntalbs.github.io/2008/sqlplus-ampersand/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -752,6 +744,14 @@
 
     <url>
         <loc>http://ntalbs.github.io/2008/extract-ddl/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2008/comp-tables/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -776,6 +776,14 @@
 
     <url>
         <loc>http://ntalbs.github.io/2008/sizing-index/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2008/row-generator/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -831,23 +839,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2009/credit-card/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://ntalbs.github.io/2009/annuity-savings/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2009/data-generator/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -863,7 +855,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2009/process-and-result/</loc>
+        <loc>http://ntalbs.github.io/2009/credit-card/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -871,7 +863,15 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2009/625/</loc>
+        <loc>http://ntalbs.github.io/2009/data-generator/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2009/process-and-result/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -887,7 +887,31 @@
     </url>
 
     <url>
+        <loc>http://ntalbs.github.io/2009/625/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://ntalbs.github.io/2009/login-sql/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2009/canvas-test/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2009/create-db/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -911,22 +935,6 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2009/create-db/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2009/canvas-test/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://ntalbs.github.io/2009/first-and-last-day-of-week/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -936,46 +944,6 @@
 
     <url>
         <loc>http://ntalbs.github.io/2009/google-main-page/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2011/probablity/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2011/tricky-xml/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2011/jstestdriver-exclude/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2011/final-local-var/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2012/gmail-plus/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -999,7 +967,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2010/recover-db-archive-log-mode/</loc>
+        <loc>http://ntalbs.github.io/2010/outliers/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1007,7 +975,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2010/outliers/</loc>
+        <loc>http://ntalbs.github.io/2010/recover-db-archive-log-mode/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1023,7 +991,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2010/export-compress/</loc>
+        <loc>http://ntalbs.github.io/2010/uncompress-import/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1031,7 +999,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2010/uncompress-import/</loc>
+        <loc>http://ntalbs.github.io/2010/export-compress/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1071,7 +1039,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2010/parameter-argument/</loc>
+        <loc>http://ntalbs.github.io/2010/sql-problem/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1087,7 +1055,47 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2010/sql-problem/</loc>
+        <loc>http://ntalbs.github.io/2010/parameter-argument/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2011/probablity/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2011/tricky-xml/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2011/final-local-var/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2011/jstestdriver-exclude/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2012/gmail-plus/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1135,7 +1143,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2014/private-in-js/</loc>
+        <loc>http://ntalbs.github.io/2014/infix-macro/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1143,7 +1151,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2014/infix-macro/</loc>
+        <loc>http://ntalbs.github.io/2014/private-in-js/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1183,7 +1191,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2014/dba-story-1/</loc>
+        <loc>http://ntalbs.github.io/2014/dba-story-2/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1191,7 +1199,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2014/dba-story-2/</loc>
+        <loc>http://ntalbs.github.io/2014/dba-story-1/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1207,7 +1215,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2014/dba-story-4/</loc>
+        <loc>http://ntalbs.github.io/2014/dba-story-5/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1215,7 +1223,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2014/dba-story-5/</loc>
+        <loc>http://ntalbs.github.io/2014/dba-story-4/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1263,14 +1271,6 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2016/project-euler-048/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://ntalbs.github.io/2016/project-euler-049/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -1279,15 +1279,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2016/project-euler-050/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2016/what-i-had-to-know-before-coming-to-uk/</loc>
+        <loc>http://ntalbs.github.io/2016/project-euler-048/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1303,7 +1295,23 @@
     </url>
 
     <url>
+        <loc>http://ntalbs.github.io/2016/project-euler-050/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://ntalbs.github.io/2016/project-euler-051/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2016/what-i-had-to-know-before-coming-to-uk/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1335,14 +1343,6 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2016/project-euler-054/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://ntalbs.github.io/2016/project-euler-055/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -1351,7 +1351,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2016/project-euler-057/</loc>
+        <loc>http://ntalbs.github.io/2016/project-euler-054/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1367,7 +1367,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2016/project-euler-058/</loc>
+        <loc>http://ntalbs.github.io/2016/project-euler-057/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1383,6 +1383,14 @@
     </url>
 
     <url>
+        <loc>http://ntalbs.github.io/2016/project-euler-058/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://ntalbs.github.io/2016/project-euler-060/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -1391,7 +1399,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2016/project-euler-061/</loc>
+        <loc>http://ntalbs.github.io/2016/project-euler-062/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1399,7 +1407,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2016/project-euler-062/</loc>
+        <loc>http://ntalbs.github.io/2016/project-euler-061/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1423,7 +1431,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2016/telecom-expense/</loc>
+        <loc>http://ntalbs.github.io/2016/project-euler-065/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1431,7 +1439,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2016/project-euler-065/</loc>
+        <loc>http://ntalbs.github.io/2016/telecom-expense/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1455,7 +1463,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/project-euler-002/</loc>
+        <loc>http://ntalbs.github.io/2015/project-euler-003/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1463,7 +1471,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/project-euler-003/</loc>
+        <loc>http://ntalbs.github.io/2015/project-euler-002/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1511,22 +1519,6 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/emacs-mimic-sublime-text-demo/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2015/emacs-joining-lines/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://ntalbs.github.io/2015/java-repl/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -1543,7 +1535,15 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/project-euler-008/</loc>
+        <loc>http://ntalbs.github.io/2015/emacs-mimic-sublime-text-demo/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2015/emacs-joining-lines/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1559,7 +1559,15 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/project-euler-009/</loc>
+        <loc>http://ntalbs.github.io/2015/project-euler-011/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2015/project-euler-008/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1575,15 +1583,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/project-euler-011/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2015/thought-on-korean-education/</loc>
+        <loc>http://ntalbs.github.io/2015/project-euler-009/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1607,7 +1607,15 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/project-euler-014/</loc>
+        <loc>http://ntalbs.github.io/2015/thought-on-korean-education/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2015/statement-expresssion/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1631,15 +1639,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/statement-expresssion/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2015/project-euler-016/</loc>
+        <loc>http://ntalbs.github.io/2015/project-euler-014/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1655,7 +1655,23 @@
     </url>
 
     <url>
+        <loc>http://ntalbs.github.io/2015/stop-using-tail/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://ntalbs.github.io/2015/project-euler-017/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2015/project-euler-016/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1671,23 +1687,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/stop-using-tail/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://ntalbs.github.io/2015/project-euler-018/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2015/project-euler-019/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1711,7 +1711,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/project-euler-021/</loc>
+        <loc>http://ntalbs.github.io/2015/project-euler-019/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1727,7 +1727,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/editor-doc-model/</loc>
+        <loc>http://ntalbs.github.io/2015/project-euler-021/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1743,7 +1743,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/proggres-bar/</loc>
+        <loc>http://ntalbs.github.io/2015/editor-doc-model/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1751,7 +1751,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/permutations/</loc>
+        <loc>http://ntalbs.github.io/2015/proggres-bar/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1767,7 +1767,23 @@
     </url>
 
     <url>
+        <loc>http://ntalbs.github.io/2015/permutations/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://ntalbs.github.io/2015/project-euler-025/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2015/project-euler-028/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1791,14 +1807,6 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/project-euler-027/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://ntalbs.github.io/2015/if-true-return-true/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -1815,7 +1823,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/project-euler-028/</loc>
+        <loc>http://ntalbs.github.io/2015/project-euler-027/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1855,14 +1863,6 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/project-euler-034/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://ntalbs.github.io/2015/project-euler-036/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -1879,7 +1879,23 @@
     </url>
 
     <url>
+        <loc>http://ntalbs.github.io/2015/project-euler-034/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://ntalbs.github.io/2015/project-euler-037/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2015/project-euler-040/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1903,14 +1919,6 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/project-euler-040/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://ntalbs.github.io/2015/project-euler-041/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -1927,6 +1935,14 @@
     </url>
 
     <url>
+        <loc>http://ntalbs.github.io/2015/project-euler-044/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://ntalbs.github.io/2015/emacs-typing-pound-or-hash/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -1936,14 +1952,6 @@
 
     <url>
         <loc>http://ntalbs.github.io/2015/project-euler-043/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2015/project-euler-044/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
