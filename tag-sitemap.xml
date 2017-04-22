@@ -2,21 +2,7 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>http://ntalbs.github.io/tags/SqlPlus/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://ntalbs.github.io/tags/Shell/</loc>
-        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/tags/%EC%9E%AC%ED%85%8C%ED%81%AC/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -51,6 +37,13 @@
     </url>
 
     <url>
+        <loc>http://ntalbs.github.io/tags/%EC%9A%A9%EC%96%B4/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://ntalbs.github.io/tags/%EC%BB%A4%EB%B2%84%EB%A6%AC%EC%A7%80/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -58,7 +51,14 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/tags/%EC%9A%A9%EC%96%B4/</loc>
+        <loc>http://ntalbs.github.io/tags/SqlPlus/</loc>
+        <lastmod>2016-05-18T08:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/tags/%EC%9E%AC%ED%85%8C%ED%81%AC/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -135,14 +135,14 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/tags/SQL/</loc>
+        <loc>http://ntalbs.github.io/tags/PostgreSQL/</loc>
         <lastmod>2016-12-09T08:06:01.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/tags/PostgreSQL/</loc>
+        <loc>http://ntalbs.github.io/tags/SQL/</loc>
         <lastmod>2016-12-09T08:06:01.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -198,22 +198,8 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/tags/Java/</loc>
-        <lastmod>2017-02-14T05:46:11.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://ntalbs.github.io/tags/%EC%97%90%EB%94%94%ED%84%B0-%EA%B0%9C%EB%B0%9C/</loc>
         <lastmod>2017-02-14T12:36:39.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/tags/%EC%83%81%EB%85%90/</loc>
-        <lastmod>2017-02-21T12:58:53.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -235,6 +221,20 @@
     <url>
         <loc>http://ntalbs.github.io/tags/Clojure/</loc>
         <lastmod>2017-03-24T13:07:24.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/tags/%EC%83%81%EB%85%90/</loc>
+        <lastmod>2017-04-22T06:06:07.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/tags/Java/</loc>
+        <lastmod>2017-04-22T06:06:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
