@@ -1,4 +1,4 @@
-tags: [상념, Java]
+tags: [상념, Java, 리팩터링]
 date: 2017-04-21
 title: 코딩 시간과 코드 품질
 ---

@@ -1,4 +1,4 @@
-tags: [Java, 리팩터링, 상념]
+tags: [Java, 리팩터링]
 date: 2015-08-21
 title: if (cond == true) return true
 ---
