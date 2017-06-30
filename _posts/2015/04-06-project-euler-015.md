@@ -5,7 +5,8 @@ title: 프로젝트 오일러 15
 > 20×20 격자의 좌상단에서 우하단으로 가는 경로의 수?
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=15) [[영어]](https://projecteuler.net/problem=15)
 
-격자에서 오른쪽으로 이동하는 경로를 `r`(right), 아래쪽으로 이동하는 경로를 `d`(down)라 하면 2x2 격자의 좌상단에서 우하단으로 가는 경로는 다음과 같은 식으로 표현할 수 있다.<!--more-->
+격자에서 오른쪽으로 이동하는 경로를 `r`(right), 아래쪽으로 이동하는 경로를 `d`(down)라 하면 2x2 격자의 좌상단에서 우하단으로 가는 경로는 다음과 같은 식으로 표현할 수 있다.
+<!--more-->
 
 ```
 rrdd, rdrd, rddr
@@ -14,19 +15,23 @@ drrd, drdr, ddrr
 
 결국 이 문제는 `rrdd`에 대한 순열을 구하는 문제가 된다. `r` 끼리 또는 `d`끼리는 순서가 바뀌어도 상관이 없다. 따라서 2x2 격자의 좌상단에서 우하단으로 가는 경로의 수는 다음과 같이 구할 수 있다.
 
-{% math %}
+$$
 \begin{aligned}
-(number\, of\, paths) &= \frac{4!}{2! \times 2!} = 6
+  \begin{aligned}
+    (number\, of\, paths) &= \frac{4!}{2! \times 2!} = 6
+  \end{aligned}
 \end{aligned}
-{% endmath %}
+$$
 
 20x20 격자라면 `r` 20개, `d` 20개를 일렬로 늘어놓을 수 있는 경우의 수를 구하는 문제가 된다. 따라서 다음 식을 계산하면 문제의 답을 구할 수 있다.
 
-{% math %}
+$$
 \begin{aligned}
-(number\, of\, paths) &= \frac{40!}{20! \times 20!}
+  \begin{aligned}
+    (number\, of\, paths) &= \frac{40!}{20! \times 20!}
+  \end{aligned}
 \end{aligned}
-{% endmath %}
+$$
 
 `n!`을 구하는 함수가 있다면 답을 구한 것이나 마찬가지다. `factorial`이 구현되어 있다고 한다면 답은 다음과 같이 구할 수 있다.
 
@@ -49,14 +54,14 @@ p015=> (time (solve))
 ## Factorial 함수 구현
 Factorial은 보통 다음과 같이 재귀적으로 정의된다.
 
-{% math %}
+$$
 \begin{aligned}
 n! = \begin{cases}
-  1 & \mbox{if } n = 0,\\
+  1 & \mbox{if } n = 0, \cr
   n(n-1)! & \mbox {if } n > 0
   \end{cases}
 \end{aligned}
-{% endmath %}
+$$
 
 Clojure 코드로는 다음과 같이 구현할 수 있다.
 
@@ -125,11 +130,11 @@ Factorial 함수는 0 또는 양의 정수에 대해서만 유효하다. `fact1`
 
 Factorial을 다음과 같이 정의할 수도 있다.
 
-{% math %}
+$$
 \begin{aligned}
-n! = \prod_{k=1}^n k = 1 \times 2\, \times ... \times\, n
+  n! = \prod_{k=1}^n k = 1 \times 2\, \times ... \times\, n
 \end{aligned}
-{% endmath %}
+$$
 
 이 정의를 그대로 Clojure 코드로 옮기면 다음과 같다.
 
