@@ -51,14 +51,14 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/tags/%EC%9A%A9%EC%96%B4/</loc>
+        <loc>http://ntalbs.github.io/tags/%EC%BB%A4%EB%B2%84%EB%A6%AC%EC%A7%80/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/tags/%EC%BB%A4%EB%B2%84%EB%A6%AC%EC%A7%80/</loc>
+        <loc>http://ntalbs.github.io/tags/%EC%9A%A9%EC%96%B4/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -219,22 +219,22 @@
     </url>
 
     <url>
+        <loc>http://ntalbs.github.io/tags/%EC%98%81%EA%B5%AD%EC%83%9D%ED%99%9C/</loc>
+        <lastmod>2017-06-30T18:59:25.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://ntalbs.github.io/tags/Project-Euler/</loc>
-        <lastmod>2017-06-15T20:06:27.000Z</lastmod>
+        <lastmod>2017-07-05T21:25:58.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://ntalbs.github.io/tags/Clojure/</loc>
-        <lastmod>2017-06-15T20:06:27.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/tags/%EC%98%81%EA%B5%AD%EC%83%9D%ED%99%9C/</loc>
-        <lastmod>2017-06-30T18:59:25.000Z</lastmod>
+        <lastmod>2017-07-05T21:25:58.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
