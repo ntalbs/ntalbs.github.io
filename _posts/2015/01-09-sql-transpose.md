@@ -2,7 +2,7 @@ tags: [DB, SQL, PostgreSQL]
 date: 2015-01-09
 title: SQL에서 행을 열로 바꾸는 방법
 ---
-쿼리를 작성하다 보면 행을 열로 또는 열을 행으로 바꾸고 싶은 경우가 생긴다. 데이터 모델을 만들 때 같은 종류의 데이터는 행으로 저장하는 것이 좋지만, 고객은 열로 표현된 형태의 보고서를 받고 싶어할 수 있다. SQL 쿼리 결과를 행에서 열로 또는 열에서 행으로 바꾸는 것은 원리만 알면 복잡한 작업은 아니지만 약간의 기교가 필요하다. 그래서인지 쿼리 결과의 행/열 전환은 SQL 관련 단골 질문이기도 하다.<!--more-->
+쿼리를 작성하다 보면 행을 열로 또는 열을 행으로 바꾸고 싶은 경우가 생긴다. 데이터 모델을 만들 때 같은 종류의 데이터는 행으로 저장하는 것이 좋지만, 고객은 열로 표현된 형태의 보고서를 보고 싶을 수 있다. 쿼리 결과를 행에서 열로 또는 열에서 행으로 바꾸는 작업은 원리를 이해하면 어렵지 않지만 약간의 기교가 필요하다. 그래서인지 쿼리 결과의 행/열 전환은 SQL 관련 단골 질문이기도 하다.<!--more-->
 
 ## 개요
 주문 테이블 `orders`에 다음과 같이 날짜별 거래 데이터가 들어있다고 하자.
@@ -200,7 +200,7 @@ order by 1;
 ```
 
 ## 방법3: PIVOT을 사용하는 방법
-Oracle, PostgreSQL 등의 DBMS는 쿼리에서 pivot을 지원한다. Oracle에는 11g부터 `pivot`, `unpivot` 기능이 추가되었다. PostgreSQL에서는 `tablefunc` 모듈에 있는 `crosstab`을 이용해 pivot된 결과를 만들 수 있다. pivot 기능을 사용하려면 먼저 `tablefunc` 확장기능을 활성화해야 한다.
+Oracle, PostgreSQL 등의 DBMS는 쿼리에서 pivot을 지원한다. Oracle에는 11g부터 `pivot`, `unpivot` 기능이 추가되었다. PostgreSQL에서는 `tablefunc` 모듈에 있는 `crosstab`을 이용해 pivot된 결과를 만들 수 있다. PostgreSQL에서 pivot 기능을 사용하려면 먼저 `tablefunc` 확장기능을 활성화해야 한다.
 
 ```sql
 CREATE EXTENSION tablefunc;
