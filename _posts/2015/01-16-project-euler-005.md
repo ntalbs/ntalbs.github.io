@@ -5,7 +5,7 @@ title: 프로젝트 오일러 5
 > 1 ~ 20 사이의 어떤 수로도 나누어 떨어지는 가장 작은 수는?
 > 문제 자세히 보기: [[국어]](http://euler.synap.co.kr/prob_detail.php?id=5) [[영어]](https://projecteuler.net/problem=5)
 
-1~20의 최소공배수(least common multiple)를 구하는 문제다. 최소공배수는 다음 식으로 간단히 구할 수 있다.<!--more-->
+1~20의 최소공배수(Least Common Multiple)를 구하는 문제다. 최소공배수는 다음 식으로 간단히 구할 수 있다.<!--more-->
 
 {% math %}
 \begin{aligned}
