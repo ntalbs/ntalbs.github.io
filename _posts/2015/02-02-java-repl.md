@@ -29,4 +29,4 @@ java> fruits.stream().map(x->x.length()).collect(Collectors.toList())
 Java는 코드가 장황해 콘솔에서 긴 코드를 입력해 테스트하는 것이 쉽지는 않지만, 그래도 REPL이 없는 것보다는 낫다고 할 수 있겠다.
 
 ## 참고
-* [Java REPL](http://www.javarepl.com/console.html)
+* [Java REPL](http://www.javarepl.com/)
