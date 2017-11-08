@@ -109,3 +109,4 @@ p018=> (time (solve))
 
 ## 참고
 * [프로젝트 오일러 18 풀이 소스 코드](https://github.com/ntalbs/euler/blob/master/src/p018.clj)
+* [프로젝트 오일러 67](/2016/project-euler-067/) 같은 문제다. 여기서는 삼각형이 15층에 불과했지만, 이 문제에서는 100층짜리 삼각형을 다뤄야 한다.
