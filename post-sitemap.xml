@@ -7,6 +7,22 @@
     </url>
 
     <url>
+        <loc>http://ntalbs.github.io/2018/two-years-at-amazon/</loc>
+        <lastmod>2018-01-05T18:00:52.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://ntalbs.github.io/2017/poor-code/</loc>
+        <lastmod>2018-01-03T22:50:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://ntalbs.github.io/2009/625/</loc>
         <lastmod>2017-12-29T09:43:38.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -49,14 +65,6 @@
     <url>
         <loc>http://ntalbs.github.io/2014/dystopian-future/</loc>
         <lastmod>2017-12-08T17:18:56.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://ntalbs.github.io/2017/poor-code/</loc>
-        <lastmod>2017-12-03T19:38:42.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
