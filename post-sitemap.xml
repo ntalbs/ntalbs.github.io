@@ -919,7 +919,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2008/comp-indexes/</loc>
+        <loc>http://ntalbs.github.io/2008/comp-tables/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -927,7 +927,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2008/comp-tables/</loc>
+        <loc>http://ntalbs.github.io/2008/comp-indexes/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -967,7 +967,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2008/sizing-index/</loc>
+        <loc>http://ntalbs.github.io/2008/dbms-metadata/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -975,7 +975,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2008/dbms-metadata/</loc>
+        <loc>http://ntalbs.github.io/2008/sizing-index/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1023,7 +1023,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2009/data-generator/</loc>
+        <loc>http://ntalbs.github.io/2009/credit-card/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1031,7 +1031,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2009/credit-card/</loc>
+        <loc>http://ntalbs.github.io/2009/data-generator/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1543,7 +1543,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/thought-on-korean-education/</loc>
+        <loc>http://ntalbs.github.io/2015/project-euler-012/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1551,7 +1551,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/project-euler-012/</loc>
+        <loc>http://ntalbs.github.io/2015/thought-on-korean-education/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1591,7 +1591,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/project-euler-016/</loc>
+        <loc>http://ntalbs.github.io/2015/sitemap-generator/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1599,7 +1599,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2015/sitemap-generator/</loc>
+        <loc>http://ntalbs.github.io/2015/project-euler-016/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1919,7 +1919,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2016/what-i-had-to-know-before-coming-to-uk/</loc>
+        <loc>http://ntalbs.github.io/2016/first-driving-in-uk/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1927,7 +1927,7 @@
     </url>
 
     <url>
-        <loc>http://ntalbs.github.io/2016/first-driving-in-uk/</loc>
+        <loc>http://ntalbs.github.io/2016/what-i-had-to-know-before-coming-to-uk/</loc>
         <lastmod>2016-05-18T08:45:22.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
