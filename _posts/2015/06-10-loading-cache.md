@@ -2,7 +2,7 @@ tags: [Java]
 date: 2015-06-10
 title: Guava Cache 제대로 사용하기
 ---
-[Google Guava Cache](https://code.google.com/p/guava-libraries/wiki/CachesExplained)는 캐시를 쉽게 사용할 수 있도록 다양한 기능을 제공한다. 간단한 코드로 캐시 크기, 캐시 시간, 데이터 로딩 방법, 데이터 리프레시 방법 등을 제어할 수 있다. 회사에서도 성능 향상을 위해 Guava 캐시가 널리 사용되고 있는데, 최근 캐시 관련 코드를 보다가 이상한 점을 발견했다.<!--more-->
+[Google Guava Cache](https://code.google.com/p/guava-libraries/wiki/CachesExplained)는 캐시를 쉽게 사용할 수 있도록 다양한 기능을 제공한다. 간단한 코드로 캐시 크기, 캐시 시간, 데이터 로딩 방법, 데이터 리프레시 방법 등을 제어할 수 있다. 회사에서도 성능 향상을 위해 Guava 캐시가 널리 사용하고 있는데, 최근 캐시 관련 코드를 보다가 이상한 점을 발견했다.<!--more-->
 
 Guava 캐시는 `CacheBuilder`를 이용해 쉽게 만들 수 있다. `LoadingCache`를 사용하면 `CacheLoader`의 `load`와 `loadAll` 메서드를 오버라이드해 데이터 로딩 방법을 지정할 수 있다. 그런데 회사 코드에서 캐시를 사용하는 부분은 거의 대부분 다음과 같은 패턴으로 작성되어 있었다. 여기서는 `Product` 객체를 캐시하며, 원천 데이터는 `productService`로부터 가져온다고 가정하자.
 
