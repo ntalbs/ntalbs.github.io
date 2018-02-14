@@ -30,3 +30,6 @@ Java는 코드가 장황해 콘솔에서 긴 코드를 입력해 테스트하는
 
 ## 참고
 * [Java REPL](http://www.javarepl.com/)
+
+## 업데이트
+* Java 9부터는 JDK에 포함되어 있는 JShell을 사용하면 된다.
