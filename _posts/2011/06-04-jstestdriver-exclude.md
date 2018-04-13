@@ -1,5 +1,5 @@
 date: 2011-06-04
-tags: [CI, JavaScript, 커버리지, 테스팅]
+tags: [테스팅]
 title: 커버리지 분석 시 불필요한 js 파일 제외하기
 ---
 [Hudson에서 JsTestDriver를 이용한 커버리지 분석 설정](/2010/hudson-jstestdriver-coverage/)에서 JsTestDriver로 작성한 테스트에 대해 커버리지를 어떻게 볼 수 있는지 설명했다. 그런데 이렇게 테스트 커버리지를 분석할 때 문제가 하나 있다. 외부 라이브러리가 커버리지 분석 리포트에 포함되어 커버리지 결과가 왜곡된다는 점이다.
