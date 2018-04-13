@@ -20,4 +20,4 @@ IT 분야는 기술 발전이 빠르기 때문에 뒤쳐지지 않으려면 끊�
 ## 참고
 * [The Developer's Dystopian Future](https://the-pastry-box-project.net/ed-finkler/2014-july-6)
 이 글을 읽고 깊이 공감해 내 생각을 대입해서 몇 글자 적어 봤다.
-* 무용지식([obsoledge](https://www.urbandictionary.com/define.php?term=Obsoledge)): obsolete와 knowledge를 합성해 만든 신조어. 앨빈 토플러와 하이디 토플러가 부의 미래(Revolutionary Wealth)에서 만든 용어다.
+* 무용지식([obsoledge](https://www.urbandictionary.com/define.php?term=Obsoledge)): obsolete와 knowledge를 합성해 만든 신조어. 앨빈 토플러와 하이디 토플러가 '부의 미래(Revolutionary Wealth)'에서 만든 용어다.
