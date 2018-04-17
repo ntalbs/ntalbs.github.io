@@ -1,8 +1,196 @@
-<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>프로젝트 오일러 83 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">프로젝트 오일러 83</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2017-01-11T00:00:00.000Z" itemprop="datePublished">2017-01-11</time> on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 83</h1></header><section class="post-content"><blockquote><p>상하좌우로 움직여서 좌상단→우하단으로 가는 경로의 합이 최소인 경우는?<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=83" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=83" target="_blank" rel="noopener">[영어]</a></p></blockquote><p>이 문제에는 두 가지 복병이 기다리고 있었다. 하나는 <a href="https://en.wikipedia.org/wiki/A*_search_algorithm" target="_blank" rel="noopener">A* Search Algorithm</a> 알고리즘이었다. 여러 가지 방법을 생각해 보았지만 A* 알고리즘을 사용하지 않고는 풀 수 없었다. 구글로 검색해보면 A* 알고리즘에 대한 설명을 찾을 수 있지만 이해하기가 쉽지 않았다. 얼마 전 <a href="https://www.coursera.org" target="_blank" rel="noopener">Couresra</a>에서 <a href="https://www.coursera.org/learn/algorithms-part1" target="_blank" rel="noopener">Algorithms, Part I</a>을 수강한 후에야 A* 알고리즘을 이해할 수 있었다.<br><a id="more"></a></p><p>또 다른 어려움은 알고리즘을 Clojure로 구현하는 것이었다. 일단 Java로 문제를 푼 다음 Clojure로 옮겼다. Java에서는 배열을 만들어놓고 업데이트해가며 문제를 풀 수 있는데, Clojure에서는 그런 식의 접근이 쉽지 않았다. 아직 Clojure에 충분히 익숙하지 않아서 그런 것일 게다.</p><p>알고리즘을 간단히 설명하면, 시작 위치에서 이웃 노드를 구해 우선순위 큐에 넣는다. 큐에서의 우선순위는 목표 위치까지의 맨하탄 거리와 해당 노드까지의 경로 합을 이용해 계산한 값으로 정한다. 큐에서 노드 하나를 꺼내 이웃을 구해 중복을 제거해 다시 큐에 넣는다. 이 과정을 반복해 큐에서 나온 값이 목표 위치가 되면 그때까지의 경로 합이 답이 된다.</p><p>먼저, 다음과 같이 데이터를 로드한다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">ns</span></span> p083</span><br><span class="line">  (<span class="symbol">:require</span> [util <span class="symbol">:refer</span> [split parse-int]]))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">def</span></span> ^<span class="symbol">:private</span> m</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">slurp</span></span> <span class="string">"data/matrix.txt"</span>)</span><br><span class="line">       (<span class="name">split</span>  #<span class="string">"\r\n"</span>)</span><br><span class="line">       (<span class="name"><span class="builtin-name">mapv</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [line]</span><br><span class="line">               (<span class="name"><span class="builtin-name">mapv</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [s] &#123;<span class="symbol">:val</span> (<span class="name">parse-int</span> s)&#125;) (<span class="name">split</span> #<span class="string">","</span> line ))))))</span><br></pre></td></tr></table></figure><p><a href="/2017/project-euler-081/">문제 81</a>, <a href="/2017/project-euler-082/">문제 82</a>에서는 행렬 안에 숫자만 있었지만, 여기서는 행렬 안에 <code>{:val 1234}</code> 형태의 맵을 넣는다. 문제를 풀면서 여기에 해당 위치까지의 누적합 <code>:sum</code>을 추가할 것이다. 다음과 같이 상수도 정의해 놓는다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">def</span></span> ^<span class="symbol">:private</span> SIZE (<span class="name"><span class="builtin-name">count</span></span> m))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">def</span></span> ^<span class="symbol">:private</span> weight <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">def</span></span> ^<span class="symbol">:private</span> start-node</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> [v (<span class="name"><span class="builtin-name">get-in</span></span> m [<span class="number">0</span> <span class="number">0</span> <span class="symbol">:val</span>])]</span><br><span class="line">    &#123;<span class="symbol">:row</span> <span class="number">0</span>, <span class="symbol">:col</span> <span class="number">0</span>, <span class="symbol">:val</span> v <span class="symbol">:sum</span> v&#125;))</span><br></pre></td></tr></table></figure><p><code>SIZE</code>는 전체 배열(실제로는 벡터)의 크기다. 가로 세로 크기가 같으므로 <code>SIZE</code> 하나로 충분하다. <code>weight</code>는 노드를 비교하는 함수를 만들 때 사용할 것이다. 값을 5로 한 이유는 나중에 설명할 것이다. 노드는 <code>:row</code>, <code>:col</code>, <code>:val</code>, <code>:sum</code>, <code>:prev</code> 속성을 가지는 해시맵을 사용할 것이다.</p><p>목표 위치까지의 맨하탄 거리를 구하는 함수는 다음과 같이 작성할 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> manhattan [n]</span><br><span class="line">  (<span class="name"><span class="builtin-name">-</span></span> (<span class="name"><span class="builtin-name">*</span></span> <span class="number">2</span> SIZE) (<span class="name">n</span> <span class="symbol">:row</span>) (<span class="name">n</span> <span class="symbol">:col</span>)))</span><br></pre></td></tr></table></figure><p>현재 노드가 목표 위치에 있는지 확인하는 함수는 다음과 같이 작성할 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> destination? [n]</span><br><span class="line">  (<span class="name"><span class="builtin-name">and</span></span> (<span class="name"><span class="builtin-name">=</span></span> (<span class="symbol">:row</span> n) (<span class="symbol">:col</span> n) (<span class="name"><span class="builtin-name">dec</span></span> SIZE))))</span><br></pre></td></tr></table></figure><p>두 노드를 비교하는 함수는 다음과 같이 작성할 수 있다. 맨하탄 거리에 <code>weight</code>를 곱한 값과 현재 위치까지의 경로합을 더한 값으로 두 노드를 비교한다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> node-comparator [n1 n2]</span><br><span class="line">  (<span class="name"><span class="builtin-name">-</span></span> (<span class="name"><span class="builtin-name">+</span></span> (<span class="name">n1</span> <span class="symbol">:sum</span>) (<span class="name"><span class="builtin-name">*</span></span> weight (<span class="name">manhattan</span> n1)))</span><br><span class="line">     (<span class="name"><span class="builtin-name">+</span></span> (<span class="name">n2</span> <span class="symbol">:sum</span>) (<span class="name"><span class="builtin-name">*</span></span> weight (<span class="name">manhattan</span> n2)))))</span><br></pre></td></tr></table></figure><p>두 노드가 이웃인지 확인하는 함수도 다음과 같이 작성할 수 있다. 행렬에서 상하좌우로 이동할 수 있으므로, <code>n1</code>이 <code>n2</code>의 상하좌우에 있다면 이웃으로 판단한다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> neighbor? [n1 n2]</span><br><span class="line">  (<span class="name"><span class="builtin-name">cond</span></span></span><br><span class="line">    (<span class="name"><span class="builtin-name">nil?</span></span> n1) <span class="literal">false</span></span><br><span class="line">    (<span class="name"><span class="builtin-name">nil?</span></span> n2) <span class="literal">false</span></span><br><span class="line">    <span class="symbol">:else</span> (<span class="name"><span class="builtin-name">let</span></span> [dr (<span class="name">Math/abs</span> (<span class="name"><span class="builtin-name">-</span></span> (<span class="name">n1</span> <span class="symbol">:row</span>) (<span class="name">n2</span> <span class="symbol">:row</span>)))</span><br><span class="line">                dc (<span class="name">Math/abs</span> (<span class="name"><span class="builtin-name">-</span></span> (<span class="name">n1</span> <span class="symbol">:col</span>) (<span class="name">n2</span> <span class="symbol">:col</span>)))]</span><br><span class="line">            (<span class="name"><span class="builtin-name">=</span></span> <span class="number">1</span> (<span class="name"><span class="builtin-name">+</span></span> dr dc)))))</span><br></pre></td></tr></table></figure><p>목표 위치에 도달했을 때 어떤 경로로 왔는지 확인하기 위해 경로를 구하는 함수를 작성할 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> path [to-node]</span><br><span class="line">  (<span class="name"><span class="builtin-name">loop</span></span> [n to-node acc '()]</span><br><span class="line">    (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">nil?</span></span> (<span class="name">n</span> <span class="symbol">:prev</span>))</span><br><span class="line">      (<span class="name"><span class="builtin-name">conj</span></span> acc [(<span class="name">n</span> <span class="symbol">:row</span>) (<span class="name">n</span> <span class="symbol">:col</span>)])</span><br><span class="line">      (<span class="name"><span class="builtin-name">recur</span></span> (<span class="name">n</span> <span class="symbol">:prev</span>) (<span class="name"><span class="builtin-name">conj</span></span> acc [(<span class="name">n</span> <span class="symbol">:row</span>) (<span class="name">n</span> <span class="symbol">:col</span>)])))))</span><br></pre></td></tr></table></figure><p>현재 노드의 이웃을 구하는 함수는 조금 복잡하다. 불필요한 계산을 피하기 위해 이미 방문했던 노드는 이웃에서 제외한다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> neighbors [current]</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> [prev1  (<span class="name">current</span> <span class="symbol">:prev</span>)</span><br><span class="line">        prev2  (<span class="name"><span class="builtin-name">if</span></span> prev1 (<span class="name">prev1</span> <span class="symbol">:prev</span>))</span><br><span class="line">        deltas [[<span class="number">-1</span> <span class="number">0</span>] [<span class="number">0</span> <span class="number">1</span>] [<span class="number">1</span> <span class="number">0</span>] [<span class="number">0</span> <span class="number">-1</span>]]]</span><br><span class="line">    (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> deltas</span><br><span class="line">         (<span class="name"><span class="builtin-name">map</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [[dr dc]] [(<span class="name"><span class="builtin-name">+</span></span> (<span class="name">current</span> <span class="symbol">:row</span>) dr) (<span class="name"><span class="builtin-name">+</span></span> (<span class="name">current</span> <span class="symbol">:col</span>) dc)]))</span><br><span class="line">         (<span class="name"><span class="builtin-name">remove</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [[r c]] (<span class="name"><span class="builtin-name">or</span></span> (<span class="name"><span class="builtin-name">&lt;</span></span> r <span class="number">0</span>) (<span class="name"><span class="builtin-name">&gt;=</span></span> r SIZE) (<span class="name"><span class="builtin-name">&lt;</span></span> c <span class="number">0</span>) (<span class="name"><span class="builtin-name">&gt;=</span></span> c SIZE))))</span><br><span class="line">         (<span class="name"><span class="builtin-name">map</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [[r c]]</span><br><span class="line">                (<span class="name"><span class="builtin-name">let</span></span> [v (<span class="name"><span class="builtin-name">get-in</span></span> m [r c <span class="symbol">:val</span>])]</span><br><span class="line">                  &#123;<span class="symbol">:row</span> r, <span class="symbol">:col</span> c,</span><br><span class="line">                   <span class="symbol">:prev</span> current, <span class="symbol">:val</span> v, <span class="symbol">:sum</span> (<span class="name"><span class="builtin-name">+</span></span> (<span class="name">current</span> <span class="symbol">:sum</span>) v)&#125;)))</span><br><span class="line">         (<span class="name"><span class="builtin-name">remove</span></span> #(<span class="name"><span class="builtin-name">=</span></span> % prev1))</span><br><span class="line">         (<span class="name"><span class="builtin-name">remove</span></span> #(<span class="name">neighbor?</span> % prev2)))))</span><br></pre></td></tr></table></figure><p>우선순위 큐로는 <code>sorted-set</code>을 사용한다. <code>corted-set-by</code>로 <code>comparator</code>를 지정한다. <code>comparator</code>는 위에서 정의한 <code>node-comparator</code>를 사용한다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve []</span><br><span class="line">  (<span class="name"><span class="builtin-name">loop</span></span> [data    m</span><br><span class="line">         pq      (<span class="name"><span class="builtin-name">sorted-set-by</span></span> node-comparator start-node)</span><br><span class="line">         current (<span class="name"><span class="builtin-name">first</span></span> pq)]</span><br><span class="line">    (<span class="name"><span class="builtin-name">if</span></span> (<span class="name">destination?</span> current)</span><br><span class="line">      (<span class="name">current</span> <span class="symbol">:sum</span>)</span><br><span class="line">      (<span class="name"><span class="builtin-name">let</span></span> [prev1 (<span class="name">current</span> <span class="symbol">:prev</span>)</span><br><span class="line">            prev2 (<span class="name"><span class="builtin-name">if</span></span> prev1 (<span class="name">prev1</span> <span class="symbol">:prev</span>))</span><br><span class="line">            ns    (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name">neighbors</span> current)</span><br><span class="line">                       (<span class="name"><span class="builtin-name">filter</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [&#123;r <span class="symbol">:row</span> c <span class="symbol">:col</span> s <span class="symbol">:sum</span>&#125;]</span><br><span class="line">                                 (<span class="name"><span class="builtin-name">let</span></span> [prev-sum (<span class="name"><span class="builtin-name">get-in</span></span> data [r c <span class="symbol">:sum</span>])]</span><br><span class="line">                                   (<span class="name"><span class="builtin-name">or</span></span> (<span class="name"><span class="builtin-name">nil?</span></span> prev-sum) (<span class="name"><span class="builtin-name">&lt;</span></span> s prev-sum))))))</span><br><span class="line">            pq    (<span class="name"><span class="builtin-name">apply</span></span> conj (<span class="name"><span class="builtin-name">disj</span></span> pq current) ns)]</span><br><span class="line">        (<span class="name"><span class="builtin-name">recur</span></span> (<span class="name"><span class="builtin-name">reduce</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [m &#123;r <span class="symbol">:row</span> c <span class="symbol">:col</span> s <span class="symbol">:sum</span>&#125;]</span><br><span class="line">                         (<span class="name"><span class="builtin-name">update-in</span></span> m [r c] assoc <span class="symbol">:sum</span> s)) data ns)</span><br><span class="line">               pq</span><br><span class="line">               (<span class="name"><span class="builtin-name">first</span></span> pq))))))</span><br></pre></td></tr></table></figure><p><code>neighbors</code>를 이용해 이웃을 구한 다음 각 이웃 노드에 대해 해당 위치까지의 합이 기존에 구한 합보다 작은지 확인한다. 기존에 구한 합이 작다면 해당 이웃은 버린다. 이렇게 구한 이웃을 다시 우선순위 큐에 넣는다. 그리고 이 이웃을 이용해 행렬에 <code>:sum</code>을 업데이트한다.</p><p>실행 결과는 다음과 같다. 충분히 빠른 시간 안에 답을 구한다.</p><pre class="console">
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>프로젝트 오일러 83 | ntalbs&#39; stuff</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <meta name="generator" content="ntalbs' stuff"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+  
+  
+</head>
+
+  <body class="home-template">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+      <a class="navbar-brand" href="/">@ntalbs' stuff</a>
+    </div>
+    <div class="navbar-items collapsed" id="nav-items">
+      <ul>
+        
+          <li><a href="/archives">Archives</a></li>
+        
+          <li><a href="/tags">Tags</a></li>
+        
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="progress">
+  <div id="bar"></div>
+  <div class="container">
+    <div id="scroll-title">프로젝트 오일러 83</div>
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="container">
+    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+  </div>
+</header>
+
+
+
+<main class="container" role="main">
+  <article class="post">
+    <header>
+      <p class="post-meta">
+        <time datetime="2017-01-11T00:00:00.000Z" itemprop="datePublished">2017-01-11</time>
+         on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a>
+      </p>
+      <h1 class="post-title">프로젝트 오일러 83</h1>
+    </header>
+
+    
+
+    <section class="post-content">
+      <blockquote>
+<p>상하좌우로 움직여서 좌상단→우하단으로 가는 경로의 합이 최소인 경우는?<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=83" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=83" target="_blank" rel="noopener">[영어]</a></p>
+</blockquote>
+<p>이 문제에는 두 가지 복병이 기다리고 있었다. 하나는 <a href="https://en.wikipedia.org/wiki/A*_search_algorithm" target="_blank" rel="noopener">A* Search Algorithm</a> 알고리즘이었다. 여러 가지 방법을 생각해 보았지만 A* 알고리즘을 사용하지 않고는 풀 수 없었다. 구글로 검색해보면 A* 알고리즘에 대한 설명을 찾을 수 있지만 이해하기가 쉽지 않았다. 얼마 전 <a href="https://www.coursera.org" target="_blank" rel="noopener">Couresra</a>에서 <a href="https://www.coursera.org/learn/algorithms-part1" target="_blank" rel="noopener">Algorithms, Part I</a>을 수강한 후에야 A* 알고리즘을 이해할 수 있었다.<br><a id="more"></a></p>
+<p>또 다른 어려움은 알고리즘을 Clojure로 구현하는 것이었다. 일단 Java로 문제를 푼 다음 Clojure로 옮겼다. Java에서는 배열을 만들어놓고 업데이트해가며 문제를 풀 수 있는데, Clojure에서는 그런 식의 접근이 쉽지 않았다. 아직 Clojure에 충분히 익숙하지 않아서 그런 것일 게다.</p>
+<p>알고리즘을 간단히 설명하면, 시작 위치에서 이웃 노드를 구해 우선순위 큐에 넣는다. 큐에서의 우선순위는 목표 위치까지의 맨하탄 거리와 해당 노드까지의 경로 합을 이용해 계산한 값으로 정한다. 큐에서 노드 하나를 꺼내 이웃을 구해 중복을 제거해 다시 큐에 넣는다. 이 과정을 반복해 큐에서 나온 값이 목표 위치가 되면 그때까지의 경로 합이 답이 된다.</p>
+<p>먼저, 다음과 같이 데이터를 로드한다.</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">ns</span></span> p083</span><br><span class="line">  (<span class="symbol">:require</span> [util <span class="symbol">:refer</span> [split parse-int]]))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">def</span></span> ^<span class="symbol">:private</span> m</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">slurp</span></span> <span class="string">"data/matrix.txt"</span>)</span><br><span class="line">       (<span class="name">split</span>  #<span class="string">"\r\n"</span>)</span><br><span class="line">       (<span class="name"><span class="builtin-name">mapv</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [line]</span><br><span class="line">               (<span class="name"><span class="builtin-name">mapv</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [s] &#123;<span class="symbol">:val</span> (<span class="name">parse-int</span> s)&#125;) (<span class="name">split</span> #<span class="string">","</span> line ))))))</span><br></pre></td></tr></table></figure>
+<p><a href="/2017/project-euler-081/">문제 81</a>, <a href="/2017/project-euler-082/">문제 82</a>에서는 행렬 안에 숫자만 있었지만, 여기서는 행렬 안에 <code>{:val 1234}</code> 형태의 맵을 넣는다. 문제를 풀면서 여기에 해당 위치까지의 누적합 <code>:sum</code>을 추가할 것이다. 다음과 같이 상수도 정의해 놓는다.</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">def</span></span> ^<span class="symbol">:private</span> SIZE (<span class="name"><span class="builtin-name">count</span></span> m))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">def</span></span> ^<span class="symbol">:private</span> weight <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">def</span></span> ^<span class="symbol">:private</span> start-node</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> [v (<span class="name"><span class="builtin-name">get-in</span></span> m [<span class="number">0</span> <span class="number">0</span> <span class="symbol">:val</span>])]</span><br><span class="line">    &#123;<span class="symbol">:row</span> <span class="number">0</span>, <span class="symbol">:col</span> <span class="number">0</span>, <span class="symbol">:val</span> v <span class="symbol">:sum</span> v&#125;))</span><br></pre></td></tr></table></figure>
+<p><code>SIZE</code>는 전체 배열(실제로는 벡터)의 크기다. 가로 세로 크기가 같으므로 <code>SIZE</code> 하나로 충분하다. <code>weight</code>는 노드를 비교하는 함수를 만들 때 사용할 것이다. 값을 5로 한 이유는 나중에 설명할 것이다. 노드는 <code>:row</code>, <code>:col</code>, <code>:val</code>, <code>:sum</code>, <code>:prev</code> 속성을 가지는 해시맵을 사용할 것이다.</p>
+<p>목표 위치까지의 맨하탄 거리를 구하는 함수는 다음과 같이 작성할 수 있다.</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> manhattan [n]</span><br><span class="line">  (<span class="name"><span class="builtin-name">-</span></span> (<span class="name"><span class="builtin-name">*</span></span> <span class="number">2</span> SIZE) (<span class="name">n</span> <span class="symbol">:row</span>) (<span class="name">n</span> <span class="symbol">:col</span>)))</span><br></pre></td></tr></table></figure>
+<p>현재 노드가 목표 위치에 있는지 확인하는 함수는 다음과 같이 작성할 수 있다.</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> destination? [n]</span><br><span class="line">  (<span class="name"><span class="builtin-name">and</span></span> (<span class="name"><span class="builtin-name">=</span></span> (<span class="symbol">:row</span> n) (<span class="symbol">:col</span> n) (<span class="name"><span class="builtin-name">dec</span></span> SIZE))))</span><br></pre></td></tr></table></figure>
+<p>두 노드를 비교하는 함수는 다음과 같이 작성할 수 있다. 맨하탄 거리에 <code>weight</code>를 곱한 값과 현재 위치까지의 경로합을 더한 값으로 두 노드를 비교한다.</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> node-comparator [n1 n2]</span><br><span class="line">  (<span class="name"><span class="builtin-name">-</span></span> (<span class="name"><span class="builtin-name">+</span></span> (<span class="name">n1</span> <span class="symbol">:sum</span>) (<span class="name"><span class="builtin-name">*</span></span> weight (<span class="name">manhattan</span> n1)))</span><br><span class="line">     (<span class="name"><span class="builtin-name">+</span></span> (<span class="name">n2</span> <span class="symbol">:sum</span>) (<span class="name"><span class="builtin-name">*</span></span> weight (<span class="name">manhattan</span> n2)))))</span><br></pre></td></tr></table></figure>
+<p>두 노드가 이웃인지 확인하는 함수도 다음과 같이 작성할 수 있다. 행렬에서 상하좌우로 이동할 수 있으므로, <code>n1</code>이 <code>n2</code>의 상하좌우에 있다면 이웃으로 판단한다.</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> neighbor? [n1 n2]</span><br><span class="line">  (<span class="name"><span class="builtin-name">cond</span></span></span><br><span class="line">    (<span class="name"><span class="builtin-name">nil?</span></span> n1) <span class="literal">false</span></span><br><span class="line">    (<span class="name"><span class="builtin-name">nil?</span></span> n2) <span class="literal">false</span></span><br><span class="line">    <span class="symbol">:else</span> (<span class="name"><span class="builtin-name">let</span></span> [dr (<span class="name">Math/abs</span> (<span class="name"><span class="builtin-name">-</span></span> (<span class="name">n1</span> <span class="symbol">:row</span>) (<span class="name">n2</span> <span class="symbol">:row</span>)))</span><br><span class="line">                dc (<span class="name">Math/abs</span> (<span class="name"><span class="builtin-name">-</span></span> (<span class="name">n1</span> <span class="symbol">:col</span>) (<span class="name">n2</span> <span class="symbol">:col</span>)))]</span><br><span class="line">            (<span class="name"><span class="builtin-name">=</span></span> <span class="number">1</span> (<span class="name"><span class="builtin-name">+</span></span> dr dc)))))</span><br></pre></td></tr></table></figure>
+<p>목표 위치에 도달했을 때 어떤 경로로 왔는지 확인하기 위해 경로를 구하는 함수를 작성할 수 있다.</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> path [to-node]</span><br><span class="line">  (<span class="name"><span class="builtin-name">loop</span></span> [n to-node acc '()]</span><br><span class="line">    (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">nil?</span></span> (<span class="name">n</span> <span class="symbol">:prev</span>))</span><br><span class="line">      (<span class="name"><span class="builtin-name">conj</span></span> acc [(<span class="name">n</span> <span class="symbol">:row</span>) (<span class="name">n</span> <span class="symbol">:col</span>)])</span><br><span class="line">      (<span class="name"><span class="builtin-name">recur</span></span> (<span class="name">n</span> <span class="symbol">:prev</span>) (<span class="name"><span class="builtin-name">conj</span></span> acc [(<span class="name">n</span> <span class="symbol">:row</span>) (<span class="name">n</span> <span class="symbol">:col</span>)])))))</span><br></pre></td></tr></table></figure>
+<p>현재 노드의 이웃을 구하는 함수는 조금 복잡하다. 불필요한 계산을 피하기 위해 이미 방문했던 노드는 이웃에서 제외한다.</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> neighbors [current]</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> [prev1  (<span class="name">current</span> <span class="symbol">:prev</span>)</span><br><span class="line">        prev2  (<span class="name"><span class="builtin-name">if</span></span> prev1 (<span class="name">prev1</span> <span class="symbol">:prev</span>))</span><br><span class="line">        deltas [[<span class="number">-1</span> <span class="number">0</span>] [<span class="number">0</span> <span class="number">1</span>] [<span class="number">1</span> <span class="number">0</span>] [<span class="number">0</span> <span class="number">-1</span>]]]</span><br><span class="line">    (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> deltas</span><br><span class="line">         (<span class="name"><span class="builtin-name">map</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [[dr dc]] [(<span class="name"><span class="builtin-name">+</span></span> (<span class="name">current</span> <span class="symbol">:row</span>) dr) (<span class="name"><span class="builtin-name">+</span></span> (<span class="name">current</span> <span class="symbol">:col</span>) dc)]))</span><br><span class="line">         (<span class="name"><span class="builtin-name">remove</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [[r c]] (<span class="name"><span class="builtin-name">or</span></span> (<span class="name"><span class="builtin-name">&lt;</span></span> r <span class="number">0</span>) (<span class="name"><span class="builtin-name">&gt;=</span></span> r SIZE) (<span class="name"><span class="builtin-name">&lt;</span></span> c <span class="number">0</span>) (<span class="name"><span class="builtin-name">&gt;=</span></span> c SIZE))))</span><br><span class="line">         (<span class="name"><span class="builtin-name">map</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [[r c]]</span><br><span class="line">                (<span class="name"><span class="builtin-name">let</span></span> [v (<span class="name"><span class="builtin-name">get-in</span></span> m [r c <span class="symbol">:val</span>])]</span><br><span class="line">                  &#123;<span class="symbol">:row</span> r, <span class="symbol">:col</span> c,</span><br><span class="line">                   <span class="symbol">:prev</span> current, <span class="symbol">:val</span> v, <span class="symbol">:sum</span> (<span class="name"><span class="builtin-name">+</span></span> (<span class="name">current</span> <span class="symbol">:sum</span>) v)&#125;)))</span><br><span class="line">         (<span class="name"><span class="builtin-name">remove</span></span> #(<span class="name"><span class="builtin-name">=</span></span> % prev1))</span><br><span class="line">         (<span class="name"><span class="builtin-name">remove</span></span> #(<span class="name">neighbor?</span> % prev2)))))</span><br></pre></td></tr></table></figure>
+<p>우선순위 큐로는 <code>sorted-set</code>을 사용한다. <code>corted-set-by</code>로 <code>comparator</code>를 지정한다. <code>comparator</code>는 위에서 정의한 <code>node-comparator</code>를 사용한다.</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve []</span><br><span class="line">  (<span class="name"><span class="builtin-name">loop</span></span> [data    m</span><br><span class="line">         pq      (<span class="name"><span class="builtin-name">sorted-set-by</span></span> node-comparator start-node)</span><br><span class="line">         current (<span class="name"><span class="builtin-name">first</span></span> pq)]</span><br><span class="line">    (<span class="name"><span class="builtin-name">if</span></span> (<span class="name">destination?</span> current)</span><br><span class="line">      (<span class="name">current</span> <span class="symbol">:sum</span>)</span><br><span class="line">      (<span class="name"><span class="builtin-name">let</span></span> [prev1 (<span class="name">current</span> <span class="symbol">:prev</span>)</span><br><span class="line">            prev2 (<span class="name"><span class="builtin-name">if</span></span> prev1 (<span class="name">prev1</span> <span class="symbol">:prev</span>))</span><br><span class="line">            ns    (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name">neighbors</span> current)</span><br><span class="line">                       (<span class="name"><span class="builtin-name">filter</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [&#123;r <span class="symbol">:row</span> c <span class="symbol">:col</span> s <span class="symbol">:sum</span>&#125;]</span><br><span class="line">                                 (<span class="name"><span class="builtin-name">let</span></span> [prev-sum (<span class="name"><span class="builtin-name">get-in</span></span> data [r c <span class="symbol">:sum</span>])]</span><br><span class="line">                                   (<span class="name"><span class="builtin-name">or</span></span> (<span class="name"><span class="builtin-name">nil?</span></span> prev-sum) (<span class="name"><span class="builtin-name">&lt;</span></span> s prev-sum))))))</span><br><span class="line">            pq    (<span class="name"><span class="builtin-name">apply</span></span> conj (<span class="name"><span class="builtin-name">disj</span></span> pq current) ns)]</span><br><span class="line">        (<span class="name"><span class="builtin-name">recur</span></span> (<span class="name"><span class="builtin-name">reduce</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [m &#123;r <span class="symbol">:row</span> c <span class="symbol">:col</span> s <span class="symbol">:sum</span>&#125;]</span><br><span class="line">                         (<span class="name"><span class="builtin-name">update-in</span></span> m [r c] assoc <span class="symbol">:sum</span> s)) data ns)</span><br><span class="line">               pq</span><br><span class="line">               (<span class="name"><span class="builtin-name">first</span></span> pq))))))</span><br></pre></td></tr></table></figure>
+<p><code>neighbors</code>를 이용해 이웃을 구한 다음 각 이웃 노드에 대해 해당 위치까지의 합이 기존에 구한 합보다 작은지 확인한다. 기존에 구한 합이 작다면 해당 이웃은 버린다. 이렇게 구한 이웃을 다시 우선순위 큐에 넣는다. 그리고 이 이웃을 이용해 행렬에 <code>:sum</code>을 업데이트한다.</p>
+<p>실행 결과는 다음과 같다. 충분히 빠른 시간 안에 답을 구한다.</p>
+<pre class="console">
 p083=> (time (solve))
 "Elapsed time: 299.122935 msecs"
 42??85
-</pre><p><code>weight</code>에 대해 약간의 부연설명이 필요할 듯 하다. 우선순위 큐에서 노드간 우선순위를 정할 때 어떤 기준을 사용하느냐에 따라 우선순위가 달라질 수 있다. 여기서 기준으로 사용한 값은 $sum + weight \times (manhattan\, distance)$다. 즉, 누적 합이 적을수록, 맨하탄 거리가 가까와질수록 우선순위가 높아진다. 맨하탄 거리에 <code>weight</code>를 곱하면 맨하탄 거리의 영향력이 증가한다.</p><p>Java로 구현한 풀이에서는 <code>java.util.PriorityQueue</code>를 사용했는데, <code>weight</code> 값에 0, 5, 10을 주어 계산해도 정답을 구하는 데 아무런 문제가 없었다. 그러나 여기서 사용한 <code>sorted-set</code>은 <code>weight</code> 값에 민감하게 영향을 받는다. <code>weight</code>가 0 또는 10이었을 때는 답을 구하지 못했지만 5로 한 경우에는 정답을 구했다.</p><h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p083.clj" target="_blank" rel="noopener">프로젝트 오일러 83 풀이 소스 코드</a></li><li><a href="https://en.wikipedia.org/wiki/A*_search_algorithm" target="_blank" rel="noopener">A* Search Algorithm</a></li><li><a href="https://www.coursera.org/learn/algorithms-part1" target="_blank" rel="noopener">Coursera: Algorithms, Part I</a></li></ul><div class="button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a> <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a></div></section><footer class="post-footer"><nav id="article-nav"><a href="/2017/project-euler-084/" id="article-nav-newer" class="article-nav-link-wrap"><span class="article-nav-title">프로젝트 오일러 84</span> </a><a href="/2017/project-euler-082/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">프로젝트 오일러 82</span></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script type="text/javascript" src="/js/jquery.fitvids.js"></script><script type="text/javascript" src="/js/index.js"></script><script>!function(e,a,t,n,g,c,s){e.GoogleAnalyticsObject=g,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),s=a.getElementsByTagName(t)[0],c.async=1,c.src="//www.google-analytics.com/analytics.js",s.parentNode.insertBefore(c,s)}(window,document,"script",0,"ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+</pre>
+
+<p><code>weight</code>에 대해 약간의 부연설명이 필요할 듯 하다. 우선순위 큐에서 노드간 우선순위를 정할 때 어떤 기준을 사용하느냐에 따라 우선순위가 달라질 수 있다. 여기서 기준으로 사용한 값은 $sum + weight \times (manhattan\, distance)$다. 즉, 누적 합이 적을수록, 맨하탄 거리가 가까와질수록 우선순위가 높아진다. 맨하탄 거리에 <code>weight</code>를 곱하면 맨하탄 거리의 영향력이 증가한다.</p>
+<p>Java로 구현한 풀이에서는 <code>java.util.PriorityQueue</code>를 사용했는데, <code>weight</code> 값에 0, 5, 10을 주어 계산해도 정답을 구하는 데 아무런 문제가 없었다. 그러나 여기서 사용한 <code>sorted-set</code>은 <code>weight</code> 값에 민감하게 영향을 받는다. <code>weight</code>가 0 또는 10이었을 때는 답을 구하지 못했지만 5로 한 경우에는 정답을 구했다.</p>
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
+<li><a href="https://github.com/ntalbs/euler/blob/master/src/p083.clj" target="_blank" rel="noopener">프로젝트 오일러 83 풀이 소스 코드</a></li>
+<li><a href="https://en.wikipedia.org/wiki/A*_search_algorithm" target="_blank" rel="noopener">A* Search Algorithm</a></li>
+<li><a href="https://www.coursera.org/learn/algorithms-part1" target="_blank" rel="noopener">Coursera: Algorithms, Part I</a></li>
+</ul>
+
+      <div class="button-box">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+        
+          <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+        
+      </div>
+    </section>
+
+    <footer class="post-footer">
+      
+        <nav id="article-nav">
+          
+            <a href="/2017/project-euler-084/" id="article-nav-newer" class="article-nav-link-wrap">
+              <span class="article-nav-title">프로젝트 오일러 84</span>
+            </a>
+          
+          
+            <a href="/2017/project-euler-082/" id="article-nav-older" class="article-nav-link-wrap">
+              <span class="article-nav-title">프로젝트 오일러 82</span>
+            </a>
+          
+        </nav>
+      
+
+      <section id="comment">
+        
+          <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          </div>
+        
+      </section>
+    </footer>
+  </article>
+</main>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+  
+  <div class="inner">
+    <section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section>
+    <section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section>
+  </div>
+</footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+
+
+  <script>
+   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+   ga('create', 'UA-2098194-3', 'auto');
+   ga('require', 'displayfeatures');
+   ga('send', 'pageview');
+
+  </script>
+
+
+  <script type="text/javascript">
+   var disqus_shortname = 'ntalbs-stuff';
+
+   (function(){
+     var dsq = document.createElement('script');
+     dsq.type = 'text/javascript';
+     dsq.async = true;
+     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   }());
+  </script>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],
             skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
@@ -13,9 +201,25 @@ p083=> (time (solve))
         var all = MathJax.Hub.getAllJax();
         for (var i = 0; i < all.length; ++i)
             all[i].SourceElement().parentNode.className += ' has-jax';
-    });</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config("");</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
     var all = MathJax.Hub.getAllJax(), i;
     for(i=0; i < all.length; i += 1) {
       all[i].SourceElement().parentNode.className += ' has-jax';
     }
-  });</script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+  });
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

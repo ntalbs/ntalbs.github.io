@@ -1,8 +1,187 @@
-<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>프로젝트 오일러 89 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">프로젝트 오일러 89</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2018-03-10T00:00:00.000Z" itemprop="datePublished">2018-03-10</time> on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 89</h1></header><section class="post-content"><blockquote><p>로마숫자 최적화하기<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=89" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=89" target="_blank" rel="noopener">[영어]</a></p></blockquote><p>먼저 다음과 같이 텍스트 파일을 읽어 시퀀스로 만들어둔다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">ns</span></span> p089</span><br><span class="line">  (<span class="symbol">:require</span> [clojure.string <span class="symbol">:as</span> str]))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">def</span></span> romans (<span class="name">str/split</span> (<span class="name"><span class="builtin-name">slurp</span></span> <span class="string">"data/roman.txt"</span>) #<span class="string">"\r\n"</span>))</span><br></pre></td></tr></table></figure><a id="more"></a><p>로마숫자 최적화는 다음과 같은 간단한 로직으로 수행할 수 있다.</p><ul><li><code>DCCCC</code>는 <code>CM</code>으로 치환한다.</li><li><code>CCCC</code>는 <code>CD</code>로 치환한다.</li><li><code>LXXXX</code>는 <code>XC</code>로 치환한다.</li><li><code>XXXX</code>는 <code>XL</code>로 치환한다.</li><li><code>VIIII</code>는 <code>IX</code>로 치환한다.</li><li><code>IIII</code>는 <code>IV</code>로 치환한다.</li></ul><p>이를 Clojure 함수로 구현하면 다음과 같다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> shorten [r]</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;</span></span> r</span><br><span class="line">      (<span class="name">str/replace</span> <span class="string">"DCCCC"</span> <span class="string">"CM"</span>)</span><br><span class="line">      (<span class="name">str/replace</span> <span class="string">"CCCC"</span>  <span class="string">"CD"</span>)</span><br><span class="line">      (<span class="name">str/replace</span> <span class="string">"LXXXX"</span> <span class="string">"XC"</span>)</span><br><span class="line">      (<span class="name">str/replace</span> <span class="string">"XXXX"</span>  <span class="string">"XL"</span>)</span><br><span class="line">      (<span class="name">str/replace</span> <span class="string">"VIIII"</span> <span class="string">"IX"</span>)</span><br><span class="line">      (<span class="name">str/replace</span> <span class="string">"IIII"</span>  <span class="string">"IV"</span>)))</span><br></pre></td></tr></table></figure><p>시퀀스에 있는 문자의 개수를 구하는 함수가 있으면 문제를 푸는 데 도움이 된다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> count-chars [coll]</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">map</span></span> count coll)</span><br><span class="line">       (<span class="name"><span class="builtin-name">apply</span></span> +)))</span><br></pre></td></tr></table></figure><p>위 두 함수를 이용해 다음과 같이 문제를 풀 수 있다. 최적화 전 문자수와 최적화 후 문자수의 차를 구하면 된다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve []</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> [cnt0 (<span class="name">count-chars</span> romans)</span><br><span class="line">        cnt1 (<span class="name">count-chars</span> (<span class="name"><span class="builtin-name">map</span></span> shorten romans))]</span><br><span class="line">    (<span class="name"><span class="builtin-name">-</span></span> cnt0 cnt1)))</span><br></pre></td></tr></table></figure><p>실행 결과는 다음과 같다.</p><pre class="console">
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>프로젝트 오일러 89 | ntalbs&#39; stuff</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <meta name="generator" content="ntalbs' stuff"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+  
+  
+</head>
+
+  <body class="home-template">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+      <a class="navbar-brand" href="/">@ntalbs' stuff</a>
+    </div>
+    <div class="navbar-items collapsed" id="nav-items">
+      <ul>
+        
+          <li><a href="/archives">Archives</a></li>
+        
+          <li><a href="/tags">Tags</a></li>
+        
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="progress">
+  <div id="bar"></div>
+  <div class="container">
+    <div id="scroll-title">프로젝트 오일러 89</div>
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="container">
+    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+  </div>
+</header>
+
+
+
+<main class="container" role="main">
+  <article class="post">
+    <header>
+      <p class="post-meta">
+        <time datetime="2018-03-10T00:00:00.000Z" itemprop="datePublished">2018-03-10</time>
+         on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a>
+      </p>
+      <h1 class="post-title">프로젝트 오일러 89</h1>
+    </header>
+
+    
+
+    <section class="post-content">
+      <blockquote>
+<p>로마숫자 최적화하기<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=89" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=89" target="_blank" rel="noopener">[영어]</a></p>
+</blockquote>
+<p>먼저 다음과 같이 텍스트 파일을 읽어 시퀀스로 만들어둔다.</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">ns</span></span> p089</span><br><span class="line">  (<span class="symbol">:require</span> [clojure.string <span class="symbol">:as</span> str]))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">def</span></span> romans (<span class="name">str/split</span> (<span class="name"><span class="builtin-name">slurp</span></span> <span class="string">"data/roman.txt"</span>) #<span class="string">"\r\n"</span>))</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>로마숫자 최적화는 다음과 같은 간단한 로직으로 수행할 수 있다.</p>
+<ul>
+<li><code>DCCCC</code>는 <code>CM</code>으로 치환한다.</li>
+<li><code>CCCC</code>는 <code>CD</code>로 치환한다.</li>
+<li><code>LXXXX</code>는 <code>XC</code>로 치환한다.</li>
+<li><code>XXXX</code>는  <code>XL</code>로 치환한다.</li>
+<li><code>VIIII</code>는 <code>IX</code>로 치환한다.</li>
+<li><code>IIII</code>는  <code>IV</code>로 치환한다.</li>
+</ul>
+<p>이를 Clojure 함수로 구현하면 다음과 같다.</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> shorten [r]</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;</span></span> r</span><br><span class="line">      (<span class="name">str/replace</span> <span class="string">"DCCCC"</span> <span class="string">"CM"</span>)</span><br><span class="line">      (<span class="name">str/replace</span> <span class="string">"CCCC"</span>  <span class="string">"CD"</span>)</span><br><span class="line">      (<span class="name">str/replace</span> <span class="string">"LXXXX"</span> <span class="string">"XC"</span>)</span><br><span class="line">      (<span class="name">str/replace</span> <span class="string">"XXXX"</span>  <span class="string">"XL"</span>)</span><br><span class="line">      (<span class="name">str/replace</span> <span class="string">"VIIII"</span> <span class="string">"IX"</span>)</span><br><span class="line">      (<span class="name">str/replace</span> <span class="string">"IIII"</span>  <span class="string">"IV"</span>)))</span><br></pre></td></tr></table></figure>
+<p>시퀀스에 있는 문자의 개수를 구하는 함수가 있으면 문제를 푸는 데 도움이 된다.</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> count-chars [coll]</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">map</span></span> count coll)</span><br><span class="line">       (<span class="name"><span class="builtin-name">apply</span></span> +)))</span><br></pre></td></tr></table></figure>
+<p>위 두 함수를 이용해 다음과 같이 문제를 풀 수 있다. 최적화 전 문자수와 최적화 후 문자수의 차를 구하면 된다.</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve []</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> [cnt0 (<span class="name">count-chars</span> romans)</span><br><span class="line">        cnt1 (<span class="name">count-chars</span> (<span class="name"><span class="builtin-name">map</span></span> shorten romans))]</span><br><span class="line">    (<span class="name"><span class="builtin-name">-</span></span> cnt0 cnt1)))</span><br></pre></td></tr></table></figure>
+<p>실행 결과는 다음과 같다.</p>
+<pre class="console">
 p089=> (time (solve))
 "Elapsed time: 3.597621 msecs"
 7?3
-</pre><h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p089.clj" target="_blank" rel="noopener">프로젝트 오일러 89 풀이 소스 코드</a></li></ul><div class="button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a> <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a></div></section><footer class="post-footer"><nav id="article-nav"><a href="/2018/project-euler-090/" id="article-nav-newer" class="article-nav-link-wrap"><span class="article-nav-title">프로젝트 오일러 90</span> </a><a href="/2018/project-euler-088/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">프로젝트 오일러 88</span></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script type="text/javascript" src="/js/jquery.fitvids.js"></script><script type="text/javascript" src="/js/index.js"></script><script>!function(e,a,t,n,g,c,s){e.GoogleAnalyticsObject=g,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),s=a.getElementsByTagName(t)[0],c.async=1,c.src="//www.google-analytics.com/analytics.js",s.parentNode.insertBefore(c,s)}(window,document,"script",0,"ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+</pre>
+
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
+<li><a href="https://github.com/ntalbs/euler/blob/master/src/p089.clj" target="_blank" rel="noopener">프로젝트 오일러 89 풀이 소스 코드</a></li>
+</ul>
+
+      <div class="button-box">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+        
+          <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+        
+      </div>
+    </section>
+
+    <footer class="post-footer">
+      
+        <nav id="article-nav">
+          
+            <a href="/2018/project-euler-090/" id="article-nav-newer" class="article-nav-link-wrap">
+              <span class="article-nav-title">프로젝트 오일러 90</span>
+            </a>
+          
+          
+            <a href="/2018/project-euler-088/" id="article-nav-older" class="article-nav-link-wrap">
+              <span class="article-nav-title">프로젝트 오일러 88</span>
+            </a>
+          
+        </nav>
+      
+
+      <section id="comment">
+        
+          <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          </div>
+        
+      </section>
+    </footer>
+  </article>
+</main>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+  
+  <div class="inner">
+    <section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section>
+    <section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section>
+  </div>
+</footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+
+
+  <script>
+   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+   ga('create', 'UA-2098194-3', 'auto');
+   ga('require', 'displayfeatures');
+   ga('send', 'pageview');
+
+  </script>
+
+
+  <script type="text/javascript">
+   var disqus_shortname = 'ntalbs-stuff';
+
+   (function(){
+     var dsq = document.createElement('script');
+     dsq.type = 'text/javascript';
+     dsq.async = true;
+     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   }());
+  </script>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],
             skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
@@ -13,9 +192,25 @@ p089=> (time (solve))
         var all = MathJax.Hub.getAllJax();
         for (var i = 0; i < all.length; ++i)
             all[i].SourceElement().parentNode.className += ' has-jax';
-    });</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config("");</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
     var all = MathJax.Hub.getAllJax(), i;
     for(i=0; i < all.length; i += 1) {
       all[i].SourceElement().parentNode.className += ' has-jax';
     }
-  });</script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+  });
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

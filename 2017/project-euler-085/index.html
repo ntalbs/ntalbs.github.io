@@ -1,8 +1,199 @@
-<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>프로젝트 오일러 85 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">프로젝트 오일러 85</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2017-02-01T00:00:00.000Z" itemprop="datePublished">2017-02-01</time> on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 85</h1></header><section class="post-content"><blockquote><p>사각 격자 안에 포함된 사각형 개수 세기<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=85" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=85" target="_blank" rel="noopener">[영어]</a></p></blockquote><p>가로 $m$ 세로 $n$인 격자에서 각 크기의 사각형이 몇 개씩 들어가는지 생각해보자. 크기(가로$\times$세로)가 $1 \times 1$인 사각형은 생각할 것도 없이 $m \times n$개가 들어간다. 크기가 $1 \times 2$인 사각형은 가로 방향으로는 $m$개, 세로 방향으로는 $n-1$개가 들어갈 수 있으므로 개수는 $m \times (n-1)$이 될 것이다.<br><a id="more"></a></p><p>가로 크기를 $1$로 고정시킨 상태에서 세로 크기를 $1$부터 $n$까지 바꿔가며 격자에 포함될 수 있는 사각형의 개수를 구하면 다음과 같다.</p><span>$$\begin{aligned} 1 \times 1 &amp;= m \times n \\ 1 \times 2 &amp;= m \times (n-1) \\ 1 \times 3 &amp;= m \times (n-2) \\ &amp;\vdots\\ 1 \times n &amp;= m \times 1 \end{aligned}$$</span><p>격자에 포함될 수 있는 사각형 중 가로가 1인 사각형의 개수를 $N(1)$이라 하면 다음과 같이 나타낼 수 있다.</p><span>$$\begin{aligned} N(1) &amp;= m (n + (n-1) + (n-2) + ... + 1)\\ &amp;= m \times \frac{n(n+1)}{2} \end{aligned}$$</span><p>가로가 $x$인 사각형의 개수 $N(x)$는 다음과 같이 나타날 수 있다.</p><span>$$\begin{aligned} N(x) = (m - x + 1) \times \frac{n(n+1)}{2} \end{aligned}$$</span><p>따라서 $m \times n$ 격자에 들어갈 수 있는 사각형 갯수 $N$은 다음과 같이 나타낼 수 있다.</p><span>$$\begin{aligned} N(m, n) &amp;= \sum_{x=1}^m N(x) \\ &amp;= \frac{m(m+1)}{2} \times \frac{n(n+1)}{2} \\ &amp;= \frac{m(m+1) \cdot n(n+1)}{4} \end{aligned}$$</span><p>이 공식을 이용해 $m \times n$ 격자에 들어갈 수 있는 사각형의 개수를 구하는 함수는 다음과 같이 작성할 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> rect-cnt [m n]</span><br><span class="line">  (/ (<span class="name"><span class="builtin-name">*</span></span> m (<span class="name"><span class="builtin-name">inc</span></span> m) n (<span class="name"><span class="builtin-name">inc</span></span> n)) <span class="number">4</span>))</span><br></pre></td></tr></table></figure><p>격자에 포함될 수 있는 사각형의 개수가 2백만 개에 가까운 격자 크기를 구해야 하므로 다음과 같이 주어진 수와 2백만의 차(절대값)를 구하는 함수도 작성해 놓으면 도움이 될 것이다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> delta [n]</span><br><span class="line">  (<span class="name">Math/abs</span> (<span class="name"><span class="builtin-name">-</span></span> <span class="number">2000000</span> n)))</span><br></pre></td></tr></table></figure><p>이제 격자 크기를 바꿔가며 격자에 포함될 수 있는 사각형의 개수가 2백만에 가장 가까운 경우를 찾으면 된다. 격자 한 변의 최대 크기를 100 이하로 구해보면 될 것 같다. 그래봤자 루프를 1만 번만 돌면 된다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve []</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> [MAX <span class="number">100</span>]</span><br><span class="line">    (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">for</span></span> [x (<span class="name"><span class="builtin-name">range</span></span> <span class="number">1</span> MAX)</span><br><span class="line">               y (<span class="name"><span class="builtin-name">range</span></span> <span class="number">1</span> MAX)</span><br><span class="line">               <span class="symbol">:let</span> [cnt (<span class="name">rect-cnt</span> x y)]]</span><br><span class="line">           [x y cnt (<span class="name">delta</span> cnt)])</span><br><span class="line">         (<span class="name"><span class="builtin-name">apply</span></span> min-key last)</span><br><span class="line">         ((<span class="name"><span class="builtin-name">fn</span></span> [[x y _ _]] (<span class="name"><span class="builtin-name">*</span></span> x y))))))</span><br></pre></td></tr></table></figure><p>실행 결과는 다음과 같다. 빠른 시간에 답을 구한다.</p><pre class="console">
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>프로젝트 오일러 85 | ntalbs&#39; stuff</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <meta name="generator" content="ntalbs' stuff"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+  
+  
+</head>
+
+  <body class="home-template">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+      <a class="navbar-brand" href="/">@ntalbs' stuff</a>
+    </div>
+    <div class="navbar-items collapsed" id="nav-items">
+      <ul>
+        
+          <li><a href="/archives">Archives</a></li>
+        
+          <li><a href="/tags">Tags</a></li>
+        
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="progress">
+  <div id="bar"></div>
+  <div class="container">
+    <div id="scroll-title">프로젝트 오일러 85</div>
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="container">
+    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+  </div>
+</header>
+
+
+
+<main class="container" role="main">
+  <article class="post">
+    <header>
+      <p class="post-meta">
+        <time datetime="2017-02-01T00:00:00.000Z" itemprop="datePublished">2017-02-01</time>
+         on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a>
+      </p>
+      <h1 class="post-title">프로젝트 오일러 85</h1>
+    </header>
+
+    
+
+    <section class="post-content">
+      <blockquote>
+<p>사각 격자 안에 포함된 사각형 개수 세기<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=85" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=85" target="_blank" rel="noopener">[영어]</a></p>
+</blockquote>
+<p>가로 $m$ 세로 $n$인 격자에서 각 크기의 사각형이 몇 개씩 들어가는지 생각해보자. 크기(가로$\times$세로)가 $1 \times 1$인 사각형은 생각할 것도 없이 $m \times n$개가 들어간다. 크기가 $1 \times 2$인 사각형은 가로 방향으로는 $m$개, 세로 방향으로는 $n-1$개가 들어갈 수 있으므로 개수는 $m \times (n-1)$이 될 것이다.<br><a id="more"></a></p>
+<p>가로 크기를 $1$로 고정시킨 상태에서 세로 크기를 $1$부터 $n$까지 바꿔가며 격자에 포함될 수 있는 사각형의 개수를 구하면 다음과 같다.</p>
+<span>$$\begin{aligned}
+1 \times 1 &amp;= m \times n \\
+1 \times 2 &amp;= m \times (n-1) \\
+1 \times 3 &amp;= m \times (n-2) \\
+&amp;\vdots\\
+1 \times n &amp;= m \times 1
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>격자에 포함될 수 있는 사각형 중 가로가 1인 사각형의 개수를 $N(1)$이라 하면 다음과 같이 나타낼 수 있다.</p>
+<span>$$\begin{aligned}
+N(1) &amp;= m (n + (n-1) + (n-2) + ... + 1)\\
+     &amp;= m \times \frac{n(n+1)}{2}
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>가로가 $x$인 사각형의 개수 $N(x)$는 다음과 같이 나타날 수 있다.</p>
+<span>$$\begin{aligned}
+N(x) = (m - x + 1) \times \frac{n(n+1)}{2}
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>따라서 $m \times n$ 격자에 들어갈 수 있는 사각형 갯수 $N$은 다음과 같이 나타낼 수 있다.</p>
+<span>$$\begin{aligned}
+N(m, n) &amp;= \sum_{x=1}^m N(x) \\
+  &amp;= \frac{m(m+1)}{2} \times \frac{n(n+1)}{2} \\
+  &amp;= \frac{m(m+1) \cdot n(n+1)}{4}
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>이 공식을 이용해 $m \times n$ 격자에 들어갈 수 있는 사각형의 개수를 구하는 함수는 다음과 같이 작성할 수 있다.</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> rect-cnt [m n]</span><br><span class="line">  (/ (<span class="name"><span class="builtin-name">*</span></span> m (<span class="name"><span class="builtin-name">inc</span></span> m) n (<span class="name"><span class="builtin-name">inc</span></span> n)) <span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+<p>격자에 포함될 수 있는 사각형의 개수가 2백만 개에 가까운 격자 크기를 구해야 하므로 다음과 같이 주어진 수와 2백만의 차(절대값)를 구하는 함수도 작성해 놓으면 도움이 될 것이다.</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> delta [n]</span><br><span class="line">  (<span class="name">Math/abs</span> (<span class="name"><span class="builtin-name">-</span></span> <span class="number">2000000</span> n)))</span><br></pre></td></tr></table></figure>
+<p>이제 격자 크기를 바꿔가며 격자에 포함될 수 있는 사각형의 개수가 2백만에 가장 가까운 경우를 찾으면 된다. 격자 한 변의 최대 크기를 100 이하로 구해보면 될 것 같다. 그래봤자 루프를 1만 번만 돌면 된다.</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve []</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> [MAX <span class="number">100</span>]</span><br><span class="line">    (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">for</span></span> [x (<span class="name"><span class="builtin-name">range</span></span> <span class="number">1</span> MAX)</span><br><span class="line">               y (<span class="name"><span class="builtin-name">range</span></span> <span class="number">1</span> MAX)</span><br><span class="line">               <span class="symbol">:let</span> [cnt (<span class="name">rect-cnt</span> x y)]]</span><br><span class="line">           [x y cnt (<span class="name">delta</span> cnt)])</span><br><span class="line">         (<span class="name"><span class="builtin-name">apply</span></span> min-key last)</span><br><span class="line">         ((<span class="name"><span class="builtin-name">fn</span></span> [[x y _ _]] (<span class="name"><span class="builtin-name">*</span></span> x y))))))</span><br></pre></td></tr></table></figure>
+<p>실행 결과는 다음과 같다. 빠른 시간에 답을 구한다.</p>
+<pre class="console">
 p085=> (time (solve))
 "Elapsed time: 91.497031 msecs"
 2??2
-</pre><h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p085.clj" target="_blank" rel="noopener">프로젝트 오일러 85 풀이 소스 코드</a></li></ul><div class="button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a> <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a></div></section><footer class="post-footer"><nav id="article-nav"><a href="/2017/project-euler-086/" id="article-nav-newer" class="article-nav-link-wrap"><span class="article-nav-title">프로젝트 오일러 86</span> </a><a href="/2017/project-euler-084/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">프로젝트 오일러 84</span></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script type="text/javascript" src="/js/jquery.fitvids.js"></script><script type="text/javascript" src="/js/index.js"></script><script>!function(e,a,t,n,g,c,s){e.GoogleAnalyticsObject=g,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),s=a.getElementsByTagName(t)[0],c.async=1,c.src="//www.google-analytics.com/analytics.js",s.parentNode.insertBefore(c,s)}(window,document,"script",0,"ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+</pre>
+
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
+<li><a href="https://github.com/ntalbs/euler/blob/master/src/p085.clj" target="_blank" rel="noopener">프로젝트 오일러 85 풀이 소스 코드</a></li>
+</ul>
+
+      <div class="button-box">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+        
+          <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+        
+      </div>
+    </section>
+
+    <footer class="post-footer">
+      
+        <nav id="article-nav">
+          
+            <a href="/2017/project-euler-086/" id="article-nav-newer" class="article-nav-link-wrap">
+              <span class="article-nav-title">프로젝트 오일러 86</span>
+            </a>
+          
+          
+            <a href="/2017/project-euler-084/" id="article-nav-older" class="article-nav-link-wrap">
+              <span class="article-nav-title">프로젝트 오일러 84</span>
+            </a>
+          
+        </nav>
+      
+
+      <section id="comment">
+        
+          <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          </div>
+        
+      </section>
+    </footer>
+  </article>
+</main>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+  
+  <div class="inner">
+    <section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section>
+    <section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section>
+  </div>
+</footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+
+
+  <script>
+   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+   ga('create', 'UA-2098194-3', 'auto');
+   ga('require', 'displayfeatures');
+   ga('send', 'pageview');
+
+  </script>
+
+
+  <script type="text/javascript">
+   var disqus_shortname = 'ntalbs-stuff';
+
+   (function(){
+     var dsq = document.createElement('script');
+     dsq.type = 'text/javascript';
+     dsq.async = true;
+     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   }());
+  </script>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],
             skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
@@ -13,9 +204,25 @@ p085=> (time (solve))
         var all = MathJax.Hub.getAllJax();
         for (var i = 0; i < all.length; ++i)
             all[i].SourceElement().parentNode.className += ' has-jax';
-    });</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config("");</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
     var all = MathJax.Hub.getAllJax(), i;
     for(i=0; i < all.length; i += 1) {
       all[i].SourceElement().parentNode.className += ' has-jax';
     }
-  });</script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+  });
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

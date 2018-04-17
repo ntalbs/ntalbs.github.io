@@ -1,1 +1,89 @@
-.hljs{display:block;overflow-x:auto;padding:.5em;color:#333;background:#fff}.comment,.quote{color:#777;font-style:italic}.keyword,.selector-tag,.subst{color:#333;font-weight:700}.literal,.number{color:#777}.doctag,.formula,.string{color:#333}.section,.selector-id,.title{color:#000;font-weight:700}.subst{font-weight:400}.class .title,.name,.type{color:#333;font-weight:700}.tag{color:#333}.regexp{color:#333}.bullet,.link,.symbol{color:#000}.built_in,.builtin-name{color:#000}.meta{color:#999;font-weight:700}.deletion{color:#fff}.addition{color:#000}.emphasis{font-style:italic}.strong{font-weight:700}
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #fff;
+}
+
+.comment,
+.quote {
+  color: #777;
+  font-style: italic;
+}
+
+.keyword,
+.selector-tag,
+.subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.number,
+.literal {
+  color: #777;
+}
+
+.string,
+.doctag,
+.formula {
+  color: #333;
+}
+
+.title,
+.section,
+.selector-id {
+  color: #000;
+  font-weight: bold;
+}
+
+.subst {
+  font-weight: normal;
+}
+
+.class .title,
+.type,
+.name {
+  color: #333;
+  font-weight: bold;
+}
+
+.tag {
+  color: #333;
+}
+
+.regexp {
+    color: #333;
+}
+
+.symbol,
+.bullet,
+.link {
+  color: #000;
+}
+
+.built_in,
+.builtin-name {
+  color: #000;
+}
+
+.meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.deletion {
+  color: #fff;
+}
+
+.addition {
+  color: #000;
+}
+
+.emphasis {
+  font-style: italic;
+}
+
+.strong {
+  font-weight: bold;
+}

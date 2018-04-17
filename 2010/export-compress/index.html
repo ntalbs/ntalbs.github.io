@@ -1,10 +1,172 @@
-<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>export와 동시에 압축하기 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">export와 동시에 압축하기</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2010-07-31T23:00:00.000Z" itemprop="datePublished">2010-08-01</time> on <a href="/tags/DB/">DB</a><a href="/tags/Oracle/">Oracle</a><a href="/tags/Shell/">Shell</a></p><h1 class="post-title">export와 동시에 압축하기</h1></header><section class="post-content"><p>다음과 같이 하면 export를 받은 후 압축하지 않고 export와 동시에 압축을 할 수 있다. export 파일 크기가 크고 디스크 용량이 충분하지 않을 때 사용하면 유용하다.<br><a id="more"></a></p><h2 id="1-named-pipe를-만든다"><a href="#1-named-pipe를-만든다" class="headerlink" title="1. named pipe를 만든다."></a>1. named pipe를 만든다.</h2><pre class="console">
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>export와 동시에 압축하기 | ntalbs&#39; stuff</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <meta name="generator" content="ntalbs' stuff"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+  
+  
+</head>
+
+  <body class="home-template">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+      <a class="navbar-brand" href="/">@ntalbs' stuff</a>
+    </div>
+    <div class="navbar-items collapsed" id="nav-items">
+      <ul>
+        
+          <li><a href="/archives">Archives</a></li>
+        
+          <li><a href="/tags">Tags</a></li>
+        
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="progress">
+  <div id="bar"></div>
+  <div class="container">
+    <div id="scroll-title">export와 동시에 압축하기</div>
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="container">
+    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+  </div>
+</header>
+
+
+
+<main class="container" role="main">
+  <article class="post">
+    <header>
+      <p class="post-meta">
+        <time datetime="2010-07-31T23:00:00.000Z" itemprop="datePublished">2010-08-01</time>
+         on <a href="/tags/DB/">DB</a><a href="/tags/Oracle/">Oracle</a><a href="/tags/Shell/">Shell</a>
+      </p>
+      <h1 class="post-title">export와 동시에 압축하기</h1>
+    </header>
+
+    
+
+    <section class="post-content">
+      <p>다음과 같이 하면 export를 받은 후 압축하지 않고 export와 동시에 압축을 할 수 있다. export 파일 크기가 크고 디스크 용량이 충분하지 않을 때 사용하면 유용하다.<br><a id="more"></a></p>
+<h2 id="1-named-pipe를-만든다"><a href="#1-named-pipe를-만든다" class="headerlink" title="1. named pipe를 만든다."></a>1. named pipe를 만든다.</h2><pre class="console">
 $ mknod /tmp/expimp_pipe p
-</pre><h2 id="2-pipe로부터-들어오는-데이터를-압축한다"><a href="#2-pipe로부터-들어오는-데이터를-압축한다" class="headerlink" title="2. pipe로부터 들어오는 데이터를 압축한다."></a>2. pipe로부터 들어오는 데이터를 압축한다.</h2><p>이 명령은 백그라운드로 실행되도록 한다.</p><pre class="console">
+</pre>
+
+<h2 id="2-pipe로부터-들어오는-데이터를-압축한다"><a href="#2-pipe로부터-들어오는-데이터를-압축한다" class="headerlink" title="2. pipe로부터 들어오는 데이터를 압축한다."></a>2. pipe로부터 들어오는 데이터를 압축한다.</h2><p>이 명령은 백그라운드로 실행되도록 한다.</p>
+<pre class="console">
 $ compress &lt; /tmp/expimp_pipe &gt; exp.dmp.Z &
-</pre><h2 id="3-pipe에-데이터를-쓴다"><a href="#3-pipe에-데이터를-쓴다" class="headerlink" title="3. pipe에 데이터를 쓴다."></a>3. pipe에 데이터를 쓴다.</h2><pre class="console">
+</pre>
+
+<h2 id="3-pipe에-데이터를-쓴다"><a href="#3-pipe에-데이터를-쓴다" class="headerlink" title="3. pipe에 데이터를 쓴다."></a>3. pipe에 데이터를 쓴다.</h2><pre class="console">
 $ exp system/pw owner=scott direct=y file=/tmp/expimp_pipe
-</pre><p>pipe를 이용해 export 하는 동시에 compress로 압축 저장해 백업을 받는 스크립트는 다음과 같이 작성할 수 있다. (named pipe는 미리 만들어두어야 한다.)</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/ksh</span></span><br><span class="line">date=$(date +<span class="string">"%m%d"</span>)</span><br><span class="line">pipe=/tmp/expimp_pipe</span><br><span class="line"></span><br><span class="line">target_file=dump<span class="variable">$&#123;date&#125;</span></span><br><span class="line">compress &lt; <span class="variable">$pipe</span> &gt; <span class="variable">$&#123;target_file&#125;</span>.dmp.Z &amp;</span><br><span class="line">exp system/pw owner=user1 direct=y file=<span class="variable">$pipe</span> <span class="built_in">log</span>=<span class="variable">$&#123;target_file&#125;</span>.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line">mv *.dmp.Z /tempdata/orabackup</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span></span><br><span class="line"><span class="built_in">echo</span> backup completed...</span><br><span class="line"><span class="built_in">echo</span></span><br></pre></td></tr></table></figure><div class="button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a> <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a></div></section><footer class="post-footer"><nav id="article-nav"><a href="/2010/uncompress-import/" id="article-nav-newer" class="article-nav-link-wrap"><span class="article-nav-title">압축 해제와 동시에 import 하기</span> </a><a href="/2010/sql-loader/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">SQL*Loader 사용법 (초간단 정리)</span></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script type="text/javascript" src="/js/jquery.fitvids.js"></script><script type="text/javascript" src="/js/index.js"></script><script>!function(e,a,t,n,g,c,s){e.GoogleAnalyticsObject=g,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),s=a.getElementsByTagName(t)[0],c.async=1,c.src="//www.google-analytics.com/analytics.js",s.parentNode.insertBefore(c,s)}(window,document,"script",0,"ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+</pre>
+
+<p>pipe를 이용해 export 하는 동시에 compress로 압축 저장해 백업을 받는 스크립트는 다음과 같이 작성할 수 있다. (named pipe는 미리 만들어두어야 한다.)</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/ksh</span></span><br><span class="line">date=$(date +<span class="string">"%m%d"</span>)</span><br><span class="line">pipe=/tmp/expimp_pipe</span><br><span class="line"></span><br><span class="line">target_file=dump<span class="variable">$&#123;date&#125;</span></span><br><span class="line">compress &lt; <span class="variable">$pipe</span> &gt; <span class="variable">$&#123;target_file&#125;</span>.dmp.Z &amp;</span><br><span class="line">exp system/pw owner=user1 direct=y file=<span class="variable">$pipe</span> <span class="built_in">log</span>=<span class="variable">$&#123;target_file&#125;</span>.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line">mv *.dmp.Z /tempdata/orabackup</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span></span><br><span class="line"><span class="built_in">echo</span> backup completed...</span><br><span class="line"><span class="built_in">echo</span></span><br></pre></td></tr></table></figure>
+
+      <div class="button-box">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+        
+          <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+        
+      </div>
+    </section>
+
+    <footer class="post-footer">
+      
+        <nav id="article-nav">
+          
+            <a href="/2010/uncompress-import/" id="article-nav-newer" class="article-nav-link-wrap">
+              <span class="article-nav-title">압축 해제와 동시에 import 하기</span>
+            </a>
+          
+          
+            <a href="/2010/sql-loader/" id="article-nav-older" class="article-nav-link-wrap">
+              <span class="article-nav-title">SQL*Loader 사용법 (초간단 정리)</span>
+            </a>
+          
+        </nav>
+      
+
+      <section id="comment">
+        
+          <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          </div>
+        
+      </section>
+    </footer>
+  </article>
+</main>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+  
+  <div class="inner">
+    <section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section>
+    <section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section>
+  </div>
+</footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+
+
+  <script>
+   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+   ga('create', 'UA-2098194-3', 'auto');
+   ga('require', 'displayfeatures');
+   ga('send', 'pageview');
+
+  </script>
+
+
+  <script type="text/javascript">
+   var disqus_shortname = 'ntalbs-stuff';
+
+   (function(){
+     var dsq = document.createElement('script');
+     dsq.type = 'text/javascript';
+     dsq.async = true;
+     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   }());
+  </script>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],
             skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
@@ -15,9 +177,25 @@ $ exp system/pw owner=scott direct=y file=/tmp/expimp_pipe
         var all = MathJax.Hub.getAllJax();
         for (var i = 0; i < all.length; ++i)
             all[i].SourceElement().parentNode.className += ' has-jax';
-    });</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config("");</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
     var all = MathJax.Hub.getAllJax(), i;
     for(i=0; i < all.length; i += 1) {
       all[i].SourceElement().parentNode.className += ' has-jax';
     }
-  });</script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+  });
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,4 +1,327 @@
-<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header class="post-header"><span class="post-meta"><time datetime="2018-04-15T23:00:00.000Z" itemprop="datePublished">2018-04-16</time> on <a href="/tags/상념/">상념</a></span><h1 class="post-title"><a href="/2018/baduk/">바둑</a></h1></header><section class="post-excerpt"><p><img src="/2018/baduk/baduk.png"></p><p>한동안 바둑을 두지 않다가 최근 다시 바둑을 두기 시작했다. <a href="https://online-go.com/" target="_blank" rel="noopener">Online-Go</a>란 사이트를 알게 된 다음부터다. 한국의 바둑 사이트와 달리 구글 아이디로 계정을 만들 수 있고, 별도 프로그램 설치 없이 브라우저에서 바둑을 둘 수 있다. 편리한 만큼 내게는 독이다.<br></p><p><a href="/2018/baduk/" class="excerpt-link">Read More...</a></p></section></article><article class="post"><header class="post-header"><span class="post-meta"><time datetime="2018-04-07T23:00:00.000Z" itemprop="datePublished">2018-04-08</time> on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a></span><h1 class="post-title"><a href="/2018/project-euler-091/">프로젝트 오일러 91</a></h1></header><section class="post-excerpt"><p></p><blockquote><p>사분면 안의 직각삼각형 개수 세기<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=91" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=91" target="_blank" rel="noopener">[영어]</a></p></blockquote><p>1사분면 $0 \le x, y \le 50$에서 P의 가능한 위치는 모두 $51 \times 51$이고 Q의 가능한 위치도 $51 \times 51$이다. 무차별 대입법으로 문제를 푼다면 $51^4 = 6,765,201$번의 루프를 돌면서 직각인지 확인해야 하므로 빠른 시간에 답을 구하지 못한다. 이 방법으로 문제를 풀면 내 환경에서는 답을 구하는 데 7초 이상 걸린다.<br></p><p><a href="/2018/project-euler-091/" class="excerpt-link">Read More...</a></p></section></article><article class="post"><header class="post-header"><span class="post-meta"><time datetime="2018-03-31T23:00:00.000Z" itemprop="datePublished">2018-04-01</time> on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a></span><h1 class="post-title"><a href="/2018/project-euler-090/">프로젝트 오일러 90</a></h1></header><section class="post-excerpt"><p></p><blockquote><p>정육면체 두 개로 제곱수 만들기<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=90" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=90" target="_blank" rel="noopener">[영어]</a></p></blockquote><p>100 미만의 제곱수는 아홉 가지 뿐이고, 숫자 10개 중 6개를 고르는 경우의 수도 210($_{10}C_6 = 210$)으로 비교적 작으므로, 모든 조합을 구해 계산해 보는 무식한 방법을 적용해도 문제를 풀 수 있을 것 같다.<br></p><p><a href="/2018/project-euler-090/" class="excerpt-link">Read More...</a></p></section></article><article class="post"><header class="post-header"><span class="post-meta"><time datetime="2018-03-10T00:00:00.000Z" itemprop="datePublished">2018-03-10</time> on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a></span><h1 class="post-title"><a href="/2018/project-euler-089/">프로젝트 오일러 89</a></h1></header><section class="post-excerpt"><p></p><blockquote><p>로마숫자 최적화하기<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=89" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=89" target="_blank" rel="noopener">[영어]</a></p></blockquote><p>먼저 다음과 같이 텍스트 파일을 읽어 시퀀스로 만들어둔다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">ns</span></span> p089</span><br><span class="line">  (<span class="symbol">:require</span> [clojure.string <span class="symbol">:as</span> str]))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">def</span></span> romans (<span class="name">str/split</span> (<span class="name"><span class="builtin-name">slurp</span></span> <span class="string">"data/roman.txt"</span>) #<span class="string">"\r\n"</span>))</span><br></pre></td></tr></table></figure><p></p><p><a href="/2018/project-euler-089/" class="excerpt-link">Read More...</a></p></section></article><article class="post"><header class="post-header"><span class="post-meta"><time datetime="2018-03-09T00:00:00.000Z" itemprop="datePublished">2018-03-09</time> on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a></span><h1 class="post-title"><a href="/2018/project-euler-088/">프로젝트 오일러 88</a></h1></header><section class="post-excerpt"><p></p><blockquote><p>일정한 개수의 숫자들을 더해도 곱해도 같은 값이 되는 경우 조사하기<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=88" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=88" target="_blank" rel="noopener">[영어]</a></p></blockquote><p><a href="/2017/project-euler-083/">문제 83</a>과 더불어 내게 가장 어려운 문제 중 하나였다. 안타깝지만 이 문제는 내 두뇌 용량을 넘는 문제여서 풀이를 보고도 이해할 수가 없었다. 아래 코드는 다른 블로그에서 찾은 Python 풀이를 Clojure로 옮긴 것에 불과하다.<br></p><p><a href="/2018/project-euler-088/" class="excerpt-link">Read More...</a></p></section></article><article class="post"><header class="post-header"><span class="post-meta"><time datetime="2018-02-24T00:00:00.000Z" itemprop="datePublished">2018-02-24</time> on <a href="/tags/영국생활/">영국생활</a></span><h1 class="post-title"><a href="/2018/bad-luck-4/">불운 4</a></h1></header><section class="post-excerpt"><p></p><p>1월 말 교통사고가 났다. 아내는 큰 아이 학교 데려다 주고 오는 길이었다. 아내의 설명에 따르면 사고 당시 상황은 다음과 같다.<br></p><p><a href="/2018/bad-luck-4/" class="excerpt-link">Read More...</a></p></section></article><article class="post"><header class="post-header"><span class="post-meta"><time datetime="2018-01-06T00:00:00.000Z" itemprop="datePublished">2018-01-06</time> on <a href="/tags/상념/">상념</a></span><h1 class="post-title"><a href="/2018/on-writing/">글쓰기</a></h1></header><section class="post-excerpt"><p></p><p>학창 시절, 방학을 맞는 것은 신나는 일이었지만, 방학 숙제로 빠지지 않고 나오는 글짓기 숙제는 정말 싫었다. 방학 초기에는 정신 없이 놀기 바빠 숙제는 안중에 없었다. 방학 중간 쯤 되면 슬슬 글짓기 숙제 때문에 스트레스를 받기 시작하지만 아직 여유가 있다고 생각하며 미루었다. 개학이 며칠 남지 않은 시점이 돼서야 부랴부랴 숙제를 시작하려 하지만 싫어 하던 게 갑자기 잘 될리 없다. 독후감의 경우에는 더 대책이 없었다. 책도 읽지 않았으니.<br></p><p><a href="/2018/on-writing/" class="excerpt-link">Read More...</a></p></section></article><article class="post"><header class="post-header"><span class="post-meta"><time datetime="2018-01-05T00:00:00.000Z" itemprop="datePublished">2018-01-05</time> on <a href="/tags/아마존/">아마존</a></span><h1 class="post-title"><a href="/2018/two-years-at-amazon/">아마존에서 보낸 2년</a></h1></header><section class="post-excerpt"><p></p><p>영국에 온지 벌써 두 해가 지났다. 아마존 런던 개발 센터에 와서 합류한 팀은 티어1 서비스만 네 개를 맡고 있었다. 매니저 짐은 한국에서 전화로 얘기했을 때도 느낌이 좋았는데, 직접 만나니 더 좋은 사람이었다. 회사 일뿐 아니라 개인 일을 처리하는 데도 많은 도움을 주었다. 다른 영국 사람들의 발음은 알아듣기가 어려웠는데, 짐의 발음은 비교적 잘 들렸다. 팀에는 영국, 폴란드, 슬로바키아, 인도, 이란 출신 엔지니어가 있었고 액센트도 다양해 적응하기가 더욱 어려웠다.<br></p><p><a href="/2018/two-years-at-amazon/" class="excerpt-link">Read More...</a></p></section></article><article class="post"><header class="post-header"><span class="post-meta"><time datetime="2017-10-15T23:00:00.000Z" itemprop="datePublished">2017-10-16</time> on <a href="/tags/영국생활/">영국생활</a></span><h1 class="post-title"><a href="/2017/bad-luck-3/">불운 3</a></h1></header><section class="post-excerpt"><p></p><p>회사에 있는데 아내에게 전화가 왔다. 전화를 받았더니 집에 도둑이 들었다, 침실 앞에 칼이 있었다고 소리를 질렀다. 아내를 진정시키고 자초지정을 물었다. 다행히 도둑은 떠난 뒤였다. 999로 전화해 경찰에 신고했다. 바로 집으로 떠나려 했지만, 상담원이 계속 질문을 해서 출발할 수 없었다.<br></p><p><a href="/2017/bad-luck-3/" class="excerpt-link">Read More...</a></p></section></article><article class="post"><header class="post-header"><span class="post-meta"><time datetime="2017-09-27T23:00:00.000Z" itemprop="datePublished">2017-09-28</time> on <a href="/tags/Java/">Java</a></span><h1 class="post-title"><a href="/2017/http-client-test/">HttpClient 테스트</a></h1></header><section class="post-excerpt"><p></p><p>Java 9에는 모듈 시스템, 링킹, JShell 등 여러 가지 중요한 기능이 추가됐지만, 새로운 HTTP API에 가장 큰 관심이 갔다. 이 녀석을 활용하면 우리 팀에서 개발하는 서비스 코드를 훨씬 읽기 좋게 바꿀 수 있을 것 같다는 생각이 들었다.<br></p><p><a href="/2017/http-client-test/" class="excerpt-link">Read More...</a></p></section></article><nav id="page-nav"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/2/"> &gt;</a></nav></main><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script type="text/javascript" src="/js/jquery.fitvids.js"></script><script type="text/javascript" src="/js/index.js"></script><script>!function(e,a,t,n,g,c,s){e.GoogleAnalyticsObject=g,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),s=a.getElementsByTagName(t)[0],c.async=1,c.src="//www.google-analytics.com/analytics.js",s.parentNode.insertBefore(c,s)}(window,document,"script",0,"ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>ntalbs&#39; stuff</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <meta name="generator" content="ntalbs' stuff"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+  
+  
+</head>
+
+  <body class="home-template">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+      <a class="navbar-brand" href="/">@ntalbs' stuff</a>
+    </div>
+    <div class="navbar-items collapsed" id="nav-items">
+      <ul>
+        
+          <li><a href="/archives">Archives</a></li>
+        
+          <li><a href="/tags">Tags</a></li>
+        
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="site-head">
+  <div class="container">
+    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+  </div>
+</header>
+
+
+<main class="container" role="main">
+  
+    <article class="post">
+      <header class="post-header">
+        <span class="post-meta">
+          <time datetime="2018-04-15T23:00:00.000Z" itemprop="datePublished">2018-04-16</time>
+           on <a href="/tags/상념/">상념</a>
+        </span>
+        <h1 class="post-title"><a href="/2018/baduk/">바둑</a></h1>
+      </header>
+      <section class="post-excerpt">
+        <p>
+          
+            <img src="/2018/baduk/baduk.png">
+<p>한동안 바둑을 두지 않다가 최근 다시 바둑을 두기 시작했다. <a href="https://online-go.com/" target="_blank" rel="noopener">Online-Go</a>란 사이트를 알게 된 다음부터다. 한국의 바둑 사이트와 달리 구글 아이디로 계정을 만들 수 있고, 별도 프로그램 설치 없이 브라우저에서 바둑을 둘 수 있다. 편리한 만큼 내게는 독이다.<br>
+          
+        </p>
+        
+          <p>
+            <a href="/2018/baduk/" class="excerpt-link">Read More...</a>
+          </p>
+        
+      </section>
+    </article>
+  
+    <article class="post">
+      <header class="post-header">
+        <span class="post-meta">
+          <time datetime="2018-04-07T23:00:00.000Z" itemprop="datePublished">2018-04-08</time>
+           on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a>
+        </span>
+        <h1 class="post-title"><a href="/2018/project-euler-091/">프로젝트 오일러 91</a></h1>
+      </header>
+      <section class="post-excerpt">
+        <p>
+          
+            <blockquote>
+<p>사분면 안의 직각삼각형 개수 세기<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=91" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=91" target="_blank" rel="noopener">[영어]</a></p>
+</blockquote>
+<p>1사분면 $0 \le x, y \le 50$에서 P의 가능한 위치는 모두 $51 \times 51$이고 Q의 가능한 위치도 $51 \times 51$이다. 무차별 대입법으로 문제를 푼다면 $51^4 = 6,765,201$번의 루프를 돌면서 직각인지 확인해야 하므로 빠른 시간에 답을 구하지 못한다. 이 방법으로 문제를 풀면 내 환경에서는 답을 구하는 데 7초 이상 걸린다.<br>
+          
+        </p>
+        
+          <p>
+            <a href="/2018/project-euler-091/" class="excerpt-link">Read More...</a>
+          </p>
+        
+      </section>
+    </article>
+  
+    <article class="post">
+      <header class="post-header">
+        <span class="post-meta">
+          <time datetime="2018-03-31T23:00:00.000Z" itemprop="datePublished">2018-04-01</time>
+           on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a>
+        </span>
+        <h1 class="post-title"><a href="/2018/project-euler-090/">프로젝트 오일러 90</a></h1>
+      </header>
+      <section class="post-excerpt">
+        <p>
+          
+            <blockquote>
+<p>정육면체 두 개로 제곱수 만들기<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=90" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=90" target="_blank" rel="noopener">[영어]</a></p>
+</blockquote>
+<p>100 미만의 제곱수는 아홉 가지 뿐이고, 숫자 10개 중 6개를 고르는 경우의 수도 210($_{10}C_6 = 210$)으로 비교적 작으므로, 모든 조합을 구해 계산해 보는 무식한 방법을 적용해도 문제를 풀 수 있을 것 같다.<br>
+          
+        </p>
+        
+          <p>
+            <a href="/2018/project-euler-090/" class="excerpt-link">Read More...</a>
+          </p>
+        
+      </section>
+    </article>
+  
+    <article class="post">
+      <header class="post-header">
+        <span class="post-meta">
+          <time datetime="2018-03-10T00:00:00.000Z" itemprop="datePublished">2018-03-10</time>
+           on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a>
+        </span>
+        <h1 class="post-title"><a href="/2018/project-euler-089/">프로젝트 오일러 89</a></h1>
+      </header>
+      <section class="post-excerpt">
+        <p>
+          
+            <blockquote>
+<p>로마숫자 최적화하기<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=89" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=89" target="_blank" rel="noopener">[영어]</a></p>
+</blockquote>
+<p>먼저 다음과 같이 텍스트 파일을 읽어 시퀀스로 만들어둔다.</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">ns</span></span> p089</span><br><span class="line">  (<span class="symbol">:require</span> [clojure.string <span class="symbol">:as</span> str]))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">def</span></span> romans (<span class="name">str/split</span> (<span class="name"><span class="builtin-name">slurp</span></span> <span class="string">"data/roman.txt"</span>) #<span class="string">"\r\n"</span>))</span><br></pre></td></tr></table></figure>
+          
+        </p>
+        
+          <p>
+            <a href="/2018/project-euler-089/" class="excerpt-link">Read More...</a>
+          </p>
+        
+      </section>
+    </article>
+  
+    <article class="post">
+      <header class="post-header">
+        <span class="post-meta">
+          <time datetime="2018-03-09T00:00:00.000Z" itemprop="datePublished">2018-03-09</time>
+           on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a>
+        </span>
+        <h1 class="post-title"><a href="/2018/project-euler-088/">프로젝트 오일러 88</a></h1>
+      </header>
+      <section class="post-excerpt">
+        <p>
+          
+            <blockquote>
+<p>일정한 개수의 숫자들을 더해도 곱해도 같은 값이 되는 경우 조사하기<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=88" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=88" target="_blank" rel="noopener">[영어]</a></p>
+</blockquote>
+<p><a href="/2017/project-euler-083/">문제 83</a>과 더불어 내게 가장 어려운 문제 중 하나였다. 안타깝지만 이 문제는 내 두뇌 용량을 넘는 문제여서 풀이를 보고도 이해할 수가 없었다. 아래 코드는 다른 블로그에서 찾은 Python 풀이를 Clojure로 옮긴 것에 불과하다.<br>
+          
+        </p>
+        
+          <p>
+            <a href="/2018/project-euler-088/" class="excerpt-link">Read More...</a>
+          </p>
+        
+      </section>
+    </article>
+  
+    <article class="post">
+      <header class="post-header">
+        <span class="post-meta">
+          <time datetime="2018-02-24T00:00:00.000Z" itemprop="datePublished">2018-02-24</time>
+           on <a href="/tags/영국생활/">영국생활</a>
+        </span>
+        <h1 class="post-title"><a href="/2018/bad-luck-4/">불운 4</a></h1>
+      </header>
+      <section class="post-excerpt">
+        <p>
+          
+            <p>1월 말 교통사고가 났다. 아내는 큰 아이 학교 데려다 주고 오는 길이었다. 아내의 설명에 따르면 사고 당시 상황은 다음과 같다.<br>
+          
+        </p>
+        
+          <p>
+            <a href="/2018/bad-luck-4/" class="excerpt-link">Read More...</a>
+          </p>
+        
+      </section>
+    </article>
+  
+    <article class="post">
+      <header class="post-header">
+        <span class="post-meta">
+          <time datetime="2018-01-06T00:00:00.000Z" itemprop="datePublished">2018-01-06</time>
+           on <a href="/tags/상념/">상념</a>
+        </span>
+        <h1 class="post-title"><a href="/2018/on-writing/">글쓰기</a></h1>
+      </header>
+      <section class="post-excerpt">
+        <p>
+          
+            <p>학창 시절, 방학을 맞는 것은 신나는 일이었지만, 방학 숙제로 빠지지 않고 나오는 글짓기 숙제는 정말 싫었다. 방학 초기에는 정신 없이 놀기 바빠 숙제는 안중에 없었다. 방학 중간 쯤 되면 슬슬 글짓기 숙제 때문에 스트레스를 받기 시작하지만 아직 여유가 있다고 생각하며 미루었다. 개학이 며칠 남지 않은 시점이 돼서야 부랴부랴 숙제를 시작하려 하지만 싫어 하던 게 갑자기 잘 될리 없다. 독후감의 경우에는 더 대책이 없었다. 책도 읽지 않았으니.<br>
+          
+        </p>
+        
+          <p>
+            <a href="/2018/on-writing/" class="excerpt-link">Read More...</a>
+          </p>
+        
+      </section>
+    </article>
+  
+    <article class="post">
+      <header class="post-header">
+        <span class="post-meta">
+          <time datetime="2018-01-05T00:00:00.000Z" itemprop="datePublished">2018-01-05</time>
+           on <a href="/tags/아마존/">아마존</a>
+        </span>
+        <h1 class="post-title"><a href="/2018/two-years-at-amazon/">아마존에서 보낸 2년</a></h1>
+      </header>
+      <section class="post-excerpt">
+        <p>
+          
+            <p>영국에 온지 벌써 두 해가 지났다. 아마존 런던 개발 센터에 와서 합류한 팀은 티어1 서비스만 네 개를 맡고 있었다. 매니저 짐은 한국에서 전화로 얘기했을 때도 느낌이 좋았는데, 직접 만나니 더 좋은 사람이었다. 회사 일뿐 아니라 개인 일을 처리하는 데도 많은 도움을 주었다. 다른 영국 사람들의 발음은 알아듣기가 어려웠는데, 짐의 발음은 비교적 잘 들렸다. 팀에는 영국, 폴란드, 슬로바키아, 인도, 이란 출신 엔지니어가 있었고 액센트도 다양해 적응하기가 더욱 어려웠다.<br>
+          
+        </p>
+        
+          <p>
+            <a href="/2018/two-years-at-amazon/" class="excerpt-link">Read More...</a>
+          </p>
+        
+      </section>
+    </article>
+  
+    <article class="post">
+      <header class="post-header">
+        <span class="post-meta">
+          <time datetime="2017-10-15T23:00:00.000Z" itemprop="datePublished">2017-10-16</time>
+           on <a href="/tags/영국생활/">영국생활</a>
+        </span>
+        <h1 class="post-title"><a href="/2017/bad-luck-3/">불운 3</a></h1>
+      </header>
+      <section class="post-excerpt">
+        <p>
+          
+            <p>회사에 있는데 아내에게 전화가 왔다. 전화를 받았더니 집에 도둑이 들었다, 침실 앞에 칼이 있었다고 소리를 질렀다. 아내를 진정시키고 자초지정을 물었다. 다행히 도둑은 떠난 뒤였다. 999로 전화해 경찰에 신고했다. 바로 집으로 떠나려 했지만, 상담원이 계속 질문을 해서 출발할 수 없었다.<br>
+          
+        </p>
+        
+          <p>
+            <a href="/2017/bad-luck-3/" class="excerpt-link">Read More...</a>
+          </p>
+        
+      </section>
+    </article>
+  
+    <article class="post">
+      <header class="post-header">
+        <span class="post-meta">
+          <time datetime="2017-09-27T23:00:00.000Z" itemprop="datePublished">2017-09-28</time>
+           on <a href="/tags/Java/">Java</a>
+        </span>
+        <h1 class="post-title"><a href="/2017/http-client-test/">HttpClient 테스트</a></h1>
+      </header>
+      <section class="post-excerpt">
+        <p>
+          
+            <p>Java 9에는 모듈 시스템, 링킹, JShell 등 여러 가지 중요한 기능이 추가됐지만, 새로운 HTTP API에 가장 큰 관심이 갔다. 이 녀석을 활용하면 우리 팀에서 개발하는 서비스 코드를 훨씬 읽기 좋게 바꿀 수 있을 것 같다는 생각이 들었다.<br>
+          
+        </p>
+        
+          <p>
+            <a href="/2017/http-client-test/" class="excerpt-link">Read More...</a>
+          </p>
+        
+      </section>
+    </article>
+  
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/2/"> &gt;</a>
+  </nav>
+</main>
+
+
+    <footer class="site-footer">
+  
+  <div class="inner">
+    <section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section>
+    <section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section>
+  </div>
+</footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+
+
+  <script>
+   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+   ga('create', 'UA-2098194-3', 'auto');
+   ga('require', 'displayfeatures');
+   ga('send', 'pageview');
+
+  </script>
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],
             skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
@@ -9,9 +332,25 @@
         var all = MathJax.Hub.getAllJax();
         for (var i = 0; i < all.length; ++i)
             all[i].SourceElement().parentNode.className += ' has-jax';
-    });</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config("");</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
     var all = MathJax.Hub.getAllJax(), i;
     for(i=0; i < all.length; i += 1) {
       all[i].SourceElement().parentNode.className += ' has-jax';
     }
-  });</script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+  });
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
