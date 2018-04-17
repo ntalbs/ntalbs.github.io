@@ -24,7 +24,7 @@ title: 프로젝트 오일러 4
   (= (str n) (apply str (reverse (str n)))))
 ```
 
-그러나 `clojure.core/reverse`는 `Character`의 시퀀스를 리턴하므로 `str` 함수를 이용해 다시 문자열로 연결해줘야 한다. 번거로울 뿐 아니라 코드도 너저분해 지고 속도도 느리다. `clojure.core/reverse`를 쓰는 편이 낫다.
+그러나 `clojure.core/reverse`는 `Character`의 시퀀스를 리턴하므로 `str` 함수를 이용해 다시 문자열로 연결해줘야 한다. 번거로울 뿐 아니라 코드도 너저분해 지고 속도도 느리다.
 
 ## 방법1
 다음과 같이 무식하게 루프를 돌려도 비교적 빨리 답을 구할 수 있다.
