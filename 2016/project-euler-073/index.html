@@ -1,196 +1,16 @@
-<!DOCTYPE html>
-<html>
-  
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>프로젝트 오일러 73 | ntalbs&#39; stuff</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <link rel="shortcut icon" href="/images/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css">
-
-  <meta name="generator" content="ntalbs' stuff"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-  
-  
-  
-</head>
-
-  <body class="home-template">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
-      <a class="navbar-brand" href="/">@ntalbs' stuff</a>
-    </div>
-    <div class="navbar-items collapsed" id="nav-items">
-      <ul>
-        
-          <li><a href="/archives">Archives</a></li>
-        
-          <li><a href="/tags">Tags</a></li>
-        
-          <li><a href="/about">About</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div id="progress">
-  <div id="bar"></div>
-  <div class="container">
-    <div id="scroll-title">프로젝트 오일러 73</div>
-  </div>
-</div>
-
-<header class="site-head">
-  <div class="container">
-    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-  </div>
-</header>
-
-
-
-<main class="container" role="main">
-  <article class="post">
-    <header>
-      <p class="post-meta">
-        <time datetime="2016-07-27T23:00:00.000Z" itemprop="datePublished">2016-07-28</time>
-         on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a>
-      </p>
-      <h1 class="post-title">프로젝트 오일러 73</h1>
-    </header>
-
-    
-
-    <section class="post-content">
-      <blockquote>
-<p>분모가 12,000 이하일 때 1/3과 1/2 사이에 위치한 기약 진분수의 개수<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=73" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=73" target="_blank" rel="noopener">[영어]</a></p>
-</blockquote>
-<h2 id="무차별-대입법"><a href="#무차별-대입법" class="headerlink" title="무차별 대입법"></a>무차별 대입법</h2><p>분모가 12,000 이하인 경우만 조사하면 되므로 분자와 분모에 12,000 이하의 수를 대입해가며 분수를 만들어 1/3과 1/2 사이의 기약 진부수를 세는 방법으로 답을 구할 수 있을 것 같다. 분모는 3부터 12,000까지, 분자는 분모/3 ~ 분모/2 사이의 정수를 대입해보면 된다.<br><a id="more"></a></p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">ns</span></span> p073</span><br><span class="line">  (<span class="symbol">:require</span> [util <span class="symbol">:refer</span> [gcd infix]]))</span><br><span class="line"></span><br><span class="line"><span class="comment">;; brute force</span></span><br><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> reduced-proper-fractions [limit]</span><br><span class="line">  (<span class="name"><span class="builtin-name">for</span></span> [d (<span class="name"><span class="builtin-name">range</span></span> <span class="number">3</span> (<span class="name"><span class="builtin-name">inc</span></span> limit))</span><br><span class="line">        n (<span class="name"><span class="builtin-name">range</span></span> (<span class="name"><span class="builtin-name">int</span></span> (/ d <span class="number">3</span>)) (<span class="name"><span class="builtin-name">inc</span></span> (<span class="name"><span class="builtin-name">int</span></span> (/ d <span class="number">2</span>))))</span><br><span class="line">        <span class="symbol">:when</span> (<span class="name"><span class="builtin-name">&lt;</span></span> <span class="number">1</span>/<span class="number">3</span> (/ n d) <span class="number">1</span>/<span class="number">2</span>)</span><br><span class="line">        <span class="symbol">:when</span> (<span class="name"><span class="builtin-name">=</span></span> <span class="number">1</span> (<span class="name">gcd</span> n d))]</span><br><span class="line">    (/ n d)))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve1 []</span><br><span class="line">  (<span class="name"><span class="builtin-name">count</span></span> (<span class="name">reduced-proper-fractions</span> <span class="number">12000</span>)))</span><br></pre></td></tr></table></figure>
-<p>구현은 복잡하지 않지만 답을 구하는 데 시간이 많이 걸린다.</p>
-<pre class="console">
+<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>프로젝트 오일러 73 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">프로젝트 오일러 73</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2016-07-27T23:00:00.000Z" itemprop="datePublished">2016-07-28</time> on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 73</h1></header><section class="post-content"><blockquote><p>분모가 12,000 이하일 때 1/3과 1/2 사이에 위치한 기약 진분수의 개수<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=73" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=73" target="_blank" rel="noopener">[영어]</a></p></blockquote><h2 id="무차별-대입법"><a href="#무차별-대입법" class="headerlink" title="무차별 대입법"></a>무차별 대입법</h2><p>분모가 12,000 이하인 경우만 조사하면 되므로 분자와 분모에 12,000 이하의 수를 대입해가며 분수를 만들어 1/3과 1/2 사이의 기약 진부수를 세는 방법으로 답을 구할 수 있을 것 같다. 분모는 3부터 12,000까지, 분자는 분모/3 ~ 분모/2 사이의 정수를 대입해보면 된다.<br><a id="more"></a></p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">ns</span></span> p073</span><br><span class="line">  (<span class="symbol">:require</span> [util <span class="symbol">:refer</span> [gcd infix]]))</span><br><span class="line"></span><br><span class="line"><span class="comment">;; brute force</span></span><br><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> reduced-proper-fractions [limit]</span><br><span class="line">  (<span class="name"><span class="builtin-name">for</span></span> [d (<span class="name"><span class="builtin-name">range</span></span> <span class="number">3</span> (<span class="name"><span class="builtin-name">inc</span></span> limit))</span><br><span class="line">        n (<span class="name"><span class="builtin-name">range</span></span> (<span class="name"><span class="builtin-name">int</span></span> (/ d <span class="number">3</span>)) (<span class="name"><span class="builtin-name">inc</span></span> (<span class="name"><span class="builtin-name">int</span></span> (/ d <span class="number">2</span>))))</span><br><span class="line">        <span class="symbol">:when</span> (<span class="name"><span class="builtin-name">&lt;</span></span> <span class="number">1</span>/<span class="number">3</span> (/ n d) <span class="number">1</span>/<span class="number">2</span>)</span><br><span class="line">        <span class="symbol">:when</span> (<span class="name"><span class="builtin-name">=</span></span> <span class="number">1</span> (<span class="name">gcd</span> n d))]</span><br><span class="line">    (/ n d)))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve1 []</span><br><span class="line">  (<span class="name"><span class="builtin-name">count</span></span> (<span class="name">reduced-proper-fractions</span> <span class="number">12000</span>)))</span><br></pre></td></tr></table></figure><p>구현은 복잡하지 않지만 답을 구하는 데 시간이 많이 걸린다.</p><pre class="console">
 p073=> (time (solve1))
 "Elapsed time: 7767.04538 msecs"
 729??72
-</pre>
-
-<p>Clojure에서 분수는 <code>Ratio</code>로 표현되는데, 아무래도 숫자 기본 타입보다는 속도가 느리다. 위 코드에서 <code>(/ n d)</code>를 <code>(/ (double n) d)</code>로만 수정해도 시간이 2초 이상 줄어든다. 그러나 여전히 빠른 속도라 할 수 없다.</p>
-<h2 id="Farey-Sequence-이용"><a href="#Farey-Sequence-이용" class="headerlink" title="Farey Sequence 이용"></a>Farey Sequence 이용</h2><p><a href="https://en.wikipedia.org/wiki/Farey_sequence#Next_term" target="_blank" rel="noopener">Farey sequence</a>에 Farey 수열을 구하는 파이썬 코드가 있다. 이 코드를 조금 수정해 $F_{12000}$에서 1/3보다 크고 1/2보다 작은 항이 몇 개인지 세도록 할 수 있다. 이 알고리즘을 이용해 Farey 수열의 다음 항을 구하기 위해서는 앞 두 항이 필요하다. 첫 항을 1/3으로 하고 다음 항을 구하면 그 다음부터는 반복적 방법을 통해 수열을 쉽게 구할 수 있다.</p>
-<p><a href="/2016/project-euler-071/">문제 71</a>에서는 3/7 바로 앞에 오는 수를 구했다. 이때 사용한 코드를 조금 수정하면 분모가 12,000 이하일 때 1/3 바로 다음 항을 구할 수 있다.</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line"><span class="comment">;; farey sequence</span></span><br><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> next-to [a b limit]</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">range</span></span> <span class="number">2</span> limit)                                <span class="comment">; d</span></span><br><span class="line">       (<span class="name"><span class="builtin-name">map</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [d] [(<span class="name">infix</span> (((<span class="name">a</span> * d) + <span class="number">1</span>) / b)) d])) <span class="comment">; [c d]</span></span><br><span class="line">       (<span class="name"><span class="builtin-name">filter</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [[c d]] (<span class="name"><span class="builtin-name">integer?</span></span> c)))</span><br><span class="line">       (<span class="name"><span class="builtin-name">map</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [[c d]] (/ c d)))</span><br><span class="line">       (<span class="name"><span class="builtin-name">apply</span></span> min)))</span><br></pre></td></tr></table></figure>
-<p>위 함수를 이용해 1/3 바로 다음 항을 구하고 나면 다음과 같이 반복적으로 다음 항을 구하는 함수를 작성할 수 있다. $F_{12000}$을 모두 구하는 게 1/2 직전까지만 구하면 된다.</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve2 []</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> [limit <span class="number">12000</span></span><br><span class="line">        a <span class="number">1</span></span><br><span class="line">        b <span class="number">3</span></span><br><span class="line">        r (<span class="name">next-to</span> a b limit)</span><br><span class="line">        c (<span class="name">numerator</span> r)</span><br><span class="line">        d (<span class="name">denominator</span> r)]</span><br><span class="line">    (<span class="name"><span class="builtin-name">loop</span></span> [a a, b b, c (<span class="name"><span class="builtin-name">int</span></span> c), d (<span class="name"><span class="builtin-name">int</span></span> d), acc <span class="number">0</span>]</span><br><span class="line">      (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">&lt;</span></span> (/ c d) <span class="number">1</span>/<span class="number">2</span>)</span><br><span class="line">        (<span class="name"><span class="builtin-name">let</span></span> [k (<span class="name"><span class="builtin-name">quot</span></span> (<span class="name"><span class="builtin-name">+</span></span> limit b) d)]</span><br><span class="line">          (<span class="name"><span class="builtin-name">recur</span></span> c d (<span class="name"><span class="builtin-name">-</span></span> (<span class="name"><span class="builtin-name">*</span></span> k c) a) (<span class="name"><span class="builtin-name">-</span></span> (<span class="name"><span class="builtin-name">*</span></span> k d) b) (<span class="name"><span class="builtin-name">inc</span></span> acc)))</span><br><span class="line">        acc))))</span><br></pre></td></tr></table></figure>
-<p>이 코드의 실행 결과는 다음과 같다.</p>
-<pre class="console">
+</pre><p>Clojure에서 분수는 <code>Ratio</code>로 표현되는데, 아무래도 숫자 기본 타입보다는 속도가 느리다. 위 코드에서 <code>(/ n d)</code>를 <code>(/ (double n) d)</code>로만 수정해도 시간이 2초 이상 줄어든다. 그러나 여전히 빠른 속도라 할 수 없다.</p><h2 id="Farey-Sequence-이용"><a href="#Farey-Sequence-이용" class="headerlink" title="Farey Sequence 이용"></a>Farey Sequence 이용</h2><p><a href="https://en.wikipedia.org/wiki/Farey_sequence#Next_term" target="_blank" rel="noopener">Farey sequence</a>에 Farey 수열을 구하는 파이썬 코드가 있다. 이 코드를 조금 수정해 $F_{12000}$에서 1/3보다 크고 1/2보다 작은 항이 몇 개인지 세도록 할 수 있다. 이 알고리즘을 이용해 Farey 수열의 다음 항을 구하기 위해서는 앞 두 항이 필요하다. 첫 항을 1/3으로 하고 다음 항을 구하면 그 다음부터는 반복적 방법을 통해 수열을 쉽게 구할 수 있다.</p><p><a href="/2016/project-euler-071/">문제 71</a>에서는 3/7 바로 앞에 오는 수를 구했다. 이때 사용한 코드를 조금 수정하면 분모가 12,000 이하일 때 1/3 바로 다음 항을 구할 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line"><span class="comment">;; farey sequence</span></span><br><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> next-to [a b limit]</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">range</span></span> <span class="number">2</span> limit)                                <span class="comment">; d</span></span><br><span class="line">       (<span class="name"><span class="builtin-name">map</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [d] [(<span class="name">infix</span> (((<span class="name">a</span> * d) + <span class="number">1</span>) / b)) d])) <span class="comment">; [c d]</span></span><br><span class="line">       (<span class="name"><span class="builtin-name">filter</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [[c d]] (<span class="name"><span class="builtin-name">integer?</span></span> c)))</span><br><span class="line">       (<span class="name"><span class="builtin-name">map</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [[c d]] (/ c d)))</span><br><span class="line">       (<span class="name"><span class="builtin-name">apply</span></span> min)))</span><br></pre></td></tr></table></figure><p>위 함수를 이용해 1/3 바로 다음 항을 구하고 나면 다음과 같이 반복적으로 다음 항을 구하는 함수를 작성할 수 있다. $F_{12000}$을 모두 구하는 게 1/2 직전까지만 구하면 된다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve2 []</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> [limit <span class="number">12000</span></span><br><span class="line">        a <span class="number">1</span></span><br><span class="line">        b <span class="number">3</span></span><br><span class="line">        r (<span class="name">next-to</span> a b limit)</span><br><span class="line">        c (<span class="name">numerator</span> r)</span><br><span class="line">        d (<span class="name">denominator</span> r)]</span><br><span class="line">    (<span class="name"><span class="builtin-name">loop</span></span> [a a, b b, c (<span class="name"><span class="builtin-name">int</span></span> c), d (<span class="name"><span class="builtin-name">int</span></span> d), acc <span class="number">0</span>]</span><br><span class="line">      (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">&lt;</span></span> (/ c d) <span class="number">1</span>/<span class="number">2</span>)</span><br><span class="line">        (<span class="name"><span class="builtin-name">let</span></span> [k (<span class="name"><span class="builtin-name">quot</span></span> (<span class="name"><span class="builtin-name">+</span></span> limit b) d)]</span><br><span class="line">          (<span class="name"><span class="builtin-name">recur</span></span> c d (<span class="name"><span class="builtin-name">-</span></span> (<span class="name"><span class="builtin-name">*</span></span> k c) a) (<span class="name"><span class="builtin-name">-</span></span> (<span class="name"><span class="builtin-name">*</span></span> k d) b) (<span class="name"><span class="builtin-name">inc</span></span> acc)))</span><br><span class="line">        acc))))</span><br></pre></td></tr></table></figure><p>이 코드의 실행 결과는 다음과 같다.</p><pre class="console">
 p073=> (time (solve2))
 "Elapsed time: 1938.931634 msecs"
 729??72
-</pre>
-
-<p>무차별 대입법을 이용했을 때보다 훨씬 빨라지긴 했지만 여전히 만족스러운 속도라 할 수는 없다. 이렇게 속도가 느린 이유 중 하나는 앞에서 언급했던 것처럼 <code>Ratio</code>가 느리기 때문이다. 따라서 나누기 연산을 하는 <code>if</code> 안의 코드를 다음과 같이 수정하면 속도가 훨씬 빨라진다.</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">loop</span></span> [...]</span><br><span class="line">  (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">&lt;</span></span> (/ (<span class="name"><span class="builtin-name">double</span></span> c) d) <span class="number">0.5</span>) <span class="comment">; Ratio를 사용하지 않도록 수정</span></span><br><span class="line">  ...))</span><br></pre></td></tr></table></figure>
-<p><code>Ratio</code>를 사용하지 않고 그냥 실수 연산을 해도 답을 구하는 데는 전혀 문제 없다. 이렇게 수정한 다음 실행한 결과는 다음과 같다. 이 정도면 충분히 빠르게 답을 구했다고 할 수 있겠다.</p>
-<pre class="console">
+</pre><p>무차별 대입법을 이용했을 때보다 훨씬 빨라지긴 했지만 여전히 만족스러운 속도라 할 수는 없다. 이렇게 속도가 느린 이유 중 하나는 앞에서 언급했던 것처럼 <code>Ratio</code>가 느리기 때문이다. 따라서 나누기 연산을 하는 <code>if</code> 안의 코드를 다음과 같이 수정하면 속도가 훨씬 빨라진다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">loop</span></span> [...]</span><br><span class="line">  (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">&lt;</span></span> (/ (<span class="name"><span class="builtin-name">double</span></span> c) d) <span class="number">0.5</span>) <span class="comment">; Ratio를 사용하지 않도록 수정</span></span><br><span class="line">  ...))</span><br></pre></td></tr></table></figure><p><code>Ratio</code>를 사용하지 않고 그냥 실수 연산을 해도 답을 구하는 데는 전혀 문제 없다. 이렇게 수정한 다음 실행한 결과는 다음과 같다. 이 정도면 충분히 빠르게 답을 구했다고 할 수 있겠다.</p><pre class="console">
 p073=> (time (solve2))
 "Elapsed time: 246.291817 msecs"
 729??72
-</pre>
-
-
-<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
-<li><a href="https://github.com/ntalbs/euler/blob/master/src/p073.clj" target="_blank" rel="noopener">프로젝트 오일러 73 풀이 소스 코드</a></li>
-<li><a href="/2016/project-euler-071/">프로젝트 오일러 71</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Farey_sequence" target="_blank" rel="noopener">Farey sequence</a></li>
-</ul>
-
-      <div class="button-box">
-        <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
-        
-          <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
-        
-      </div>
-    </section>
-
-    <footer class="post-footer">
-      
-        <nav id="article-nav">
-          
-            <a href="/2016/my-proud-moments/" id="article-nav-newer" class="article-nav-link-wrap">
-              <span class="article-nav-title">가장 뿌듯했던 순간</span>
-            </a>
-          
-          
-            <a href="/2016/project-euler-072/" id="article-nav-older" class="article-nav-link-wrap">
-              <span class="article-nav-title">프로젝트 오일러 72</span>
-            </a>
-          
-        </nav>
-      
-
-      <section id="comment">
-        
-          <div id="disqus_thread">
-            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          </div>
-        
-      </section>
-    </footer>
-  </article>
-</main>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-    <footer class="site-footer">
-  
-  <div class="inner">
-    <section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section>
-    <section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section>
-  </div>
-</footer>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-
-
-  <script>
-   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-   ga('create', 'UA-2098194-3', 'auto');
-   ga('require', 'displayfeatures');
-   ga('send', 'pageview');
-
-  </script>
-
-
-  <script type="text/javascript">
-   var disqus_shortname = 'ntalbs-stuff';
-
-   (function(){
-     var dsq = document.createElement('script');
-     dsq.type = 'text/javascript';
-     dsq.async = true;
-     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-   }());
-  </script>
-
-
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
+</pre><h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p073.clj" target="_blank" rel="noopener">프로젝트 오일러 73 풀이 소스 코드</a></li><li><a href="/2016/project-euler-071/">프로젝트 오일러 71</a></li><li><a href="http://en.wikipedia.org/wiki/Farey_sequence" target="_blank" rel="noopener">Farey sequence</a></li></ul><div class="button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a> <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a></div></section><footer class="post-footer"><nav id="article-nav"><a href="/2016/my-proud-moments/" id="article-nav-newer" class="article-nav-link-wrap"><span class="article-nav-title">가장 뿌듯했던 순간</span> </a><a href="/2016/project-euler-072/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">프로젝트 오일러 72</span></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script type="text/javascript" src="/js/jquery.fitvids.js"></script><script type="text/javascript" src="/js/index.js"></script><script>!function(e,a,t,n,g,c,s){e.GoogleAnalyticsObject=g,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),s=a.getElementsByTagName(t)[0],c.async=1,c.src="//www.google-analytics.com/analytics.js",s.parentNode.insertBefore(c,s)}(window,document,"script",0,"ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],
             skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
@@ -201,25 +21,9 @@ p073=> (time (solve2))
         var all = MathJax.Hub.getAllJax();
         for (var i = 0; i < all.length; ++i)
             all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
+    });</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config("");</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
     var all = MathJax.Hub.getAllJax(), i;
     for(i=0; i < all.length; i += 1) {
       all[i].SourceElement().parentNode.className += ' has-jax';
     }
-  });
-</script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-</body>
-</html>
+  });</script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

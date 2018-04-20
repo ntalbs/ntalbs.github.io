@@ -1,91 +1,10 @@
-<!DOCTYPE html>
-<html>
-  
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Hexo: 소스 코드 하이라이팅 스타일 변경 | ntalbs&#39; stuff</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <link rel="shortcut icon" href="/images/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css">
-
-  <meta name="generator" content="ntalbs' stuff"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-  
-  
-  
-</head>
-
-  <body class="home-template">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
-      <a class="navbar-brand" href="/">@ntalbs' stuff</a>
-    </div>
-    <div class="navbar-items collapsed" id="nav-items">
-      <ul>
-        
-          <li><a href="/archives">Archives</a></li>
-        
-          <li><a href="/tags">Tags</a></li>
-        
-          <li><a href="/about">About</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div id="progress">
-  <div id="bar"></div>
-  <div class="container">
-    <div id="scroll-title">Hexo: 소스 코드 하이라이팅 스타일 변경</div>
-  </div>
-</div>
-
-<header class="site-head">
-  <div class="container">
-    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-  </div>
-</header>
-
-
-
-<main class="container" role="main">
-  <article class="post">
-    <header>
-      <p class="post-meta">
-        <time datetime="2014-10-15T23:00:00.000Z" itemprop="datePublished">2014-10-16</time>
-         on <a href="/tags/Hexo/">Hexo</a>
-      </p>
-      <h1 class="post-title">Hexo: 소스 코드 하이라이팅 스타일 변경</h1>
-    </header>
-
-    
-
-    <section class="post-content">
-      <p>블로그 테마를 수정하면서 소스 코드 하이라이팅 스타일도 바꾸고 싶었다. 내 테마의 스타일은 <a href="http://learnboost.github.io/stylus/" target="_blank" rel="noopener">stylus</a>로 되어 있는데, 파일을 살펴보니 중간에 다음과 같은 부분이 보였다.<br><a id="more"></a></p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Theme: Solarized - Github</span></span><br><span class="line"><span class="comment"> * More theme here: http://softwaremaniacs.org/media/soft/highlight/test.html</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="selector-tag">pre</span> <span class="selector-class">.comment</span>,</span><br><span class="line"><span class="selector-tag">pre</span> <span class="selector-class">.template_comment</span>,</span><br><span class="line"><span class="selector-class">.diff</span> <span class="selector-tag">pre</span> <span class="selector-class">.header</span>,</span><br><span class="line"><span class="selector-tag">pre</span> <span class="selector-class">.javadoc</span></span><br><span class="line">  <span class="selector-tag">color</span> <span class="selector-id">#998</span></span><br><span class="line">  <span class="selector-tag">font-style</span> <span class="selector-tag">italic</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>이 부분에서 소스 코드 하이라이팅 스타일을 지정하는 것으로 보였다. 내가 색상을 일일히 편집할 수는 없으므로 다른 테마를 적용할 수 있을까 해서 브라우저로 주석에 나온 URL을 열어 보았다. 리디렉트 되어 <a href="https://highlightjs.org/" target="_blank" rel="noopener">highlight.js</a>의 <a href="https://highlightjs.org/static/test.html" target="_blank" rel="noopener">데모/테스트 페이지</a>가 열렸다. 마음에 드는 스타일을 골라 적용하면 되겠다 싶었다. highlight.js의 소스 코드는 <a href="https://github.com/isagalaev/highlight.js" target="_blank" rel="noopener">https://github.com/isagalaev/highlight.js</a>에 있었고, 각 스타일에 대한 CSS 파일도 찾을 수 있었다. 마음에 드는 스타일 파일을 내 테마 디렉터리에 복사하고, 이 CSS를 블로그 페이지에서 참조하도록 수정했다.</p>
-<p>그런데 문제가 있었다. CSS 파일을 살펴보니 모든 클래스에 <code>hljs-</code> 접두어가 붙어 있었다. 이래서는 CSS 파일만 추가해 소스 코드 하이라이팅 스타일을 바꿀 수 없었다. 구글에서 ‘hexo hljs’로 검색하니 <a href="https://github.com/hexojs/hexo/issues/434" target="_blank" rel="noopener">관련 이슈</a>가 나왔는데, 여기서는 내용이 반대였다. 즉 highlight.js가 버전이 올라가면서 <code>hljs-</code> 접두어를 붙이는 바람에 기존 코드 스타일이 깨지니 접두어를 붙이지 않도록 설정하자는 것이었다. 그리고 그게 Hexo 소스(<code>lib/util/highlight.js</code>)에도 반영이 되어 있었다.</p>
-<p>highlight.js의 기능과 스타일을 그대로 사용하기 위해 원래대로 돌려놓아야 했다. 생각해보니 Hexo는 node.js로 작성되었으니 소스 코드는 JavaScript 파일일테고, 내가 찾아 직접 수정할 수 있겠다는 생각이 들었다.</p>
-<p>그래서 먼저 hexo가 설치된 디렉터리를 확인했다.</p>
-<pre class="console">
+<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Hexo: 소스 코드 하이라이팅 스타일 변경 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">Hexo: 소스 코드 하이라이팅 스타일 변경</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2014-10-15T23:00:00.000Z" itemprop="datePublished">2014-10-16</time> on <a href="/tags/Hexo/">Hexo</a></p><h1 class="post-title">Hexo: 소스 코드 하이라이팅 스타일 변경</h1></header><section class="post-content"><p>블로그 테마를 수정하면서 소스 코드 하이라이팅 스타일도 바꾸고 싶었다. 내 테마의 스타일은 <a href="http://learnboost.github.io/stylus/" target="_blank" rel="noopener">stylus</a>로 되어 있는데, 파일을 살펴보니 중간에 다음과 같은 부분이 보였다.<br><a id="more"></a></p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Theme: Solarized - Github</span></span><br><span class="line"><span class="comment"> * More theme here: http://softwaremaniacs.org/media/soft/highlight/test.html</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="selector-tag">pre</span> <span class="selector-class">.comment</span>,</span><br><span class="line"><span class="selector-tag">pre</span> <span class="selector-class">.template_comment</span>,</span><br><span class="line"><span class="selector-class">.diff</span> <span class="selector-tag">pre</span> <span class="selector-class">.header</span>,</span><br><span class="line"><span class="selector-tag">pre</span> <span class="selector-class">.javadoc</span></span><br><span class="line">  <span class="selector-tag">color</span> <span class="selector-id">#998</span></span><br><span class="line">  <span class="selector-tag">font-style</span> <span class="selector-tag">italic</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure><p>이 부분에서 소스 코드 하이라이팅 스타일을 지정하는 것으로 보였다. 내가 색상을 일일히 편집할 수는 없으므로 다른 테마를 적용할 수 있을까 해서 브라우저로 주석에 나온 URL을 열어 보았다. 리디렉트 되어 <a href="https://highlightjs.org/" target="_blank" rel="noopener">highlight.js</a>의 <a href="https://highlightjs.org/static/test.html" target="_blank" rel="noopener">데모/테스트 페이지</a>가 열렸다. 마음에 드는 스타일을 골라 적용하면 되겠다 싶었다. highlight.js의 소스 코드는 <a href="https://github.com/isagalaev/highlight.js" target="_blank" rel="noopener">https://github.com/isagalaev/highlight.js</a>에 있었고, 각 스타일에 대한 CSS 파일도 찾을 수 있었다. 마음에 드는 스타일 파일을 내 테마 디렉터리에 복사하고, 이 CSS를 블로그 페이지에서 참조하도록 수정했다.</p><p>그런데 문제가 있었다. CSS 파일을 살펴보니 모든 클래스에 <code>hljs-</code> 접두어가 붙어 있었다. 이래서는 CSS 파일만 추가해 소스 코드 하이라이팅 스타일을 바꿀 수 없었다. 구글에서 ‘hexo hljs’로 검색하니 <a href="https://github.com/hexojs/hexo/issues/434" target="_blank" rel="noopener">관련 이슈</a>가 나왔는데, 여기서는 내용이 반대였다. 즉 highlight.js가 버전이 올라가면서 <code>hljs-</code> 접두어를 붙이는 바람에 기존 코드 스타일이 깨지니 접두어를 붙이지 않도록 설정하자는 것이었다. 그리고 그게 Hexo 소스(<code>lib/util/highlight.js</code>)에도 반영이 되어 있었다.</p><p>highlight.js의 기능과 스타일을 그대로 사용하기 위해 원래대로 돌려놓아야 했다. 생각해보니 Hexo는 node.js로 작성되었으니 소스 코드는 JavaScript 파일일테고, 내가 찾아 직접 수정할 수 있겠다는 생각이 들었다.</p><p>그래서 먼저 hexo가 설치된 디렉터리를 확인했다.</p><pre class="console">
 $ which hexo
 /usr/local/bin/hexo
 
 $ ls -l /usr/local/bin/hexo
 lrwxr-xr-x  1 ntalbs  admin  33  9 12 14:43 /usr/local/bin/hexo@ -> ../lib/node_modules/hexo/bin/hexo
-</pre>
-
-<p>내 시스템에서는 Hexo가 <code>/usr/local/lib/node_modules/hexo/</code>에 설치되어 있는 것을 확인할 수 있었다. 이제 <code>lib/util/highlight.js</code> 파일을 찾을 차례다.</p>
-<pre class="console">
+</pre><p>내 시스템에서는 Hexo가 <code>/usr/local/lib/node_modules/hexo/</code>에 설치되어 있는 것을 확인할 수 있었다. 이제 <code>lib/util/highlight.js</code> 파일을 찾을 차례다.</p><pre class="console">
 $ cd /usr/local/lib/node_modules/hexo/
 $ ls
 LICENSE       README.md     bin/          lib/          package.json
@@ -101,100 +20,7 @@ $ ls
 escape.js     file2.js      html_tag.js   permalink.js  spawn.js
 exec.js       format.js     index.js      pool.js
 file.js       highlight.js  inflector.js  server.js
-</pre>
-
-<p><code>/usr/local/lib/node_modules/hexo/lib/util</code>에 <code>highlight.js</code> 파일이 있었다. 파일을 열여 다음과 같이 수정했다. 어쩌면 <code>hljs.configure({...});</code>를 통째로 날려도 될지 모르겠다.</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">  hljs.configure(&#123;</span><br><span class="line"><span class="deletion">-  classPrefix: ''</span></span><br><span class="line"><span class="addition">+  classPrefix: 'hljs-'</span></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-<p>이렇게 수정한 다음 생성된 HTML을 확인했다. 스타일 CSS 파일에는 <code>.hljs</code> 클래스가 정의되어 있지만, 생성된 HTML에서는 <code>&lt;figure class=&quot;highlight&gt;</code>와 같이 되어 있었다.  <code>lib/util/highlight.js</code> 파일을 살표보니 <code>&lt;figure&gt;</code>에 <code>highlight</code> 클래스를 붙이는 부분이 있었다.</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">-  var result = '&lt;figure class="highlight + (options.lang ? ' ' + options.lang : '') + '"&gt;' +</span></span><br><span class="line"><span class="addition">+  var result = '&lt;figure class="hljs' + (options.lang ? ' ' + options.lang : '') + '"&gt;' +</span></span><br><span class="line">    (options.caption ? '&lt;figcaption&gt;' + options.caption + '&lt;/figcaption&gt;' : '');</span><br></pre></td></tr></table></figure>
-<p>다시 HTML을 생성해 확인했는데, 소스 코드에서 빈 줄이 있는 경우 달랑 <code>&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;</code>만 생성되어 빈 줄이 제대로 표현되지 않았다. 각 행을 렌더링하는 부분을 찾아 빈 줄인 경우 <code>&lt;div&gt;</code> 안에 <code>\ufeff</code>를 넣도록 수정했다.</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">  lines.forEach(function(item, i)&#123;</span><br><span class="line">    numbers += '&lt;div class="line"&gt;' + (i + firstLine) + '&lt;/div&gt;';</span><br><span class="line"><span class="deletion">-   content += '&lt;div class="line"&gt;' + item + '&lt;/div&gt;';</span></span><br><span class="line"><span class="addition">+   content += '&lt;div class="line"&gt;' + (item?item:'\ufeff') + '&lt;/div&gt;';</span></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-<p>이제 다 된 것 같아 블로그 HTML을 다시 생성해 브라우저에서 확인해 보았다. 잘 된 것 같은데 뭔가 빠진 것 같은 생각이 들었다. 자세히 살펴보니 <a href="https://highlightjs.org/static/test.html" target="_blank" rel="noopener">https://highlightjs.org/static/test.html</a>에서 렌더링된 결과와 뭔가 달랐다. 확인해보니 Hexo가 사용하는 <code>highlight.js</code> 버전이 <code>8.1.0</code>이었다. Hexo의 <code>package.json</code> 파일을 편집해 <code>highlight.js</code> 최신 버전을 사용하게 했다.</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">   "dependencies": &#123;</span><br><span class="line">     ...</span><br><span class="line"><span class="deletion">-    "highlight.js": "8.1.0",</span></span><br><span class="line"><span class="addition">+    "highlight.js": "8.3.0",</span></span><br><span class="line">     ...</span><br></pre></td></tr></table></figure>
-<p>그리고 Hexo 설치 디렉터리에서 <code>npm update</code> 명령을 실행했다. <code>npm list</code>로 확인해보니 제대로 업데이트 된 것 같다. HTML을 생성해 확인해 보니 제대로 되어 있다. 내 테마 스타일 파일에서 소스 코드 스타일을 지정하는 부분은 더 이상 필요하지 않으므로 삭제해도 된다.</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">- /* Theme: Solarized - Github</span></span><br><span class="line"><span class="deletion">-  * More theme here: http://softwaremaniacs.org/media/soft/highlight/test.html</span></span><br><span class="line"><span class="deletion">-  */</span></span><br><span class="line"><span class="deletion">- pre .comment,</span></span><br><span class="line"><span class="deletion">- pre .template_comment,</span></span><br><span class="line"><span class="deletion">- .diff pre .header,</span></span><br><span class="line"><span class="deletion">- pre .javadoc</span></span><br><span class="line"><span class="deletion">-   color #998</span></span><br><span class="line"><span class="deletion">-   font-style italic</span></span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
-<p>이제 <code>highlight.js</code> 스타일을 가져다 마음껏 바꿀 수 있게 되었다. 다만 Hexo가 업데이트 되면 내가 수정한 내용도 날아갈테니 Hexo에 내가 수정한 내용을 Pull Request 해봐야 겠다.</p>
-
-      <div class="button-box">
-        <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
-        
-          <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
-        
-      </div>
-    </section>
-
-    <footer class="post-footer">
-      
-        <nav id="article-nav">
-          
-            <a href="/2014/quicksort/" id="article-nav-newer" class="article-nav-link-wrap">
-              <span class="article-nav-title">함수형 언어로 구현한 퀵정렬</span>
-            </a>
-          
-          
-            <a href="/2014/dba-story-5/" id="article-nav-older" class="article-nav-link-wrap">
-              <span class="article-nav-title">초보 DBA 삽질기 5</span>
-            </a>
-          
-        </nav>
-      
-
-      <section id="comment">
-        
-          <div id="disqus_thread">
-            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          </div>
-        
-      </section>
-    </footer>
-  </article>
-</main>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-    <footer class="site-footer">
-  
-  <div class="inner">
-    <section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section>
-    <section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section>
-  </div>
-</footer>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-
-
-  <script>
-   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-   ga('create', 'UA-2098194-3', 'auto');
-   ga('require', 'displayfeatures');
-   ga('send', 'pageview');
-
-  </script>
-
-
-  <script type="text/javascript">
-   var disqus_shortname = 'ntalbs-stuff';
-
-   (function(){
-     var dsq = document.createElement('script');
-     dsq.type = 'text/javascript';
-     dsq.async = true;
-     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-   }());
-  </script>
-
-
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
+</pre><p><code>/usr/local/lib/node_modules/hexo/lib/util</code>에 <code>highlight.js</code> 파일이 있었다. 파일을 열여 다음과 같이 수정했다. 어쩌면 <code>hljs.configure({...});</code>를 통째로 날려도 될지 모르겠다.</p><figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">  hljs.configure(&#123;</span><br><span class="line"><span class="deletion">-  classPrefix: ''</span></span><br><span class="line"><span class="addition">+  classPrefix: 'hljs-'</span></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure><p>이렇게 수정한 다음 생성된 HTML을 확인했다. 스타일 CSS 파일에는 <code>.hljs</code> 클래스가 정의되어 있지만, 생성된 HTML에서는 <code>&lt;figure class=&quot;highlight&gt;</code>와 같이 되어 있었다. <code>lib/util/highlight.js</code> 파일을 살표보니 <code>&lt;figure&gt;</code>에 <code>highlight</code> 클래스를 붙이는 부분이 있었다.</p><figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">-  var result = '&lt;figure class="highlight + (options.lang ? ' ' + options.lang : '') + '"&gt;' +</span></span><br><span class="line"><span class="addition">+  var result = '&lt;figure class="hljs' + (options.lang ? ' ' + options.lang : '') + '"&gt;' +</span></span><br><span class="line">    (options.caption ? '&lt;figcaption&gt;' + options.caption + '&lt;/figcaption&gt;' : '');</span><br></pre></td></tr></table></figure><p>다시 HTML을 생성해 확인했는데, 소스 코드에서 빈 줄이 있는 경우 달랑 <code>&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;</code>만 생성되어 빈 줄이 제대로 표현되지 않았다. 각 행을 렌더링하는 부분을 찾아 빈 줄인 경우 <code>&lt;div&gt;</code> 안에 <code>\ufeff</code>를 넣도록 수정했다.</p><figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">  lines.forEach(function(item, i)&#123;</span><br><span class="line">    numbers += '&lt;div class="line"&gt;' + (i + firstLine) + '&lt;/div&gt;';</span><br><span class="line"><span class="deletion">-   content += '&lt;div class="line"&gt;' + item + '&lt;/div&gt;';</span></span><br><span class="line"><span class="addition">+   content += '&lt;div class="line"&gt;' + (item?item:'\ufeff') + '&lt;/div&gt;';</span></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure><p>이제 다 된 것 같아 블로그 HTML을 다시 생성해 브라우저에서 확인해 보았다. 잘 된 것 같은데 뭔가 빠진 것 같은 생각이 들었다. 자세히 살펴보니 <a href="https://highlightjs.org/static/test.html" target="_blank" rel="noopener">https://highlightjs.org/static/test.html</a>에서 렌더링된 결과와 뭔가 달랐다. 확인해보니 Hexo가 사용하는 <code>highlight.js</code> 버전이 <code>8.1.0</code>이었다. Hexo의 <code>package.json</code> 파일을 편집해 <code>highlight.js</code> 최신 버전을 사용하게 했다.</p><figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">   "dependencies": &#123;</span><br><span class="line">     ...</span><br><span class="line"><span class="deletion">-    "highlight.js": "8.1.0",</span></span><br><span class="line"><span class="addition">+    "highlight.js": "8.3.0",</span></span><br><span class="line">     ...</span><br></pre></td></tr></table></figure><p>그리고 Hexo 설치 디렉터리에서 <code>npm update</code> 명령을 실행했다. <code>npm list</code>로 확인해보니 제대로 업데이트 된 것 같다. HTML을 생성해 확인해 보니 제대로 되어 있다. 내 테마 스타일 파일에서 소스 코드 스타일을 지정하는 부분은 더 이상 필요하지 않으므로 삭제해도 된다.</p><figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">- /* Theme: Solarized - Github</span></span><br><span class="line"><span class="deletion">-  * More theme here: http://softwaremaniacs.org/media/soft/highlight/test.html</span></span><br><span class="line"><span class="deletion">-  */</span></span><br><span class="line"><span class="deletion">- pre .comment,</span></span><br><span class="line"><span class="deletion">- pre .template_comment,</span></span><br><span class="line"><span class="deletion">- .diff pre .header,</span></span><br><span class="line"><span class="deletion">- pre .javadoc</span></span><br><span class="line"><span class="deletion">-   color #998</span></span><br><span class="line"><span class="deletion">-   font-style italic</span></span><br><span class="line">  ...</span><br></pre></td></tr></table></figure><p>이제 <code>highlight.js</code> 스타일을 가져다 마음껏 바꿀 수 있게 되었다. 다만 Hexo가 업데이트 되면 내가 수정한 내용도 날아갈테니 Hexo에 내가 수정한 내용을 Pull Request 해봐야 겠다.</p><div class="button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a> <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a></div></section><footer class="post-footer"><nav id="article-nav"><a href="/2014/quicksort/" id="article-nav-newer" class="article-nav-link-wrap"><span class="article-nav-title">함수형 언어로 구현한 퀵정렬</span> </a><a href="/2014/dba-story-5/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">초보 DBA 삽질기 5</span></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script type="text/javascript" src="/js/jquery.fitvids.js"></script><script type="text/javascript" src="/js/index.js"></script><script>!function(e,a,t,n,g,c,s){e.GoogleAnalyticsObject=g,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),s=a.getElementsByTagName(t)[0],c.async=1,c.src="//www.google-analytics.com/analytics.js",s.parentNode.insertBefore(c,s)}(window,document,"script",0,"ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],
             skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
@@ -205,25 +31,9 @@ file.js       highlight.js  inflector.js  server.js
         var all = MathJax.Hub.getAllJax();
         for (var i = 0; i < all.length; ++i)
             all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
+    });</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config("");</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
     var all = MathJax.Hub.getAllJax(), i;
     for(i=0; i < all.length; i += 1) {
       all[i].SourceElement().parentNode.className += ' has-jax';
     }
-  });
-</script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-</body>
-</html>
+  });</script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

@@ -1,82 +1,4 @@
-<!DOCTYPE html>
-<html>
-  
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>환경변수에 설정 정보 저장하기 | ntalbs&#39; stuff</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <link rel="shortcut icon" href="/images/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css">
-
-  <meta name="generator" content="ntalbs' stuff"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-  
-  
-  
-</head>
-
-  <body class="home-template">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
-      <a class="navbar-brand" href="/">@ntalbs' stuff</a>
-    </div>
-    <div class="navbar-items collapsed" id="nav-items">
-      <ul>
-        
-          <li><a href="/archives">Archives</a></li>
-        
-          <li><a href="/tags">Tags</a></li>
-        
-          <li><a href="/about">About</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div id="progress">
-  <div id="bar"></div>
-  <div class="container">
-    <div id="scroll-title">환경변수에 설정 정보 저장하기</div>
-  </div>
-</div>
-
-<header class="site-head">
-  <div class="container">
-    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-  </div>
-</header>
-
-
-
-<main class="container" role="main">
-  <article class="post">
-    <header>
-      <p class="post-meta">
-        <time datetime="2014-08-07T23:00:00.000Z" itemprop="datePublished">2014-08-08</time>
-         on <a href="/tags/Clojure/">Clojure</a>
-      </p>
-      <h1 class="post-title">환경변수에 설정 정보 저장하기</h1>
-    </header>
-
-    
-
-    <section class="post-content">
-      <p>웹 애플리케이션에서 데이터베이스 계정 정보나 URL, 외부 서비스에 대한 인증 정보는 어떻게 관리하는 것이 좋을까? 설정 파일을 만들어 여기에 관리하는 방법도 있지만, 환경에 따라 설정이 변해야 하는 경우 관리가 까다로워 진다. 어떻게 하는 게 좋을까?<br><a id="more"></a></p>
-<h2 id="배경"><a href="#배경" class="headerlink" title="배경"></a>배경</h2><p>Clojure로 간단한 웹 애플리케이션을 만들었다. 소스코드는 <a href="https://github.com/ntalbs/tweetbook" target="_blank" rel="noopener">GitHub</a>에 올려두었고 <a href="https://www.heroku.com/" target="_blank" rel="noopener">Heroku</a>에 배포했다. 그런데 배포 작업을 하면서 약간 귀찮은 문제에 봉착했다. 바로 설정 정보 관리 문제였다. 지금까지는 그냥 소스 파일에 저장하는 방식을 사용했다. 데이터베이스 계정 정보나 외부 시스템의 OAUTH 키 등을 <code>config.clj</code>란 파일에 저장했는데, 이 파일을 GitHub에 올릴 수는 없었다. 아무도 내 코드를 보지 않을 거란 사실은 알지만 대문 앞에 열쇠를 걸어두고 나갈 수는 없지 않은가! 그래서 파일을 복사해 <code>_config.clj</code>를 만들고 다음과 같이 중요 정보를 제거해 올렸다.</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">ns</span></span> xxx.config)</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">def</span></span> db-uri <span class="string">"mongodb-uri"</span>)</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">def</span></span> oauth-settings</span><br><span class="line">  &#123;<span class="symbol">:consumer-key</span> <span class="string">"consumer-key"</span></span><br><span class="line">   <span class="symbol">:consumer-secret</span> <span class="string">"consumer-secret"</span></span><br><span class="line">   <span class="symbol">:access-token</span> <span class="string">"access-token"</span></span><br><span class="line">   <span class="symbol">:access-token-secret</span> <span class="string">"access-token-secret"</span>&#125;)</span><br><span class="line"><span class="comment">;...</span></span><br></pre></td></tr></table></figure>
-<p>프로젝트를 사용하려면 <code>_config.clj</code>의 이름을 <code>config.clj</code>로 바꾼 다음 내용을 채우면 된다. 이 방법은 <code>config.clj</code>를 커밋하지 않도록 주의해야 하고, 설정 파일 구조를 바꾸거나 새로운 정보를 추가할 때 두 파일을 수정해야 하는 불편함이 있다. 마음에 드는 방법은 아니었지만 일단 동작했고 다른 모르는 것이 많아 설정에 많은 시간을 들이고 싶지 않아 그냥 썼다. 어느 정도 안정화된 후에도 커밋하지 말아야 한다는 점이 거슬리긴 했지만 큰 불편은 없었다.</p>
-<h2 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h2><p>그런데 Heroku에 배포하면서 문제가 생겼다. Heroku는 Git에 <code>push</code>하면 알아서 배포하는 구조로 되어 있는데, 배포한 앱이 제대로 실행되려면 <code>config.clj</code>도 Heroku의 Git 저장소에 올려야 했다. 이것 때문에 <code>config.clj</code>가 GitHub에는 올라가면 안 되고 Heroku의 Git 저장소에는 올라가야 하는 모순이 생겼다. 게다가 Heroku에 배포하는 데 계속 이해되지 않는 에러가 발생했다. 디렉터리를 통째로 다른 곳에 복사해 GitHub과 연결을 끊고 파일을 편집해 Heroku에 올리는 방식으로 문제를 해결하긴 했다. 이 과정을 거치며 설정 정보를 어떻게 저장하고 관리하는 것이 좋을지 생각해보게 되었다.</p>
-<h2 id="환경변수에-설정-저장하기"><a href="#환경변수에-설정-저장하기" class="headerlink" title="환경변수에 설정 저장하기"></a>환경변수에 설정 저장하기</h2><p>어떻게 하는게 좋을지 인터넷에서 조금 찾아보니 환경변수에 설정 정보를 저장하는 방법을 알게 되었다. 로컬에서는 셸에 따라 <code>set</code>, <code>export</code> 등의 명령으로 환경변수를 설정하면 되고, Heroku에서는 <code>config:set</code>을 사용해 환경변수를 설정할 수 있다.</p>
-<pre class="console">
+<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>환경변수에 설정 정보 저장하기 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">환경변수에 설정 정보 저장하기</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2014-08-07T23:00:00.000Z" itemprop="datePublished">2014-08-08</time> on <a href="/tags/Clojure/">Clojure</a></p><h1 class="post-title">환경변수에 설정 정보 저장하기</h1></header><section class="post-content"><p>웹 애플리케이션에서 데이터베이스 계정 정보나 URL, 외부 서비스에 대한 인증 정보는 어떻게 관리하는 것이 좋을까? 설정 파일을 만들어 여기에 관리하는 방법도 있지만, 환경에 따라 설정이 변해야 하는 경우 관리가 까다로워 진다. 어떻게 하는 게 좋을까?<br><a id="more"></a></p><h2 id="배경"><a href="#배경" class="headerlink" title="배경"></a>배경</h2><p>Clojure로 간단한 웹 애플리케이션을 만들었다. 소스코드는 <a href="https://github.com/ntalbs/tweetbook" target="_blank" rel="noopener">GitHub</a>에 올려두었고 <a href="https://www.heroku.com/" target="_blank" rel="noopener">Heroku</a>에 배포했다. 그런데 배포 작업을 하면서 약간 귀찮은 문제에 봉착했다. 바로 설정 정보 관리 문제였다. 지금까지는 그냥 소스 파일에 저장하는 방식을 사용했다. 데이터베이스 계정 정보나 외부 시스템의 OAUTH 키 등을 <code>config.clj</code>란 파일에 저장했는데, 이 파일을 GitHub에 올릴 수는 없었다. 아무도 내 코드를 보지 않을 거란 사실은 알지만 대문 앞에 열쇠를 걸어두고 나갈 수는 없지 않은가! 그래서 파일을 복사해 <code>_config.clj</code>를 만들고 다음과 같이 중요 정보를 제거해 올렸다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">ns</span></span> xxx.config)</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">def</span></span> db-uri <span class="string">"mongodb-uri"</span>)</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">def</span></span> oauth-settings</span><br><span class="line">  &#123;<span class="symbol">:consumer-key</span> <span class="string">"consumer-key"</span></span><br><span class="line">   <span class="symbol">:consumer-secret</span> <span class="string">"consumer-secret"</span></span><br><span class="line">   <span class="symbol">:access-token</span> <span class="string">"access-token"</span></span><br><span class="line">   <span class="symbol">:access-token-secret</span> <span class="string">"access-token-secret"</span>&#125;)</span><br><span class="line"><span class="comment">;...</span></span><br></pre></td></tr></table></figure><p>프로젝트를 사용하려면 <code>_config.clj</code>의 이름을 <code>config.clj</code>로 바꾼 다음 내용을 채우면 된다. 이 방법은 <code>config.clj</code>를 커밋하지 않도록 주의해야 하고, 설정 파일 구조를 바꾸거나 새로운 정보를 추가할 때 두 파일을 수정해야 하는 불편함이 있다. 마음에 드는 방법은 아니었지만 일단 동작했고 다른 모르는 것이 많아 설정에 많은 시간을 들이고 싶지 않아 그냥 썼다. 어느 정도 안정화된 후에도 커밋하지 말아야 한다는 점이 거슬리긴 했지만 큰 불편은 없었다.</p><h2 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h2><p>그런데 Heroku에 배포하면서 문제가 생겼다. Heroku는 Git에 <code>push</code>하면 알아서 배포하는 구조로 되어 있는데, 배포한 앱이 제대로 실행되려면 <code>config.clj</code>도 Heroku의 Git 저장소에 올려야 했다. 이것 때문에 <code>config.clj</code>가 GitHub에는 올라가면 안 되고 Heroku의 Git 저장소에는 올라가야 하는 모순이 생겼다. 게다가 Heroku에 배포하는 데 계속 이해되지 않는 에러가 발생했다. 디렉터리를 통째로 다른 곳에 복사해 GitHub과 연결을 끊고 파일을 편집해 Heroku에 올리는 방식으로 문제를 해결하긴 했다. 이 과정을 거치며 설정 정보를 어떻게 저장하고 관리하는 것이 좋을지 생각해보게 되었다.</p><h2 id="환경변수에-설정-저장하기"><a href="#환경변수에-설정-저장하기" class="headerlink" title="환경변수에 설정 저장하기"></a>환경변수에 설정 저장하기</h2><p>어떻게 하는게 좋을지 인터넷에서 조금 찾아보니 환경변수에 설정 정보를 저장하는 방법을 알게 되었다. 로컬에서는 셸에 따라 <code>set</code>, <code>export</code> 등의 명령으로 환경변수를 설정하면 되고, Heroku에서는 <code>config:set</code>을 사용해 환경변수를 설정할 수 있다.</p><pre class="console">
 $ heroku config:set DB_USERNAME=xxx
 Setting config vars and restarting myapp... done, v5
 DB_USERNAME: xxx
@@ -90,122 +12,21 @@ xxx
 
 $ heroku config:unset DB_USERNAME
 Unsetting DB_USERNAME and restarting myapp... done, v6
-</pre>
-
-<p>Java에서는 <code>System.getenv(&quot;key&quot;)</code>를 사용해 환경변수의 값을 얻을 수 있다. Clojure에서는 Java 함수를 그대로 사용할 수 있으므로 <code>(System/getenv key)</code>와 같이 하면 된다.</p>
-<h2 id="heroku-config-플러그인"><a href="#heroku-config-플러그인" class="headerlink" title="heroku-config 플러그인"></a>heroku-config 플러그인</h2><p><code>heroku config:set</code> 명령을 이용해 환경변수를 하나씩 지정해야 한다면 매우 짜증날 것이다. <a href="https://github.com/ddollar/heroku-config" target="_blank" rel="noopener">heroku-config</a> 플러그인을 사용하면 로컬 <code>.env</code> 파일의 내용을 Heroku 애플리케이션에 푸시하거나 Heroku 애플리케이션 설정 환경변수을 긁어 로컬 <code>.env</code> 파일에 저장하는 작업을 쉽게 할 수 있다. <code>heroku-config</code> 플러그인은 다음과 같이 설치한다.</p>
-<pre class="console">
+</pre><p>Java에서는 <code>System.getenv(&quot;key&quot;)</code>를 사용해 환경변수의 값을 얻을 수 있다. Clojure에서는 Java 함수를 그대로 사용할 수 있으므로 <code>(System/getenv key)</code>와 같이 하면 된다.</p><h2 id="heroku-config-플러그인"><a href="#heroku-config-플러그인" class="headerlink" title="heroku-config 플러그인"></a>heroku-config 플러그인</h2><p><code>heroku config:set</code> 명령을 이용해 환경변수를 하나씩 지정해야 한다면 매우 짜증날 것이다. <a href="https://github.com/ddollar/heroku-config" target="_blank" rel="noopener">heroku-config</a> 플러그인을 사용하면 로컬 <code>.env</code> 파일의 내용을 Heroku 애플리케이션에 푸시하거나 Heroku 애플리케이션 설정 환경변수을 긁어 로컬 <code>.env</code> 파일에 저장하는 작업을 쉽게 할 수 있다. <code>heroku-config</code> 플러그인은 다음과 같이 설치한다.</p><pre class="console">
 $ heroku plugins:install git://github.com/ddollar/heroku-config.git
 heroku-config installed
-</pre>
-
-<p><code>.env</code> 파일에 다음과 같은 식으로 변수명과 값을 지정할 수 있다.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">DB_URI=mongodb://id:pw@domain:port/db-name</span><br><span class="line">USERID=xxx</span><br></pre></td></tr></table></figure>
-<p>로컬 <code>.env</code> 파일의 설정 내용을 Heroku 애플리케이션으로 푸시할 때는 다음과 같이 한다.</p>
-<pre class="console">
+</pre><p><code>.env</code> 파일에 다음과 같은 식으로 변수명과 값을 지정할 수 있다.</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">DB_URI=mongodb://id:pw@domain:port/db-name</span><br><span class="line">USERID=xxx</span><br></pre></td></tr></table></figure><p>로컬 <code>.env</code> 파일의 설정 내용을 Heroku 애플리케이션으로 푸시할 때는 다음과 같이 한다.</p><pre class="console">
 $ heroku config:push
-</pre>
-
-<p>Heroku 애플리케이션 설정 환경변수를 긁어 로컬 <code>.env</code> 파일에 저장할 때는 다음과 같이 한다.</p>
-<pre class="console">
+</pre><p>Heroku 애플리케이션 설정 환경변수를 긁어 로컬 <code>.env</code> 파일에 저장할 때는 다음과 같이 한다.</p><pre class="console">
 $ heroku config:pull
-</pre>
-
-<p><code>--interactive</code> 옵션을 사용하면 환경변수 하나하나에 대해 덮어쓸지 물어보게 할 수 있다.</p>
-<pre class="console">
+</pre><p><code>--interactive</code> 옵션을 사용하면 환경변수 하나하나에 대해 덮어쓸지 물어보게 할 수 있다.</p><pre class="console">
 $ heroku config:pull --interactive
 DB_URI: mongodb://id:pw@domain:port/db-name
 Overwrite? (y/N) y
 USERID: xxx
 Overwrite? (y/N)
 ...
-</pre>
-
-<h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><p>애플리케이션 설정을 파일(XML이든 properties 파일이든)에 저장하는 것보다는 환경변수에 저장해 사용하는 것이 좀더 융통성 있다. 특히 소스코드를 GitHub과 같은 공개 저장소에 올린다면 민감한 정보는 더더욱 이렇게 관리하는 것이 좋겠다.</p>
-<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
-<li><a href="https://devcenter.heroku.com/articles/config-vars" target="_blank" rel="noopener">Heroku Dev Center &gt; Configuration and Config Vars</a></li>
-</ul>
-
-      <div class="button-box">
-        <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
-        
-          <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
-        
-      </div>
-    </section>
-
-    <footer class="post-footer">
-      
-        <nav id="article-nav">
-          
-            <a href="/2014/dystopian-future/" id="article-nav-newer" class="article-nav-link-wrap">
-              <span class="article-nav-title">개발자의 암울한 미래</span>
-            </a>
-          
-          
-            <a href="/2014/jps/" id="article-nav-older" class="article-nav-link-wrap">
-              <span class="article-nav-title">jps 사용법</span>
-            </a>
-          
-        </nav>
-      
-
-      <section id="comment">
-        
-          <div id="disqus_thread">
-            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          </div>
-        
-      </section>
-    </footer>
-  </article>
-</main>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-    <footer class="site-footer">
-  
-  <div class="inner">
-    <section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section>
-    <section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section>
-  </div>
-</footer>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-
-
-  <script>
-   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-   ga('create', 'UA-2098194-3', 'auto');
-   ga('require', 'displayfeatures');
-   ga('send', 'pageview');
-
-  </script>
-
-
-  <script type="text/javascript">
-   var disqus_shortname = 'ntalbs-stuff';
-
-   (function(){
-     var dsq = document.createElement('script');
-     dsq.type = 'text/javascript';
-     dsq.async = true;
-     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-   }());
-  </script>
-
-
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
+</pre><h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><p>애플리케이션 설정을 파일(XML이든 properties 파일이든)에 저장하는 것보다는 환경변수에 저장해 사용하는 것이 좀더 융통성 있다. 특히 소스코드를 GitHub과 같은 공개 저장소에 올린다면 민감한 정보는 더더욱 이렇게 관리하는 것이 좋겠다.</p><h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul><li><a href="https://devcenter.heroku.com/articles/config-vars" target="_blank" rel="noopener">Heroku Dev Center &gt; Configuration and Config Vars</a></li></ul><div class="button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a> <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a></div></section><footer class="post-footer"><nav id="article-nav"><a href="/2014/dystopian-future/" id="article-nav-newer" class="article-nav-link-wrap"><span class="article-nav-title">개발자의 암울한 미래</span> </a><a href="/2014/jps/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">jps 사용법</span></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script type="text/javascript" src="/js/jquery.fitvids.js"></script><script type="text/javascript" src="/js/index.js"></script><script>!function(e,a,t,n,g,c,s){e.GoogleAnalyticsObject=g,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),s=a.getElementsByTagName(t)[0],c.async=1,c.src="//www.google-analytics.com/analytics.js",s.parentNode.insertBefore(c,s)}(window,document,"script",0,"ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],
             skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
@@ -216,25 +37,9 @@ Overwrite? (y/N)
         var all = MathJax.Hub.getAllJax();
         for (var i = 0; i < all.length; ++i)
             all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
+    });</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config("");</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
     var all = MathJax.Hub.getAllJax(), i;
     for(i=0; i < all.length; i += 1) {
       all[i].SourceElement().parentNode.className += ' has-jax';
     }
-  });
-</script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-</body>
-</html>
+  });</script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

@@ -1,77 +1,4 @@
-<!DOCTYPE html>
-<html>
-  
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>set timing을 이용한 SQL 실행 속도 측정법 | ntalbs&#39; stuff</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <link rel="shortcut icon" href="/images/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css">
-
-  <meta name="generator" content="ntalbs' stuff"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-  
-  
-  
-</head>
-
-  <body class="home-template">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
-      <a class="navbar-brand" href="/">@ntalbs' stuff</a>
-    </div>
-    <div class="navbar-items collapsed" id="nav-items">
-      <ul>
-        
-          <li><a href="/archives">Archives</a></li>
-        
-          <li><a href="/tags">Tags</a></li>
-        
-          <li><a href="/about">About</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div id="progress">
-  <div id="bar"></div>
-  <div class="container">
-    <div id="scroll-title">set timing을 이용한 SQL 실행 속도 측정법</div>
-  </div>
-</div>
-
-<header class="site-head">
-  <div class="container">
-    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-  </div>
-</header>
-
-
-
-<main class="container" role="main">
-  <article class="post">
-    <header>
-      <p class="post-meta">
-        <time datetime="2008-10-29T00:00:00.000Z" itemprop="datePublished">2008-10-29</time>
-         on <a href="/tags/DB/">DB</a><a href="/tags/Oracle/">Oracle</a><a href="/tags/SqlPlus/">SqlPlus</a>
-      </p>
-      <h1 class="post-title">set timing을 이용한 SQL 실행 속도 측정법</h1>
-    </header>
-
-    
-
-    <section class="post-content">
-      <p>SQL*Plus에서 실행시킨 SQL 또는 PL/SQL 블록의 실행속도를 보려면 다음과 같이 <code>set timing on</code>을 사용하면 된다.<br><a id="more"></a></p>
-<pre class="console">
+<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>set timing을 이용한 SQL 실행 속도 측정법 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">set timing을 이용한 SQL 실행 속도 측정법</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2008-10-29T00:00:00.000Z" itemprop="datePublished">2008-10-29</time> on <a href="/tags/DB/">DB</a><a href="/tags/Oracle/">Oracle</a><a href="/tags/SqlPlus/">SqlPlus</a></p><h1 class="post-title">set timing을 이용한 SQL 실행 속도 측정법</h1></header><section class="post-content"><p>SQL*Plus에서 실행시킨 SQL 또는 PL/SQL 블록의 실행속도를 보려면 다음과 같이 <code>set timing on</code>을 사용하면 된다.<br><a id="more"></a></p><pre class="console">
 SQL> set timing on
 SQL> select count(*) from all_objects;
 
@@ -80,12 +7,7 @@ SQL> select count(*) from all_objects;
      40746
 
  Elapsed: 00:00:11.87
-</pre>
-
-<p>그런데, SQL 하나하나의 속도가 하니라 한 블록의 SQL 실행속도를 알고 싶을 때는 어떻게 해야 할까? 예를 들어 다음과 같이 work.sql에 여러 SQL이 들어 있다고 생각해보자.</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- work.sql</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-01'</span>, <span class="string">'aaa'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-02'</span>, <span class="string">'bbb'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-03'</span>, <span class="string">'ccc'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-04'</span>, <span class="string">'ddd'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-04'</span>, <span class="string">'eee'</span>);</span><br></pre></td></tr></table></figure>
-<p>SQL*Plus에서 <code>set timing on</code>한 상태에서 work.sql을 실행시키면 결과는 다음과 같이 각각의 SQL에 대한 실행시간이 나올 뿐이다.</p>
-<pre class="console">
+</pre><p>그런데, SQL 하나하나의 속도가 하니라 한 블록의 SQL 실행속도를 알고 싶을 때는 어떻게 해야 할까? 예를 들어 다음과 같이 work.sql에 여러 SQL이 들어 있다고 생각해보자.</p><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- work.sql</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-01'</span>, <span class="string">'aaa'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-02'</span>, <span class="string">'bbb'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-03'</span>, <span class="string">'ccc'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-04'</span>, <span class="string">'ddd'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-04'</span>, <span class="string">'eee'</span>);</span><br></pre></td></tr></table></figure><p>SQL*Plus에서 <code>set timing on</code>한 상태에서 work.sql을 실행시키면 결과는 다음과 같이 각각의 SQL에 대한 실행시간이 나올 뿐이다.</p><pre class="console">
 SQL> set echo on
 SQL> @work.sql
 SQL> insert into t values ('2007-01-01', 'aaa');
@@ -113,12 +35,7 @@ SQL> insert into t values ('2007-01-04', 'eee');
 1 row created.
 
 Elapsed: 00:00:00.00
-</pre>
-
-<p>전체 SQL의 실행 속도를 보고 싶다면 <code>begin ~ end</code>를 써서 SQL을 묶어주면 된다. 즉 work.sql 파일의 시작과 끝을 <code>begin ~ end</code>로 묶어준 다음 실행시키면 된다.</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- work.sql</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-01'</span>, <span class="string">'aaa'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-02'</span>, <span class="string">'bbb'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-03'</span>, <span class="string">'ccc'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-04'</span>, <span class="string">'ddd'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-04'</span>, <span class="string">'eee'</span>);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line">/</span><br></pre></td></tr></table></figure>
-<p>이에 대한 실행결과는 다음과 같다.</p>
-<pre class="console">
+</pre><p>전체 SQL의 실행 속도를 보고 싶다면 <code>begin ~ end</code>를 써서 SQL을 묶어주면 된다. 즉 work.sql 파일의 시작과 끝을 <code>begin ~ end</code>로 묶어준 다음 실행시키면 된다.</p><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- work.sql</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-01'</span>, <span class="string">'aaa'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-02'</span>, <span class="string">'bbb'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-03'</span>, <span class="string">'ccc'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-04'</span>, <span class="string">'ddd'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-04'</span>, <span class="string">'eee'</span>);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line">/</span><br></pre></td></tr></table></figure><p>이에 대한 실행결과는 다음과 같다.</p><pre class="console">
 SQL> @work.sql
 SQL> begin
   2  insert into t values ('2007-01-01', 'aaa');
@@ -132,10 +49,7 @@ SQL> begin
 PL/SQL procedure successfully completed.
 
 Elapsed: 00:00:00.15
-</pre>
-
-<p>또는 work.sql 파일을 수정하고 싶지 많다면 SQL*Plus에서 파일 실행부를 <code>begin ~ end</code>로 묶어줘도 된다. 한꺼번에 여러 파일을 실행해야 한다면 이게 더 편할지도 모르겠다.</p>
-<pre class="console">
+</pre><p>또는 work.sql 파일을 수정하고 싶지 많다면 SQL*Plus에서 파일 실행부를 <code>begin ~ end</code>로 묶어줘도 된다. 한꺼번에 여러 파일을 실행해야 한다면 이게 더 편할지도 모르겠다.</p><pre class="console">
 SQL> set echo on
 SQL> begin
   2  @work.sql
@@ -150,12 +64,7 @@ SQL> begin
 PL/SQL procedure successfully completed.
 
 Elapsed: 00:00:00.03
-</pre>
-
-<p><code>set echo on</code> 상태라면 @work.sql을 입력한 후 엔터키를 누르면 위와 같이 파일 내용이 표시된다.<br><code>set timing on</code> 대신 <code>timing</code> 명령을 사용해 여러 SQL의 실행속도를 측정할 수도 있다.</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">timing <span class="keyword">start</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-01'</span>, <span class="string">'aaa'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-02'</span>, <span class="string">'bbb'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-03'</span>, <span class="string">'ccc'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-04'</span>, <span class="string">'ddd'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-04'</span>, <span class="string">'eee'</span>);</span><br><span class="line">timing <span class="keyword">stop</span></span><br></pre></td></tr></table></figure>
-<p>위와 같이 work.sql의 맨 앞과 뒤에 각각 <code>timing start</code>, <code>timing stop</code>을 추가하면 다음과 같이 각각의 SQL에 대한 실행속도뿐 아니라 전체 실행속도까지 한꺼번에 볼 수 있다.</p>
-<pre class="console">
+</pre><p><code>set echo on</code> 상태라면 @work.sql을 입력한 후 엔터키를 누르면 위와 같이 파일 내용이 표시된다.<br><code>set timing on</code> 대신 <code>timing</code> 명령을 사용해 여러 SQL의 실행속도를 측정할 수도 있다.</p><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">timing <span class="keyword">start</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-01'</span>, <span class="string">'aaa'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-02'</span>, <span class="string">'bbb'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-03'</span>, <span class="string">'ccc'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-04'</span>, <span class="string">'ddd'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span> (<span class="string">'2007-01-04'</span>, <span class="string">'eee'</span>);</span><br><span class="line">timing <span class="keyword">stop</span></span><br></pre></td></tr></table></figure><p>위와 같이 work.sql의 맨 앞과 뒤에 각각 <code>timing start</code>, <code>timing stop</code>을 추가하면 다음과 같이 각각의 SQL에 대한 실행속도뿐 아니라 전체 실행속도까지 한꺼번에 볼 수 있다.</p><pre class="console">
 SQL> set echo on
 SQL> @work.sql
 SQL> timing start
@@ -186,90 +95,7 @@ SQL> insert into t values ('2007-01-04', 'eee');
 Elapsed: 00:00:00.01
 SQL> timing stop
 Elapsed: 00:00:00.03
-</pre>
-
-<p><code>timing stop</code> 다음에 찍힌 시간이 전체 SQL을 실행하는 데 걸린 시간이다.</p>
-
-      <div class="button-box">
-        <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
-        
-          <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
-        
-      </div>
-    </section>
-
-    <footer class="post-footer">
-      
-        <nav id="article-nav">
-          
-            <a href="/2008/dbms-random/" id="article-nav-newer" class="article-nav-link-wrap">
-              <span class="article-nav-title">DBMS_RANDOM 패키지 사용법</span>
-            </a>
-          
-          
-            <a href="/2008/data-type/" id="article-nav-older" class="article-nav-link-wrap">
-              <span class="article-nav-title">올바른 데이터 타입 사용하기</span>
-            </a>
-          
-        </nav>
-      
-
-      <section id="comment">
-        
-          <div id="disqus_thread">
-            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          </div>
-        
-      </section>
-    </footer>
-  </article>
-</main>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-    <footer class="site-footer">
-  
-  <div class="inner">
-    <section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section>
-    <section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section>
-  </div>
-</footer>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-
-
-  <script>
-   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-   ga('create', 'UA-2098194-3', 'auto');
-   ga('require', 'displayfeatures');
-   ga('send', 'pageview');
-
-  </script>
-
-
-  <script type="text/javascript">
-   var disqus_shortname = 'ntalbs-stuff';
-
-   (function(){
-     var dsq = document.createElement('script');
-     dsq.type = 'text/javascript';
-     dsq.async = true;
-     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-   }());
-  </script>
-
-
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
+</pre><p><code>timing stop</code> 다음에 찍힌 시간이 전체 SQL을 실행하는 데 걸린 시간이다.</p><div class="button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a> <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a></div></section><footer class="post-footer"><nav id="article-nav"><a href="/2008/deleting-db-link/" id="article-nav-newer" class="article-nav-link-wrap"><span class="article-nav-title">DB 링크 삭제 시 제약사항</span> </a><a href="/2008/dbms-random/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">DBMS_RANDOM 패키지 사용법</span></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script type="text/javascript" src="/js/jquery.fitvids.js"></script><script type="text/javascript" src="/js/index.js"></script><script>!function(e,a,t,n,g,c,s){e.GoogleAnalyticsObject=g,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),s=a.getElementsByTagName(t)[0],c.async=1,c.src="//www.google-analytics.com/analytics.js",s.parentNode.insertBefore(c,s)}(window,document,"script",0,"ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],
             skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
@@ -280,25 +106,9 @@ Elapsed: 00:00:00.03
         var all = MathJax.Hub.getAllJax();
         for (var i = 0; i < all.length; ++i)
             all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
+    });</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config("");</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
     var all = MathJax.Hub.getAllJax(), i;
     for(i=0; i < all.length; i += 1) {
       all[i].SourceElement().parentNode.className += ' has-jax';
     }
-  });
-</script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-</body>
-</html>
+  });</script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
