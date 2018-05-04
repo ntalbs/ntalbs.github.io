@@ -1,5 +1,5 @@
 tags: [Project-Euler, Clojure]
-date: 2018-12-31
+date: 2018-05-03
 title: 프로젝트 오일러 92
 ---
 > 자릿수를 제곱해서 더해가는 수열의 신기한 성질
