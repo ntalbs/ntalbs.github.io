@@ -20,7 +20,7 @@
 
   function initProgress ($h1) {
     var threshold = $h1.offset().top + $h1.height() - $('nav').height()
-    var $postContent = $('.content')
+    var $postContent = $('.post-content')
     var ph = $postContent.height()       // post height
     var wh = $(window).height()          // window height
     var color = randomColor()
