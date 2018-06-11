@@ -1,21 +1,190 @@
-<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>프로젝트 오일러 67 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">프로젝트 오일러 67</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2016-05-20T23:00:00.000Z" itemprop="datePublished">2016-05-21</time> on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 67</h1></header><section class="post-content"><blockquote><p>삼각형에서 경로의 합 중 최대값을 구하는 효율적인 방법은?<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=67" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=67" target="_blank" rel="noopener">[영어]</a></p></blockquote><p><a href="/2015/project-euler-018/">문제 18</a>과 동일한 문제다. 문제 18에서는 삼각형이 15층에 불과했지만, 여기서는 100층이다. 문제 18에서 이미 제대로 된 방법으로 문제를 풀었기 때문에 똑같은 방법을 사용해 문제를 풀 수 있다. 텍스트 파일로 주어진 데이터를 읽어들이는 코드만 추가해주면 된다.<br><a id="more"></a></p><p>데이터 파일을 읽어 문제 18에서 사용했던 <code>triangle</code> 구조를 만드는 코드는 다음과 같이 작성할 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">ns</span></span> p067</span><br><span class="line">  (<span class="symbol">:require</span> [util <span class="symbol">:refer</span> [parse-int]]</span><br><span class="line">            [clojure.string <span class="symbol">:refer</span> [split]]))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> split-by-line [content]</span><br><span class="line">  (<span class="name">split</span> content #<span class="string">"\r\n"</span>))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> parse-line [line]</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name">split</span> line #<span class="string">" "</span>) (<span class="name"><span class="builtin-name">map</span></span> parse-int)))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">def</span></span> triangle</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">slurp</span></span> <span class="string">"data/triangle.txt"</span>)</span><br><span class="line">       split-by-line</span><br><span class="line">       (<span class="name"><span class="builtin-name">map</span></span> parse-line)</span><br><span class="line">       reverse))</span><br></pre></td></tr></table></figure><p>풀이는 문제 18과 동일하다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> find-max [t]</span><br><span class="line">  (<span class="name"><span class="builtin-name">reduce</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [ls vs] (<span class="name"><span class="builtin-name">map</span></span> max (<span class="name"><span class="builtin-name">map</span></span> + ls vs) (<span class="name"><span class="builtin-name">map</span></span> + (<span class="name"><span class="builtin-name">rest</span></span> ls) vs))) t))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve []</span><br><span class="line">  (<span class="name"><span class="builtin-name">first</span></span> (<span class="name">find-max</span> (<span class="name"><span class="builtin-name">reverse</span></span> triangle))))</span><br></pre></td></tr></table></figure><p>실행 결과는 다음과 같다. 충분히 빠르게 답을 구한다.</p><pre class="console">
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>프로젝트 오일러 67 @ntalbs&#39; stuff</title>
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/googlecode.min.css">
+
+
+  </head>
+  <body>
+    <div id="progress">
+  <div id="bar"></div>
+  <div class="container">
+    <div id="scroll-title">프로젝트 오일러 67</div>
+  </div>
+</div>
+
+    <nav class="navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+      <a class="navbar-brand" href="/">@ntalbs&#39; stuff</a>
+    </div>
+    <div class="navbar-items collapsed" id="nav-items">
+      <ul>
+        
+        <li><a href="/archive">Archive</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+  </div>
+</header>
+
+    <main class="container" role="main">
+      <article class="post">
+        <header>
+          <p class="post-meta">
+            <time datetime="2016-05-21" itemprop="datePublished">2016-05-21</time>
+            on
+            
+            <a href="/tags/">Project-Euler</a>
+            
+            <a href="/tags/">Clojure</a>
+            
+          </p>
+          <h1 class="post-title">
+            프로젝트 오일러 67 
+          </h1>
+        </header>
+        <section class="post-content">
+          <blockquote>
+<p>삼각형에서 경로의 합 중 최대값을 구하는 효율적인 방법은?
+문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=67">[국어]</a> <a href="https://projecteuler.net/problem=67">[영어]</a></p>
+</blockquote>
+
+<p><a href="/2015/project-euler-018/">문제 18</a>과 동일한 문제다. 문제 18에서는 삼각형이 15층에 불과했지만, 여기서는 100층이다. 문제 18에서 이미 제대로 된 방법으로 문제를 풀었기 때문에 똑같은 방법을 사용해 문제를 풀 수 있다. 텍스트 파일로 주어진 데이터를 읽어들이는 코드만 추가해주면 된다.
+</p>
+
+<p>데이터 파일을 읽어 문제 18에서 사용했던 <code>triangle</code> 구조를 만드는 코드는 다음과 같이 작성할 수 있다.</p>
+
+<pre><code class="language-clojure">(ns p067
+  (:require [util :refer [parse-int]]
+            [clojure.string :refer [split]]))
+
+(defn- split-by-line [content]
+  (split content #&quot;\r\n&quot;))
+
+(defn- parse-line [line]
+  (-&gt;&gt; (split line #&quot; &quot;) (map parse-int)))
+
+(def triangle
+  (-&gt;&gt; (slurp &quot;data/triangle.txt&quot;)
+       split-by-line
+       (map parse-line)
+       reverse))
+</code></pre>
+
+<p>풀이는 문제 18과 동일하다.</p>
+
+<pre><code class="language-clojure">(defn find-max [t]
+  (reduce (fn [ls vs] (map max (map + ls vs) (map + (rest ls) vs))) t))
+
+(defn solve []
+  (first (find-max (reverse triangle))))
+</code></pre>
+
+<p>실행 결과는 다음과 같다. 충분히 빠르게 답을 구한다.</p>
+
+<pre class="console">
 p067=> (time (solve))
 "Elapsed time: 14.006805 msecs"
 7??3
-</pre><h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p067.clj" target="_blank" rel="noopener">프로젝트 오일러 67 풀이 소스 코드</a></li><li><a href="/2015/project-euler-018/">프로젝트 오일러 18</a></li></ul><div class="button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a> <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a></div></section><footer class="post-footer"><nav id="article-nav"><a href="/2016/project-euler-068/" id="article-nav-newer" class="article-nav-link-wrap"><span class="article-nav-title">프로젝트 오일러 68</span> </a><a href="/2016/uk-drivers-license/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">영국 운전면허 교환</span></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="/js/jquery.fitvids.js"></script><script src="/js/index.js"></script><script>!function(e,a,t,n,g,c,s){e.GoogleAnalyticsObject=g,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),s=a.getElementsByTagName(t)[0],c.async=1,c.src="//www.google-analytics.com/analytics.js",s.parentNode.insertBefore(c,s)}(window,document,"script",0,"ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config("");</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });</script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+</pre>
+
+<h2 id="참고">참고</h2>
+
+<ul>
+<li><a href="https://github.com/ntalbs/euler/blob/master/src/p067.clj">프로젝트 오일러 67 풀이 소스 코드</a></li>
+<li><a href="/2015/project-euler-018/">프로젝트 오일러 18</a></li>
+</ul>
+        </section>
+        <footer class="post-footer">
+          
+          <div class="social button-box">
+            
+            <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+            <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            
+          </div>
+          
+          <nav id="article-nav">
+            
+            <a class="article-nav-link-wrap previous" href="http://ntalbs.github.io/2016/project-euler-068/" id="article-nav-newer"> 프로젝트 오일러 68</a>
+            
+            
+            <a class="article-nav-link-wrap next" href="http://ntalbs.github.io/2016/uk-drivers-license/" id="article-nav-older"> 영국 운전면허 교환</a>
+            
+          </nav>
+        </footer>
+      </article>
+    </main>
+    
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+     var disqus_shortname = 'ntalbs-stuff';
+     (function() {
+       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+    <section class="section">
+  <div class="container has-text-centered">
+    <p></p>
+  </div>
+</section>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/clojure.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/sql.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src=http://ntalbs.github.io/js/index.js type="text/javascript"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+   tex2jax: {
+     inlineMath: [['$','$']],
+     displayMath: [['$$','$$']],
+     processEscapes: true,
+     processEnvironments: true,
+     skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code'],
+     TeX: { equationNumbers: { autoNumber: "AMS" },
+            extensions: ["AMSmath.js", "AMSsymbols.js"] }
+   }
+ });
+</script>
+
+  </body>
+</html>

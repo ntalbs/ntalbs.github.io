@@ -1,4 +1,107 @@
-<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>프로젝트 오일러 51 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">프로젝트 오일러 51</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2016-02-24T00:00:00.000Z" itemprop="datePublished">2016-02-24</time> on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 51</h1></header><section class="post-content"><blockquote><p>일부 숫자를 치환했을 때 8개의 서로 다른 소수가 생기는 가장 작은 소수?<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=51" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=51" target="_blank" rel="noopener">[영어]</a></p></blockquote><p>문제를 분석해보면 다음과 같은 조건을 만족해야 함을 알 수 있다.</p><ul><li>치환할 위치가 마지막 자리면 안 된다.</li><li>치환할 자리는 세 자리여야 한다.</li><li>치환할 숫자는 0, 1 또는 2여야 한다.</li></ul><a id="more"></a><p>첫째 조건은 직관적이다. 치환할 때 사용할 수 있는 숫자는 $0, 1, 2, …, 9$ 열 개다. 이 중 여덟 개를 사용할 수 있어야 한다. 짝수가 다섯 개, 홀수가 다섯 개이므로 어떻게 여덟 개를 선택하든 최소 세 개의 짝수가 포함된다. 짝수가 마지막 자리에 오면 해당 숫자는 짝수가 되어 소수가 될 수 없다. 따라서 치환할 위치가 마지막 자리면 안 된다.</p><p>둘째 조건은 직관적이지 않지만, 자릿수의 합이 3의 배수면 해당 수는 3의 배수가 된다는 성질을 이용하면 치환할 자릿수가 세 개가 되어야 한다는 사실을 확인할 수 있다. 다음과 같은 $\bmod$ 연산자의 특성을 알면 이 사실을 이해하는 데 도움이 된다.</p><span>$$\begin{aligned} (a \bmod n) \bmod n &amp;= a \bmod n \\ ((a \bmod n) + b) \bmod n &amp;= (a + b) \bmod n \end{aligned}$$</span><p>이제, 5자리 숫에서 한 자리를 치환하는 경우를 생각해보자. 치환할 자리를 제외한 나머지 네 자리의 수를 한 값을 $s$라 하면 $s \bmod 3$은 $0, 1, 2$ 셋 중 하나가 될 것이다. $s=0$인 경우, 치환할 숫자를 $0$부터 $9$깨지 대입해 $s$에 더한 다음 $\mod 3$을 적용하면 $0$인 경우가 네 번($0, 3, 6, 9$) 나온다. 즉 $3$의 배수가 되는 경우가 네 번이란 뜻이므로 나머지 여섯 경우가 모두 소수라도 여덟 개의 다른 소수를 만들 수 없다. 동일한 작업을 $s=1, s=2$인 경우에 대해 반복하면 $3$의 배수가 되는 경우가 세 번($3, 6, 9$) 나오므로 나머지 일곱 경우가 모두 소수가 된다 하더라도 여덟 개의 다른 소수를 만들 수 없다.</p><p>치환할 자리가 두 자리인 경우 치환할 숫자를 $0$부터 $9$까지 대입하면, 치환할 숫자의 합은 $0, 2, 4, …, 18$이 될 것이고 여기에 $0, 1, 2$를 더해 $\mod 3$을 해보면 3의 배수가 아닌 숫자가 몇 개 나오는 지 확인할 수 있다. 이런 작업은 다음 함수로 간단히 확인할 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> check [n]</span><br><span class="line">  (<span class="name"><span class="builtin-name">map</span></span> count</span><br><span class="line">       (<span class="name"><span class="builtin-name">for</span></span> [m [<span class="number">0</span> <span class="number">1</span> <span class="number">2</span>]]</span><br><span class="line">         (<span class="name"><span class="builtin-name">for</span></span> [x (<span class="name"><span class="builtin-name">map</span></span> #(<span class="name"><span class="builtin-name">*</span></span> n %) (<span class="name"><span class="builtin-name">range</span></span> <span class="number">10</span>)) <span class="symbol">:when</span> (<span class="name"><span class="builtin-name">&lt;</span></span> <span class="number">0</span> (<span class="name"><span class="builtin-name">mod</span></span> (<span class="name"><span class="builtin-name">+</span></span> m x) <span class="number">3</span>))]</span><br><span class="line">           [m (<span class="name"><span class="builtin-name">+</span></span> m x)]))))</span><br></pre></td></tr></table></figure><p>REPL에서 치환할 자리 수에 따라 만들 수 있는 소수 후보(3의 배수가 아닌)의 개수를 확인해보면 다음과 같다.</p><pre class="console">
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>프로젝트 오일러 51 @ntalbs&#39; stuff</title>
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/googlecode.min.css">
+
+
+  </head>
+  <body>
+    <div id="progress">
+  <div id="bar"></div>
+  <div class="container">
+    <div id="scroll-title">프로젝트 오일러 51</div>
+  </div>
+</div>
+
+    <nav class="navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+      <a class="navbar-brand" href="/">@ntalbs&#39; stuff</a>
+    </div>
+    <div class="navbar-items collapsed" id="nav-items">
+      <ul>
+        
+        <li><a href="/archive">Archive</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+  </div>
+</header>
+
+    <main class="container" role="main">
+      <article class="post">
+        <header>
+          <p class="post-meta">
+            <time datetime="2016-02-24" itemprop="datePublished">2016-02-24</time>
+            on
+            
+            <a href="/tags/">Project-Euler</a>
+            
+            <a href="/tags/">Clojure</a>
+            
+          </p>
+          <h1 class="post-title">
+            프로젝트 오일러 51 
+          </h1>
+        </header>
+        <section class="post-content">
+          <blockquote>
+<p>일부 숫자를 치환했을 때 8개의 서로 다른 소수가 생기는 가장 작은 소수?
+문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=51">[국어]</a> <a href="https://projecteuler.net/problem=51">[영어]</a></p>
+</blockquote>
+
+<p>문제를 분석해보면 다음과 같은 조건을 만족해야 함을 알 수 있다.</p>
+
+<ul>
+<li>치환할 위치가 마지막 자리면 안 된다.</li>
+<li>치환할 자리는 세 자리여야 한다.</li>
+<li>치환할 숫자는 0, 1 또는 2여야 한다.</li>
+</ul>
+
+<p></p>
+
+<p>첫째 조건은 직관적이다. 치환할 때 사용할 수 있는 숫자는 $0, 1, 2, &hellip;, 9$ 열 개다. 이 중 여덟 개를 사용할 수 있어야 한다. 짝수가 다섯 개, 홀수가 다섯 개이므로 어떻게 여덟 개를 선택하든 최소 세 개의 짝수가 포함된다. 짝수가 마지막 자리에 오면 해당 숫자는 짝수가 되어 소수가 될 수 없다. 따라서 치환할 위치가 마지막 자리면 안 된다.</p>
+
+<p>둘째 조건은 직관적이지 않지만, 자릿수의 합이 3의 배수면 해당 수는 3의 배수가 된다는 성질을 이용하면 치환할 자릿수가 세 개가 되어야 한다는 사실을 확인할 수 있다. 다음과 같은 $\bmod$ 연산자의 특성을 알면 이 사실을 이해하는 데 도움이 된다.</p>
+
+<div>$$
+\begin{aligned}
+(a \bmod n) \bmod n &= a \bmod n \\
+((a \bmod n) + b) \bmod n &= (a + b) \bmod n
+\end{aligned}
+$$</div>
+
+<p>이제, 5자리 숫에서 한 자리를 치환하는 경우를 생각해보자. 치환할 자리를 제외한 나머지 네 자리의 수를 한 값을 $s$라 하면 $s \bmod 3$은 $0, 1, 2$ 셋 중 하나가 될 것이다. $s=0$인 경우, 치환할 숫자를 $0$부터 $9$깨지 대입해 $s$에 더한 다음 $\mod 3$을 적용하면 $0$인 경우가 네 번($0, 3, 6, 9$) 나온다. 즉 $3$의 배수가 되는 경우가 네 번이란 뜻이므로 나머지 여섯 경우가 모두 소수라도 여덟 개의 다른 소수를 만들 수 없다. 동일한 작업을 $s=1, s=2$인 경우에 대해 반복하면 $3$의 배수가 되는 경우가 세 번($3, 6, 9$) 나오므로 나머지 일곱 경우가 모두 소수가 된다 하더라도 여덟 개의 다른 소수를 만들 수 없다.</p>
+
+<p>치환할 자리가 두 자리인 경우 치환할 숫자를 $0$부터 $9$까지 대입하면, 치환할 숫자의 합은 $0, 2, 4, &hellip;, 18$이 될 것이고 여기에 $0, 1, 2$를 더해 $\mod 3$을 해보면 3의 배수가 아닌 숫자가 몇 개 나오는 지 확인할 수 있다. 이런 작업은 다음 함수로 간단히 확인할 수 있다.</p>
+
+<pre><code class="language-clojure">(defn check [n]
+  (map count
+       (for [m [0 1 2]]
+         (for [x (map #(* n %) (range 10)) :when (&lt; 0 (mod (+ m x) 3))]
+           [m (+ m x)]))))
+</code></pre>
+
+<p>REPL에서 치환할 자리 수에 따라 만들 수 있는 소수 후보(3의 배수가 아닌)의 개수를 확인해보면 다음과 같다.</p>
+
+<pre class="console">
 p051=> (check 1)
 (6 7 7)
 p051=> (check 2)
@@ -11,24 +114,146 @@ p051=> (check 5)
 (6 7 7)
 p051=> (check 6)
 (0 10 10)
-</pre><p>즉, 치환할 자리 수가 세 개인 경우와 여섯 개인 경우만 여덟 개 이상의 소수를 만들 가능성이 있다. 그러나 숫자가 여섯 자리인 경우 여섯 자리를 모두 치환하는 것은 의미가 없다. 총 자릿수가 다섯 자리, 여섯 자리 수에 대해서는 치환할 자릿수가 세 자리인 경우만 고려하면 된다.</p><p>마지막 조건도 쉽다. 치환에 사용할 수 있는 숫자 $0, 1, 2, …, 9$ 중 여덟 개를 써야 하므로 가장 작은 수는 $0$, $1$, $2$ 중 하나여야 한다.</p><p>위 세 조건을 이용해 문제를 쉽게 풀 수 있다. 먼저 숫자에서 특정 숫자가 세 번 반복되는지 확인하는 함수가 있으면 좋을 것 같다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> digit-repeated-three-times? [ds d]</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> ds</span><br><span class="line">       (<span class="name"><span class="builtin-name">filter</span></span> #(<span class="name"><span class="builtin-name">=</span></span> d %))</span><br><span class="line">       count</span><br><span class="line">       (<span class="name"><span class="builtin-name">=</span></span> <span class="number">3</span>)))</span><br></pre></td></tr></table></figure><p>위 함수는 숫자 벡터 <code>ds</code>에서 특정 숫자 <code>d</code>가 세 번 반복되는지 확인해 <code>true/false</code>를 리턴한다. 이제 위 함수를 이용해 주어진 숫자 <code>n</code>에 $0$, $1$ 또는 $2$가 세 번 반복되는지 확인하는 함수를 구현한다. $0$이 세 번 반복되면 <code>0</code>을, $1$이 세 번 반복되면 <code>1</code>을, $2$가 세 번 반복되면 <code>2</code>를 리턴하고, 그 외 경우는 <code>nil</code>을 리턴한다. 불리언 대신 숫자를 리턴하게 한 것은 반복되는 숫자를 다른 곳에서 쉽게 활용할 수 있게 하기 위해서다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> three-times-repeated-digit [n]</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> [ds (<span class="name"><span class="builtin-name">butlast</span></span> (<span class="name">digits</span> n))]</span><br><span class="line">    (<span class="name"><span class="builtin-name">cond</span></span> (<span class="name">digit-repeated-three-times?</span> ds <span class="number">0</span>) <span class="number">0</span></span><br><span class="line">          (<span class="name">digit-repeated-three-times?</span> ds <span class="number">1</span>) <span class="number">1</span></span><br><span class="line">          (<span class="name">digit-repeated-three-times?</span> ds <span class="number">2</span>) <span class="number">2</span>)))</span><br></pre></td></tr></table></figure><p>이제 주어진 소수에서 반복되는 자리의 수를 치환해 여덟 개의 다른 소수를 만들 수 있는지 확인하는 함수를 구현할 차례다. 치환할 숫자를 인자로 받으면 구현이 좀더 간편해진다. 치환할 숫자는 위에서 구현한 <code>three-times-repeated-digit</code> 함수의 리턴 값을 그대로 사용할 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> eight-prime-family? [p rd]</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> [p (<span class="name"><span class="builtin-name">str</span></span> p) rd (<span class="name"><span class="builtin-name">str</span></span> rd)]</span><br><span class="line">    (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">for</span></span> [i (<span class="name"><span class="builtin-name">range</span></span> <span class="number">10</span>)] (<span class="name">s/replace</span> p rd (<span class="name"><span class="builtin-name">str</span></span> i)))</span><br><span class="line">         (<span class="name"><span class="builtin-name">map</span></span> #(<span class="name">Integer/parseInt</span> %))</span><br><span class="line">         (<span class="name"><span class="builtin-name">filter</span></span> #(<span class="name"><span class="builtin-name">&lt;</span></span> (<span class="name"><span class="builtin-name">count</span></span> p) (<span class="name"><span class="builtin-name">inc</span></span> (<span class="name">Math/log10</span> %))))</span><br><span class="line">         (<span class="name"><span class="builtin-name">filter</span></span> prime?)</span><br><span class="line">         count</span><br><span class="line">         (<span class="name"><span class="builtin-name">=</span></span> <span class="number">8</span>))))</span><br></pre></td></tr></table></figure><p>코드가 조금 복잡해 보이지만 차근차근 따져보면 어렵지 않다. 숫자를 문자열로 바꾸면 <code>replace</code> 함수로 특정 숫자를 쉽게 다른 숫자로 바꿀 수 있다. 소수 <code>p</code>와 치환할 숫자 <code>rd</code>를 받아서 <code>rd</code>를 <code>0</code>부터 <code>9</code>로 바꾼 다음 숫자로 변환해 소수인지 확인한다. 이런 식으로 해서 소수가 여덟 개가 생기면 <code>true</code>를 리턴한다.</p><p>중간에 <code>Math/log10</code>의 용도는 숫자의 자리 수를 확인하기 위함이다. 숫자의 맨 앞자리를 $0$으로 치환하면 안 되기 때문에, 숫자로 바꾼 후 자릿수가 줄어들지 않았음을 확인한다.</p><p>위에서 구현한 함수를 이용하면 다음과 같이 문제를 풀 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve []</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> primes</span><br><span class="line">       (<span class="name"><span class="builtin-name">drop-while</span></span> #(<span class="name"><span class="builtin-name">&lt;</span></span> % <span class="number">56003</span>))</span><br><span class="line">       (<span class="name"><span class="builtin-name">map</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [p] [p (<span class="name">three-times-repeated-digit</span> p)]))</span><br><span class="line">       (<span class="name"><span class="builtin-name">filter</span></span> second)</span><br><span class="line">       (<span class="name"><span class="builtin-name">filter</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [[p rd]] (<span class="name">eight-prime-family?</span> p rd)))</span><br><span class="line">       ffirst))</span><br></pre></td></tr></table></figure><p>실행 결과는 다음과 같다.</p><pre class="console">
+</pre>
+
+<p>즉, 치환할 자리 수가 세 개인 경우와 여섯 개인 경우만 여덟 개 이상의 소수를 만들 가능성이 있다. 그러나 숫자가 여섯 자리인 경우 여섯 자리를 모두 치환하는 것은 의미가 없다. 총 자릿수가 다섯 자리, 여섯 자리 수에 대해서는 치환할 자릿수가 세 자리인 경우만 고려하면 된다.</p>
+
+<p>마지막 조건도 쉽다. 치환에 사용할 수 있는 숫자 $0, 1, 2, &hellip;, 9$ 중 여덟 개를 써야 하므로 가장 작은 수는 $0$, $1$, $2$ 중 하나여야 한다.</p>
+
+<p>위 세 조건을 이용해 문제를 쉽게 풀 수 있다. 먼저 숫자에서 특정 숫자가 세 번 반복되는지 확인하는 함수가 있으면 좋을 것 같다.</p>
+
+<pre><code class="language-clojure">(defn digit-repeated-three-times? [ds d]
+  (-&gt;&gt; ds
+       (filter #(= d %))
+       count
+       (= 3)))
+</code></pre>
+
+<p>위 함수는 숫자 벡터 <code>ds</code>에서 특정 숫자 <code>d</code>가 세 번 반복되는지 확인해 <code>true/false</code>를 리턴한다. 이제 위 함수를 이용해 주어진 숫자 <code>n</code>에  $0$, $1$ 또는 $2$가 세 번 반복되는지 확인하는 함수를 구현한다. $0$이 세 번 반복되면 <code>0</code>을, $1$이 세 번 반복되면 <code>1</code>을, $2$가 세 번 반복되면 <code>2</code>를 리턴하고, 그 외 경우는 <code>nil</code>을 리턴한다. 불리언 대신 숫자를 리턴하게 한 것은 반복되는 숫자를 다른 곳에서 쉽게 활용할 수 있게 하기 위해서다.</p>
+
+<pre><code class="language-clojure">(defn three-times-repeated-digit [n]
+  (let [ds (butlast (digits n))]
+    (cond (digit-repeated-three-times? ds 0) 0
+          (digit-repeated-three-times? ds 1) 1
+          (digit-repeated-three-times? ds 2) 2)))
+</code></pre>
+
+<p>이제 주어진 소수에서 반복되는 자리의 수를 치환해 여덟 개의 다른 소수를 만들 수 있는지 확인하는 함수를 구현할 차례다. 치환할 숫자를 인자로 받으면 구현이 좀더 간편해진다. 치환할 숫자는 위에서 구현한 <code>three-times-repeated-digit</code> 함수의 리턴 값을 그대로 사용할 수 있다.</p>
+
+<pre><code class="language-clojure">(defn eight-prime-family? [p rd]
+  (let [p (str p) rd (str rd)]
+    (-&gt;&gt; (for [i (range 10)] (s/replace p rd (str i)))
+         (map #(Integer/parseInt %))
+         (filter #(&lt; (count p) (inc (Math/log10 %))))
+         (filter prime?)
+         count
+         (= 8))))
+</code></pre>
+
+<p>코드가 조금 복잡해 보이지만 차근차근 따져보면 어렵지 않다. 숫자를 문자열로 바꾸면 <code>replace</code> 함수로 특정 숫자를 쉽게 다른 숫자로 바꿀 수 있다. 소수 <code>p</code>와 치환할 숫자 <code>rd</code>를 받아서 <code>rd</code>를 <code>0</code>부터 <code>9</code>로 바꾼 다음 숫자로 변환해 소수인지 확인한다. 이런 식으로 해서 소수가 여덟 개가 생기면 <code>true</code>를 리턴한다.</p>
+
+<p>중간에 <code>Math/log10</code>의 용도는 숫자의 자리 수를 확인하기 위함이다. 숫자의 맨 앞자리를 $0$으로 치환하면 안 되기 때문에, 숫자로 바꾼 후 자릿수가 줄어들지 않았음을 확인한다.</p>
+
+<p>위에서 구현한 함수를 이용하면 다음과 같이 문제를 풀 수 있다.</p>
+
+<pre><code class="language-clojure">(defn solve []
+  (-&gt;&gt; primes
+       (drop-while #(&lt; % 56003))
+       (map (fn [p] [p (three-times-repeated-digit p)]))
+       (filter second)
+       (filter (fn [[p rd]] (eight-prime-family? p rd)))
+       ffirst))
+</code></pre>
+
+<p>실행 결과는 다음과 같다.</p>
+
+<pre class="console">
 p051=> (time (solve))
 "Elapsed time: 603.863756 msecs"
 121??3
-</pre><p>처음에는 치환할 위치의 패턴을 이용해 키를 만들어 소수를 <code>group-by</code> 해서 여덟 개의 소수가 묶이는 그룹을 찾는 방식으로 문제를 풀었다. 답을 구하기는 하지만 위에서 설명한 방식보다 속도가 훨씬 느렸다.</p><h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p051.clj" target="_blank" rel="noopener">프로젝트 오일러 51 풀이 소스 코드</a></li><li><a href="https://en.wikipedia.org/wiki/Modulo_operation#Equivalencies" target="_blank" rel="noopener">Modulo operation</a></li></ul><div class="button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a> <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a></div></section><footer class="post-footer"><nav id="article-nav"><a href="/2016/project-euler-052/" id="article-nav-newer" class="article-nav-link-wrap"><span class="article-nav-title">프로젝트 오일러 52</span> </a><a href="/2016/first-driving-in-uk/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">영국에서의 첫 운전</span></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="/js/jquery.fitvids.js"></script><script src="/js/index.js"></script><script>!function(e,a,t,n,g,c,s){e.GoogleAnalyticsObject=g,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),s=a.getElementsByTagName(t)[0],c.async=1,c.src="//www.google-analytics.com/analytics.js",s.parentNode.insertBefore(c,s)}(window,document,"script",0,"ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config("");</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });</script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+</pre>
+
+<p>처음에는 치환할 위치의 패턴을 이용해 키를 만들어 소수를 <code>group-by</code> 해서 여덟 개의 소수가 묶이는 그룹을 찾는 방식으로 문제를 풀었다. 답을 구하기는 하지만 위에서 설명한 방식보다 속도가 훨씬 느렸다.</p>
+
+<h2 id="참고">참고</h2>
+
+<ul>
+<li><a href="https://github.com/ntalbs/euler/blob/master/src/p051.clj">프로젝트 오일러 51 풀이 소스 코드</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Modulo_operation#Equivalencies">Modulo operation</a></li>
+</ul>
+        </section>
+        <footer class="post-footer">
+          
+          <div class="social button-box">
+            
+            <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+            <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            
+          </div>
+          
+          <nav id="article-nav">
+            
+            <a class="article-nav-link-wrap previous" href="http://ntalbs.github.io/2016/project-euler-052/" id="article-nav-newer"> 프로젝트 오일러 52</a>
+            
+            
+            <a class="article-nav-link-wrap next" href="http://ntalbs.github.io/2016/first-driving-in-uk/" id="article-nav-older"> 영국에서의 첫 운전</a>
+            
+          </nav>
+        </footer>
+      </article>
+    </main>
+    
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+     var disqus_shortname = 'ntalbs-stuff';
+     (function() {
+       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+    <section class="section">
+  <div class="container has-text-centered">
+    <p></p>
+  </div>
+</section>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/clojure.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/sql.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src=http://ntalbs.github.io/js/index.js type="text/javascript"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+   tex2jax: {
+     inlineMath: [['$','$']],
+     displayMath: [['$$','$$']],
+     processEscapes: true,
+     processEnvironments: true,
+     skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code'],
+     TeX: { equationNumbers: { autoNumber: "AMS" },
+            extensions: ["AMSmath.js", "AMSsymbols.js"] }
+   }
+ });
+</script>
+
+  </body>
+</html>

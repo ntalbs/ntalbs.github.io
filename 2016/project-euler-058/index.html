@@ -1,25 +1,229 @@
-<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>프로젝트 오일러 58 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">프로젝트 오일러 58</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2016-03-18T00:00:00.000Z" itemprop="datePublished">2016-03-18</time> on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 58</h1></header><section class="post-content"><blockquote><p>나선모양 격자의 대각선상에 있는 소수의 비율 추적하기<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=58" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=58" target="_blank" rel="noopener">[영어]</a></p></blockquote><p><a href="/2015/project-euler-028/">문제 28</a>에서 나선모양 행렬의 대각선 요소를 구하는 공식을 유도했다. 그때는 나선모양이 시계 방향으로 돌았고 여기서는 나선모양이 반시계 방향으로 돌아 방향이 다르지만 문제를 푸는 데 영향을 끼치지는 않는다.<br><a id="more"></a></p><span>$$\begin{aligned} d(n,k) &amp;= 2n(k+1) + (2n-1)^2 \\ n &amp;= 1, 2, 3, ... \\ k &amp;= 0, 1, 2, 3 \end{aligned}$$</span><p>따라서 대각선 요소를 구하는 함수는 다음과 같이 조금 수정했다. 인자로 <code>n</code>만 준 경우에는 <code>k</code>를 0부터 3까지 바꿔가며 네 개의 대각선 요소를 만들어 시퀀스로 리턴한다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> square [n] (<span class="name"><span class="builtin-name">*</span></span> n n))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> d</span><br><span class="line">  ([n k] (<span class="name"><span class="builtin-name">+</span></span> (<span class="name"><span class="builtin-name">*</span></span> <span class="number">2</span> n (<span class="name"><span class="builtin-name">inc</span></span> k)) (<span class="name">square</span> (<span class="name"><span class="builtin-name">dec</span></span> (<span class="name"><span class="builtin-name">*</span></span> <span class="number">2</span> n)))))</span><br><span class="line">  ([n]   (<span class="name"><span class="builtin-name">map</span></span> #(<span class="name">d</span> n %) (<span class="name"><span class="builtin-name">range</span></span> <span class="number">4</span>))))</span><br></pre></td></tr></table></figure><p>주어진 시퀀스에서 소수가 몇개인지 세는 함수를 구현할 차례다. 예전에 작성했던 <code>prime?</code> 함수를 이용하면 쉽다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">ns</span></span> p058</span><br><span class="line">  (<span class="symbol">:require</span> [util <span class="symbol">:refer</span> (<span class="name">prime?</span>)]))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> cnt-prime [coll]</span><br><span class="line">  (<span class="name"><span class="builtin-name">count</span></span> (<span class="name"><span class="builtin-name">filter</span></span> prime? coll)))</span><br></pre></td></tr></table></figure><p>위 함수를 이용해 다음과 같이 문제를 풀 수 있다. 대각선 요소를 계속 만들어 가면서 정사각형 변의 크기, 소수의 개수, 전체 대각선 요소의 개수를 누적하는 시퀀스를 만들고, 소수 비율이 10%를 넘는 첫 요소를 구하면 된다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve []</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">iterate</span></span> inc <span class="number">1</span>)</span><br><span class="line">       (<span class="name"><span class="builtin-name">map</span></span> d)</span><br><span class="line">       (<span class="name">reductions</span> (<span class="name"><span class="builtin-name">fn</span></span> [[w pc tc] ns]</span><br><span class="line">                     [(<span class="name"><span class="builtin-name">+</span></span> <span class="number">2</span> w) (<span class="name"><span class="builtin-name">+</span></span> pc (<span class="name">cnt-prime</span> ns)) (<span class="name"><span class="builtin-name">+</span></span> tc <span class="number">4</span>)])</span><br><span class="line">                   [<span class="number">1</span> <span class="number">0</span> <span class="number">1</span>])</span><br><span class="line">       (<span class="name"><span class="builtin-name">rest</span></span>)</span><br><span class="line">       (<span class="name"><span class="builtin-name">map</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [[w pc tc]] [w (/ pc tc)]))</span><br><span class="line">       (<span class="name"><span class="builtin-name">drop-while</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [[_ r]] (<span class="name"><span class="builtin-name">&gt;=</span></span> r <span class="number">0.1</span>)))</span><br><span class="line">       ffirst))</span><br></pre></td></tr></table></figure><p>실행 결과는 다음과 같다.</p><pre class="console">
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>프로젝트 오일러 58 @ntalbs&#39; stuff</title>
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/googlecode.min.css">
+
+
+  </head>
+  <body>
+    <div id="progress">
+  <div id="bar"></div>
+  <div class="container">
+    <div id="scroll-title">프로젝트 오일러 58</div>
+  </div>
+</div>
+
+    <nav class="navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+      <a class="navbar-brand" href="/">@ntalbs&#39; stuff</a>
+    </div>
+    <div class="navbar-items collapsed" id="nav-items">
+      <ul>
+        
+        <li><a href="/archive">Archive</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+  </div>
+</header>
+
+    <main class="container" role="main">
+      <article class="post">
+        <header>
+          <p class="post-meta">
+            <time datetime="2016-03-18" itemprop="datePublished">2016-03-18</time>
+            on
+            
+            <a href="/tags/">Project-Euler</a>
+            
+            <a href="/tags/">Clojure</a>
+            
+          </p>
+          <h1 class="post-title">
+            프로젝트 오일러 58 
+          </h1>
+        </header>
+        <section class="post-content">
+          <blockquote>
+<p>나선모양 격자의 대각선상에 있는 소수의 비율 추적하기
+문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=58">[국어]</a> <a href="https://projecteuler.net/problem=58">[영어]</a></p>
+</blockquote>
+
+<p><a href="/2015/project-euler-028/">문제 28</a>에서 나선모양 행렬의 대각선 요소를 구하는 공식을 유도했다. 그때는 나선모양이 시계 방향으로 돌았고 여기서는 나선모양이 반시계 방향으로 돌아 방향이 다르지만 문제를 푸는 데 영향을 끼치지는 않는다.
+</p>
+
+<div>$$
+\begin{aligned}
+d(n,k) &= 2n(k+1) + (2n-1)^2 \\
+n &= 1, 2, 3, ... \\
+k &= 0, 1, 2, 3
+\end{aligned}
+$$</div>
+
+<p>따라서 대각선 요소를 구하는 함수는 다음과 같이 조금 수정했다. 인자로 <code>n</code>만 준 경우에는 <code>k</code>를 0부터 3까지 바꿔가며 네 개의 대각선 요소를 만들어 시퀀스로 리턴한다.</p>
+
+<pre><code class="language-clojure">(defn- square [n] (* n n))
+
+(defn- d
+  ([n k] (+ (* 2 n (inc k)) (square (dec (* 2 n)))))
+  ([n]   (map #(d n %) (range 4))))
+</code></pre>
+
+<p>주어진 시퀀스에서 소수가 몇개인지 세는 함수를 구현할 차례다. 예전에 작성했던 <code>prime?</code> 함수를 이용하면 쉽다.</p>
+
+<pre><code class="language-clojure">(ns p058
+  (:require [util :refer (prime?)]))
+
+(defn- cnt-prime [coll]
+  (count (filter prime? coll)))
+</code></pre>
+
+<p>위 함수를 이용해 다음과 같이 문제를 풀 수 있다. 대각선 요소를 계속 만들어 가면서 정사각형 변의 크기, 소수의 개수, 전체 대각선 요소의 개수를 누적하는 시퀀스를 만들고, 소수 비율이 10%를 넘는 첫 요소를 구하면 된다.</p>
+
+<pre><code class="language-clojure">(defn solve []
+  (-&gt;&gt; (iterate inc 1)
+       (map d)
+       (reductions (fn [[w pc tc] ns]
+                     [(+ 2 w) (+ pc (cnt-prime ns)) (+ tc 4)])
+                   [1 0 1])
+       (rest)
+       (map (fn [[w pc tc]] [w (/ pc tc)]))
+       (drop-while (fn [[_ r]] (&gt;= r 0.1)))
+       ffirst))
+</code></pre>
+
+<p>실행 결과는 다음과 같다.</p>
+
+<pre class="console">
 p058=> (time (solve))
 "Elapsed time: 2741.299153 msecs"
 26??1
-</pre><p>실행 속도가 그다지 만족스럽지 않다. 조금 살펴보면 대각선 요소 중 오른쪽 아래로 향하는 대각선에 있는 요소(즉 $k=3$인 경우)는 절대로 소수가 될 수 없음을 알 수 있다.</p><span>$$\begin{aligned} &amp;2n(1+3) + (2n-1)^2 \\ &amp;= 8n + 4n^2 -4n + 1 \\ &amp;= (2n + 1)^2 \end{aligned}$$</span><p>따라서 <code>d</code> 함수를 다음과 같이 수정할 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> d</span><br><span class="line">  ...</span><br><span class="line">  ([n]   (<span class="name"><span class="builtin-name">map</span></span> #(<span class="name">d</span> n %) (<span class="name"><span class="builtin-name">range</span></span> <span class="number">3</span>)))) <span class="comment">; range 인자를 3으로 변경</span></span><br></pre></td></tr></table></figure><p>이렇게 하면 답을 구하는 속도가 조금 빨라진다.</p><pre class="console">
+</pre>
+
+<p>실행 속도가 그다지 만족스럽지 않다. 조금 살펴보면 대각선 요소 중 오른쪽 아래로 향하는 대각선에 있는 요소(즉 $k=3$인 경우)는 절대로 소수가 될 수 없음을 알 수 있다.</p>
+
+<div>$$
+\begin{aligned}
+&2n(1+3) + (2n-1)^2 \\
+&= 8n + 4n^2 -4n + 1 \\
+&= (2n + 1)^2
+\end{aligned}
+$$</div>
+
+<p>따라서 <code>d</code> 함수를 다음과 같이 수정할 수 있다.</p>
+
+<pre><code class="language-clojure">(defn- d
+  ...
+  ([n]   (map #(d n %) (range 3)))) ; range 인자를 3으로 변경
+</code></pre>
+
+<p>이렇게 하면 답을 구하는 속도가 조금 빨라진다.</p>
+
+<pre class="console">
 p058=> (time (solve))
 "Elapsed time: 1859.395869 msecs"
 26??1
-</pre><p>여전히 만족스럽지 않지만 숫자 하나 바꿔서 얻은 결과 치고는 상당히 괜찮다고 할 수 있다.</p><h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p058.clj" target="_blank" rel="noopener">프로젝트 오일러 58 풀이 소스 코드</a></li><li><a href="/2015/project-euler-028/">프로젝트 오일러 28</a></li></ul><div class="button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a> <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a></div></section><footer class="post-footer"><nav id="article-nav"><a href="/2016/project-euler-059/" id="article-nav-newer" class="article-nav-link-wrap"><span class="article-nav-title">프로젝트 오일러 59</span> </a><a href="/2016/project-euler-057/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">프로젝트 오일러 57</span></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="/js/jquery.fitvids.js"></script><script src="/js/index.js"></script><script>!function(e,a,t,n,g,c,s){e.GoogleAnalyticsObject=g,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),s=a.getElementsByTagName(t)[0],c.async=1,c.src="//www.google-analytics.com/analytics.js",s.parentNode.insertBefore(c,s)}(window,document,"script",0,"ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config("");</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });</script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+</pre>
+
+<p>여전히 만족스럽지 않지만 숫자 하나 바꿔서 얻은 결과 치고는 상당히 괜찮다고 할 수 있다.</p>
+
+<h2 id="참고">참고</h2>
+
+<ul>
+<li><a href="https://github.com/ntalbs/euler/blob/master/src/p058.clj">프로젝트 오일러 58 풀이 소스 코드</a></li>
+<li><a href="/2015/project-euler-028/">프로젝트 오일러 28</a></li>
+</ul>
+        </section>
+        <footer class="post-footer">
+          
+          <div class="social button-box">
+            
+            <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+            <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            
+          </div>
+          
+          <nav id="article-nav">
+            
+            <a class="article-nav-link-wrap previous" href="http://ntalbs.github.io/2016/project-euler-059/" id="article-nav-newer"> 프로젝트 오일러 59</a>
+            
+            
+            <a class="article-nav-link-wrap next" href="http://ntalbs.github.io/2016/project-euler-057/" id="article-nav-older"> 프로젝트 오일러 57</a>
+            
+          </nav>
+        </footer>
+      </article>
+    </main>
+    
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+     var disqus_shortname = 'ntalbs-stuff';
+     (function() {
+       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+    <section class="section">
+  <div class="container has-text-centered">
+    <p></p>
+  </div>
+</section>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/clojure.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/sql.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src=http://ntalbs.github.io/js/index.js type="text/javascript"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+   tex2jax: {
+     inlineMath: [['$','$']],
+     displayMath: [['$$','$$']],
+     processEscapes: true,
+     processEnvironments: true,
+     skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code'],
+     TeX: { equationNumbers: { autoNumber: "AMS" },
+            extensions: ["AMSmath.js", "AMSsymbols.js"] }
+   }
+ });
+</script>
+
+  </body>
+</html>

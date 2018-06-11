@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>영어 on @ntalbs&#39; stuff</title>
+    <link>http://ntalbs.github.io/tags/%EC%98%81%EC%96%B4/</link>
+    <description>Recent content in 영어 on @ntalbs&#39; stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://ntalbs.github.io/tags/%EC%98%81%EC%96%B4/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sandbox의 뜻</title>
+      <link>http://ntalbs.github.io/2017/sandbox/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2017/sandbox/</guid>
+      <description>&lt;p&gt;프로그래밍 또는 보안 관련 책을 읽다 보면 종종 &amp;lsquo;모래상자&amp;rsquo;란 용어가 나온다. &amp;lsquo;sandbox&amp;rsquo;를 &amp;lsquo;모래상자&amp;rsquo;로 번역한 것이다. &amp;lsquo;모래상자&amp;rsquo;란 단어를 보면 어떤 그림이 떠오르는가? &amp;lsquo;sandbox&amp;rsquo;를 직역하면 &amp;lsquo;모래상자&amp;rsquo;가 맞긴 하지만, 나는 이렇게 번역하는 게 마음에 들지 않는다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>영어</title>
+      <link>http://ntalbs.github.io/2016/english/</link>
+      <pubDate>Thu, 21 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/english/</guid>
+      <description>&lt;p&gt;한국에서는 동기가 부족했다. 영어 공부를 시작했다가도 의욕이 금세 사그라졌다. 늘 &amp;lsquo;영어를 많이 사용할 수 있는 환경에 있으면 실력이 많이 늘 텐데&amp;hellip;&amp;rsquo; 푸념했다. 영국에 도착했을 때만 해도 기대가 컸다. 어려움이 있었지만, 휴대폰도 개통했고, 집도 구했고, 은행 계좌도 만들었고, 큰 아이 학교도 등록했다. 아이들 데리고 병원에도 갔었고, 회사도 다니고 있다. 집에서 식구들과 말할 때 빼고는 거의 영어를 사용해야 한다. 영어를 많이 사용할 수 있는 환경, 내가 항상 바랐던 환경에 처한 것이다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>There are known knowns...</title>
+      <link>http://ntalbs.github.io/2011/known-knowns/</link>
+      <pubDate>Thu, 03 Mar 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2011/known-knowns/</guid>
+      <description>&lt;p&gt;책을 읽다가 재미있는 인용구를 발견했다. &lt;a href=&#34;http://pragprog.com/book/bksqla/sql-antipatterns&#34;&gt;SQL Antipatterns&lt;/a&gt; 14장 Fear of the Unknown의 시작부분에 있는 인용문인데, 상당히 쉬운 영어로 오묘한 뜻을 전달하는 것 같은 느낌이 들었다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>default의 뜻</title>
+      <link>http://ntalbs.github.io/2010/meaning-of-default/</link>
+      <pubDate>Fri, 13 Aug 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2010/meaning-of-default/</guid>
+      <description>&lt;p&gt;오전에 팀원 한 명이 &lt;strong&gt;&amp;lsquo;default의 뜻이 뭔지 아냐?&amp;rsquo;&lt;/strong&gt;며 다른 팀원들에게 물어보고 있었다. 사전을 찾아봤는데 그런 의미가 있는 줄 전혀 몰랐다면서. 프로그래머에게 &lt;strong&gt;default&lt;/strong&gt;는 낯선 단어가 아니지만 정확한 뜻이 내가 생각하는 그 뜻인지 확인해보기 위해 사전을 찾아봤다. 흔히 사용하는 영어 단어 중에 원래 뜻이 프로그래머들이 사용하는 뜻과 다른 경우가 많기 때문이다.
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>아마존 on @ntalbs&#39; stuff</title>
+    <link>http://ntalbs.github.io/tags/%EC%95%84%EB%A7%88%EC%A1%B4/</link>
+    <description>Recent content in 아마존 on @ntalbs&#39; stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Fri, 05 Jan 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://ntalbs.github.io/tags/%EC%95%84%EB%A7%88%EC%A1%B4/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>아마존에서 보낸 2년</title>
+      <link>http://ntalbs.github.io/2018/two-years-at-amazon/</link>
+      <pubDate>Fri, 05 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2018/two-years-at-amazon/</guid>
+      <description>&lt;p&gt;영국에 온지 벌써 두 해가 지났다. 아마존 런던 개발 센터에 와서 합류한 팀은 티어1 서비스만 네 개를 맡고 있었다. 매니저 짐은 한국에서 전화로 얘기했을 때도 느낌이 좋았는데, 직접 만나니 더 좋은 사람이었다. 회사 일뿐 아니라 개인 일을 처리하는 데도 많은 도움을 주었다. 다른 영국 사람들의 발음은 알아듣기가 어려웠는데, 짐의 발음은 비교적 잘 들렸다. 팀에는 영국, 폴란드, 슬로바키아, 인도, 이란 출신 엔지니어가 있었고 액센트도 다양해 적응하기가 더욱 어려웠다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>On Call</title>
+      <link>http://ntalbs.github.io/2016/on-call/</link>
+      <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/on-call/</guid>
+      <description>&lt;p&gt;아마존에 오기 전 아마존이 다닐만한 회사인지 조사하는 데, 온콜에 대한 불만을 토로하는 글이 많이 보였다. 온콜이 뭐길래 그러지? 사전을 찾아보니 다음과 같이 설명되어 있다. 우리 말로 하면 &amp;lsquo;당직&amp;rsquo;과 비슷한 개념일 것 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>아마존에서의 첫 작업</title>
+      <link>http://ntalbs.github.io/2016/first-task-at-amazon/</link>
+      <pubDate>Fri, 27 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/first-task-at-amazon/</guid>
+      <description>&lt;p&gt;입사한 지 두 달 만에 의미 있는 일을 하게 되었다. 새로운 프로젝트에서 사용할 &lt;strong&gt;메트릭 라이브러리&lt;/strong&gt;를 만드는 작업이었다. 서비스가 호출될 때 또는 서비스 내에서 다른 다운스트림 서비스를 호출할 때 메트릭 정보를 남겨두면 모니터링 도구를 이용해 서비스가 호출된 횟수, 요청을 처리하는 데 걸린 시간, 다운스트림 서비스를 호출하는 데 걸린 시간, 오류 발생 빈도 등을 확인할 수 있다. 아마존은 이미 이런 작업을 위한 내부 도구를 갖추고 있다. 메트릭 정보를 기록하는 라이브러리도 있다. 내가 할 일은 우리 팀에서 새로 개발할 서비스에서 메트릭 정보를 쉽게 남길 수 있게 하는 라이브러리를 만드는 일이었다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>아마존 취업 후기 3</title>
+      <link>http://ntalbs.github.io/2015/amazon-3/</link>
+      <pubDate>Wed, 30 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/amazon-3/</guid>
+      <description>&lt;p&gt;영국 리크루터와 통화하기로 약속을 잡고 나니 몹시 긴장되었다. 예전에 H-1B가 나오지 않아 다른 나라로 지원하게 되면 면접을 새로 봐야 할 수도 있다는 내용이 있었기에, 면접을 다시 봐야 하는 줄 알았기 때문이다. 그리고 내가 영국 영어를 제대로 알아들을 수 있을지도 걱정되었다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>아마존 취업 후기 2</title>
+      <link>http://ntalbs.github.io/2015/amazon-2/</link>
+      <pubDate>Tue, 29 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/amazon-2/</guid>
+      <description>&lt;p&gt;처음에는 아마존에 합격해 미국으로 간다는 생각만으로도 기대에 부풀었지만, 곧 현실과 직면했다. 연봉협상 말고도 비자 신청, 세무 상담, 이사 준비, 현지 집 구하기 등 할 일이 많았다. 이 모든 것을 영어로 진행해야 한다. 가장 큰 문제는 미국 취업 비자를 받는 것이었다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>아마존 취업 후기 1</title>
+      <link>http://ntalbs.github.io/2015/amazon-1/</link>
+      <pubDate>Mon, 28 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/amazon-1/</guid>
+      <description>&lt;p&gt;2014년 12월 초에 아마존 킨들팀에서 한국 개발자를 채용하러 서울에 왔었다. 아마존은 이후에도 2015년 6월(프라임), 2015년 11월(킨들&amp;amp;에코)에 서울에서 채용 이벤트를 열었다고 한다. 이 글은 어떻게 아마존에 취업하게 되었는지 간단히 정리한 것이다. 아마존이나 다른 외국 회사에 취업하는 데 도움이 되지는 않겠지만, 어떤 식으로 진행되는지 참고할 수는 있을 것이다.
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

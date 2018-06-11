@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>용어 on @ntalbs&#39; stuff</title>
+    <link>http://ntalbs.github.io/tags/%EC%9A%A9%EC%96%B4/</link>
+    <description>Recent content in 용어 on @ntalbs&#39; stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Tue, 07 Apr 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://ntalbs.github.io/tags/%EC%9A%A9%EC%96%B4/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>statement와 expression</title>
+      <link>http://ntalbs.github.io/2015/statement-expresssion/</link>
+      <pubDate>Tue, 07 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/statement-expresssion/</guid>
+      <description>&lt;p&gt;언젠가 동료 한 명이 &amp;lsquo;statement와 expression의 차이가 뭔지 아냐?&amp;lsquo;고 물어본 적이 있다. 프로그래밍 책에서 자주 접했던 용어지만 명확히 답할 수 없었다. statement는 명령문이고 expression은 표현식인데&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>parameter와 argument</title>
+      <link>http://ntalbs.github.io/2010/parameter-argument/</link>
+      <pubDate>Fri, 26 Nov 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2010/parameter-argument/</guid>
+      <description>&lt;p&gt;일하다가 갑자기 &amp;ldquo;&lt;strong&gt;parameter&lt;/strong&gt;와 &lt;strong&gt;argument&lt;/strong&gt;가 어떻게 다를까? 각각의 정확한 뜻은 뭘까?&amp;rdquo; 하는 궁금증이 생겼다. parameter는 그냥 &amp;lsquo;파라미터&amp;rsquo; 또는 &amp;lsquo;매개변수&amp;rsquo;고 argument는 &amp;lsquo;인수&amp;rsquo; 또는 &amp;lsquo;인자&amp;rsquo;란 정도까지만 생각나고 정확한 뜻이나 구체적인 차이점 같은 것은 모르고 있다는 것을 깨달았다.
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,1 +1,80 @@
-!function(h){"use strict";h(document).ready(function(){h(".post-content").fitVids()}),h(document).on("keydown",function(t){74===t.keyCode||t.ctrlKey&&78===t.keyCode?window.scrollBy(0,100):(75===t.keyCode||t.ctrlKey&&80===t.keyCode)&&window.scrollBy(0,-100)});var t,o,i,c,r,a,s,e=h("h1");e.length&&(i=(t=e).offset().top+t.height()-h("nav").height(),c=h(".post-content"),r=c.height(),a=h(window).height(),s=(o=["#330033","#003366","#003399","#000033","#333300","#990033","#660033","#089378","#0898b3","#1A5276","#ffca00","#ff9900"])[Math.floor(Math.random()*o.length)],h(document).scroll(function(){if(c.length){var t=c.offset().top,o=h(document).scrollTop(),e=Math.max(5,t+r-a),n=Math.min(100,o/e*100);h("#bar").css({width:n+"%","background-color":s}),o<=i?h("#progress").height("8px"):h("#progress").height("36px")}})),h("[data-toggle=collapse]").on("click",function(t){var o=h(this).attr("data-target");h(o).toggleClass("collapsed")}),h("main").css("min-height",h(window).height()-h("header").height()-h("footer").outerHeight(!0)-20+"px")}(jQuery);
+/**
+ * Main JS file
+ */
+
+(function ($) {
+  'use strict'
+
+  // $(document).ready(function () {
+  //   $('.post-content').fitVids()
+  // })
+
+  function randomColor () {
+    var colors = [
+      '#330033', '#003366',
+      '#003399', '#000033', '#333300', '#990033',
+      '#660033', '#089378', '#0898b3', '#1A5276', '#ffca00', '#ff9900'
+    ]
+    return colors[Math.floor(Math.random() * colors.length)]
+  }
+
+  function initProgress ($h1) {
+    var threshold = $h1.offset().top + $h1.height() - $('nav').height()
+    var $postContent = $('.content')
+    var ph = $postContent.height()       // post height
+    var wh = $(window).height()          // window height
+    var color = randomColor()
+
+    $(document).scroll(function () {
+      if (!$postContent.length) return
+
+      var offsetTop = $postContent.offset().top
+      var y = $(document).scrollTop()
+      var base = Math.max(5, offsetTop + ph - wh)
+      var progress = Math.min(100, y / base * 100)
+
+      $('#bar').css({
+        'width': progress + '%',
+        'background-color': color
+      })
+
+      if (y <= threshold) {
+        $('#progress').height('8px')
+      } else {
+        $('#progress').height('36px')
+      }
+    })
+  }
+
+  function initShortcut () {
+    $(document).on('keydown', function (e) {
+      if (e.keyCode === 74 /* j */ || (e.ctrlKey && e.keyCode === 78 /* C-n */)) {
+        window.scrollBy(0, 100)
+      } else if (e.keyCode === 75 /* k */ || (e.ctrlKey && e.keyCode === 80 /* C-p */)) {
+        window.scrollBy(0, -100)
+      }
+    })
+  }
+
+  initShortcut()
+
+  var $h1 = $('h1')
+  if ($h1.length) {
+    initProgress($h1)
+  }
+
+  $('[data-toggle=collapse]').on('click', function (e) {
+    var target = $(this).attr('data-target')
+    $(target).toggleClass('collapsed')
+  })
+
+  function minHeight () {
+    var wh = $(window).height()
+    var hh = $('header').height()
+    var fh = $('footer').outerHeight(true)
+    var minHeight = wh - hh - fh - 20 // 20 for adjustment
+    return minHeight + 'px'
+  }
+
+  $('main').css('min-height', minHeight())
+}(jQuery))

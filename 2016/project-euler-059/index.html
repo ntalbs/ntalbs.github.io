@@ -1,21 +1,213 @@
-<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>프로젝트 오일러 59 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">프로젝트 오일러 59</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2016-03-22T00:00:00.000Z" itemprop="datePublished">2016-03-22</time> on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 59</h1></header><section class="post-content"><blockquote><p>XOR 방식으로 암호화된 메시지 깨기<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=59" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=59" target="_blank" rel="noopener">[영어]</a></p></blockquote><p>암호화 키가 영어 소문자 세 개로 되어 있으므로, <code>aaa</code>부터 <code>zzz</code>까지 모두 시도해본다 해도 경우의 수는 $26^3=17,576$밖에 되지 않는다. 이 정도면 무차별 대입법으로 공략해도 충분할 것 같다.<br><a id="more"></a></p><p>문제를 풀기 전에 암호화된 메시지가 들어있는 파일을 읽어 정수의 ASCII 코드의 시퀀스로 만들어 둔다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">ns</span></span> p059</span><br><span class="line">  (<span class="symbol">:require</span> [util <span class="symbol">:refer</span> [parse-int]]</span><br><span class="line">            [clojure.string <span class="symbol">:refer</span> [split trim]]))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">def</span></span> encrypted-message</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name">split</span> (<span class="name"><span class="builtin-name">slurp</span></span> <span class="string">"data/cipher1.txt"</span>) #<span class="string">","</span>)</span><br><span class="line">       (<span class="name"><span class="builtin-name">map</span></span> trim)</span><br><span class="line">       (<span class="name"><span class="builtin-name">map</span></span> parse-int)))</span><br></pre></td></tr></table></figure><p>암호화된 메시지를 복호화하는 함수는 다음과 같이 작성할 수 있다. 암호화된 메시지에 비밀키를 반복적으로 돌아가며 적용해야 하는데, <code>repeat</code> 함수를 이용해 비밀키가 반복되는 시퀀스를 만들고 이것을 메시지와 <code>XOR</code> 하면 복호화된 메세지를 얻을 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> decipher [encrypted key]</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> [key (<span class="name"><span class="builtin-name">mapcat</span></span> identity (<span class="name"><span class="builtin-name">repeat</span></span> key))]</span><br><span class="line">    (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">map</span></span> bit-xor encrypted key)</span><br><span class="line">         (<span class="name"><span class="builtin-name">map</span></span> char)</span><br><span class="line">         (<span class="name"><span class="builtin-name">apply</span></span> str))))</span><br></pre></td></tr></table></figure><p>이제 <code>aaa</code>부터 <code>zzz</code>까지 모든 키 조합을 입력해가며 복호화를 시도할 차례다. Clojure에서는 <code>a</code>부터 <code>z</code>까지 시퀀스를 만들 때 다음과 같이 할 수 있다. 물론 이렇게 나온 결과는 <code>a</code>부터 <code>z</code>까지 ASCII 코드 값의 시퀀스다. 어차피 <code>XOR</code> 해야 하므로 <code>char</code>로 바꿀 필요는 없다. 정말 <code>a</code>부터 <code>z</code>까지 <code>char</code>의 시퀀스가 필요하다면 <code>(map char ...)</code>를 적용해야 한다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">range</span></span> (<span class="name"><span class="builtin-name">int</span></span> \a) (<span class="name"><span class="builtin-name">inc</span></span> (<span class="name"><span class="builtin-name">int</span></span> \z)))</span><br></pre></td></tr></table></figure><p><code>for</code>를 이용해 <code>aaa</code>부터 <code>zzz</code>까지 키를 생성해 복호화를 시도하다가 성공하면 멈출 수 있다. 그런데 복호화에 성공했다는 것을 어떻게 알 수 있을까? 여기서는 복호화한 메시지에 정규표현식을 적용해 컨트롤 문자나 <code></code> <code>,</code>~`가 나오지 않는 경우를 걸러내게 했다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve []</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> [a2z (<span class="name"><span class="builtin-name">range</span></span> (<span class="name"><span class="builtin-name">int</span></span> \a) (<span class="name"><span class="builtin-name">inc</span></span> (<span class="name"><span class="builtin-name">int</span></span> \z)))]</span><br><span class="line">    (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">for</span></span> [a a2z b a2z c a2z] [a b c])</span><br><span class="line">         (<span class="name"><span class="builtin-name">map</span></span> #(<span class="name">decipher</span> encrypted-message %))</span><br><span class="line">         (<span class="name"><span class="builtin-name">filter</span></span> #(<span class="name">re-matches</span> #<span class="string">"[^`~\p&#123;Cntrl&#125;]+"</span> %))</span><br><span class="line">         (<span class="name"><span class="builtin-name">first</span></span>)</span><br><span class="line">         (<span class="name"><span class="builtin-name">map</span></span> int)</span><br><span class="line">         (<span class="name"><span class="builtin-name">apply</span></span> +)))</span><br></pre></td></tr></table></figure><p>컨트롤 문자는 그렇다 치겠지만 <code></code> <code>,</code>~`만 걸러내면 된다는 것은 어떻게 알았을까? 사실 이건 복호화한 메시지를 확인하면서 알아낸 것이다.</p><p>메시지 언어가 영어라는 점에 착안해 영어 문장에 흔하게 포함되는 단어인 <code>the</code>나 <code>and</code>가 있는지 확인하는 방법을 사용하는 것도 가능하다. 위 코드에서 <code>filter</code>를 적용하는 부분을 다음과 같이 수정해도 답을 찾는다. <code>the</code>나 <code>and</code> 앞뒤로 공백이 있는 것에 유의해야 한다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve []</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> ...</span><br><span class="line">    (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> ...</span><br><span class="line">         (<span class="name"><span class="builtin-name">filter</span></span> #(<span class="name"><span class="builtin-name">&lt;</span></span> <span class="number">-1</span> (<span class="name">.indexOf</span> % <span class="string">" the "</span>)))</span><br><span class="line">         <span class="comment">;; " the " 대신 " and "를 사용해도 된다.</span></span><br><span class="line">         ...</span><br></pre></td></tr></table></figure><p>실행 결과는 다음과 같다.</p><pre class="console">
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>프로젝트 오일러 59 @ntalbs&#39; stuff</title>
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/googlecode.min.css">
+
+
+  </head>
+  <body>
+    <div id="progress">
+  <div id="bar"></div>
+  <div class="container">
+    <div id="scroll-title">프로젝트 오일러 59</div>
+  </div>
+</div>
+
+    <nav class="navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+      <a class="navbar-brand" href="/">@ntalbs&#39; stuff</a>
+    </div>
+    <div class="navbar-items collapsed" id="nav-items">
+      <ul>
+        
+        <li><a href="/archive">Archive</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+  </div>
+</header>
+
+    <main class="container" role="main">
+      <article class="post">
+        <header>
+          <p class="post-meta">
+            <time datetime="2016-03-22" itemprop="datePublished">2016-03-22</time>
+            on
+            
+            <a href="/tags/">Project-Euler</a>
+            
+            <a href="/tags/">Clojure</a>
+            
+          </p>
+          <h1 class="post-title">
+            프로젝트 오일러 59 
+          </h1>
+        </header>
+        <section class="post-content">
+          <blockquote>
+<p>XOR 방식으로 암호화된 메시지 깨기
+문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=59">[국어]</a> <a href="https://projecteuler.net/problem=59">[영어]</a></p>
+</blockquote>
+
+<p>암호화 키가 영어 소문자 세 개로 되어 있으므로, <code>aaa</code>부터 <code>zzz</code>까지 모두 시도해본다 해도 경우의 수는 $26^3=17,576$밖에 되지 않는다. 이 정도면 무차별 대입법으로 공략해도 충분할 것 같다.
+</p>
+
+<p>문제를 풀기 전에 암호화된 메시지가 들어있는 파일을 읽어 정수의 ASCII 코드의 시퀀스로 만들어 둔다.</p>
+
+<pre><code class="language-clojure">(ns p059
+  (:require [util :refer [parse-int]]
+            [clojure.string :refer [split trim]]))
+
+(def encrypted-message
+  (-&gt;&gt; (split (slurp &quot;data/cipher1.txt&quot;) #&quot;,&quot;)
+       (map trim)
+       (map parse-int)))
+</code></pre>
+
+<p>암호화된 메시지를 복호화하는 함수는 다음과 같이 작성할 수 있다. 암호화된 메시지에 비밀키를 반복적으로 돌아가며 적용해야 하는데, <code>repeat</code> 함수를 이용해 비밀키가 반복되는 시퀀스를 만들고 이것을 메시지와 <code>XOR</code> 하면 복호화된 메세지를 얻을 수 있다.</p>
+
+<pre><code class="language-clojure">(defn decipher [encrypted key]
+  (let [key (mapcat identity (repeat key))]
+    (-&gt;&gt; (map bit-xor encrypted key)
+         (map char)
+         (apply str))))
+</code></pre>
+
+<p>이제 <code>aaa</code>부터 <code>zzz</code>까지 모든 키 조합을 입력해가며 복호화를 시도할 차례다. Clojure에서는 <code>a</code>부터 <code>z</code>까지 시퀀스를 만들 때 다음과 같이 할 수 있다. 물론 이렇게 나온 결과는 <code>a</code>부터 <code>z</code>까지 ASCII 코드 값의 시퀀스다. 어차피 <code>XOR</code> 해야 하므로 <code>char</code>로 바꿀 필요는 없다. 정말 <code>a</code>부터 <code>z</code>까지 <code>char</code>의 시퀀스가 필요하다면 <code>(map char ...)</code>를 적용해야 한다.</p>
+
+<pre><code class="language-clojure">(range (int \a) (inc (int \z)))
+</code></pre>
+
+<p><code>for</code>를 이용해 <code>aaa</code>부터 <code>zzz</code>까지 키를 생성해 복호화를 시도하다가 성공하면 멈출 수 있다. 그런데 복호화에 성공했다는 것을 어떻게 알 수 있을까? 여기서는 복호화한 메시지에 정규표현식을 적용해 컨트롤 문자나 `, <code>~</code>가 나오지 않는 경우를 걸러내게 했다.</p>
+
+<pre><code class="language-clojure">(defn solve []
+  (let [a2z (range (int \a) (inc (int \z)))]
+    (-&gt;&gt; (for [a a2z b a2z c a2z] [a b c])
+         (map #(decipher encrypted-message %))
+         (filter #(re-matches #&quot;[^`~\p{Cntrl}]+&quot; %))
+         (first)
+         (map int)
+         (apply +)))
+</code></pre>
+
+<p>컨트롤 문자는 그렇다 치겠지만 `, <code>~</code>만 걸러내면 된다는 것은 어떻게 알았을까? 사실 이건 복호화한 메시지를 확인하면서 알아낸 것이다.</p>
+
+<p>메시지 언어가 영어라는 점에 착안해 영어 문장에 흔하게 포함되는 단어인 <code>the</code>나 <code>and</code>가 있는지 확인하는 방법을 사용하는 것도 가능하다. 위 코드에서 <code>filter</code>를 적용하는 부분을 다음과 같이 수정해도 답을 찾는다. <code>the</code>나 <code>and</code> 앞뒤로 공백이 있는 것에 유의해야 한다.</p>
+
+<pre><code class="language-clojure">(defn solve []
+  (let ...
+    (-&gt;&gt; ...
+         (filter #(&lt; -1 (.indexOf % &quot; the &quot;)))
+         ;; &quot; the &quot; 대신 &quot; and &quot;를 사용해도 된다.
+         ...
+</code></pre>
+
+<p>실행 결과는 다음과 같다.</p>
+
+<pre class="console">
 p059=> (time (solve))
 "Elapsed time: 1444.532458 msecs"
 10??59
-</pre><h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p059.clj" target="_blank" rel="noopener">프로젝트 오일러 59 풀이 소스 코드</a></li><li><a href="http://stackoverflow.com/questions/11670941/generate-character-sequence-from-a-to-z-in-clojure" target="_blank" rel="noopener">Generate character sequence from ‘a’ to ‘z’ in clojure</a><br>Clojure에서 <code>a</code>~<code>z</code> 시퀀스를 만드는 방법에 대한 질문. Clojure에도 Scala의 <code>(&#39;a&#39; to &#39;z&#39;)</code>와 같은 우아한 방법이 없을까 질문 했는데, 없었다.</li></ul><div class="button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a> <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a></div></section><footer class="post-footer"><nav id="article-nav"><a href="/2016/project-euler-060/" id="article-nav-newer" class="article-nav-link-wrap"><span class="article-nav-title">프로젝트 오일러 60</span> </a><a href="/2016/project-euler-058/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">프로젝트 오일러 58</span></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="/js/jquery.fitvids.js"></script><script src="/js/index.js"></script><script>!function(e,a,t,n,g,c,s){e.GoogleAnalyticsObject=g,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),s=a.getElementsByTagName(t)[0],c.async=1,c.src="//www.google-analytics.com/analytics.js",s.parentNode.insertBefore(c,s)}(window,document,"script",0,"ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config("");</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });</script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+</pre>
+
+<h2 id="참고">참고</h2>
+
+<ul>
+<li><a href="https://github.com/ntalbs/euler/blob/master/src/p059.clj">프로젝트 오일러 59 풀이 소스 코드</a></li>
+<li><a href="http://stackoverflow.com/questions/11670941/generate-character-sequence-from-a-to-z-in-clojure">Generate character sequence from &lsquo;a&rsquo; to &lsquo;z&rsquo; in clojure</a>
+Clojure에서 <code>a</code>~<code>z</code> 시퀀스를 만드는 방법에 대한 질문. Clojure에도 Scala의 <code>('a' to 'z')</code>와 같은 우아한 방법이 없을까 질문 했는데, 없었다.</li>
+</ul>
+        </section>
+        <footer class="post-footer">
+          
+          <div class="social button-box">
+            
+            <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+            <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            
+          </div>
+          
+          <nav id="article-nav">
+            
+            <a class="article-nav-link-wrap previous" href="http://ntalbs.github.io/2016/project-euler-060/" id="article-nav-newer"> 프로젝트 오일러 60</a>
+            
+            
+            <a class="article-nav-link-wrap next" href="http://ntalbs.github.io/2016/project-euler-058/" id="article-nav-older"> 프로젝트 오일러 58</a>
+            
+          </nav>
+        </footer>
+      </article>
+    </main>
+    
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+     var disqus_shortname = 'ntalbs-stuff';
+     (function() {
+       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+    <section class="section">
+  <div class="container has-text-centered">
+    <p></p>
+  </div>
+</section>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/clojure.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/sql.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src=http://ntalbs.github.io/js/index.js type="text/javascript"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+   tex2jax: {
+     inlineMath: [['$','$']],
+     displayMath: [['$$','$$']],
+     processEscapes: true,
+     processEnvironments: true,
+     skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code'],
+     TeX: { equationNumbers: { autoNumber: "AMS" },
+            extensions: ["AMSmath.js", "AMSsymbols.js"] }
+   }
+ });
+</script>
+
+  </body>
+</html>

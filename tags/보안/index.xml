@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>보안 on @ntalbs&#39; stuff</title>
+    <link>http://ntalbs.github.io/tags/%EB%B3%B4%EC%95%88/</link>
+    <description>Recent content in 보안 on @ntalbs&#39; stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Thu, 14 Apr 2011 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://ntalbs.github.io/tags/%EB%B3%B4%EC%95%88/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>교활한 XML</title>
+      <link>http://ntalbs.github.io/2011/tricky-xml/</link>
+      <pubDate>Thu, 14 Apr 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2011/tricky-xml/</guid>
+      <description>XML 파일이 프로그램을 죽일 수도 있다는 생각은 하지 못했다. XML은 그저 텍스트일 뿐이고 프로그램은 그저 파일을 읽어서 처리할 뿐인데&amp;hellip; 그런데 다음과 같은 파일을 보고서야 그럴 수도 있다는 것을 알게 되었다. &amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt; &amp;lt;!DOCTYPE billion [ &amp;lt;!ELEMENT billion (#PCDATA)&amp;gt; &amp;lt;!ENTITY laugh0 &amp;quot;ha&amp;quot;&amp;gt; &amp;lt;!ENTITY laugh1 &amp;quot;&amp;amp;laugh0;&amp;amp;laugh0;&amp;quot;&amp;gt; &amp;lt;!ENTITY laugh2 &amp;quot;&amp;amp;laugh1;&amp;amp;laugh1;&amp;quot;&amp;gt; &amp;lt;!ENTITY laugh3 &amp;quot;&amp;amp;laugh2;&amp;amp;laugh2;&amp;quot;&amp;gt; &amp;lt;!ENTITY laugh4 &amp;quot;&amp;amp;laugh3;&amp;amp;laugh3;&amp;quot;&amp;gt; &amp;lt;!ENTITY laugh5 &amp;quot;&amp;amp;laugh4;&amp;amp;laugh4;&amp;quot;&amp;gt; &amp;lt;!ENTITY laugh6 &amp;quot;&amp;amp;laugh5;&amp;amp;laugh5;&amp;quot;&amp;gt; &amp;lt;!ENTITY laugh7 &amp;quot;&amp;amp;laugh6;&amp;amp;laugh6;&amp;quot;&amp;gt; &amp;lt;!ENTITY laugh8 &amp;quot;&amp;amp;laugh7;&amp;amp;laugh7;&amp;quot;&amp;gt; &amp;lt;!ENTITY laugh9 &amp;quot;&amp;amp;laugh8;&amp;amp;laugh8;&amp;quot;&amp;gt; &amp;lt;!ENTITY laugh10 &amp;quot;&amp;amp;laugh9;&amp;amp;laugh9;&amp;quot;&amp;gt; &amp;lt;!</description>
+    </item>
+    
+    <item>
+      <title>아이디 2</title>
+      <link>http://ntalbs.github.io/2010/id-2/</link>
+      <pubDate>Thu, 04 Feb 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2010/id-2/</guid>
+      <description>&lt;p&gt;카드 사용 정보를 인터넷에서 편하게 조회하기 위해 외환카드 홈페이지에 들어가 인터넷 회원 가입을 하다가 황당한 일을 겪었다. 회원 아이디가 이메일 아이디와 같으면 안 된다며 가입이 안 되는 것이었다. 지금까지 여러 사이트에 가입해봤지만 이런 경우는 처음이었다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>아이디 1</title>
+      <link>http://ntalbs.github.io/2010/id-1/</link>
+      <pubDate>Tue, 26 Jan 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2010/id-1/</guid>
+      <description>&lt;p&gt;얼마전 우체국에 연리 5% 정도의 정기예금 상품이 있어 가입하러 갔다. 우체국 직원이 버벅대는 것을 참아가며 30분 가까이 기다려 겨우 신청서를 작성했는데, 처리가 안된다고 했다. 인터넷 뱅킹 아이디에는 반드시 숫자가 포함되어야 하니 내 아이디에도 숫자를 추가하라고 한다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>암호</title>
+      <link>http://ntalbs.github.io/2009/password/</link>
+      <pubDate>Tue, 14 Jul 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2009/password/</guid>
+      <description>&lt;p&gt;웹 사이트에 가입할 때마다 계정과 암호를 정해 입력해야 한다. 처음에는 계정을 정하는 것도 어려웠고 사이트마다 달라지는 문제 때문에 고민했다. 아이디로 쓸만한 것은 이미 다른 사람에게 선점당했기 때문이다. 지금은 계정때문에 고민하는 일은 거의 없다. 사람들이 거의 사용할 일이 없을 문자열로 내 아이디를 정했기 때문이다. 다른 사람이 보기에 내 아이디는 알파벳의 무의미한 나열일 뿐이리라. 어떤 이상한 사이트는 아이디도 영문자와 숫자 조합으로 만들라는 이상한 제약조건을 걸어두기도 하지만, 그런 사이트는 가입하지 않으면 그만이다.
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

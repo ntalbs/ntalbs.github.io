@@ -1,17 +1,181 @@
-<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Emacs를 데이터베이스 클라이언트로 사용하기 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">Emacs를 데이터베이스 클라이언트로 사용하기</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2015-01-14T00:00:00.000Z" itemprop="datePublished">2015-01-14</time> on <a href="/tags/Emacs/">Emacs</a></p><h1 class="post-title">Emacs를 데이터베이스 클라이언트로 사용하기</h1></header><section class="post-content"><p>Emacs에서 데이터베이스 쿼리를 할 수 있으면 좋겠다는 생각이 들었다. 지금까지 찾은 방법은 SQLi를 이용한 방법과 edbi를 사용하는 방법 두 가지다. SQLi는 Emacs에 기본 기능을 사용하기 때문에 별도 패키지를 설치하지 않아도 되지만 기능도 기본 수준이다. edbi는 SQLi보다 풍부한 기능을 제공하지만 별도 패키지를 설치해야 하고 <code>cpan</code>으로 <code>RPC::EPC::Service</code>, <code>DBI</code>, 데이터베이스 드라이버 등의 Perl 모듈을 설치해야 한다.<a id="more"></a></p><h2 id="SQLi를-이용한-방법"><a href="#SQLi를-이용한-방법" class="headerlink" title="SQLi를 이용한 방법"></a>SQLi를 이용한 방법</h2><p>다음과 같이 하면 데이터베이스에 접속된 <code>*SQL*</code> 버퍼가 생긴다. 여기서 쿼리를 실행할 수 있다.</p><ol><li><code>M-x sql-postgres</code> (PostgreSQL 데이터베이스에 접속하는 경우)</li><li>User, Database, Server 입력</li></ol><p>그러나 <code>*SQL*</code> 버퍼는 <code>psql</code>을 버퍼에 연결한 것에 불과하기 때문에 여기서 쿼리를 자유롭게 편집하기에는 제약이 있다. <code>.sql</code>버퍼를 따로 열어 SQLi로 연결하면 좀더 자유롭게 쿼리를 편집할 수 있다. 또한 편집한 쿼리를 <code>*SQL*</code> 버퍼로 보내 실행할 수 있다.</p><ol><li><code>.sql</code> 파일을 연 버퍼에서 <code>M-x sql-set-product</code> 실행하고 <code>postgres</code> 입력</li><li><code>M-x sql-set-sqli-buffer</code> 실행 후 커넥션 버퍼 지정 (디폴트는 <code>*SQL*</code>)</li></ol><p>이제 <code>.sql</code> 버퍼에서 쿼리 입력 후 <code>sql-send-region</code>명령(<code>C-c C-r</code>)을 통해 쿼리를 실행할 수 있다.</p><h2 id="edbi를-이용한-방법"><a href="#edbi를-이용한-방법" class="headerlink" title="edbi를 이용한 방법"></a>edbi를 이용한 방법</h2><ol><li>패키지 매니저(<code>M-x list-package</code>)에 들어가 <code>edbi</code>를 설치한다.</li><li><code>cpan</code>으로 <code>RPC::EPC::Service</code>, <code>DBI</code>, 데이터베이스 드라이버 등의 Perl 모듈을 설치한다. EPC 모듈뿐 아니라 SQLite, PostgreSQL, MySQL 데이터베이스 드라이버가 함께 설치된다.<pre class="console">$ cpan RPC::EPC::Service DBI DBD::SQLite DBD::Pg DBD::mysql</pre></li><li><code>M-x edbi:open-db-viewer</code>를 실행한다.</li><li>설정창에서 <code>Data Source</code>, <code>User Name</code>, <code>Auth</code> 항목을 입력한 후 <code>[OK]</code>를 선택한다. 연결 설정 정보는 History에 저장되어 나중에 불러쓸 수 있다.<img src="/2015/emacs-as-a-db-client/1.png"></li><li>데이터베이스에 접속되면 테이블 목록이 표시된다. <code>RET</code>키를 누르면 테이블 데이터가 표시되고, <code>c</code>를 누르면 쿼리 편집 버퍼로 이동한다. <code>j</code>, <code>k</code> 또는 <code>n</code>, <code>p</code>로 행을 이동할 수 있다.<img src="/2015/emacs-as-a-db-client/2.png"></li></ol><h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><p>잘 모르는 Perl 모듈이 왕창 깔리는 부담이 있지만, 사용성은 edbi가 훨씬 좋은 듯 하다.</p><h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul><li><a href="http://emacsredux.com/blog/2013/06/13/using-emacs-as-a-database-client/" target="_blank" rel="noopener">Using Emacs as a Database Client</a><br>SQLi를 사용해 데이터베이스에 접근하는 방법을 설명한다.</li><li><a href="https://github.com/kiwanami/emacs-edbi" target="_blank" rel="noopener">Emacs DBI</a><br>edbi는 SQLi를 썼을 때보다 훨씬 다양한 기능을 제공한다.</li><li><a href="http://www.microhowto.info/howto/connect_to_a_postgresql_database_using_perl_dbi.html" target="_blank" rel="noopener">Connect to a PostgreSQL database using Perl DBI</a><br>중간 쯤에 PostgreSQL 접속을 위한 Data Source 설정 방법이 나온다.</li></ul><div class="button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a> <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a></div></section><footer class="post-footer"><nav id="article-nav"><a href="/2015/project-euler-005/" id="article-nav-newer" class="article-nav-link-wrap"><span class="article-nav-title">프로젝트 오일러 5</span> </a><a href="/2015/project-euler-004/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">프로젝트 오일러 4</span></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="/js/jquery.fitvids.js"></script><script src="/js/index.js"></script><script>!function(e,a,t,n,g,c,s){e.GoogleAnalyticsObject=g,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),s=a.getElementsByTagName(t)[0],c.async=1,c.src="//www.google-analytics.com/analytics.js",s.parentNode.insertBefore(c,s)}(window,document,"script",0,"ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config("");</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });</script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emacs를 데이터베이스 클라이언트로 사용하기 @ntalbs&#39; stuff</title>
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/googlecode.min.css">
+
+
+  </head>
+  <body>
+    <div id="progress">
+  <div id="bar"></div>
+  <div class="container">
+    <div id="scroll-title">Emacs를 데이터베이스 클라이언트로 사용하기</div>
+  </div>
+</div>
+
+    <nav class="navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+      <a class="navbar-brand" href="/">@ntalbs&#39; stuff</a>
+    </div>
+    <div class="navbar-items collapsed" id="nav-items">
+      <ul>
+        
+        <li><a href="/archive">Archive</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+  </div>
+</header>
+
+    <main class="container" role="main">
+      <article class="post">
+        <header>
+          <p class="post-meta">
+            <time datetime="2015-01-14" itemprop="datePublished">2015-01-14</time>
+            on
+            
+            <a href="/tags/">Emacs</a>
+            
+          </p>
+          <h1 class="post-title">
+            Emacs를 데이터베이스 클라이언트로 사용하기 
+          </h1>
+        </header>
+        <section class="post-content">
+          <p>Emacs에서 데이터베이스 쿼리를 할 수 있으면 좋겠다는 생각이 들었다. 지금까지 찾은 방법은 SQLi를 이용한 방법과 edbi를 사용하는 방법 두 가지다. SQLi는 Emacs에 기본 기능을 사용하기 때문에 별도 패키지를 설치하지 않아도 되지만 기능도 기본 수준이다. edbi는 SQLi보다 풍부한 기능을 제공하지만 별도 패키지를 설치해야 하고 <code>cpan</code>으로 <code>RPC::EPC::Service</code>, <code>DBI</code>, 데이터베이스 드라이버 등의 Perl 모듈을 설치해야 한다.</p>
+
+<h2 id="sqli를-이용한-방법">SQLi를 이용한 방법</h2>
+
+<p>다음과 같이 하면 데이터베이스에 접속된 <code>*SQL*</code> 버퍼가 생긴다. 여기서 쿼리를 실행할 수 있다.
+1. <code>M-x sql-postgres</code> (PostgreSQL 데이터베이스에 접속하는 경우)
+2. User, Database, Server 입력</p>
+
+<p>그러나 <code>*SQL*</code> 버퍼는 <code>psql</code>을 버퍼에 연결한 것에 불과하기 때문에 여기서 쿼리를 자유롭게 편집하기에는 제약이 있다. <code>.sql</code>버퍼를 따로 열어 SQLi로 연결하면 좀더 자유롭게 쿼리를 편집할 수 있다. 또한 편집한 쿼리를 <code>*SQL*</code> 버퍼로 보내 실행할 수 있다.</p>
+
+<ol>
+<li><code>.sql</code> 파일을 연 버퍼에서 <code>M-x sql-set-product</code> 실행하고 <code>postgres</code> 입력</li>
+<li><code>M-x sql-set-sqli-buffer</code> 실행 후 커넥션 버퍼 지정 (디폴트는 <code>*SQL*</code>)</li>
+</ol>
+
+<p>이제 <code>.sql</code> 버퍼에서 쿼리 입력 후 <code>sql-send-region</code>명령(<code>C-c C-r</code>)을 통해 쿼리를 실행할 수 있다.</p>
+
+<h2 id="edbi를-이용한-방법">edbi를 이용한 방법</h2>
+
+<ol>
+<li>패키지 매니저(<code>M-x list-package</code>)에 들어가 <code>edbi</code>를 설치한다.</li>
+<li><code>cpan</code>으로 <code>RPC::EPC::Service</code>, <code>DBI</code>, 데이터베이스 드라이버 등의 Perl 모듈을 설치한다. EPC 모듈뿐 아니라 SQLite, PostgreSQL, MySQL 데이터베이스 드라이버가 함께 설치된다.<pre class="console">$ cpan RPC::EPC::Service DBI DBD::SQLite DBD::Pg DBD::mysql</pre></li>
+<li><code>M-x edbi:open-db-viewer</code>를 실행한다.</li>
+<li>설정창에서 <code>Data Source</code>, <code>User Name</code>, <code>Auth</code> 항목을 입력한 후 <code>[OK]</code>를 선택한다. 연결 설정 정보는 History에 저장되어 나중에 불러쓸 수 있다.
+<img src="/images/2015/emacs-as-a-db-client/1.png" alt="" /></li>
+<li>데이터베이스에 접속되면 테이블 목록이 표시된다. <code>RET</code>키를 누르면 테이블 데이터가 표시되고, <code>c</code>를 누르면 쿼리 편집 버퍼로 이동한다. <code>j</code>, <code>k</code> 또는 <code>n</code>, <code>p</code>로 행을 이동할 수 있다.
+<img src="/images/2015/emacs-as-a-db-client/2.png" alt="" /></li>
+</ol>
+
+<h2 id="결론">결론</h2>
+
+<p>잘 모르는 Perl 모듈이 왕창 깔리는 부담이 있지만, 사용성은 edbi가 훨씬 좋은 듯 하다.</p>
+
+<h2 id="참고">참고</h2>
+
+<ul>
+<li><a href="http://emacsredux.com/blog/2013/06/13/using-emacs-as-a-database-client/">Using Emacs as a Database Client</a>
+SQLi를 사용해 데이터베이스에 접근하는 방법을 설명한다.</li>
+<li><a href="https://github.com/kiwanami/emacs-edbi">Emacs DBI</a>
+edbi는 SQLi를 썼을 때보다 훨씬 다양한 기능을 제공한다.</li>
+<li><a href="http://www.microhowto.info/howto/connect_to_a_postgresql_database_using_perl_dbi.html">Connect to a PostgreSQL database using Perl DBI</a>
+중간 쯤에 PostgreSQL 접속을 위한 Data Source 설정 방법이 나온다.</li>
+</ul>
+        </section>
+        <footer class="post-footer">
+          
+          <div class="social button-box">
+            
+            <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+            <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            
+          </div>
+          
+          <nav id="article-nav">
+            
+            <a class="article-nav-link-wrap previous" href="http://ntalbs.github.io/2015/project-euler-005/" id="article-nav-newer"> 프로젝트 오일러 5</a>
+            
+            
+            <a class="article-nav-link-wrap next" href="http://ntalbs.github.io/2015/project-euler-004/" id="article-nav-older"> 프로젝트 오일러 4</a>
+            
+          </nav>
+        </footer>
+      </article>
+    </main>
+    
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+     var disqus_shortname = 'ntalbs-stuff';
+     (function() {
+       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+    <section class="section">
+  <div class="container has-text-centered">
+    <p></p>
+  </div>
+</section>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/clojure.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/sql.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src=http://ntalbs.github.io/js/index.js type="text/javascript"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+   tex2jax: {
+     inlineMath: [['$','$']],
+     displayMath: [['$$','$$']],
+     processEscapes: true,
+     processEnvironments: true,
+     skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code'],
+     TeX: { equationNumbers: { autoNumber: "AMS" },
+            extensions: ["AMSmath.js", "AMSsymbols.js"] }
+   }
+ });
+</script>
+
+  </body>
+</html>

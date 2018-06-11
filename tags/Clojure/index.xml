@@ -1,0 +1,1521 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Clojure on @ntalbs&#39; stuff</title>
+    <link>http://ntalbs.github.io/tags/clojure/</link>
+    <description>Recent content in Clojure on @ntalbs&#39; stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Thu, 03 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://ntalbs.github.io/tags/clojure/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>프로젝트 오일러 92</title>
+      <link>http://ntalbs.github.io/2018/project-euler-092/</link>
+      <pubDate>Thu, 03 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2018/project-euler-092/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;자릿수를 제곱해서 더해가는 수열의 신기한 성질
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=92&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=92&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;무차별-대입법&#34;&gt;무차별 대입법&lt;/h2&gt;
+
+&lt;p&gt;일단 무식한 방법으로 풀어보자. 1부터 1천만까지 숫자를 대입하면서 자릿수를 제곱해 더한 수가 89에 도달하는지 확인하는 방법이다. 자릿수를 제곱해 더한 수를 구하는 함수는 다음과 같이 간단히 작성할 수 있다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 91</title>
+      <link>http://ntalbs.github.io/2018/project-euler-091/</link>
+      <pubDate>Sun, 08 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2018/project-euler-091/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;사분면 안의 직각삼각형 개수 세기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=91&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=91&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;1사분면 $0 \le x, y \le 50$에서 P의 가능한 위치는 모두 $51 \times 51$이고 Q의 가능한 위치도 $51 \times 51$이다. 무차별 대입법으로 문제를 푼다면 $51^4 = 6,765,201$번의 루프를 돌면서 직각인지 확인해야 하므로 빠른 시간에 답을 구하지 못한다. 이 방법으로 문제를 풀면 내 환경에서는 답을 구하는 데 7초 이상 걸린다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 90</title>
+      <link>http://ntalbs.github.io/2018/project-euler-090/</link>
+      <pubDate>Sun, 01 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2018/project-euler-090/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;정육면체 두 개로 제곱수 만들기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=90&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=90&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;100 미만의 제곱수는 아홉 가지 뿐이고, 숫자 10개 중 6개를 고르는 경우의 수도 210($_{10}C_6 = 210$)으로 비교적 작으므로, 모든 조합을 구해 계산해 보는 무식한 방법을 적용해도 문제를 풀 수 있을 것 같다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 89</title>
+      <link>http://ntalbs.github.io/2018/project-euler-089/</link>
+      <pubDate>Sat, 10 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2018/project-euler-089/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;로마숫자 최적화하기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=89&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=89&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;먼저 다음과 같이 텍스트 파일을 읽어 시퀀스로 만들어둔다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-clojure&#34;&gt;(ns p089
+  (:require [clojure.string :as str]))
+
+(def romans (str/split (slurp &amp;quot;data/roman.txt&amp;quot;) #&amp;quot;\r\n&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 88</title>
+      <link>http://ntalbs.github.io/2018/project-euler-088/</link>
+      <pubDate>Fri, 09 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2018/project-euler-088/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;일정한 개수의 숫자들을 더해도 곱해도 같은 값이 되는 경우 조사하기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=88&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=88&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ntalbs.github.io/2017/project-euler-083/&#34;&gt;문제 83&lt;/a&gt;과 더불어 내게 가장 어려운 문제 중 하나였다. 안타깝지만 이 문제는 내 두뇌 용량을 넘는 문제여서 풀이를 보고도 이해할 수가 없었다. 아래 코드는 다른 블로그에서 찾은 Python 풀이를 Clojure로 옮긴 것에 불과하다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 87</title>
+      <link>http://ntalbs.github.io/2017/project-euler-087/</link>
+      <pubDate>Wed, 05 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2017/project-euler-087/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;소수의 제곱 + 소수의 3제곱 + 소수의 4제곱으로 나타낼 수 있는 숫자
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=87&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=87&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;$a, b, c$를 소수라 했을 때, $a, b, c$의 모든 조합에 대해 $a^2+b^3+c^4$을 구한 다음, $50,000,000$이하의 수를 추려 중복을 제거한 후 개수를 세면 문제의 답을 구할 수 있다. 다만 $a, b, c$를 무한대까지 계산할 수는 없으므로 적절한 범위를 지정해야 한다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 86</title>
+      <link>http://ntalbs.github.io/2017/project-euler-086/</link>
+      <pubDate>Fri, 24 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2017/project-euler-086/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;육면체의 한쪽 구석에서 다른 구석으로 가는 최단 경로 찾기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=86&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=86&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;직육면체를 펼쳐 평면으로 생각하면 문제를 푸는 데 도움이 된다. 평면 위의 한 점에서 다른 점으로 가는 최단 경로는 직선이다. 한쪽 구석 $S$에서 다른 구석 $F$로 가는 경로는 네 가지가 있다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 85</title>
+      <link>http://ntalbs.github.io/2017/project-euler-085/</link>
+      <pubDate>Wed, 01 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2017/project-euler-085/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;사각 격자 안에 포함된 사각형 개수 세기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=85&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=85&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;가로 $m$ 세로 $n$인 격자에서 각 크기의 사각형이 몇 개씩 들어가는지 생각해보자. 크기(가로$\times$세로)가 $1 \times 1$인 사각형은 생각할 것도 없이 $m \times n$개가 들어간다. 크기가 $1 \times 2$인 사각형은 가로 방향으로는 $m$개, 세로 방향으로는 $n-1$개가 들어갈 수 있으므로 개수는 $m \times (n-1)$이 될 것이다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 84</title>
+      <link>http://ntalbs.github.io/2017/project-euler-084/</link>
+      <pubDate>Sun, 22 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2017/project-euler-084/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;모노폴리 게임을 4면체 주사위로 할 때 가장 많이 방문하는 칸은?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=84&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=84&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이 문제를 수학적으로 푸는 방법이 있는지 모르겠다. 여기서는 문제에 주어진 게임 규칙을 모두 구현한 후, 직접 사면체 주사위를 1백만 번 던져 어느 칸을 가장 많이 방문했는지 세는 방법으로 문제를 풀었다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 83</title>
+      <link>http://ntalbs.github.io/2017/project-euler-083/</link>
+      <pubDate>Wed, 11 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2017/project-euler-083/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;상하좌우로 움직여서 좌상단→우하단으로 가는 경로의 합이 최소인 경우는?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=83&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=83&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이 문제에는 두 가지 복병이 기다리고 있었다. 하나는 &lt;a href=&#34;https://en.wikipedia.org/wiki/A*_search_algorithm&#34;&gt;A* Search Algorithm&lt;/a&gt; 알고리즘이었다. 여러 가지 방법을 생각해 보았지만 A* 알고리즘을 사용하지 않고는 풀 수 없었다. 구글로 검색해보면 A* 알고리즘에 대한 설명을 찾을 수 있지만 이해하기가 쉽지 않았다. 얼마 전 &lt;a href=&#34;https://www.coursera.org&#34;&gt;Couresra&lt;/a&gt;에서 &lt;a href=&#34;https://www.coursera.org/learn/algorithms-part1&#34;&gt;Algorithms, Part I&lt;/a&gt;을 수강한 후에야 A* 알고리즘을 이해할 수 있었다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 82</title>
+      <link>http://ntalbs.github.io/2017/project-euler-082/</link>
+      <pubDate>Tue, 10 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2017/project-euler-082/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;맨 왼쪽 열에서 맨 오른쪽 열까지 가는 경로의 합이 최소인 경우는?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=82&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=82&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;시작 위치와 종료 위치가 고정되어 있지 않다. 맨 왼쪽 열의 아무 곳에서 시작해 맨 오른쪽 열의 아무 곳에나 도착하기만 하면 된다. 위/아래/오른쪽 세 방향으로 이동할 수 있다. 왼쪽으로는 이동할 수 없다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 81</title>
+      <link>http://ntalbs.github.io/2017/project-euler-081/</link>
+      <pubDate>Mon, 02 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2017/project-euler-081/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;오른쪽과 아래로만 움직이면서 좌상단→우하단으로 가는 경로의 합이 최소인 경우는?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=81&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=81&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이 문제는 앞에서 풀었던 &lt;a href=&#34;http://ntalbs.github.io/2015/project-euler-018/&#34;&gt;문제 18&lt;/a&gt;과 매우 비슷하다. 행렬을 시계 방향으로 45° 돌려놓고 생각하면 편하다. 문제 18에서는 삼각형 바닥부터 위로 올라가면서 계산하면 됐다. 여기서는 삼각형뿐 아니라 역삼각형도 고려해야 한다는 차이가 있을 뿐이다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 80</title>
+      <link>http://ntalbs.github.io/2016/project-euler-080/</link>
+      <pubDate>Wed, 30 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-080/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;무리수인 제곱근들의 자릿수 더하기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=80&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=80&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이 문제를 푸는 데 &lt;code&gt;Math.sqrt&lt;/code&gt;를 사용할 수는 없다. &lt;code&gt;Math.sqrt&lt;/code&gt;가 리턴하는 &lt;code&gt;double&lt;/code&gt; 형의 유효자리 숫자는 고작 17자리에 불과하다. 제곱근의 자릿수를 원하는 만큼 구할 수 있는 다른 방법이 필요하다. 다행히 &lt;a href=&#34;http://www.afjarvis.staff.shef.ac.uk/maths/jarvisspec02.pdf&#34;&gt;Sqrt root by substraction&lt;/a&gt;에 정수의 제곱근을 구하는 방법이 자세히 나와 있다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 79</title>
+      <link>http://ntalbs.github.io/2016/project-euler-079/</link>
+      <pubDate>Sun, 27 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-079/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;접속 기록으로부터 비밀번호 알아내기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=79&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=79&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;접속 기록 데이터가 많지 않으므로 코드를 아무렇게나 짜도 답을 빠르게 구할 수 있을 것이다. 먼저 다음과 같이 접속 기록을 읽는 코드를 작성한다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-clojure&#34;&gt;(def keylog
+  (-&amp;gt; (slurp &amp;quot;data/keylog.txt&amp;quot;)
+      (clojure.string/split #&amp;quot;\r\n&amp;quot;)
+      distinct
+      sort))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;중복을 제거하면 접속 기록이 서른 세 개밖에 되지 않는다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 78</title>
+      <link>http://ntalbs.github.io/2016/project-euler-078/</link>
+      <pubDate>Wed, 16 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-078/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;동전을 여러 더미로 나누는 경우의 수 세기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=78&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=78&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;동전을 여러 더미로 나누는 방법의 수는 정수를 덧셈으로 표시할 수 있는 방법의 수와 같다. 위키백과를 찾아보면 다음과 같이 공식이 나와 있다.&lt;/p&gt;
+
+&lt;div&gt;$$
+\begin{aligned}
+  p(n) &amp;= \sum_{k \neq 0} (-1)^{k-1}p(n - g_k) \\
+  g_k &amp;= \frac{k(3k-1)}{2}
+\end{aligned}
+$$&lt;/div&gt;
+
+&lt;p&gt;$n$을 증가시키면서 $p(n)$을 구해 1백만으로 나누어 떨어지는지 확인하는 방법으로 답을 찾을 수 있다. $p(n)$을 구하는 데 필요한 $g_k$는 다음과 같이 쉽게 구현할 수 있다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 77</title>
+      <link>http://ntalbs.github.io/2016/project-euler-077/</link>
+      <pubDate>Mon, 12 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-077/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;소수의 합으로 나타내는 방법이 5000가지가 넘는 최초의 숫자는?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=77&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=77&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이 문제도 바로 전에 풀었던 &lt;a href=&#34;http://ntalbs.github.io/2016/project-euler-076/&#34;&gt;문제 76&lt;/a&gt;과 마찬가지로 &lt;a href=&#34;http://ntalbs.github.io/2015/project-euler-031/&#34;&gt;문제 31&lt;/a&gt;비슷하다. 여기서는 동전의 종류가 소수라고 생각하면 된다. 따라서 인덱스를 넣으면 소수가 나오는 맵을 만들어 두면 문제 풀이에 활용할 수 있다. 소수는 100개 정도 준비하면 충분할 것 같다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 76</title>
+      <link>http://ntalbs.github.io/2016/project-euler-076/</link>
+      <pubDate>Sat, 10 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-076/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;숫자 100을 두 개 이상의 자연수의 합으로 나타내는 방법은 모두 몇 가지?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=76&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=76&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이 문제는 영국 화폐 액면가를 조합하는 수를 계산했던 &lt;a href=&#34;http://ntalbs.github.io/2015/project-euler-031/&#34;&gt;문제 31&lt;/a&gt;과 비슷하다. 문제 31에서는 동전의 종류가 여덟가지 였지만, 이 문제에서는 동전의 종류가 1, 2, &amp;hellip;, 99까지 99가지가 있다고 생각할 수 있다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 75</title>
+      <link>http://ntalbs.github.io/2016/project-euler-075/</link>
+      <pubDate>Wed, 24 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-075/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;직각삼각형을 만들어내는 방법이 한 가지 뿐인 경우 세기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=75&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=75&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;합이 $1,500,000$ 이하인 &lt;a href=&#34;https://en.wikipedia.org/wiki/Pythagorean_triple&#34;&gt;피타고라스 수(Pythagorean Triplet)&lt;/a&gt;의 시퀀스를 생성한 다음, 합으로 &lt;code&gt;group-by&lt;/code&gt; 해서 값(피타고라스 수 목록)의 길이가 $1$인 키의 개수를 세면 된다. 피타고라스 수를 구하는 방법은 &lt;a href=&#34;http://ntalbs.github.io/2015/project-euler-039/&#34;&gt;문제 39&lt;/a&gt;에서 설명했다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 74</title>
+      <link>http://ntalbs.github.io/2016/project-euler-074/</link>
+      <pubDate>Thu, 18 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-074/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;자릿수의 계승값을 더해갈 때, 반복이 일어나기 전의 단계가 60번인 경우 찾기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=74&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=74&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;각 자릿수의 계승값을 더하는 함수는 다음과 같이 간단히 작성할 수 있다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-clojure&#34;&gt;(defn- fact-sum [n]
+  (-&amp;gt;&amp;gt; (digits n)
+       (map factorial)
+       (apply +)))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 73</title>
+      <link>http://ntalbs.github.io/2016/project-euler-073/</link>
+      <pubDate>Thu, 28 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-073/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;분모가 12,000 이하일 때 1/3과 &lt;sup&gt;1&lt;/sup&gt;&amp;frasl;&lt;sub&gt;2&lt;/sub&gt; 사이에 위치한 기약 진분수의 개수
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=73&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=73&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;무차별-대입법&#34;&gt;무차별 대입법&lt;/h2&gt;
+
+&lt;p&gt;분모가 12,000 이하인 경우만 조사하면 되므로 분자와 분모에 12,000 이하의 수를 대입해가며 분수를 만들어 1/3과 &lt;sup&gt;1&lt;/sup&gt;&amp;frasl;&lt;sub&gt;2&lt;/sub&gt; 사이의 기약 진부수를 세는 방법으로 답을 구할 수 있을 것 같다. 분모는 3부터 12,000까지, 분자는 분모/3 ~ 분모/2 사이의 정수를 대입해보면 된다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 72</title>
+      <link>http://ntalbs.github.io/2016/project-euler-072/</link>
+      <pubDate>Thu, 14 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-072/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;분모가 1백만 이하인 기약 진분수의 개수
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=72&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=72&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;분모가 $d$인 경우 기약 진분수의 개수는 $d$와 서로 소인 정수의 개수와 같다. 이는 &lt;a href=&#34;https://en.wikipedia.org/wiki/Euler%27s_totient_function&#34;&gt;Euler’s totient function&lt;/a&gt;의 정의와 동일하다. 따라서 분모가 1백만 이하인 기약 진분수의 개수를 $S$라 하면 $S$는 다음과 같이 구할 수 있다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 71</title>
+      <link>http://ntalbs.github.io/2016/project-euler-071/</link>
+      <pubDate>Fri, 01 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-071/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;기약 진분수를 커지는 순으로 늘어놓기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=71&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=71&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;분모가 $n$보다 작거나 같은 0과 1 사이의 기약 진분수의 수열을 &lt;a href=&#34;http://en.wikipedia.org/wiki/Farey_sequence&#34;&gt;Farey sequence&lt;/a&gt;라 한다. 이 수열에서 $\frac{a}{b}$와 $\frac{c}{d}$가 이웃이고 $\frac{a}{b} &amp;lt; \frac{c}{d}$면, 두 수의 차는 $\frac{a}{b} - \frac{c}{d} = \frac{1}{bd}$가 되어야 한다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 70</title>
+      <link>http://ntalbs.github.io/2016/project-euler-070/</link>
+      <pubDate>Thu, 02 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-070/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;φ(n)이 n의 순열이 되는 수 조사하기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=70&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=70&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 69</title>
+      <link>http://ntalbs.github.io/2016/project-euler-069/</link>
+      <pubDate>Sat, 28 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-069/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;n/φ(n)이 최대가 되는 1백만 이하의 n 찾기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=69&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=69&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 68</title>
+      <link>http://ntalbs.github.io/2016/project-euler-068/</link>
+      <pubDate>Mon, 23 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-068/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;마방진 성질을 갖는 5각 도형에서 얻을 수 있는 16자리 수의 최대값 구하기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=68&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=68&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;5각 도형의 빈 칸을 다음과 같이 $a, b, &amp;hellip;, j$로 지정할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ntalbs.github.io/images/2016/project-euler-068/p068.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 67</title>
+      <link>http://ntalbs.github.io/2016/project-euler-067/</link>
+      <pubDate>Sat, 21 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-067/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;삼각형에서 경로의 합 중 최대값을 구하는 효율적인 방법은?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=67&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=67&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ntalbs.github.io/2015/project-euler-018/&#34;&gt;문제 18&lt;/a&gt;과 동일한 문제다. 문제 18에서는 삼각형이 15층에 불과했지만, 여기서는 100층이다. 문제 18에서 이미 제대로 된 방법으로 문제를 풀었기 때문에 똑같은 방법을 사용해 문제를 풀 수 있다. 텍스트 파일로 주어진 데이터를 읽어들이는 코드만 추가해주면 된다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 66</title>
+      <link>http://ntalbs.github.io/2016/project-euler-066/</link>
+      <pubDate>Thu, 19 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-066/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;$x^2 – Dy^2 = 1$ 형태의 디오판토스 방정식 풀기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=66&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=66&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 65</title>
+      <link>http://ntalbs.github.io/2016/project-euler-065/</link>
+      <pubDate>Tue, 10 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-065/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;$e$의 100번째 연분수 확장 값의 분자 자릿수를 모두 더하면?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=65&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=65&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;$e$의 연분수를 꼴을 $[a_0; a_1, a_2, a_3, &amp;hellip;]$이라 했을 때, 100번째 연분수 확장 값을 계산하려면 $a_{99}$(100번째 항)부터 값을 계산해 올라가야 한다. 문제에서 $e$의 연분수 꼴이 $[2; 1,2,1, 1,4,1, 1,6,1, &amp;hellip;, 1,2k,1, &amp;hellip; ]$로 나타낼 수 있다고 되어 있으므로 $n$이 주어졌을 때 $a_{n-1}, a_{n-2}, &amp;hellip;, a_0$을 구하는 함수는 다음과 같이 만들 수 있다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 64</title>
+      <link>http://ntalbs.github.io/2016/project-euler-064/</link>
+      <pubDate>Fri, 22 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-064/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;제곱근을 연분수로 나타낼 때 반복 주기가 홀수인 경우 세기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=64&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=64&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 63</title>
+      <link>http://ntalbs.github.io/2016/project-euler-063/</link>
+      <pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-063/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;$n$자리 숫자이면서 $n$제곱수도 되는 양의 정수는 모두 몇 개?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=63&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=63&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 62</title>
+      <link>http://ntalbs.github.io/2016/project-euler-062/</link>
+      <pubDate>Sun, 10 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-062/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;자릿수로 만든 순열 중에서 5개가 세제곱수인 가장 작은 숫자는?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=62&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=62&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;처음 떠오른 생각은 이렇다. 숫자를 증가시키면서 그 수자 세제곱수인지 확인하고, 세제곱수라면 자릿수로 순열을 만들어 그 중 세제곱수인 것만 골라내서 다섯 개가 되는지 확인하는 방법을 생각할 수 있다. 그러나 이 방법은 쉽지도 않고 비효율적이다. 숫자의 대부분이 세제곱수가 아니고 세제곱수의 순열도 대부분 세제곱수가 아닐 것이기 때문이다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 61</title>
+      <link>http://ntalbs.github.io/2016/project-euler-061/</link>
+      <pubDate>Wed, 06 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-061/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;순환적인 성질을 갖는 4자리 다각수 여섯 개의 합
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id= 61&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem= 61&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;네 자리 다각수의 집합을 구한 다음 앞 두 자리를 키로 하여 맵을 만들어 놓으면 꼬리를 무는 수를 쉽게 찾을 수 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 60</title>
+      <link>http://ntalbs.github.io/2016/project-euler-060/</link>
+      <pubDate>Thu, 24 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-060/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;다섯 소수 중 어떤 두 개를 이어붙여도 소수가 되는 수 찾기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=60&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=60&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 59</title>
+      <link>http://ntalbs.github.io/2016/project-euler-059/</link>
+      <pubDate>Tue, 22 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-059/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;XOR 방식으로 암호화된 메시지 깨기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=59&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=59&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;암호화 키가 영어 소문자 세 개로 되어 있으므로, &lt;code&gt;aaa&lt;/code&gt;부터 &lt;code&gt;zzz&lt;/code&gt;까지 모두 시도해본다 해도 경우의 수는 $26^3=17,576$밖에 되지 않는다. 이 정도면 무차별 대입법으로 공략해도 충분할 것 같다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 58</title>
+      <link>http://ntalbs.github.io/2016/project-euler-058/</link>
+      <pubDate>Fri, 18 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-058/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;나선모양 격자의 대각선상에 있는 소수의 비율 추적하기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=58&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=58&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ntalbs.github.io/2015/project-euler-028/&#34;&gt;문제 28&lt;/a&gt;에서 나선모양 행렬의 대각선 요소를 구하는 공식을 유도했다. 그때는 나선모양이 시계 방향으로 돌았고 여기서는 나선모양이 반시계 방향으로 돌아 방향이 다르지만 문제를 푸는 데 영향을 끼치지는 않는다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 57</title>
+      <link>http://ntalbs.github.io/2016/project-euler-057/</link>
+      <pubDate>Mon, 14 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-057/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;제곱근 2의 연분수꼴 살펴보기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=57&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=57&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;문제에 있는 $\sqrt 2$의 연분수꼴 수식은 다음과 같다.&lt;/p&gt;
+
+&lt;div&gt;$$
+\begin{aligned}
+\sqrt 2 = 1 + \cfrac{1}{2 + \cfrac{1}{2 + \cfrac{1}{2 + \cfrac{1}{ \ddots }}}}
+\end{aligned}
+$$&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 56</title>
+      <link>http://ntalbs.github.io/2016/project-euler-056/</link>
+      <pubDate>Fri, 11 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-056/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;$a^b$ 형태의 자연수에 대해 자릿수 합의 최대값 구하기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=56&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=56&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ntalbs.github.io/2015/project-euler-016/&#34;&gt;문제 16&lt;/a&gt;에서 만든 &lt;code&gt;pow&lt;/code&gt; 함수를 이용하면 문제를 쉽게 풀 수 있다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 55</title>
+      <link>http://ntalbs.github.io/2016/project-euler-055/</link>
+      <pubDate>Thu, 10 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-055/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;10000 미만의 라이크렐 수 (Lychrel number) 세기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=55&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=55&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;숫자를 뒤집어서 더한 후 대칭수인지 확인해야 하므로 다음과 같이 숫자를 뒤집는 함수와 숫자가 대칭수인지 확인하는 함수를 미리 만들어 두면 문제를 푸는 데 도움이 될 것이다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 54</title>
+      <link>http://ntalbs.github.io/2016/project-euler-054/</link>
+      <pubDate>Tue, 08 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-054/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;포커 게임에서 이긴 회수 구하기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=54&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=54&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이 문제를 푸는 데 수학적인 지식이나 통찰은 전혀 필요하지 않은 것으로 보였다. 그저 주어진 카드 패가 어떤 계급인지 판단하는 방법을 구현하고 계급에 따라 승패를 정해 1번 선수가 이긴 횟수를 구하기만 하면 되는 단순한 문제로 보였다. 이렇게 해도 답을 구하는 데는 전혀 문제가 없었지만, 마음에 들지 않았다. 패가 특정 계급인지 판단하는 여러 개의 함수와 연속된 조건문&amp;hellip; 더 좋은 방법이 없을까?
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 53</title>
+      <link>http://ntalbs.github.io/2016/project-euler-053/</link>
+      <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-053/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;$1 \le n \le 100$ 일때 $_nC_r$의 값이 1백만을 넘는 경우는 모두 몇 번?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=53&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=53&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;$r \le n$이므로 $n$, $r$의 범위는 각각 $1 \le n \le 100$, $1 \le r \le 100$이다. 모든 $n$, $r$ 조합에 대해 $_nC_r$을 구한다 해도 경우의 수는 $100 \times 100 = 10,000$이므로 금방 구할 수 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 52</title>
+      <link>http://ntalbs.github.io/2016/project-euler-052/</link>
+      <pubDate>Fri, 26 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-052/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;2배, 3배, 4배, 5배, 6배의 결과도 같은 숫자로 이루어지는 가장 작은 수?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=52&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=52&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;어떤 두 수가 같은 숫자로 이루어져 있는지 비교하려면 두 수를 모두 자릿수로 분해한 다음 정렬해 결과가 같은지 확인하면 된다. &lt;code&gt;str&lt;/code&gt; 함수로 숫자를 문자열로 바꾼 다음 &lt;code&gt;sort&lt;/code&gt;로 정렬하면 각 자릿수가 정렬된 시퀀스를 얻을 수 있다. &lt;code&gt;comp&lt;/code&gt;로 &lt;code&gt;sort&lt;/code&gt;와 &lt;code&gt;str&lt;/code&gt;을 합성하면 인자를 문자열로 바꿔 정렬하는 함수를 만들 수 있다. 주어진 여러 개의 숫자가 모두 같은 숫자로 이루어져 있는지 확인하는 함수는 다음과 같이 쉽게 구현할 수 있다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 51</title>
+      <link>http://ntalbs.github.io/2016/project-euler-051/</link>
+      <pubDate>Wed, 24 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-051/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;일부 숫자를 치환했을 때 8개의 서로 다른 소수가 생기는 가장 작은 소수?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=51&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=51&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;문제를 분석해보면 다음과 같은 조건을 만족해야 함을 알 수 있다.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;치환할 위치가 마지막 자리면 안 된다.&lt;/li&gt;
+&lt;li&gt;치환할 자리는 세 자리여야 한다.&lt;/li&gt;
+&lt;li&gt;치환할 숫자는 0, 1 또는 2여야 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 50</title>
+      <link>http://ntalbs.github.io/2016/project-euler-050/</link>
+      <pubDate>Tue, 09 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-050/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;1백만 이하의 소수 중 가장 길게 연속되는 소수의 합으로 표현되는 수는?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=50&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=50&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 49</title>
+      <link>http://ntalbs.github.io/2016/project-euler-049/</link>
+      <pubDate>Fri, 29 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-049/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;세 항이 소수이면서 다른 수의 순열이 되는 4자리 숫자의 등차수열 찾기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=49&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=49&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;네 자리 소수에 대해서만 계산을 해보면 되므로, 무차별 대입법을 이용해도 답을 빠르게 찾아낼 수 있을 것 같다. 다음과 같은 도구가 있다면 문제를 쉽게 풀 수 있다.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;자릿수가 네 자리인 소수 집합&lt;/li&gt;
+&lt;li&gt;주어진 네 자리 소수의 순열을 구해 이 중 소수만 걸러내 리턴하는 함수&lt;/li&gt;
+&lt;li&gt;주어진 시퀀스에서 등차수열을 찾아내는 함수&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 48</title>
+      <link>http://ntalbs.github.io/2016/project-euler-048/</link>
+      <pubDate>Mon, 25 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-048/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;$1^1 + 2^2 + 3^3 + &amp;hellip; + 1000^{1000}$의 마지막 10자리는?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=48&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=48&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이 문제 역시 아주 큰 숫자를 다루는 문제지만, Java의 &lt;code&gt;BigInteger&lt;/code&gt;나 Clojure의 &lt;code&gt;BigInt&lt;/code&gt;를 쓰면 쉽게 풀 수 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 47</title>
+      <link>http://ntalbs.github.io/2016/project-euler-047/</link>
+      <pubDate>Fri, 22 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-047/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;서로 다른 네 개의 소인수를 갖는 수들이 처음으로 네 번 연속되는 경우는?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=47&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=47&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;소인수의 개수를 구하는 함수가 있다면 문제를 쉽게 풀 수 있다. &lt;a href=&#34;http://ntalbs.github.io/2015/project-euler-003/&#34;&gt;문제 3&lt;/a&gt;에서 소인수 분해 함수를 구현했으므로, 소인수 개수를 구하는 함수는 다음과 같이 간단히 작성할 수 있다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 46</title>
+      <link>http://ntalbs.github.io/2016/project-euler-046/</link>
+      <pubDate>Thu, 14 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2016/project-euler-046/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;(소수 + 2×제곱수)로 나타내지 못하는 가장 작은 홀수인 합성수는?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=46&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=46&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;홀수인 합성수의 집합에서 (소수 + 2x제곱수) 집합을 뺀 차집합의 최소값을 구하면 된다. 다만 두 집합 모두 크기가 무한대이므로 적절할 상한을 주고 계산해야 한다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 45</title>
+      <link>http://ntalbs.github.io/2015/project-euler-045/</link>
+      <pubDate>Wed, 04 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-045/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;오각수와 육각수도 되는, 40755 다음으로 큰 삼각수는?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=45&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=45&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;육각수를 구하는 공식을 조금 변형해보면 다음과 같은 결과를 얻을 수 있다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 44</title>
+      <link>http://ntalbs.github.io/2015/project-euler-044/</link>
+      <pubDate>Tue, 03 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-044/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;합과 차도 모두 오각수인 두 오각수 차의 최소값은?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=44&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=44&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;어떤 수가 오각수인지 빠르게 판단할 수 있다면 $i$와 $j$를 계속 늘려가며 $P_i$와 $P_j$를 구하고 그 합과 차 역시 오각수인 경우를 찾을 수 있다. $P_n ≡ x$로 놓고 근의 공식을 이용해 $n$에 대한 이차방정식을 풀면 다음과 같은 결과를 얻는다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 43</title>
+      <link>http://ntalbs.github.io/2015/project-euler-043/</link>
+      <pubDate>Wed, 28 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-043/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;부분열에 관련된 특이한 성질을 가진 모든 팬디지털 숫자의 합
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=43&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=43&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;언듯 보면 복잡해 보이지만 조건만 많을 뿐 아주 단순한 문제다. &lt;a href=&#34;http://ntalbs.github.io/2015/project-euler-032/&#34;&gt;문제 32&lt;/a&gt;, &lt;a href=&#34;http://ntalbs.github.io/2015/project-euler-041/&#34;&gt;문제 41&lt;/a&gt;에서 &lt;code&gt;clojure.contrib.combinatorics&lt;/code&gt;의 &lt;code&gt;permutations&lt;/code&gt;를 사용해 팬디지털 수를 만드는 방법을 살펴봤다. 이 문제에서도 0-9 팬디지털 수를 구해 문제에서 설명한 조건을 만족하는 수만 걸러낸 다음 그 합을 구하면 된다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 42</title>
+      <link>http://ntalbs.github.io/2015/project-euler-042/</link>
+      <pubDate>Tue, 27 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-042/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;주어진 텍스트 파일에 들어있는 &amp;lsquo;삼각단어&amp;rsquo;의 개수는?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=42&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=42&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;쉬운 문제다. 파일에 들어있는 단어 목록에서 단어값이 삼각수인 삼각단어의 수를 세기만 하면 된다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 41</title>
+      <link>http://ntalbs.github.io/2015/project-euler-041/</link>
+      <pubDate>Mon, 26 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-041/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;$n$자리 팬디지털 소수 중에서 가장 큰 수
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=41&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=41&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;두 가지 방법이 떠오른다. 하나는 &lt;code&gt;clojure.contrib.lazy-seqs&lt;/code&gt;의 &lt;code&gt;primes&lt;/code&gt;를 이용하는 방법이다. 가장 큰 팬디지털 수는 987654321이므로 이걸 상한으로 소수를 하나씩 조사해가며 팬디지털 수인지 확인해 가장 큰 수를 구하면 된다. 그러나 이 방법은 987654321보다 작은 수 중 가장 큰 소수에 도달할 때까지 확인을 해야 하므로 답을 빠르게 구하기는 어려워 보인다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 40</title>
+      <link>http://ntalbs.github.io/2015/project-euler-040/</link>
+      <pubDate>Sat, 24 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-040/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;어떤 무리수에서 소수점 $n$번째 자리 숫자 알아내기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=40&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=40&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이 문제를 푸는 데는 특별히 복잡한 알고리즘이 필요하지 않다. 그냥 문제에서 설명한 대로 소수점 아래 수에 대한 시퀀스를 만들고, 1번째, 10번째, &amp;hellip; , 1,000,000번째 요소를 구해 모두 곱하면 그만이다. Clojure로는 특히 이런 문제를 쉽게 풀 수 있는 것 같다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 39</title>
+      <link>http://ntalbs.github.io/2015/project-euler-039/</link>
+      <pubDate>Fri, 23 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-039/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;가장 많은 직각삼각형이 만들어지는 둘레(≤ 1000)의 길이는?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=39&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=39&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;세 변의 길이가 자연수인 직삼각형을 가장 많이 만들 수 있는 둘레 길이를 찾는 문제다. &lt;a href=&#34;https://en.wikipedia.org/wiki/Pythagorean_triple#Generating_a_triple&#34;&gt;Pythagorean triple &amp;gt; Generating a triple&lt;/a&gt;에 유클리드 공식을 사용해 피타고라스 수를 구하는 방법이 나와있다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 38</title>
+      <link>http://ntalbs.github.io/2015/project-euler-038/</link>
+      <pubDate>Wed, 21 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-038/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;어떤 수에 (1, 2, &amp;hellip; )를 곱해서 이어붙여 얻을 수 있는 가장 큰 1 ~ 9 팬디지털 숫자
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=38&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=38&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;(1, 2, &amp;hellip;)를 곱해서 이어붙일 어떤 수는 네 자리 이하의 수여야 한다. n이 1보다 커야 하므로, 어떤 수가 다섯 자리라면 (1, 2)를 곱해 이어붙일 경우 아홉 자리를 넘어버리기 때문이다. 따라서 네 자리 수 중 가장 큰 9999부터 숫자를 줄여가며 답을 찾으면 문제를 쉽게 풀 수 있다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 37</title>
+      <link>http://ntalbs.github.io/2015/project-euler-037/</link>
+      <pubDate>Mon, 19 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-037/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;왼쪽이나 오른쪽에서 한 자리씩 없애가도 여전히 소수인 수의 합은?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=37&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=37&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;어떤 수를 왼쪽이나 오른쪽에서 한 자리 없앤 수를 구하는 함수가 있다면 이 문제를 풀 때 도움이 될 것이다. &lt;a href=&#34;http://ntalbs.github.io/2015/project-euler-035/&#34;&gt;문제 35&lt;/a&gt;에서 순환수를 만들 때 사용했던 방법을 활용하면 이 함수를 쉽게 구현할 수 있다. 순환수를 구할 때는 숫자를 잘라 다시 붙여야 했지만 여기서는 그냥 잘라내기만 하면 되므로 오히려 더 간단하다고 할 수 있다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 36</title>
+      <link>http://ntalbs.github.io/2015/project-euler-036/</link>
+      <pubDate>Mon, 12 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-036/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;10진법과 2진법으로 모두 대칭수인 1,000,000 이하 숫자의 합
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=36&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=36&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;어떤 수가 대칭인지 확인하는 방법은 이미 &lt;a href=&#34;http://ntalbs.github.io/2015/project-euler-004/&#34;&gt;문제 4&lt;/a&gt;에서 설명했다. 이진수는 어차피 문자열로 표현해야 하므로 여기서는 다음과 같이 문자열을 인자로 받아 대칭인지 확인하는 함수를 만들어 두는 것이 좋겠다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 35</title>
+      <link>http://ntalbs.github.io/2015/project-euler-035/</link>
+      <pubDate>Tue, 06 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-035/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;백만 이하인 circular prime 개수 구하기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=35&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=35&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;백만 이하의 소수는 &lt;code&gt;clojure.contrib.lazy-seqs&lt;/code&gt;의 &lt;code&gt;primes&lt;/code&gt;를 이용해 구할 수 있다. &lt;code&gt;digits&lt;/code&gt;를 이용해 숫자의 시퀀스를 만들고 &lt;code&gt;cycle&lt;/code&gt;과 &lt;code&gt;partition&lt;/code&gt;을 이용하면 순환수(circular number)도 쉽게 구할 수 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 34</title>
+      <link>http://ntalbs.github.io/2015/project-euler-034/</link>
+      <pubDate>Mon, 05 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-034/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;각 자릿수의 팩토리얼을 더했을 때 자기 자신이 되는 수들의 합은?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=34&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=34&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;먼저 각 자릿수의 팩토리얼을 더한 값을 구하는 함수는 다음과 같이 작성할 수 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 33</title>
+      <link>http://ntalbs.github.io/2015/project-euler-033/</link>
+      <pubDate>Sun, 04 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-033/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;이상한 방법으로 약분할 수 있는 분수 찾기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=33&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=33&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;값이 1보다 작고 분모와 분자가 모두 두 자릿수인 분수는 모두 4005개다. 이 정도라면 그냥 루프를 돌려 확인해도 금방 답을 찾을 수 있다. 이상한 방법으로 약분하는 함수는 다음과 같이 작성할 수 있다. &lt;code&gt;n&lt;/code&gt;은 numerator, 즉 분자를 나타내며, &lt;code&gt;d&lt;/code&gt;는 denominator, 즉 분모를 나타낸다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 32</title>
+      <link>http://ntalbs.github.io/2015/project-euler-032/</link>
+      <pubDate>Sat, 03 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-032/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;1~9 팬디지털 곱셈식을 만들 수 있는 모든 수의 합
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=32&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=32&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;$a \times b = c$가 1-9 팬디지털이 되려면 다음과 같은 이유로 $c$가 네 자리 숫자여야 한다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 31</title>
+      <link>http://ntalbs.github.io/2015/project-euler-031/</link>
+      <pubDate>Thu, 01 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-031/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;영국 화폐 액면가를 조합하는 방법의 수
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=31&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=31&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;재귀를 이용하면 쉽게 풀 수 있다. 동전의 종류를 숫자 1, 2, &amp;hellip;로 표현하면 문제를 풀 때 도움이 된다. 따라서 다음과 같이 종류 숫자를 인자로 주면 동전 값을 리턴하는 함수를 만들 수 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 30</title>
+      <link>http://ntalbs.github.io/2015/project-euler-030/</link>
+      <pubDate>Fri, 25 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-030/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;각 자리 숫자를 5제곱해서 더했을 때 자기 자신이 되는 수들의 합은?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=30&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=30&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이 문제는 무차별 대입법으로 풀 수 있다. 다만 루프를 무한히 반복하지 않으려면 상한을 알아야 한다. 6자리 수 중 가장 큰 정수는 999,999다. 이 수의 각 자리 숫자를 5제곱해 더하면 354,294가 된다. 즉 6자리 수 중 가장 큰 정수의 각 자릿수를 5제곱해 더해도 354,294보다 큰 수는 못 만든다는 뜻이다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 29</title>
+      <link>http://ntalbs.github.io/2015/project-euler-029/</link>
+      <pubDate>Thu, 17 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-029/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;$2 \le a \le 100$ 이고 $2 \le b \le 100$인 $a$, $b$로 만들 수 있는 $a^b$의 개수
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=29&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=29&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;$a$가 대략 100가지, $b$가 대략 100가지이므로 $a^b$는 대략 10,000가지 수가 나올 것이다. 여기서 중복을 제거하면 답을 구할 수 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 28</title>
+      <link>http://ntalbs.github.io/2015/project-euler-028/</link>
+      <pubDate>Fri, 11 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-028/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;1001×1001 나선모양 행렬에서 대각선 원소의 합은?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=28&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=28&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;대각선 원소에 대한 공식을 구하면 쉽게 문제를 풀 수 있다. 첫 번째 링의 요소는 다음과 같다.&lt;/p&gt;
+
+&lt;div&gt;$$
+\begin{matrix}
+7 &amp; 8 &amp; 9 \\
+6 &amp;   &amp; 2 \\
+5 &amp; 4 &amp; 3
+\end{matrix}
+$$&lt;/div&gt;
+
+&lt;p&gt;여기서 대각선 요소를 작은 수부터 나열하면 3, 4, 7, 9다. 두 번째 링의 요소는 다음과 같다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 27</title>
+      <link>http://ntalbs.github.io/2015/project-euler-027/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-027/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;연속되는 $n$에 대해 가장 많은 소수를 만들어내는 2차식 구하기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=27&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=27&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;$n^2+an+b$란 식이 주어졌고 $a, b$의 범위가 $|a|&amp;lt;1000, |b|&amp;lt;1000$ 으로 주어졌으므로, 무식하게 루프를 돌리는 방법으로 풀이를 시도해 볼 수 있다. 대략 4백만 가지의 $(a, b)$ 조합에 대해 얼마나 많은 소수를 만들 수 있는지 확인해야 한다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 26</title>
+      <link>http://ntalbs.github.io/2015/project-euler-026/</link>
+      <pubDate>Tue, 25 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-026/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;1000 이하의 $d$ 중에서 $1/d$ 이 가장 긴 순환마디를 갖는 수는?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=26&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=26&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;$1 \over d$의 순환마디를 구하려면 어떻게 해야 할까? 이 문제를 풀려면 초등학교때 배웠던 나눗셈 절차를 잘 분석하고 이를 수행하는 프로그램을 만들어야 한다. 예를 들어 $\frac{1}{54}$를 구하는 과정을 자세히 살펴보자.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 25</title>
+      <link>http://ntalbs.github.io/2015/project-euler-025/</link>
+      <pubDate>Tue, 21 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-025/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;피보나치 수열에서 처음으로 1000자리가 되는 항은 몇 번째?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=25&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=25&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;피보나치 수열을 구하는 방법은 &lt;a href=&#34;http://ntalbs.github.io/2015/project-euler-002/&#34;&gt;프로젝트 오일러 2번 풀이&lt;/a&gt;에서 설명했다. 2번에서는 4백만 이하의 항을 다루었지만 이 문제에서는 1,000자리가 되는 항을 구해야 하므로 피보나치 수열을 계산할 때 &lt;code&gt;+&lt;/code&gt; 대신 자릿수에 관계 없이 계산할 수 있는 &lt;code&gt;+&#39;&lt;/code&gt;를 사용해야 한다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>순열 구하기</title>
+      <link>http://ntalbs.github.io/2015/permutations/</link>
+      <pubDate>Fri, 17 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/permutations/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://ntalbs.github.io/2015/project-euler-024/&#34;&gt;프로젝트 오일러 24번&lt;/a&gt;은 &lt;code&gt;clojure.math.combinatorics&lt;/code&gt;에 있는 &lt;code&gt;nth-permutation&lt;/code&gt;을 이용해 문제를 너무 쉽게 풀었다. 그런데 순열을 직접 구하려면 어떻게 해야 할까?&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 24</title>
+      <link>http://ntalbs.github.io/2015/project-euler-024/</link>
+      <pubDate>Fri, 17 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-024/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;0, 1, 2, 3, 4, 5, 6, 7, 8, 9로 만들 수 있는 1,000,000번째 사전식 순열은?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=24&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=24&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code&gt;clojure.math.combinatorics&lt;/code&gt;의 &lt;code&gt;nth-permutation&lt;/code&gt; 함수를 이용하면 바로 답을 구할 수 있다. 다만 인덱스가 0부터 시작한다는 점에 주의해야 한다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>정수 자릿수 구하기</title>
+      <link>http://ntalbs.github.io/2015/number-of-digits/</link>
+      <pubDate>Tue, 14 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/number-of-digits/</guid>
+      <description>&lt;p&gt;어떤 정수가 몇 자리 수인지 어떻게 판단할 수 있을까? 몇 가지 방법이 떠오른다. 사람에 따라 다르겠지만 내게 가장 먼저 떠오른 방법은 로그 함수를 사용하는 것이었다. 정수를 문자열로 바꾼 다음 문자열의 길이를 구하는 방법도 생각할 수 있다. 10으로 몇 번 나눌 수 있는지 확인하는 방법도 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 23</title>
+      <link>http://ntalbs.github.io/2015/project-euler-023/</link>
+      <pubDate>Wed, 24 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-023/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;두 초과수의 합으로 나타낼 수 없는 모든 양의 정수의 합은?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=23&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=23&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;초과수인지 판단하려면 진약수의 합을 알아야 한다. &lt;a href=&#34;http://ntalbs.github.io/2015/project-euler-021/&#34;&gt;문제 21&lt;/a&gt;에서 구현한 진약수의 합을 구하는 함수를 이용하면 다음과 같이 주어진 수가 초과수인지 판단하는 함수를 간단히 구현할 수 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 22</title>
+      <link>http://ntalbs.github.io/2015/project-euler-022/</link>
+      <pubDate>Sat, 20 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-022/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;영문 이름 점수 합계 구하기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=22&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=22&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;수학적 사고나 특별한 기교가 필요한 문제는 아니다. 그냥 문제에서 설명한 대로 처리하면 답을 얻을 수 있다. &lt;code&gt;names.txt&lt;/code&gt; 파일을 열어보면 다음과 같이 이름이 따옴표로 묶여 있고 각 이름 사이에는 쉼표가 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 21</title>
+      <link>http://ntalbs.github.io/2015/project-euler-021/</link>
+      <pubDate>Thu, 18 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-021/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;10000 이하 모든 친화수(우애수)의 합은?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=21&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=21&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;어떤 수가 친화수인지 판단하는 함수가 있다면 1부터 10,000까지의 수 중에서 친화수만 &lt;code&gt;filter&lt;/code&gt;해 더하면 된다. 어떤 수가 친화수인지 판단하는 함수를 구현하려면 몇 가지 보조 함수가 필요하다. 자신을 제외한 약수를 진약수(proper divisor)라 하는데, 진약수의 합 $d(n)$을 구하는 방법에 따라 풀이가 갈린다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>if, cond, condp, case</title>
+      <link>http://ntalbs.github.io/2015/if-cond-condp-case/</link>
+      <pubDate>Thu, 11 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/if-cond-condp-case/</guid>
+      <description>&lt;p&gt;흔히 접하는 프로그래밍 언어에는 &lt;code&gt;if&lt;/code&gt;~&lt;code&gt;else if&lt;/code&gt;가 연달아 나온다고 해서 코드 모양이 이상해지지는 않는다. 다음 Java 코드와 같이 그냥 순서대로 쓰면 되고 코드를 읽는 것도 어렵지 않다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 20</title>
+      <link>http://ntalbs.github.io/2015/project-euler-020/</link>
+      <pubDate>Wed, 20 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-020/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;$100!$ 의 자릿수를 모두 더하면?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=20&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=20&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;100!은 150자리가 넘는 매우 큰 수라 기본 데이터 타입으로는 이 문제를 해결할 수 없다. 물론 &lt;code&gt;BigInt&lt;/code&gt;를 사용하면 아주 쉽게 문제를 풀 수 있다. &lt;a href=&#34;http://ntalbs.github.io/2015/project-euler-016/&#34;&gt;문제 16&lt;/a&gt;, &lt;a href=&#34;http://ntalbs.github.io/2015/project-euler-013/&#34;&gt;문제 13&lt;/a&gt;에서 썼던 방법을 응용하면 &lt;code&gt;BigInt&lt;/code&gt;를 사용하지 않고 문제를 풀 수 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 19</title>
+      <link>http://ntalbs.github.io/2015/project-euler-019/</link>
+      <pubDate>Fri, 15 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-019/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;20세기에서, 매월 1일이 일요일인 경우는 몇 번?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=19&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=19&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Java에서 제공하는 &lt;code&gt;Calendar&lt;/code&gt;를 사용하면 쉽게 답을 구할 수 있다. 그러나 &lt;code&gt;Calender&lt;/code&gt;는 가변객체(mutable object)인데다 클래스도 잘못 설계되어 있어 코드 모양이 어그러진다. Java 8부터는 거지 같은 &lt;code&gt;Calendar&lt;/code&gt; 대신 &lt;code&gt;LocalDate&lt;/code&gt;를 사용할 수 있다. &lt;code&gt;LocalDate&lt;/code&gt;는 값 객체로 Clojure에서 사용해도 코드가 어그러지지 않는다. 조금 더 생각하면 라이브러리의 도움을 받지 않고도 풀 수 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 18</title>
+      <link>http://ntalbs.github.io/2015/project-euler-018/</link>
+      <pubDate>Tue, 12 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-018/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;삼각형을 따라 내려가면서 합이 최대가 되는 경로 찾기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=18&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=18&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;문제를 언듯 보면 합이 최대가 되는 경로를 찾아야 할 것 같지만, 명시적으로 경로를 구하지 않더라도 경로의 합이 최대가 되는 값을 찾을 수 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 17</title>
+      <link>http://ntalbs.github.io/2015/project-euler-017/</link>
+      <pubDate>Tue, 14 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-017/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;1부터 1000까지 영어로 썼을 때 사용된 글자의 개수는?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=17&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=17&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;별로 어려운 문제는 아니다. 다음과 같은 절차로 풀 수 있다.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;숫자를 입력하면 그 수에 대한 영어 문자열을 리턴하는 함수를 작성한 다음&lt;/li&gt;
+&lt;li&gt;이 함수를 이용해 1~1000을 영어 문자열로 매핑&lt;/li&gt;
+&lt;li&gt;문자열을 모두 연결해 문자열에서 공백과 하이픈(&amp;lsquo;-&amp;rsquo;)을 제거&lt;/li&gt;
+&lt;li&gt;3에서 구한 문자열의 길이 계산&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 16</title>
+      <link>http://ntalbs.github.io/2015/project-euler-016/</link>
+      <pubDate>Wed, 08 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-016/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;$2^{1000}$의 각 자릿수를 모두 더하면?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=16&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=16&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;$2^{1000}$은 300자리가 넘는 매우 큰 수다. &lt;code&gt;int&lt;/code&gt;, &lt;code&gt;long&lt;/code&gt;과 같은 기본 데이터 타입에는 이렇게 큰 수를 담을 수 없다. &lt;code&gt;double&lt;/code&gt;은 $10^{308}$ 이상의 매우 큰 수를 표현할 수 있지만 유효자릿수가 15~17자리여서 $2^{1000}$의 모든 자릿수를 담을 수 없다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 15</title>
+      <link>http://ntalbs.github.io/2015/project-euler-015/</link>
+      <pubDate>Mon, 06 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-015/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;20×20 격자의 좌상단에서 우하단으로 가는 경로의 수?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=15&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=15&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;격자에서 오른쪽으로 이동하는 경로를 &lt;code&gt;r&lt;/code&gt;(right), 아래쪽으로 이동하는 경로를 &lt;code&gt;d&lt;/code&gt;(down)라 하면 2x2 격자의 좌상단에서 우하단으로 가는 경로는 다음과 같은 식으로 표현할 수 있다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 14</title>
+      <link>http://ntalbs.github.io/2015/project-euler-014/</link>
+      <pubDate>Fri, 03 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-014/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;백만 이하로 시작하는 우박수 중 가장 긴 과정을 거치는 것은?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=14&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=14&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;주어진 양의 정수 n에 대한 우박수열을 구하는 함수를 만든 다음, 1백만까지 우박수열을 구하면서 수열의 길이가 가장 길어지는 n을 구하면 된다. 우박수열을 구하는 함수는 다음과 같이 간단히 작성할 수 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 13</title>
+      <link>http://ntalbs.github.io/2015/project-euler-013/</link>
+      <pubDate>Wed, 18 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-013/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;50자리 숫자 100개를 더한 값의 첫 10자리 구하기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=13&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=13&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code&gt;Long.MAX_VALUE&lt;/code&gt;는 9223372036854775807로 20자리 수를 표현할 수 있다. 문제에서 나오는 숫자는 50자리므로 &lt;code&gt;Long&lt;/code&gt;의 표현 범위를 벗어난다. 이런 수를 100개 더하려면&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 12</title>
+      <link>http://ntalbs.github.io/2015/project-euler-012/</link>
+      <pubDate>Tue, 17 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-012/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;500개 이상의 약수를 갖는 가장 작은 삼각수는?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=12&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=12&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;삼각수의 시퀀스를 만들어 앞에서부터 하나씩 약수의 개수를 조사하면 될 것 같다. &lt;a href=&#34;http://ntalbs.github.io/2015/project-euler-001/&#34;&gt;문제 1&lt;/a&gt;에서 1부터 n까지 정수 합을 구하는 공식을 살펴봤다. n번째 삼각수는 1부터 n까지 합이므로 공식을 이용해 다음과 같이 n번째 삼각수를 구하는 함수를 만들 수 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 11</title>
+      <link>http://ntalbs.github.io/2015/project-euler-011/</link>
+      <pubDate>Tue, 10 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-011/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;20×20 격자에서 연속된 네 숫자의 곱 중 최대값?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=11&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=11&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ntalbs.github.io/2015/project-euler-008/&#34;&gt;문제 8&lt;/a&gt;에서 살펴봤듯이 &lt;code&gt;partition&lt;/code&gt; 함수를 사용하면 연속된 숫자를 네 개씩 묶어낼 수 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 10</title>
+      <link>http://ntalbs.github.io/2015/project-euler-010/</link>
+      <pubDate>Mon, 09 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-010/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;이백만 이하 소수의 합은?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=10&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=10&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ntalbs.github.io/2015/project-euler-007/&#34;&gt;문제 7&lt;/a&gt;에서 어떤 수가 소수인지 판별하는 함수와 Clojure 라이브버리로 제공되는 소수의 지연 시퀀스를 살펴봤다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 9</title>
+      <link>http://ntalbs.github.io/2015/project-euler-009/</link>
+      <pubDate>Thu, 05 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-009/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;$a + b + c = 1000$ 이 되는 피타고라스 수?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=9&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=9&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;피타고라스 수란 $a^2 + b^2 = c^2$을 만족하는 세 자연수 쌍 $(a, b, c)$를 말한다. $(3, 4, 5), (5, 12, 13)$ 등이 잘 알려진 피타고라스 수다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 8</title>
+      <link>http://ntalbs.github.io/2015/project-euler-008/</link>
+      <pubDate>Wed, 25 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-008/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;1000자리 숫자 안에서 이어지는 5자리 숫자의 곱 중 최대값은?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=8&#34;&gt;[국어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;1,000자리 숫자라고 하지만 1,000개의 숫자 리스트로 보는 편이 문제를 풀기에 더 좋을 것 같다. Clojure에서는 문자열도 시퀀스로 다룰 수 있으므로 &lt;code&gt;bigint&lt;/code&gt;를 쓰기 보다는 문자열로 만들어 작업하는 게 더 편하다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 7</title>
+      <link>http://ntalbs.github.io/2015/project-euler-007/</link>
+      <pubDate>Tue, 10 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-007/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;10001번째의 소수?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=7&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=7&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes&#34;&gt;에라토스테네스 체(Sieve of Eratosthenes)&lt;/a&gt;를 이용하면 소수 목록을 구할 수 있지만, 이 문제의 경우 체의 범위를 어디까지 해야 할지가 애매하다. 대충 50,000 정도까지 해보고 안 되면 다시 100,000 정도까지 해보는 식으로 범위를 늘려가며 문제를 풀 수도 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 6</title>
+      <link>http://ntalbs.github.io/2015/project-euler-006/</link>
+      <pubDate>Mon, 19 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-006/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;1부터 100까지 &amp;ldquo;제곱의 합&amp;rdquo;과 &amp;ldquo;합의 제곱&amp;rdquo;의 차는?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=6&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=6&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;문제가 단순하고 범위도 적어 아무렇게나 풀어도 쉽게 답을 구할 수 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 5</title>
+      <link>http://ntalbs.github.io/2015/project-euler-005/</link>
+      <pubDate>Fri, 16 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-005/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;1 ~ 20 사이의 어떤 수로도 나누어 떨어지는 가장 작은 수는?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=5&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=5&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;1~20의 최소공배수(Least Common Multiple)를 구하는 문제다. 최소공배수는 다음 식으로 간단히 구할 수 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 4</title>
+      <link>http://ntalbs.github.io/2015/project-euler-004/</link>
+      <pubDate>Tue, 13 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-004/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;세자리 수를 곱해 만들 수 있는 가장 큰 대칭수는?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=4&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=4&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;세 자리 정수는 100부터 999까지다. 따라서 무식하게 풀어로 루프 회수가 1백만 번을 넘지 않으며, $a \times b = b \times a$임을 고려해 중복을 제거하면 루프 회수를 절반으로 줄일 수 있다. 따라서 대충 풀어도 금방 답을 구할 수 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 3</title>
+      <link>http://ntalbs.github.io/2015/project-euler-003/</link>
+      <pubDate>Sun, 11 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-003/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;600851475143의 가장 큰 소인수는?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=3&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=3&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;백만 정도에 대해서는 루프를 돌려도 비교적 빠르게 답을 얻을 수 있지만, 천만이 넘는 경우에는 무식하게 루프를 돌리는 방법이 통하지 않는다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 2</title>
+      <link>http://ntalbs.github.io/2015/project-euler-002/</link>
+      <pubDate>Thu, 08 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-002/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;피보나치 수열에서 4백만 이하이면서 짝수인 항의 합은?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=2&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=2&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;피보나치 수열의 정의는 다음과 같다.&lt;/p&gt;
+
+&lt;div&gt;$$
+\begin{aligned}
+F_n &amp;= F_{n-1} + F_{n-2}, \\
+F_2 &amp;= F_1 = 1
+\end{aligned}
+$$&lt;/div&gt;
+
+&lt;p&gt;구현하기 쉬워 보인다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>프로젝트 오일러 1</title>
+      <link>http://ntalbs.github.io/2015/project-euler-001/</link>
+      <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2015/project-euler-001/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;1000보다 작은 자연수 중에서 3 또는 5의 배수를 모두 더하면?
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=1&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=1&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;프로젝트 오일러 문제 중 가장 쉬운 문제일 것이다. 처음에는 문제가 이렇게 쉽지만 뒤로 갈수록 조금씩 어려워져 나중에는 문제가 무슨 뜻인지 이해하기도 힘들어진다. 이 문제는 너무 단순해 아무렇게나 풀어도 답을 구할 수 있다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>함수형 언어로 구현한 퀵정렬</title>
+      <link>http://ntalbs.github.io/2014/quicksort/</link>
+      <pubDate>Tue, 11 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2014/quicksort/</guid>
+      <description>&lt;blockquote class=&#34;blockquote-reverse&#34;&gt;언어의 한계가 사고의 한계다.
+- 비트겐슈타인&lt;/blockquote&gt;
+
+&lt;p&gt;아주 오래 전에, 그러니까 C/C++, Java 외 다른 언어는 공부할 필요가 없다고 생각했던 때에, 잡지에서 다음과 같은  코드를 본 적이 있다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-haskell&#34;&gt;qsort [] = []
+qsort (p:xs) = qsort [y | y &amp;lt;- xs, y &amp;lt; p] ++ [p] ++ qsort [y | y &amp;lt;- xs, y &amp;gt;= p]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>환경변수에 설정 정보 저장하기</title>
+      <link>http://ntalbs.github.io/2014/config-vars/</link>
+      <pubDate>Fri, 08 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2014/config-vars/</guid>
+      <description>&lt;p&gt;웹 애플리케이션에서 데이터베이스 계정 정보나 URL, 외부 서비스에 대한 인증 정보는 어떻게 관리하는 것이 좋을까? 설정 파일을 만들어 여기에 관리하는 방법도 있지만, 환경에 따라 설정이 변해야 하는 경우 관리가 까다로워 진다. 어떻게 하는 게 좋을까?
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>매클로린 급수를 이용한 sin(x) 구현</title>
+      <link>http://ntalbs.github.io/2014/implementing-sin-x/</link>
+      <pubDate>Mon, 28 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2014/implementing-sin-x/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://ntalbs.github.io/2014/newtons-method/&#34;&gt;뉴튼 법을 이용한 근사값 구하기&lt;/a&gt;에서 매클로린 급수를 이용해 $\sin x$와 같은 초월함수의 값을 구할 수 있다고 했다. 여기서 clojure를 이용해 직접 구현해보려 한다. $\sin x$의 매클로린 급수는 다음과 같다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>infix 매크로</title>
+      <link>http://ntalbs.github.io/2014/infix-macro/</link>
+      <pubDate>Wed, 25 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2014/infix-macro/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://ntalbs.github.io/2014/clojure-fallacy/&#34;&gt;Clojure에 대한 오해&lt;/a&gt;에서 LISP 언어가 널리 사용되지 않는 주요 이유 중 하나로 &lt;strong&gt;전위 표기법&lt;/strong&gt;(prefix notation)을 들었다. LISP의 표현력이 뛰어난 이유 중 하나가 전위 표기법 때문인데 이것 때문에 LISP이 널리 사용되지 못한다니 역설이 아닐 수 없다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>구글 앱 엔진에 Clojure 앱 올리기</title>
+      <link>http://ntalbs.github.io/2014/clojure-gae-howto/</link>
+      <pubDate>Wed, 14 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2014/clojure-gae-howto/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://cloud.google.com/products/app-engine/&#34;&gt;구글 앱 엔진(Google App Engine)&lt;/a&gt;은 Clojure를 위한 SDK를 따로 제공하지는 않지만 Clojure는 JVM에서 실행되므로 Java가 실행되는 환경이라면 Clojure도 실행할 수 있다.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>다단계 번호 매기기</title>
+      <link>http://ntalbs.github.io/2014/numbering-multi-level-list/</link>
+      <pubDate>Wed, 16 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2014/numbering-multi-level-list/</guid>
+      <description>요즘은 간단한 로직을 테스트할 때 Clojure로 코드를 작성해 확인해보곤 한다. 다단계 번호매기기도 Clojure를 사용해 로직을 구현해보고 생각대로 잘 되는 것을 확인한 다음 JavaScript로 옮기는 방법을 사용했다.
+MS워드에는 다단계 번호매기기 기능을 사용하면 다음과 같은 식으로 다단계 번호를 매길 수 있다. 1. 항목 1 1.1 항목 11 1.2 항목 12 1.2.1 항목 121 1.2.2 항목 122 1.3 항목 13 2. 항목 2  다단계 번호는 어떻게 구현할 수 있을까? 문서 모델이 다음과 같이 되어 있다면 목록(list)을 선택해 수준(level)의 배열을 만들어 각 수준에 맞는 번호를 생성하면 될 것 같다.</description>
+    </item>
+    
+    <item>
+      <title>Clojure에 대한 오해</title>
+      <link>http://ntalbs.github.io/2014/clojure-fallacy/</link>
+      <pubDate>Tue, 08 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2014/clojure-fallacy/</guid>
+      <description>Clojure는 LISP 방언으로 LISP이 가진 한계(?)를 그대로 가지고 있다. 여기서 한계란 언어 자체의 한계를 뜻하는 것이 아니라 LISP을 사용하지 않는 사람들의 선입견, 오해, 편견을 말하는 것이다. 알고나면 오해였다는 것을 깨닫겠지만 이 선입견을 극복하기는 쉬워 보이지 않는다. 사람들이 LISP에 거부감을 느끼는 가장 큰 이유는 다음 두 가지가 아닐까 생각한다.  괄호, 괄호, 괄호 전위 표기법 (prefix notation)  괄호 괄호에 대해서는 억울한 면이 있다. 사람들은 코드 블록 뒤에 ))))와 같이 괄호가 무더기로 붙어 있는 것을 보고 기겁을 하지만, 알고보면 중괄호({와 })를 사용하는 언어에 비해 괄호가 많은 것이 결코 아니다.</description>
+    </item>
+    
+  </channel>
+</rss>

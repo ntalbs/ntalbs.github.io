@@ -1,21 +1,190 @@
-<!DOCTYPE html><html><head><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>프로젝트 오일러 77 | ntalbs&#39; stuff</title><meta name="description" content=""><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="ntalbs' stuff"></head><body class="home-template"><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button> <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archives">Archives</a></li><li><a href="/tags">Tags</a></li><li><a href="/about">About</a></li></ul></div></div></nav><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">프로젝트 오일러 77</div></div></div><header class="site-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2016-09-11T23:00:00.000Z" itemprop="datePublished">2016-09-12</time> on <a href="/tags/Project-Euler/">Project-Euler</a><a href="/tags/Clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 77</h1></header><section class="post-content"><blockquote><p>소수의 합으로 나타내는 방법이 5000가지가 넘는 최초의 숫자는?<br>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=77" target="_blank" rel="noopener">[국어]</a> <a href="https://projecteuler.net/problem=77" target="_blank" rel="noopener">[영어]</a></p></blockquote><p>이 문제도 바로 전에 풀었던 <a href="/2016/project-euler-076/">문제 76</a>과 마찬가지로 <a href="/2015/project-euler-031/">문제 31</a>비슷하다. 여기서는 동전의 종류가 소수라고 생각하면 된다. 따라서 인덱스를 넣으면 소수가 나오는 맵을 만들어 두면 문제 풀이에 활용할 수 있다. 소수는 100개 정도 준비하면 충분할 것 같다.<br><a id="more"></a></p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">ns</span></span> p077</span><br><span class="line">    (<span class="symbol">:require</span> [clojure.contrib.lazy-seqs <span class="symbol">:refer</span> [primes]]))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">def</span></span> limit <span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">def</span></span> i-&gt;p</span><br><span class="line">  (<span class="name"><span class="builtin-name">into</span></span> &#123;&#125; (<span class="name"><span class="builtin-name">take</span></span> limit (<span class="name">map-indexed</span> (<span class="name"><span class="builtin-name">fn</span></span> [i p] [(<span class="name"><span class="builtin-name">inc</span></span> i) p]) primes))))</span><br></pre></td></tr></table></figure><p>그리고 문제 31의 함수를 조금 변형하면 주어진 수를 소수의 합으로 나타내는 방법을 세는 함수를 만들 수 있다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn-</span></span> cc [n i]</span><br><span class="line">  (<span class="name"><span class="builtin-name">cond</span></span> (<span class="name"><span class="builtin-name">=</span></span> n <span class="number">0</span>) <span class="number">1</span></span><br><span class="line">        (<span class="name"><span class="builtin-name">&lt;</span></span> n <span class="number">0</span>) <span class="number">0</span></span><br><span class="line">        (<span class="name"><span class="builtin-name">=</span></span> i <span class="number">0</span>) <span class="number">0</span></span><br><span class="line">        <span class="symbol">:else</span> (<span class="name"><span class="builtin-name">+</span></span> (<span class="name">cc</span> n (<span class="name"><span class="builtin-name">dec</span></span> i)) (<span class="name">cc</span> (<span class="name"><span class="builtin-name">-</span></span> n (<span class="name">i-&gt;p</span> i)) i))))</span><br></pre></td></tr></table></figure><p>이제 이 함수를 이용해 숫자를 증가시키면서 소수의 합으로 나타내는 방법을 세다가, 방법의 가지 수가 처음으로 5000을 넘는 수를 찾으면 된다.</p><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> solve []</span><br><span class="line">  (<span class="name"><span class="builtin-name">-&gt;&gt;</span></span> (<span class="name"><span class="builtin-name">iterate</span></span> inc <span class="number">2</span>)</span><br><span class="line">       (<span class="name"><span class="builtin-name">map</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [n] [n (<span class="name">cc</span> n limit)]))</span><br><span class="line">       (<span class="name"><span class="builtin-name">drop-while</span></span> (<span class="name"><span class="builtin-name">fn</span></span> [[_ c]] (<span class="name"><span class="builtin-name">&lt;=</span></span> c <span class="number">5000</span>)))</span><br><span class="line">       ffirst))</span><br></pre></td></tr></table></figure><p>실행 결과는 다음과 같다.</p><pre class="console">
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>프로젝트 오일러 77 @ntalbs&#39; stuff</title>
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/googlecode.min.css">
+
+
+  </head>
+  <body>
+    <div id="progress">
+  <div id="bar"></div>
+  <div class="container">
+    <div id="scroll-title">프로젝트 오일러 77</div>
+  </div>
+</div>
+
+    <nav class="navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+      <a class="navbar-brand" href="/">@ntalbs&#39; stuff</a>
+    </div>
+    <div class="navbar-items collapsed" id="nav-items">
+      <ul>
+        
+        <li><a href="/archive">Archive</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+  </div>
+</header>
+
+    <main class="container" role="main">
+      <article class="post">
+        <header>
+          <p class="post-meta">
+            <time datetime="2016-09-12" itemprop="datePublished">2016-09-12</time>
+            on
+            
+            <a href="/tags/">Project-Euler</a>
+            
+            <a href="/tags/">Clojure</a>
+            
+          </p>
+          <h1 class="post-title">
+            프로젝트 오일러 77 
+          </h1>
+        </header>
+        <section class="post-content">
+          <blockquote>
+<p>소수의 합으로 나타내는 방법이 5000가지가 넘는 최초의 숫자는?
+문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=77">[국어]</a> <a href="https://projecteuler.net/problem=77">[영어]</a></p>
+</blockquote>
+
+<p>이 문제도 바로 전에 풀었던 <a href="/2016/project-euler-076/">문제 76</a>과 마찬가지로 <a href="/2015/project-euler-031/">문제 31</a>비슷하다. 여기서는 동전의 종류가 소수라고 생각하면 된다. 따라서 인덱스를 넣으면 소수가 나오는 맵을 만들어 두면 문제 풀이에 활용할 수 있다. 소수는 100개 정도 준비하면 충분할 것 같다.
+</p>
+
+<pre><code class="language-clojure">(ns p077
+    (:require [clojure.contrib.lazy-seqs :refer [primes]]))
+
+(def limit 100)
+
+(def i-&gt;p
+  (into {} (take limit (map-indexed (fn [i p] [(inc i) p]) primes))))
+</code></pre>
+
+<p>그리고 문제 31의 함수를 조금 변형하면 주어진 수를 소수의 합으로 나타내는 방법을 세는 함수를 만들 수 있다.</p>
+
+<pre><code class="language-clojure">(defn- cc [n i]
+  (cond (= n 0) 1
+        (&lt; n 0) 0
+        (= i 0) 0
+        :else (+ (cc n (dec i)) (cc (- n (i-&gt;p i)) i))))
+</code></pre>
+
+<p>이제 이 함수를 이용해 숫자를 증가시키면서 소수의 합으로 나타내는 방법을 세다가, 방법의 가지 수가 처음으로 5000을 넘는 수를 찾으면 된다.</p>
+
+<pre><code class="language-clojure">(defn solve []
+  (-&gt;&gt; (iterate inc 2)
+       (map (fn [n] [n (cc n limit)]))
+       (drop-while (fn [[_ c]] (&lt;= c 5000)))
+       ffirst))
+</code></pre>
+
+<p>실행 결과는 다음과 같다.</p>
+
+<pre class="console">
 p077=> (time (solve))
 "Elapsed time: 87.056027 msecs"
 ?1
-</pre><h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p077.clj" target="_blank" rel="noopener">프로젝트 오일러 77 풀이 소스 코드</a></li><li><a href="/2016/project-euler-076/">프로젝트 오일러 76</a></li><li><a href="/2015/project-euler-031/">프로젝트 오일러 31</a></li></ul><div class="button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a> <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a></div></section><footer class="post-footer"><nav id="article-nav"><a href="/2016/on-call/" id="article-nav-newer" class="article-nav-link-wrap"><span class="article-nav-title">On Call</span> </a><a href="/2016/project-euler-076/" id="article-nav-older" class="article-nav-link-wrap"><span class="article-nav-title">프로젝트 오일러 76</span></a></nav><section id="comment"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></section></footer></article></main><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><footer class="site-footer"><div class="inner"><section class="copyright">&copy; 2008-2018 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="http://hexo.io">Hexo</a></section></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="/js/jquery.fitvids.js"></script><script src="/js/index.js"></script><script>!function(e,a,t,n,g,c,s){e.GoogleAnalyticsObject=g,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),s=a.getElementsByTagName(t)[0],c.async=1,c.src="//www.google-analytics.com/analytics.js",s.parentNode.insertBefore(c,s)}(window,document,"script",0,"ga"),ga("create","UA-2098194-3","auto"),ga("require","displayfeatures"),ga("send","pageview")</script><script type="text/javascript">var disqus_shortname="ntalbs-stuff";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+disqus_shortname+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config("");</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });</script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+</pre>
+
+<h2 id="참고">참고</h2>
+
+<ul>
+<li><a href="https://github.com/ntalbs/euler/blob/master/src/p077.clj">프로젝트 오일러 77 풀이 소스 코드</a></li>
+<li><a href="/2016/project-euler-076/">프로젝트 오일러 76</a></li>
+<li><a href="/2015/project-euler-031/">프로젝트 오일러 31</a></li>
+</ul>
+        </section>
+        <footer class="post-footer">
+          
+          <div class="social button-box">
+            
+            <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+            <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            
+          </div>
+          
+          <nav id="article-nav">
+            
+            <a class="article-nav-link-wrap previous" href="http://ntalbs.github.io/2016/on-call/" id="article-nav-newer"> On Call</a>
+            
+            
+            <a class="article-nav-link-wrap next" href="http://ntalbs.github.io/2016/project-euler-076/" id="article-nav-older"> 프로젝트 오일러 76</a>
+            
+          </nav>
+        </footer>
+      </article>
+    </main>
+    
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+     var disqus_shortname = 'ntalbs-stuff';
+     (function() {
+       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+    <section class="section">
+  <div class="container has-text-centered">
+    <p></p>
+  </div>
+</section>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/clojure.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/sql.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src=http://ntalbs.github.io/js/index.js type="text/javascript"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+   tex2jax: {
+     inlineMath: [['$','$']],
+     displayMath: [['$$','$$']],
+     processEscapes: true,
+     processEnvironments: true,
+     skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code'],
+     TeX: { equationNumbers: { autoNumber: "AMS" },
+            extensions: ["AMSmath.js", "AMSsymbols.js"] }
+   }
+ });
+</script>
+
+  </body>
+</html>
