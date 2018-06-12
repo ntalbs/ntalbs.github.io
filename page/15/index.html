@@ -70,9 +70,12 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-             1000자리 숫자 안에서 이어지는 5자리 숫자의 곱 중 최대값은? 문제 자세히 보기: [국어]
- 1,000자리 숫자라고 하지만 1,000개의 숫자 리스트로 보는 편이 문제를 풀기에 더 좋을 것 같다. Clojure에서는 문자열도 시퀀스로 다룰 수 있으므로 bigint를 쓰기 보다는 문자열로 만들어 작업하는 게 더 편하다.
+            <blockquote>
+<p>1000자리 숫자 안에서 이어지는 5자리 숫자의 곱 중 최대값은?
+문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=8">[국어]</a></p>
+</blockquote>
 
+<p>1,000자리 숫자라고 하지만 1,000개의 숫자 리스트로 보는 편이 문제를 풀기에 더 좋을 것 같다. Clojure에서는 문자열도 시퀀스로 다룰 수 있으므로 <code>bigint</code>를 쓰기 보다는 문자열로 만들어 작업하는 게 더 편하다.</p>
           </p>
           
           <p>
@@ -101,9 +104,12 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-             10001번째의 소수? 문제 자세히 보기: [국어] [영어]
- 에라토스테네스 체(Sieve of Eratosthenes)를 이용하면 소수 목록을 구할 수 있지만, 이 문제의 경우 체의 범위를 어디까지 해야 할지가 애매하다. 대충 50,000 정도까지 해보고 안 되면 다시 100,000 정도까지 해보는 식으로 범위를 늘려가며 문제를 풀 수도 있다.
+            <blockquote>
+<p>10001번째의 소수?
+문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=7">[국어]</a> <a href="https://projecteuler.net/problem=7">[영어]</a></p>
+</blockquote>
 
+<p><a href="http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">에라토스테네스 체(Sieve of Eratosthenes)</a>를 이용하면 소수 목록을 구할 수 있지만, 이 문제의 경우 체의 범위를 어디까지 해야 할지가 애매하다. 대충 50,000 정도까지 해보고 안 되면 다시 100,000 정도까지 해보는 식으로 범위를 늘려가며 문제를 풀 수도 있다.</p>
           </p>
           
           <p>
@@ -130,8 +136,7 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-            코드를 작성하다 보면 작은 코드 조각을 간단히 테스트해보고 싶을 때가 자주 생긴다. 간단한 계산이 필요할 수도 있고 특정 함수를 호출했을 때의 결과를 확인하고 싶을 수도 있다. 코드가 어떻게 동작하는지 간단히 확인해보고 싶을 수도 있다. REPL이 있다면 이런 궁금한 점을 즉시 확인할 수 있다. 그냥 REPL에서 코드를 입력하고 결과를 확인하면 된다. Clojure나 Scala는 REPL을 제공한다. Ruby나 Python 같은 언어도 REPL을 제공한다. JavaScript도 브라우저 콘솔이나 node.js를 REPL로 사용할 수 있다.
-
+            <p>코드를 작성하다 보면 작은 코드 조각을 간단히 테스트해보고 싶을 때가 자주 생긴다. 간단한 계산이 필요할 수도 있고 특정 함수를 호출했을 때의 결과를 확인하고 싶을 수도 있다. 코드가 어떻게 동작하는지 간단히 확인해보고 싶을 수도 있다. REPL이 있다면 이런 궁금한 점을 즉시 확인할 수 있다. 그냥 REPL에서 코드를 입력하고 결과를 확인하면 된다. Clojure나 Scala는 REPL을 제공한다. Ruby나 Python 같은 언어도 REPL을 제공한다. JavaScript도 브라우저 콘솔이나 node.js를 REPL로 사용할 수 있다.</p>
           </p>
           
           <p>
@@ -158,10 +163,19 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-            코드를 편집하다 보면 여러 줄을 한 줄로 합치고 싶을 때가 종종 생긴다. 예를 들어 다음과 같은 코드가 있다고 하자.
-func(arg1, arg2, arg3);  이걸 다음과 같이 바꾸고 싶다.
-func(arg1, arg2, arg3);  
+            <p>코드를 편집하다 보면 여러 줄을 한 줄로 합치고 싶을 때가 종종 생긴다. 예를 들어 다음과 같은 코드가 있다고 하자.</p>
 
+<pre><code class="language-js">func(arg1,
+     arg2,
+     arg3);
+</code></pre>
+
+<p>이걸 다음과 같이 바꾸고 싶다.</p>
+
+<pre><code class="language-js">func(arg1, arg2, arg3);
+</code></pre>
+
+<p></p>
           </p>
           
           <p>
@@ -188,8 +202,7 @@ func(arg1, arg2, arg3);
         </header>
         <section class="post-excerpt">
           <p>
-            Sublime Text 에디터 홈페이지에 있는 데모 화면을 보고 감탄했던 적이 있다. 특히 데모 2/6에 감탄해 Emacs에서 비슷하게 해보려 했지만 성공하지 못했다. 그동안 에디터가 많이 발전했음을 느끼며 주 사용 에디터를 Sublime Text로 바꿔볼까 생각했다. 사용해보고 마음에 들면 기꺼이 정품을 구입할 생각이었다.
-
+            <p><a href="http://www.sublimetext.com/">Sublime Text 에디터</a> 홈페이지에 있는 데모 화면을 보고 감탄했던 적이 있다. 특히 데모 2/6에 감탄해 Emacs에서 비슷하게 해보려 했지만 성공하지 못했다. 그동안 에디터가 많이 발전했음을 느끼며 주 사용 에디터를 Sublime Text로 바꿔볼까 생각했다. 사용해보고 마음에 들면 기꺼이 정품을 구입할 생각이었다.</p>
           </p>
           
           <p>
@@ -218,9 +231,12 @@ func(arg1, arg2, arg3);
         </header>
         <section class="post-excerpt">
           <p>
-             1부터 100까지 &ldquo;제곱의 합&rdquo;과 &ldquo;합의 제곱&rdquo;의 차는? 문제 자세히 보기: [국어] [영어]
- 문제가 단순하고 범위도 적어 아무렇게나 풀어도 쉽게 답을 구할 수 있다.
+            <blockquote>
+<p>1부터 100까지 &ldquo;제곱의 합&rdquo;과 &ldquo;합의 제곱&rdquo;의 차는?
+문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=6">[국어]</a> <a href="https://projecteuler.net/problem=6">[영어]</a></p>
+</blockquote>
 
+<p>문제가 단순하고 범위도 적어 아무렇게나 풀어도 쉽게 답을 구할 수 있다.</p>
           </p>
           
           <p>
@@ -249,9 +265,12 @@ func(arg1, arg2, arg3);
         </header>
         <section class="post-excerpt">
           <p>
-             1 ~ 20 사이의 어떤 수로도 나누어 떨어지는 가장 작은 수는? 문제 자세히 보기: [국어] [영어]
- 1~20의 최소공배수(Least Common Multiple)를 구하는 문제다. 최소공배수는 다음 식으로 간단히 구할 수 있다.
+            <blockquote>
+<p>1 ~ 20 사이의 어떤 수로도 나누어 떨어지는 가장 작은 수는?
+문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=5">[국어]</a> <a href="https://projecteuler.net/problem=5">[영어]</a></p>
+</blockquote>
 
+<p>1~20의 최소공배수(Least Common Multiple)를 구하는 문제다. 최소공배수는 다음 식으로 간단히 구할 수 있다.</p>
           </p>
           
           <p>
@@ -278,8 +297,7 @@ func(arg1, arg2, arg3);
         </header>
         <section class="post-excerpt">
           <p>
-            Emacs에서 데이터베이스 쿼리를 할 수 있으면 좋겠다는 생각이 들었다. 지금까지 찾은 방법은 SQLi를 이용한 방법과 edbi를 사용하는 방법 두 가지다. SQLi는 Emacs에 기본 기능을 사용하기 때문에 별도 패키지를 설치하지 않아도 되지만 기능도 기본 수준이다. edbi는 SQLi보다 풍부한 기능을 제공하지만 별도 패키지를 설치해야 하고 cpan으로 RPC::EPC::Service, DBI, 데이터베이스 드라이버 등의 Perl 모듈을 설치해야 한다.
-
+            <p>Emacs에서 데이터베이스 쿼리를 할 수 있으면 좋겠다는 생각이 들었다. 지금까지 찾은 방법은 SQLi를 이용한 방법과 edbi를 사용하는 방법 두 가지다. SQLi는 Emacs에 기본 기능을 사용하기 때문에 별도 패키지를 설치하지 않아도 되지만 기능도 기본 수준이다. edbi는 SQLi보다 풍부한 기능을 제공하지만 별도 패키지를 설치해야 하고 <code>cpan</code>으로 <code>RPC::EPC::Service</code>, <code>DBI</code>, 데이터베이스 드라이버 등의 Perl 모듈을 설치해야 한다.</p>
           </p>
           
           <p>
@@ -308,9 +326,12 @@ func(arg1, arg2, arg3);
         </header>
         <section class="post-excerpt">
           <p>
-             세자리 수를 곱해 만들 수 있는 가장 큰 대칭수는? 문제 자세히 보기: [국어] [영어]
- 세 자리 정수는 100부터 999까지다. 따라서 무식하게 풀어로 루프 회수가 1백만 번을 넘지 않으며, $a \times b = b \times a$임을 고려해 중복을 제거하면 루프 회수를 절반으로 줄일 수 있다. 따라서 대충 풀어도 금방 답을 구할 수 있다.
+            <blockquote>
+<p>세자리 수를 곱해 만들 수 있는 가장 큰 대칭수는?
+문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=4">[국어]</a> <a href="https://projecteuler.net/problem=4">[영어]</a></p>
+</blockquote>
 
+<p>세 자리 정수는 100부터 999까지다. 따라서 무식하게 풀어로 루프 회수가 1백만 번을 넘지 않으며, $a \times b = b \times a$임을 고려해 중복을 제거하면 루프 회수를 절반으로 줄일 수 있다. 따라서 대충 풀어도 금방 답을 구할 수 있다.</p>
           </p>
           
           <p>
@@ -337,8 +358,7 @@ func(arg1, arg2, arg3);
         </header>
         <section class="post-excerpt">
           <p>
-            Eclipse에서 개발할 때 Quick Fix 기능을 자주 사용한다. 입력하던 코드에 빨간색 물결 모양의 밑줄이 표시되면 바로 Cmd+1(윈도우에서는 Ctrl+1)을 누른다. 대부분의 경우 Quick Fix가 제안하는 대로만 해도 문제가 해결된다. 그런데 맥북에어에서 작업할 때는 Cmd+1을 누르려다 Cmd+Q를 누르는 실수를 자주 한다. Cmd+Q는 Mac OS X의 거의 모든 애플리케이션에서 종료 단축키로 사용된다. Q와 1이 가까이 있는 데다 맥북에어는 키보드가 일반 키보드에 비해 조밀하기 때문에 1을 누르려다 실수로 Q를 눌러 의도치 않게 Eclipse가 종료되어 여간 짜증나는 게 아니었다.
-
+            <p>Eclipse에서 개발할 때 Quick Fix 기능을 자주 사용한다. 입력하던 코드에 빨간색 물결 모양의 밑줄이 표시되면 바로 <code>Cmd+1</code>(윈도우에서는 <code>Ctrl+1</code>)을 누른다. 대부분의 경우 Quick Fix가 제안하는 대로만 해도 문제가 해결된다. 그런데 맥북에어에서 작업할 때는 <code>Cmd+1</code>을 누르려다 <code>Cmd+Q</code>를 누르는 실수를 자주 한다. <code>Cmd+Q</code>는 Mac OS X의 거의 모든 애플리케이션에서 종료 단축키로 사용된다. <code>Q</code>와 <code>1</code>이 가까이 있는 데다 맥북에어는 키보드가 일반 키보드에 비해 조밀하기 때문에 <code>1</code>을 누르려다 실수로 <code>Q</code>를 눌러 의도치 않게 Eclipse가 종료되어 여간 짜증나는 게 아니었다.</p>
           </p>
           
           <p>

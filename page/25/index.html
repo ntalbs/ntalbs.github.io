@@ -70,7 +70,8 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-            다음과 같이 하면 exp/imp 도구를 사용해 특정 스키마의 DDL을 추출할 수 있다. 
+            <p>다음과 같이 하면 exp/imp 도구를 사용해 특정 스키마의 DDL을 추출할 수 있다.
+</p>
           </p>
           
           <p>
@@ -101,7 +102,8 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-            Oracle에서는 다음과 같이 connect by절을 사용해 원하는 만큼 row를 만들어낼 수 있다. 
+            <p>Oracle에서는 다음과 같이 <code>connect by</code>절을 사용해 원하는 만큼 row를 만들어낼 수 있다.
+</p>
           </p>
           
           <p>
@@ -132,7 +134,8 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-            오라클에 factorial 함수가 없지만 다음과 같이 구할 수 있다. 
+            <p>오라클에 <code>factorial</code> 함수가 없지만 다음과 같이 구할 수 있다.
+</p>
           </p>
           
           <p>
@@ -163,7 +166,8 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-            개발DB와 테스트DB, 또는 테스트DB와 운영DB간 인덱스를 비교할 때는 다음 쿼리를 사용할 수 있다. 
+            <p>개발DB와 테스트DB, 또는 테스트DB와 운영DB간 인덱스를 비교할 때는 다음 쿼리를 사용할 수 있다.
+</p>
           </p>
           
           <p>
@@ -228,7 +232,8 @@ with a as ( select table_name, column_name, decode(data_type, 'CHAR', data_type|
         </header>
         <section class="post-excerpt">
           <p>
-            select한 결과를 shell에서 참조해야 하는 경우 다음과 같이 하면 된다. 
+            <p>select한 결과를 shell에서 참조해야 하는 경우 다음과 같이 하면 된다.
+</p>
           </p>
           
           <p>
@@ -259,7 +264,8 @@ with a as ( select table_name, column_name, decode(data_type, 'CHAR', data_type|
         </header>
         <section class="post-excerpt">
           <p>
-            문자열 자체에 &amp;가 포함되어 있는 경우 SQL*Plus에서 &amp; 뒤의 단어를 변수로 인식해 그에 대한 값의 입력을 요구한다. 
+            <p>문자열 자체에 <code>&amp;</code>가 포함되어 있는 경우 SQL*Plus에서 <code>&amp;</code> 뒤의 단어를 변수로 인식해 그에 대한 값의 입력을 요구한다.
+</p>
           </p>
           
           <p>
@@ -288,8 +294,7 @@ with a as ( select table_name, column_name, decode(data_type, 'CHAR', data_type|
         </header>
         <section class="post-excerpt">
           <p>
-            현재 우리 운영DB는 db_files 파라미터 값이 매우 작게 잡혀있다. 따라서 빨리 값을 늘려줘야 하는데, 당장 운영중인 DB를 내리고 파라미터 값을 바꿀 수는 없다. 그런데 여기서 궁금증 하나 생겼다. db_files는 데이터 파일 개수만 제한하는 것일까, 아니면 temp 파일도 여기에 포함되는 것일까? 혹시 온라인 리두로그는? 혹시 컨트롤 파일도 포함되는 것일까? 지금까지는 당연히 데이터 파일 수를 제한하는 것이라 생각했었는데, 이런 궁금증이 생기니 확신을 할 수가 없다. 지금까지 명확하게 알지 못하고 작업하다가 사고친 게 어디 한두번이던가?
-
+            <p>현재 우리 운영DB는 <code>db_files</code> 파라미터 값이 매우 작게 잡혀있다. 따라서 빨리 값을 늘려줘야 하는데, 당장 운영중인 DB를 내리고 파라미터 값을 바꿀 수는 없다. 그런데 여기서 궁금증 하나 생겼다. <code>db_files</code>는 데이터 파일 개수만 제한하는 것일까, 아니면 temp 파일도 여기에 포함되는 것일까? 혹시 온라인 리두로그는? 혹시 컨트롤 파일도 포함되는 것일까? 지금까지는 당연히 데이터 파일 수를 제한하는 것이라 생각했었는데, 이런 궁금증이 생기니 확신을 할 수가 없다. 지금까지 명확하게 알지 못하고 작업하다가 사고친 게 어디 한두번이던가?</p>
           </p>
           
           <p>
@@ -318,8 +323,13 @@ with a as ( select table_name, column_name, decode(data_type, 'CHAR', data_type|
         </header>
         <section class="post-excerpt">
           <p>
-            테이블을 다른 테이블스페이스로 옮기려면 다음과 같이 한다.
-ALTER TABLE t MOVE TABLESPACE ts_name;  그러나 LONG형 컬럼을 포함하고 있는 테이블에 위 명령을 실행하면 ora-00997 에러가 발생한다. CTAS를 사용해 테이블 복사를 시도해도 같은 에러가 발생한다. 
+            <p>테이블을 다른 테이블스페이스로 옮기려면 다음과 같이 한다.</p>
+
+<pre><code class="language-sql">ALTER TABLE t MOVE TABLESPACE ts_name;
+</code></pre>
+
+<p>그러나 <code>LONG</code>형 컬럼을 포함하고 있는 테이블에 위 명령을 실행하면 <code>ora-00997</code> 에러가 발생한다. CTAS를 사용해 테이블 복사를 시도해도 같은 에러가 발생한다.
+</p>
           </p>
           
           <p>
@@ -350,7 +360,8 @@ ALTER TABLE t MOVE TABLESPACE ts_name;  그러나 LONG형 컬럼을 포함하고
         </header>
         <section class="post-excerpt">
           <p>
-            SQL*Plus의 프롬프트를 username@INSTANCE_NAME &gt;과 같은 식으로 설정하면 현재 로그인한 인스턴스와 사용자 이름을 확인할 수 있어 편하다. logn.sql 스크립트를 만들어 여기에 프롬프트 설정 코드를 넣어두면 된다. Effective Oracle 책(p79)에는 설정 코드가 조금 복잡하게 나와 있다. 
+            <p>SQL*Plus의 프롬프트를 <code>username@INSTANCE_NAME &gt;</code>과 같은 식으로 설정하면 현재 로그인한 인스턴스와 사용자 이름을 확인할 수 있어 편하다. logn.sql 스크립트를 만들어 여기에 프롬프트 설정 코드를 넣어두면 된다. Effective Oracle 책(p79)에는 설정 코드가 조금 복잡하게 나와 있다.
+</p>
           </p>
           
           <p>

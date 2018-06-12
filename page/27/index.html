@@ -70,7 +70,10 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-            대량 데이터를 로드할 때 항상 궁금했던 것이 있다. 다음 두 가지 방법 중 어떤 것이 빠를까 하는 것이다. * 방법1: 인덱스가 있는 상태에서 그냥 다이렉트 모드로 로드 * 방법2: 인덱스를 날리고 로드한 다음 인덱스를 생성 
+            <p>대량 데이터를 로드할 때 항상 궁금했던 것이 있다. 다음 두 가지 방법 중 어떤 것이 빠를까 하는 것이다.
+* 방법1: 인덱스가 있는 상태에서 그냥 다이렉트 모드로 로드
+* 방법2: 인덱스를 날리고 로드한 다음 인덱스를 생성
+</p>
           </p>
           
           <p>
@@ -99,7 +102,8 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-            기존 테이블에 컬럼을 추가할 때 디폴트 값을 지정하면 기존 데이터는 건드리지 않고 새로 추가되는 데이터에 대해서만 디폴드 값이 적용되는 줄 알고 있었다. 그런데 작업을 하다가 그동안 잘못 알고 있었다는 것을 알게 되었다. 다음 두 작업은 완전히 다르게 진행된다. 
+            <p>기존 테이블에 컬럼을 추가할 때 디폴트 값을 지정하면 기존 데이터는 건드리지 않고 새로 추가되는 데이터에 대해서만 디폴드 값이 적용되는 줄 알고 있었다. 그런데 작업을 하다가 그동안 잘못 알고 있었다는 것을 알게 되었다. 다음 두 작업은 완전히 다르게 진행된다.
+</p>
           </p>
           
           <p>
@@ -128,8 +132,11 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-            SQL Reference에 보면 records_per_block절에 대해 다음과 같이 설명되어 있다.
- instruct Oracle Database to calculate the largest number of records in any block in the table and to limit future inserts so that no block can contain more than that number of records. 
+            <p>SQL Reference에 보면 <code>records_per_block</code>절에 대해 다음과 같이 설명되어 있다.</p>
+
+<blockquote>
+<p>instruct Oracle Database to calculate the largest number of records in any block in the table and to limit future inserts so that no block can contain more than that number of records.
+</p>
           </p>
           
           <p>
@@ -156,7 +163,8 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-            소스코드를 보다가 다음과 같은 코드를 발견했다. 명령행 인수 분석해 딕셔너리에 넣는 코드인데, 이렇게 복잡할 필요가 있을까 생각되어 잠시 코드를 들여다 봤다. 
+            <p>소스코드를 보다가 다음과 같은 코드를 발견했다. 명령행 인수 분석해 딕셔너리에 넣는 코드인데, 이렇게 복잡할 필요가 있을까 생각되어 잠시 코드를 들여다 봤다.
+</p>
           </p>
           
           <p>
@@ -185,7 +193,8 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-            예전에 database.sarang.net 오라클 게시판에 DBMS_JOB을 이용해 원하는 작업을 08시, 14시, 20시에 실행시키는 방법을 묻는 질문이 올라왔다. 작업 간격이 규칙적일 때는 문제가 간단하지만 원하는 시간 간격이 불규칙하므로 그냥 JOB을 세 개 등록하면 어떻겠냐고 답했더니 이번에는 이 작업을 평일에만 실행시키게 하고 싶다고 했다. 즉 평일 08시, 14시, 20시에 작업이 실행되도록 하고 싶다는 것이었다. 
+            <p>예전에 <a href="http://database.sarang.net/?criteria=oracle">database.sarang.net 오라클 게시판</a>에 <code>DBMS_JOB</code>을 이용해 원하는 작업을 08시, 14시, 20시에 실행시키는 방법을 묻는 질문이 올라왔다. 작업 간격이 규칙적일 때는 문제가 간단하지만 원하는 시간 간격이 불규칙하므로 그냥 JOB을 세 개 등록하면 어떻겠냐고 답했더니 이번에는 이 작업을 평일에만 실행시키게 하고 싶다고 했다. 즉 평일 08시, 14시, 20시에 작업이 실행되도록 하고 싶다는 것이었다.
+</p>
           </p>
           
           <p>

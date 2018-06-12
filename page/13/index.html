@@ -70,9 +70,12 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-             $100!$ 의 자릿수를 모두 더하면? 문제 자세히 보기: [국어] [영어]
- 100!은 150자리가 넘는 매우 큰 수라 기본 데이터 타입으로는 이 문제를 해결할 수 없다. 물론 BigInt를 사용하면 아주 쉽게 문제를 풀 수 있다. 문제 16, 문제 13에서 썼던 방법을 응용하면 BigInt를 사용하지 않고 문제를 풀 수 있다.
+            <blockquote>
+<p>$100!$ 의 자릿수를 모두 더하면?
+문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=20">[국어]</a> <a href="https://projecteuler.net/problem=20">[영어]</a></p>
+</blockquote>
 
+<p>100!은 150자리가 넘는 매우 큰 수라 기본 데이터 타입으로는 이 문제를 해결할 수 없다. 물론 <code>BigInt</code>를 사용하면 아주 쉽게 문제를 풀 수 있다. <a href="/2015/project-euler-016/">문제 16</a>, <a href="/2015/project-euler-013/">문제 13</a>에서 썼던 방법을 응용하면 <code>BigInt</code>를 사용하지 않고 문제를 풀 수 있다.</p>
           </p>
           
           <p>
@@ -101,9 +104,12 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-             20세기에서, 매월 1일이 일요일인 경우는 몇 번? 문제 자세히 보기: [국어] [영어]
- Java에서 제공하는 Calendar를 사용하면 쉽게 답을 구할 수 있다. 그러나 Calender는 가변객체(mutable object)인데다 클래스도 잘못 설계되어 있어 코드 모양이 어그러진다. Java 8부터는 거지 같은 Calendar 대신 LocalDate를 사용할 수 있다. LocalDate는 값 객체로 Clojure에서 사용해도 코드가 어그러지지 않는다. 조금 더 생각하면 라이브러리의 도움을 받지 않고도 풀 수 있다.
+            <blockquote>
+<p>20세기에서, 매월 1일이 일요일인 경우는 몇 번?
+문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=19">[국어]</a> <a href="https://projecteuler.net/problem=19">[영어]</a></p>
+</blockquote>
 
+<p>Java에서 제공하는 <code>Calendar</code>를 사용하면 쉽게 답을 구할 수 있다. 그러나 <code>Calender</code>는 가변객체(mutable object)인데다 클래스도 잘못 설계되어 있어 코드 모양이 어그러진다. Java 8부터는 거지 같은 <code>Calendar</code> 대신 <code>LocalDate</code>를 사용할 수 있다. <code>LocalDate</code>는 값 객체로 Clojure에서 사용해도 코드가 어그러지지 않는다. 조금 더 생각하면 라이브러리의 도움을 받지 않고도 풀 수 있다.</p>
           </p>
           
           <p>
@@ -132,9 +138,12 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-             삼각형을 따라 내려가면서 합이 최대가 되는 경로 찾기 문제 자세히 보기: [국어] [영어]
- 문제를 언듯 보면 합이 최대가 되는 경로를 찾아야 할 것 같지만, 명시적으로 경로를 구하지 않더라도 경로의 합이 최대가 되는 값을 찾을 수 있다.
+            <blockquote>
+<p>삼각형을 따라 내려가면서 합이 최대가 되는 경로 찾기
+문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=18">[국어]</a> <a href="https://projecteuler.net/problem=18">[영어]</a></p>
+</blockquote>
 
+<p>문제를 언듯 보면 합이 최대가 되는 경로를 찾아야 할 것 같지만, 명시적으로 경로를 구하지 않더라도 경로의 합이 최대가 되는 값을 찾을 수 있다.</p>
           </p>
           
           <p>
@@ -163,8 +172,11 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-            과유불급(過猶不及) 정도를 지나침은 미치지 못함과 같다 - 논어(論語) 선진편(先進篇) 방문자가 매우 많은 사이트에서 애플리케이션을 배포하는 작업은 부담이 크다. 다행히 애플리케이션 서버를 여러 대 두기 때문에 서버 한 대가 잘못되더라도 사이트 전면 장애가 발생하지는 않는다. 새로운 코드를 배포할 때는 항상 서버 한 대에 먼저 배포해 놓고 일정 시간 동안 모니터링 한다. 문제가 없는 경우에는 전체 서버로 배포하고, 로그에 예외나 에러가 표시되면 즉시 롤백한다.
+            <blockquote class="blockquote-reverse">과유불급(過猶不及)
+정도를 지나침은 미치지 못함과 같다
+- 논어(論語) 선진편(先進篇)</blockquote>
 
+<p>방문자가 매우 많은 사이트에서 애플리케이션을 배포하는 작업은 부담이 크다. 다행히 애플리케이션 서버를 여러 대 두기 때문에 서버 한 대가 잘못되더라도 사이트 전면 장애가 발생하지는 않는다. 새로운 코드를 배포할 때는 항상 서버 한 대에 먼저 배포해 놓고 일정 시간 동안 모니터링 한다. 문제가 없는 경우에는 전체 서버로 배포하고, 로그에 예외나 에러가 표시되면 즉시 롤백한다.</p>
           </p>
           
           <p>
@@ -193,8 +205,7 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-            서버에서 로그 파일을 모니터링 할 때 보통 tail -f를 사용한다. 그런데 최근 더 좋은 방법을 알게 되었다. 바로 less +F를 사용하는 것이다. tail -f를 사용할 때 파일에서 어떤 내용을 찾고 싶을 때는 흔히 다음 두 방법을 사용한다.
-
+            <p>서버에서 로그 파일을 모니터링 할 때 보통 <code>tail -f</code>를 사용한다. 그런데 최근 더 좋은 방법을 알게 되었다. 바로 <code>less +F</code>를 사용하는 것이다. <code>tail -f</code>를 사용할 때 파일에서 어떤 내용을 찾고 싶을 때는 흔히 다음 두 방법을 사용한다.</p>
           </p>
           
           <p>
@@ -223,9 +234,19 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-             1부터 1000까지 영어로 썼을 때 사용된 글자의 개수는? 문제 자세히 보기: [국어] [영어]
- 별로 어려운 문제는 아니다. 다음과 같은 절차로 풀 수 있다.
- 숫자를 입력하면 그 수에 대한 영어 문자열을 리턴하는 함수를 작성한 다음 이 함수를 이용해 1~1000을 영어 문자열로 매핑 문자열을 모두 연결해 문자열에서 공백과 하이픈(&lsquo;-&rsquo;)을 제거 3에서 구한 문자열의 길이 계산 
+            <blockquote>
+<p>1부터 1000까지 영어로 썼을 때 사용된 글자의 개수는?
+문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=17">[국어]</a> <a href="https://projecteuler.net/problem=17">[영어]</a></p>
+</blockquote>
+
+<p>별로 어려운 문제는 아니다. 다음과 같은 절차로 풀 수 있다.</p>
+
+<ol>
+<li>숫자를 입력하면 그 수에 대한 영어 문자열을 리턴하는 함수를 작성한 다음</li>
+<li>이 함수를 이용해 1~1000을 영어 문자열로 매핑</li>
+<li>문자열을 모두 연결해 문자열에서 공백과 하이픈(&lsquo;-&rsquo;)을 제거</li>
+<li>3에서 구한 문자열의 길이 계산</li>
+</ol>
           </p>
           
           <p>
@@ -254,8 +275,7 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-            블로그를 정적 사이트 생성기로 만들어 GitHup에 처음 올렸을 때가 생각난다. 그전에 사용했던 티스토리나 블로거에서는 글을 올리고 별다른 작업을 하지 않아도 일정 시간이 지난 후 구글에서 검색이 되었다. 그래서 GitHup 페이지로 블로그를 옮긴 다음에도 언제쯤 구글에서 검색이 될까 마냥 기다렸다. 나중에 알고보니 그렇게 기다리기만 한다고 되는게 아니었다. 구글이 내 블로그를 빨리 색인하도록 sitemap.xml을 만들어 구글 웹마스터 도구에 제출해야 했다.
-
+            <p>블로그를 정적 사이트 생성기로 만들어 GitHup에 처음 올렸을 때가 생각난다. 그전에 사용했던 티스토리나 블로거에서는 글을 올리고 별다른 작업을 하지 않아도 일정 시간이 지난 후 구글에서 검색이 되었다. 그래서 GitHup 페이지로 블로그를 옮긴 다음에도 언제쯤 구글에서 검색이 될까 마냥 기다렸다. 나중에 알고보니 그렇게 기다리기만 한다고 되는게 아니었다. 구글이 내 블로그를 빨리 색인하도록 <code>sitemap.xml</code>을 만들어 <a href="https://www.google.com/webmasters/">구글 웹마스터 도구</a>에 제출해야 했다.</p>
           </p>
           
           <p>
@@ -284,9 +304,12 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-             $2^{1000}$의 각 자릿수를 모두 더하면? 문제 자세히 보기: [국어] [영어]
- $2^{1000}$은 300자리가 넘는 매우 큰 수다. int, long과 같은 기본 데이터 타입에는 이렇게 큰 수를 담을 수 없다. double은 $10^{308}$ 이상의 매우 큰 수를 표현할 수 있지만 유효자릿수가 15~17자리여서 $2^{1000}$의 모든 자릿수를 담을 수 없다.
+            <blockquote>
+<p>$2^{1000}$의 각 자릿수를 모두 더하면?
+문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=16">[국어]</a> <a href="https://projecteuler.net/problem=16">[영어]</a></p>
+</blockquote>
 
+<p>$2^{1000}$은 300자리가 넘는 매우 큰 수다. <code>int</code>, <code>long</code>과 같은 기본 데이터 타입에는 이렇게 큰 수를 담을 수 없다. <code>double</code>은 $10^{308}$ 이상의 매우 큰 수를 표현할 수 있지만 유효자릿수가 15~17자리여서 $2^{1000}$의 모든 자릿수를 담을 수 없다.</p>
           </p>
           
           <p>
@@ -313,8 +336,7 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-            언젠가 동료 한 명이 &lsquo;statement와 expression의 차이가 뭔지 아냐?&lsquo;고 물어본 적이 있다. 프로그래밍 책에서 자주 접했던 용어지만 명확히 답할 수 없었다. statement는 명령문이고 expression은 표현식인데&hellip;
-
+            <p>언젠가 동료 한 명이 &lsquo;statement와 expression의 차이가 뭔지 아냐?&lsquo;고 물어본 적이 있다. 프로그래밍 책에서 자주 접했던 용어지만 명확히 답할 수 없었다. statement는 명령문이고 expression은 표현식인데&hellip;</p>
           </p>
           
           <p>
@@ -343,8 +365,13 @@ if (!doNotTrack) {
         </header>
         <section class="post-excerpt">
           <p>
-             20×20 격자의 좌상단에서 우하단으로 가는 경로의 수? 문제 자세히 보기: [국어] [영어]
- 격자에서 오른쪽으로 이동하는 경로를 r(right), 아래쪽으로 이동하는 경로를 d(down)라 하면 2x2 격자의 좌상단에서 우하단으로 가는 경로는 다음과 같은 식으로 표현할 수 있다. 
+            <blockquote>
+<p>20×20 격자의 좌상단에서 우하단으로 가는 경로의 수?
+문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=15">[국어]</a> <a href="https://projecteuler.net/problem=15">[영어]</a></p>
+</blockquote>
+
+<p>격자에서 오른쪽으로 이동하는 경로를 <code>r</code>(right), 아래쪽으로 이동하는 경로를 <code>d</code>(down)라 하면 2x2 격자의 좌상단에서 우하단으로 가는 경로는 다음과 같은 식으로 표현할 수 있다.
+</p>
           </p>
           
           <p>
