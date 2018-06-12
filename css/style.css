@@ -374,6 +374,9 @@ ul.pagination {
 ul.pagination li {
   display: inline-block;
 }
+ul.pagination li a {
+  text-decoration: none;
+}
 /* Every post, on every page */
 .post {
   clear: right;
