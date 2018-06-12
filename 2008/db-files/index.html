@@ -84,31 +84,33 @@ if (!doNotTrack) {
 
 <p>이 데이터베이스를 위해 열수 있는 최대 데이터베이스 파일 수를 지정한다고 하는데, 데이터베이스 파일에는 데이터 파일뿐 아니라 임시 파일, 리두로그 파일, 컨트롤 파일 등도 포함되는 것 아닌가? 가장 확실한 방법은 직접 해보는 것이다.</p>
 
-<p>먼저 각 파일의 수를 파악한다.
+<p>먼저 각 파일의 수를 파악한다.</p>
+
 <pre class="console">
-sys@TESTDB&gt; select count(*) from v$datafile;</p>
+sys@TESTDB> select count(*) from v$datafile;
 
-<p>COUNT(<em>)
- -&mdash;&mdash;&mdash;
+   COUNT(*)
+ ----------
           6
-sys@TESTDB&gt; select count(</em>) from v$logfile;</p>
 
-<p>COUNT(*)
- -&mdash;&mdash;&mdash;
-          3</p>
+sys@TESTDB> select count(*) from v$logfile;
 
-<p>sys@TESTDB&gt; select count(*) from v$controlfile;</p>
+   COUNT(*)
+ ----------
+          3
 
-<p>COUNT(*)
- -&mdash;&mdash;&mdash;
-          3</p>
+sys@TESTDB> select count(*) from v$controlfile;
 
-<p>sys@TESTDB&gt; select count(*) from v$tempfile;</p>
+   COUNT(*)
+ ----------
+          3
 
-<p>COUNT(*)
- -&mdash;&mdash;&mdash;
+sys@TESTDB> select count(*) from v$tempfile;
+
+   COUNT(*)
+ ----------
           2
-</pre></p>
+</pre>
 
 <p>데이터 파일이 6개, 온라인 리두로그 파일이 3개, 컨트롤 파일이 3개, 임시파일이 2개인 상태다. (총 13개) 이제 테스트를 쉽게 하기 위해 <code>db_files</code> 값을 작게 한다. 현재의 전체 파일 개수보다 작게하면 어떻게 될까?</p>
 

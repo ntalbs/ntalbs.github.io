@@ -326,15 +326,15 @@ qsort (p:xs) = qsort [y | y &amp;lt;- xs, y &amp;lt; p] ++ [p] ++ qsort [y | y &
     </item>
     
     <item>
-      <title>과정과 결과 - 과정을 위한 변명</title>
+      <title>과정과 결과</title>
       <link>http://ntalbs.github.io/2009/process-and-result/</link>
       <pubDate>Tue, 23 Jun 2009 00:00:00 +0000</pubDate>
       
       <guid>http://ntalbs.github.io/2009/process-and-result/</guid>
-      <description>&lt;blockquote class=&#34;blockquote-reverse&#34;&gt;아무리 나쁜 결과로 끝난 일이라 해도 애초에 그 일을 시작한 동기는 선의였다.
+      <description>&lt;blockquote class=&#34;blockquote-reverse&#34;&gt;아무리 나쁜 결과로 끝난 일이라 해도 애초에 그 일을 시작한 동기는 선의였다.&lt;br&gt;
 - 율리우스 카이사르&lt;/blockquote&gt;
 
-&lt;p&gt;과정은 좋았는데 결과가 형편없게 되기를 바라는가, 과정은 부족하고 문제가 있었지만 결과가 좋게 되기를 바라는가? &lt;strong&gt;둘중 하나를 선택하라면 물론 결과가 좋은 쪽을 선택할 것이다.&lt;/strong&gt; 이는 거의 모든 사람이 마찬가지일거라 생각한다. &lt;strong&gt;문제는 현실에서는 이 둘중 하나를 선택하는 경우는 없다는 것이다.&lt;/strong&gt;
+&lt;p&gt;과정은 좋았는데 결과가 형편없게 되기를 바라는가, 과정은 부족하고 문제가 있었지만 결과가 좋게 되기를 바라는가? 둘중 하나를 선택하라면 물론 결과가 좋은 쪽을 선택할 것이다. 모든 사람이 마찬가지일 것이다. 문제는 현실에서는 이 둘중 하나를 선택하는 경우는 없다는 것이다.
 &lt;/p&gt;</description>
     </item>
     
