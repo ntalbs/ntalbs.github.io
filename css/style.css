@@ -480,6 +480,12 @@ ul.pagination li a {
 .post-meta +h1 {
   margin-top: 0;
 }
+.draft {
+  color: #ff4500;
+}
+.draft:after {
+  content: ":: draft";
+}
 -moz-selection {
   color: #222;
   background: #d6edff;
