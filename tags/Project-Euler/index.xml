@@ -6,10 +6,25 @@
     <description>Recent content in Project-Euler on @ntalbs&#39; stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
-    <lastBuildDate>Thu, 03 May 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 27 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://ntalbs.github.io/tags/project-euler/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>프로젝트 오일러 93</title>
+      <link>http://ntalbs.github.io/2018/project-euler-093/</link>
+      <pubDate>Wed, 27 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://ntalbs.github.io/2018/project-euler-093/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;숫자 4개와 사칙연산을 써서 가장 길게 이어지는 숫자 만들기
+문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=93&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=93&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;숫자 네 개에 사칙연산자를 세 개 사용할 수 있으므로, 각 숫자를 A, B, C, D라 하고 사칙연산자를 &lt;code&gt;Op&lt;sub&gt;1&lt;/sub&gt;&lt;/code&gt;, &lt;code&gt;Op&lt;sub&gt;2&lt;/sub&gt;&lt;/code&gt;, &lt;code&gt;Op&lt;sub&gt;3&lt;/sub&gt;&lt;/code&gt;라 하면, 다음과 같은 조합을 생각할 수 있다. 모든 연산은 괄호로 둘러싸 연산자 우선순위를 고려하지 않게 하면 생각하기가 조금 쉬워진다.
+&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>프로젝트 오일러 92</title>

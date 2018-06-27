@@ -56,6 +56,50 @@ if (!doNotTrack) {
       <article class="post">
         <header class="post-header">
           <span class="post-meta">
+            <time datetime="2016-11-27" itemprop="datePublished">2016-11-27</time>
+            on
+            
+            <a href="/tags/Project-Euler">Project-Euler</a>
+            
+            <a href="/tags/Clojure">Clojure</a>
+            
+          </span>
+          <h1 class="post-title">
+            <a href="http://ntalbs.github.io/2016/project-euler-079/">프로젝트 오일러 79</a>
+          </h1>
+        </header>
+        <section class="post-excerpt">
+          <p>
+            <blockquote>
+<p>접속 기록으로부터 비밀번호 알아내기
+문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=79">[국어]</a> <a href="https://projecteuler.net/problem=79">[영어]</a></p>
+</blockquote>
+
+<p>접속 기록 데이터가 많지 않으므로 코드를 아무렇게나 짜도 답을 빠르게 구할 수 있을 것이다. 먼저 다음과 같이 접속 기록을 읽는 코드를 작성한다.</p>
+
+<pre><code class="language-clojure">(def keylog
+  (-&gt; (slurp &quot;data/keylog.txt&quot;)
+      (clojure.string/split #&quot;\r\n&quot;)
+      distinct
+      sort))
+</code></pre>
+
+<p>중복을 제거하면 접속 기록이 서른 세 개밖에 되지 않는다.
+</p>
+          </p>
+          
+          <p>
+            <a class="button is-link" href="http://ntalbs.github.io/2016/project-euler-079/" style="height:28px">
+              Read more...
+            </a>
+          </p>
+          
+        </section>
+      </article>
+      
+      <article class="post">
+        <header class="post-header">
+          <span class="post-meta">
             <time datetime="2016-11-16" itemprop="datePublished">2016-11-16</time>
             on
             
@@ -366,37 +410,6 @@ $$</div>
           
           <p>
             <a class="button is-link" href="http://ntalbs.github.io/2016/online-banking-in-uk/" style="height:28px">
-              Read more...
-            </a>
-          </p>
-          
-        </section>
-      </article>
-      
-      <article class="post">
-        <header class="post-header">
-          <span class="post-meta">
-            <time datetime="2016-08-04" itemprop="datePublished">2016-08-04</time>
-            on
-            
-            <a href="/tags/%ec%83%81%eb%85%90">상념</a>
-            
-          </span>
-          <h1 class="post-title">
-            <a href="http://ntalbs.github.io/2016/my-proud-moments/">가장 뿌듯했던 순간</a>
-          </h1>
-        </header>
-        <section class="post-excerpt">
-          <p>
-            <blockquote class="blockquote-reverse">그 여정이 바로 보상이다.
-- 스티브 잡스</blockquote>
-
-<p>초등학교 때 사촌 동생 집에서 Apple II 컴퓨터를 처음 본 순간 컴퓨터 세계로 빠져들었다. 그러나 사촌 동생 집은 멀어서 매일 갈 수가 없었다. 다행히 친한 친구 집에서 SPC1000 이란 컴퓨터가 있었다. 나는 매일 친구 집에 놀러가서 친구와 함께 컴퓨터를 가지고 놀았다. 친구가 귀찮에 생각했을 지도 모르겠다. 나중에 나도 부모님을 졸라 컴퓨터를 장만했다.
-</p>
-          </p>
-          
-          <p>
-            <a class="button is-link" href="http://ntalbs.github.io/2016/my-proud-moments/" style="height:28px">
               Read more...
             </a>
           </p>

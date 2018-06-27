@@ -63,6 +63,38 @@ if (!doNotTrack) {
             
             <a href="/tags/Oracle">Oracle</a>
             
+            <a href="/tags/SqlPlus">SqlPlus</a>
+            
+          </span>
+          <h1 class="post-title">
+            <a href="http://ntalbs.github.io/2008/sqlplus-prompt/">SQL*Plus 프롬프트 설정</a>
+          </h1>
+        </header>
+        <section class="post-excerpt">
+          <p>
+            <p>SQL*Plus의 프롬프트를 <code>username@INSTANCE_NAME &gt;</code>과 같은 식으로 설정하면 현재 로그인한 인스턴스와 사용자 이름을 확인할 수 있어 편하다. logn.sql 스크립트를 만들어 여기에 프롬프트 설정 코드를 넣어두면 된다. Effective Oracle 책(p79)에는 설정 코드가 조금 복잡하게 나와 있다.
+</p>
+          </p>
+          
+          <p>
+            <a class="button is-link" href="http://ntalbs.github.io/2008/sqlplus-prompt/" style="height:28px">
+              Read more...
+            </a>
+          </p>
+          
+        </section>
+      </article>
+      
+      <article class="post">
+        <header class="post-header">
+          <span class="post-meta">
+            <time datetime="2008-10-31" itemprop="datePublished">2008-10-31</time>
+            on
+            
+            <a href="/tags/DB">DB</a>
+            
+            <a href="/tags/Oracle">Oracle</a>
+            
           </span>
           <h1 class="post-title">
             <a href="http://ntalbs.github.io/2008/index-dup-and-clustering-factor/">인덱스 중복과 클러스터링 팩터</a>
@@ -325,35 +357,6 @@ if (!doNotTrack) {
           
           <p>
             <a class="button is-link" href="http://ntalbs.github.io/2008/data-type/" style="height:28px">
-              Read more...
-            </a>
-          </p>
-          
-        </section>
-      </article>
-      
-      <article class="post">
-        <header class="post-header">
-          <span class="post-meta">
-            <time datetime="2008-10-27" itemprop="datePublished">2008-10-27</time>
-            on
-            
-            <a href="/tags/DB">DB</a>
-            
-            <a href="/tags/Oracle">Oracle</a>
-            
-          </span>
-          <h1 class="post-title">
-            <a href="http://ntalbs.github.io/2008/direct-path-load/">Direct-path Insert시 주의사항</a>
-          </h1>
-        </header>
-        <section class="post-excerpt">
-          <p>
-            뭔가에 대해 어설프게 아는 것은 큰 위험을 초래할 수 있다. 이번에는 Direct-path Insert에 대한 어설픈 지식으로 큰 사고를 낼 뻔 했다. 지금까지 알고 있었던 사실은 Direct-path Insert를 이용하면 redo와 undo 로깅을 생략해 성능을 향상시킬 수 있다는 것이었다. 따라서 테이블에 대량의 데이터를 넣을 때 이 방법을 활용하곤 했다. 그러나 Direct-path INSERT를 하는 동안 테이블에는 LOCK이 걸리고 작업이 끝날 때까지 해당 테이블에 DML 작업을 할 수 없게 된다는 사실은 알지 못했다. 만약 확인하지 않고 거래 데이터를 전환해 넣을 때 Direct-path INSERT를 썼더라면 장애가 생길 뻔 했다.
-          </p>
-          
-          <p>
-            <a class="button is-link" href="http://ntalbs.github.io/2008/direct-path-load/" style="height:28px">
               Read more...
             </a>
           </p>
