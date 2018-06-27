@@ -90,7 +90,7 @@ if (!doNotTrack) {
 <li>A <code>Op<sub>1</sub></code> (B <code>Op<sub>2</sub></code> (C <code>Op<sub>3</sub></code> D))</li>
 </ul>
 
-<p>0부터 9까지 수 중 4개를 선택해 A, B, C, D에 할당하고 <code>Op<sub>1</sub></code>, <code>Op<sub>2</sub></code>에 사칙연산을 할당해 계산한 결과를 모은 집합을 구한 다음 1부터 가장 길게 이어지는 숫자를 생성하는 A, B, C, D를 구하면 문제를 풀 수 있다. 0부터 9의 수 중 4개를 선택할 때는 <code>combinations</code>를, 이렇게 선택한 수의 순열을 구할 때는 <code>permutations</code>를 쓸 수 있다.</p>
+<p>0부터 9까지 수 중 4개를 선택해 A, B, C, D에 할당하고 <code>Op<sub>1</sub></code>, <code>Op<sub>2</sub></code>, <code>Op<sub>3</sub></code>에 사칙연산을 할당해 계산한 결과를 모은 집합을 구한 다음 1부터 가장 길게 이어지는 숫자를 생성하는 A, B, C, D를 구하면 문제를 풀 수 있다. 0부터 9의 수 중 4개를 선택할 때는 <code>combinations</code>를, 이렇게 선택한 수의 순열을 구할 때는 <code>permutations</code>를 쓸 수 있다.</p>
 
 <pre><code class="language-clojure">(ns p093
     (:require [clojure.math.combinatorics :refer [permutations combinations]]))
