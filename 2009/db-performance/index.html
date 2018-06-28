@@ -101,12 +101,37 @@ if (!doNotTrack) {
 
 <p>테스트는 간단했다. 약 1억1천4백만 건의 키워드 데이터(약 660 MB)를 테이블에 넣는 테스트(데이터 로딩)와 키워드를 <code>group by</code> 해서 각 키워드별 빈도(count)를 세어 새로운 테이블을 만드는 테스트(CTAS1) 두 가지다. 테이블에 인덱스는 없는 상태에서 작업했다.</p>
 
-<p>| 테스트      | 데이터 로딩 | CTAS (group by) |         |
-|&mdash;&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;|
-| Oracle     | 1분30초 SQL*Loader(direct=y) | 1분12초 |
-| PostgreSQL | 17분 <code>COPY ~ FROM</code>           | 5분30초 |
-| MySQL      |20분 30초 <code>LOAD DATA ~ LOCAL</code> | <strong>1시간 넘도록 끝나지 않음.</strong> |
-<span style="color:lightgray">MySQL의 경우 Buffer Pool을 160MB로 늘려 다시 작업해도 10분 넘도록 끝나지 않아 중단시켰다.</span></p>
+<table>
+<thead>
+<tr>
+<th>테스트</th>
+<th>데이터 로딩</th>
+<th>CTAS (group by)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Oracle</td>
+<td>1분30초 SQL*Loader(direct=y)</td>
+<td>1분12초</td>
+</tr>
+
+<tr>
+<td>PostgreSQL</td>
+<td>17분 <code>COPY ~ FROM</code></td>
+<td>5분30초</td>
+</tr>
+
+<tr>
+<td>MySQL</td>
+<td>20분 30초 <code>LOAD DATA ~ LOCAL</code></td>
+<td><strong>1시간 넘도록 끝나지 않음.</strong></td>
+</tr>
+</tbody>
+</table>
+
+<p><span style="color:lightgray">MySQL의 경우 Buffer Pool을 160MB로 늘려 다시 작업해도 10분 넘도록 끝나지 않아 중단시켰다.</span></p>
 
 <p>두 테스트에서 Oracle이 월등한 성능 우위를 나타냈으며, MySQL이 가장 나쁜 성능을 보였다. 일반적으로 MySQL은 가볍고 빠른 DBMS로 알려져 있으나, 가벼운 만큼 허접한 느낌이다. PostgreSQL은 Oracle보다는 성능이 좋지 못했지만, 데이터 로딩의 경우 MySQL보다는 조금 나았고, group by를 통한 테이블 생성에서는 MySQL 보다 훨씬 좋았다. PostgreSQL에서 5분 정도 걸리는 작업을 MySQL에서는 1시간이 지나도록 끝내지 못했다.</p>
 
@@ -170,6 +195,8 @@ if (!doNotTrack) {
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/sql.min.js"></script>
 
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/lisp.min.js"></script>
 
 <script>hljs.initHighlightingOnLoad();</script>
 
