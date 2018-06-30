@@ -1831,6 +1831,8 @@ $$&lt;/div&gt;
 &lt;p&gt;문제 자세히 보기: &lt;a href=&#34;http://euler.synap.co.kr/prob_detail.php?id=15&#34;&gt;[국어]&lt;/a&gt; &lt;a href=&#34;https://projecteuler.net/problem=15&#34;&gt;[영어]&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
+&lt;p&gt;&lt;img src=&#34;https://projecteuler.net/project/images/p015.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
 &lt;p&gt;격자에서 오른쪽으로 이동하는 경로를 &lt;code&gt;r&lt;/code&gt;(right), 아래쪽으로 이동하는 경로를 &lt;code&gt;d&lt;/code&gt;(down)라 하면 2x2 격자의 좌상단에서 우하단으로 가는 경로는 다음과 같은 식으로 표현할 수 있다.
 &lt;/p&gt;</description>
     </item>
