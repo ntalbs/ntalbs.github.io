@@ -63,8 +63,9 @@
         </header>
         <section class="post-content">
           <blockquote>
-<p>$n$자리 팬디지털 소수 중에서 가장 큰 수
-문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=41">[국어]</a> <a href="https://projecteuler.net/problem=41">[영어]</a></p>
+<p>$n$자리 팬디지털 소수 중에서 가장 큰 수</p>
+
+<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=41">[국어]</a> <a href="https://projecteuler.net/problem=41">[영어]</a></p>
 </blockquote>
 
 <p>두 가지 방법이 떠오른다. 하나는 <code>clojure.contrib.lazy-seqs</code>의 <code>primes</code>를 이용하는 방법이다. 가장 큰 팬디지털 수는 987654321이므로 이걸 상한으로 소수를 하나씩 조사해가며 팬디지털 수인지 확인해 가장 큰 수를 구하면 된다. 그러나 이 방법은 987654321보다 작은 수 중 가장 큰 소수에 도달할 때까지 확인을 해야 하므로 답을 빠르게 구하기는 어려워 보인다.

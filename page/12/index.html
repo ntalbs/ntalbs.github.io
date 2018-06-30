@@ -59,8 +59,9 @@
         <section class="post-excerpt">
           <p>
             <blockquote>
-<p>0, 1, 2, 3, 4, 5, 6, 7, 8, 9로 만들 수 있는 1,000,000번째 사전식 순열은?
-문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=24">[국어]</a> <a href="https://projecteuler.net/problem=24">[영어]</a></p>
+<p>0, 1, 2, 3, 4, 5, 6, 7, 8, 9로 만들 수 있는 1,000,000번째 사전식 순열은?</p>
+
+<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=24">[국어]</a> <a href="https://projecteuler.net/problem=24">[영어]</a></p>
 </blockquote>
 
 <p><code>clojure.math.combinatorics</code>의 <code>nth-permutation</code> 함수를 이용하면 바로 답을 구할 수 있다. 다만 인덱스가 0부터 시작한다는 점에 주의해야 한다.</p>
@@ -151,8 +152,9 @@
         <section class="post-excerpt">
           <p>
             <blockquote>
-<p>두 초과수의 합으로 나타낼 수 없는 모든 양의 정수의 합은?
-문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=23">[국어]</a> <a href="https://projecteuler.net/problem=23">[영어]</a></p>
+<p>두 초과수의 합으로 나타낼 수 없는 모든 양의 정수의 합은?</p>
+
+<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=23">[국어]</a> <a href="https://projecteuler.net/problem=23">[영어]</a></p>
 </blockquote>
 
 <p>초과수인지 판단하려면 진약수의 합을 알아야 한다. <a href="/2015/project-euler-021/">문제 21</a>에서 구현한 진약수의 합을 구하는 함수를 이용하면 다음과 같이 주어진 수가 초과수인지 판단하는 함수를 간단히 구현할 수 있다.</p>
@@ -212,8 +214,9 @@
         <section class="post-excerpt">
           <p>
             <blockquote>
-<p>영문 이름 점수 합계 구하기
-문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=22">[국어]</a> <a href="https://projecteuler.net/problem=22">[영어]</a></p>
+<p>영문 이름 점수 합계 구하기</p>
+
+<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=22">[국어]</a> <a href="https://projecteuler.net/problem=22">[영어]</a></p>
 </blockquote>
 
 <p>수학적 사고나 특별한 기교가 필요한 문제는 아니다. 그냥 문제에서 설명한 대로 처리하면 답을 얻을 수 있다. <code>names.txt</code> 파일을 열어보면 다음과 같이 이름이 따옴표로 묶여 있고 각 이름 사이에는 쉼표가 있다.</p>
@@ -246,8 +249,9 @@
         <section class="post-excerpt">
           <p>
             <blockquote>
-<p>10000 이하 모든 친화수(우애수)의 합은?
-문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=21">[국어]</a> <a href="https://projecteuler.net/problem=21">[영어]</a></p>
+<p>10000 이하 모든 친화수(우애수)의 합은?</p>
+
+<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=21">[국어]</a> <a href="https://projecteuler.net/problem=21">[영어]</a></p>
 </blockquote>
 
 <p>어떤 수가 친화수인지 판단하는 함수가 있다면 1부터 10,000까지의 수 중에서 친화수만 <code>filter</code>해 더하면 된다. 어떤 수가 친화수인지 판단하는 함수를 구현하려면 몇 가지 보조 함수가 필요하다. 자신을 제외한 약수를 진약수(proper divisor)라 하는데, 진약수의 합 $d(n)$을 구하는 방법에 따라 풀이가 갈린다.</p>

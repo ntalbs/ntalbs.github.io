@@ -63,8 +63,9 @@
         </header>
         <section class="post-content">
           <blockquote>
-<p>20세기에서, 매월 1일이 일요일인 경우는 몇 번?
-문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=19">[국어]</a> <a href="https://projecteuler.net/problem=19">[영어]</a></p>
+<p>20세기에서, 매월 1일이 일요일인 경우는 몇 번?</p>
+
+<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=19">[국어]</a> <a href="https://projecteuler.net/problem=19">[영어]</a></p>
 </blockquote>
 
 <p>Java에서 제공하는 <code>Calendar</code>를 사용하면 쉽게 답을 구할 수 있다. 그러나 <code>Calender</code>는 가변객체(mutable object)인데다 클래스도 잘못 설계되어 있어 코드 모양이 어그러진다. Java 8부터는 거지 같은 <code>Calendar</code> 대신 <code>LocalDate</code>를 사용할 수 있다. <code>LocalDate</code>는 값 객체로 Clojure에서 사용해도 코드가 어그러지지 않는다. 조금 더 생각하면 라이브러리의 도움을 받지 않고도 풀 수 있다.</p>

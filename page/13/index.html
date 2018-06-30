@@ -86,8 +86,9 @@
         <section class="post-excerpt">
           <p>
             <blockquote>
-<p>$100!$ 의 자릿수를 모두 더하면?
-문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=20">[국어]</a> <a href="https://projecteuler.net/problem=20">[영어]</a></p>
+<p>$100!$ 의 자릿수를 모두 더하면?</p>
+
+<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=20">[국어]</a> <a href="https://projecteuler.net/problem=20">[영어]</a></p>
 </blockquote>
 
 <p>100!은 150자리가 넘는 매우 큰 수라 기본 데이터 타입으로는 이 문제를 해결할 수 없다. 물론 <code>BigInt</code>를 사용하면 아주 쉽게 문제를 풀 수 있다. <a href="/2015/project-euler-016/">문제 16</a>, <a href="/2015/project-euler-013/">문제 13</a>에서 썼던 방법을 응용하면 <code>BigInt</code>를 사용하지 않고 문제를 풀 수 있다.</p>
@@ -120,8 +121,9 @@
         <section class="post-excerpt">
           <p>
             <blockquote>
-<p>20세기에서, 매월 1일이 일요일인 경우는 몇 번?
-문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=19">[국어]</a> <a href="https://projecteuler.net/problem=19">[영어]</a></p>
+<p>20세기에서, 매월 1일이 일요일인 경우는 몇 번?</p>
+
+<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=19">[국어]</a> <a href="https://projecteuler.net/problem=19">[영어]</a></p>
 </blockquote>
 
 <p>Java에서 제공하는 <code>Calendar</code>를 사용하면 쉽게 답을 구할 수 있다. 그러나 <code>Calender</code>는 가변객체(mutable object)인데다 클래스도 잘못 설계되어 있어 코드 모양이 어그러진다. Java 8부터는 거지 같은 <code>Calendar</code> 대신 <code>LocalDate</code>를 사용할 수 있다. <code>LocalDate</code>는 값 객체로 Clojure에서 사용해도 코드가 어그러지지 않는다. 조금 더 생각하면 라이브러리의 도움을 받지 않고도 풀 수 있다.</p>
@@ -154,8 +156,9 @@
         <section class="post-excerpt">
           <p>
             <blockquote>
-<p>삼각형을 따라 내려가면서 합이 최대가 되는 경로 찾기
-문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=18">[국어]</a> <a href="https://projecteuler.net/problem=18">[영어]</a></p>
+<p>삼각형을 따라 내려가면서 합이 최대가 되는 경로 찾기</p>
+
+<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=18">[국어]</a> <a href="https://projecteuler.net/problem=18">[영어]</a></p>
 </blockquote>
 
 <p>문제를 언듯 보면 합이 최대가 되는 경로를 찾아야 할 것 같지만, 명시적으로 경로를 구하지 않더라도 경로의 합이 최대가 되는 값을 찾을 수 있다.</p>
@@ -250,8 +253,9 @@
         <section class="post-excerpt">
           <p>
             <blockquote>
-<p>1부터 1000까지 영어로 썼을 때 사용된 글자의 개수는?
-문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=17">[국어]</a> <a href="https://projecteuler.net/problem=17">[영어]</a></p>
+<p>1부터 1000까지 영어로 썼을 때 사용된 글자의 개수는?</p>
+
+<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=17">[국어]</a> <a href="https://projecteuler.net/problem=17">[영어]</a></p>
 </blockquote>
 
 <p>별로 어려운 문제는 아니다. 다음과 같은 절차로 풀 수 있다.</p>
@@ -320,8 +324,9 @@
         <section class="post-excerpt">
           <p>
             <blockquote>
-<p>$2^{1000}$의 각 자릿수를 모두 더하면?
-문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=16">[국어]</a> <a href="https://projecteuler.net/problem=16">[영어]</a></p>
+<p>$2^{1000}$의 각 자릿수를 모두 더하면?</p>
+
+<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=16">[국어]</a> <a href="https://projecteuler.net/problem=16">[영어]</a></p>
 </blockquote>
 
 <p>$2^{1000}$은 300자리가 넘는 매우 큰 수다. <code>int</code>, <code>long</code>과 같은 기본 데이터 타입에는 이렇게 큰 수를 담을 수 없다. <code>double</code>은 $10^{308}$ 이상의 매우 큰 수를 표현할 수 있지만 유효자릿수가 15~17자리여서 $2^{1000}$의 모든 자릿수를 담을 수 없다.</p>
