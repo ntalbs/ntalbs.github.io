@@ -72,6 +72,9 @@ a {
 a:hover {
   color: #999;
 }
+.footnote-ref {
+  padding-top: 88px;
+}
 strong {
   font-weight: bold;
 }

@@ -76,5 +76,13 @@
     return minHeight + 'px'
   }
 
+  // footnote
+  $('.footnote-ref a').on('click', function (e) {
+    e.preventDefault()
+    let id = e.target.getAttribute('href').substr(1)
+    let footnote = document.getElementById(id)
+    footnote.scrollIntoView({block: 'end'})
+  })
+
   $('main').css('min-height', minHeight())
 }(jQuery))
