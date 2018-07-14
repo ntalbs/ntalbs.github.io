@@ -145,9 +145,6 @@ blockquote cite a {
 .button-box {
   text-align: right;
 }
-.button-box iframe {
-  vertical-align: bottom;
-}
 mark {
   background-color: #ffc336;
 }
