@@ -53,6 +53,29 @@
             
           </span>
           <h1 class="post-title">
+            <a href="http://ntalbs.github.io/2008/vsession/">v$session과 주변 테이블 정리</a>
+          </h1>
+        </header>
+        <section class="post-excerpt">
+          <p>
+            오라클의 다이나믹 퍼포먼스 뷰인 v$session과 v$process, v$transaction등 관련 테이블간의 연관 관계를 정리해봤다. 요즘은 Orange나 Toad와 같은 도구를 사용하기 때문에, 이런 테이블을 직접 조회할 일이 많지는 않지만, 가끔씩 아쉬울 때도 있다.
+          </p>
+          
+        </section>
+      </article>
+      
+      <article class="post">
+        <header class="post-header">
+          <span class="post-meta">
+            <time datetime="2008-11-17" itemprop="datePublished">2008-11-17</time>
+            on
+            
+            <a href="/tags/db">DB</a>
+            
+            <a href="/tags/oracle">Oracle</a>
+            
+          </span>
+          <h1 class="post-title">
             <a href="http://ntalbs.github.io/2008/sizing-table/">오라클 테이블 용량 산정 방법</a>
           </h1>
         </header>
@@ -317,41 +340,6 @@ with a as ( select table_name, column_name, decode(data_type, 'CHAR', data_type|
           
           <p>
             <a class="button is-link" href="http://ntalbs.github.io/2008/db-files/" style="height:28px">
-              Read more...
-            </a>
-          </p>
-          
-        </section>
-      </article>
-      
-      <article class="post">
-        <header class="post-header">
-          <span class="post-meta">
-            <time datetime="2008-10-31" itemprop="datePublished">2008-10-31</time>
-            on
-            
-            <a href="/tags/db">DB</a>
-            
-            <a href="/tags/oracle">Oracle</a>
-            
-          </span>
-          <h1 class="post-title">
-            <a href="http://ntalbs.github.io/2008/long-move-ts/">LONG형 컬럼을 가진 테이블의 테이블스페이스 이동</a>
-          </h1>
-        </header>
-        <section class="post-excerpt">
-          <p>
-            <p>테이블을 다른 테이블스페이스로 옮기려면 다음과 같이 한다.</p>
-
-<pre><code class="language-sql">ALTER TABLE t MOVE TABLESPACE ts_name;
-</code></pre>
-
-<p>그러나 <code>LONG</code>형 컬럼을 포함하고 있는 테이블에 위 명령을 실행하면 <code>ora-00997</code> 에러가 발생한다. CTAS를 사용해 테이블 복사를 시도해도 같은 에러가 발생한다.
-</p>
-          </p>
-          
-          <p>
-            <a class="button is-link" href="http://ntalbs.github.io/2008/long-move-ts/" style="height:28px">
               Read more...
             </a>
           </p>

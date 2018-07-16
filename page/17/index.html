@@ -44,6 +44,46 @@
       <article class="post">
         <header class="post-header">
           <span class="post-meta">
+            <time datetime="2014-11-11" itemprop="datePublished">2014-11-11</time>
+            on
+            
+            <a href="/tags/%ec%95%8c%ea%b3%a0%eb%a6%ac%ec%a6%98">알고리즘</a>
+            
+            <a href="/tags/clojure">Clojure</a>
+            
+            <a href="/tags/%ec%83%81%eb%85%90">상념</a>
+            
+          </span>
+          <h1 class="post-title">
+            <a href="http://ntalbs.github.io/2014/quicksort/">함수형 언어로 구현한 퀵정렬</a>
+          </h1>
+        </header>
+        <section class="post-excerpt">
+          <p>
+            <blockquote class="blockquote-reverse">언어의 한계가 사고의 한계다.
+- 비트겐슈타인</blockquote>
+
+<p>아주 오래 전에, 그러니까 C/C++, Java 외 다른 언어는 공부할 필요가 없다고 생각했던 때에, 잡지에서 다음과 같은  코드를 본 적이 있다.</p>
+
+<pre><code class="language-haskell">qsort [] = []
+qsort (p:xs) = qsort [y | y &lt;- xs, y &lt; p] ++ [p] ++ qsort [y | y &lt;- xs, y &gt;= p]
+</code></pre>
+
+<p></p>
+          </p>
+          
+          <p>
+            <a class="button is-link" href="http://ntalbs.github.io/2014/quicksort/" style="height:28px">
+              Read more...
+            </a>
+          </p>
+          
+        </section>
+      </article>
+      
+      <article class="post">
+        <header class="post-header">
+          <span class="post-meta">
             <time datetime="2014-10-16" itemprop="datePublished">2014-10-16</time>
             on
             
@@ -296,34 +336,6 @@
           
           <p>
             <a class="button is-link" href="http://ntalbs.github.io/2014/config-vars/" style="height:28px">
-              Read more...
-            </a>
-          </p>
-          
-        </section>
-      </article>
-      
-      <article class="post">
-        <header class="post-header">
-          <span class="post-meta">
-            <time datetime="2014-08-05" itemprop="datePublished">2014-08-05</time>
-            on
-            
-            <a href="/tags/java">Java</a>
-            
-          </span>
-          <h1 class="post-title">
-            <a href="http://ntalbs.github.io/2014/jps/">jps 사용법</a>
-          </h1>
-        </header>
-        <section class="post-excerpt">
-          <p>
-            자바로 개발할 때 보통 java와 javac만 사용하지만, JDK에는 이 이외에도 많은 도구가 포함되어 있다. 그 중 하나인 jps를 살펴보자. jps는 JVM 프로세스 상태를 보는 도구로 UNIX의 ps와 비슷하다. ps는 운영체계의 모든 프로세스 상태를 보여주지만 jps는 JVM 프로세스만 보여준다는 차이가 있다. jps 실행 시 목표 시스템(target system)을 지정하면 원격 시스템의 JVM 프로세스 상태도 확인할 수 있다.
-사용법 $ jps [options] [hostid]  옵션  -q 클래스 이름, JAR 파일 이름, main 메서드에 전달된 인자를 모두 생략하고 JVM 아이디(보통 OS 프로세스 아이디와 동일.
-          </p>
-          
-          <p>
-            <a class="button is-link" href="http://ntalbs.github.io/2014/jps/" style="height:28px">
               Read more...
             </a>
           </p>
