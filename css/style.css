@@ -398,6 +398,9 @@ ul.pagination li a {
 .post li img {
   max-width: 100%;
 }
+.post img.right {
+  float: right;
+}
 .post:after {
   display: block;
   content: "";
@@ -818,6 +821,9 @@ selection {
   .navbar li a {
     padding: 10px 20px;
   }
+  .post img.right {
+    float: none;
+  }
 }
 @media only screen and (max-width: 500px) {
   .blog-logo img {
@@ -876,6 +882,9 @@ selection {
   }
   h6 {
     font-size: 1.2rem;
+  }
+  .post img.right {
+    float: none;
   }
   .listing-item .post-title {
     font-size: 1.6rem;
