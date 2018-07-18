@@ -107,7 +107,7 @@ $$</div>
     x^2 - 3y^2 = 1
 $$</div>
 
-<p>펠 방정식의 해를 구하는 방법은 <a href="https://en.wikipedia.org/wiki/Pell's_equation#Additional_solutions_from_the_fundamental_solution">위키피디어</a>에 나와있다.</p>
+<p>펠 방정식 $x^2 - ny^2 = 1$의 해를 구하는 방법은 <a href="https://en.wikipedia.org/wiki/Pell's_equation#Additional_solutions_from_the_fundamental_solution">위키피디아</a>에 나와있다.</p>
 
 <div>$$
 \begin{aligned}
@@ -116,7 +116,7 @@ $$</div>
 \end{aligned}
 $$</div>
 
-<p>여기서 $n$은 3이고, 첫 해 $(x_1, y_1)=(2,1)$이다. 따라서 $x_k, y_k$가 주어지면 $x_{k+1}, y_{k+1}$을 구하는 함수는 다음과 같이 작성할 수 있다.</p>
+<p>여기서 $n$은 3이고, 첫 해 $(x_1, y_1)=(2,1)$이다. 따라서 $x_k, y_k$가 주어졌을 때 $x_{k+1}, y_{k+1}$을 구하는 함수는 다음과 같이 작성할 수 있다.</p>
 
 <pre><code class="language-clojure">(defn next-pair [[x y]]
   [(+' (*' 2 x) (*' 3 1 y))             ;next-x
