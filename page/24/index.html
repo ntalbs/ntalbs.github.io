@@ -44,6 +44,46 @@
       <article class="post">
         <header class="post-header">
           <span class="post-meta">
+            <time datetime="2009-04-14" itemprop="datePublished">2009-04-14</time>
+            on
+            
+            <a href="/tags/db">DB</a>
+            
+            <a href="/tags/sql">SQL</a>
+            
+            <a href="/tags/oracle">Oracle</a>
+            
+            <a href="/tags/postgresql">PostgreSQL</a>
+            
+          </span>
+          <h1 class="post-title">
+            <a href="http://ntalbs.github.io/2009/data-generator/">데이터 생성 SQL</a>
+          </h1>
+        </header>
+        <section class="post-excerpt">
+          <p>
+            <p>Oracle에서라면 다음 쿼리로 row를 생성할 수 있다.</p>
+
+<pre><code class="language-sql">-- 1~100까지 숫자 생성 (100 rows)
+select level from dual connect by level &lt;= 100;
+</code></pre>
+
+<p>이렇게 row 생성 쿼리를 이용하면 테스트 데이터를 원하는 만큼 생성하는 것도 쉽고, 간단한 문제를 풀 때도 유용하다. 예를 들어 얼마 전 kldp.org에 올라왔던 1~45의 숫자 중 랜덤하게 6개를 선택해 표시하는 문제도 다음과 같이 SQL로 풀 수 있다.
+</p>
+          </p>
+          
+          <p>
+            <a class="button is-link" href="http://ntalbs.github.io/2009/data-generator/" style="height:28px">
+              Read more...
+            </a>
+          </p>
+          
+        </section>
+      </article>
+      
+      <article class="post">
+        <header class="post-header">
+          <span class="post-meta">
             <time datetime="2009-04-10" itemprop="datePublished">2009-04-10</time>
             on
             
@@ -311,36 +351,6 @@
           
           <p>
             <a class="button is-link" href="http://ntalbs.github.io/2008/dbms-metadata/" style="height:28px">
-              Read more...
-            </a>
-          </p>
-          
-        </section>
-      </article>
-      
-      <article class="post">
-        <header class="post-header">
-          <span class="post-meta">
-            <time datetime="2008-11-18" itemprop="datePublished">2008-11-18</time>
-            on
-            
-            <a href="/tags/db">DB</a>
-            
-            <a href="/tags/oracle">Oracle</a>
-            
-          </span>
-          <h1 class="post-title">
-            <a href="http://ntalbs.github.io/2008/sizing-index/">오라클 인덱스 용량 산정 방법</a>
-          </h1>
-        </header>
-        <section class="post-excerpt">
-          <p>
-            <p>인덱스 용량을 산정하기 위한 방법인데 조금 복잡하다.
-</p>
-          </p>
-          
-          <p>
-            <a class="button is-link" href="http://ntalbs.github.io/2008/sizing-index/" style="height:28px">
               Read more...
             </a>
           </p>
@@ -659,6 +669,8 @@
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>
 
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/lisp.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
 
 <script>hljs.initHighlightingOnLoad();</script>
 

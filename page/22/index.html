@@ -44,6 +44,38 @@
       <article class="post">
         <header class="post-header">
           <span class="post-meta">
+            <time datetime="2010-08-01" itemprop="datePublished">2010-08-01</time>
+            on
+            
+            <a href="/tags/db">DB</a>
+            
+            <a href="/tags/oracle">Oracle</a>
+            
+            <a href="/tags/shell">Shell</a>
+            
+          </span>
+          <h1 class="post-title">
+            <a href="http://ntalbs.github.io/2010/export-compress/">export와 동시에 압축하기</a>
+          </h1>
+        </header>
+        <section class="post-excerpt">
+          <p>
+            다음과 같이 하면 export를 받은 후 압축하지 않고 export와 동시에 압축을 할 수 있다. export 파일 크기가 크고 디스크 용량이 충분하지 않을 때 사용하면 유용하다. 1. named pipe를 만든다. $ mknod /tmp/expimp_pipe p  2. pipe로부터 들어오는 데이터를 압축한다. 이 명령은 백그라운드로 실행되도록 한다.
+$ compress &lt; /tmp/expimp_pipe &gt; exp.dmp.Z &  3. pipe에 데이터를 쓴다. $ exp system/pw owner=scott direct=y file=/tmp/expimp_pipe  pipe를 이용해 export 하는 동시에 compress로 압축 저장해 백업을 받는 스크립트는 다음과 같이 작성할 수 있다.
+          </p>
+          
+          <p>
+            <a class="button is-link" href="http://ntalbs.github.io/2010/export-compress/" style="height:28px">
+              Read more...
+            </a>
+          </p>
+          
+        </section>
+      </article>
+      
+      <article class="post">
+        <header class="post-header">
+          <span class="post-meta">
             <time datetime="2010-07-27" itemprop="datePublished">2010-07-27</time>
             on
             
@@ -311,38 +343,6 @@
           
           <p>
             <a class="button is-link" href="http://ntalbs.github.io/2009/google-main-page/" style="height:28px">
-              Read more...
-            </a>
-          </p>
-          
-        </section>
-      </article>
-      
-      <article class="post">
-        <header class="post-header">
-          <span class="post-meta">
-            <time datetime="2009-12-03" itemprop="datePublished">2009-12-03</time>
-            on
-            
-            <a href="/tags/db">DB</a>
-            
-            <a href="/tags/oracle">Oracle</a>
-            
-            <a href="/tags/sql">SQL</a>
-            
-          </span>
-          <h1 class="post-title">
-            <a href="http://ntalbs.github.io/2009/first-and-last-day-of-week/">주어진 주의 첫 날과 마지막 날 구하기</a>
-          </h1>
-        </header>
-        <section class="post-excerpt">
-          <p>
-            <p><a href="http://database.sarang.net/">Database.Sarang.net</a> Q&amp;A 게시판에 특정 주(몇월 몇째주)를 주면 이 주의 첫 날과 마지막 날을 구하는 방법에 대한 질문이 올라왔다. 열심히 머리를 굴려본 결과 해당 주에 포함된 날짜를 구하면 그 주의 첫 날과 마지막 날을 구할 수 있음을 알게 됐고, 다음과 같은 쿼리를 작성했다.
-</p>
-          </p>
-          
-          <p>
-            <a class="button is-link" href="http://ntalbs.github.io/2009/first-and-last-day-of-week/" style="height:28px">
               Read more...
             </a>
           </p>
@@ -661,6 +661,8 @@
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>
 
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/lisp.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
 
 <script>hljs.initHighlightingOnLoad();</script>
 
