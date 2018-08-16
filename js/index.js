@@ -11,16 +11,20 @@
   }
 
   function offsetTop (elm) {
-    return elm.getBoundingClientRect().top + elm.ownerDocument.defaultView.pageYOffset
+    return elm ? elm.getBoundingClientRect().top + elm.ownerDocument.defaultView.pageYOffset : 0
+  }
+
+  function offsetHeight (elm) {
+    return elm ? elm.offsetHeight : 0
   }
 
   function initProgress (h1) {
-    let threshold = offsetTop(h1) + h1.offsetHeight - document.querySelector('nav').offsetHeight
+    let threshold = offsetTop(h1) + offsetHeight(h1) - offsetHeight(document.querySelector('nav'))
     let postContent = document.querySelector('.post-content')
 
     if (!postContent) return
 
-    let ph = postContent.offsetHeight    // post height
+    let ph = offsetHeight(postContent)   // post height
     let wh = window.innerHeight          // window height
     let color = randomColor()
 
@@ -55,8 +59,8 @@
 
   function minHeight () {
     let wh = window.innerHeight
-    let hh = document.querySelector('header').offsetHeight
-    let fh = document.querySelector('footer').offsetHeight
+    let hh = offsetHeight(document.querySelector('header'))
+    let fh = offsetHeight(document.querySelector('footer'))
     let minHeight = wh - hh - fh - 20 // 20 for adjustment
     return minHeight + 'px'
   }
