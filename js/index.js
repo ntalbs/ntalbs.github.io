@@ -17,13 +17,14 @@
   function initProgress (h1) {
     let threshold = offsetTop(h1) + h1.offsetHeight - document.querySelector('nav').offsetHeight
     let postContent = document.querySelector('.post-content')
+
+    if (!postContent) return
+
     let ph = postContent.offsetHeight    // post height
     let wh = window.innerHeight          // window height
     let color = randomColor()
 
     document.addEventListener('scroll', () => {
-      if (!postContent) return
-
       let top = offsetTop(postContent)
       let y = document.defaultView.pageYOffset
       let base = Math.max(5, top + ph - wh)
