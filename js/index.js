@@ -1,16 +1,8 @@
-/**
- * Main JS file
- */
-
-(function ($) {
+(function () {
   'use strict'
 
-  // $(document).ready(function () {
-  //   $('.post-content').fitVids()
-  // })
-
   function randomColor () {
-    var colors = [
+    let colors = [
       '#330033', '#003366',
       '#003399', '#000033', '#333300', '#990033',
       '#660033', '#089378', '#0898b3', '#1A5276', '#ffca00', '#ff9900'
@@ -18,71 +10,74 @@
     return colors[Math.floor(Math.random() * colors.length)]
   }
 
-  function initProgress ($h1) {
-    var threshold = $h1.offset().top + $h1.height() - $('nav').height()
-    var $postContent = $('.post-content')
-    var ph = $postContent.height()       // post height
-    var wh = $(window).height()          // window height
-    var color = randomColor()
+  function offsetTop (elm) {
+    return elm.getBoundingClientRect().top + elm.ownerDocument.defaultView.pageYOffset
+  }
 
-    $(document).scroll(function () {
-      if (!$postContent.length) return
+  function initProgress (h1) {
+    let threshold = offsetTop(h1) + h1.offsetHeight - document.querySelector('nav').offsetHeight
+    let postContent = document.querySelector('.post-content')
+    let ph = postContent.offsetHeight    // post height
+    let wh = window.innerHeight          // window height
+    let color = randomColor()
 
-      var offsetTop = $postContent.offset().top
-      var y = $(document).scrollTop()
-      var base = Math.max(5, offsetTop + ph - wh)
-      var progress = Math.min(100, y / base * 100)
+    document.addEventListener('scroll', () => {
+      if (!postContent) return
 
-      $('#bar').css({
-        'width': progress + '%',
-        'background-color': color
-      })
+      let top = offsetTop(postContent)
+      let y = document.defaultView.pageYOffset
+      let base = Math.max(5, top + ph - wh)
+      let progress = Math.min(100, y / base * 100)
+
+      let bar = document.querySelector('#bar')
+      bar.style.width = progress + '%'
+      bar.style.backgroundColor = color
 
       if (y <= threshold) {
-        $('#progress').height('8px')
+        document.querySelector('#progress').style.height = '8px'
       } else {
-        $('#progress').height('36px')
+        document.querySelector('#progress').style.height = '36px'
       }
     })
   }
 
-  function initShortcut () {
-    $(document).on('keydown', function (e) {
-      if (e.keyCode === 74 /* j */ || (e.ctrlKey && e.keyCode === 78 /* C-n */)) {
-        window.scrollBy(0, 100)
-      } else if (e.keyCode === 75 /* k */ || (e.ctrlKey && e.keyCode === 80 /* C-p */)) {
-        window.scrollBy(0, -100)
-      }
-    })
+  let h1 = document.querySelector('h1')
+  if (h1) {
+    initProgress(h1)
   }
 
-  initShortcut()
-
-  var $h1 = $('h1')
-  if ($h1.length) {
-    initProgress($h1)
-  }
-
-  $('[data-toggle=collapse]').on('click', function (e) {
-    var target = $(this).attr('data-target')
-    $(target).toggleClass('collapsed')
-  })
+  document.querySelectorAll('[data-toggle=collapse]').forEach(el => el.addEventListener('click', (e) => {
+    let targetId = el.getAttribute('data-target')
+    let target = document.getElementById(targetId.substring(1)) // remove '#'
+    target.classList.toggle('collapsed')
+  }))
 
   function minHeight () {
-    var wh = $(window).height()
-    var hh = $('header').height()
-    var fh = $('footer').outerHeight(true)
-    var minHeight = wh - hh - fh - 20 // 20 for adjustment
+    let wh = window.innerHeight
+    let hh = document.querySelector('header').offsetHeight
+    let fh = document.querySelector('footer').offsetHeight
+    let minHeight = wh - hh - fh - 20 // 20 for adjustment
     return minHeight + 'px'
   }
 
-  // footnote
-  $('.footnote-ref a').on('click', function (e) {
-    e.preventDefault()
-    let id = e.target.getAttribute('href').substr(1)
-    let footnote = document.getElementById(id)
-    footnote.scrollIntoView({block: 'end'})
+  // shortcut: j or C-n for down, k or C-p for up
+  document.addEventListener('keydown', e => {
+    if (e.keyCode === 74 /* j */ || (e.ctrlKey && e.keyCode === 78 /* C-n */)) {
+      window.scrollBy(0, 100)
+    } else if (e.keyCode === 75 /* k */ || (e.ctrlKey && e.keyCode === 80 /* C-p */)) {
+      window.scrollBy(0, -100)
+    }
   })
 
-  $('main').css('min-height', minHeight())
-}(jQuery))
+  // footnote
+  document.querySelectorAll('.footnote-ref a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault()
+      let id = e.target.getAttribute('href').substr(1)
+      let footnote = document.getElementById(id)
+      footnote.scrollIntoView({block: 'end'})
+    })
+  })
+
+  document.querySelector('main').style.minHeight = minHeight()
+}())
