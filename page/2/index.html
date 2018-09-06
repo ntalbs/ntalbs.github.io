@@ -44,6 +44,49 @@
       <article class="post">
         <header class="post-header">
           <span class="post-meta">
+            <time datetime="2018-03-10" itemprop="datePublished">2018-03-10</time>
+            on
+            
+            <a href="/tags/project-euler/">Project-Euler</a>
+            
+            <a href="/tags/clojure/">Clojure</a>
+            
+          </span>
+          <h1 class="post-title">
+            <a href="https://ntalbs.github.io/2018/project-euler-089/">프로젝트 오일러 89</a>
+          </h1>
+        </header>
+        <section class="post-excerpt">
+          <p>
+            <blockquote>
+<p>로마숫자 최적화하기</p>
+
+<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=89">[국어]</a> <a href="https://projecteuler.net/problem=89">[영어]</a></p>
+</blockquote>
+
+<p>먼저 다음과 같이 텍스트 파일을 읽어 시퀀스로 만들어둔다.</p>
+
+<pre><code class="language-clojure">(ns p089
+  (:require [clojure.string :as str]))
+
+(def romans (str/split (slurp &quot;data/roman.txt&quot;) #&quot;\r\n&quot;))
+</code></pre>
+
+<p></p>
+          </p>
+          
+          <p>
+            <a class="button is-link" href="https://ntalbs.github.io/2018/project-euler-089/" style="height:28px">
+              Read more...
+            </a>
+          </p>
+          
+        </section>
+      </article>
+      
+      <article class="post">
+        <header class="post-header">
+          <span class="post-meta">
             <time datetime="2018-03-09" itemprop="datePublished">2018-03-09</time>
             on
             
@@ -302,34 +345,6 @@
           
           <p>
             <a class="button is-link" href="https://ntalbs.github.io/2017/bad-luck-2/" style="height:28px">
-              Read more...
-            </a>
-          </p>
-          
-        </section>
-      </article>
-      
-      <article class="post">
-        <header class="post-header">
-          <span class="post-meta">
-            <time datetime="2017-06-16" itemprop="datePublished">2017-06-16</time>
-            on
-            
-            <a href="/tags/%ec%98%81%ea%b5%ad%ec%83%9d%ed%99%9c/">영국생활</a>
-            
-          </span>
-          <h1 class="post-title">
-            <a href="https://ntalbs.github.io/2017/bad-luck-1/">불운 1</a>
-          </h1>
-        </header>
-        <section class="post-excerpt">
-          <p>
-            <p>나쁜 일은 한꺼번에 찾아온다고 했던가. 여러 사건이 복잡하게 얽혀 있어 설명하기도 쉽지가 않지만, 두 가지 핵심 축은 휴대폰과 자동차라 할 수 있겠다. 여기서는 휴대폰 문제를 먼저 이야기하려 한다.
-</p>
-          </p>
-          
-          <p>
-            <a class="button is-link" href="https://ntalbs.github.io/2017/bad-luck-1/" style="height:28px">
               Read more...
             </a>
           </p>
