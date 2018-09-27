@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-	<meta name="generator" content="Hugo 0.48" />
+	<meta name="generator" content="Hugo 0.49" />
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>@ntalbs&#39; stuff</title>
@@ -38,6 +38,38 @@
 </header>
 
     <main class="container" role="main">
+      
+      <article class="post">
+        <header class="post-header">
+          <span class="post-meta">
+            <time datetime="2008-11-03" itemprop="datePublished">2008-11-03</time>
+            on
+            
+            <a href="/tags/db/">DB</a>
+            
+            <a href="/tags/oracle/">Oracle</a>
+            
+            <a href="/tags/sql/">SQL</a>
+            
+          </span>
+          <h1 class="post-title">
+            <a href="https://ntalbs.github.io/2008/comp-indexes/">인덱스 비교</a>
+          </h1>
+        </header>
+        <section class="post-excerpt">
+          <p>
+            <p>개발DB와 테스트DB, 또는 테스트DB와 운영DB간 인덱스를 비교할 때는 다음 쿼리를 사용할 수 있다.
+</p>
+          </p>
+          
+          <p>
+            <a class="button is-link" href="https://ntalbs.github.io/2008/comp-indexes/" style="height:28px">
+              Read more...
+            </a>
+          </p>
+          
+        </section>
+      </article>
       
       <article class="post">
         <header class="post-header">
@@ -322,37 +354,6 @@ with a as ( select table_name, column_name, decode(data_type, 'CHAR', data_type|
           
           <p>
             <a class="button is-link" href="https://ntalbs.github.io/2008/disabling-xdb-in-oracle/" style="height:28px">
-              Read more...
-            </a>
-          </p>
-          
-        </section>
-      </article>
-      
-      <article class="post">
-        <header class="post-header">
-          <span class="post-meta">
-            <time datetime="2008-10-30" itemprop="datePublished">2008-10-30</time>
-            on
-            
-            <a href="/tags/db/">DB</a>
-            
-            <a href="/tags/oracle/">Oracle</a>
-            
-          </span>
-          <h1 class="post-title">
-            <a href="https://ntalbs.github.io/2008/not-to-do-things/">하지 말 것 목록</a>
-          </h1>
-        </header>
-        <section class="post-excerpt">
-          <p>
-            <ol>
-<li>사용자로부터 문자열 리터럴을 입력받아 SQL을 만들지 말 것. (eg: 항상 바인드 변수를 사용할 것)</li>
-<li>데이터가 없는 상태 또는 실제 시스템의 극히 일부 데이터만 있는 상태에서 테스트하지 말 것. 실제 시스템의 통계 정보를 불러들이는 것도 소용 없음. <strong>실제로 어떻게 되는지를 보려면 실제 만큼의 데이터가 필요함.</strong>
-          </p>
-          
-          <p>
-            <a class="button is-link" href="https://ntalbs.github.io/2008/not-to-do-things/" style="height:28px">
               Read more...
             </a>
           </p>

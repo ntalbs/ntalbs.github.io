@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>프로젝트 오일러 96 @ntalbs&#39; stuff</title>
+<title>프로젝트 오일러 97 @ntalbs&#39; stuff</title>
 <link rel="shortcut icon" href="/images/favicon.ico">
 <link rel="stylesheet" href="/css/style.css">
 
@@ -12,7 +12,7 @@
     <div id="progress">
   <div id="bar"></div>
   <div class="container">
-    <div id="scroll-title">프로젝트 오일러 96</div>
+    <div id="scroll-title">프로젝트 오일러 97</div>
   </div>
 </div>
 
@@ -46,7 +46,7 @@
       <article class="post">
         <header>
           <p class="post-meta">
-            <time datetime="2018-09-07" itemprop="datePublished">2018-09-07</time>
+            <time datetime="2018-09-27" itemprop="datePublished">2018-09-27</time>
             on
             
             <a href="/tags/project-euler/">Project-Euler</a>
@@ -55,54 +55,57 @@
             
           </p>
           <h1 class="post-title">
-            프로젝트 오일러 96
+            프로젝트 오일러 97
           </h1>
         </header>
         <section class="post-content">
           <blockquote>
-<p>스도쿠 퍼즐 풀기</p>
+<p>메르센 수가 아닌 소수 $28433×2^{7830457}+1$의 마지막 10자리는?</p>
 
-<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=96">[국어]</a> <a href="https://projecteuler.net/problem=96">[영어]</a></p>
+<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=97">[국어]</a> <a href="https://projecteuler.net/problem=97">[영어]</a></p>
 </blockquote>
 
-<p>예전에 어디선가 Scala 코드 15줄로 스도쿠 퍼즐을 풀 수 있다는 글을 본 생각이 났다. 어떤 놀라운 알고리즘이 있나 봤는데 알고보니 CSP(Constraint Satisfaction Problem) 라이브러리를 사용한 것이었다. Clojure에서는 <a href="https://github.com/clojure/core.logic">core.logic</a>을 사용해 Scala 풀이와 비슷하게 문제를 풀 수 있다.
+<p>$2^{7830457}$은 2백만 자리가 넘는 어마어마하게 큰 수지만, Java의 <code>BigInteger</code>를 이용하면 계산하지 못 할 것도 없다. 그러나 이 큰 수의 모든 자릿수가 필요한 게 아니라 마지막 10자리만 필요하므로 <code>modPow</code>를 쓰면 조금 쉽게 계산할 수 있을 것 같다.
 </p>
 
-<p>자세한 내용은 모르지만, 간만히 말하자면 코드에 조건을 기술하고 실행하면 CSP 엔진이 가능한 답을 찾아준다는 것이다. <a href="https://github.com/ntalbs/euler/blob/master/src/p096.clj">풀이</a> 코드 대부분은 텍스트 파일을 읽고 보드를 초기화하고 루프를 돌면서 스도쿠 퍼즐을 푸는 것이라 여기서 따로 설명하지 않는다. 핵심은 다음 코드 블록이라 할 수 있겠다.</p>
-
-<pre><code class="language-clojure">    ...
-    (run* [q]
-         (== q board)
-         (everyg #(fd/in % sdnum) board)
-         (init-board board puzzle)
-         (everyg fd/distinct rows)
-         (everyg fd/distinct cols)
-         (everyg fd/distinct squares))
-    ...
+<pre><code class="language-clojure">(defn solve []
+  (-&gt; (.modPow (biginteger 2) (biginteger 7830457) (biginteger 10000000000))
+      (.multiply (biginteger 28433))
+      (.add (biginteger 1))
+      (.mod (biginteger 10000000000))))
 </code></pre>
 
-<p>각 행 숫자가 모두 달라야 하고, 각 열 숫자가 모두 달라야 하고, $3 \times 3$ 격자 안의 숫자가 모두 달라야 한다는 조건을 기술했다. 이렇게 조건을 기술하고 돌리면 엔진이 답을 찾아준다. 50개의 스도쿠 퍼즐을 풀었으면 각 해답지에서 맨 왼쪽 위 숫자를 이어붙인 수를 구해 모두 더하면 된다.</p>
-
-<p>실행 결과는 다음과 같다.</p>
+<p>역시 예상대로 빠르게 답을 구한다.</p>
 
 <pre class="console">
-p096=> (time (solve))
-"Elapsed time: 2904.611072 msecs"
-24?02
+p097=> (time (solve))
+"Elapsed time: 0.477179 msecs"
+873999??77
 </pre>
 
-<p>이건 내가 문제를 푼 게 아니라 core.logic이 푼 것이다. 스도쿠 퍼즐을 푸는 알고리즘은 아직도 모른다.</p>
+<p>그런데, <code>modPow</code>를 쓰지 않고 그냥 무식하게 계산하면 어떨까?</p>
+
+<pre><code class="language-clojure">(defn solve []
+  (-&gt; (.pow (biginteger 2) 7830457)
+      (.multiply (biginteger 28433))
+      (.add (biginteger 1))
+      (.mod (biginteger 10000000000))))
+</code></pre>
+
+<p>위와 같이 <code>modPow</code> 대신 <code>pow</code> 메서드를 사용하도록 코드를 조금 수정해 실행해보면&hellip;</p>
+
+<pre class="console">
+p097=> (time (solve))
+"Elapsed time: 7.865695 msecs"
+873999??77
+</pre>
+
+<p><code>modPow</code>를 사용한 경우보다 거의 20배는 느려졌지만, 충분히 빠르게 답을 구한다.</p>
 
 <h2 id="참고">참고</h2>
 
 <ul>
-<li><a href="https://github.com/ntalbs/euler/blob/master/src/p096.clj">프로젝트 오일러 96 풀이 소스 코드</a></li>
-<li><a href="https://news.ycombinator.com/item?id=4325746">A sudoku solver in 33 lines of Clojure</a></li>
-<li><a href="https://gist.github.com/orb/5884956">orb/sudoku.clj</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Constraint_logic_programming">Constraint logic programming</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Constraint_satisfaction_problem">Constraint satisfaction problem</a></li>
-<li><a href="https://github.com/clojure/core.logic">core.logic</a></li>
-<li><a href="https://sciss.github.io/sudoku/">Solving a sudoku puzzle in 15 lines of scala code</a></li>
+<li><a href="https://github.com/ntalbs/euler/blob/master/src/p097.clj">프로젝트 오일러 97 풀이 소스 코드</a></li>
 </ul>
         </section>
         <footer class="post-footer">
@@ -117,10 +120,8 @@ p096=> (time (solve))
           
           <nav id="article-nav">
             
-            <a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2018/last-this-next-friday/" id="article-nav-newer"> Last, this, next Friday</a>
             
-            
-            <a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2018/project-euler-095/" id="article-nav-older"> 프로젝트 오일러 95</a>
+            <a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2018/last-this-next-friday/" id="article-nav-older"> Last, this, next Friday</a>
             
           </nav>
         </footer>

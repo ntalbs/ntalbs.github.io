@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ntalbs.github.io/2018/project-euler-097/</loc>
+    <lastmod>2018-09-27T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://ntalbs.github.io/2018/last-this-next-friday/</loc>
     <lastmod>2018-09-14T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
