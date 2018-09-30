@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>프로젝트 오일러 98 @ntalbs&#39; stuff</title>
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/style.css">
+
+  </head>
+  <body>
+    <div id="progress">
+  <div id="bar"></div>
+  <div class="container">
+    <div id="scroll-title">프로젝트 오일러 98</div>
+  </div>
+</div>
+
+    <nav class="navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+      <a class="navbar-brand" href="/">@ntalbs&#39; stuff</a>
+    </div>
+    <div class="navbar-items collapsed" id="nav-items">
+      <ul>
+        
+        <li><a href="/archive/">Archive</a></li>
+        
+        <li><a href="/tags/">Tags</a></li>
+        
+        <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+  </div>
+</header>
+
+    <main class="container" role="main">
+      <article class="post">
+        <header>
+          <p class="post-meta">
+            <time datetime="2018-10-01" itemprop="datePublished">2018-10-01</time>
+            on
+            
+            <a href="/tags/project-euler/">Project-Euler</a>
+            
+            <a href="/tags/clojure/">Clojure</a>
+            
+          </p>
+          <h1 class="post-title">
+            프로젝트 오일러 98
+          </h1>
+        </header>
+        <section class="post-content">
+          <blockquote>
+<p>제곱수를 나타내는 애너그램 쌍 찾기</p>
+
+<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=98">[국어]</a> <a href="https://projecteuler.net/problem=98">[영어]</a></p>
+</blockquote>
+
+<p>단어 수는 2천 개도 안 되지만 각 단어의 알파벳을 임의의 수로 치환하는 경우의 수를 생각하면 엄청나게 많은 계산이 필요하다. 알파벳을 임의의 수로 치환하는 대신 제곱수를 미리 구해놓고 알파벳을 치환할 때 제곱수를 이용해 치환한다면 계산 범위를 크게 줄일 수 있다.
+</p>
+
+<p>먼저 파일을 읽어 단어 목록을 만들고 애너그램을 구한다. 애너그램은 글자를 정렬했을 때 결과가 같으므로, 단어의 글자로 정렬한 결과를 키로 <code>group-by</code>하면 쉽게 애너그램을 구할 수있다.</p>
+
+<pre><code class="language-clojure">(def words
+  (clojure.string/split (slurp &quot;data/words.txt&quot;) #&quot;\&quot;(,\&quot;)?&quot;))
+
+(def anagrams
+  (-&gt;&gt; words
+       (group-by (fn [w] (sort w)))
+       (filter (fn [[k ws]] (&lt;= 2 (count ws))))
+       (map second)))
+</code></pre>
+
+<p>글자수와 같은 자리의 제곱수를 사용할 것이므로 다음과 같이 자릿수별 제곱수 맵을 만든다. 위에서 만든 애너그램에서 제일 긴 것이 9자로 되어 있으므로 제곱수도 9자리 숫자 ($&lt; 1,000,000,000$)까지 만들면 충분하다.</p>
+
+<pre><code class="language-clojure">(def sqnums
+  (-&gt;&gt; (iterate inc 1)
+       (map #(* % %))
+       (take-while #(&lt; (Math/log10 %) 9))
+       (group-by #(inc (int (Math/log10 %))))
+       (map (fn [[k vs]] [k (set vs)]))
+       (into {})))
+</code></pre>
+
+<p>숫자 벡터를 숫자로 만드는 함수도 있으면 문제 풀이에 도움이 된다.</p>
+
+<pre><code class="language-clojure">(defn digits-to-num [ds]
+  (loop [ds (reverse ds) p 1 n 0]
+    (if (seq? ds)
+      (recur (next ds) (* p 10) (+ n (* (first ds) p)))
+      n)))
+</code></pre>
+
+<p>문제를 풀려면, 단어에 있는 알파벳을 숫자로 치환한 다음 동일한 규칙을 애너그램에 적용했을 때 역시 제곱수가 되는지 확인하는 코드를 작성해야 한다.</p>
+
+<p>다음 함수는 주어진 단어에 대해 제곱수로 바꾸는 규칙을 담은 맵을 생성해 리턴한다. 이 함수가 리턴한 맵을 이용해 동일한 규칙으로 애너그램을 숫자로 치환해 제곱수가 되는지 확인할 것이다. 알파벳을 숫자로 치환할 때 알파벳이 같으면 치환하는 숫자도 같아야 한다. 또한 다른 알파벳은 다른 수로 치환해야 한다.</p>
+
+<pre><code class="language-clojure">(defn w-&gt;sqns [w]
+  (letfn [(same-letters-have-same-digit? [m]
+            (= 1 (-&gt;&gt; (group-by first x)
+                      (map (fn [[_ v]] (count (distinct v))))
+                      (apply max))))
+          (diff-letters-have-diff-digits? [m]
+            (= 1 (-&gt;&gt; (group-by second x)
+                      (map (fn [[_ v]] (count v)))
+                      (apply max))))]
+    (-&gt;&gt; (for [n (sqnums (count w))] (map vector w (digits n)))
+         (filter same-letters-have-same-digit?)
+         (filter diff-letters-have-diff-digits?)
+         (map (fn [x] (into {} x)))))
+</code></pre>
+
+<p>애너그램 쌍이 제곱 에너그람 쌍인지 확인하는 함수는 다음과 같이 작성할 수 있다. <code>w-&gt;sqns</code> 함수로 구한 치환 규칙을 애너그램에 적용해 역시 제곱수가 되는지 확인한다.</p>
+
+<pre><code class="language-clojure">(defn check [[w1 w2]]
+  (let [sqns (sqnums (count w1))
+        ms (w-&gt;sqns w1)
+        ns (for [m ms] (digits-to-num (map #(m %) w2)))]
+    (filter #(contains? sqns %) ns)))
+</code></pre>
+
+<p>이제 문제를 다음과 같이 풀 수 있다.</p>
+
+<pre><code class="language-clojure">(defn solve []
+  (-&gt;&gt; anagrams
+       (map #(check %))
+       (remove empty?)
+       (flatten)
+       (apply max)))
+</code></pre>
+
+<p>실행 결과는 다음과 같다. 답을 구하는 데 1초 조금 넘게 걸린다.</p>
+
+<pre class="console">
+p098> (time (solve))
+"Elapsed time: 1037.136248 msecs"
+18?69
+</pre>
+
+<h2 id="참고">참고</h2>
+
+<ul>
+<li><a href="https://github.com/ntalbs/euler/blob/master/src/p098.clj">프로젝트 오일러 98 풀이 소스 코드</a></li>
+</ul>
+        </section>
+        <footer class="post-footer">
+          
+          <div class="social button-box">
+            
+            <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+            <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            
+          </div>
+          
+          <nav id="article-nav">
+            
+            
+            <a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2018/project-euler-097/" id="article-nav-older"> 프로젝트 오일러 97</a>
+            
+          </nav>
+        </footer>
+      </article>
+    </main>
+    
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+     var disqus_shortname = 'ntalbs-stuff';
+     (function() {
+       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+    <section class="section">
+  <div class="container has-text-centered">
+    <p></p>
+  </div>
+</section>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-2098194-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script src=https://ntalbs.github.io/js/index.js type="text/javascript"></script>
+
+    <link rel="stylesheet" href="/css/github.css">
+<script type="text/javascript" src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+   tex2jax: {
+     inlineMath: [['$','$']],
+     displayMath: [['$$','$$']],
+     processEscapes: true,
+     processEnvironments: true,
+     skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code'],
+     TeX: { equationNumbers: { autoNumber: "AMS" },
+            extensions: ["AMSmath.js", "AMSsymbols.js"] }
+   }
+ });
+</script>
+
+    <footer class="page-bottom">
+  <div class="inner">
+    <section class="copyright">© 2008-2018 <a href="/about">ntalbs</a></section>
+    <section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section>
+  </div>
+</footer>
+
+  </body>
+</html>
