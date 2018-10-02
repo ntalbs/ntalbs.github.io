@@ -69,25 +69,27 @@ SQL&gt; update tbl set a = 'hello&amp;world' where ...
 Enter value for world: _  &lt -- 입력을 기다림
 </pre>
 
+<p>이걸 어떻게 회피할 수 있을까?</p>
+
 <h2 id="해결-방법-1">해결 방법 1</h2>
 
-<p>다음 명령을 실행시킨 후 SQL 실행.</p>
+<p>다음 명령을 실행시킨 후 SQL 실행한다.</p>
 
 <pre class="console">
 SQL&gt; set define off
 </pre>
 
-<p>(SQL*Plus User&rsquo;s Guide and Reference 참조.)</p>
+<p>(<a href="https://docs.oracle.com/cd/E11882_01/server.112/e16604/ch_eight.htm#sthref932">SQL*Plus User&rsquo;s Guide and Reference</a>에서 <code>SET DEFINE OFF</code>절 참조)</p>
 
 <h2 id="해결-방법-2">해결 방법 2</h2>
 
-<p>다음과 같은 식으로 문자열 변경 (편법&hellip;)</p>
+<p>편법으로 다음과 같은 식으로 문자열 변경할 수도 있다.</p>
 
 <pre class="console">
 'hello&world' --&gt; 'hello&'||'world'
 </pre>
 
-<p>(문자열이 많을 경우 노가다 작업이 될 수 있음.)</p>
+<p>문자열에 <code>&amp;</code>가 많을 경우 노가다 작업이 된다.</p>
         </section>
         <footer class="post-footer">
           
