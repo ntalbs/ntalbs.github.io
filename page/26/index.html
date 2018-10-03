@@ -53,6 +53,38 @@
             
           </span>
           <h1 class="post-title">
+            <a href="https://ntalbs.github.io/2008/row-generator/">무한 row 생성 쿼리</a>
+          </h1>
+        </header>
+        <section class="post-excerpt">
+          <p>
+            <p>Oracle에서는 다음과 같이 <code>connect by</code>절을 사용해 원하는 만큼 row를 만들어낼 수 있다.
+</p>
+          </p>
+          
+          <p>
+            <a class="button is-link" href="https://ntalbs.github.io/2008/row-generator/" style="height:28px">
+              Read more...
+            </a>
+          </p>
+          
+        </section>
+      </article>
+      
+      <article class="post">
+        <header class="post-header">
+          <span class="post-meta">
+            <time datetime="2008-11-03" itemprop="datePublished">2008-11-03</time>
+            on
+            
+            <a href="/tags/db/">DB</a>
+            
+            <a href="/tags/oracle/">Oracle</a>
+            
+            <a href="/tags/sql/">SQL</a>
+            
+          </span>
+          <h1 class="post-title">
             <a href="https://ntalbs.github.io/2008/oracle-factorial/">오라클에서 factorial 구하기</a>
           </h1>
         </header>
@@ -327,35 +359,6 @@ with a as ( select table_name, column_name, decode(data_type, 'CHAR', data_type|
           
           <p>
             <a class="button is-link" href="https://ntalbs.github.io/2008/index-dup-and-clustering-factor/" style="height:28px">
-              Read more...
-            </a>
-          </p>
-          
-        </section>
-      </article>
-      
-      <article class="post">
-        <header class="post-header">
-          <span class="post-meta">
-            <time datetime="2008-10-30" itemprop="datePublished">2008-10-30</time>
-            on
-            
-            <a href="/tags/db/">DB</a>
-            
-            <a href="/tags/oracle/">Oracle</a>
-            
-          </span>
-          <h1 class="post-title">
-            <a href="https://ntalbs.github.io/2008/deleting-db-link/">DB 링크 삭제 시 제약사항</a>
-          </h1>
-        </header>
-        <section class="post-excerpt">
-          <p>
-            <p>불필요한 데이터베이스 링크가 난무하는 것 같아 정리하기로 마음을 먹었다. 일단 개발DB에서 운영DB로의 데이터베이스 링크는 허용할 수 없으므로 이것부터 삭제하기로 했다. 개발DB에 <code>sys</code> 계정으로 로그인한 다음 <code>dba_db_links</code> 테이블을 조회해 개발DB에서 운영DB로 연결되는 데이터베이스 링크를 하나씩 확인했다. <code>public</code> 데이터베이스 링크를 삭제할 때는 <code>drop public database link ...</code> 명령으로 간단하게 삭제했다. 그리고 <code>xxx</code> 스키마에 있는 데이터베이스 링크를 삭제하기 위해 <code>drop database link xxx.{db_link_name}</code> 명령을 날렸는데, 데이터베이스 링크를 찾을 수 없다며 <code>ora-02024</code> 에러가 발생했다.</p>
-          </p>
-          
-          <p>
-            <a class="button is-link" href="https://ntalbs.github.io/2008/deleting-db-link/" style="height:28px">
               Read more...
             </a>
           </p>
