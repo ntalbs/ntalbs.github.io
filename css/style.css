@@ -154,28 +154,15 @@ mark {
 code {
   padding: 3px 3px 1px 3px;
   font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  font-size: 0.9em;
+  font-size: 0.8em;
   white-space: pre-wrap;
   border: none;
   background: #eee;
   border-radius: 3px;
   hyphens: none;
 }
-figure.highlight {
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  background-color: #fafafa;
-  border-radius: 5px;
-  overflow: auto;
-}
-figure.highlight table {
-  margin: 0;
-  border: none;
-}
-figure.highlight table td {
-  border-top: none;
-  padding: 0;
+code.hljs {
+  font-size: 0.9em;
 }
 pre {
   -moz-box-sizing: border-box;
@@ -188,9 +175,6 @@ pre {
   white-space: pre;
   word-break: normal;
   letter-spacing: -1px;
-}
-.code .line {
-  min-height: 0.8em;
 }
 pre.console {
   padding: 10px;
@@ -488,9 +472,6 @@ ul.pagination li a {
 }
 .draft {
   color: #ff4500;
-}
-.draft:after {
-  content: ":: draft";
 }
 -moz-selection {
   color: #222;
