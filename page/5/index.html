@@ -42,6 +42,51 @@
       <article class="post">
         <header class="post-header">
           <span class="post-meta">
+            <time datetime="2016-11-16" itemprop="datePublished">2016-11-16</time>
+            on
+            
+            <a href="/tags/project-euler/">Project-Euler</a>
+            
+            <a href="/tags/clojure/">Clojure</a>
+            
+          </span>
+          <h1 class="post-title">
+            <a href="https://ntalbs.github.io/2016/project-euler-078/">프로젝트 오일러 78</a>
+          </h1>
+        </header>
+        <section class="post-excerpt">
+          <p>
+            <blockquote>
+<p>동전을 여러 더미로 나누는 경우의 수 세기</p>
+
+<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=78">[국어]</a> <a href="https://projecteuler.net/problem=78">[영어]</a></p>
+</blockquote>
+
+<p>동전을 여러 더미로 나누는 방법의 수는 정수를 덧셈으로 표시할 수 있는 방법의 수와 같다. 위키백과를 찾아보면 다음과 같이 공식이 나와 있다.</p>
+
+<div>$$
+\begin{aligned}
+  p(n) &= \sum_{k \neq 0} (-1)^{k-1}p(n - g_k) \\
+  g_k &= \frac{k(3k-1)}{2}
+\end{aligned}
+$$</div>
+
+<p>$n$을 증가시키면서 $p(n)$을 구해 1백만으로 나누어 떨어지는지 확인하는 방법으로 답을 찾을 수 있다. $p(n)$을 구하는 데 필요한 $g_k$는 다음과 같이 쉽게 구현할 수 있다.
+</p>
+          </p>
+          
+          <p>
+            <a class="button is-link" href="https://ntalbs.github.io/2016/project-euler-078/" style="height:28px">
+              Read more...
+            </a>
+          </p>
+          
+        </section>
+      </article>
+      
+      <article class="post">
+        <header class="post-header">
+          <span class="post-meta">
             <time datetime="2016-10-12" itemprop="datePublished">2016-10-12</time>
             on
             
@@ -343,44 +388,6 @@
           
           <p>
             <a class="button is-link" href="https://ntalbs.github.io/2016/my-proud-moments/" style="height:28px">
-              Read more...
-            </a>
-          </p>
-          
-        </section>
-      </article>
-      
-      <article class="post">
-        <header class="post-header">
-          <span class="post-meta">
-            <time datetime="2016-07-28" itemprop="datePublished">2016-07-28</time>
-            on
-            
-            <a href="/tags/project-euler/">Project-Euler</a>
-            
-            <a href="/tags/clojure/">Clojure</a>
-            
-          </span>
-          <h1 class="post-title">
-            <a href="https://ntalbs.github.io/2016/project-euler-073/">프로젝트 오일러 73</a>
-          </h1>
-        </header>
-        <section class="post-excerpt">
-          <p>
-            <blockquote>
-<p>분모가 12,000 이하일 때 1/3과 <sup>1</sup>&frasl;<sub>2</sub> 사이에 위치한 기약 진분수의 개수</p>
-
-<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=73">[국어]</a> <a href="https://projecteuler.net/problem=73">[영어]</a></p>
-</blockquote>
-
-<h2 id="무차별-대입법">무차별 대입법</h2>
-
-<p>분모가 12,000 이하인 경우만 조사하면 되므로 분자와 분모에 12,000 이하의 수를 대입해가며 분수를 만들어 1/3과 <sup>1</sup>&frasl;<sub>2</sub> 사이의 기약 진부수를 세는 방법으로 답을 구할 수 있을 것 같다. 분모는 3부터 12,000까지, 분자는 분모/3 ~ 분모/2 사이의 정수를 대입해보면 된다.
-</p>
-          </p>
-          
-          <p>
-            <a class="button is-link" href="https://ntalbs.github.io/2016/project-euler-073/" style="height:28px">
               Read more...
             </a>
           </p>
