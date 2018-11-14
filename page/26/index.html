@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-	<meta name="generator" content="Hugo 0.50" />
+	<meta name="generator" content="Hugo 0.51" />
     <meta name="robots" content="noindex">
     
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
@@ -54,6 +54,35 @@
       <article class="post">
         <header class="post-header">
           <span class="post-meta">
+            <time datetime="2008-11-17" itemprop="datePublished">2008-11-17</time>
+            on
+            
+            <a href="/tags/db/">DB</a>
+            
+            <a href="/tags/oracle/">Oracle</a>
+            
+          </span>
+          <h1 class="post-title">
+            <a href="https://ntalbs.github.io/2008/sizing-table/">오라클 테이블 용량 산정 방법</a>
+          </h1>
+        </header>
+        <section class="post-excerpt">
+          <p>
+            <p>테이블 용량을 산정하기 위한 방법인데 조금 복잡하다. 어차피 추정이므로 간단하게 $(평균\ row \ 크기) \times (데이터\ 건수) \times 1.3$ 정도로 해도 되지 않을까 싶다.</p>
+          </p>
+          
+          <p>
+            <a class="button is-link" href="https://ntalbs.github.io/2008/sizing-table/" style="height:28px">
+              Read more...
+            </a>
+          </p>
+          
+        </section>
+      </article>
+      
+      <article class="post">
+        <header class="post-header">
+          <span class="post-meta">
             <time datetime="2008-11-08" itemprop="datePublished">2008-11-08</time>
             on
             
@@ -68,8 +97,7 @@
         </header>
         <section class="post-excerpt">
           <p>
-            <p>다음과 같이 하면 exp/imp 도구를 사용해 특정 스키마의 DDL을 추출할 수 있다.
-</p>
+            <p>다음과 같이 하면 exp/imp 도구를 사용해 특정 스키마의 DDL을 추출할 수 있다.</p>
           </p>
           
           <p>
@@ -100,8 +128,7 @@
         </header>
         <section class="post-excerpt">
           <p>
-            <p>Oracle에서는 다음과 같이 <code>connect by</code>절을 사용해 원하는 만큼 row를 만들어낼 수 있다.
-</p>
+            <p>Oracle에서는 다음과 같이 <code>connect by</code>절을 사용해 원하는 만큼 row를 만들어낼 수 있다.</p>
           </p>
           
           <p>
@@ -132,8 +159,7 @@
         </header>
         <section class="post-excerpt">
           <p>
-            <p>오라클에 <code>factorial</code> 함수가 없지만 다음과 같이 구할 수 있다.
-</p>
+            <p>오라클에 <code>factorial</code> 함수가 없지만 다음과 같이 구할 수 있다.</p>
           </p>
           
           <p>
@@ -164,8 +190,7 @@
         </header>
         <section class="post-excerpt">
           <p>
-            <p>개발DB와 테스트DB, 또는 테스트DB와 운영DB간 인덱스를 비교할 때는 다음 쿼리를 사용할 수 있다.
-</p>
+            <p>개발DB와 테스트DB, 또는 테스트DB와 운영DB간 인덱스를 비교할 때는 다음 쿼리를 사용할 수 있다.</p>
           </p>
           
           <p>
@@ -196,8 +221,7 @@
         </header>
         <section class="post-excerpt">
           <p>
-            프로젝트를 하다보면 개발DB와 테스트DB 또는 테스트DB와 운영DB간 스키마를 비교해 차이점이 없는지 확인할 일이 많다. 다음은 테이블과 컬럼을 비교하는 스크립트다. Full Outer Join을 사용할 수도 있으나, 결과가 제대로 나오지 않거나 에러(ora-600)가 발생한다(Oracle 9i, 10g에서 모두 에러 발생했음). 그냥 left outer join, right outer join한 후 둘을 union 하는 것이 결과가 제대로 나온다. (with절은 Oracle 9i부터 사용 가능함.)
-with a as ( select table_name, column_name, decode(data_type, 'CHAR', data_type||'('||data_length||')', 'VARCHAR2', data_type||'('||data_length||')', 'NUMBER', data_type||'('||data_precision||','||data_scale||')', data_type) data_type, nullable from all_tab_columns where owner = 'XXX' and table_name not like 'BIN$%' ), b as ( select table_name, column_name, decode(data_type, 'CHAR', data_type||'('||data_length||')', 'VARCHAR2', data_type||'('||data_length||')', 'NUMBER', data_type||'('||data_precision||','||data_scale||')', data_type) data_type, nullable from all_tab_columns&lt;b id=&quot;ncsj&quot;&gt;@testdb&lt;/b&gt; where owner = 'XXX' and table_name not like 'BIN$%' ) select decode(a.
+            <p>프로젝트를 하다보면 개발DB와 테스트DB 또는 테스트DB와 운영DB간 스키마를 비교해 차이점이 없는지 확인할 일이 많다. 다음은 테이블과 컬럼을 비교하는 스크립트다.</p>
           </p>
           
           <p>
@@ -230,8 +254,7 @@ with a as ( select table_name, column_name, decode(data_type, 'CHAR', data_type|
         </header>
         <section class="post-excerpt">
           <p>
-            <p>select한 결과를 shell에서 참조해야 하는 경우 다음과 같이 하면 된다.
-</p>
+            <p>select한 결과를 shell에서 참조해야 하는 경우 다음과 같이 하면 된다.</p>
           </p>
           
           <p>
@@ -262,8 +285,7 @@ with a as ( select table_name, column_name, decode(data_type, 'CHAR', data_type|
         </header>
         <section class="post-excerpt">
           <p>
-            <p>문자열 자체에 <code>&amp;</code>가 포함되어 있는 경우 SQL*Plus에서 <code>&amp;</code> 뒤의 단어를 변수로 인식해 그에 대한 값의 입력을 요구한다.
-</p>
+            <p>문자열 자체에 <code>&amp;</code>가 포함되어 있는 경우 SQL*Plus에서 <code>&amp;</code> 뒤의 단어를 변수로 인식해 그에 대한 값의 입력을 요구한다.</p>
           </p>
           
           <p>
@@ -292,7 +314,7 @@ with a as ( select table_name, column_name, decode(data_type, 'CHAR', data_type|
         </header>
         <section class="post-excerpt">
           <p>
-            <p>현재 우리 운영DB는 <code>db_files</code> 파라미터 값이 매우 작게 잡혀있다. 따라서 빨리 값을 늘려줘야 하는데, 당장 운영중인 DB를 내리고 파라미터 값을 바꿀 수는 없다. 그런데 여기서 궁금증 하나 생겼다. <code>db_files</code>는 데이터 파일 개수만 제한하는 것일까, 아니면 temp 파일도 여기에 포함되는 것일까? 혹시 온라인 리두로그는? 혹시 컨트롤 파일도 포함되는 것일까? 지금까지는 당연히 데이터 파일 수를 제한하는 것이라 생각했었는데, 이런 궁금증이 생기니 확신을 할 수가 없다. 지금까지 명확하게 알지 못하고 작업하다가 사고친 게 어디 한두번이던가?</p>
+            <p>현재 우리 운영DB는 <code>db_files</code> 파라미터 값이 매우 작게 잡혀있다. 따라서 빨리 값을 늘려줘야 하는데, 당장 운영중인 DB를 내리고 파라미터 값을 바꿀 수는 없다. 그런데 여기서 궁금증 하나 생겼다. <code>db_files</code>는 데이터 파일 개수만 제한하는 것일까, 아니면 temp 파일도 여기에 포함되는 것일까? 혹시 온라인 리두로그는? 혹시 컨트롤 파일도 포함되는 것일까?</p>
           </p>
           
           <p>
@@ -326,44 +348,11 @@ with a as ( select table_name, column_name, decode(data_type, 'CHAR', data_type|
 <pre><code class="language-sql">ALTER TABLE t MOVE TABLESPACE ts_name;
 </code></pre>
 
-<p>그러나 <code>LONG</code>형 컬럼을 포함하고 있는 테이블에 위 명령을 실행하면 <code>ora-00997</code> 에러가 발생한다. CTAS를 사용해 테이블 복사를 시도해도 같은 에러가 발생한다.
-</p>
+<p>그러나 <code>LONG</code>형 컬럼을 포함하고 있는 테이블에 위 명령을 실행하면 <code>ora-00997</code> 에러가 발생한다. CTAS를 사용해 테이블 복사를 시도해도 같은 에러가 발생한다.</p>
           </p>
           
           <p>
             <a class="button is-link" href="https://ntalbs.github.io/2008/long-move-ts/" style="height:28px">
-              Read more...
-            </a>
-          </p>
-          
-        </section>
-      </article>
-      
-      <article class="post">
-        <header class="post-header">
-          <span class="post-meta">
-            <time datetime="2008-10-31" itemprop="datePublished">2008-10-31</time>
-            on
-            
-            <a href="/tags/db/">DB</a>
-            
-            <a href="/tags/oracle/">Oracle</a>
-            
-            <a href="/tags/sqlplus/">SqlPlus</a>
-            
-          </span>
-          <h1 class="post-title">
-            <a href="https://ntalbs.github.io/2008/sqlplus-prompt/">SQL*Plus 프롬프트 설정</a>
-          </h1>
-        </header>
-        <section class="post-excerpt">
-          <p>
-            <p>SQL*Plus의 프롬프트를 <code>username@INSTANCE_NAME &gt;</code>과 같은 식으로 설정하면 현재 로그인한 인스턴스와 사용자 이름을 확인할 수 있어 편하다. logn.sql 스크립트를 만들어 여기에 프롬프트 설정 코드를 넣어두면 된다. Effective Oracle 책(p79)에는 설정 코드가 조금 복잡하게 나와 있다.
-</p>
-          </p>
-          
-          <p>
-            <a class="button is-link" href="https://ntalbs.github.io/2008/sqlplus-prompt/" style="height:28px">
               Read more...
             </a>
           </p>

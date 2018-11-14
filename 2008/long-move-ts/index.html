@@ -76,8 +76,7 @@
 <pre><code class="language-sql">ALTER TABLE t MOVE TABLESPACE ts_name;
 </code></pre>
 
-<p>그러나 <code>LONG</code>형 컬럼을 포함하고 있는 테이블에 위 명령을 실행하면 <code>ora-00997</code> 에러가 발생한다. CTAS를 사용해 테이블 복사를 시도해도 같은 에러가 발생한다.
-</p>
+<p>그러나 <code>LONG</code>형 컬럼을 포함하고 있는 테이블에 위 명령을 실행하면 <code>ora-00997</code> 에러가 발생한다. CTAS를 사용해 테이블 복사를 시도해도 같은 에러가 발생한다.</p>
 
 <pre class="console">
 SQL> create table t (n number, l long);

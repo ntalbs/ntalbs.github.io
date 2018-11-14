@@ -85,8 +85,6 @@
        (apply +)))
 </code></pre>
 
-<p></p>
-
 <p>단계의 길이를 구하는 함수는 다음과 같이 작성할 수 있다. 위에서 작성한 <code>fact-sum</code>을 반복 적용해가며 결과를 집합에 넣고 길이를 1씩 증가시킨다. 새로 구한 <code>fact-sum</code> 값이 이미 집합에 포함되어 있다면 그때까지의 길이가 단계의 길이가 된다.</p>
 
 <pre><code class="language-clojure">(defn- chain-length [n]

@@ -77,8 +77,7 @@
 <p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=47">[국어]</a> <a href="https://projecteuler.net/problem=47">[영어]</a></p>
 </blockquote>
 
-<p>소인수의 개수를 구하는 함수가 있다면 문제를 쉽게 풀 수 있다. <a href="/2015/project-euler-003/">문제 3</a>에서 소인수 분해 함수를 구현했으므로, 소인수 개수를 구하는 함수는 다음과 같이 간단히 작성할 수 있다.
-</p>
+<p>소인수의 개수를 구하는 함수가 있다면 문제를 쉽게 풀 수 있다. <a href="/2015/project-euler-003/">문제 3</a>에서 소인수 분해 함수를 구현했으므로, 소인수 개수를 구하는 함수는 다음과 같이 간단히 작성할 수 있다.</p>
 
 <pre><code class="language-clojure">(defn count-prime-factors [n]
   (count (factorize n)))

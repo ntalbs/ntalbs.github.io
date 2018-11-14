@@ -77,8 +77,7 @@
 <p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=65">[국어]</a> <a href="https://projecteuler.net/problem=65">[영어]</a></p>
 </blockquote>
 
-<p>$e$의 연분수를 꼴을 $[a_0; a_1, a_2, a_3, &hellip;]$이라 했을 때, 100번째 연분수 확장 값을 계산하려면 $a_{99}$(100번째 항)부터 값을 계산해 올라가야 한다. 문제에서 $e$의 연분수 꼴이 $[2; 1,2,1, 1,4,1, 1,6,1, &hellip;, 1,2k,1, &hellip; ]$로 나타낼 수 있다고 되어 있으므로 $n$이 주어졌을 때 $a_{n-1}, a_{n-2}, &hellip;, a_0$을 구하는 함수는 다음과 같이 만들 수 있다.
-</p>
+<p>$e$의 연분수를 꼴을 $[a_0; a_1, a_2, a_3, &hellip;]$이라 했을 때, 100번째 연분수 확장 값을 계산하려면 $a_{99}$(100번째 항)부터 값을 계산해 올라가야 한다. 문제에서 $e$의 연분수 꼴이 $[2; 1,2,1, 1,4,1, 1,6,1, &hellip;, 1,2k,1, &hellip; ]$로 나타낼 수 있다고 되어 있으므로 $n$이 주어졌을 때 $a_{n-1}, a_{n-2}, &hellip;, a_0$을 구하는 함수는 다음과 같이 만들 수 있다.</p>
 
 <pre><code class="language-clojure">(defn- xs
   &quot;a(n-1) a(n-2) ... a0&quot;

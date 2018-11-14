@@ -73,7 +73,9 @@
           </h1>
         </header>
         <section class="post-content">
-          <p>프로젝트를 하다보면 개발DB와 테스트DB 또는 테스트DB와 운영DB간 스키마를 비교해 차이점이 없는지 확인할 일이 많다. 다음은 테이블과 컬럼을 비교하는 스크립트다. <code>Full Outer Join</code>을 사용할 수도 있으나, 결과가 제대로 나오지 않거나 에러(<code>ora-600</code>)가 발생한다(Oracle 9i, 10g에서 모두 에러 발생했음). 그냥 <code>left outer join</code>, <code>right outer join</code>한 후 둘을 <code>union</code> 하는 것이 결과가 제대로 나온다. (<code>with</code>절은 Oracle 9i부터 사용 가능함.)</p>
+          <p>프로젝트를 하다보면 개발DB와 테스트DB 또는 테스트DB와 운영DB간 스키마를 비교해 차이점이 없는지 확인할 일이 많다. 다음은 테이블과 컬럼을 비교하는 스크립트다.</p>
+
+<p><code>Full Outer Join</code>을 사용할 수도 있으나, 결과가 제대로 나오지 않거나 에러(<code>ora-600</code>)가 발생한다(Oracle 9i, 10g에서 모두 에러 발생했음). 그냥 <code>left outer join</code>, <code>right outer join</code>한 후 둘을 <code>union</code> 하는 것이 결과가 제대로 나온다. (<code>with</code>절은 Oracle 9i부터 사용 가능함.)</p>
 
 <pre><code class="language-sql">with
 a as (

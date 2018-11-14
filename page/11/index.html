@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-	<meta name="generator" content="Hugo 0.50" />
+	<meta name="generator" content="Hugo 0.51" />
     <meta name="robots" content="noindex">
     
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
@@ -54,6 +54,41 @@
       <article class="post">
         <header class="post-header">
           <span class="post-meta">
+            <time datetime="2015-10-24" itemprop="datePublished">2015-10-24</time>
+            on
+            
+            <a href="/tags/project-euler/">Project-Euler</a>
+            
+            <a href="/tags/clojure/">Clojure</a>
+            
+          </span>
+          <h1 class="post-title">
+            <a href="https://ntalbs.github.io/2015/project-euler-040/">프로젝트 오일러 40</a>
+          </h1>
+        </header>
+        <section class="post-excerpt">
+          <p>
+            <blockquote>
+<p>어떤 무리수에서 소수점 $n$번째 자리 숫자 알아내기</p>
+
+<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=40">[국어]</a> <a href="https://projecteuler.net/problem=40">[영어]</a></p>
+</blockquote>
+
+<p>이 문제를 푸는 데는 특별히 복잡한 알고리즘이 필요하지 않다. 그냥 문제에서 설명한 대로 소수점 아래 수에 대한 시퀀스를 만들고, 1번째, 10번째, &hellip; , 1,000,000번째 요소를 구해 모두 곱하면 그만이다. Clojure로는 특히 이런 문제를 쉽게 풀 수 있는 것 같다.</p>
+          </p>
+          
+          <p>
+            <a class="button is-link" href="https://ntalbs.github.io/2015/project-euler-040/" style="height:28px">
+              Read more...
+            </a>
+          </p>
+          
+        </section>
+      </article>
+      
+      <article class="post">
+        <header class="post-header">
+          <span class="post-meta">
             <time datetime="2015-10-23" itemprop="datePublished">2015-10-23</time>
             on
             
@@ -74,8 +109,7 @@
 <p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=39">[국어]</a> <a href="https://projecteuler.net/problem=39">[영어]</a></p>
 </blockquote>
 
-<p>세 변의 길이가 자연수인 직삼각형을 가장 많이 만들 수 있는 둘레 길이를 찾는 문제다. <a href="https://en.wikipedia.org/wiki/Pythagorean_triple#Generating_a_triple">Pythagorean triple &gt; Generating a triple</a>에 유클리드 공식을 사용해 피타고라스 수를 구하는 방법이 나와있다.
-</p>
+<p>세 변의 길이가 자연수인 직삼각형을 가장 많이 만들 수 있는 둘레 길이를 찾는 문제다. <a href="https://en.wikipedia.org/wiki/Pythagorean_triple#Generating_a_triple">Pythagorean triple &gt; Generating a triple</a>에 유클리드 공식을 사용해 피타고라스 수를 구하는 방법이 나와있다.</p>
           </p>
           
           <p>
@@ -110,8 +144,7 @@
 <p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=38">[국어]</a> <a href="https://projecteuler.net/problem=38">[영어]</a></p>
 </blockquote>
 
-<p>(1, 2, &hellip;)를 곱해서 이어붙일 어떤 수는 네 자리 이하의 수여야 한다. n이 1보다 커야 하므로, 어떤 수가 다섯 자리라면 (1, 2)를 곱해 이어붙일 경우 아홉 자리를 넘어버리기 때문이다. 따라서 네 자리 수 중 가장 큰 9999부터 숫자를 줄여가며 답을 찾으면 문제를 쉽게 풀 수 있다.
-</p>
+<p>(1, 2, &hellip;)를 곱해서 이어붙일 어떤 수는 네 자리 이하의 수여야 한다. n이 1보다 커야 하므로, 어떤 수가 다섯 자리라면 (1, 2)를 곱해 이어붙일 경우 아홉 자리를 넘어버리기 때문이다. 따라서 네 자리 수 중 가장 큰 9999부터 숫자를 줄여가며 답을 찾으면 문제를 쉽게 풀 수 있다.</p>
           </p>
           
           <p>
@@ -146,8 +179,7 @@
 <p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=37">[국어]</a> <a href="https://projecteuler.net/problem=37">[영어]</a></p>
 </blockquote>
 
-<p>어떤 수를 왼쪽이나 오른쪽에서 한 자리 없앤 수를 구하는 함수가 있다면 이 문제를 풀 때 도움이 될 것이다. <a href="/2015/project-euler-035/">문제 35</a>에서 순환수를 만들 때 사용했던 방법을 활용하면 이 함수를 쉽게 구현할 수 있다. 순환수를 구할 때는 숫자를 잘라 다시 붙여야 했지만 여기서는 그냥 잘라내기만 하면 되므로 오히려 더 간단하다고 할 수 있다.
-</p>
+<p>어떤 수를 왼쪽이나 오른쪽에서 한 자리 없앤 수를 구하는 함수가 있다면 이 문제를 풀 때 도움이 될 것이다. <a href="/2015/project-euler-035/">문제 35</a>에서 순환수를 만들 때 사용했던 방법을 활용하면 이 함수를 쉽게 구현할 수 있다. 순환수를 구할 때는 숫자를 잘라 다시 붙여야 했지만 여기서는 그냥 잘라내기만 하면 되므로 오히려 더 간단하다고 할 수 있다.</p>
           </p>
           
           <p>
@@ -322,8 +354,7 @@
 <p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=32">[국어]</a> <a href="https://projecteuler.net/problem=32">[영어]</a></p>
 </blockquote>
 
-<p>$a \times b = c$가 1-9 팬디지털이 되려면 다음과 같은 이유로 $c$가 네 자리 숫자여야 한다.
-</p>
+<p>$a \times b = c$가 1-9 팬디지털이 되려면 다음과 같은 이유로 $c$가 네 자리 숫자여야 한다.</p>
           </p>
           
           <p>
@@ -363,41 +394,6 @@
           
           <p>
             <a class="button is-link" href="https://ntalbs.github.io/2015/project-euler-031/" style="height:28px">
-              Read more...
-            </a>
-          </p>
-          
-        </section>
-      </article>
-      
-      <article class="post">
-        <header class="post-header">
-          <span class="post-meta">
-            <time datetime="2015-09-25" itemprop="datePublished">2015-09-25</time>
-            on
-            
-            <a href="/tags/project-euler/">Project-Euler</a>
-            
-            <a href="/tags/clojure/">Clojure</a>
-            
-          </span>
-          <h1 class="post-title">
-            <a href="https://ntalbs.github.io/2015/project-euler-030/">프로젝트 오일러 30</a>
-          </h1>
-        </header>
-        <section class="post-excerpt">
-          <p>
-            <blockquote>
-<p>각 자리 숫자를 5제곱해서 더했을 때 자기 자신이 되는 수들의 합은?</p>
-
-<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=30">[국어]</a> <a href="https://projecteuler.net/problem=30">[영어]</a></p>
-</blockquote>
-
-<p>이 문제는 무차별 대입법으로 풀 수 있다. 다만 루프를 무한히 반복하지 않으려면 상한을 알아야 한다. 6자리 수 중 가장 큰 정수는 999,999다. 이 수의 각 자리 숫자를 5제곱해 더하면 354,294가 된다. 즉 6자리 수 중 가장 큰 정수의 각 자릿수를 5제곱해 더해도 354,294보다 큰 수는 못 만든다는 뜻이다.</p>
-          </p>
-          
-          <p>
-            <a class="button is-link" href="https://ntalbs.github.io/2015/project-euler-030/" style="height:28px">
               Read more...
             </a>
           </p>

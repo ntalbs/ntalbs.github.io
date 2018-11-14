@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-	<meta name="generator" content="Hugo 0.50" />
+	<meta name="generator" content="Hugo 0.51" />
     <meta name="robots" content="noindex">
     
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
@@ -54,6 +54,50 @@
       <article class="post">
         <header class="post-header">
           <span class="post-meta">
+            <time datetime="2016-11-27" itemprop="datePublished">2016-11-27</time>
+            on
+            
+            <a href="/tags/project-euler/">Project-Euler</a>
+            
+            <a href="/tags/clojure/">Clojure</a>
+            
+          </span>
+          <h1 class="post-title">
+            <a href="https://ntalbs.github.io/2016/project-euler-079/">프로젝트 오일러 79</a>
+          </h1>
+        </header>
+        <section class="post-excerpt">
+          <p>
+            <blockquote>
+<p>접속 기록으로부터 비밀번호 알아내기</p>
+
+<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=79">[국어]</a> <a href="https://projecteuler.net/problem=79">[영어]</a></p>
+</blockquote>
+
+<p>접속 기록 데이터가 많지 않으므로 코드를 아무렇게나 짜도 답을 빠르게 구할 수 있을 것이다. 먼저 다음과 같이 접속 기록을 읽는 코드를 작성한다.</p>
+
+<pre><code class="language-clojure">(def keylog
+  (-&gt; (slurp &quot;data/keylog.txt&quot;)
+      (clojure.string/split #&quot;\r\n&quot;)
+      distinct
+      sort))
+</code></pre>
+
+<p>중복을 제거하면 접속 기록이 서른 세 개밖에 되지 않는다.</p>
+          </p>
+          
+          <p>
+            <a class="button is-link" href="https://ntalbs.github.io/2016/project-euler-079/" style="height:28px">
+              Read more...
+            </a>
+          </p>
+          
+        </section>
+      </article>
+      
+      <article class="post">
+        <header class="post-header">
+          <span class="post-meta">
             <time datetime="2016-11-16" itemprop="datePublished">2016-11-16</time>
             on
             
@@ -83,8 +127,7 @@
 \end{aligned}
 $$</div>
 
-<p>$n$을 증가시키면서 $p(n)$을 구해 1백만으로 나누어 떨어지는지 확인하는 방법으로 답을 찾을 수 있다. $p(n)$을 구하는 데 필요한 $g_k$는 다음과 같이 쉽게 구현할 수 있다.
-</p>
+<p>$n$을 증가시키면서 $p(n)$을 구해 1백만으로 나누어 떨어지는지 확인하는 방법으로 답을 찾을 수 있다. $p(n)$을 구하는 데 필요한 $g_k$는 다음과 같이 쉽게 구현할 수 있다.</p>
           </p>
           
           <p>
@@ -111,8 +154,7 @@ $$</div>
         </header>
         <section class="post-excerpt">
           <p>
-            <p>며칠 전 아주 지겨워 보이는 작업을 하게 되었다. 엑셀 파일에 있는 정보를 참고해 설정 파일을 수정하는 일이었다. 설정 파일은 국가별 설정 정보를 담고 있는데 각 국가별 설정에 새로운 필드를 추가해야 하고 필드의 값은 엑셀 파일을 참조해 지정해야 했다.
-</p>
+            <p>며칠 전 아주 지겨워 보이는 작업을 하게 되었다. 엑셀 파일에 있는 정보를 참고해 설정 파일을 수정하는 일이었다. 설정 파일은 국가별 설정 정보를 담고 있는데 각 국가별 설정에 새로운 필드를 추가해야 하고 필드의 값은 엑셀 파일을 참조해 지정해야 했다.</p>
           </p>
           
           <p>
@@ -140,8 +182,6 @@ $$</div>
         <section class="post-excerpt">
           <p>
             <p>아마존에 오기 전 아마존이 다닐만한 회사인지 조사하는 데, 온콜에 대한 불만을 토로하는 글이 많이 보였다. 온콜이 뭐길래 그러지? 사전을 찾아보니 다음과 같이 설명되어 있다. 우리 말로 하면 &lsquo;당직&rsquo;과 비슷한 개념일 것 같다.</p>
-
-<p></p>
           </p>
           
           <p>
@@ -176,8 +216,7 @@ $$</div>
 <p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=77">[국어]</a> <a href="https://projecteuler.net/problem=77">[영어]</a></p>
 </blockquote>
 
-<p>이 문제도 바로 전에 풀었던 <a href="/2016/project-euler-076/">문제 76</a>과 마찬가지로 <a href="/2015/project-euler-031/">문제 31</a>비슷하다. 여기서는 동전의 종류가 소수라고 생각하면 된다. 따라서 인덱스를 넣으면 소수가 나오는 맵을 만들어 두면 문제 풀이에 활용할 수 있다. 소수는 100개 정도 준비하면 충분할 것 같다.
-</p>
+<p>이 문제도 바로 전에 풀었던 <a href="/2016/project-euler-076/">문제 76</a>과 마찬가지로 <a href="/2015/project-euler-031/">문제 31</a>비슷하다. 여기서는 동전의 종류가 소수라고 생각하면 된다. 따라서 인덱스를 넣으면 소수가 나오는 맵을 만들어 두면 문제 풀이에 활용할 수 있다. 소수는 100개 정도 준비하면 충분할 것 같다.</p>
           </p>
           
           <p>
@@ -212,8 +251,7 @@ $$</div>
 <p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=76">[국어]</a> <a href="https://projecteuler.net/problem=76">[영어]</a></p>
 </blockquote>
 
-<p>이 문제는 영국 화폐 액면가를 조합하는 수를 계산했던 <a href="/2015/project-euler-031/">문제 31</a>과 비슷하다. 문제 31에서는 동전의 종류가 여덟가지 였지만, 이 문제에서는 동전의 종류가 1, 2, &hellip;, 99까지 99가지가 있다고 생각할 수 있다.
-</p>
+<p>이 문제는 영국 화폐 액면가를 조합하는 수를 계산했던 <a href="/2015/project-euler-031/">문제 31</a>과 비슷하다. 문제 31에서는 동전의 종류가 여덟가지 였지만, 이 문제에서는 동전의 종류가 1, 2, &hellip;, 99까지 99가지가 있다고 생각할 수 있다.</p>
           </p>
           
           <p>
@@ -256,8 +294,6 @@ $$</div>
   return countryCodeMap;
 }
 </code></pre>
-
-<p></p>
           </p>
           
           <p>
@@ -292,8 +328,7 @@ $$</div>
 <p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=75">[국어]</a> <a href="https://projecteuler.net/problem=75">[영어]</a></p>
 </blockquote>
 
-<p>합이 $1,500,000$ 이하인 <a href="https://en.wikipedia.org/wiki/Pythagorean_triple">피타고라스 수(Pythagorean Triplet)</a>의 시퀀스를 생성한 다음, 합으로 <code>group-by</code> 해서 값(피타고라스 수 목록)의 길이가 $1$인 키의 개수를 세면 된다. 피타고라스 수를 구하는 방법은 <a href="/2015/project-euler-039/">문제 39</a>에서 설명했다.
-</p>
+<p>합이 $1,500,000$ 이하인 <a href="https://en.wikipedia.org/wiki/Pythagorean_triple">피타고라스 수(Pythagorean Triplet)</a>의 시퀀스를 생성한 다음, 합으로 <code>group-by</code> 해서 값(피타고라스 수 목록)의 길이가 $1$인 키의 개수를 세면 된다. 피타고라스 수를 구하는 방법은 <a href="/2015/project-euler-039/">문제 39</a>에서 설명했다.</p>
           </p>
           
           <p>
@@ -335,8 +370,6 @@ $$</div>
        (map factorial)
        (apply +)))
 </code></pre>
-
-<p></p>
           </p>
           
           <p>
@@ -363,43 +396,11 @@ $$</div>
         </header>
         <section class="post-excerpt">
           <p>
-            <p>한국의 인터넷 뱅킹이 개떡 같은 것은 더 말할 필요도 없다. 영국에서는 별도 보안 프로그램 설치 없이 인터넷 브라우저만으로 쾌적하게 은행 업무를 볼 수 있다. 아마 한국을 제외한 다른 나라도 마찬가지일 것 같다. 영국 은행에서 보안 프로그램 없이 어떻게 안전한 뱅킹 서비스를 제공하는지 살펴보자. 영국의 모든 은행에 계좌를 만들어 인터넷 뱅킹을 해본 것은 아니고, 내 주 거래 은행의 인터넷 뱅킹 경험을 바탕으로 설명하는 것임에 유의하기 바란다.
-</p>
+            <p>한국의 인터넷 뱅킹이 개떡 같은 것은 더 말할 필요도 없다. 영국에서는 별도 보안 프로그램 설치 없이 인터넷 브라우저만으로 쾌적하게 은행 업무를 볼 수 있다. 아마 한국을 제외한 다른 나라도 마찬가지일 것 같다. 영국 은행에서 보안 프로그램 없이 어떻게 안전한 뱅킹 서비스를 제공하는지 살펴보자. 영국의 모든 은행에 계좌를 만들어 인터넷 뱅킹을 해본 것은 아니고, 내 주 거래 은행의 인터넷 뱅킹 경험을 바탕으로 설명하는 것임에 유의하기 바란다.</p>
           </p>
           
           <p>
             <a class="button is-link" href="https://ntalbs.github.io/2016/online-banking-in-uk/" style="height:28px">
-              Read more...
-            </a>
-          </p>
-          
-        </section>
-      </article>
-      
-      <article class="post">
-        <header class="post-header">
-          <span class="post-meta">
-            <time datetime="2016-08-04" itemprop="datePublished">2016-08-04</time>
-            on
-            
-            <a href="/tags/%ec%83%81%eb%85%90/">상념</a>
-            
-          </span>
-          <h1 class="post-title">
-            <a href="https://ntalbs.github.io/2016/my-proud-moments/">가장 뿌듯했던 순간</a>
-          </h1>
-        </header>
-        <section class="post-excerpt">
-          <p>
-            <blockquote class="blockquote-reverse">그 여정이 바로 보상이다.
-- 스티브 잡스</blockquote>
-
-<p>초등학교 때 사촌 동생 집에서 Apple II 컴퓨터를 처음 본 순간 컴퓨터 세계로 빠져들었다. 그러나 사촌 동생 집은 멀어서 매일 갈 수가 없었다. 다행히 친한 친구 집에서 SPC1000 이란 컴퓨터가 있었다. 나는 매일 친구 집에 놀러가서 친구와 함께 컴퓨터를 가지고 놀았다. 친구가 귀찮에 생각했을 지도 모르겠다. 나중에 나도 부모님을 졸라 컴퓨터를 장만했다.
-</p>
-          </p>
-          
-          <p>
-            <a class="button is-link" href="https://ntalbs.github.io/2016/my-proud-moments/" style="height:28px">
               Read more...
             </a>
           </p>
