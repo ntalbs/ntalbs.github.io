@@ -160,6 +160,7 @@ code {
   background: #eee;
   border-radius: 3px;
   hyphens: none;
+  text-align: left;
 }
 code.hljs {
   font-size: 0.9em;
