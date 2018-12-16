@@ -54,6 +54,49 @@
       <article class="post">
         <header class="post-header">
           <span class="post-meta">
+            <time datetime="2014-11-12" itemprop="datePublished">2014-11-12</time>
+            on
+            
+            <a href="/tags/db/">DB</a>
+            
+            <a href="/tags/postgresql/">PostgreSQL</a>
+            
+            <a href="/tags/mysql/">MySql</a>
+            
+            <a href="/tags/sql/">SQL</a>
+            
+          </span>
+          <h1 class="post-title">
+            <a href="https://ntalbs.github.io/2014/mysql-row-generator/">MySQL Row Generator</a>
+          </h1>
+        </header>
+        <section class="post-excerpt">
+          <p>
+            <p>Oracle에서는 <code>connect by</code>를 사용해 필요한 만큼 행(row)을 생성할 수 있다.</p>
+
+<pre><code class="language-sql">select level from dual connect by level &lt;= 100;
+</code></pre>
+
+<p>PostgreSQL에서도 <code>generate_series</code>를 사용해 쉽게 행을 만들 수 있다.</p>
+
+<pre><code class="language-sql">select * from generate_series(1, 100);
+</code></pre>
+
+<p>재귀적 CTE(Common Table Expressions)를 사용하면 특정 DBMS에서만 제공하는 기능을 사용하지 않고 표준 SQL만 사용해 행 생성기(row generator)를 만들 수 있다. PostgreSQL에서는 다음과 같은 식으로 원하는 만큼 행을 생성할 수 있다.</p>
+          </p>
+          
+          <p>
+            <a class="button is-link" href="https://ntalbs.github.io/2014/mysql-row-generator/" style="height:28px">
+              Read more...
+            </a>
+          </p>
+          
+        </section>
+      </article>
+      
+      <article class="post">
+        <header class="post-header">
+          <span class="post-meta">
             <time datetime="2014-11-11" itemprop="datePublished">2014-11-11</time>
             on
             
@@ -308,33 +351,6 @@ qsort (p:xs) = qsort [y | y &lt;- xs, y &lt; p] ++ [p] ++ qsort [y | y &lt;- xs,
           
           <p>
             <a class="button is-link" href="https://ntalbs.github.io/2014/dystopian-future/" style="height:28px">
-              Read more...
-            </a>
-          </p>
-          
-        </section>
-      </article>
-      
-      <article class="post">
-        <header class="post-header">
-          <span class="post-meta">
-            <time datetime="2014-08-08" itemprop="datePublished">2014-08-08</time>
-            on
-            
-            <a href="/tags/clojure/">Clojure</a>
-            
-          </span>
-          <h1 class="post-title">
-            <a href="https://ntalbs.github.io/2014/config-vars/">환경변수에 설정 정보 저장하기</a>
-          </h1>
-        </header>
-        <section class="post-excerpt">
-          <p>
-            <p>웹 애플리케이션에서 데이터베이스 계정 정보나 URL, 외부 서비스에 대한 인증 정보는 어떻게 관리하는 것이 좋을까? 설정 파일을 만들어 여기에 관리하는 방법도 있지만, 환경에 따라 설정이 변해야 하는 경우 관리가 까다로워 진다. 어떻게 하는 게 좋을까?</p>
-          </p>
-          
-          <p>
-            <a class="button is-link" href="https://ntalbs.github.io/2014/config-vars/" style="height:28px">
               Read more...
             </a>
           </p>
