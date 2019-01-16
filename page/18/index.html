@@ -54,6 +54,33 @@
       <article class="post">
         <header class="post-header">
           <span class="post-meta">
+            <time datetime="2014-12-16" itemprop="datePublished">2014-12-16</time>
+            on
+            
+            <a href="/tags/java/">Java</a>
+            
+          </span>
+          <h1 class="post-title">
+            <a href="https://ntalbs.github.io/2014/multiple-jdk-on-macosx/">MacOS X에서 JDK 버전 전환</a>
+          </h1>
+        </header>
+        <section class="post-excerpt">
+          <p>
+            <p>보통 JDK 최신 버전을 설치해 사용한다. 운영환경에 여전히 JDK7을 쓰고 있지만 개발환경에서는 JDK8을 쓰되 <code>-target 1.7</code> 옵션을 주어 컴파일하면 문제가 없지 않을까 생각했다. 그런데 서버를 올릴때 계속 에러가 발생해 인터넷에서 찾아보니 Spring 3.2.8 버그란다. 이 문제는 Spring 3.2.9에서 해결되었다고 하지만 운영환경은 여전히 Spring 3.2.8을 사용하고 있고, 내가 Spring 버전을 올릴 권한도 없다. 어쩔 수 없이 노트북에 JDK7을 설치할 수밖에 없다.</p>
+          </p>
+          
+          <p>
+            <a class="button is-link" href="https://ntalbs.github.io/2014/multiple-jdk-on-macosx/" style="height:28px">
+              Read more...
+            </a>
+          </p>
+          
+        </section>
+      </article>
+      
+      <article class="post">
+        <header class="post-header">
+          <span class="post-meta">
             <time datetime="2014-12-05" itemprop="datePublished">2014-12-05</time>
             on
             
@@ -326,33 +353,6 @@ qsort (p:xs) = qsort [y | y &lt;- xs, y &lt; p] ++ [p] ++ qsort [y | y &lt;- xs,
           
           <p>
             <a class="button is-link" href="https://ntalbs.github.io/2014/dba-story-1/" style="height:28px">
-              Read more...
-            </a>
-          </p>
-          
-        </section>
-      </article>
-      
-      <article class="post">
-        <header class="post-header">
-          <span class="post-meta">
-            <time datetime="2014-08-22" itemprop="datePublished">2014-08-22</time>
-            on
-            
-            <a href="/tags/javascript/">JavaScript</a>
-            
-          </span>
-          <h1 class="post-title">
-            <a href="https://ntalbs.github.io/2014/html-str-in-js/">JavaScript 코드 안 HTML 문자열</a>
-          </h1>
-        </header>
-        <section class="post-excerpt">
-          <p>
-            <p>JavaScript 코드에 HTML 문자열을 써야 하는 경우가 종종 있다. 문자열이 짧을 때는 그냥 한 줄로 써도 크게 상관 없다. 복잡한 계층 구조를 가지는 긴 HTML 문자열을 써야 할 경우에는 한 줄로 작성하지 않는다. 작성하기도 어렵고 알아보기도 어렵기 때문이다. 보통 다음과 같이 여러 줄로 문자열을 만들고 <code>+</code>로 연결해 변수에 저장한다.</p>
-          </p>
-          
-          <p>
-            <a class="button is-link" href="https://ntalbs.github.io/2014/html-str-in-js/" style="height:28px">
               Read more...
             </a>
           </p>
@@ -657,7 +657,7 @@ qsort (p:xs) = qsort [y | y &lt;- xs, y &lt; p] ++ [p] ++ qsort [y | y &lt;- xs,
 
     <footer class="page-bottom">
   <div class="inner">
-    <section class="copyright">© 2008-2018 <a href="/about">ntalbs</a></section>
+    <section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section>
     <section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section>
   </div>
 </footer>
