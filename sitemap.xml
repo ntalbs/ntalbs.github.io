@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ntalbs.github.io/2019/diagram-in-emacs/</loc>
+    <lastmod>2019-02-08T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://ntalbs.github.io/2019/project-euler-retro/</loc>
     <lastmod>2019-01-16T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>

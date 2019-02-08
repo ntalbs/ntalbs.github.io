@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+
+ gtag('config', 'UA-2098194-3');
+</script>
+<meta charset="UTF-8">
+
+<meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>다이어그램 그리기 @ntalbs&#39; stuff</title>
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/style.css">
+
+  </head>
+  <body>
+    <div id="progress">
+  <div id="bar"></div>
+  <div class="container">
+    <div id="scroll-title">다이어그램 그리기</div>
+  </div>
+</div>
+
+    <nav class="navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+      <a class="navbar-brand" href="/">@ntalbs&#39; stuff</a>
+    </div>
+    <div class="navbar-items collapsed" id="nav-items">
+      <ul>
+        
+        <li><a href="/archive/">Archive</a></li>
+        
+        <li><a href="/tags/">Tags</a></li>
+        
+        <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+  </div>
+</header>
+
+    <main class="container" role="main">
+      <article class="post">
+        <header>
+          <p class="post-meta">
+            <time datetime="2019-02-08" itemprop="datePublished">2019-02-08</time>
+            on
+            
+            <a href="/tags/emacs/">Emacs</a>
+            
+          </p>
+          <h1 class="post-title">
+            다이어그램 그리기
+          </h1>
+        </header>
+        <section class="post-content">
+          <p>가끔씩 다이어그램을 그려야 할 때면 파워포인트를 이용했다. 파워포인트로 다이어그램을 그린 다음 스크린 캡쳐 이미지를 사용하는 식이다. 이 방법에는 심각한 단점이 하나 있다. 다이어그램을 수정하기가 매우 귀찮다는 점이다.</p>
+
+<p>파워포인트 파일을 찾아 다이어그램을 수정하고 다시 스크린 캡쳐해 이미지를 만들어야 한다. 다이어그램 중간에 새로운 요소가 추가하는 경우는 수정 작업이 더욱 짜증난다. 파워포인트 파일을 찾지 못하면 다이어그램을 다시 그려야 한다.</p>
+
+<p>UML 다이어그램을 그릴 때 파워포인트는 좋은 도구가 아니다. 작업도 고통스러운 일이고, 수정도 번거롭다. <a href="http://plantuml.com/">PlantUml</a>이나 <a href="https://graphviz.gitlab.io/">Graphviz</a>를 쓰면 텍스트 언어를 사용해 다양한 다이어그램을 쉽게 그릴 수 있다.</p>
+
+<h2 id="plantuml">PlantUml</h2>
+
+<p>PlantUml을 쓰면 텍스트 언어로 UML 다이어그램을 생성할 수 있다. Mac에서는 Homebrew로 설치하면 된다.</p>
+
+<pre><code>$ brew install plantuml
+</code></pre>
+
+<p>Emacs에서는 PlantUml을 사용하기 편하게 해주는 <a href="https://github.com/skuro/plantuml-mode">plantuml-mode</a>를 설치하면 다이어그램을 작성하고 쉽게 미리보기 할 수 있다. 패키지를 설치한 후 plantuml 바이너리 위치를 지정해야 한다.</p>
+
+<pre><code>M-x customize-mode &lt;RET&gt;
+plantuml-mode &lt;RET&gt;
+</code></pre>
+
+<p>모드 설정 화면에서 <code>Plantuml Jar Path</code>나 <code>Plantuml Java Command</code>를 설정하면 된다. brew로 설치했다면 <code>Plantuml Java Command</code>에 <code>/usr/local/bin/plantuml</code>를 지정하면 된다.</p>
+
+<p><img src="plantuml-emacs.png" alt="" /></p>
+
+<p>PlantUml 언어 문법은 상당히 직관적이다. 클래스 다이어그램, 시퀀스 다이어그램 등의 UML 다이어그램을 쉽게 그릴 수 있다. 자세한 사항은 PlantUml 웹사이트를 참조하기 바란다.</p>
+
+<p>중간에 새로운 요소를 추가해야 할 경우 다른 다이어그램 요소를 일일히 손으로 이동할 필요 없이 코드를 고친 다음 다이어그램을 다시 생성하면 된다. PNG, SVG뿐 아니라 $\rm\LaTeX$ 형식으로 출력이 가능하다.</p>
+
+<h2 id="graphviz">Graphviz</h2>
+
+<p>UML이 아닌 일반 다이어그램을 그리고 싶을 때는 <a href="https://graphviz.gitlab.io/">Graphviz</a>를 활용할 수 있다. Homebrew로 plantuml을 설치했다면 graphviz도 함께 설치되어 있을 것이다. Graphviz만 따로 설치하고 싶은 경우도 역시 Homebrew를 사용할 수 있다.</p>
+
+<p>Emacs에서는 <a href="https://github.com/ppareit/graphviz-dot-mode">graphviz-dot-mode</a>를 활용할 수 있다. Graphviz에는 <code>dot</code>뿐 아니라 <code>neato</code>, <code>fdp</code>, <code>sfdp</code>, <code>twopi</code>, <code>circo</code> 명령이 있지만, graphviz-dot-mode는 모드 이름이 암시하듯 <code>dot</code>만 지원한다. <code>dot</code>이 아닌 다른 명령을 사용하려면 콘솔에서 직접 명령을 실행해야 한다.</p>
+
+<p><img src="g.png" alt="" /></p>
+
+<p>Graphviz를 이용하면 위와 같은 복잡한 다이어그램도 아래와 같은 간단한 코드로 생성할 수 있다.</p>
+
+<pre><code>digraph G {
+  rankdir = LR
+  node [shape = Mrecord]
+  Start -&gt; {A1,A2,A3,A4,A5}
+  {A1,A2,A3} -&gt; B1
+  {A2,A3,A4} -&gt; B2
+  {A3,A4,A5} -&gt; B3
+  {B1,B2,B3} -&gt; End
+}
+</code></pre>
+
+<h2 id="참고">참고</h2>
+
+<ul>
+<li><a href="https://graphviz.gitlab.io/">Graphviz - Graph Visualization Software</a></li>
+<li><a href="http://www.tonyballantyne.com/graphs.html">Drawing Graphs using Dot and Graphviz</a></li>
+<li><a href="https://emacs.stackexchange.com/questions/595/best-ways-of-generating-uml-from-within-emacs">Best ways of generating UML from within Emacs</a></li>
+</ul>
+        </section>
+        <footer class="post-footer">
+          
+          <div class="social button-box">
+            
+            <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+            <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            
+          </div>
+          
+          <nav id="article-nav">
+            
+            
+            <a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2019/project-euler-retro/" id="article-nav-older"> 프로젝트 오일러 회고</a>
+            
+          </nav>
+        </footer>
+      </article>
+    </main>
+    
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+     var disqus_shortname = 'ntalbs-stuff';
+     (function() {
+       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+    <section class="section">
+  <div class="container has-text-centered">
+    <p></p>
+  </div>
+</section>
+<script src=https://ntalbs.github.io/js/index.js type="text/javascript"></script>
+
+    <link rel="stylesheet" href="/css/github.css">
+<script type="text/javascript" src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+   tex2jax: {
+     inlineMath: [['$','$']],
+     displayMath: [['$$','$$']],
+     processEscapes: true,
+     processEnvironments: true,
+     skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code'],
+     TeX: { equationNumbers: { autoNumber: "AMS" },
+            extensions: ["AMSmath.js", "AMSsymbols.js"] }
+   }
+ });
+</script>
+
+    <footer class="page-bottom">
+  <div class="inner">
+    <section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section>
+    <section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section>
+  </div>
+</footer>
+
+  </body>
+</html>
