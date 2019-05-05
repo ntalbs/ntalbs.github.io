@@ -903,9 +903,11 @@ selection {
     margin-top: 6rem;
     font-size: 1.1rem;
   }
-  pre.console {
+  pre .console,
+  pre code {
     margin: 5px 0;
     padding: 5px;
+    whitespace: pre;
   }
 }
 @media only screen and (max-width: 440px) {
