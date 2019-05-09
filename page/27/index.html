@@ -1,6 +1,126 @@
 <!DOCTYPE html><html><head><meta name="generator" content="Hugo 0.55.5"><meta name="robots" content="noindex"><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>@ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"></head><body><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
-<a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header class="post-header"><span class="post-meta"><time datetime="2008-11-08" itemprop="datePublished">2008-11-08</time>
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>@ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+                            .mjpage .MJX-monospace {
+                            font-family: monospace
+                            }
+
+                            .mjpage .MJX-sans-serif {
+                            font-family: sans-serif
+                            }
+
+                            .mjpage {
+                            display: inline;
+                            font-style: normal;
+                            font-weight: normal;
+                            line-height: normal;
+                            font-size: 100%;
+                            font-size-adjust: none;
+                            text-indent: 0;
+                            text-align: left;
+                            text-transform: none;
+                            letter-spacing: normal;
+                            word-spacing: normal;
+                            word-wrap: normal;
+                            white-space: nowrap;
+                            float: none;
+                            direction: ltr;
+                            max-width: none;
+                            max-height: none;
+                            min-width: 0;
+                            min-height: 0;
+                            border: 0;
+                            padding: 0;
+                            margin: 0
+                            }
+
+                            .mjpage * {
+                            transition: none;
+                            -webkit-transition: none;
+                            -moz-transition: none;
+                            -ms-transition: none;
+                            -o-transition: none
+                            }
+
+                            .mjx-svg-href {
+                            fill: blue;
+                            stroke: blue
+                            }
+
+                            .MathJax_SVG_LineBox {
+                            display: table!important
+                            }
+
+                            .MathJax_SVG_LineBox span {
+                            display: table-cell!important;
+                            width: 10000em!important;
+                            min-width: 0;
+                            max-width: none;
+                            padding: 0;
+                            border: 0;
+                            margin: 0
+                            }
+
+                            .mjpage__block {
+                            text-align: center;
+                            margin: 1em 0em;
+                            position: relative;
+                            display: block!important;
+                            text-indent: 0;
+                            max-width: none;
+                            max-height: none;
+                            min-width: 0;
+                            min-height: 0;
+                            width: 100%
+                            }</style></head><body><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+<a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header class="post-header"><span class="post-meta"><time datetime="2008-11-17" itemprop="datePublished">2008-11-17</time>
+on
+<a href="/tags/db/">DB</a>
+<a href="/tags/oracle/">Oracle</a></span><h1 class="post-title"><a href="https://ntalbs.github.io/2008/sizing-table/">오라클 테이블 용량 산정 방법</a></h1></header><section class="post-excerpt"><p></p><p>테이블 용량을 산정하기 위한 방법인데 조금 복잡하다. 어차피 추정이므로 간단하게 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="37.353ex" height="3.343ex" style="vertical-align: -1.171ex;" viewBox="0 -934.9 16082.7 1439.2" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">(평균\ row \ 크기) \times (데이터\ 건수) \times 1.3</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-28" x="0" y="0"></use>
+<g transform="translate(389,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">평</text>
+</g>
+<g transform="translate(1322,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">균</text>
+</g>
+ <use xlink:href="#MJMATHI-72" x="2505" y="0"></use>
+ <use xlink:href="#MJMATHI-6F" x="2956" y="0"></use>
+ <use xlink:href="#MJMATHI-77" x="3442" y="0"></use>
+<g transform="translate(4408,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">크</text>
+</g>
+<g transform="translate(5341,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">기</text>
+</g>
+ <use xlink:href="#MJMAIN-29" x="6274" y="0"></use>
+ <use xlink:href="#MJMAIN-D7" x="6886" y="0"></use>
+ <use xlink:href="#MJMAIN-28" x="7886" y="0"></use>
+<g transform="translate(8276,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">데</text>
+</g>
+<g transform="translate(9209,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">이</text>
+</g>
+<g transform="translate(10142,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">터</text>
+</g>
+<g transform="translate(11325,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">건</text>
+</g>
+<g transform="translate(12257,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">수</text>
+</g>
+ <use xlink:href="#MJMAIN-29" x="13190" y="0"></use>
+ <use xlink:href="#MJMAIN-D7" x="13802" y="0"></use>
+<g transform="translate(14803,0)">
+ <use xlink:href="#MJMAIN-31"></use>
+ <use xlink:href="#MJMAIN-2E" x="500" y="0"></use>
+ <use xlink:href="#MJMAIN-33" x="779" y="0"></use>
+</g>
+</g>
+</svg></span> 정도로 해도 되지 않을까 싶다.</p><p></p><p><a class="button is-link" href="https://ntalbs.github.io/2008/sizing-table/" style="height:28px">Read more...</a></p></section></article><article class="post"><header class="post-header"><span class="post-meta"><time datetime="2008-11-08" itemprop="datePublished">2008-11-08</time>
 on
 <a href="/tags/db/">DB</a>
 <a href="/tags/oracle/">Oracle</a></span><h1 class="post-title"><a href="https://ntalbs.github.io/2008/extract-ddl/">특정 스키마 DDL 추출</a></h1></header><section class="post-excerpt"><p></p><p>다음과 같이 하면 exp/imp 도구를 사용해 특정 스키마의 DDL을 추출할 수 있다.</p><p></p><p><a class="button is-link" href="https://ntalbs.github.io/2008/extract-ddl/" style="height:28px">Read more...</a></p></section></article><article class="post"><header class="post-header"><span class="post-meta"><time datetime="2008-11-03" itemprop="datePublished">2008-11-03</time>
@@ -35,11 +155,7 @@ on
 on
 <a href="/tags/db/">DB</a>
 <a href="/tags/oracle/">Oracle</a></span><h1 class="post-title"><a href="https://ntalbs.github.io/2008/long-move-ts/">LONG형 컬럼을 가진 테이블의 테이블스페이스 이동</a></h1></header><section class="post-excerpt"><p></p><p>테이블을 다른 테이블스페이스로 옮기려면 다음과 같이 한다.</p><pre><code class="language-sql">ALTER TABLE t MOVE TABLESPACE ts_name;
-</code></pre><p>그러나 <code>LONG</code>형 컬럼을 포함하고 있는 테이블에 위 명령을 실행하면 <code>ora-00997</code> 에러가 발생한다. CTAS를 사용해 테이블 복사를 시도해도 같은 에러가 발생한다.</p><p></p><p><a class="button is-link" href="https://ntalbs.github.io/2008/long-move-ts/" style="height:28px">Read more...</a></p></section></article><article class="post"><header class="post-header"><span class="post-meta"><time datetime="2008-10-31" itemprop="datePublished">2008-10-31</time>
-on
-<a href="/tags/db/">DB</a>
-<a href="/tags/oracle/">Oracle</a>
-<a href="/tags/sqlplus/">SqlPlus</a></span><h1 class="post-title"><a href="https://ntalbs.github.io/2008/sqlplus-prompt/">SQL*Plus 프롬프트 설정</a></h1></header><section class="post-excerpt"><p></p><p>SQL*Plus의 프롬프트를 <code>username@INSTANCE_NAME &gt;</code>과 같은 식으로 설정하면 현재 로그인한 인스턴스와 사용자 이름을 확인할 수 있어 편하다. logn.sql 스크립트를 만들어 여기에 프롬프트 설정 코드를 넣어두면 된다. Effective Oracle 책(p79)에는 설정 코드가 조금 복잡하게 나와 있다.</p><p></p><p><a class="button is-link" href="https://ntalbs.github.io/2008/sqlplus-prompt/" style="height:28px">Read more...</a></p></section></article></main><ul class="pagination"><li class="page-item"><a href="/" class="page-link" aria-label="First"><span aria-hidden="true">««</span></a></li><li class="page-item"><a href="/page/26/" class="page-link" aria-label="Previous"><span aria-hidden="true">«</span></a></li><li class="page-item"><a class="page-link" href="/">1</a></li><li class="page-item"><a class="page-link" href="/page/2/">2</a></li><li class="page-item"><a class="page-link" href="/page/3/">3</a></li><li class="page-item disabled"><span aria-hidden="true">&nbsp;…&nbsp;</span></li><li class="page-item"><a class="page-link" href="/page/26/">26</a></li><li class="page-item active"><a class="page-link" href="/page/27/">27</a></li><li class="page-item"><a class="page-link" href="/page/28/">28</a></li><li class="page-item"><a class="page-link" href="/page/29/">29</a></li><li class="page-item"><a href="/page/28/" class="page-link" aria-label="Next"><span aria-hidden="true">»</span></a></li><li class="page-item"><a href="/page/29/" class="page-link" aria-label="Last"><span aria-hidden="true">»»</span></a></li></ul><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><script type="text/javascript" src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">
+</code></pre><p>그러나 <code>LONG</code>형 컬럼을 포함하고 있는 테이블에 위 명령을 실행하면 <code>ora-00997</code> 에러가 발생한다. CTAS를 사용해 테이블 복사를 시도해도 같은 에러가 발생한다.</p><p></p><p><a class="button is-link" href="https://ntalbs.github.io/2008/long-move-ts/" style="height:28px">Read more...</a></p></section></article></main><ul class="pagination"><li class="page-item"><a href="/" class="page-link" aria-label="First"><span aria-hidden="true">««</span></a></li><li class="page-item"><a href="/page/26/" class="page-link" aria-label="Previous"><span aria-hidden="true">«</span></a></li><li class="page-item"><a class="page-link" href="/">1</a></li><li class="page-item"><a class="page-link" href="/page/2/">2</a></li><li class="page-item"><a class="page-link" href="/page/3/">3</a></li><li class="page-item disabled"><span aria-hidden="true">&nbsp;…&nbsp;</span></li><li class="page-item"><a class="page-link" href="/page/26/">26</a></li><li class="page-item active"><a class="page-link" href="/page/27/">27</a></li><li class="page-item"><a class="page-link" href="/page/28/">28</a></li><li class="page-item"><a class="page-link" href="/page/29/">29</a></li><li class="page-item"><a href="/page/28/" class="page-link" aria-label="Next"><span aria-hidden="true">»</span></a></li><li class="page-item"><a href="/page/29/" class="page-link" aria-label="Last"><span aria-hidden="true">»»</span></a></li></ul><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><script type="text/javascript" src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">
  MathJax.Hub.Config({
    tex2jax: {
      inlineMath: [['$','$']],
@@ -51,4 +167,4 @@ on
             extensions: ["AMSmath.js", "AMSsymbols.js"] }
    }
  });
-</script></body></html>
+</script><svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs id="MathJax_SVG_glyphs"><path stroke-width="1" id="MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path><path stroke-width="1" id="MJMATHI-72" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="1" id="MJMATHI-6F" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path><path stroke-width="1" id="MJMATHI-77" d="M580 385Q580 406 599 424T641 443Q659 443 674 425T690 368Q690 339 671 253Q656 197 644 161T609 80T554 12T482 -11Q438 -11 404 5T355 48Q354 47 352 44Q311 -11 252 -11Q226 -11 202 -5T155 14T118 53T104 116Q104 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 293 29 315T52 366T96 418T161 441Q204 441 227 416T250 358Q250 340 217 250T184 111Q184 65 205 46T258 26Q301 26 334 87L339 96V119Q339 122 339 128T340 136T341 143T342 152T345 165T348 182T354 206T362 238T373 281Q402 395 406 404Q419 431 449 431Q468 431 475 421T483 402Q483 389 454 274T422 142Q420 131 420 107V100Q420 85 423 71T442 42T487 26Q558 26 600 148Q609 171 620 213T632 273Q632 306 619 325T593 357T580 385Z"></path><path stroke-width="1" id="MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path><path stroke-width="1" id="MJMAIN-D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path><path stroke-width="1" id="MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="1" id="MJMAIN-2E" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z"></path><path stroke-width="1" id="MJMAIN-33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path></defs></svg></body></html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MathJax 서버측 렌더링 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+                            .mjpage .MJX-monospace {
+                            font-family: monospace
+                            }
+
+                            .mjpage .MJX-sans-serif {
+                            font-family: sans-serif
+                            }
+
+                            .mjpage {
+                            display: inline;
+                            font-style: normal;
+                            font-weight: normal;
+                            line-height: normal;
+                            font-size: 100%;
+                            font-size-adjust: none;
+                            text-indent: 0;
+                            text-align: left;
+                            text-transform: none;
+                            letter-spacing: normal;
+                            word-spacing: normal;
+                            word-wrap: normal;
+                            white-space: nowrap;
+                            float: none;
+                            direction: ltr;
+                            max-width: none;
+                            max-height: none;
+                            min-width: 0;
+                            min-height: 0;
+                            border: 0;
+                            padding: 0;
+                            margin: 0
+                            }
+
+                            .mjpage * {
+                            transition: none;
+                            -webkit-transition: none;
+                            -moz-transition: none;
+                            -ms-transition: none;
+                            -o-transition: none
+                            }
+
+                            .mjx-svg-href {
+                            fill: blue;
+                            stroke: blue
+                            }
+
+                            .MathJax_SVG_LineBox {
+                            display: table!important
+                            }
+
+                            .MathJax_SVG_LineBox span {
+                            display: table-cell!important;
+                            width: 10000em!important;
+                            min-width: 0;
+                            max-width: none;
+                            padding: 0;
+                            border: 0;
+                            margin: 0
+                            }
+
+                            .mjpage__block {
+                            text-align: center;
+                            margin: 1em 0em;
+                            position: relative;
+                            display: block!important;
+                            text-indent: 0;
+                            max-width: none;
+                            max-height: none;
+                            min-width: 0;
+                            min-height: 0;
+                            width: 100%
+                            }</style></head><body><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">MathJax 서버측 렌더링</div></div></div><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+<a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2019-05-10" itemprop="datePublished">2019-05-10</time>
+on
+<a href="/tags/hugo/">hugo</a></p><h1 class="post-title">MathJax 서버측 렌더링</h1></header><section class="post-content"><p>블로그 글에 포함된 수식을 표현하기 위해 <a href="https://www.mathjax.org/">MathJax</a>를 사용한다. MathJax 덕분에 수식을 멋지게 표현할 수 있지만 수식 렌더링 속도가 매우 느리다. 브라우저에서 로드했을 때 페이지 안에 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.412ex" height="2.676ex" style="vertical-align: -0.838ex;" viewBox="0 -791.3 1899.5 1152.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">\rm\TeX</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-54" x="0" y="0"></use>
+<g transform="translate(582,0)">
+ <use xlink:href="#MJMAIN-45" x="0" y="-216"></use>
+</g>
+ <use xlink:href="#MJMAIN-58" x="1149" y="0"></use>
+</g>
+</svg></span> 소스 코드가 그대로 있다. 이후 로딩된 JavaScript가 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.412ex" height="2.676ex" style="vertical-align: -0.838ex;" viewBox="0 -791.3 1899.5 1152.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">
+<title id="MathJax-SVG-2-Title">\rm\TeX</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-54" x="0" y="0"></use>
+<g transform="translate(582,0)">
+ <use xlink:href="#MJMAIN-45" x="0" y="-216"></use>
+</g>
+ <use xlink:href="#MJMAIN-58" x="1149" y="0"></use>
+</g>
+</svg></span> 코드를 HTML/CSS, SVG 또는 MathML로 변환하고, 브라우저가 변환된 결과를 화면에 표시한다.</p><p><a href="https://katex.org/">KaTex</a>는 MathJax보다 훨씬 빠르게 수식을 표시하고 서버측 렌더링도 지원한다. 그러다 MathJax에 있는 모든 기능을 제공하는지 확실하지 않다. 몇 년 전에 확인했을 때는 지원하지 않는 기능이 많았다. 수식 엔진을 KaTex로 바꾼다면 페이지에 있는 수식이 제대로 표현되는지 하나하나 확인해야 할 것이다. 확인하다 표현 못하는 수식이 있다면… KaTex는 일단 보류.</p><p>수식이 포함된 블로그 페이지의 느려터진 페이지 렌더링 속도를 볼 때마다 어떻게 개선할 수 없을까 생각을 했다. 사이트를 생성할 때 수식도 변환해 놓으면 좋을 것 같았다. 그러다 불현듯 MathJax로도 서버쪽 렌더링을 할 수 있지 않을까 해서 검색해 보았다. 그동안 MathJax는 서버측 렌더링을 지원하지 않는 줄 알았는데, 잘못 알고 있었다. 왜 진작 찾아보지 않았을까?</p><p>내가 찾은 도구는 <a href="https://github.com/pkra/mathjax-node-page">mathjax-node-page</a>다. 다른 도구가 있는지는 모르겠다. mathjax-node-page로 다음과 같이 HTML 파일에 들어있는 수식을 렌더링하는 CLI를 제공한다. 입력 파일과 출력 파일을 리디렉션으로 지정해야 하는 것은 마음에 들지 않고, 속도도 빠르지는 않다. 시험 삼아 HTML 파일 하나로 테스트 해봤는데 1초는 걸리는 것 같다. 다행히 수식은 잘 표현되는 것 같다.</p><pre class="console">$ mjpage --help
+Usage: mjpage [options] &lt; input.html &gt; output.html
+...
+</pre><p>사용법이 이렇다면 HTML 파일을 하나씩 렌더링할 수밖에 없다. node.js 기반 사이트 생성기라면 내부적으로 mathjax-node-page를 직접 사용할 수 있겠지만, Hugo와 통합은 어려워 보인다. Hugo가 생성한 HTML을 mathjax-node-page CLI로 하나씩 읽어 수식을 렌더링할 셸 스크립트를 작성해야 할 것 같다.</p><pre><code class="language-bash">#!/usr/bin/env bash
+
+SRC_ROOT=public
+TARGET_ROOT=math-rendered-public
+
+FILES=$(find $SRC_ROOT)
+
+for src in $FILES; do
+    target=${src/$SRC_ROOT/$TARGET_ROOT}
+    if [ -d $src ]; then
+        echo "create $target"
+        mkdir -p $target
+    elif [[ $target =~ $TARGET_ROOT/(tags.*|archive.*|about.*|[0-9]{4}/index.html) ]]; then
+        echo "copy $src"
+        cp $src $target
+    elif [[ ! $target =~ .*html$ ]]; then
+        echo "copy $src ... non html resource"
+        cp $src $target
+    else
+        echo "render $src"
+        mjpage --format svg --dollars true &lt; $src &gt; $target
+    fi
+done;
+</code></pre><p><code>mjpage</code>는 소스 HTML 페이지 안에 수식이 있든 없든 페이지 하나를 처리하는 데 거의 1초가 걸린다. 이 블로그에는 현재 330개의 페이지가 있으니 이 스크립트로 모든 페이지를 처리하는 데는 5분 넘게 걸릴 것이다. 대상 파일을 조금이라도 줄이려고 수식이 없는 페이지를 제외했지만 효과가 크지는 않다. 생각해보니 제회되 페이지가 별로 많지 않다.</p><p>수식 렌더링 속도가 이렇게 느리다면 이미 처리한 파일을 반복 처리하지 않도록 해서 속도 향상을 꾀할 수 있다. 소스 파일의 체크섬을 구해 저장해놓고 나중에 체크섬을 비교해 파일이 변했는지 확인한 다음, 변한 파일만 처리하면 시간을 많이 단축할 수 있을 것이다. 다만 이걸 bash로 할 수 있을 만큼 bash를 잘 아는 건 아니라는 게 문제다.</p><p>어떻게 할 수 있을까?. 차라리 node.js로 작성하는 게 낫지 않을까 생각해 잠깐 시도해 보았지만, node.js도 모르긴 마찬가지였다. 조금 찾아보니 파일의 체크섬은 <code>shasum</code> 같은 명령을 사용하면 되지만 Mac OS X에는 해당 명령이 없었다. 대신 <code>md5</code>가 있는데 이걸로 충분할 듯 하다. 파일의 체크섬은 그냥 파일이 있는 디레터리 안에 확장자 <code>.md5</code>로 저장하기로 했다.</p><p>위 스크립트에서 마지막 <code>else</code> 블록을 다음과 같이 수정한다. 처음 실행하면 모든 페이지를 처리해야 하므로 시간이 오래 걸린다. 그러나 그 다음부터는 새로 추가된 페이지나 변경된 페이지만 처리하므로 비교적 빠르게 동작한다.</p><pre><code class="language-bash">    ...
+    else
+        checksum_new=$(md5 -q $src)
+        checksum_old=$(cat $src.md5 2&gt; /dev/null)
+
+        if [ "$checksum_new" = "$checksum_old" ]; then
+            echo "already rendered..."
+        else
+            echo "render $src"
+            echo "$checksum_new" &gt; $src.md5
+            mjpage --format svg --dollars true &lt; $src &gt; $target
+        fi
+    fi
+done;
+</code></pre><p>이제 블로그를 생성하는 절차가 조금 바뀐다. 예전에는 <code>hugo</code> 명령을 실행하면 <code>public</code> 디렉터리에 블로그가 생성되고 그걸 GitHub에 푸시하면 됐다. 지금부터는 위에서 작성한 스크립트를 실행해 <code>public</code> 디렉터리를 읽어 수식을 렌더링하고 결과를 <code>math-rendered-public</code> 디렉터리에 저장한 후, <code>math-rendered-public</code>의 파일을 GitHub에 푸시해야 한다.</p><p>아, <code>md5</code> 파일을 <code>math-rendered-public</code> 디렉터리로 복사하는 작업은 불필요하므로 다음 <code>elif</code> 블로을 추가해 <code>md5</code> 파일을 무시하도록 하는 게 좋겠다.</p><pre><code class="language-bash">    ...
+    elif [[ $target =~ .md5$ ]]; then
+        :                       # skip checksum file
+    ...
+</code></pre><p>블로그 생성 절차가 조금 번거로워 졌지만, 블로그에서 수식이 빠르게 표시되는 걸 보니 이 정도 불편은 충분히 감수할 수 있겠다.</p></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+<a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+<script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2019/junit5-parameterized-test/" id="article-nav-older">JUnit 5 매개변수 테스트</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><script type="text/javascript" src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+   tex2jax: {
+     inlineMath: [['$','$']],
+     displayMath: [['$$','$$']],
+     processEscapes: true,
+     processEnvironments: true,
+     skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code'],
+     TeX: { equationNumbers: { autoNumber: "AMS" },
+            extensions: ["AMSmath.js", "AMSsymbols.js"] }
+   }
+ });
+</script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer><svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs id="MathJax_SVG_glyphs"><path stroke-width="1" id="MJMAIN-54" d="M36 443Q37 448 46 558T55 671V677H666V671Q667 666 676 556T685 443V437H645V443Q645 445 642 478T631 544T610 593Q593 614 555 625Q534 630 478 630H451H443Q417 630 414 618Q413 616 413 339V63Q420 53 439 50T528 46H558V0H545L361 3Q186 1 177 0H164V46H194Q264 46 283 49T309 63V339V550Q309 620 304 625T271 630H244H224Q154 630 119 601Q101 585 93 554T81 486T76 443V437H36V443Z"></path><path stroke-width="1" id="MJMAIN-45" d="M128 619Q121 626 117 628T101 631T58 634H25V680H597V676Q599 670 611 560T625 444V440H585V444Q584 447 582 465Q578 500 570 526T553 571T528 601T498 619T457 629T411 633T353 634Q266 634 251 633T233 622Q233 622 233 621Q232 619 232 497V376H286Q359 378 377 385Q413 401 416 469Q416 471 416 473V493H456V213H416V233Q415 268 408 288T383 317T349 328T297 330Q290 330 286 330H232V196V114Q232 57 237 52Q243 47 289 47H340H391Q428 47 452 50T505 62T552 92T584 146Q594 172 599 200T607 247T612 270V273H652V270Q651 267 632 137T610 3V0H25V46H58Q100 47 109 49T128 61V619Z"></path><path stroke-width="1" id="MJMAIN-58" d="M270 0Q252 3 141 3Q46 3 31 0H23V46H40Q129 50 161 88Q165 94 244 216T324 339Q324 341 235 480T143 622Q133 631 119 634T57 637H37V683H46Q64 680 172 680Q297 680 318 683H329V637H324Q307 637 286 632T263 621Q263 618 322 525T384 431Q385 431 437 511T489 593Q490 595 490 599Q490 611 477 622T436 637H428V683H437Q455 680 566 680Q661 680 676 683H684V637H667Q585 634 551 599Q548 596 478 491Q412 388 412 387Q412 385 514 225T620 62Q628 53 642 50T695 46H726V0H717Q699 3 591 3Q466 3 445 0H434V46H440Q454 46 476 51T499 64Q499 67 463 124T390 238L353 295L350 292Q348 290 343 283T331 265T312 236T286 195Q219 88 218 84Q218 70 234 59T272 46H280V0H270Z"></path></defs></svg></body></html>
