@@ -154,7 +154,7 @@ code {
   padding: 3px 3px 1px 3px;
   font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
   font-size: 0.8em;
-  white-space: pre-wrap;
+  white-space: pre;
   border: none;
   background: #eee;
   border-radius: 3px;
@@ -354,6 +354,7 @@ ul.pagination {
 }
 ul.pagination li {
   display: inline-block;
+  margin: 3px;
 }
 ul.pagination li a {
   text-decoration: none;
@@ -903,11 +904,9 @@ selection {
     margin-top: 6rem;
     font-size: 1.1rem;
   }
-  pre .console,
-  pre code {
+  pre.console {
     margin: 5px 0;
     padding: 5px;
-    whitespace: pre;
   }
 }
 @media only screen and (max-width: 440px) {
