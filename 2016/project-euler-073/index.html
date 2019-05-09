@@ -1,87 +1,81 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>
- window.dataLayer = window.dataLayer || [];
- function gtag(){dataLayer.push(arguments);}
- gtag('js', new Date());
+<!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 73 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+                            .mjpage .MJX-monospace {
+                            font-family: monospace
+                            }
 
- gtag('config', 'UA-2098194-3');
-</script>
-<meta charset="UTF-8">
+                            .mjpage .MJX-sans-serif {
+                            font-family: sans-serif
+                            }
 
-<meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
+                            .mjpage {
+                            display: inline;
+                            font-style: normal;
+                            font-weight: normal;
+                            line-height: normal;
+                            font-size: 100%;
+                            font-size-adjust: none;
+                            text-indent: 0;
+                            text-align: left;
+                            text-transform: none;
+                            letter-spacing: normal;
+                            word-spacing: normal;
+                            word-wrap: normal;
+                            white-space: nowrap;
+                            float: none;
+                            direction: ltr;
+                            max-width: none;
+                            max-height: none;
+                            min-width: 0;
+                            min-height: 0;
+                            border: 0;
+                            padding: 0;
+                            margin: 0
+                            }
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>프로젝트 오일러 73 @ntalbs&#39; stuff</title>
-<link rel="shortcut icon" href="/images/favicon.ico">
-<link rel="stylesheet" href="/css/style.css">
+                            .mjpage * {
+                            transition: none;
+                            -webkit-transition: none;
+                            -moz-transition: none;
+                            -ms-transition: none;
+                            -o-transition: none
+                            }
 
-  </head>
-  <body>
-    <div id="progress">
-  <div id="bar"></div>
-  <div class="container">
-    <div id="scroll-title">프로젝트 오일러 73</div>
-  </div>
-</div>
+                            .mjx-svg-href {
+                            fill: blue;
+                            stroke: blue
+                            }
 
-    <nav class="navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
-      <a class="navbar-brand" href="/">@ntalbs&#39; stuff</a>
-    </div>
-    <div class="navbar-items collapsed" id="nav-items">
-      <ul>
-        
-        <li><a href="/archive/">Archive</a></li>
-        
-        <li><a href="/tags/">Tags</a></li>
-        
-        <li><a href="/about/">About</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
+                            .MathJax_SVG_LineBox {
+                            display: table!important
+                            }
 
-<header class="page-head">
-  <div class="container">
-    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-  </div>
-</header>
+                            .MathJax_SVG_LineBox span {
+                            display: table-cell!important;
+                            width: 10000em!important;
+                            min-width: 0;
+                            max-width: none;
+                            padding: 0;
+                            border: 0;
+                            margin: 0
+                            }
 
-    <main class="container" role="main">
-      <article class="post">
-        <header>
-          <p class="post-meta">
-            <time datetime="2016-07-28" itemprop="datePublished">2016-07-28</time>
-            on
-            
-            <a href="/tags/project-euler/">Project-Euler</a>
-            
-            <a href="/tags/clojure/">Clojure</a>
-            
-          </p>
-          <h1 class="post-title">
-            프로젝트 오일러 73
-          </h1>
-        </header>
-        <section class="post-content">
-          <blockquote>
-<p>분모가 12,000 이하일 때 1/3과 <sup>1</sup>&frasl;<sub>2</sub> 사이에 위치한 기약 진분수의 개수</p>
-
-<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=73">[국어]</a> <a href="https://projecteuler.net/problem=73">[영어]</a></p>
-</blockquote>
-
-<h2 id="무차별-대입법">무차별 대입법</h2>
-
-<p>분모가 12,000 이하인 경우만 조사하면 되므로 분자와 분모에 12,000 이하의 수를 대입해가며 분수를 만들어 1/3과 <sup>1</sup>&frasl;<sub>2</sub> 사이의 기약 진부수를 세는 방법으로 답을 구할 수 있을 것 같다. 분모는 3부터 12,000까지, 분자는 분모/3 ~ 분모/2 사이의 정수를 대입해보면 된다.</p>
-
-<pre><code class="language-clojure">(ns p073
+                            .mjpage__block {
+                            text-align: center;
+                            margin: 1em 0em;
+                            position: relative;
+                            display: block!important;
+                            text-indent: 0;
+                            max-width: none;
+                            max-height: none;
+                            min-width: 0;
+                            min-height: 0;
+                            width: 100%
+                            }</style></head><body><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">프로젝트 오일러 73</div></div></div><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+<a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2016-07-28" itemprop="datePublished">2016-07-28</time>
+on
+<a href="/tags/project-euler/">Project-Euler</a>
+<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 73</h1></header><section class="post-content"><blockquote><p>분모가 12,000 이하일 때 1/3과 <sup>1</sup>⁄<sub>2</sub> 사이에 위치한 기약 진분수의 개수</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=73">[국어]</a> <a href="https://projecteuler.net/problem=73">[영어]</a></p></blockquote><h2 id="무차별-대입법">무차별 대입법</h2><p>분모가 12,000 이하인 경우만 조사하면 되므로 분자와 분모에 12,000 이하의 수를 대입해가며 분수를 만들어 1/3과 <sup>1</sup>⁄<sub>2</sub> 사이의 기약 진부수를 세는 방법으로 답을 구할 수 있을 것 같다. 분모는 3부터 12,000까지, 분자는 분모/3 ~ 분모/2 사이의 정수를 대입해보면 된다.</p><pre><code class="language-clojure">(ns p073
   (:require [util :refer [gcd infix]]))
 
 ;; brute force
@@ -94,36 +88,41 @@
 
 (defn solve1 []
   (count (reduced-proper-fractions 12000)))
-</code></pre>
-
-<p>구현은 복잡하지 않지만 답을 구하는 데 시간이 많이 걸린다.</p>
-
-<pre class="console">
-p073=> (time (solve1))
+</code></pre><p>구현은 복잡하지 않지만 답을 구하는 데 시간이 많이 걸린다.</p><pre class="console">p073=&gt; (time (solve1))
 "Elapsed time: 7767.04538 msecs"
 729??72
-</pre>
-
-<p>Clojure에서 분수는 <code>Ratio</code>로 표현되는데, 아무래도 숫자 기본 타입보다는 속도가 느리다. 위 코드에서 <code>(/ n d)</code>를 <code>(/ (double n) d)</code>로만 수정해도 시간이 2초 이상 줄어든다. 그러나 여전히 빠른 속도라 할 수 없다.</p>
-
-<h2 id="farey-sequence-이용">Farey Sequence 이용</h2>
-
-<p><a href="https://en.wikipedia.org/wiki/Farey_sequence#Next_term">Farey sequence</a>에 Farey 수열을 구하는 파이썬 코드가 있다. 이 코드를 조금 수정해 $F_{12000}$에서 1/3보다 크고 1/2보다 작은 항이 몇 개인지 세도록 할 수 있다. 이 알고리즘을 이용해 Farey 수열의 다음 항을 구하기 위해서는 앞 두 항이 필요하다. 첫 항을 1/3으로 하고 다음 항을 구하면 그 다음부터는 반복적 방법을 통해 수열을 쉽게 구할 수 있다.</p>
-
-<p><a href="/2016/project-euler-071/">문제 71</a>에서는 <sup>3</sup>&frasl;<sub>7</sub> 바로 앞에 오는 수를 구했다. 이때 사용한 코드를 조금 수정하면 분모가 12,000 이하일 때 <sup>1</sup>&frasl;<sub>3</sub> 바로 다음 항을 구할 수 있다.</p>
-
-<pre><code class="language-clojure">;; farey sequence
+</pre><p>Clojure에서 분수는 <code>Ratio</code>로 표현되는데, 아무래도 숫자 기본 타입보다는 속도가 느리다. 위 코드에서 <code>(/ n d)</code>를 <code>(/ (double n) d)</code>로만 수정해도 시간이 2초 이상 줄어든다. 그러나 여전히 빠른 속도라 할 수 없다.</p><h2 id="farey-sequence-이용">Farey Sequence 이용</h2><p><a href="https://en.wikipedia.org/wiki/Farey_sequence#Next_term">Farey sequence</a>에 Farey 수열을 구하는 파이썬 코드가 있다. 이 코드를 조금 수정해 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="5.837ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 2513 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">F_{12000}</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-46" x="0" y="0"></use>
+<g transform="translate(643,-150)">
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-31"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="500" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-30" x="1001" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-30" x="1501" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-30" x="2002" y="0"></use>
+</g>
+</g>
+</svg></span>에서 1/3보다 크고 1/2보다 작은 항이 몇 개인지 세도록 할 수 있다. 이 알고리즘을 이용해 Farey 수열의 다음 항을 구하기 위해서는 앞 두 항이 필요하다. 첫 항을 1/3으로 하고 다음 항을 구하면 그 다음부터는 반복적 방법을 통해 수열을 쉽게 구할 수 있다.</p><p><a href="/2016/project-euler-071/">문제 71</a>에서는 <sup>3</sup>⁄<sub>7</sub> 바로 앞에 오는 수를 구했다. 이때 사용한 코드를 조금 수정하면 분모가 12,000 이하일 때 <sup>1</sup>⁄<sub>3</sub> 바로 다음 항을 구할 수 있다.</p><pre><code class="language-clojure">;; farey sequence
 (defn- next-to [a b limit]
   (-&gt;&gt; (range 2 limit)                                ; d
        (map (fn [d] [(infix (((a * d) + 1) / b)) d])) ; [c d]
        (filter (fn [[c d]] (integer? c)))
        (map (fn [[c d]] (/ c d)))
        (apply min)))
-</code></pre>
-
-<p>위 함수를 이용해 <sup>1</sup>&frasl;<sub>3</sub> 바로 다음 항을 구하고 나면 다음과 같이 반복적으로 다음 항을 구하는 함수를 작성할 수 있다. $F_{12000}$을 모두 구하는 게 <sup>1</sup>&frasl;<sub>2</sub> 직전까지만 구하면 된다.</p>
-
-<pre><code class="language-clojure">(defn solve2 []
+</code></pre><p>위 함수를 이용해 <sup>1</sup>⁄<sub>3</sub> 바로 다음 항을 구하고 나면 다음과 같이 반복적으로 다음 항을 구하는 함수를 작성할 수 있다. <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="5.837ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 2513 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">
+<title id="MathJax-SVG-2-Title">F_{12000}</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-46" x="0" y="0"></use>
+<g transform="translate(643,-150)">
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-31"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="500" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-30" x="1001" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-30" x="1501" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-30" x="2002" y="0"></use>
+</g>
+</g>
+</svg></span>을 모두 구하는 게 <sup>1</sup>⁄<sub>2</sub> 직전까지만 구하면 된다.</p><pre><code class="language-clojure">(defn solve2 []
   (let [limit 12000
         a 1
         b 3
@@ -136,90 +135,19 @@ p073=> (time (solve1))
           (recur c d (- (* k c) a) (- (* k d) b) (inc acc)))
         acc))))
 
-</code></pre>
-
-<p>이 코드의 실행 결과는 다음과 같다.</p>
-
-<pre class="console">
-p073=> (time (solve2))
+</code></pre><p>이 코드의 실행 결과는 다음과 같다.</p><pre class="console">p073=&gt; (time (solve2))
 "Elapsed time: 1938.931634 msecs"
 729??72
-</pre>
-
-<p>무차별 대입법을 이용했을 때보다 훨씬 빨라지긴 했지만 여전히 만족스러운 속도라 할 수는 없다. 이렇게 속도가 느린 이유 중 하나는 앞에서 언급했던 것처럼 <code>Ratio</code>가 느리기 때문이다. 따라서 나누기 연산을 하는 <code>if</code> 안의 코드를 다음과 같이 수정하면 속도가 훨씬 빨라진다.</p>
-
-<pre><code class="language-clojure">(loop [...]
+</pre><p>무차별 대입법을 이용했을 때보다 훨씬 빨라지긴 했지만 여전히 만족스러운 속도라 할 수는 없다. 이렇게 속도가 느린 이유 중 하나는 앞에서 언급했던 것처럼 <code>Ratio</code>가 느리기 때문이다. 따라서 나누기 연산을 하는 <code>if</code> 안의 코드를 다음과 같이 수정하면 속도가 훨씬 빨라진다.</p><pre><code class="language-clojure">(loop [...]
   (if (&lt; (/ (double c) d) 0.5) ; Ratio를 사용하지 않도록 수정
   ...))
-</code></pre>
-
-<p><code>Ratio</code>를 사용하지 않고 그냥 실수 연산을 해도 답을 구하는 데는 전혀 문제 없다. 이렇게 수정한 다음 실행한 결과는 다음과 같다. 이 정도면 충분히 빠르게 답을 구했다고 할 수 있겠다.</p>
-
-<pre class="console">
-p073=> (time (solve2))
+</code></pre><p><code>Ratio</code>를 사용하지 않고 그냥 실수 연산을 해도 답을 구하는 데는 전혀 문제 없다. 이렇게 수정한 다음 실행한 결과는 다음과 같다. 이 정도면 충분히 빠르게 답을 구했다고 할 수 있겠다.</p><pre class="console">p073=&gt; (time (solve2))
 "Elapsed time: 246.291817 msecs"
 729??72
-</pre>
-
-<h2 id="참고">참고</h2>
-
-<ul>
-<li><a href="https://github.com/ntalbs/euler/blob/master/src/p073.clj">프로젝트 오일러 73 풀이 소스 코드</a></li>
-<li><a href="/2016/project-euler-071/">프로젝트 오일러 71</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Farey_sequence">Farey sequence</a></li>
-</ul>
-        </section>
-        <footer class="post-footer">
-          
-          <div class="social button-box">
-            
-            <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
-            <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
-            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-            
-          </div>
-          
-          <nav id="article-nav">
-            
-            <a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2016/my-proud-moments/" id="article-nav-newer"> 가장 뿌듯했던 순간</a>
-            
-            
-            <a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2016/project-euler-072/" id="article-nav-older"> 프로젝트 오일러 72</a>
-            
-          </nav>
-        </footer>
-      </article>
-    </main>
-    
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-     var disqus_shortname = 'ntalbs-stuff';
-     (function() {
-       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-     })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
-
-    <section class="section">
-  <div class="container has-text-centered">
-    <p></p>
-  </div>
-</section>
-<script src=https://ntalbs.github.io/js/index.js type="text/javascript"></script>
-
-    <link rel="stylesheet" href="/css/googlecode.css">
-<script type="text/javascript" src="/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-
-    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script type="text/x-mathjax-config">
+</pre><h2 id="참고">참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p073.clj">프로젝트 오일러 73 풀이 소스 코드</a></li><li><a href="/2016/project-euler-071/">프로젝트 오일러 71</a></li><li><a href="http://en.wikipedia.org/wiki/Farey_sequence">Farey sequence</a></li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+<a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+<script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2016/my-proud-moments/" id="article-nav-newer">가장 뿌듯했던 순간</a>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2016/project-euler-072/" id="article-nav-older">프로젝트 오일러 72</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><script type="text/javascript" src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">
  MathJax.Hub.Config({
    tex2jax: {
      inlineMath: [['$','$']],
@@ -231,14 +159,4 @@ p073=> (time (solve2))
             extensions: ["AMSmath.js", "AMSsymbols.js"] }
    }
  });
-</script>
-
-    <footer class="page-bottom">
-  <div class="inner">
-    <section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section>
-    <section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section>
-  </div>
-</footer>
-
-  </body>
-</html>
+</script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer><svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs id="MathJax_SVG_glyphs"><path stroke-width="1" id="MJMATHI-46" d="M48 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H742Q749 676 749 669Q749 664 736 557T722 447Q720 440 702 440H690Q683 445 683 453Q683 454 686 477T689 530Q689 560 682 579T663 610T626 626T575 633T503 634H480Q398 633 393 631Q388 629 386 623Q385 622 352 492L320 363H375Q378 363 398 363T426 364T448 367T472 374T489 386Q502 398 511 419T524 457T529 475Q532 480 548 480H560Q567 475 567 470Q567 467 536 339T502 207Q500 200 482 200H470Q463 206 463 212Q463 215 468 234T473 274Q473 303 453 310T364 317H309L277 190Q245 66 245 60Q245 46 334 46H359Q365 40 365 39T363 19Q359 6 353 0H336Q295 2 185 2Q120 2 86 2T48 1Z"></path><path stroke-width="1" id="MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="1" id="MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path stroke-width="1" id="MJMAIN-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></defs></svg></body></html>

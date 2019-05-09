@@ -1,216 +1,38 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>
- window.dataLayer = window.dataLayer || [];
- function gtag(){dataLayer.push(arguments);}
- gtag('js', new Date());
-
- gtag('config', 'UA-2098194-3');
-</script>
-<meta charset="UTF-8">
-
-<meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>if (cond == true) return true @ntalbs&#39; stuff</title>
-<link rel="shortcut icon" href="/images/favicon.ico">
-<link rel="stylesheet" href="/css/style.css">
-
-  </head>
-  <body>
-    <div id="progress">
-  <div id="bar"></div>
-  <div class="container">
-    <div id="scroll-title">if (cond == true) return true</div>
-  </div>
-</div>
-
-    <nav class="navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
-      <a class="navbar-brand" href="/">@ntalbs&#39; stuff</a>
-    </div>
-    <div class="navbar-items collapsed" id="nav-items">
-      <ul>
-        
-        <li><a href="/archive/">Archive</a></li>
-        
-        <li><a href="/tags/">Tags</a></li>
-        
-        <li><a href="/about/">About</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<header class="page-head">
-  <div class="container">
-    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-  </div>
-</header>
-
-    <main class="container" role="main">
-      <article class="post">
-        <header>
-          <p class="post-meta">
-            <time datetime="2015-08-21" itemprop="datePublished">2015-08-21</time>
-            on
-            
-            <a href="/tags/java/">Java</a>
-            
-            <a href="/tags/%eb%a6%ac%ed%8c%a9%ed%84%b0%eb%a7%81/">리팩터링</a>
-            
-          </p>
-          <h1 class="post-title">
-            if (cond == true) return true
-          </h1>
-        </header>
-        <section class="post-content">
-          <p>회사에서 코드 리뷰를 할 때 다음과 같은 패턴의 코드가 자주 눈에 띈다.</p>
-
-<pre><code class="language-java">if (condition == true) {
+<!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>if (cond == true) return true @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"></head><body><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">if (cond == true) return true</div></div></div><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+<a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2015-08-21" itemprop="datePublished">2015-08-21</time>
+on
+<a href="/tags/java/">Java</a>
+<a href="/tags/%eb%a6%ac%ed%8c%a9%ed%84%b0%eb%a7%81/">리팩터링</a></p><h1 class="post-title">if (cond == true) return true</h1></header><section class="post-content"><p>회사에서 코드 리뷰를 할 때 다음과 같은 패턴의 코드가 자주 눈에 띈다.</p><pre><code class="language-java">if (condition == true) {
   return true;
 } else {
   return false;
 }
-</code></pre>
-
-<p>조금 줄여서 다음과 같이 쓰인 경우도 있다.</p>
-
-<pre><code class="language-java">if (condition == true) {
+</code></pre><p>조금 줄여서 다음과 같이 쓰인 경우도 있다.</p><pre><code class="language-java">if (condition == true) {
   return true;
 }
 return false;
-</code></pre>
-
-<p>이 장황한 코드는 다음과 같이 한 줄로 간단히 작성할 수 있다.</p>
-
-<pre><code class="language-java">return condition;
-</code></pre>
-
-<p>그런데 이렇게 단순하게 쓰는 법을 알려줬을 때의 반응이 놀랍다. 자신은 <code>if</code>문을 사용해 길게 늘여 쓴 것이 눈에 더 잘 들어온다는 것이다. 이렇게 말하는 개발자는 수련이 더 필요하다고 생각한다.</p>
-
-<h2 id="conditon-true"><code>conditon == true</code></h2>
-
-<p>먼저 <code>condition == true</code>를 살펴보자. 이미 <code>condition</code>이 불리언이라면 이 코드는 분명 불필요한 비교를 하고 있다. <code>true == true</code> 또는 <code>false == true</code>를 한 번 더 평가해야 하기 때문이다. 성능을 말하는 것이 아니라 가독성을 말하는 것이다. 다음 두 코드를 비교해 보자.</p>
-
-<pre><code class="language-java">if (condition) { ... }         // (1)
+</code></pre><p>이 장황한 코드는 다음과 같이 한 줄로 간단히 작성할 수 있다.</p><pre><code class="language-java">return condition;
+</code></pre><p>그런데 이렇게 단순하게 쓰는 법을 알려줬을 때의 반응이 놀랍다. 자신은 <code>if</code>문을 사용해 길게 늘여 쓴 것이 눈에 더 잘 들어온다는 것이다. 이렇게 말하는 개발자는 수련이 더 필요하다고 생각한다.</p><h2 id="conditon-true"><code>conditon == true</code></h2><p>먼저 <code>condition == true</code>를 살펴보자. 이미 <code>condition</code>이 불리언이라면 이 코드는 분명 불필요한 비교를 하고 있다. <code>true == true</code> 또는 <code>false == true</code>를 한 번 더 평가해야 하기 때문이다. 성능을 말하는 것이 아니라 가독성을 말하는 것이다. 다음 두 코드를 비교해 보자.</p><pre><code class="language-java">if (condition) { ... }         // (1)
 if (condition == true) { ...}  // (2)
-</code></pre>
-
-<p>(1)과 같이 작성한 경우는 &ldquo;<code>condition</code>을 만족하면&hellip;&ldquo;으로 코드를 읽을 수 있다. (2)의 경우는 &ldquo;<code>condition</code>이 <code>true</code>라면&hellip;&ldquo;으로 읽힌다. 여기서는 별 차이가 없는 것 같다. <code>condition</code>에 적절한 이름을 지어 주면 어떨까? 예를 들어 <code>isActivated</code>나 <code>hasSomeValue</code>과 같은 이름으로 되어 있는 경우를 생각해보자.</p>
-
-<pre><code class="language-java">if (isActivated) { ... }
+</code></pre><p>(1)과 같이 작성한 경우는 “<code>condition</code>을 만족하면…“으로 코드를 읽을 수 있다. (2)의 경우는 “<code>condition</code>이 <code>true</code>라면…“으로 읽힌다. 여기서는 별 차이가 없는 것 같다. <code>condition</code>에 적절한 이름을 지어 주면 어떨까? 예를 들어 <code>isActivated</code>나 <code>hasSomeValue</code>과 같은 이름으로 되어 있는 경우를 생각해보자.</p><pre><code class="language-java">if (isActivated) { ... }
 if (hasSomeValue) { ... }
-</code></pre>
-
-<p>위 두 <code>if</code> 문은 &ldquo;활성화 되었으면&hellip;&rdquo;, &ldquo;어떤 값을 가지면&hellip;&ldquo;과 같은 식으로 읽을 수 있다.</p>
-
-<pre><code class="language-java">if (isActivated == true) { ... }
+</code></pre><p>위 두 <code>if</code> 문은 “활성화 되었으면…”, “어떤 값을 가지면…“과 같은 식으로 읽을 수 있다.</p><pre><code class="language-java">if (isActivated == true) { ... }
 if (hasSomeValue == true) { ... }
-</code></pre>
-
-<p>그러나 <code>== true</code>를 덧붙인 코드는 코드 길이만 길어진 게 아니라 읽을 때도 복잡하다. &ldquo;<code>isActivated</code>가 <code>true</code>이면&hellip;&ldquo;, &ldquo;<code>hasSomeValue</code>가 <code>true</code>이면&hellip;&ldquo;과 같이 읽은 다음 &ldquo;활성화 되었으면&hellip;&rdquo;, &ldquo;어떤 값을 가지면&hellip;&ldquo;으로 다시 해석해야 하기 때문이다. 따라서 <code>== true</code>를 덧붙이지 않는 것이 코드도 짧을 뿐 아니라 읽기도 쉽다.</p>
-
-<p>조건식이 복잡하다면 별도 함수로 작성하는 것도 생각할 수 있다. 그런 경우라면 <code>if(isActivated()) { ... }</code>, <code>if (hasSomeValue()) { ... }</code>이 될 것이다.</p>
-
-<p><code>isActivated == true</code>가 중복이 아니라고 생각되면 <code>(isActivated == true) == true</code>를 생각해보자. 이 코드도 중복이 아닌가? 지나친 억지인가?</p>
-
-<h2 id="return-true"><code>return true;</code></h2>
-
-<p>이제 <code>return true;</code>, <code>return false;</code>를 살펴보자. 앞에서 설명한 대로 <code>== true</code>를 덧붙이지 않기로 했다면 <code>if</code>문은 다음과 같이 작성할 수 있다.</p>
-
-<pre><code class="language-java">if (condition) {
+</code></pre><p>그러나 <code>== true</code>를 덧붙인 코드는 코드 길이만 길어진 게 아니라 읽을 때도 복잡하다. “<code>isActivated</code>가 <code>true</code>이면…“, “<code>hasSomeValue</code>가 <code>true</code>이면…“과 같이 읽은 다음 “활성화 되었으면…”, “어떤 값을 가지면…“으로 다시 해석해야 하기 때문이다. 따라서 <code>== true</code>를 덧붙이지 않는 것이 코드도 짧을 뿐 아니라 읽기도 쉽다.</p><p>조건식이 복잡하다면 별도 함수로 작성하는 것도 생각할 수 있다. 그런 경우라면 <code>if(isActivated()) { ... }</code>, <code>if (hasSomeValue()) { ... }</code>이 될 것이다.</p><p><code>isActivated == true</code>가 중복이 아니라고 생각되면 <code>(isActivated == true) == true</code>를 생각해보자. 이 코드도 중복이 아닌가? 지나친 억지인가?</p><h2 id="return-true"><code>return true;</code></h2><p>이제 <code>return true;</code>, <code>return false;</code>를 살펴보자. 앞에서 설명한 대로 <code>== true</code>를 덧붙이지 않기로 했다면 <code>if</code>문은 다음과 같이 작성할 수 있다.</p><pre><code class="language-java">if (condition) {
   return true;
 } else {
   return false;
 }
-</code></pre>
-
-<p><code>else</code>를 생략하고 다음과 같이 쓸 수도 있다.</p>
-
-<pre><code class="language-java">if (condition) {
+</code></pre><p><code>else</code>를 생략하고 다음과 같이 쓸 수도 있다.</p><pre><code class="language-java">if (condition) {
   return true;
 }
 return false;
-</code></pre>
-
-<p>이 코드 또한 명백한 중복이다. <code>condition</code>이 <code>true</code>면 <code>true</code>를 리턴하고 <code>false</code>면 <code>false</code>를 리턴하라는 코드인데, 그럴 거면 그냥 <code>condition</code>을 리턴하면 되기 때문이다.</p>
-
-<pre><code class="language-java">return condition;
-</code></pre>
-
-<p>한 줄이면 되는 것을 복잡하게 여러 줄에 걸쳐 쓸 필요가 있을까? 복잡하게 써서 코드가 더 명확해 졌는가? 단순하고 명확한 코드가 좋은 코드다.</p>
-
-<h2 id="결론">결론</h2>
-
-<p>글에서도 불필요한 낱말이나 표현이 붙어 있으면 글이 너저분해져 힘을 잃는다. 코드도 마찬가지다. 불필요한 코드는 프로그램를 이해하기 어렵게 만든다. 코드에 추가된 표현식이나 명령문 하나하나는 스스로 자신의 존재 가치를 증명해야 한다. 존재할 가치가 없는 코드는 삭제해야 한다.</p>
-
-<h2 id="참고">참고</h2>
-
-<ul>
-<li><a href="http://programmers.stackexchange.com/questions/12807/make-a-big-deal-out-of-true">Make a big deal out of == true?</a></li>
-<li><a href="http://programmers.stackexchange.com/questions/136908/why-use-boolean-variable-over-boolean-variable-false">Why Use !boolean_variable Over boolean_variable == false</a></li>
-<li><a href="http://stackoverflow.com/questions/2661110/is-it-bad-to-explicitly-compare-against-boolean-constants-e-g-if-b-false-i">Is it bad to explicitly compare against boolean constants e.g. if (b == false) in Java?</a></li>
-<li><a href="http://codingbat.com/doc/java-if-boolean-logic.html">CodingBat code practice &gt; Java If and Boolean Logic</a></li>
-</ul>
-        </section>
-        <footer class="post-footer">
-          
-          <div class="social button-box">
-            
-            <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
-            <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
-            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-            
-          </div>
-          
-          <nav id="article-nav">
-            
-            <a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2015/project-euler-026/" id="article-nav-newer"> 프로젝트 오일러 26</a>
-            
-            
-            <a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2015/editor-ime/" id="article-nav-older"> 에디터 입력기 만들기</a>
-            
-          </nav>
-        </footer>
-      </article>
-    </main>
-    
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-     var disqus_shortname = 'ntalbs-stuff';
-     (function() {
-       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-     })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
-
-    <section class="section">
-  <div class="container has-text-centered">
-    <p></p>
-  </div>
-</section>
-<script src=https://ntalbs.github.io/js/index.js type="text/javascript"></script>
-
-    <link rel="stylesheet" href="/css/googlecode.css">
-<script type="text/javascript" src="/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-
-    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script type="text/x-mathjax-config">
+</code></pre><p>이 코드 또한 명백한 중복이다. <code>condition</code>이 <code>true</code>면 <code>true</code>를 리턴하고 <code>false</code>면 <code>false</code>를 리턴하라는 코드인데, 그럴 거면 그냥 <code>condition</code>을 리턴하면 되기 때문이다.</p><pre><code class="language-java">return condition;
+</code></pre><p>한 줄이면 되는 것을 복잡하게 여러 줄에 걸쳐 쓸 필요가 있을까? 복잡하게 써서 코드가 더 명확해 졌는가? 단순하고 명확한 코드가 좋은 코드다.</p><h2 id="결론">결론</h2><p>글에서도 불필요한 낱말이나 표현이 붙어 있으면 글이 너저분해져 힘을 잃는다. 코드도 마찬가지다. 불필요한 코드는 프로그램를 이해하기 어렵게 만든다. 코드에 추가된 표현식이나 명령문 하나하나는 스스로 자신의 존재 가치를 증명해야 한다. 존재할 가치가 없는 코드는 삭제해야 한다.</p><h2 id="참고">참고</h2><ul><li><a href="http://programmers.stackexchange.com/questions/12807/make-a-big-deal-out-of-true">Make a big deal out of == true?</a></li><li><a href="http://programmers.stackexchange.com/questions/136908/why-use-boolean-variable-over-boolean-variable-false">Why Use !boolean_variable Over boolean_variable == false</a></li><li><a href="http://stackoverflow.com/questions/2661110/is-it-bad-to-explicitly-compare-against-boolean-constants-e-g-if-b-false-i">Is it bad to explicitly compare against boolean constants e.g. if (b == false) in Java?</a></li><li><a href="http://codingbat.com/doc/java-if-boolean-logic.html">CodingBat code practice &gt; Java If and Boolean Logic</a></li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+<a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+<script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2015/project-euler-026/" id="article-nav-newer">프로젝트 오일러 26</a>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2015/editor-ime/" id="article-nav-older">에디터 입력기 만들기</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><script type="text/javascript" src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">
  MathJax.Hub.Config({
    tex2jax: {
      inlineMath: [['$','$']],
@@ -222,14 +44,4 @@ return false;
             extensions: ["AMSmath.js", "AMSsymbols.js"] }
    }
  });
-</script>
-
-    <footer class="page-bottom">
-  <div class="inner">
-    <section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section>
-    <section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section>
-  </div>
-</footer>
-
-  </body>
-</html>
+</script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer></body></html>

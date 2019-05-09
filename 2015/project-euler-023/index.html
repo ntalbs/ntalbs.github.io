@@ -1,108 +1,20 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>
- window.dataLayer = window.dataLayer || [];
- function gtag(){dataLayer.push(arguments);}
- gtag('js', new Date());
-
- gtag('config', 'UA-2098194-3');
-</script>
-<meta charset="UTF-8">
-
-<meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>프로젝트 오일러 23 @ntalbs&#39; stuff</title>
-<link rel="shortcut icon" href="/images/favicon.ico">
-<link rel="stylesheet" href="/css/style.css">
-
-  </head>
-  <body>
-    <div id="progress">
-  <div id="bar"></div>
-  <div class="container">
-    <div id="scroll-title">프로젝트 오일러 23</div>
-  </div>
-</div>
-
-    <nav class="navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
-      <a class="navbar-brand" href="/">@ntalbs&#39; stuff</a>
-    </div>
-    <div class="navbar-items collapsed" id="nav-items">
-      <ul>
-        
-        <li><a href="/archive/">Archive</a></li>
-        
-        <li><a href="/tags/">Tags</a></li>
-        
-        <li><a href="/about/">About</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<header class="page-head">
-  <div class="container">
-    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-  </div>
-</header>
-
-    <main class="container" role="main">
-      <article class="post">
-        <header>
-          <p class="post-meta">
-            <time datetime="2015-06-24" itemprop="datePublished">2015-06-24</time>
-            on
-            
-            <a href="/tags/project-euler/">Project-Euler</a>
-            
-            <a href="/tags/clojure/">Clojure</a>
-            
-          </p>
-          <h1 class="post-title">
-            프로젝트 오일러 23
-          </h1>
-        </header>
-        <section class="post-content">
-          <blockquote>
-<p>두 초과수의 합으로 나타낼 수 없는 모든 양의 정수의 합은?</p>
-
-<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=23">[국어]</a> <a href="https://projecteuler.net/problem=23">[영어]</a></p>
-</blockquote>
-
-<p>초과수인지 판단하려면 진약수의 합을 알아야 한다. <a href="/2015/project-euler-021/">문제 21</a>에서 구현한 진약수의 합을 구하는 함수를 이용하면 다음과 같이 주어진 수가 초과수인지 판단하는 함수를 간단히 구현할 수 있다.</p>
-
-<pre><code class="language-clojure">(defn abundant?
-  &quot;Returns true if n is abundant number.&quot;
+<!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 23 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"></head><body><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">프로젝트 오일러 23</div></div></div><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+<a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2015-06-24" itemprop="datePublished">2015-06-24</time>
+on
+<a href="/tags/project-euler/">Project-Euler</a>
+<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 23</h1></header><section class="post-content"><blockquote><p>두 초과수의 합으로 나타낼 수 없는 모든 양의 정수의 합은?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=23">[국어]</a> <a href="https://projecteuler.net/problem=23">[영어]</a></p></blockquote><p>초과수인지 판단하려면 진약수의 합을 알아야 한다. <a href="/2015/project-euler-021/">문제 21</a>에서 구현한 진약수의 합을 구하는 함수를 이용하면 다음과 같이 주어진 수가 초과수인지 판단하는 함수를 간단히 구현할 수 있다.</p><pre><code class="language-clojure">(defn abundant?
+  "Returns true if n is abundant number."
   [n]
   (&gt; (aliquot-sum3 n) n))
-</code></pre>
-
-<p>주어진 범위(1~28123) 안에서 초과수 목록을 구할 수 있다.</p>
-
-<pre><code class="language-clojure">(def limit 28123)
+</code></pre><p>주어진 범위(1~28123) 안에서 초과수 목록을 구할 수 있다.</p><pre><code class="language-clojure">(def limit 28123)
 
 (def abundants (filter abundant? (range 12 (inc (- limit 12)))))
-</code></pre>
-
-<p>가장 작은 초과수는 문제에서 주어졌으므로 이를 이용해 확인하는 범위를 조금 줄였다. 두 초과수의 합으로 나타낼 수 있는 수의 목록은 다음과 같이 구할 수 있다.</p>
-
-<pre><code class="language-clojure">(for [a1 abundants a2 abundants
+</code></pre><p>가장 작은 초과수는 문제에서 주어졌으므로 이를 이용해 확인하는 범위를 조금 줄였다. 두 초과수의 합으로 나타낼 수 있는 수의 목록은 다음과 같이 구할 수 있다.</p><pre><code class="language-clojure">(for [a1 abundants a2 abundants
       :when (&lt;= a1 a2)
       :when (&lt;= (+ a1 a2) limit)]
   (+ a1 a2))
-</code></pre>
-
-<p>이렇게 구한 목록을 집합에 넣은 다음, 범위 안의 어떤 수가 이 집합에 포함되는지 판단해 두 초과수의 합으로 나타낼 수 있는지를 알 수 있다.</p>
-
-<pre><code class="language-clojure">(defn solve []
+</code></pre><p>이렇게 구한 목록을 집합에 넣은 다음, 범위 안의 어떤 수가 이 집합에 포함되는지 판단해 두 초과수의 합으로 나타낼 수 있는지를 알 수 있다.</p><pre><code class="language-clojure">(defn solve []
   (let [abundants (filter abundant? (range 12 (inc (- limit 12))))
         sum-of-2-abundants (set (for [a1 abundants a2 abundants
                                       :when (&lt;= a1 a2)
@@ -111,76 +23,14 @@
     (-&gt;&gt; (range 1 (inc limit))
          (remove #(sum-of-2-abundants %))
          (apply +))))
-</code></pre>
-
-<p>실행 결과는 다음과 같다.</p>
-
-<pre class="console">p023=> (time (solve))
+</code></pre><p>실행 결과는 다음과 같다.</p><pre class="console">p023=&gt; (time (solve))
 "Elapsed time: 3153.557972 msecs"
 41798??
-</pre>
-
-<p>실행 시간이 썩 만족스럽지는 않다. 아직 더 빠르게 하는 방법을 찾지 못했다.</p>
-
-<h2 id="참고">참고</h2>
-
-<ul>
-<li><a href="https://github.com/ntalbs/euler/blob/master/src/p023.clj">프로젝트 오일러 23 풀이 소스 코드</a></li>
-<li><a href="/2015/project-euler-021/">프로젝트 오일러 21</a>
-약수의 합을 구하는 방법 참조.</li>
-</ul>
-        </section>
-        <footer class="post-footer">
-          
-          <div class="social button-box">
-            
-            <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
-            <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
-            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-            
-          </div>
-          
-          <nav id="article-nav">
-            
-            <a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2015/progress-bar/" id="article-nav-newer"> 블로그에 Progress Bar 추가하기</a>
-            
-            
-            <a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2015/editor-doc-model/" id="article-nav-older"> 에디터 문서 모델</a>
-            
-          </nav>
-        </footer>
-      </article>
-    </main>
-    
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-     var disqus_shortname = 'ntalbs-stuff';
-     (function() {
-       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-     })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
-
-    <section class="section">
-  <div class="container has-text-centered">
-    <p></p>
-  </div>
-</section>
-<script src=https://ntalbs.github.io/js/index.js type="text/javascript"></script>
-
-    <link rel="stylesheet" href="/css/googlecode.css">
-<script type="text/javascript" src="/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-
-    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script type="text/x-mathjax-config">
+</pre><p>실행 시간이 썩 만족스럽지는 않다. 아직 더 빠르게 하는 방법을 찾지 못했다.</p><h2 id="참고">참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p023.clj">프로젝트 오일러 23 풀이 소스 코드</a></li><li><a href="/2015/project-euler-021/">프로젝트 오일러 21</a>
+약수의 합을 구하는 방법 참조.</li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+<a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+<script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2015/progress-bar/" id="article-nav-newer">블로그에 Progress Bar 추가하기</a>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2015/editor-doc-model/" id="article-nav-older">에디터 문서 모델</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><script type="text/javascript" src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">
  MathJax.Hub.Config({
    tex2jax: {
      inlineMath: [['$','$']],
@@ -192,14 +42,4 @@
             extensions: ["AMSmath.js", "AMSsymbols.js"] }
    }
  });
-</script>
-
-    <footer class="page-bottom">
-  <div class="inner">
-    <section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section>
-    <section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section>
-  </div>
-</footer>
-
-  </body>
-</html>
+</script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer></body></html>

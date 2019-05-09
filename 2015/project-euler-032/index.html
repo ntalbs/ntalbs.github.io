@@ -1,197 +1,249 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>
- window.dataLayer = window.dataLayer || [];
- function gtag(){dataLayer.push(arguments);}
- gtag('js', new Date());
+<!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 32 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+                            .mjpage .MJX-monospace {
+                            font-family: monospace
+                            }
 
- gtag('config', 'UA-2098194-3');
-</script>
-<meta charset="UTF-8">
+                            .mjpage .MJX-sans-serif {
+                            font-family: sans-serif
+                            }
 
-<meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
+                            .mjpage {
+                            display: inline;
+                            font-style: normal;
+                            font-weight: normal;
+                            line-height: normal;
+                            font-size: 100%;
+                            font-size-adjust: none;
+                            text-indent: 0;
+                            text-align: left;
+                            text-transform: none;
+                            letter-spacing: normal;
+                            word-spacing: normal;
+                            word-wrap: normal;
+                            white-space: nowrap;
+                            float: none;
+                            direction: ltr;
+                            max-width: none;
+                            max-height: none;
+                            min-width: 0;
+                            min-height: 0;
+                            border: 0;
+                            padding: 0;
+                            margin: 0
+                            }
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>프로젝트 오일러 32 @ntalbs&#39; stuff</title>
-<link rel="shortcut icon" href="/images/favicon.ico">
-<link rel="stylesheet" href="/css/style.css">
+                            .mjpage * {
+                            transition: none;
+                            -webkit-transition: none;
+                            -moz-transition: none;
+                            -ms-transition: none;
+                            -o-transition: none
+                            }
 
-  </head>
-  <body>
-    <div id="progress">
-  <div id="bar"></div>
-  <div class="container">
-    <div id="scroll-title">프로젝트 오일러 32</div>
-  </div>
-</div>
+                            .mjx-svg-href {
+                            fill: blue;
+                            stroke: blue
+                            }
 
-    <nav class="navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
-      <a class="navbar-brand" href="/">@ntalbs&#39; stuff</a>
-    </div>
-    <div class="navbar-items collapsed" id="nav-items">
-      <ul>
-        
-        <li><a href="/archive/">Archive</a></li>
-        
-        <li><a href="/tags/">Tags</a></li>
-        
-        <li><a href="/about/">About</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
+                            .MathJax_SVG_LineBox {
+                            display: table!important
+                            }
 
-<header class="page-head">
-  <div class="container">
-    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-  </div>
-</header>
+                            .MathJax_SVG_LineBox span {
+                            display: table-cell!important;
+                            width: 10000em!important;
+                            min-width: 0;
+                            max-width: none;
+                            padding: 0;
+                            border: 0;
+                            margin: 0
+                            }
 
-    <main class="container" role="main">
-      <article class="post">
-        <header>
-          <p class="post-meta">
-            <time datetime="2015-10-03" itemprop="datePublished">2015-10-03</time>
-            on
-            
-            <a href="/tags/project-euler/">Project-Euler</a>
-            
-            <a href="/tags/clojure/">Clojure</a>
-            
-          </p>
-          <h1 class="post-title">
-            프로젝트 오일러 32
-          </h1>
-        </header>
-        <section class="post-content">
-          <blockquote>
-<p>1~9 팬디지털 곱셈식을 만들 수 있는 모든 수의 합</p>
-
-<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=32">[국어]</a> <a href="https://projecteuler.net/problem=32">[영어]</a></p>
-</blockquote>
-
-<p>$a \times b = c$가 1-9 팬디지털이 되려면 다음과 같은 이유로 $c$가 네 자리 숫자여야 한다.</p>
-
-<ul>
-<li>$c$가 다섯 자리라면 $a$와 $b$의 자릿수 합이 4가 되어야 한다. 이때 $a$와 $b$의 가능한 자릿수 조합은 (1, 3) 또는 (2, 2)가 된다. (3, 1)은 앞의 경우와 대칭이고 곱셈은 교환법칙이 성립하므로 고려하지 않아도 된다. 그러나 한 자리 숫자와 세 자리 숫자를 곱해 만들 수 있는 수나, 두 자리 숫자 두 개를 곱해 만들 수 있는 수는 네 자리를 넘지 못한다. 따라서 $c$는 다섯 자리 수가 될 수 없다. 마찬가지 논리로 $c$가 여섯 자리 이상이 될 수 없음을 확인할 수 있다.</li>
-<li>$c$가 세 자리라면 $a$와 $b$의 자릿수 합이 여섯 자리가 되어야 한다. 이때 $a$와 $b$의 가능한 자릿수 조합은 (1, 5), (2, 4), (3, 3)이 된다. 그러나 이 자릿수 조합으로 만들 수 있는 가장 작은 수도 다섯 자리 이상이 된다. 따라서 $c$는 세 자리 수가 될 수 없다. 마찬가지 논리로 $c$가 두 자리 이하가 될 수 없음을 확인할 수 있다.</li>
-</ul>
-
-<p>$c$가 네 자리 숫자라면 $a$와 $b$의 자릿수 합은 5가 되어야 하고, 이때 가능한 자릿수 조합은 (1, 4), (2, 3)이다. $a \times b = c$가 1-9 팬디지털이어야 하므로 1, 2, &hellip; , 9의 순열을 구해 여기서 특정 순열의 일부를 취해 $a, b, c$를 구해 $a \times b = c$가 1-9 팬디지털이 되는지 확인하면 문제를 쉽게 풀 수 있다.</p>
-
-<p>먼저 순열을 쉽게 구하기 위해 <code>clojure.math.combinatorics</code>의 <code>permutations</code>를 로드한다.</p>
-
-<pre><code class="language-clojure">(ns p032
+                            .mjpage__block {
+                            text-align: center;
+                            margin: 1em 0em;
+                            position: relative;
+                            display: block!important;
+                            text-indent: 0;
+                            max-width: none;
+                            max-height: none;
+                            min-width: 0;
+                            min-height: 0;
+                            width: 100%
+                            }</style></head><body><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">프로젝트 오일러 32</div></div></div><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+<a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2015-10-03" itemprop="datePublished">2015-10-03</time>
+on
+<a href="/tags/project-euler/">Project-Euler</a>
+<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 32</h1></header><section class="post-content"><blockquote><p>1~9 팬디지털 곱셈식을 만들 수 있는 모든 수의 합</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=32">[국어]</a> <a href="https://projecteuler.net/problem=32">[영어]</a></p></blockquote><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.173ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 3949.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">a \times b = c</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-D7" x="751" y="0"></use>
+ <use xlink:href="#MJMATHI-62" x="1752" y="0"></use>
+ <use xlink:href="#MJMAIN-3D" x="2459" y="0"></use>
+ <use xlink:href="#MJMATHI-63" x="3516" y="0"></use>
+</g>
+</svg></span>가 1-9 팬디지털이 되려면 다음과 같은 이유로 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.007ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 433.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">
+<title id="MathJax-SVG-2-Title">c</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-63" x="0" y="0"></use>
+</g>
+</svg></span>가 네 자리 숫자여야 한다.</p><ul><li><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.007ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 433.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-3-Title">
+<title id="MathJax-SVG-3-Title">c</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-63" x="0" y="0"></use>
+</g>
+</svg></span>가 다섯 자리라면 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.23ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 529.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-4-Title">
+<title id="MathJax-SVG-4-Title">a</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+</g>
+</svg></span>와 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.998ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 429.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-5-Title">
+<title id="MathJax-SVG-5-Title">b</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-62" x="0" y="0"></use>
+</g>
+</svg></span>의 자릿수 합이 4가 되어야 한다. 이때 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.23ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 529.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-6-Title">
+<title id="MathJax-SVG-6-Title">a</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+</g>
+</svg></span>와 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.998ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 429.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-7-Title">
+<title id="MathJax-SVG-7-Title">b</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-62" x="0" y="0"></use>
+</g>
+</svg></span>의 가능한 자릿수 조합은 (1, 3) 또는 (2, 2)가 된다. (3, 1)은 앞의 경우와 대칭이고 곱셈은 교환법칙이 성립하므로 고려하지 않아도 된다. 그러나 한 자리 숫자와 세 자리 숫자를 곱해 만들 수 있는 수나, 두 자리 숫자 두 개를 곱해 만들 수 있는 수는 네 자리를 넘지 못한다. 따라서 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.007ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 433.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-8-Title">
+<title id="MathJax-SVG-8-Title">c</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-63" x="0" y="0"></use>
+</g>
+</svg></span>는 다섯 자리 수가 될 수 없다. 마찬가지 논리로 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.007ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 433.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-9-Title">
+<title id="MathJax-SVG-9-Title">c</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-63" x="0" y="0"></use>
+</g>
+</svg></span>가 여섯 자리 이상이 될 수 없음을 확인할 수 있다.</li><li><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.007ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 433.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-10-Title">
+<title id="MathJax-SVG-10-Title">c</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-63" x="0" y="0"></use>
+</g>
+</svg></span>가 세 자리라면 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.23ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 529.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-11-Title">
+<title id="MathJax-SVG-11-Title">a</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+</g>
+</svg></span>와 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.998ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 429.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-12-Title">
+<title id="MathJax-SVG-12-Title">b</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-62" x="0" y="0"></use>
+</g>
+</svg></span>의 자릿수 합이 여섯 자리가 되어야 한다. 이때 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.23ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 529.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-13-Title">
+<title id="MathJax-SVG-13-Title">a</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+</g>
+</svg></span>와 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.998ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 429.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-14-Title">
+<title id="MathJax-SVG-14-Title">b</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-62" x="0" y="0"></use>
+</g>
+</svg></span>의 가능한 자릿수 조합은 (1, 5), (2, 4), (3, 3)이 된다. 그러나 이 자릿수 조합으로 만들 수 있는 가장 작은 수도 다섯 자리 이상이 된다. 따라서 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.007ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 433.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-15-Title">
+<title id="MathJax-SVG-15-Title">c</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-63" x="0" y="0"></use>
+</g>
+</svg></span>는 세 자리 수가 될 수 없다. 마찬가지 논리로 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.007ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 433.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-16-Title">
+<title id="MathJax-SVG-16-Title">c</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-63" x="0" y="0"></use>
+</g>
+</svg></span>가 두 자리 이하가 될 수 없음을 확인할 수 있다.</li></ul><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.007ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 433.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-17-Title">
+<title id="MathJax-SVG-17-Title">c</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-63" x="0" y="0"></use>
+</g>
+</svg></span>가 네 자리 숫자라면 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.23ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 529.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-18-Title">
+<title id="MathJax-SVG-18-Title">a</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+</g>
+</svg></span>와 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.998ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 429.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-19-Title">
+<title id="MathJax-SVG-19-Title">b</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-62" x="0" y="0"></use>
+</g>
+</svg></span>의 자릿수 합은 5가 되어야 하고, 이때 가능한 자릿수 조합은 (1, 4), (2, 3)이다. <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.173ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 3949.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-20-Title">
+<title id="MathJax-SVG-20-Title">a \times b = c</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-D7" x="751" y="0"></use>
+ <use xlink:href="#MJMATHI-62" x="1752" y="0"></use>
+ <use xlink:href="#MJMAIN-3D" x="2459" y="0"></use>
+ <use xlink:href="#MJMATHI-63" x="3516" y="0"></use>
+</g>
+</svg></span>가 1-9 팬디지털이어야 하므로 1, 2, … , 9의 순열을 구해 여기서 특정 순열의 일부를 취해 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="5.302ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 2282.8 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-21-Title">
+<title id="MathJax-SVG-21-Title">a, b, c</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="529" y="0"></use>
+ <use xlink:href="#MJMATHI-62" x="974" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="1404" y="0"></use>
+ <use xlink:href="#MJMATHI-63" x="1849" y="0"></use>
+</g>
+</svg></span>를 구해 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.173ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 3949.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-22-Title">
+<title id="MathJax-SVG-22-Title">a \times b = c</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-D7" x="751" y="0"></use>
+ <use xlink:href="#MJMATHI-62" x="1752" y="0"></use>
+ <use xlink:href="#MJMAIN-3D" x="2459" y="0"></use>
+ <use xlink:href="#MJMATHI-63" x="3516" y="0"></use>
+</g>
+</svg></span>가 1-9 팬디지털이 되는지 확인하면 문제를 쉽게 풀 수 있다.</p><p>먼저 순열을 쉽게 구하기 위해 <code>clojure.math.combinatorics</code>의 <code>permutations</code>를 로드한다.</p><pre><code class="language-clojure">(ns p032
   (:require [clojure.math.combinatorics :refer [permutations]]))
-</code></pre>
-
-<p>이제 <code>(permutations (range 1 10))</code>으로 1-9의 순열을 구할 수 있다. <code>permutations</code> 함수는 벡터의 시퀀스로 결과를 리턴한다. 따라서 다음과 같이 벡터의 받아 $a, b, c$를 구하고 해당 수가 1-9 팬디지털인지 확인하는 함수를 만들 수 있다.</p>
-
-<pre><code class="language-clojure">(defn- check-pattern [v n1 n2]
+</code></pre><p>이제 <code>(permutations (range 1 10))</code>으로 1-9의 순열을 구할 수 있다. <code>permutations</code> 함수는 벡터의 시퀀스로 결과를 리턴한다. 따라서 다음과 같이 벡터의 받아 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="5.302ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 2282.8 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-23-Title">
+<title id="MathJax-SVG-23-Title">a, b, c</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="529" y="0"></use>
+ <use xlink:href="#MJMATHI-62" x="974" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="1404" y="0"></use>
+ <use xlink:href="#MJMATHI-63" x="1849" y="0"></use>
+</g>
+</svg></span>를 구하고 해당 수가 1-9 팬디지털인지 확인하는 함수를 만들 수 있다.</p><pre><code class="language-clojure">(defn- check-pattern [v n1 n2]
   (let [a (to-int (subvec v 0 n1))
         b (to-int (subvec v n1 (+ n1 n2)))
         c (to-int (subvec v (+ n1 n2)))]
     (if (= (* a b) c) c)))
-</code></pre>
-
-<p><code>v</code>에는 1-9의 순열 중 하나가 전달된다. <code>n1</code>, <code>n2</code>에는 1, 4 또는 2, 3을 전달할 것이다. <code>v</code>에서 앞 <code>n1</code> 자리를 <code>a</code>로, <code>a</code> 뒤 <code>n2</code> 자리를 <code>b</code>로, 나머지는 <code>c</code>로 한 다음 $a \times b = c$를 만족하는 경우는 <code>c</code>를 리턴하고, 만족하지 않는 경우는 <code>nil</code>을 리턴한다.</p>
-
-<p>숫자 벡터를 정수로 바꾸는 함수는 다음과 같이 작성할 수 있다.</p>
-
-<pre><code class="language-clojure">(defn- to-int [v]
+</code></pre><p><code>v</code>에는 1-9의 순열 중 하나가 전달된다. <code>n1</code>, <code>n2</code>에는 1, 4 또는 2, 3을 전달할 것이다. <code>v</code>에서 앞 <code>n1</code> 자리를 <code>a</code>로, <code>a</code> 뒤 <code>n2</code> 자리를 <code>b</code>로, 나머지는 <code>c</code>로 한 다음 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.173ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 3949.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-24-Title">
+<title id="MathJax-SVG-24-Title">a \times b = c</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-D7" x="751" y="0"></use>
+ <use xlink:href="#MJMATHI-62" x="1752" y="0"></use>
+ <use xlink:href="#MJMAIN-3D" x="2459" y="0"></use>
+ <use xlink:href="#MJMATHI-63" x="3516" y="0"></use>
+</g>
+</svg></span>를 만족하는 경우는 <code>c</code>를 리턴하고, 만족하지 않는 경우는 <code>nil</code>을 리턴한다.</p><p>숫자 벡터를 정수로 바꾸는 함수는 다음과 같이 작성할 수 있다.</p><pre><code class="language-clojure">(defn- to-int [v]
   (Integer/parseInt (apply str v)))
-</code></pre>
-
-<p>그리고 다음과 같이 <code>check</code> 함수를 작성한다. 순열을 하나 받아 (1, 4), (2, 3) 조합에 대해 <code>check-pattern</code>을 호출한다.</p>
-
-<pre><code class="language-clojure">(defn- check [v]
+</code></pre><p>그리고 다음과 같이 <code>check</code> 함수를 작성한다. 순열을 하나 받아 (1, 4), (2, 3) 조합에 대해 <code>check-pattern</code>을 호출한다.</p><pre><code class="language-clojure">(defn- check [v]
   [(check-pattern v 1 4)
    (check-pattern v 2 3)])
-</code></pre>
-
-<p>이제 다음과 같이 문제를 풀 수 있다.</p>
-
-<pre><code class="language-clojure">(defn solve []
+</code></pre><p>이제 다음과 같이 문제를 풀 수 있다.</p><pre><code class="language-clojure">(defn solve []
   (-&gt;&gt; (permutations (range 1 10))
        (mapcat check)
        (remove #(nil? %))
        (distinct)
        (reduce +)))
-</code></pre>
-
-<p>코드는 직관적이다. 1-9 순열에 대해 조건을 만족하는 순열에서 <code>c</code>만 뽑아내 중복을 제거한 다음 모두 더하면 된다. <code>check-pattern</code> 함수는 조건을 만족하지 않는 경우에 대해서는 <code>nil</code>을 리턴하므로 중간에 <code>remove</code>로 <code>nil</code>을 제거했다.</p>
-
-<p>실행 결과는 다음과 같다.</p>
-
-<pre class="console">p032=> (time (solve))
+</code></pre><p>코드는 직관적이다. 1-9 순열에 대해 조건을 만족하는 순열에서 <code>c</code>만 뽑아내 중복을 제거한 다음 모두 더하면 된다. <code>check-pattern</code> 함수는 조건을 만족하지 않는 경우에 대해서는 <code>nil</code>을 리턴하므로 중간에 <code>remove</code>로 <code>nil</code>을 제거했다.</p><p>실행 결과는 다음과 같다.</p><pre class="console">p032=&gt; (time (solve))
 "Elapsed time: 793.940029 msecs"
 452??
-</pre>
-
-<h2 id="참고">참고</h2>
-
-<ul>
-<li><a href="https://github.com/ntalbs/euler/blob/master/src/p032.clj">프로젝트 오일러 32 풀이 소스 코드</a></li>
-</ul>
-        </section>
-        <footer class="post-footer">
-          
-          <div class="social button-box">
-            
-            <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
-            <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
-            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-            
-          </div>
-          
-          <nav id="article-nav">
-            
-            <a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2015/project-euler-033/" id="article-nav-newer"> 프로젝트 오일러 33</a>
-            
-            
-            <a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2015/project-euler-031/" id="article-nav-older"> 프로젝트 오일러 31</a>
-            
-          </nav>
-        </footer>
-      </article>
-    </main>
-    
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-     var disqus_shortname = 'ntalbs-stuff';
-     (function() {
-       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-     })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
-
-    <section class="section">
-  <div class="container has-text-centered">
-    <p></p>
-  </div>
-</section>
-<script src=https://ntalbs.github.io/js/index.js type="text/javascript"></script>
-
-    <link rel="stylesheet" href="/css/googlecode.css">
-<script type="text/javascript" src="/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-
-    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script type="text/x-mathjax-config">
+</pre><h2 id="참고">참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p032.clj">프로젝트 오일러 32 풀이 소스 코드</a></li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+<a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+<script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2015/project-euler-033/" id="article-nav-newer">프로젝트 오일러 33</a>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2015/project-euler-031/" id="article-nav-older">프로젝트 오일러 31</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><script type="text/javascript" src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">
  MathJax.Hub.Config({
    tex2jax: {
      inlineMath: [['$','$']],
@@ -203,14 +255,4 @@
             extensions: ["AMSmath.js", "AMSsymbols.js"] }
    }
  });
-</script>
-
-    <footer class="page-bottom">
-  <div class="inner">
-    <section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section>
-    <section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section>
-  </div>
-</footer>
-
-  </body>
-</html>
+</script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer><svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs id="MathJax_SVG_glyphs"><path stroke-width="1" id="MJMATHI-61" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path><path stroke-width="1" id="MJMAIN-D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path><path stroke-width="1" id="MJMATHI-62" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path><path stroke-width="1" id="MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path stroke-width="1" id="MJMATHI-63" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path><path stroke-width="1" id="MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></defs></svg></body></html>

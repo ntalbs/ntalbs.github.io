@@ -1,79 +1,9 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>
- window.dataLayer = window.dataLayer || [];
- function gtag(){dataLayer.push(arguments);}
- gtag('js', new Date());
-
- gtag('config', 'UA-2098194-3');
-</script>
-<meta charset="UTF-8">
-
-<meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>dbms_metadata를 이용한 DDL 추출 @ntalbs&#39; stuff</title>
-<link rel="shortcut icon" href="/images/favicon.ico">
-<link rel="stylesheet" href="/css/style.css">
-
-  </head>
-  <body>
-    <div id="progress">
-  <div id="bar"></div>
-  <div class="container">
-    <div id="scroll-title">dbms_metadata를 이용한 DDL 추출</div>
-  </div>
-</div>
-
-    <nav class="navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
-      <a class="navbar-brand" href="/">@ntalbs&#39; stuff</a>
-    </div>
-    <div class="navbar-items collapsed" id="nav-items">
-      <ul>
-        
-        <li><a href="/archive/">Archive</a></li>
-        
-        <li><a href="/tags/">Tags</a></li>
-        
-        <li><a href="/about/">About</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<header class="page-head">
-  <div class="container">
-    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-  </div>
-</header>
-
-    <main class="container" role="main">
-      <article class="post">
-        <header>
-          <p class="post-meta">
-            <time datetime="2008-12-04" itemprop="datePublished">2008-12-04</time>
-            on
-            
-            <a href="/tags/db/">DB</a>
-            
-            <a href="/tags/oracle/">Oracle</a>
-            
-          </p>
-          <h1 class="post-title">
-            dbms_metadata를 이용한 DDL 추출
-          </h1>
-        </header>
-        <section class="post-content">
-          <p><code>dbms_metadata</code> 패키지를 이용해 DDL 추출하는 방법이다. 특정 스키마의 모든 DB 객체에 대한 DDL을 추출하려면 export를 사용하는 것이 더 편하다. (<a href="/2008/extract-ddl/">특정 스키마의 DDL 추출 참조</a>)</p>
-
-<pre><code class="language-sql">DBMS_METADATA.GET_DDL (
+<!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>dbms_metadata를 이용한 DDL 추출 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"></head><body><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">dbms_metadata를 이용한 DDL 추출</div></div></div><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+<a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2008-12-04" itemprop="datePublished">2008-12-04</time>
+on
+<a href="/tags/db/">DB</a>
+<a href="/tags/oracle/">Oracle</a></p><h1 class="post-title">dbms_metadata를 이용한 DDL 추출</h1></header><section class="post-content"><p><code>dbms_metadata</code> 패키지를 이용해 DDL 추출하는 방법이다. 특정 스키마의 모든 DB 객체에 대한 DDL을 추출하려면 export를 사용하는 것이 더 편하다. (<a href="/2008/extract-ddl/">특정 스키마의 DDL 추출 참조</a>)</p><pre><code class="language-sql">DBMS_METADATA.GET_DDL (
     object_type     IN VARCHAR2,
     name            IN VARCHAR2,
     schema          IN VARCHAR2 DEFAULT NULL,
@@ -81,83 +11,22 @@
     model           IN VARCHAR2 DEFAULT 'ORACLE',
     transform       IN VARCHAR2 DEFAULT 'DDL')
 RETURN CLOB;
-</code></pre>
-
-<h4 id="예제-scott-dept-테이블-인덱스-ddl-추출">예제: scott.dept 테이블, 인덱스 DDL 추출</h4>
-
-<pre><code class="language-sql">select dbms_metadata.get_ddl('TABLE','DEPT','SCOTT') from dual;
+</code></pre><h4 id="예제-scott-dept-테이블-인덱스-ddl-추출">예제: scott.dept 테이블, 인덱스 DDL 추출</h4><pre><code class="language-sql">select dbms_metadata.get_ddl('TABLE','DEPT','SCOTT') from dual;
 select dbms_metadata.get_ddl('INDEX','DEPT_IDX','SCOTT') from dual;
-</code></pre>
-
-<h4 id="예제-xxx로-시작하는-테이블과-인덱스에-대한-ddl-추출">예제: XXX로 시작하는 테이블과 인덱스에 대한 DDL 추출</h4>
-
-<pre><code class="language-sql">select dbms_metadata.get_ddl('TABLE',u.table_name, 'SCOTT') ||';'
+</code></pre><h4 id="예제-xxx로-시작하는-테이블과-인덱스에-대한-ddl-추출">예제: XXX로 시작하는 테이블과 인덱스에 대한 DDL 추출</h4><pre><code class="language-sql">select dbms_metadata.get_ddl('TABLE',u.table_name, 'SCOTT') ||';'
 from dba_tables u where table_name like 'XXX%';
 
 select dbms_metadata.get_ddl('INDEX',u.index_name, 'SCOTT') ||';'
 from dba_indexes u where index_name like 'XXX%';
-</code></pre>
-
-<h4 id="예제-scott-스키마에-있는-모든-테이블과-인덱스에-대한-ddl-추출">예제: scott 스키마에 있는 모든 테이블과 인덱스에 대한 DDL 추출</h4>
-
-<pre><code class="language-sql">connect scott/tiger;
+</code></pre><h4 id="예제-scott-스키마에-있는-모든-테이블과-인덱스에-대한-ddl-추출">예제: scott 스키마에 있는 모든 테이블과 인덱스에 대한 DDL 추출</h4><pre><code class="language-sql">connect scott/tiger;
 select dbms_metadata.get_ddl('TABLE',u.table_name )
 from user_tables u;
 select dbms_metadata.get_ddl('INDEX',u.index_name)
 from user_indexes u;
-</code></pre>
-        </section>
-        <footer class="post-footer">
-          
-          <div class="social button-box">
-            
-            <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
-            <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
-            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-            
-          </div>
-          
-          <nav id="article-nav">
-            
-            <a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2008/awr/" id="article-nav-newer"> AWR 기본</a>
-            
-            
-            <a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2008/sizing-index/" id="article-nav-older"> 오라클 인덱스 용량 산정 방법</a>
-            
-          </nav>
-        </footer>
-      </article>
-    </main>
-    
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-     var disqus_shortname = 'ntalbs-stuff';
-     (function() {
-       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-     })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
-
-    <section class="section">
-  <div class="container has-text-centered">
-    <p></p>
-  </div>
-</section>
-<script src=https://ntalbs.github.io/js/index.js type="text/javascript"></script>
-
-    <link rel="stylesheet" href="/css/googlecode.css">
-<script type="text/javascript" src="/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-
-    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script type="text/x-mathjax-config">
+</code></pre></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+<a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+<script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2008/awr/" id="article-nav-newer">AWR 기본</a>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2008/sizing-index/" id="article-nav-older">오라클 인덱스 용량 산정 방법</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><script type="text/javascript" src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">
  MathJax.Hub.Config({
    tex2jax: {
      inlineMath: [['$','$']],
@@ -169,14 +38,4 @@ from user_indexes u;
             extensions: ["AMSmath.js", "AMSsymbols.js"] }
    }
  });
-</script>
-
-    <footer class="page-bottom">
-  <div class="inner">
-    <section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section>
-    <section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section>
-  </div>
-</footer>
-
-  </body>
-</html>
+</script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer></body></html>

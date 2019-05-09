@@ -1,101 +1,212 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>
- window.dataLayer = window.dataLayer || [];
- function gtag(){dataLayer.push(arguments);}
- gtag('js', new Date());
+<!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 68 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+                            .mjpage .MJX-monospace {
+                            font-family: monospace
+                            }
 
- gtag('config', 'UA-2098194-3');
-</script>
-<meta charset="UTF-8">
+                            .mjpage .MJX-sans-serif {
+                            font-family: sans-serif
+                            }
 
-<meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE" />
+                            .mjpage {
+                            display: inline;
+                            font-style: normal;
+                            font-weight: normal;
+                            line-height: normal;
+                            font-size: 100%;
+                            font-size-adjust: none;
+                            text-indent: 0;
+                            text-align: left;
+                            text-transform: none;
+                            letter-spacing: normal;
+                            word-spacing: normal;
+                            word-wrap: normal;
+                            white-space: nowrap;
+                            float: none;
+                            direction: ltr;
+                            max-width: none;
+                            max-height: none;
+                            min-width: 0;
+                            min-height: 0;
+                            border: 0;
+                            padding: 0;
+                            margin: 0
+                            }
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>프로젝트 오일러 68 @ntalbs&#39; stuff</title>
-<link rel="shortcut icon" href="/images/favicon.ico">
-<link rel="stylesheet" href="/css/style.css">
+                            .mjpage * {
+                            transition: none;
+                            -webkit-transition: none;
+                            -moz-transition: none;
+                            -ms-transition: none;
+                            -o-transition: none
+                            }
 
-  </head>
-  <body>
-    <div id="progress">
-  <div id="bar"></div>
-  <div class="container">
-    <div id="scroll-title">프로젝트 오일러 68</div>
-  </div>
-</div>
+                            .mjx-svg-href {
+                            fill: blue;
+                            stroke: blue
+                            }
 
-    <nav class="navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
-      <a class="navbar-brand" href="/">@ntalbs&#39; stuff</a>
-    </div>
-    <div class="navbar-items collapsed" id="nav-items">
-      <ul>
-        
-        <li><a href="/archive/">Archive</a></li>
-        
-        <li><a href="/tags/">Tags</a></li>
-        
-        <li><a href="/about/">About</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
+                            .MathJax_SVG_LineBox {
+                            display: table!important
+                            }
 
-<header class="page-head">
-  <div class="container">
-    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-  </div>
-</header>
+                            .MathJax_SVG_LineBox span {
+                            display: table-cell!important;
+                            width: 10000em!important;
+                            min-width: 0;
+                            max-width: none;
+                            padding: 0;
+                            border: 0;
+                            margin: 0
+                            }
 
-    <main class="container" role="main">
-      <article class="post">
-        <header>
-          <p class="post-meta">
-            <time datetime="2016-05-23" itemprop="datePublished">2016-05-23</time>
-            on
-            
-            <a href="/tags/project-euler/">Project-Euler</a>
-            
-            <a href="/tags/clojure/">Clojure</a>
-            
-          </p>
-          <h1 class="post-title">
-            프로젝트 오일러 68
-          </h1>
-        </header>
-        <section class="post-content">
-          <blockquote>
-<p>마방진 성질을 갖는 5각 도형에서 얻을 수 있는 16자리 수의 최대값 구하기</p>
-
-<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=68">[국어]</a> <a href="https://projecteuler.net/problem=68">[영어]</a></p>
-</blockquote>
-
-<p>5각 도형의 빈 칸을 다음과 같이 $a, b, &hellip;, j$로 지정할 수 있다.</p>
-
-<p><img src="/2016/05-23-project-euler-068/p068.png" alt="" /></p>
-
-<p>각 선을 따라 구한 합이 모두 같으려면 다음 식을 만족해야 한다.</p>
-
-<div>$$
+                            .mjpage__block {
+                            text-align: center;
+                            margin: 1em 0em;
+                            position: relative;
+                            display: block!important;
+                            text-indent: 0;
+                            max-width: none;
+                            max-height: none;
+                            min-width: 0;
+                            min-height: 0;
+                            width: 100%
+                            }</style></head><body><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">프로젝트 오일러 68</div></div></div><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
+<a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2016-05-23" itemprop="datePublished">2016-05-23</time>
+on
+<a href="/tags/project-euler/">Project-Euler</a>
+<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 68</h1></header><section class="post-content"><blockquote><p>마방진 성질을 갖는 5각 도형에서 얻을 수 있는 16자리 수의 최대값 구하기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=68">[국어]</a> <a href="https://projecteuler.net/problem=68">[영어]</a></p></blockquote><p>5각 도형의 빈 칸을 다음과 같이 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.398ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 4046.2 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">a, b, …, j</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="529" y="0"></use>
+ <use xlink:href="#MJMATHI-62" x="974" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="1404" y="0"></use>
+ <use xlink:href="#MJMAIN-2026" x="1849" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="3188" y="0"></use>
+ <use xlink:href="#MJMATHI-6A" x="3633" y="0"></use>
+</g>
+</svg></span>로 지정할 수 있다.</p><p><img src="/2016/05-23-project-euler-068/p068.png" alt=""></p><p>각 선을 따라 구한 합이 모두 같으려면 다음 식을 만족해야 한다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="12.106ex" height="14.843ex" style="vertical-align: -6.838ex;" viewBox="0 -3446.4 5212.1 6390.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">
+<title id="MathJax-SVG-2-Title">
 \begin{aligned}
-  &a + b + c \\
-  =&\,  d + c + e \\
-  =&\,  f + e + g \\
-  =&\,  h + g + i \\
-  =&\,  j + i + b
+&amp;a + b + c \\
+=&amp;\, d + c + e \\
+=&amp;\, f + e + g \\
+=&amp;\, h + g + i \\
+=&amp;\, j + i + b
 \end{aligned}
-$$</div>
-
-<p>이렇게 하면 $1, 2, &hellip;, 10$의 순열을 $a, b, &hellip;, j$에 대입해가며 위 조건을 만족하는 조합을 찾을 수 있다. 가장 작은 수부터 시작해 시계 방향으로 돌아가며 나열해야 하므로 가장 작은 수가 $a$에 오도록 한다. $a, b, c, d, e, c, f, e, g, h, h, i, j, i, b$ 순으로 숫자를 나열해 이어붙여 숫자를 만든 다음, 16자리 수 중 가장 큰 값을 구하면 답이 된다.</p>
-
-<pre><code class="language-clojure">(ns p068
+</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+<g transform="translate(167,0)">
+<g transform="translate(-11,0)">
+ <use xlink:href="#MJMAIN-3D" x="0" y="1258"></use>
+ <use xlink:href="#MJMAIN-3D" x="0" y="-42"></use>
+ <use xlink:href="#MJMAIN-3D" x="0" y="-1348"></use>
+ <use xlink:href="#MJMAIN-3D" x="0" y="-2654"></use>
+</g>
+<g transform="translate(768,0)">
+<g transform="translate(0,2558)">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="751" y="0"></use>
+ <use xlink:href="#MJMATHI-62" x="1752" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="2404" y="0"></use>
+ <use xlink:href="#MJMATHI-63" x="3404" y="0"></use>
+</g>
+<g transform="translate(0,1258)">
+ <use xlink:href="#MJMATHI-64" x="166" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="912" y="0"></use>
+ <use xlink:href="#MJMATHI-63" x="1913" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="2568" y="0"></use>
+ <use xlink:href="#MJMATHI-65" x="3569" y="0"></use>
+</g>
+<g transform="translate(0,-42)">
+ <use xlink:href="#MJMATHI-66" x="166" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="939" y="0"></use>
+ <use xlink:href="#MJMATHI-65" x="1940" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="2628" y="0"></use>
+ <use xlink:href="#MJMATHI-67" x="3629" y="0"></use>
+</g>
+<g transform="translate(0,-1348)">
+ <use xlink:href="#MJMATHI-68" x="166" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="965" y="0"></use>
+ <use xlink:href="#MJMATHI-67" x="1966" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="2668" y="0"></use>
+ <use xlink:href="#MJMATHI-69" x="3669" y="0"></use>
+</g>
+<g transform="translate(0,-2654)">
+ <use xlink:href="#MJMATHI-6A" x="166" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="801" y="0"></use>
+ <use xlink:href="#MJMATHI-69" x="1802" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="2369" y="0"></use>
+ <use xlink:href="#MJMATHI-62" x="3370" y="0"></use>
+</g>
+</g>
+</g>
+</g>
+</svg></span></div><p>이렇게 하면 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="10.862ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 4676.7 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-3-Title">
+<title id="MathJax-SVG-3-Title">1, 2, …, 10</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-31" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="500" y="0"></use>
+ <use xlink:href="#MJMAIN-32" x="945" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="1446" y="0"></use>
+ <use xlink:href="#MJMAIN-2026" x="1891" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="3230" y="0"></use>
+<g transform="translate(3675,0)">
+ <use xlink:href="#MJMAIN-31"></use>
+ <use xlink:href="#MJMAIN-30" x="500" y="0"></use>
+</g>
+</g>
+</svg></span>의 순열을 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.398ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 4046.2 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-4-Title">
+<title id="MathJax-SVG-4-Title">a, b, …, j</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="529" y="0"></use>
+ <use xlink:href="#MJMATHI-62" x="974" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="1404" y="0"></use>
+ <use xlink:href="#MJMAIN-2026" x="1849" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="3188" y="0"></use>
+ <use xlink:href="#MJMATHI-6A" x="3633" y="0"></use>
+</g>
+</svg></span>에 대입해가며 위 조건을 만족하는 조합을 찾을 수 있다. 가장 작은 수부터 시작해 시계 방향으로 돌아가며 나열해야 하므로 가장 작은 수가 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.23ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 529.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-5-Title">
+<title id="MathJax-SVG-5-Title">a</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+</g>
+</svg></span>에 오도록 한다. <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="30.732ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 13231.8 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-6-Title">
+<title id="MathJax-SVG-6-Title">a, b, c, d, e, c, f, e, g, h, h, i, j, i, b</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="529" y="0"></use>
+ <use xlink:href="#MJMATHI-62" x="974" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="1404" y="0"></use>
+ <use xlink:href="#MJMATHI-63" x="1849" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="2282" y="0"></use>
+ <use xlink:href="#MJMATHI-64" x="2727" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="3251" y="0"></use>
+ <use xlink:href="#MJMATHI-65" x="3696" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="4163" y="0"></use>
+ <use xlink:href="#MJMATHI-63" x="4608" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="5041" y="0"></use>
+ <use xlink:href="#MJMATHI-66" x="5487" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="6037" y="0"></use>
+ <use xlink:href="#MJMATHI-65" x="6482" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="6949" y="0"></use>
+ <use xlink:href="#MJMATHI-67" x="7394" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="7874" y="0"></use>
+ <use xlink:href="#MJMATHI-68" x="8320" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="8896" y="0"></use>
+ <use xlink:href="#MJMATHI-68" x="9341" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="9918" y="0"></use>
+ <use xlink:href="#MJMATHI-69" x="10363" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="10708" y="0"></use>
+ <use xlink:href="#MJMATHI-6A" x="11153" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="11566" y="0"></use>
+ <use xlink:href="#MJMATHI-69" x="12011" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="12357" y="0"></use>
+ <use xlink:href="#MJMATHI-62" x="12802" y="0"></use>
+</g>
+</svg></span> 순으로 숫자를 나열해 이어붙여 숫자를 만든 다음, 16자리 수 중 가장 큰 값을 구하면 답이 된다.</p><pre><code class="language-clojure">(ns p068
   (:require [clojure.math.combinatorics :refer [permutations]]))
 
 (defn solve []
@@ -111,73 +222,13 @@ $$</div>
        (filter #(= 16 (count %)))
        (map #(Long/parseLong %))
        (apply max)))
-</code></pre>
-
-<p>실행 결과는 다음과 같다.</p>
-
-<pre class="console">
-user=> (time (p068/solve))
+</code></pre><p>실행 결과는 다음과 같다.</p><pre class="console">user=&gt; (time (p068/solve))
 "Elapsed time: 1971.586311 msecs"
 653103191484??25
-</pre>
-
-<h2 id="참고">참고</h2>
-
-<ul>
-<li><a href="https://github.com/ntalbs/euler/blob/master/src/p068.clj">프로젝트 오일러 68 풀이 소스 코드</a></li>
-</ul>
-        </section>
-        <footer class="post-footer">
-          
-          <div class="social button-box">
-            
-            <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
-            <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
-            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-            
-          </div>
-          
-          <nav id="article-nav">
-            
-            <a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2016/excessive-ab-testing/" id="article-nav-newer"> 과도한 AB 테스트</a>
-            
-            
-            <a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2016/project-euler-067/" id="article-nav-older"> 프로젝트 오일러 67</a>
-            
-          </nav>
-        </footer>
-      </article>
-    </main>
-    
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-     var disqus_shortname = 'ntalbs-stuff';
-     (function() {
-       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-     })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
-
-    <section class="section">
-  <div class="container has-text-centered">
-    <p></p>
-  </div>
-</section>
-<script src=https://ntalbs.github.io/js/index.js type="text/javascript"></script>
-
-    <link rel="stylesheet" href="/css/googlecode.css">
-<script type="text/javascript" src="/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-
-    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script type="text/x-mathjax-config">
+</pre><h2 id="참고">참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p068.clj">프로젝트 오일러 68 풀이 소스 코드</a></li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+<a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+<script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2016/excessive-ab-testing/" id="article-nav-newer">과도한 AB 테스트</a>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2016/project-euler-067/" id="article-nav-older">프로젝트 오일러 67</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><script type="text/javascript" src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">
  MathJax.Hub.Config({
    tex2jax: {
      inlineMath: [['$','$']],
@@ -189,14 +240,4 @@ user=> (time (p068/solve))
             extensions: ["AMSmath.js", "AMSsymbols.js"] }
    }
  });
-</script>
-
-    <footer class="page-bottom">
-  <div class="inner">
-    <section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section>
-    <section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section>
-  </div>
-</footer>
-
-  </body>
-</html>
+</script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer><svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs id="MathJax_SVG_glyphs"><path stroke-width="1" id="MJMATHI-61" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path><path stroke-width="1" id="MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path><path stroke-width="1" id="MJMATHI-62" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path><path stroke-width="1" id="MJMAIN-2026" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60ZM525 60Q525 84 542 102T585 120Q609 120 627 104T646 61Q646 36 629 18T586 0T543 17T525 60ZM972 60Q972 84 989 102T1032 120Q1056 120 1074 104T1093 61Q1093 36 1076 18T1033 0T990 17T972 60Z"></path><path stroke-width="1" id="MJMATHI-6A" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path><path stroke-width="1" id="MJMAIN-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path><path stroke-width="1" id="MJMATHI-63" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path><path stroke-width="1" id="MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path stroke-width="1" id="MJMATHI-64" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path><path stroke-width="1" id="MJMATHI-65" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path><path stroke-width="1" id="MJMATHI-66" d="M118 -162Q120 -162 124 -164T135 -167T147 -168Q160 -168 171 -155T187 -126Q197 -99 221 27T267 267T289 382V385H242Q195 385 192 387Q188 390 188 397L195 425Q197 430 203 430T250 431Q298 431 298 432Q298 434 307 482T319 540Q356 705 465 705Q502 703 526 683T550 630Q550 594 529 578T487 561Q443 561 443 603Q443 622 454 636T478 657L487 662Q471 668 457 668Q445 668 434 658T419 630Q412 601 403 552T387 469T380 433Q380 431 435 431Q480 431 487 430T498 424Q499 420 496 407T491 391Q489 386 482 386T428 385H372L349 263Q301 15 282 -47Q255 -132 212 -173Q175 -205 139 -205Q107 -205 81 -186T55 -132Q55 -95 76 -78T118 -61Q162 -61 162 -103Q162 -122 151 -136T127 -157L118 -162Z"></path><path stroke-width="1" id="MJMATHI-67" d="M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z"></path><path stroke-width="1" id="MJMATHI-68" d="M137 683Q138 683 209 688T282 694Q294 694 294 685Q294 674 258 534Q220 386 220 383Q220 381 227 388Q288 442 357 442Q411 442 444 415T478 336Q478 285 440 178T402 50Q403 36 407 31T422 26Q450 26 474 56T513 138Q516 149 519 151T535 153Q555 153 555 145Q555 144 551 130Q535 71 500 33Q466 -10 419 -10H414Q367 -10 346 17T325 74Q325 90 361 192T398 345Q398 404 354 404H349Q266 404 205 306L198 293L164 158Q132 28 127 16Q114 -11 83 -11Q69 -11 59 -2T48 16Q48 30 121 320L195 616Q195 629 188 632T149 637H128Q122 643 122 645T124 664Q129 683 137 683Z"></path><path stroke-width="1" id="MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path><path stroke-width="1" id="MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="1" id="MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path stroke-width="1" id="MJMAIN-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></defs></svg></body></html>
