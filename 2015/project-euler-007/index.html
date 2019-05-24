@@ -75,16 +75,16 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2015-02-10" itemprop="datePublished">2015-02-10</time>
 on
 <a href="/tags/project-euler/">Project-Euler</a>
-<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 7</h1></header><section class="post-content"><blockquote><p>10001번째의 소수?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=7">[국어]</a> <a href="https://projecteuler.net/problem=7">[영어]</a></p></blockquote><p><a href="http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">에라토스테네스 체(Sieve of Eratosthenes)</a>를 이용하면 소수 목록을 구할 수 있지만, 이 문제의 경우 체의 범위를 어디까지 해야 할지가 애매하다. 대충 50,000 정도까지 해보고 안 되면 다시 100,000 정도까지 해보는 식으로 범위를 늘려가며 문제를 풀 수도 있다.</p><h2 id="방법-1">방법 1</h2><p>어떤 수가 소수인지 빠르게 판단할 수 있다면 숫자를 증가시켜가며 소수만 걸러내는 방법을 사용하는 것도 가능하다. 소수인지 판별하는 함수는 다음과 같이 작성할 수 있다.</p><pre><code class="language-clojure">(defn prime?
-  "Returns true if n is prime."
+<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 7</h1></header><section class="post-content"><blockquote><p>10001번째의 소수?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=7">[국어]</a> <a href="https://projecteuler.net/problem=7">[영어]</a></p></blockquote><p><a href="http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">에라토스테네스 체(Sieve of Eratosthenes)</a>를 이용하면 소수 목록을 구할 수 있지만, 이 문제의 경우 체의 범위를 어디까지 해야 할지가 애매하다. 대충 50,000 정도까지 해보고 안 되면 다시 100,000 정도까지 해보는 식으로 범위를 늘려가며 문제를 풀 수도 있다.</p><h2 id="방법-1">방법 1</h2><p>어떤 수가 소수인지 빠르게 판단할 수 있다면 숫자를 증가시켜가며 소수만 걸러내는 방법을 사용하는 것도 가능하다. 소수인지 판별하는 함수는 다음과 같이 작성할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> prime?
+  <span class="hljs-string">"Returns true if n is prime."</span>
   [n]
-  (cond (&lt; n 2) false
-        (&lt; n 4) true                    ; 2, 3
-        (even? n) false
-        (&lt; n 9) true                    ; 5, 7
-        (= 0 (mod n 3)) false
-        :else (nil? (take 1 (filter #(= 0 (mod n %))
-                                    (range 3 (inc (int (Math/sqrt n))) 2))))))
+  (<span class="hljs-name"><span class="hljs-builtin-name">cond</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">&lt;</span></span> n <span class="hljs-number">2</span>) <span class="hljs-literal">false</span>
+        (<span class="hljs-name"><span class="hljs-builtin-name">&lt;</span></span> n <span class="hljs-number">4</span>) <span class="hljs-literal">true</span>                    <span class="hljs-comment">; 2, 3</span>
+        (<span class="hljs-name"><span class="hljs-builtin-name">even?</span></span> n) <span class="hljs-literal">false</span>
+        (<span class="hljs-name"><span class="hljs-builtin-name">&lt;</span></span> n <span class="hljs-number">9</span>) <span class="hljs-literal">true</span>                    <span class="hljs-comment">; 5, 7</span>
+        (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> <span class="hljs-number">0</span> (<span class="hljs-name"><span class="hljs-builtin-name">mod</span></span> n <span class="hljs-number">3</span>)) <span class="hljs-literal">false</span>
+        <span class="hljs-symbol">:else</span> (<span class="hljs-name"><span class="hljs-builtin-name">nil?</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">take</span></span> <span class="hljs-number">1</span> (<span class="hljs-name"><span class="hljs-builtin-name">filter</span></span> #(<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> <span class="hljs-number">0</span> (<span class="hljs-name"><span class="hljs-builtin-name">mod</span></span> n %))
+                                    (<span class="hljs-name"><span class="hljs-builtin-name">range</span></span> <span class="hljs-number">3</span> (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">int</span></span> (<span class="hljs-name">Math/sqrt</span> n))) <span class="hljs-number">2</span>))))))
 </code></pre><p>짝수(=2의 배수) 또는 3의 배수는 소수가 아니므로 바로 <code>false</code>를 리턴한다. 다른 경우에는 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.331ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 1434 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\sqrt{n}</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -92,16 +92,16 @@ on
 <rect stroke="none" width="600" height="60" x="833" y="663"></rect>
  <use xlink:href="#MJMATHI-6E" x="833" y="0"></use>
 </g>
-</svg></span>까지 숫자를 증가시키며 나눠보는 로직이 포함되어 있다. 중간에 하나라도 나눠지는 경우가 있으면 바로 <code>false</code>를 리턴할 것이다.</p><p>소수인지 판단하는 <code>prime?</code> 함수를 구현했다면 10,001번째 소수는 다음과 같이 구할 수 있다.</p><pre><code class="language-clojure">(defn using-predicate []
-  (-&gt;&gt; (iterate inc 2)
-       (filter prime?)
-       (drop (dec limit))
+</svg></span>까지 숫자를 증가시키며 나눠보는 로직이 포함되어 있다. 중간에 하나라도 나눠지는 경우가 있으면 바로 <code>false</code>를 리턴할 것이다.</p><p>소수인지 판단하는 <code>prime?</code> 함수를 구현했다면 10,001번째 소수는 다음과 같이 구할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> using-predicate []
+  (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">iterate</span></span> inc <span class="hljs-number">2</span>)
+       (<span class="hljs-name"><span class="hljs-builtin-name">filter</span></span> prime?)
+       (<span class="hljs-name"><span class="hljs-builtin-name">drop</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">dec</span></span> limit))
        first))
-</code></pre><h2 id="방법-2">방법 2</h2><p><code>clojure.contrib.lazy-seqs/primes</code>를 이용하는 간단한 방법도 있다. 이름이 암시하듯 모든 소수에 대한 지연 시퀀스를 나타낸다. 따라서 10,001번째 소수는 다음과 같이 구할 수도 있다.</p><pre><code class="language-clojure">(require '[clojure.contrib.lazy-seqs :refer [primes]])
+</code></pre><h2 id="방법-2">방법 2</h2><p><code>clojure.contrib.lazy-seqs/primes</code>를 이용하는 간단한 방법도 있다. 이름이 암시하듯 모든 소수에 대한 지연 시퀀스를 나타낸다. 따라서 10,001번째 소수는 다음과 같이 구할 수도 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name">require</span> '[clojure.contrib.lazy-seqs <span class="hljs-symbol">:refer</span> [primes]])
 
-(defn using-seq []
-  (-&gt;&gt; primes
-       (drop (dec limit))
+(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> using-seq []
+  (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> primes
+       (<span class="hljs-name"><span class="hljs-builtin-name">drop</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">dec</span></span> limit))
        first))
 </code></pre><h2 id="정리">정리</h2><p>실행해보면 두 방법 모두 충분히 빠르게 답을 구한다.</p><pre class="console">p007=&gt; (time (using-predicate))
 "Elapsed time: 239.324261 msecs"
@@ -112,16 +112,5 @@ p007=&gt; (time (using-seq))
 </pre><h2 id="참고">참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p007.clj">프로젝트 오일러 7 풀이 소스 코드</a></li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2015/project-euler-008/" id="article-nav-newer">프로젝트 오일러 8</a>
-<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2015/java-repl/" id="article-nav-older">Java REPL</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><script type="text/javascript" src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">
- MathJax.Hub.Config({
-   tex2jax: {
-     inlineMath: [['$','$']],
-     displayMath: [['$$','$$']],
-     processEscapes: true,
-     processEnvironments: true,
-     skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code'],
-     TeX: { equationNumbers: { autoNumber: "AMS" },
-            extensions: ["AMSmath.js", "AMSsymbols.js"] }
-   }
- });
-</script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer><svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs id="MathJax_SVG_glyphs"><path stroke-width="1" id="MJMATHI-6E" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="1" id="MJMAIN-221A" d="M95 178Q89 178 81 186T72 200T103 230T169 280T207 309Q209 311 212 311H213Q219 311 227 294T281 177Q300 134 312 108L397 -77Q398 -77 501 136T707 565T814 786Q820 800 834 800Q841 800 846 794T853 782V776L620 293L385 -193Q381 -200 366 -200Q357 -200 354 -197Q352 -195 256 15L160 225L144 214Q129 202 113 190T95 178Z"></path></defs></svg></body></html>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2015/java-repl/" id="article-nav-older">Java REPL</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer>
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs id="MathJax_SVG_glyphs"><path stroke-width="1" id="MJMATHI-6E" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="1" id="MJMAIN-221A" d="M95 178Q89 178 81 186T72 200T103 230T169 280T207 309Q209 311 212 311H213Q219 311 227 294T281 177Q300 134 312 108L397 -77Q398 -77 501 136T707 565T814 786Q820 800 834 800Q841 800 846 794T853 782V776L620 293L385 -193Q381 -200 366 -200Q357 -200 354 -197Q352 -195 256 15L160 225L144 214Q129 202 113 190T95 178Z"></path></defs></svg></body></html>

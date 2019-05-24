@@ -5,25 +5,26 @@ on
 <a href="/tags/db/">DB</a>
 <a href="/tags/sql/">SQL</a>
 <a href="/tags/oracle/">Oracle</a>
-<a href="/tags/postgresql/">PostgreSQL</a></p><h1 class="post-title">데이터 생성 SQL</h1></header><section class="post-content"><p>Oracle에서라면 다음 쿼리로 row를 생성할 수 있다.</p><pre><code class="language-sql">-- 1~100까지 숫자 생성 (100 rows)
-select level from dual connect by level &lt;= 100;
-</code></pre><p>이렇게 row 생성 쿼리를 이용하면 테스트 데이터를 원하는 만큼 생성하는 것도 쉽고, 간단한 문제를 풀 때도 유용하다. 예를 들어 얼마 전 kldp.org에 올라왔던 1~45의 숫자 중 랜덤하게 6개를 선택해 표시하는 문제도 다음과 같이 SQL로 풀 수 있다.</p><pre><code class="language-sql">-- 1~45의 숫자중 6개의 숫자를 랜덤하게 선택해 출력
-select *
-from (select level from dual
-      connect by level &lt;=45
-      order by dbms_random.random)
-where rownum &lt;= 6;
-</code></pre><p>그러나 이게 Oracle에서만 유효한 SQL이다보니 다른 DBMS에서는 활용할 수 없다. 요즘은 회사에서 사용하는PostgreSQL에서는 이 문제를 어떻게 해결할 수 있을까 고민했는데, 예상외로 쉬운 방법이 있었다. Oracle에서는 <code>connect by</code>를 이용한 재귀적 SQL을 사용했지만 PostgreSQL에서는 <code>generate_series()</code> 함수를 사용하면 된다.</p><pre><code class="language-sql">-- 1~100까지 숫자 생성 (100 rows)
-select * from generate_series(1, 100);
+<a href="/tags/postgresql/">PostgreSQL</a></p><h1 class="post-title">데이터 생성 SQL</h1></header><section class="post-content"><p>Oracle에서라면 다음 쿼리로 row를 생성할 수 있다.</p><pre><code class="language-sql hljs"><span class="hljs-comment">-- 1~100까지 숫자 생성 (100 rows)</span>
+<span class="hljs-keyword">select</span> <span class="hljs-keyword">level</span> <span class="hljs-keyword">from</span> dual <span class="hljs-keyword">connect</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">level</span> &lt;= <span class="hljs-number">100</span>;
+</code></pre><p>이렇게 row 생성 쿼리를 이용하면 테스트 데이터를 원하는 만큼 생성하는 것도 쉽고, 간단한 문제를 풀 때도 유용하다. 예를 들어 얼마 전 kldp.org에 올라왔던 1~45의 숫자 중 랜덤하게 6개를 선택해 표시하는 문제도 다음과 같이 SQL로 풀 수 있다.</p><pre><code class="language-sql hljs"><span class="hljs-comment">-- 1~45의 숫자중 6개의 숫자를 랜덤하게 선택해 출력</span>
+<span class="hljs-keyword">select</span> *
+<span class="hljs-keyword">from</span> (<span class="hljs-keyword">select</span> <span class="hljs-keyword">level</span> <span class="hljs-keyword">from</span> dual
+      <span class="hljs-keyword">connect</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">level</span> &lt;=<span class="hljs-number">45</span>
+      <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> dbms_random.random)
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">rownum</span> &lt;= <span class="hljs-number">6</span>;
+</code></pre><p>그러나 이게 Oracle에서만 유효한 SQL이다보니 다른 DBMS에서는 활용할 수 없다. 요즘은 회사에서 사용하는PostgreSQL에서는 이 문제를 어떻게 해결할 수 있을까 고민했는데, 예상외로 쉬운 방법이 있었다. Oracle에서는 <code>connect by</code>를 이용한 재귀적 SQL을 사용했지만 PostgreSQL에서는 <code>generate_series()</code> 함수를 사용하면 된다.</p><pre><code class="language-sql hljs"><span class="hljs-comment">-- 1~100까지 숫자 생성 (100 rows)</span>
+<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> generate_series(<span class="hljs-number">1</span>, <span class="hljs-number">100</span>);
 
--- 생성된 숫자를 이용한 계산이 필요할 때
-select n, n*10 from generate_series(1, 100) as t(n);
-</code></pre><p>따라서 1~45의 숫자 중 랜덤하게 6개를 선택해 표시하는 문제를 PostgreSQL에서는 다음과 같이 풀 수 있다.</p><pre><code class="language-sql">-- 1~45의 숫자중 6개의 숫자를 랜덤하게 선택해 출력
-select *
-from (select * from generate_series(1, 45)
-      order by random()) as t
-limit 6;
+<span class="hljs-comment">-- 생성된 숫자를 이용한 계산이 필요할 때</span>
+<span class="hljs-keyword">select</span> n, n*<span class="hljs-number">10</span> <span class="hljs-keyword">from</span> generate_series(<span class="hljs-number">1</span>, <span class="hljs-number">100</span>) <span class="hljs-keyword">as</span> t(n);
+</code></pre><p>따라서 1~45의 숫자 중 랜덤하게 6개를 선택해 표시하는 문제를 PostgreSQL에서는 다음과 같이 풀 수 있다.</p><pre><code class="language-sql hljs">-- 1~45의 숫자중 6개의 숫자를 랜덤하게 선택해 출력
+<span class="hljs-keyword">select</span> *
+<span class="hljs-keyword">from</span> (<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> generate_series(<span class="hljs-number">1</span>, <span class="hljs-number">45</span>)
+      <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-built_in">random</span>()) <span class="hljs-keyword">as</span> t
+<span class="hljs-keyword">limit</span> <span class="hljs-number">6</span>;
 </code></pre><p>이와 비슷하게 데이터를 생성해내는 방법이 MySQL에도 있을까 찾아봤지만, 마음에 드는 방법을 찾지는 못했다. MySQL에서는 그냥 데이터가 많은 다른 테이블을 카테시안 조인해 데이터를 만들어내는 방법뿐인지, 아니면 다른 멋진 방법이 있는데 내가 알지 못하는 것인지 모르겠다.</p></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2009/wen-wan/" id="article-nav-newer">'웬'과 '왠'</a>
-<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2009/credit-card/" id="article-nav-older">신용카드, 정말 재테크의 적인가?</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><script type="text/javascript" src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer></body></html>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2009/credit-card/" id="article-nav-older">신용카드, 정말 재테크의 적인가?</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer>
+</body></html>

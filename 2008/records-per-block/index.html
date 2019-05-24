@@ -3,12 +3,12 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2008-10-25" itemprop="datePublished">2008-10-25</time>
 on
 <a href="/tags/db/">DB</a>
-<a href="/tags/oracle/">Oracle</a></p><h1 class="post-title">MINIMIZE RECORDS_PER_BLOCK</h1></header><section class="post-content"><p>SQL Reference에 보면 <code>records_per_block</code>절에 대해 다음과 같이 설명되어 있다.</p><blockquote><p>instruct Oracle Database to calculate the largest number of records in any block in the table and to limit future inserts so that no block can contain more than that number of records.</p></blockquote><p>해석을 해보면,</p><blockquote><p>테이블 내의 블록 중 레코드 수가 최대인 것을 계산한 다음, 나중에 insert할 때 블록 당 레코드 수를 계산한 값 이상이 되지 않도록 제한하도록 한다.</p></blockquote><p>처음에는 정확히 해석해보지도 않고 ‘뭔 소리지?’ 하고 의아해 했다. 이미 데이터가 들어있는 테이블에 <code>ALTER TABLE ... MINIMIZE RECORDS_PER_BLOCK</code>을 실행시키면, 당장 눈에 띄는 변화를 발견할 수 없었기 때문이다.</p><p>예를 들어, 테이블을 하나 만들고,</p><pre><code class="language-sql">create table t1 (n number);
-</code></pre><p>데이터를 10건 정도 넣고,</p><pre><code class="language-sql">insert into t1
-  select level from dual connect by level &lt;= 10;
-commit;
-</code></pre><p>블록에 어떻게 들어가있는지 확인해보기 위해 다음 쿼리를 실행시켜보면,</p><pre><code class="language-sql">select dbms_rowid.rowid_block_number(rowid) rowid_blkno
-from t1;
+<a href="/tags/oracle/">Oracle</a></p><h1 class="post-title">MINIMIZE RECORDS_PER_BLOCK</h1></header><section class="post-content"><p>SQL Reference에 보면 <code>records_per_block</code>절에 대해 다음과 같이 설명되어 있다.</p><blockquote><p>instruct Oracle Database to calculate the largest number of records in any block in the table and to limit future inserts so that no block can contain more than that number of records.</p></blockquote><p>해석을 해보면,</p><blockquote><p>테이블 내의 블록 중 레코드 수가 최대인 것을 계산한 다음, 나중에 insert할 때 블록 당 레코드 수를 계산한 값 이상이 되지 않도록 제한하도록 한다.</p></blockquote><p>처음에는 정확히 해석해보지도 않고 '뭔 소리지?' 하고 의아해 했다. 이미 데이터가 들어있는 테이블에 <code>ALTER TABLE ... MINIMIZE RECORDS_PER_BLOCK</code>을 실행시키면, 당장 눈에 띄는 변화를 발견할 수 없었기 때문이다.</p><p>예를 들어, 테이블을 하나 만들고,</p><pre><code class="language-sql hljs"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> t1 (n <span class="hljs-built_in">number</span>);
+</code></pre><p>데이터를 10건 정도 넣고,</p><pre><code class="language-sql hljs"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t1
+  <span class="hljs-keyword">select</span> <span class="hljs-keyword">level</span> <span class="hljs-keyword">from</span> dual <span class="hljs-keyword">connect</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">level</span> &lt;= <span class="hljs-number">10</span>;
+<span class="hljs-keyword">commit</span>;
+</code></pre><p>블록에 어떻게 들어가있는지 확인해보기 위해 다음 쿼리를 실행시켜보면,</p><pre><code class="language-sql hljs"><span class="hljs-keyword">select</span> dbms_rowid.rowid_block_number(<span class="hljs-keyword">rowid</span>) rowid_blkno
+<span class="hljs-keyword">from</span> t1;
 </code></pre><pre class="console"> N    ROWID_BLKNO
  ---- -----------
     1         415
@@ -23,9 +23,9 @@ from t1;
    10         415
 
  10 rows selected.
-</pre><p>모든 레코드가 한 블록에 들어가 있는 것을 확인할 수 있다. (블록 번호가 모두 동일하게 나온다.) 테스트에서 <code>DB_BLOCK_SIZE</code>는 8k로 되어 있었으니, 이런 데이터라면 몇천개 이상 들어갈 것이다.</p><p>그리고 <code>ALTER TABLE ... MINIMIZE RECORDS_PER_BLOCK</code> 명령을 실행시킨 다음 위 쿼리를 다시 실행시켜봐도 결과가 동일한 것을 보고는… “이게 뭐야!” 했다.</p><pre><code class="language-sql">alter table t1 minimize records_per_block;
-select n, dbms_rowid.rowid_block_number(rowid) rowid_blkno
-from t1;
+</pre><p>모든 레코드가 한 블록에 들어가 있는 것을 확인할 수 있다. (블록 번호가 모두 동일하게 나온다.) 테스트에서 <code>DB_BLOCK_SIZE</code>는 8k로 되어 있었으니, 이런 데이터라면 몇천개 이상 들어갈 것이다.</p><p>그리고 <code>ALTER TABLE ... MINIMIZE RECORDS_PER_BLOCK</code> 명령을 실행시킨 다음 위 쿼리를 다시 실행시켜봐도 결과가 동일한 것을 보고는... "이게 뭐야!" 했다.</p><pre><code class="language-sql hljs"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> t1 minimize records_per_block;
+<span class="hljs-keyword">select</span> n, dbms_rowid.rowid_block_number(<span class="hljs-keyword">rowid</span>) rowid_blkno
+<span class="hljs-keyword">from</span> t1;
 </code></pre><pre class="console"> N    ROWID_BLKNO
  ---- -----------
     1         415
@@ -40,16 +40,16 @@ from t1;
    10         415
 
  10 rows selected.
-</pre><p>매뉴얼을 자세히 읽어봤으면 제대로 이해할 수 있었을 텐데…
-매뉴얼에는 현재 테이블에서 블록당 레코드 수의 최대값을 구한 다음 나중에 <code>Insert</code>할 때 블록당 레코드 수가 그 최대값을 넘지 않도록 한다고 쓰여 있다.</p><p>따라서 테스트를 다시 해보면… 테이블을 다시 만들고… (<code>truncate</code> 후 다시 테스트하면 원하는 결과가 나오지 않는다)</p><pre><code class="language-sql">drop table t1 purge;
-create table t1 (n number);
-</code></pre><p>데이터를 1건 넣고</p><pre><code class="language-sql">insert into t1 values (0);
-</code></pre><p><code>ALTER TABLE ... MINIMIZE RECORDS_PER_BLOCK</code> 명령을 실행시킨 다음,</p><pre><code class="language-sql">ALTER TABLE t1 MINIMIZE RECORDS_PER_BLOCK;
-</code></pre><p>데이터를 왕창 넣어 본다.</p><pre><code class="language-sql">insert into t1
-  select level from dual connect by level &lt;= 10;
-commit;
-</code></pre><p>그리고 다음 쿼리를 실행시켜보면,</p><pre><code class="language-sql">select n, dbms_rowid.rowid_block_number(rowid) rowid_blkno
-from t1 order by 1;
+</pre><p>매뉴얼을 자세히 읽어봤으면 제대로 이해할 수 있었을 텐데...
+매뉴얼에는 현재 테이블에서 블록당 레코드 수의 최대값을 구한 다음 나중에 <code>Insert</code>할 때 블록당 레코드 수가 그 최대값을 넘지 않도록 한다고 쓰여 있다.</p><p>따라서 테스트를 다시 해보면... 테이블을 다시 만들고... (<code>truncate</code> 후 다시 테스트하면 원하는 결과가 나오지 않는다)</p><pre><code class="language-sql hljs"><span class="hljs-keyword">drop</span> <span class="hljs-keyword">table</span> t1 <span class="hljs-keyword">purge</span>;
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> t1 (n <span class="hljs-built_in">number</span>);
+</code></pre><p>데이터를 1건 넣고</p><pre><code class="language-sql hljs"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t1 <span class="hljs-keyword">values</span> (<span class="hljs-number">0</span>);
+</code></pre><p><code>ALTER TABLE ... MINIMIZE RECORDS_PER_BLOCK</code> 명령을 실행시킨 다음,</p><pre><code class="language-sql hljs">ALTER <span class="hljs-keyword">TABLE</span> t1 <span class="hljs-comment">MINIMIZE RECORDS_PER_BLOCK</span>;
+</code></pre><p>데이터를 왕창 넣어 본다.</p><pre><code class="language-sql hljs"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t1
+  <span class="hljs-keyword">select</span> <span class="hljs-keyword">level</span> <span class="hljs-keyword">from</span> dual <span class="hljs-keyword">connect</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">level</span> &lt;= <span class="hljs-number">10</span>;
+<span class="hljs-keyword">commit</span>;
+</code></pre><p>그리고 다음 쿼리를 실행시켜보면,</p><pre><code class="language-sql hljs"><span class="hljs-keyword">select</span> n, dbms_rowid.rowid_block_number(<span class="hljs-keyword">rowid</span>) rowid_blkno
+<span class="hljs-keyword">from</span> t1 <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-number">1</span>;
 </code></pre><pre class="console"> N    ROWID_BLKNO
  ---- -----------
     0         415
@@ -65,12 +65,12 @@ from t1 order by 1;
    10         421
 
  11 rows selected.
-</pre><p>블록당 레코드 수가 2개에 지나지 않음을 볼 수 있다. (같은 블록 넘버가 2개씩 나오는 것으로 확인할 수 있다.) 좀더 정확히 보려면 다음과 같은 쿼리를 날려보는 것이 좋겠다.</p><pre><code class="language-sql">select
+</pre><p>블록당 레코드 수가 2개에 지나지 않음을 볼 수 있다. (같은 블록 넘버가 2개씩 나오는 것으로 확인할 수 있다.) 좀더 정확히 보려면 다음과 같은 쿼리를 날려보는 것이 좋겠다.</p><pre><code class="language-sql hljs">select
   dbms_rowid.rowid_block_number(rowid) rowid_blkno,
   dbms_rowid.rowid_relative_fno(rowid) rel_fno,
   count(*) rec_cnt
-from t1
-group by
+<span class="hljs-keyword">from</span> t1<span class="hljs-built_in">
+group </span>by
   dbms_rowid.rowid_block_number(rowid),
   dbms_rowid.rowid_relative_fno(rowid);
 </code></pre><pre class="console"> ROWID_BLKNO REL_FNO     REC_CNT
@@ -83,7 +83,8 @@ group by
          416           4           2
 
  6 rows selected.
-</pre><p>사실 문서대로라면 블록 당 1개의 레코드가 있어야 맞는 거긴 하지만…</p><p>처음에 3건을 넣고 <code>ALTER TABLE ... MINIMIZE RECORDS_PER_BLOCK</code>을 날린 다음 다시 테스트해보면 블록 당 3개의 레코드가 있는 것을 확인할 수있다. Google 그룹스에서 검색해보면 이에 대해 자세한 설명이 있는 글을 찾을 수 있다.</p><p>크기가 작지만 액세스가 매우 빈번한 테이블의 경우 블록 컨텐션이 많이 발생할 수 있는데, 그럴 때 이걸 적용할 수도 있겠다.</p></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+</pre><p>사실 문서대로라면 블록 당 1개의 레코드가 있어야 맞는 거긴 하지만...</p><p>처음에 3건을 넣고 <code>ALTER TABLE ... MINIMIZE RECORDS_PER_BLOCK</code>을 날린 다음 다시 테스트해보면 블록 당 3개의 레코드가 있는 것을 확인할 수있다. Google 그룹스에서 검색해보면 이에 대해 자세한 설명이 있는 글을 찾을 수 있다.</p><p>크기가 작지만 액세스가 매우 빈번한 테이블의 경우 블록 컨텐션이 많이 발생할 수 있는데, 그럴 때 이걸 적용할 수도 있겠다.</p></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2008/add-column-and-default-value/" id="article-nav-newer">컬럼 추가와 디폴트 값</a>
-<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2008/refactoring/" id="article-nav-older">코드 수정</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><script type="text/javascript" src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer></body></html>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2008/refactoring/" id="article-nav-older">코드 수정</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer>
+</body></html>

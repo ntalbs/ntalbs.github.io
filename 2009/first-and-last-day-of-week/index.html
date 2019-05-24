@@ -4,63 +4,64 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 on
 <a href="/tags/db/">DB</a>
 <a href="/tags/oracle/">Oracle</a>
-<a href="/tags/sql/">SQL</a></p><h1 class="post-title">주어진 주의 첫 날과 마지막 날 구하기</h1></header><section class="post-content"><p><a href="http://database.sarang.net/">Database.Sarang.net</a> Q&amp;A 게시판에 특정 주(몇월 몇째주)를 주면 이 주의 첫 날과 마지막 날을 구하는 방법에 대한 질문이 올라왔다. 열심히 머리를 굴려본 결과 해당 주에 포함된 날짜를 구하면 그 주의 첫 날과 마지막 날을 구할 수 있음을 알게 됐고, 다음과 같은 쿼리를 작성했다.</p><pre><code class="language-sql">select
-  (to_date(:d, 'YYYYMMDD')
-    - to_number(to_char(to_date(:d,'YYYYMMDD'),'D')) + 1) start_dt,
-  (to_date(:d, 'YYYYMMDD')
-    + (7 - to_number(to_char(to_date(:d,'YYYYMMDD'),'D')))) end_dt
-from dual;
-</code></pre><p>그러나 이 쿼리는 주어진 주에 대한 날짜를 구하는 방법이 들어있지 않아 완전한 답이 될 수 없다. 그런데 바로 아래 어느 훌륭한 분이 완벽한 답을 달았다. 끙끙대며 열심히 이해한 결과를 설명하면… 다음과 같다. 그리고 <code>trunc</code> 함수를 쓰면 식도 훨씬 단순해짐을 알았다.</p><h3 id="1-해당-달의-마지막-날짜-구한다">1. 해당 달의 마지막 날짜 구한다.</h3><pre><code class="language-sql">select
-  last_day(to_date(:yyyymm, 'YYYYMM') day_last,
-  :week week
-from dual
-</code></pre><h3 id="2-해당-달이-몇-주를-가지는지-또는-마지막-주가-몇째-주인지-구한다">2. 해당 달이 몇 주를 가지는지(또는 마지막 주가 몇째 주인지) 구한다.</h3><pre><code class="language-sql">select
-  (trunc(day_last, 'D')
-    - trunc(trunc(day_last, 'MM'), 'D') / 7 + 1 last_week,
+<a href="/tags/sql/">SQL</a></p><h1 class="post-title">주어진 주의 첫 날과 마지막 날 구하기</h1></header><section class="post-content"><p><a href="http://database.sarang.net/">Database.Sarang.net</a> Q&amp;A 게시판에 특정 주(몇월 몇째주)를 주면 이 주의 첫 날과 마지막 날을 구하는 방법에 대한 질문이 올라왔다. 열심히 머리를 굴려본 결과 해당 주에 포함된 날짜를 구하면 그 주의 첫 날과 마지막 날을 구할 수 있음을 알게 됐고, 다음과 같은 쿼리를 작성했다.</p><pre><code class="language-sql hljs"><span class="hljs-keyword">select</span>
+  (<span class="hljs-keyword">to_date</span>(:d, <span class="hljs-string">'YYYYMMDD'</span>)
+    - to_number(to_char(<span class="hljs-keyword">to_date</span>(:d,<span class="hljs-string">'YYYYMMDD'</span>),<span class="hljs-string">'D'</span>)) + <span class="hljs-number">1</span>) start_dt,
+  (<span class="hljs-keyword">to_date</span>(:d, <span class="hljs-string">'YYYYMMDD'</span>)
+    + (<span class="hljs-number">7</span> - to_number(to_char(<span class="hljs-keyword">to_date</span>(:d,<span class="hljs-string">'YYYYMMDD'</span>),<span class="hljs-string">'D'</span>)))) end_dt
+<span class="hljs-keyword">from</span> dual;
+</code></pre><p>그러나 이 쿼리는 주어진 주에 대한 날짜를 구하는 방법이 들어있지 않아 완전한 답이 될 수 없다. 그런데 바로 아래 어느 훌륭한 분이 완벽한 답을 달았다. 끙끙대며 열심히 이해한 결과를 설명하면... 다음과 같다. 그리고 <code>trunc</code> 함수를 쓰면 식도 훨씬 단순해짐을 알았다.</p><h3 id="1-해당-달의-마지막-날짜-구한다">1. 해당 달의 마지막 날짜 구한다.</h3><pre><code class="language-sql hljs"><span class="hljs-keyword">select</span>
+  <span class="hljs-keyword">last_day</span>(<span class="hljs-keyword">to_date</span>(:yyyymm, <span class="hljs-string">'YYYYMM'</span>) day_last,
+  :<span class="hljs-keyword">week</span> <span class="hljs-keyword">week</span>
+<span class="hljs-keyword">from</span> dual
+</code></pre><h3 id="2-해당-달이-몇-주를-가지는지또는-마지막-주가-몇째-주인지-구한다">2. 해당 달이 몇 주를 가지는지(또는 마지막 주가 몇째 주인지) 구한다.</h3><pre><code class="language-sql hljs">select
+  (<span class="hljs-name">trunc</span>(<span class="hljs-name">day_last</span>, 'D')
+    - trunc(<span class="hljs-name">trunc</span>(<span class="hljs-name">day_last</span>, 'MM'), 'D') / <span class="hljs-number">7</span> + <span class="hljs-number">1</span> last_week,
   day_last,
   week
 from ...
-</code></pre><h3 id="3-지정된-주에-포함된-날짜를-구한다">3. 지정된 주에 포함된 날짜를 구한다.</h3><pre><code class="language-sql">select
-  day_last - 7 * decode(least(last_week, week),
-                        week, last_week - week) base day
-from ...
-</code></pre><h3 id="4-이-날짜가-포함된-주의-첫-날과-마지막-날을-구한다">4. 이 날짜가 포함된 주의 첫 날과 마지막 날을 구한다.</h3><pre><code class="language-sql">select
-  trunc(base_day, 'D') start_date,
-  trunc(base_day, 'D')+6 end_date
-from ...
-</code></pre><p>세번째 단계에서 <code>decode(least(...))</code> 대신 <code>case when week &lt; last_week then last_week - week end</code>로 하는 게 이해하기 더 쉬울 듯 하다.</p><p>이걸 모두 합치면…</p><pre><code class="language-sql">select
-  trunc (base_day, 'd') starting_day,
-  trunc (base_day, 'd') + 6 ending_day
-from (
-  select
-    day_last - 7 * (case when week &lt; last_week
-                    then last_week - week end) base_day
-  from (
-    select
-      (trunc(day_last, 'd')
-        - trunc(trunc(day_last, 'mm'), 'd')) / 7 + 1 last_week,
+</code></pre><h3 id="3-지정된-주에-포함된-날짜를-구한다">3. 지정된 주에 포함된 날짜를 구한다.</h3><pre><code class="language-sql hljs"><span class="hljs-keyword">select</span>
+  day_last - <span class="hljs-number">7</span> * <span class="hljs-keyword">decode</span>(<span class="hljs-keyword">least</span>(last_week, <span class="hljs-keyword">week</span>),
+                        <span class="hljs-keyword">week</span>, last_week - <span class="hljs-keyword">week</span>) base <span class="hljs-keyword">day</span>
+<span class="hljs-keyword">from</span> ...
+</code></pre><h3 id="4-이-날짜가-포함된-주의-첫-날과-마지막-날을-구한다">4. 이 날짜가 포함된 주의 첫 날과 마지막 날을 구한다.</h3><pre><code class="language-sql hljs">select
+  <span class="hljs-built-in">trunc</span>(base_day, <span class="hljs-string">'D'</span>) start_date,
+  <span class="hljs-built-in">trunc</span>(base_day, <span class="hljs-string">'D'</span>)+<span class="hljs-number">6</span> end_date
+<span class="hljs-function"><span class="hljs-title">from</span></span> ...
+</code></pre><p>세번째 단계에서 <code>decode(least(...))</code> 대신 <code>case when week &lt; last_week then last_week - week end</code>로 하는 게 이해하기 더 쉬울 듯 하다.</p><p>이걸 모두 합치면...</p><pre><code class="language-sql hljs"><span class="hljs-keyword">select</span>
+  trunc (base_day, <span class="hljs-string">'d'</span>) starting_day,
+  trunc (base_day, <span class="hljs-string">'d'</span>) + <span class="hljs-number">6</span> ending_day
+<span class="hljs-keyword">from</span> (
+  <span class="hljs-keyword">select</span>
+    day_last - <span class="hljs-number">7</span> * (<span class="hljs-keyword">case</span> <span class="hljs-keyword">when</span> <span class="hljs-keyword">week</span> &lt; last_week
+                    <span class="hljs-keyword">then</span> last_week - <span class="hljs-keyword">week</span> <span class="hljs-keyword">end</span>) base_day
+  <span class="hljs-keyword">from</span> (
+    <span class="hljs-keyword">select</span>
+      (trunc(day_last, <span class="hljs-string">'d'</span>)
+        - trunc(trunc(day_last, <span class="hljs-string">'mm'</span>), <span class="hljs-string">'d'</span>)) / <span class="hljs-number">7</span> + <span class="hljs-number">1</span> last_week,
       day_last,
-      week
-    from (
-      select
-        last_day (to_date (:yyyymm, 'yyyymm')) day_last,
-        :week week
-      from dual)));
-</code></pre><p>여기까지도 멋졌는데, 다음 쿼리를 보니… 더 멋지네.</p><pre><code class="language-sql">select
-  decode(least(day_last, base_fday),
+      <span class="hljs-keyword">week</span>
+    <span class="hljs-keyword">from</span> (
+      <span class="hljs-keyword">select</span>
+        <span class="hljs-keyword">last_day</span> (<span class="hljs-keyword">to_date</span> (:yyyymm, <span class="hljs-string">'yyyymm'</span>)) day_last,
+        :<span class="hljs-keyword">week</span> <span class="hljs-keyword">week</span>
+      <span class="hljs-keyword">from</span> dual)));
+</code></pre><p>여기까지도 멋졌는데, 다음 쿼리를 보니... 더 멋지네.</p><pre><code class="language-sql hljs"><span class="hljs-keyword">select</span>
+  <span class="hljs-keyword">decode</span>(<span class="hljs-keyword">least</span>(day_last, base_fday),
          base_fday, base_fday) start_date,
-  decode(least(day_last, base_fday),
-         base_fday, base_fday + 6) end_date
-from (
-  select
-    trunc(first_day + 7 * (week - 1), 'd') base_fday,
-    last_day(first_day) day_last
-  from (
-    select
-      to_date(:yyyymm, 'yyyymm') first_day,
-      :week week
-    from dual));
+  <span class="hljs-keyword">decode</span>(<span class="hljs-keyword">least</span>(day_last, base_fday),
+         base_fday, base_fday + <span class="hljs-number">6</span>) end_date
+<span class="hljs-keyword">from</span> (
+  <span class="hljs-keyword">select</span>
+    trunc(first_day + <span class="hljs-number">7</span> * (<span class="hljs-keyword">week</span> - <span class="hljs-number">1</span>), <span class="hljs-string">'d'</span>) base_fday,
+    <span class="hljs-keyword">last_day</span>(first_day) day_last
+  <span class="hljs-keyword">from</span> (
+    <span class="hljs-keyword">select</span>
+      <span class="hljs-keyword">to_date</span>(:yyyymm, <span class="hljs-string">'yyyymm'</span>) first_day,
+      :<span class="hljs-keyword">week</span> <span class="hljs-keyword">week</span>
+    <span class="hljs-keyword">from</span> dual));
 </code></pre></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2009/google-main-page/" id="article-nav-newer">어설퍼진 Google 첫 페이지</a>
-<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2009/canvas-test/" id="article-nav-older">Canvas 테스트</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><script type="text/javascript" src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer></body></html>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2009/canvas-test/" id="article-nav-older">Canvas 테스트</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer>
+</body></html>

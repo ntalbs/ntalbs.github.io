@@ -3,109 +3,110 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2017-01-22" itemprop="datePublished">2017-01-22</time>
 on
 <a href="/tags/project-euler/">Project-Euler</a>
-<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 84</h1></header><section class="post-content"><blockquote><p>모노폴리 게임을 4면체 주사위로 할 때 가장 많이 방문하는 칸은?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=84">[국어]</a> <a href="https://projecteuler.net/problem=84">[영어]</a></p></blockquote><p>이 문제를 수학적으로 푸는 방법이 있는지 모르겠다. 여기서는 문제에 주어진 게임 규칙을 모두 구현한 후, 직접 사면체 주사위를 1백만 번 던져 어느 칸을 가장 많이 방문했는지 세는 방법으로 문제를 풀었다.</p><p>코드가 조금 길긴 하지만, 게임 규칙을 구현한 것에 불과하며 특별히 복잡한 알고리즘이 있는 것은 아니다.</p><pre><code class="language-clojure">(def board (atom (vec (repeat 40 0)))) ; 게임보드에서 각 칸 방문 회수
-(def pos (atom 0))                     ; 현재 위치
-(def double-cnt (atom 0))              ; 더블 회수
-(def chi (atom 0))                     ; 공동기금 카드 인덱스
-(def cci (atom 0))                     ; 찬스 카드 인덱스
+<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 84</h1></header><section class="post-content"><blockquote><p>모노폴리 게임을 4면체 주사위로 할 때 가장 많이 방문하는 칸은?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=84">[국어]</a> <a href="https://projecteuler.net/problem=84">[영어]</a></p></blockquote><p>이 문제를 수학적으로 푸는 방법이 있는지 모르겠다. 여기서는 문제에 주어진 게임 규칙을 모두 구현한 후, 직접 사면체 주사위를 1백만 번 던져 어느 칸을 가장 많이 방문했는지 세는 방법으로 문제를 풀었다.</p><p>코드가 조금 길긴 하지만, 게임 규칙을 구현한 것에 불과하며 특별히 복잡한 알고리즘이 있는 것은 아니다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> board (<span class="hljs-name"><span class="hljs-builtin-name">atom</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">vec</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">repeat</span></span> <span class="hljs-number">40</span> <span class="hljs-number">0</span>)))) <span class="hljs-comment">; 게임보드에서 각 칸 방문 회수</span>
+(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> pos (<span class="hljs-name"><span class="hljs-builtin-name">atom</span></span> <span class="hljs-number">0</span>))                     <span class="hljs-comment">; 현재 위치</span>
+(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> double-cnt (<span class="hljs-name"><span class="hljs-builtin-name">atom</span></span> <span class="hljs-number">0</span>))              <span class="hljs-comment">; 더블 회수</span>
+(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> chi (<span class="hljs-name"><span class="hljs-builtin-name">atom</span></span> <span class="hljs-number">0</span>))                     <span class="hljs-comment">; 공동기금 카드 인덱스</span>
+(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> cci (<span class="hljs-name"><span class="hljs-builtin-name">atom</span></span> <span class="hljs-number">0</span>))                     <span class="hljs-comment">; 찬스 카드 인덱스</span>
 
-(defn- roll []
-  [(inc (rand-int 4)) (inc (rand-int 4))])
+(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> roll []
+  [(<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">rand-int</span></span> <span class="hljs-number">4</span>)) (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">rand-int</span></span> <span class="hljs-number">4</span>))])
 
-(defn- init []
-  (reset! board (vec (repeat 40 0)))
-  (reset! pos 0)
-  (reset! double-cnt 0))
+(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> init []
+  (<span class="hljs-name"><span class="hljs-builtin-name">reset!</span></span> board (<span class="hljs-name"><span class="hljs-builtin-name">vec</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">repeat</span></span> <span class="hljs-number">40</span> <span class="hljs-number">0</span>)))
+  (<span class="hljs-name"><span class="hljs-builtin-name">reset!</span></span> pos <span class="hljs-number">0</span>)
+  (<span class="hljs-name"><span class="hljs-builtin-name">reset!</span></span> double-cnt <span class="hljs-number">0</span>))
 
-(defn- visit [n]
-  (reset! pos n)
-  (swap! board assoc n (inc (nth @board n))))
+(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> visit [n]
+  (<span class="hljs-name"><span class="hljs-builtin-name">reset!</span></span> pos n)
+  (<span class="hljs-name"><span class="hljs-builtin-name">swap!</span></span> board assoc n (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">nth</span></span> @board n))))
 
-(defn- go-to [dest]
-  (let [n ({:start 0, :jail 10, :c1 11, :e3 24, :h2 39, :r1 5} dest)]
-    (visit n)))
+(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> go-to [dest]
+  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [n ({<span class="hljs-symbol">:start</span> <span class="hljs-number">0</span>, <span class="hljs-symbol">:jail</span> <span class="hljs-number">10</span>, <span class="hljs-symbol">:c1</span> <span class="hljs-number">11</span>, <span class="hljs-symbol">:e3</span> <span class="hljs-number">24</span>, <span class="hljs-symbol">:h2</span> <span class="hljs-number">39</span>, <span class="hljs-symbol">:r1</span> <span class="hljs-number">5</span>} dest)]
+    (<span class="hljs-name">visit</span> n)))
 
-(defn- forward [n]
-  (let [p (mod (+ @pos n) 40)]
-    (if (= 30 p)
-      (go-to :jail)
-      (visit p))))
+(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> forward [n]
+  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [p (<span class="hljs-name"><span class="hljs-builtin-name">mod</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> @pos n) <span class="hljs-number">40</span>)]
+    (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> <span class="hljs-number">30</span> p)
+      (<span class="hljs-name">go-to</span> <span class="hljs-symbol">:jail</span>)
+      (<span class="hljs-name">visit</span> p))))
 
-(defn- next-pos [n dest]
-  (cond (= dest :r) (condp = n 7 15 22 25 36 5)
-        (= dest :u) (condp = n 7 12 22 28 36 12)))
+(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> next-pos [n dest]
+  (<span class="hljs-name"><span class="hljs-builtin-name">cond</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> dest <span class="hljs-symbol">:r</span>) (<span class="hljs-name"><span class="hljs-builtin-name">condp</span></span> = n <span class="hljs-number">7</span> <span class="hljs-number">15</span> <span class="hljs-number">22</span> <span class="hljs-number">25</span> <span class="hljs-number">36</span> <span class="hljs-number">5</span>)
+        (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> dest <span class="hljs-symbol">:u</span>) (<span class="hljs-name"><span class="hljs-builtin-name">condp</span></span> = n <span class="hljs-number">7</span> <span class="hljs-number">12</span> <span class="hljs-number">22</span> <span class="hljs-number">28</span> <span class="hljs-number">36</span> <span class="hljs-number">12</span>)))
 
-(defn- roll []
-  [(inc (rand-int 4)) (inc (rand-int 4))])
+(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> roll []
+  [(<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">rand-int</span></span> <span class="hljs-number">4</span>)) (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">rand-int</span></span> <span class="hljs-number">4</span>))])
 
-(defn- inc-index
-  "increase the card index"
+(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> inc-index
+  <span class="hljs-string">"increase the card index"</span>
   [n]
-  (mod (inc n) 16))
+  (<span class="hljs-name"><span class="hljs-builtin-name">mod</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> n) <span class="hljs-number">16</span>))
 
-(defn- cc-instruction
-  "community chest"
+(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> cc-instruction
+  <span class="hljs-string">"community chest"</span>
   [pos]
-  (swap! cci inc-index)
-  (condp = @cci
-    1 #(go-to :start)
-    2 #(go-to :jail)
-    #(visit pos)))
+  (<span class="hljs-name"><span class="hljs-builtin-name">swap!</span></span> cci inc-index)
+  (<span class="hljs-name"><span class="hljs-builtin-name">condp</span></span> = @cci
+    <span class="hljs-number">1</span> #(<span class="hljs-name">go-to</span> <span class="hljs-symbol">:start</span>)
+    <span class="hljs-number">2</span> #(<span class="hljs-name">go-to</span> <span class="hljs-symbol">:jail</span>)
+    #(<span class="hljs-name">visit</span> pos)))
 
-(defn- chance-instruction
-  "chance"
+(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> chance-instruction
+  <span class="hljs-string">"chance"</span>
   [pos]
-  (swap! chi inc-index)
-  (condp = @chi
-    1 #(go-to :start)
-    2 #(go-to :jail)
-    3 #(go-to :c1)
-    4 #(go-to :e3)
-    5 #(go-to :h2)
-    6 #(go-to :r1)
-    7 #(visit (next-pos pos :r))
-    8 #(visit (next-pos pos :r))
-    9 #(visit (next-pos pos :u))
-    0 #(forward -3)
-    #(visit pos)))
+  (<span class="hljs-name"><span class="hljs-builtin-name">swap!</span></span> chi inc-index)
+  (<span class="hljs-name"><span class="hljs-builtin-name">condp</span></span> = @chi
+    <span class="hljs-number">1</span> #(<span class="hljs-name">go-to</span> <span class="hljs-symbol">:start</span>)
+    <span class="hljs-number">2</span> #(<span class="hljs-name">go-to</span> <span class="hljs-symbol">:jail</span>)
+    <span class="hljs-number">3</span> #(<span class="hljs-name">go-to</span> <span class="hljs-symbol">:c1</span>)
+    <span class="hljs-number">4</span> #(<span class="hljs-name">go-to</span> <span class="hljs-symbol">:e3</span>)
+    <span class="hljs-number">5</span> #(<span class="hljs-name">go-to</span> <span class="hljs-symbol">:h2</span>)
+    <span class="hljs-number">6</span> #(<span class="hljs-name">go-to</span> <span class="hljs-symbol">:r1</span>)
+    <span class="hljs-number">7</span> #(<span class="hljs-name">visit</span> (<span class="hljs-name">next-pos</span> pos <span class="hljs-symbol">:r</span>))
+    <span class="hljs-number">8</span> #(<span class="hljs-name">visit</span> (<span class="hljs-name">next-pos</span> pos <span class="hljs-symbol">:r</span>))
+    <span class="hljs-number">9</span> #(<span class="hljs-name">visit</span> (<span class="hljs-name">next-pos</span> pos <span class="hljs-symbol">:u</span>))
+    <span class="hljs-number">0</span> #(<span class="hljs-name">forward</span> <span class="hljs-number">-3</span>)
+    #(<span class="hljs-name">visit</span> pos)))
 
-(defn- follow [instruction]
-  (if instruction (instruction)))
+(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> follow [instruction]
+  (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> instruction (<span class="hljs-name">instruction</span>)))
 
-(defn- roll-and-move []
-  (let [[r1 r2] (roll) p (+ r1 r2 @pos)]
-    (if (= r1 r2)
-      (swap! double-cnt inc)
-      (reset! double-cnt 0))
-    (cond (= 3 @double-cnt) (go-to :jail)
-          (#{2 17 33} p) (follow (cc-instruction p))
-          (#{7 22 36} p) (follow (chance-instruction p))
-          :else (forward (+ r1 r2)))))
+(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> roll-and-move []
+  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [[r1 r2] (<span class="hljs-name">roll</span>) p (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> r1 r2 @pos)]
+    (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> r1 r2)
+      (<span class="hljs-name"><span class="hljs-builtin-name">swap!</span></span> double-cnt inc)
+      (<span class="hljs-name"><span class="hljs-builtin-name">reset!</span></span> double-cnt <span class="hljs-number">0</span>))
+    (<span class="hljs-name"><span class="hljs-builtin-name">cond</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> <span class="hljs-number">3</span> @double-cnt) (<span class="hljs-name">go-to</span> <span class="hljs-symbol">:jail</span>)
+          (<span class="hljs-name">#</span>{<span class="hljs-number">2</span> <span class="hljs-number">17</span> <span class="hljs-number">33</span>} p) (<span class="hljs-name">follow</span> (<span class="hljs-name">cc-instruction</span> p))
+          (<span class="hljs-name">#</span>{<span class="hljs-number">7</span> <span class="hljs-number">22</span> <span class="hljs-number">36</span>} p) (<span class="hljs-name">follow</span> (<span class="hljs-name">chance-instruction</span> p))
+          <span class="hljs-symbol">:else</span> (<span class="hljs-name">forward</span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> r1 r2)))))
 
-(defn run [n]
-  (-&gt;&gt; (repeatedly n roll-and-move)
-       (last)
-       (map-indexed (fn [i v] [i v]))
-       (sort-by second #(compare %2 %1))
-       (take 3)
-       (map first)
-       (map #(format "%02d" %))
-       (apply str)))
+(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> run [n]
+  (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> (<span class="hljs-name">repeatedly</span> n roll-and-move)
+       (<span class="hljs-name"><span class="hljs-builtin-name">last</span></span>)
+       (<span class="hljs-name">map-indexed</span> (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [i v] [i v]))
+       (<span class="hljs-name"><span class="hljs-builtin-name">sort-by</span></span> second #(<span class="hljs-name"><span class="hljs-builtin-name">compare</span></span> %<span class="hljs-number">2</span> %<span class="hljs-number">1</span>))
+       (<span class="hljs-name"><span class="hljs-builtin-name">take</span></span> <span class="hljs-number">3</span>)
+       (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> first)
+       (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> #(<span class="hljs-name"><span class="hljs-builtin-name">format</span></span> <span class="hljs-string">"%02d"</span> %))
+       (<span class="hljs-name"><span class="hljs-builtin-name">apply</span></span> str)))
 
-(defn simulate []
-  (init)
-  (run 100000))
+(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> simulate []
+  (<span class="hljs-name">init</span>)
+  (<span class="hljs-name">run</span> <span class="hljs-number">100000</span>))
 
-(defn solve []
-  (-&gt;&gt; (repeatedly 10 simulate)
-       (group-by identity)
-       (map (fn [[k xs]] [k (count xs)]))
-       (sort-by second)
-       (ffirst)))
+(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> solve []
+  (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> (<span class="hljs-name">repeatedly</span> <span class="hljs-number">10</span> simulate)
+       (<span class="hljs-name">group-by</span> identity)
+       (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [[k xs]] [k (<span class="hljs-name"><span class="hljs-builtin-name">count</span></span> xs)]))
+       (<span class="hljs-name"><span class="hljs-builtin-name">sort-by</span></span> second)
+       (<span class="hljs-name"><span class="hljs-builtin-name">ffirst</span></span>)))
 </code></pre><p>실행 결과는 다음과 같다.</p><pre class="console">p084=&gt; (time (solve))
 "Elapsed time: 5255.086709 msecs"
 "1015??"
 </pre><p>운이 좋아 답을 구하기는 했지만, 실행 결과가 항상 정답을 구한다는 보장은 없다. D1(16)과 E3(24)의 방문 확률의 차이가 크지 않아 1백만번을 돌려도 종종 D1이 이기는 경우가 있다. 1백만번 돌리는 시뮬레이션을 10번 수행해서 많이 나오는 쪽으로 판단했지만, 이렇게 해도 D1이 이기는 경우가 있다.</p><h2 id="참고">참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p084.clj">프로젝트 오일러 84 풀이 소스 코드</a></li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2017/project-euler-085/" id="article-nav-newer">프로젝트 오일러 85</a>
-<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2017/project-euler-083/" id="article-nav-older">프로젝트 오일러 83</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><script type="text/javascript" src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer></body></html>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2017/project-euler-083/" id="article-nav-older">프로젝트 오일러 83</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer>
+</body></html>
