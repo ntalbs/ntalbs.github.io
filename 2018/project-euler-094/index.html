@@ -75,8 +75,7 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2018-07-17" itemprop="datePublished">2018-07-17</time>
 on
 <a href="/tags/project-euler/">Project-Euler</a>
-<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 94</h1></header><section class="post-content"><blockquote><p>정수 둘레와 정수 넓이를 갖는 거의 정삼각형 찾기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=94">[국어]</a> <a href="https://projecteuler.net/problem=94">[영어]</a></p></blockquote><p><img src="/2018/07-17-project-euler-094/Triangle.png" class="right">
-다음 그림과 같이 빗변을 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.23ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 529.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 94</h1></header><section class="post-content"><blockquote><p>정수 둘레와 정수 넓이를 갖는 거의 정삼각형 찾기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=94">[국어]</a> <a href="https://projecteuler.net/problem=94">[영어]</a></p></blockquote><p><img src="/2018/07-17-project-euler-094/Triangle.png" class="right"></p><p>다음 그림과 같이 빗변을 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.23ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 529.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">a</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
@@ -100,16 +99,11 @@ on
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMATHI-68" x="0" y="0"></use>
 </g>
-</svg></span>라 하면 피타고라스 정리에 의해 다음 관계가 성립한다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="17.842ex" height="6.509ex" style="vertical-align: -2.671ex;" viewBox="0 -1652.5 7681.8 2802.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-5-Title">
-<title id="MathJax-SVG-5-Title">
-\begin{aligned}
+</svg></span>라 하면 피타고라스 정리에 의해 다음 관계가 성립한다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="17.09ex" height="6.509ex" style="vertical-align: -2.505ex;" viewBox="0 -1724.2 7358.2 2802.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-5-Title">
+<title id="MathJax-SVG-5-Title">%math
 a^2 = \left( \frac{b}{2} \right)^2 + h^2
-\end{aligned}
 </title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
-<g transform="translate(167,0)">
-<g transform="translate(-11,0)">
-<g transform="translate(0,-100)">
  <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="748" y="583"></use>
  <use xlink:href="#MJMAIN-3D" x="1261" y="0"></use>
@@ -131,10 +125,7 @@ a^2 = \left( \frac{b}{2} \right)^2 + h^2
  <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="815" y="583"></use>
 </g>
 </g>
-</g>
-</g>
-</g>
-</svg></span></div><p>여기에 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.329ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 4016.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-6-Title">
+</svg></span></span></p><p>여기에 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.329ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 4016.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-6-Title">
 <title id="MathJax-SVG-6-Title">b = a \pm 1</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMATHI-62" x="0" y="0"></use>
@@ -143,14 +134,18 @@ a^2 = \left( \frac{b}{2} \right)^2 + h^2
  <use xlink:href="#MJMAIN-B1" x="2515" y="0"></use>
  <use xlink:href="#MJMAIN-31" x="3516" y="0"></use>
 </g>
-</svg></span>을 대입해 정리하면 다음 식을 얻을 수 있다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="100ex" height="15.843ex" style="vertical-align: -11.838ex; max-width: 60000px;" viewBox="0 -1724.2 43055.4 6821.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-7-Title">
-<title id="MathJax-SVG-7-Title">
+</svg></span>을 대입해 정리하면 다음 식을 얻을 수 있다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="23.723ex" height="15.509ex" style="vertical-align: -7.171ex;" viewBox="0 -3589.9 10214.2 6677.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-7-Title">
+<title id="MathJax-SVG-7-Title">%math
+\begin{aligned}
 a^2 = \left( \frac{a \pm 1}{2} \right)^2 + h^2 \\
 a^2 = \frac{a^2 \pm 2a + 1}{4} + h^2 \\
 3a^2 \pm 2a - 4h^2 = 1
+\end{aligned}
 </title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
-<g transform="translate(16972,0)">
+<g transform="translate(167,0)">
+<g transform="translate(-11,0)">
+<g transform="translate(779,1847)">
  <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="748" y="583"></use>
  <use xlink:href="#MJMAIN-3D" x="1261" y="0"></use>
@@ -176,7 +171,7 @@ a^2 = \frac{a^2 \pm 2a + 1}{4} + h^2 \\
  <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="815" y="583"></use>
 </g>
 </g>
-<g transform="translate(16582,-2893)">
+<g transform="translate(0,-914)">
  <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="748" y="583"></use>
  <use xlink:href="#MJMAIN-3D" x="1261" y="0"></use>
@@ -201,7 +196,7 @@ a^2 = \frac{a^2 \pm 2a + 1}{4} + h^2 \\
  <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="815" y="583"></use>
 </g>
 </g>
-<g transform="translate(17365,-4906)">
+<g transform="translate(1565,-2797)">
  <use xlink:href="#MJMAIN-33" x="0" y="0"></use>
 <g transform="translate(500,0)">
  <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
@@ -220,7 +215,9 @@ a^2 = \frac{a^2 \pm 2a + 1}{4} + h^2 \\
  <use xlink:href="#MJMAIN-31" x="7824" y="0"></use>
 </g>
 </g>
-</svg></span></div><p>양변에 3을 곱한 다음 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="8.204ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 3532.4 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-8-Title">
+</g>
+</g>
+</svg></span></span></p><p>양변에 3을 곱한 다음 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="8.204ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 3532.4 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-8-Title">
 <title id="MathJax-SVG-8-Title">(3a \pm 1)</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMAIN-28" x="0" y="0"></use>
@@ -230,14 +227,18 @@ a^2 = \frac{a^2 \pm 2a + 1}{4} + h^2 \\
  <use xlink:href="#MJMAIN-31" x="2642" y="0"></use>
  <use xlink:href="#MJMAIN-29" x="3142" y="0"></use>
 </g>
-</svg></span>의 제곱 형태로 수식을 변형할 수 있다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="100ex" height="10.009ex" style="vertical-align: -7.671ex; max-width: 60000px;" viewBox="0 -1006.6 43055.4 4309.5" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-9-Title">
-<title id="MathJax-SVG-9-Title">
+</svg></span>의 제곱 형태로 수식을 변형할 수 있다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="27.062ex" height="9.843ex" style="vertical-align: -4.013ex; margin-bottom: -0.325ex;" viewBox="0 -2370 11651.8 4237.8" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-9-Title">
+<title id="MathJax-SVG-9-Title">%math
+\begin{aligned}
 9a^2 \pm 6a - 12h^2 = 3 \\
 (9a^2 \pm 6a + 1) - 12h^2 = 4 \\
 (3a \pm 1)^2 - 12h^2 = 4
+\end{aligned}
 </title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
-<g transform="translate(17114,0)">
+<g transform="translate(167,0)">
+<g transform="translate(-11,0)">
+<g transform="translate(2502,1343)">
  <use xlink:href="#MJMAIN-39" x="0" y="0"></use>
 <g transform="translate(500,0)">
  <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
@@ -258,7 +259,7 @@ a^2 = \frac{a^2 \pm 2a + 1}{4} + h^2 \\
  <use xlink:href="#MJMAIN-3D" x="7268" y="0"></use>
  <use xlink:href="#MJMAIN-33" x="8325" y="0"></use>
 </g>
-<g transform="translate(15863,-1399)">
+<g transform="translate(0,-42)">
  <use xlink:href="#MJMAIN-28" x="0" y="0"></use>
  <use xlink:href="#MJMAIN-39" x="389" y="0"></use>
 <g transform="translate(890,0)">
@@ -283,7 +284,7 @@ a^2 = \frac{a^2 \pm 2a + 1}{4} + h^2 \\
  <use xlink:href="#MJMAIN-3D" x="9771" y="0"></use>
  <use xlink:href="#MJMAIN-34" x="10827" y="0"></use>
 </g>
-<g transform="translate(16990,-2965)">
+<g transform="translate(2252,-1477)">
  <use xlink:href="#MJMAIN-28" x="0" y="0"></use>
  <use xlink:href="#MJMAIN-33" x="389" y="0"></use>
  <use xlink:href="#MJMATHI-61" x="890" y="0"></use>
@@ -306,8 +307,10 @@ a^2 = \frac{a^2 \pm 2a + 1}{4} + h^2 \\
  <use xlink:href="#MJMAIN-34" x="8574" y="0"></use>
 </g>
 </g>
-</svg></span></div><p>다시 양변을 4로 나누어 정리하면 다음 식을 얻을 수 있다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="22.364ex" height="6.509ex" style="vertical-align: -2.505ex;" viewBox="0 -1724.2 9628.8 2802.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-10-Title">
-<title id="MathJax-SVG-10-Title">
+</g>
+</g>
+</svg></span></span></p><p>다시 양변을 4로 나누어 정리하면 다음 식을 얻을 수 있다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="22.364ex" height="6.509ex" style="vertical-align: -2.505ex;" viewBox="0 -1724.2 9628.8 2802.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-10-Title">
+<title id="MathJax-SVG-10-Title">%math
 \left( \frac{3a \pm 1}{2} \right) ^ 2 - 3h^2 = 1
 </title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -335,7 +338,7 @@ a^2 = \frac{a^2 \pm 2a + 1}{4} + h^2 \\
  <use xlink:href="#MJMAIN-3D" x="8071" y="0"></use>
  <use xlink:href="#MJMAIN-31" x="9128" y="0"></use>
 </g>
-</svg></span></div><p>여기서 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.056ex" height="3.509ex" style="vertical-align: -1.171ex;" viewBox="0 -1006.6 3899.3 1510.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-11-Title">
+</svg></span></span></p><p>여기서 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.056ex" height="3.509ex" style="vertical-align: -1.171ex;" viewBox="0 -1006.6 3899.3 1510.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-11-Title">
 <title id="MathJax-SVG-11-Title">\frac{3a \pm 1}{2} = x</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
 <g transform="translate(120,0)">
@@ -358,8 +361,8 @@ a^2 = \frac{a^2 \pm 2a + 1}{4} + h^2 \\
  <use xlink:href="#MJMAIN-3D" x="854" y="0"></use>
  <use xlink:href="#MJMATHI-79" x="1910" y="0"></use>
 </g>
-</svg></span>로 치환하면 다음 식을 얻는다. <a href="/2016/project-euler-066/">문제 66</a>에서 다루었던 펠 방정식이 된다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="12.862ex" height="3.009ex" style="vertical-align: -0.671ex;" viewBox="0 -1006.6 5538 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-13-Title">
-<title id="MathJax-SVG-13-Title">
+</svg></span>로 치환하면 다음 식을 얻는다. <a href="/2016/project-euler-066/">문제 66</a>에서 다루었던 펠 방정식이 된다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="12.862ex" height="3.009ex" style="vertical-align: -0.671ex;" viewBox="0 -1006.6 5538 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-13-Title">
+<title id="MathJax-SVG-13-Title">%math
 x^2 - 3y^2 = 1
 </title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -374,7 +377,7 @@ x^2 - 3y^2 = 1
  <use xlink:href="#MJMAIN-3D" x="3981" y="0"></use>
  <use xlink:href="#MJMAIN-31" x="5037" y="0"></use>
 </g>
-</svg></span></div><p>펠 방정식 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="13.095ex" height="2.843ex" style="vertical-align: -0.671ex;" viewBox="0 -934.9 5638 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-14-Title">
+</svg></span></span></p><p>펠 방정식 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="13.095ex" height="2.843ex" style="vertical-align: -0.671ex;" viewBox="0 -934.9 5638 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-14-Title">
 <title id="MathJax-SVG-14-Title">x^2 - ny^2 = 1</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMATHI-78" x="0" y="0"></use>
@@ -388,11 +391,11 @@ x^2 - 3y^2 = 1
  <use xlink:href="#MJMAIN-3D" x="4081" y="0"></use>
  <use xlink:href="#MJMAIN-31" x="5137" y="0"></use>
 </g>
-</svg></span>의 해를 구하는 방법은 <a href="https://en.wikipedia.org/wiki/Pell's_equation#Additional_solutions_from_the_fundamental_solution">위키피디아</a>에 나와있다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="21.828ex" height="5.843ex" style="vertical-align: -2.111ex; margin-bottom: -0.227ex;" viewBox="0 -1508.9 9398 2515.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-15-Title">
-<title id="MathJax-SVG-15-Title">
+</svg></span>의 해를 구하는 방법은 <a href="https://en.wikipedia.org/wiki/Pell's_equation#Additional_solutions_from_the_fundamental_solution">위키피디아</a>에 나와있다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="21.828ex" height="5.843ex" style="vertical-align: -2.111ex; margin-bottom: -0.227ex;" viewBox="0 -1508.9 9398 2515.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-15-Title">
+<title id="MathJax-SVG-15-Title">%math
 \begin{aligned}
-x_{k+1} &amp;= x_1x_k + ny_1y_k \\
-y_{k+1} &amp;= x_1y_k + y_1x_k
+x_{k+1} &amp;= x_1 x_k + ny_1 y_k \\
+y_{k+1} &amp;= x_1 y_k + y_1 x_k
 \end{aligned}
 </title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -460,7 +463,7 @@ y_{k+1} &amp;= x_1y_k + y_1x_k
 </g>
 </g>
 </g>
-</svg></span></div><p>여기서 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.395ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 600.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-16-Title">
+</svg></span></span></p><p>여기서 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.395ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 600.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-16-Title">
 <title id="MathJax-SVG-16-Title">n</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMATHI-6E" x="0" y="0"></use>
@@ -616,7 +619,7 @@ y_{k+1} &amp;= x_1y_k + y_1x_k
 </code></pre><p>실행 결과는 다음과 같다. 빠르게 답을 구한다.</p><pre class="console">p094=&gt; (time (solve))
 "Elapsed time: 0.92142 msecs"
 5184??346
-</pre><h2 id="참고">참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p094.clj">프로젝트 오일러 94 풀이 소스 코드</a></li><li><a href="/2016/project-euler-066/">프로젝트 오일러 66</a></li><li><a href="https://en.wikipedia.org/wiki/Pell's_equation#Additional_solutions_from_the_fundamental_solution">Pell’s equation</a></li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+</pre><h2 id="참고">참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p094.clj">프로젝트 오일러 94 풀이 소스 코드</a></li><li><a href="/2016/project-euler-066/">프로젝트 오일러 66</a></li><li><a href="https://en.wikipedia.org/wiki/Pell's_equation#Additional_solutions_from_the_fundamental_solution">Pell's equation</a></li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2018/settled-in-hugo/" id="article-nav-newer">블로그 Hugo 이전 후기</a>
 <a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2018/project-euler-093/" id="article-nav-older">프로젝트 오일러 93</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer>
