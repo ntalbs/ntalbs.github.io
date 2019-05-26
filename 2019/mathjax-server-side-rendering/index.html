@@ -92,7 +92,7 @@ on
 </g>
  <use xlink:href="#MJMAIN-58" x="1149" y="0"></use>
 </g>
-</svg></span> 코드를 HTML/CSS, SVG 또는 MathML로 변환하고, 브라우저가 변환된 결과를 화면에 표시한다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="23.039ex" height="6.509ex" style="vertical-align: -2.671ex;" viewBox="0 -1652.5 9919.6 2802.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-3-Title">
+</svg></span> 코드를 HTML/CSS, SVG 또는 MathML로 변환하고, 브라우저가 변환된 결과를 화면에 표시한다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="23.039ex" height="6.509ex" style="vertical-align: -2.671ex;" viewBox="0 -1652.5 9919.6 2802.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-3-Title">
 <title id="MathJax-SVG-3-Title">
 f(a) = \frac{1}{2\pi i}\oint_{\gamma} \frac{f(z)}{z-a} dz
 </title>
@@ -136,7 +136,7 @@ f(a) = \frac{1}{2\pi i}\oint_{\gamma} \frac{f(z)}{z-a} dz
  <use xlink:href="#MJMATHI-64" x="8927" y="0"></use>
  <use xlink:href="#MJMATHI-7A" x="9451" y="0"></use>
 </g>
-</svg></span></p><p><a href="https://katex.org/">KaTex</a>는 MathJax보다 훨씬 빠르게 수식을 표시하고 서버측 렌더링도 지원한다. 그러다 MathJax에 있는 모든 기능을 제공하는지 확실하지 않다. 몇 년 전에 확인했을 때는 지원하지 않는 기능이 많았다. 수식 엔진을 KaTex로 바꾼다면 페이지에 있는 수식이 제대로 표현되는지 하나하나 확인해야 할 것이다. 확인하다 표현 못하는 수식이 있다면… KaTex는 일단 보류.</p><p>수식이 포함된 블로그 페이지의 느려터진 페이지 렌더링 속도를 볼 때마다 어떻게 개선할 수 없을까 생각을 했다. 사이트를 생성할 때 수식도 변환해 놓으면 좋을 것 같았다. 그러다 불현듯 MathJax로도 서버쪽 렌더링을 할 수 있지 않을까 해서 검색해 보았다. 그동안 MathJax는 서버측 렌더링을 지원하지 않는 줄 알았는데, 잘못 알고 있었다. 왜 진작 찾아보지 않았을까?</p><p>내가 찾은 도구는 <a href="https://github.com/pkra/mathjax-node-page">mathjax-node-page</a>다. 다른 도구가 있는지는 모르겠다. mathjax-node-page로 다음과 같이 HTML 파일에 들어있는 수식을 렌더링하는 CLI를 제공한다. 입력 파일과 출력 파일을 리디렉션으로 지정해야 하는 것은 마음에 들지 않고, 속도도 빠르지는 않다. 시험 삼아 HTML 파일 하나로 테스트 해봤는데 1초는 걸리는 것 같다. 다행히 수식은 잘 표현되는 것 같다.</p><pre class="console">$ mjpage --help
+</svg></span></span></p><p><a href="https://katex.org/">KaTex</a>는 MathJax보다 훨씬 빠르게 수식을 표시하고 서버측 렌더링도 지원한다. 그러다 MathJax에 있는 모든 기능을 제공하는지 확실하지 않다. 몇 년 전에 확인했을 때는 지원하지 않는 기능이 많았다. 수식 엔진을 KaTex로 바꾼다면 페이지에 있는 수식이 제대로 표현되는지 하나하나 확인해야 할 것이다. 확인하다 표현 못하는 수식이 있다면... KaTex는 일단 보류.</p><p>수식이 포함된 블로그 페이지의 느려터진 페이지 렌더링 속도를 볼 때마다 어떻게 개선할 수 없을까 생각을 했다. 사이트를 생성할 때 수식도 변환해 놓으면 좋을 것 같았다. 그러다 불현듯 MathJax로도 서버쪽 렌더링을 할 수 있지 않을까 해서 검색해 보았다. 그동안 MathJax는 서버측 렌더링을 지원하지 않는 줄 알았는데, 잘못 알고 있었다. 왜 진작 찾아보지 않았을까?</p><p>내가 찾은 도구는 <a href="https://github.com/pkra/mathjax-node-page">mathjax-node-page</a>다. 다른 도구가 있는지는 모르겠다. mathjax-node-page로 다음과 같이 HTML 파일에 들어있는 수식을 렌더링하는 CLI를 제공한다. 입력 파일과 출력 파일을 리디렉션으로 지정해야 하는 것은 마음에 들지 않고, 속도도 빠르지는 않다. 시험 삼아 HTML 파일 하나로 테스트 해봤는데 1초는 걸리는 것 같다. 다행히 수식은 잘 표현되는 것 같다.</p><pre class="console">$ mjpage --help
 Usage: mjpage [options] &lt; input.html &gt; output.html
 ...
 </pre><p>사용법이 이렇다면 HTML 파일을 하나씩 렌더링할 수밖에 없다. node.js 기반 사이트 생성기라면 내부적으로 mathjax-node-page를 직접 사용할 수 있겠지만, Hugo와 통합은 어려워 보인다. Hugo가 생성한 HTML을 mathjax-node-page CLI로 하나씩 읽어 수식을 렌더링할 셸 스크립트를 작성해야 할 것 같다.</p><pre><code class="language-bash hljs"><span class="hljs-meta">#!/usr/bin/env bash

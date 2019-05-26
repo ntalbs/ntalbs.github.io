@@ -3,27 +3,27 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2015-10-01" itemprop="datePublished">2015-10-01</time>
 on
 <a href="/tags/project-euler/">Project-Euler</a>
-<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 31</h1></header><section class="post-content"><blockquote><p>영국 화폐 액면가를 조합하는 방법의 수</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=31">[국어]</a> <a href="https://projecteuler.net/problem=31">[영어]</a></p></blockquote><p>재귀를 이용하면 쉽게 풀 수 있다. 동전의 종류를 숫자 1, 2, …로 표현하면 문제를 풀 때 도움이 된다. 따라서 다음과 같이 종류 숫자를 인자로 주면 동전 값을 리턴하는 함수를 만들 수 있다.</p><pre><code class="language-clojure hljs">(defn- value [n]
+<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 31</h1></header><section class="post-content"><blockquote><p>영국 화폐 액면가를 조합하는 방법의 수</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=31">[국어]</a> <a href="https://projecteuler.net/problem=31">[영어]</a></p></blockquote><p>재귀를 이용하면 쉽게 풀 수 있다. 동전의 종류를 숫자 1, 2, ...로 표현하면 문제를 풀 때 도움이 된다. 따라서 다음과 같이 종류 숫자를 인자로 주면 동전 값을 리턴하는 함수를 만들 수 있다.</p><pre><code class="language-clojure">(defn- value [n]
   (case n
-    <span class="hljs-number">1</span> <span class="hljs-number">1</span>
-    <span class="hljs-number">2</span> <span class="hljs-number">2</span>
-    <span class="hljs-number">3</span> <span class="hljs-number">5</span>
-    <span class="hljs-number">4</span> <span class="hljs-number">10</span>
-    <span class="hljs-number">5</span> <span class="hljs-number">20</span>
-    <span class="hljs-number">6</span> <span class="hljs-number">50</span>
-    <span class="hljs-number">7</span> <span class="hljs-number">100</span>
-    <span class="hljs-number">8</span> <span class="hljs-number">200</span>))
-</code></pre><p>Clojure에서는 벡터를 함수로 사용할 수도 있으므로 다음과 같이 벡터를 사용해 구현할 수도 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> value [n]
-  ([<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">5</span> <span class="hljs-number">10</span> <span class="hljs-number">20</span> <span class="hljs-number">50</span> <span class="hljs-number">100</span> <span class="hljs-number">200</span>] (<span class="hljs-name"><span class="hljs-builtin-name">dec</span></span> n)))
-</code></pre><p>벡터의 인덱스는 0부터 시작하고 동전 종류 숫자는 1부터 시작하므로, <code>dec</code> 함수로 인자 값을 1 감소시켰다. 동전 종류 숫자를 0부터 시작하게 할 수도 있다. 그렇게 한다면 이 함수를 호출하는 쪽에서 그에 맞게 조건을 설정하면 된다.</p><p>편의상 동전을 금액의 오름차순으로 정렬해 놓았지만, 사실 순서는 상관없다. 두 구현 모두 충분히 간단하지만, 벡터를 이용한 구현은 <code>dec</code> 함수를 호출하는 부분이 있어서인지 <code>case</code>를 사용한 구현보다 조금 느리다.</p><p>금액을 <code>amt</code>라고 할 때, <code>n</code>가지 동전을 가지고 <code>amt</code>를 만드는 방법은 다음 두 가짓수의 합과 같다.</p><ul><li>맨 처음 나오는 동전을 제외한 나머지 동전으로 <code>amt</code>를 만드는 가짓수</li><li>처음 나온 동전 금액을 <code>d</code>라 할 때 <code>amt - d</code> 금액을 <code>n</code>가지 동전으로 만드는 가짓수</li></ul><p>첫 번째 경우를 계산하려면 동전을 한 가지 제외하고 <code>amt</code>를 만드는 가짓수를 구해야 한다. 사용할 수 있는 동전은 한 가지 줄어들었지만 문제는 동일하다. 두 번째 경우는 사용할 수 있는 동전은 그대로지만 금액이 줄어든 상태에서 가짓수를 구해야 하는데, 금액만 줄었지 문제는 동일함을 알 수 있다. 즉, 첫 번째 경우나 두 번째 경우 모두 동전 가짓수나 금액만 줄어들 뿐 로직(또는 알고리즘)은 그대로 쓸 수 있다. 즉 재귀를 사용할 수 있다.</p><p>재귀를 사용할 때는 항상 규칙이 끝나는 경우를 정리해야 한다.</p><ul><li><code>amt</code>가 0이면 해당 금액을 만드는 방법은 1가지 밖에 없다.</li><li><code>amt</code>가 0보다 작은 금액을 만드는 방법은 없다. (0가지)</li><li><code>n</code>이 0이면 금액을 만드는 방법은 없다. (0가지)</li></ul><p>이 규칙을 이용해 금액을 만드는 방법의 가짓수를 구하는 함수를 다음과 같이 만들 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> cc [amt n]
-  (<span class="hljs-name"><span class="hljs-builtin-name">cond</span></span>
-    (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> amt <span class="hljs-number">0</span>) <span class="hljs-number">1</span>
-    (<span class="hljs-name"><span class="hljs-builtin-name">&lt;</span></span> amt <span class="hljs-number">0</span>) <span class="hljs-number">0</span>
-    (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> n <span class="hljs-number">0</span>) <span class="hljs-number">0</span>
-    <span class="hljs-symbol">:else</span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> (<span class="hljs-name">cc</span> amt (<span class="hljs-name"><span class="hljs-builtin-name">dec</span></span> n))
-             (<span class="hljs-name">cc</span> (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> amt (<span class="hljs-name">value</span> n)) n))))
-</code></pre><p>문제를 다 푼 것이나 마찬가지다. <code>(cc 200 8)</code>을 실행하면 답을 구할 수 있다. 다른 풀이와 코드 형식을 맞추기 위해 다음과 같이 <code>solve</code> 함수를 만든다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> solve []
-  (<span class="hljs-name">cc</span> <span class="hljs-number">200</span> <span class="hljs-number">8</span>))
+    1 1
+    2 2
+    3 5
+    4 10
+    5 20
+    6 50
+    7 100
+    8 200))
+</code></pre><p>Clojure에서는 벡터를 함수로 사용할 수도 있으므로 다음과 같이 벡터를 사용해 구현할 수도 있다.</p><pre><code class="language-clojure">(defn- value [n]
+  ([1 2 5 10 20 50 100 200] (dec n)))
+</code></pre><p>벡터의 인덱스는 0부터 시작하고 동전 종류 숫자는 1부터 시작하므로, <code>dec</code> 함수로 인자 값을 1 감소시켰다. 동전 종류 숫자를 0부터 시작하게 할 수도 있다. 그렇게 한다면 이 함수를 호출하는 쪽에서 그에 맞게 조건을 설정하면 된다.</p><p>편의상 동전을 금액의 오름차순으로 정렬해 놓았지만, 사실 순서는 상관없다. 두 구현 모두 충분히 간단하지만, 벡터를 이용한 구현은 <code>dec</code> 함수를 호출하는 부분이 있어서인지 <code>case</code>를 사용한 구현보다 조금 느리다.</p><p>금액을 <code>amt</code>라고 할 때, <code>n</code>가지 동전을 가지고 <code>amt</code>를 만드는 방법은 다음 두 가짓수의 합과 같다.</p><ul><li>맨 처음 나오는 동전을 제외한 나머지 동전으로 <code>amt</code>를 만드는 가짓수</li><li>처음 나온 동전 금액을 <code>d</code>라 할 때 <code>amt - d</code> 금액을 <code>n</code>가지 동전으로 만드는 가짓수</li></ul><p>첫 번째 경우를 계산하려면 동전을 한 가지 제외하고 <code>amt</code>를 만드는 가짓수를 구해야 한다. 사용할 수 있는 동전은 한 가지 줄어들었지만 문제는 동일하다. 두 번째 경우는 사용할 수 있는 동전은 그대로지만 금액이 줄어든 상태에서 가짓수를 구해야 하는데, 금액만 줄었지 문제는 동일함을 알 수 있다. 즉, 첫 번째 경우나 두 번째 경우 모두 동전 가짓수나 금액만 줄어들 뿐 로직(또는 알고리즘)은 그대로 쓸 수 있다. 즉 재귀를 사용할 수 있다.</p><p>재귀를 사용할 때는 항상 규칙이 끝나는 경우를 정리해야 한다.</p><ul><li><code>amt</code>가 0이면 해당 금액을 만드는 방법은 1가지 밖에 없다.</li><li><code>amt</code>가 0보다 작은 금액을 만드는 방법은 없다. (0가지)</li><li><code>n</code>이 0이면 금액을 만드는 방법은 없다. (0가지)</li></ul><p>이 규칙을 이용해 금액을 만드는 방법의 가짓수를 구하는 함수를 다음과 같이 만들 수 있다.</p><pre><code class="language-clojure">(defn- cc [amt n]
+  (cond
+    (= amt 0) 1
+    (&lt; amt 0) 0
+    (= n 0) 0
+    :else (+ (cc amt (dec n))
+             (cc (- amt (value n)) n))))
+</code></pre><p>문제를 다 푼 것이나 마찬가지다. <code>(cc 200 8)</code>을 실행하면 답을 구할 수 있다. 다른 풀이와 코드 형식을 맞추기 위해 다음과 같이 <code>solve</code> 함수를 만든다.</p><pre><code class="language-clojure">(defn solve []
+  (cc 200 8))
 </code></pre><p>실행 결과는 다음과 같다.</p><pre class="console">p031=&gt; (time (solve))
 "Elapsed time: 171.989327 msecs"
 736??
@@ -31,5 +31,4 @@ on
 동전 종류와 개수만 다를뿐 동일한 문제와 풀이가 있다. 프로젝트 오일러 31 풀이는 책의 설명을 글쓴이의 취향에 맞게 재구성한 것이다.</li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2015/project-euler-032/" id="article-nav-newer">프로젝트 오일러 32</a>
-<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2015/project-euler-030/" id="article-nav-older">프로젝트 오일러 30</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer>
-</body></html>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2015/project-euler-030/" id="article-nav-older">프로젝트 오일러 30</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer></body></html>
