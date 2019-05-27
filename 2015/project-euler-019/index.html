@@ -3,56 +3,56 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2015-05-15" itemprop="datePublished">2015-05-15</time>
 on
 <a href="/tags/project-euler/">Project-Euler</a>
-<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 19</h1></header><section class="post-content"><blockquote><p>20세기에서, 매월 1일이 일요일인 경우는 몇 번?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=19">[국어]</a> <a href="https://projecteuler.net/problem=19">[영어]</a></p></blockquote><p>Java에서 제공하는 <code>Calendar</code>를 사용하면 쉽게 답을 구할 수 있다. 그러나 <code>Calender</code>는 가변객체(mutable object)인데다 클래스도 잘못 설계되어 있어 코드 모양이 어그러진다. Java 8부터는 거지 같은 <code>Calendar</code> 대신 <code>LocalDate</code>를 사용할 수 있다. <code>LocalDate</code>는 값 객체로 Clojure에서 사용해도 코드가 어그러지지 않는다. 조금 더 생각하면 라이브러리의 도움을 받지 않고도 풀 수 있다.</p><h2 id="방법-1-calendar-사용">방법 1: Calendar 사용</h2><p><code>Calendar</code> 인스턴스를 얻은 다음 연도를 1901년부터 2000년까지, 달을 0(1월)부터 11(12월)까지 바꿔가면서 각 달의 1일이 일요일인 경우에만 <code>[year month 1]</code>을 만든다. 편의상 <code>[year month 1]</code>을 썼지만, 값을 확인하지 않고 <code>count</code>만 하므로 <code>1</code> 또는 <code>:x</code>와 같이 아무 값이나 넣어도 상관 없다. <code>(for ...)</code>를 실행한 결과 시퀀스를 <code>count</code> 하면 답을 구할 수 있다.</p><pre><code class="language-clojure">(defn solve1 []
-  (let [cal (Calendar/getInstance)]
-    (count (for [year (range 1901 2001)
-                 month (range 0 12)
-                 :when (= Calendar/SUNDAY (do (. cal set year month 1)
-                                              (. cal get Calendar/DAY_OF_WEEK)))]
-             [year month 1]))))
-</code></pre><p><code>Calendar</code>는 가변객체이므로 하나의 인스턴스에 값을 계속 설정하면서 조건에 맞는 경우만 값이 나오도록 했다. 인터페이스가 유창하지(fluent) 않으므로 연-월-일을 설정한 다음 요일을 얻기 위해 <code>(do ...)</code>를 사용했다. 보기 좋은 코드는 아니다.</p><h2 id="방법-2-localdate-사용">방법 2: LocalDate 사용</h2><p><code>LocalDate</code>는 Java 8에서 추가된 새로운 날짜/시간 관련 클래스다. 기존의 <code>Date</code>나 <code>Calendar</code>와 달리 값 객체이므로 인스턴스에 어떤 연산을 하면 새로운 객체가 리턴된다. 기본 로직은 <code>Calendar</code>를 사용했을 때와 동일하다. <code>Calendar</code>를 사용했을 때보다 훨씬 나아졌다.</p><pre><code class="language-clojure">(defn solve2 []
-  (let [base (LocalDate/of 1901 1 1)]
-    (-&gt;&gt; (map #(.plusMonths base %) (range))
-         (take-while #(&lt;= (.getYear %) 2000))
-         (filter #(= (.getDayOfWeek %) DayOfWeek/SUNDAY))
-         (count))))
-</code></pre><h2 id="방법-3-날짜-더하기-직접-구현">방법 3: 날짜 더하기 직접 구현</h2><p><code>Calendar</code>나 <code>LocalDate</code>와 같은 날짜 라이브러리 클래스를 사용하면 문제 풀이가 너무 쉽다. 이런 클래스를 이용해 푸는 것은 출제자의 의도가 아닐 것이다. 라이브러리 도움 없이 문제를 풀어 보자.</p><p>가장 먼저 생각나는 방법은 1900년 1월 1일(월)부터 하루씩 더해가며 조건을 만족하는 날만 뽑아내 세는 것이다. 다만 달마다 날짜 수가 다르고 윤년도 고려해야 한다.</p><p>문제에 윤년의 조건은 다음과 같이 기술되어 있다.</p><blockquote><p>윤년은 연도를 4로 나누어 떨어지는 해를 말한다. 하지만 400으로 나누어 떨어지지 않는 매 100년째는 윤년이 아니며, 400으로 나누어 떨어지면 윤년이다</p></blockquote><p>따라서 어떤 해가 윤년인지 판단하는 함수는 다음과 같이 작성할 수 있다.</p><pre><code class="language-clojure">(defn- divisible? [x n] (zero? (mod x n)))
+<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 19</h1></header><section class="post-content"><blockquote><p>20세기에서, 매월 1일이 일요일인 경우는 몇 번?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=19">[국어]</a> <a href="https://projecteuler.net/problem=19">[영어]</a></p></blockquote><p>Java에서 제공하는 <code>Calendar</code>를 사용하면 쉽게 답을 구할 수 있다. 그러나 <code>Calender</code>는 가변객체(mutable object)인데다 클래스도 잘못 설계되어 있어 코드 모양이 어그러진다. Java 8부터는 거지 같은 <code>Calendar</code> 대신 <code>LocalDate</code>를 사용할 수 있다. <code>LocalDate</code>는 값 객체로 Clojure에서 사용해도 코드가 어그러지지 않는다. 조금 더 생각하면 라이브러리의 도움을 받지 않고도 풀 수 있다.</p><h2 id="방법-1-calendar-사용">방법 1: Calendar 사용</h2><p><code>Calendar</code> 인스턴스를 얻은 다음 연도를 1901년부터 2000년까지, 달을 0(1월)부터 11(12월)까지 바꿔가면서 각 달의 1일이 일요일인 경우에만 <code>[year month 1]</code>을 만든다. 편의상 <code>[year month 1]</code>을 썼지만, 값을 확인하지 않고 <code>count</code>만 하므로 <code>1</code> 또는 <code>:x</code>와 같이 아무 값이나 넣어도 상관 없다. <code>(for ...)</code>를 실행한 결과 시퀀스를 <code>count</code> 하면 답을 구할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> solve1 []
+  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [cal (<span class="hljs-name">Calendar/getInstance</span>)]
+    (<span class="hljs-name"><span class="hljs-builtin-name">count</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">for</span></span> [year (<span class="hljs-name"><span class="hljs-builtin-name">range</span></span> <span class="hljs-number">1901</span> <span class="hljs-number">2001</span>)
+                 month (<span class="hljs-name"><span class="hljs-builtin-name">range</span></span> <span class="hljs-number">0</span> <span class="hljs-number">12</span>)
+                 <span class="hljs-symbol">:when</span> (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> Calendar/SUNDAY (<span class="hljs-name"><span class="hljs-builtin-name">do</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">.</span></span> cal set year month <span class="hljs-number">1</span>)
+                                              (<span class="hljs-name"><span class="hljs-builtin-name">.</span></span> cal get Calendar/DAY_OF_WEEK)))]
+             [year month <span class="hljs-number">1</span>]))))
+</code></pre><p><code>Calendar</code>는 가변객체이므로 하나의 인스턴스에 값을 계속 설정하면서 조건에 맞는 경우만 값이 나오도록 했다. 인터페이스가 유창하지(fluent) 않으므로 연-월-일을 설정한 다음 요일을 얻기 위해 <code>(do ...)</code>를 사용했다. 보기 좋은 코드는 아니다.</p><h2 id="방법-2-localdate-사용">방법 2: LocalDate 사용</h2><p><code>LocalDate</code>는 Java 8에서 추가된 새로운 날짜/시간 관련 클래스다. 기존의 <code>Date</code>나 <code>Calendar</code>와 달리 값 객체이므로 인스턴스에 어떤 연산을 하면 새로운 객체가 리턴된다. 기본 로직은 <code>Calendar</code>를 사용했을 때와 동일하다. <code>Calendar</code>를 사용했을 때보다 훨씬 나아졌다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> solve2 []
+  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [base (<span class="hljs-name">LocalDate/of</span> <span class="hljs-number">1901</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span>)]
+    (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> #(<span class="hljs-name">.plusMonths</span> base %) (<span class="hljs-name"><span class="hljs-builtin-name">range</span></span>))
+         (<span class="hljs-name"><span class="hljs-builtin-name">take-while</span></span> #(<span class="hljs-name"><span class="hljs-builtin-name">&lt;=</span></span> (<span class="hljs-name">.getYear</span> %) <span class="hljs-number">2000</span>))
+         (<span class="hljs-name"><span class="hljs-builtin-name">filter</span></span> #(<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> (<span class="hljs-name">.getDayOfWeek</span> %) DayOfWeek/SUNDAY))
+         (<span class="hljs-name"><span class="hljs-builtin-name">count</span></span>))))
+</code></pre><h2 id="방법-3-날짜-더하기-직접-구현">방법 3: 날짜 더하기 직접 구현</h2><p><code>Calendar</code>나 <code>LocalDate</code>와 같은 날짜 라이브러리 클래스를 사용하면 문제 풀이가 너무 쉽다. 이런 클래스를 이용해 푸는 것은 출제자의 의도가 아닐 것이다. 라이브러리 도움 없이 문제를 풀어 보자.</p><p>가장 먼저 생각나는 방법은 1900년 1월 1일(월)부터 하루씩 더해가며 조건을 만족하는 날만 뽑아내 세는 것이다. 다만 달마다 날짜 수가 다르고 윤년도 고려해야 한다.</p><p>문제에 윤년의 조건은 다음과 같이 기술되어 있다.</p><blockquote><p>윤년은 연도를 4로 나누어 떨어지는 해를 말한다. 하지만 400으로 나누어 떨어지지 않는 매 100년째는 윤년이 아니며, 400으로 나누어 떨어지면 윤년이다</p></blockquote><p>따라서 어떤 해가 윤년인지 판단하는 함수는 다음과 같이 작성할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> divisible? [x n] (<span class="hljs-name"><span class="hljs-builtin-name">zero?</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">mod</span></span> x n)))
 
-(defn- leap-year? [year]
-  (if (divisible? year 100)
-    (divisible? year 400)
-    (divisible? year 4)))
-</code></pre><p>그리고 어떤 달의 날짜 수를 리턴하는 함수는 다음과 같이 작성할 수 있다. 2월은 윤년인 경우는 29, 윤년이 아닌 경우는 28을 리턴해야 한다. 따라서 인자로 연도와 달을 전달해야 한다.</p><pre><code class="language-clojure">(defn- days-in-month [year month]
-  {:pre [(&lt;= 1 month 12)]}
-  (cond (#{1 3 5 7 8 10 12} month) 31
-        (#{4 6 9 11} month) 30
-        (leap-year? year) 29
-        :else 28))
-</code></pre><p>이제 주어진 날의 다음 날을 구하는 함수를 작성해보자. 날짜는 <code>vector</code>를 사용해 <code>[year month day-of-month day-of-week]</code>와 같은 형태로 표현하려 한다. 날짜가 해당 월의 마지막 날이면 다음 월로 바꾸고 날짜를 1일로 바꾼다. 마지막 달의 마지막 날(12월31일)이면 연도가 하나 증가하고 날짜는 1월 1일로 바꿔주면 된다. 요일(day-of-week)은 0부터 6까지의 숫자로 나타내며 0은 일요일, 1은 월요일, ..., 6은 토요일이다. 따라서 다음 날을 구하는 함수는 다음과 같이 작성할 수 있다.</p><pre><code class="language-clojure">(defn- next-date [[year month dm dw]]
-  (let [last-day (days-in-month year month)
-        next-dw (fn [dw] (mod (inc dw) 7))]
-    (if (&lt; dm last-day)
-      [year month (inc dm) (next-dw dw)]
-      (if (&lt; month 12)
-        [year (inc month) 1 (next-dw dw)]
-        [(inc year) 1 1 (next-dw dw)]))))
-</code></pre><p>이제 1900년 1월 1일부터 시작해 다음 날을 구해가면서 조건에 맞는 날만 세면 된다. 1900-01-01부터 시작하지만 1901년 1월 1일부터 2000년 12월 31일 사이의 기간 중 매월 1일이 일요일인 경우만 세면 된다.</p><pre><code class="language-clojure">(defn solve3 []
-  (-&gt;&gt; (iterate next-date [1900 1 1 1])
-       (drop-while (fn [[year _ _ _]] (&lt;= year 1900)))
-       (take-while (fn [[year _ _ _]] (&lt;= year 2000)))
-       (filter (fn [[_ _ dm dw]] (and (= 1 dm) (zero? dw))))
-       (count)))
-</code></pre><h2 id="방법-4-월-더하기-직접-구현">방법 4: 월 더하기 직접 구현</h2><p>방법 3과 같이 해도 답을 잘 구한다. 100년이라 해봐야 대략 36,500일고 이 정도 루프는 1초도 안 걸린다. 다만 <code>Calendar</code>나 <code>LocalDate</code>를 사용했을 때는 한 달씩 더했는데 지금은 하루씩 더하는 것은 비효율적이라는 생각이 든다. 한 달씩 더하는 방식으로 개선해보자.</p><p>여기서는 항상 1일만 생각하면 된다. 현재 달 1일의 요일을 알 때 다음 달 1일의 요일을 구하려면 그냥 그 달 날짜 수를 더한 다음 7로 나눈 나머지를 구하면 된다. 따라서 현재 달 1일을 알 때 다음 달 1일을 구하는 함수는 다음과 같이 작성할 수 있다.</p><pre><code class="language-clojure">(defn- next-month [[year month dm dw]]
-  (let [dw (mod (+ dw (days-in-month year month)) 7)]
-    (if (= month 12)
-      [(inc year) 1 1 dw]
-      [year (inc month) 1 dw])))
-</code></pre><p>이 함수를 이용하면 문제를 다음과 같이 풀 수 있다. <code>next-date</code> 대신 <code>next-month</code>를 사용한 것만 빼면 <code>solve3</code>과 동일하다.</p><pre><code class="language-clojure">(defn solve4 []
-  (-&gt;&gt; (iterate next-month [1900 1 1 1])
-       (drop-while (fn [[year _ _ _]] (&lt;= year 1900)))
-       (take-while (fn [[year _ _ _]] (&lt;= year 2000)))
-       (filter (fn [[_ _ dm dw]] (and (= 1 dm) (zero? dw))))
-       (count)))
+(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> leap-year? [year]
+  (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name">divisible?</span> year <span class="hljs-number">100</span>)
+    (<span class="hljs-name">divisible?</span> year <span class="hljs-number">400</span>)
+    (<span class="hljs-name">divisible?</span> year <span class="hljs-number">4</span>)))
+</code></pre><p>그리고 어떤 달의 날짜 수를 리턴하는 함수는 다음과 같이 작성할 수 있다. 2월은 윤년인 경우는 29, 윤년이 아닌 경우는 28을 리턴해야 한다. 따라서 인자로 연도와 달을 전달해야 한다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> days-in-month [year month]
+  {<span class="hljs-symbol">:pre</span> [(<span class="hljs-name"><span class="hljs-builtin-name">&lt;=</span></span> <span class="hljs-number">1</span> month <span class="hljs-number">12</span>)]}
+  (<span class="hljs-name"><span class="hljs-builtin-name">cond</span></span> (<span class="hljs-name">#</span>{<span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">5</span> <span class="hljs-number">7</span> <span class="hljs-number">8</span> <span class="hljs-number">10</span> <span class="hljs-number">12</span>} month) <span class="hljs-number">31</span>
+        (<span class="hljs-name">#</span>{<span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">9</span> <span class="hljs-number">11</span>} month) <span class="hljs-number">30</span>
+        (<span class="hljs-name">leap-year?</span> year) <span class="hljs-number">29</span>
+        <span class="hljs-symbol">:else</span> <span class="hljs-number">28</span>))
+</code></pre><p>이제 주어진 날의 다음 날을 구하는 함수를 작성해보자. 날짜는 <code>vector</code>를 사용해 <code>[year month day-of-month day-of-week]</code>와 같은 형태로 표현하려 한다. 날짜가 해당 월의 마지막 날이면 다음 월로 바꾸고 날짜를 1일로 바꾼다. 마지막 달의 마지막 날(12월31일)이면 연도가 하나 증가하고 날짜는 1월 1일로 바꿔주면 된다. 요일(day-of-week)은 0부터 6까지의 숫자로 나타내며 0은 일요일, 1은 월요일, ..., 6은 토요일이다. 따라서 다음 날을 구하는 함수는 다음과 같이 작성할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> next-date [[year month dm dw]]
+  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [last-day (<span class="hljs-name">days-in-month</span> year month)
+        next-dw (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [dw] (<span class="hljs-name"><span class="hljs-builtin-name">mod</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> dw) <span class="hljs-number">7</span>))]
+    (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">&lt;</span></span> dm last-day)
+      [year month (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> dm) (<span class="hljs-name">next-dw</span> dw)]
+      (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">&lt;</span></span> month <span class="hljs-number">12</span>)
+        [year (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> month) <span class="hljs-number">1</span> (<span class="hljs-name">next-dw</span> dw)]
+        [(<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> year) <span class="hljs-number">1</span> <span class="hljs-number">1</span> (<span class="hljs-name">next-dw</span> dw)]))))
+</code></pre><p>이제 1900년 1월 1일부터 시작해 다음 날을 구해가면서 조건에 맞는 날만 세면 된다. 1900-01-01부터 시작하지만 1901년 1월 1일부터 2000년 12월 31일 사이의 기간 중 매월 1일이 일요일인 경우만 세면 된다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> solve3 []
+  (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">iterate</span></span> next-date [<span class="hljs-number">1900</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span>])
+       (<span class="hljs-name"><span class="hljs-builtin-name">drop-while</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [[year _ _ _]] (<span class="hljs-name"><span class="hljs-builtin-name">&lt;=</span></span> year <span class="hljs-number">1900</span>)))
+       (<span class="hljs-name"><span class="hljs-builtin-name">take-while</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [[year _ _ _]] (<span class="hljs-name"><span class="hljs-builtin-name">&lt;=</span></span> year <span class="hljs-number">2000</span>)))
+       (<span class="hljs-name"><span class="hljs-builtin-name">filter</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [[_ _ dm dw]] (<span class="hljs-name"><span class="hljs-builtin-name">and</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> <span class="hljs-number">1</span> dm) (<span class="hljs-name"><span class="hljs-builtin-name">zero?</span></span> dw))))
+       (<span class="hljs-name"><span class="hljs-builtin-name">count</span></span>)))
+</code></pre><h2 id="방법-4-월-더하기-직접-구현">방법 4: 월 더하기 직접 구현</h2><p>방법 3과 같이 해도 답을 잘 구한다. 100년이라 해봐야 대략 36,500일고 이 정도 루프는 1초도 안 걸린다. 다만 <code>Calendar</code>나 <code>LocalDate</code>를 사용했을 때는 한 달씩 더했는데 지금은 하루씩 더하는 것은 비효율적이라는 생각이 든다. 한 달씩 더하는 방식으로 개선해보자.</p><p>여기서는 항상 1일만 생각하면 된다. 현재 달 1일의 요일을 알 때 다음 달 1일의 요일을 구하려면 그냥 그 달 날짜 수를 더한 다음 7로 나눈 나머지를 구하면 된다. 따라서 현재 달 1일을 알 때 다음 달 1일을 구하는 함수는 다음과 같이 작성할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> next-month [[year month dm dw]]
+  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [dw (<span class="hljs-name"><span class="hljs-builtin-name">mod</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> dw (<span class="hljs-name">days-in-month</span> year month)) <span class="hljs-number">7</span>)]
+    (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> month <span class="hljs-number">12</span>)
+      [(<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> year) <span class="hljs-number">1</span> <span class="hljs-number">1</span> dw]
+      [year (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> month) <span class="hljs-number">1</span> dw])))
+</code></pre><p>이 함수를 이용하면 문제를 다음과 같이 풀 수 있다. <code>next-date</code> 대신 <code>next-month</code>를 사용한 것만 빼면 <code>solve3</code>과 동일하다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> solve4 []
+  (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">iterate</span></span> next-month [<span class="hljs-number">1900</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span>])
+       (<span class="hljs-name"><span class="hljs-builtin-name">drop-while</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [[year _ _ _]] (<span class="hljs-name"><span class="hljs-builtin-name">&lt;=</span></span> year <span class="hljs-number">1900</span>)))
+       (<span class="hljs-name"><span class="hljs-builtin-name">take-while</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [[year _ _ _]] (<span class="hljs-name"><span class="hljs-builtin-name">&lt;=</span></span> year <span class="hljs-number">2000</span>)))
+       (<span class="hljs-name"><span class="hljs-builtin-name">filter</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [[_ _ dm dw]] (<span class="hljs-name"><span class="hljs-builtin-name">and</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> <span class="hljs-number">1</span> dm) (<span class="hljs-name"><span class="hljs-builtin-name">zero?</span></span> dw))))
+       (<span class="hljs-name"><span class="hljs-builtin-name">count</span></span>)))
 </code></pre><h2 id="결과">결과</h2><p>실행 결과는 다음과 같다.</p><pre class="console">p019=&gt; (do
   #_=&gt;   (time (print "1: " (solve1) "\t"))
   #_=&gt;   (time (print "2: " (solve2) "\t"))
@@ -66,4 +66,5 @@ on
 Java의 <code>Date</code>와 <code>Calendar</code> 클래스의 잘못된 점이 잘 정리되어 있다.</li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2015/project-euler-020/" id="article-nav-newer">프로젝트 오일러 20</a>
-<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2015/project-euler-018/" id="article-nav-older">프로젝트 오일러 18</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer></body></html>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2015/project-euler-018/" id="article-nav-older">프로젝트 오일러 18</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer>
+</body></html>
