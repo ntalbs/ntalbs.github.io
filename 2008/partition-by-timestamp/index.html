@@ -39,8 +39,8 @@ on
 </code></pre><p>그러나 위와 같은 SQL을 실행시키면 다음과 같은 에러가 발생한다.</p><pre><code class="language-sql hljs">partition p2006 values
    less than (to_timestamp('20070101','YYYYMMDD')),
               *
-<span class="hljs-keyword">ERROR </span>at line 4:
-ORA<span class="hljs-string">-30078</span>: partition bound must be
+ERROR at line 4:
+ORA-30078: partition bound must be
 TIME/TIMESTAMP WITH TIME ZONE literals
 </code></pre><p><code>TIMESTAMP</code> 컬럼으로 파티션을 하는 정확한 문법은 다음과 같다.</p><pre><code class="language-sql hljs"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> t (...)
 <span class="hljs-keyword">tablespace</span> ...

@@ -111,58 +111,58 @@ on
  2013 | 22428 | 18490 | 22794 | 23316 | 26798 | ...
  2014 | 18252 |  9863 | 22081 | 24066 | 17110 | ...
 (2 rows)
-</pre><p>여기서는 <code>sum</code>을 사용했지만 경우에 따라 <code>count</code>, <code>max</code>, <code>min</code> 등의 다른 Aggregate 함수를 사용해야 할 수도 있다.</p><h2 id="방법2-with와-스칼라-서브쿼리를-사용하는-방법">방법2: WITH와 스칼라 서브쿼리를 사용하는 방법</h2><p><code>with</code>와 스칼라 서브쿼리를 이용해 다음과 같은 쿼리를 작성할 수도 있다.</p><pre><code class="language-sql hljs"><span class="hljs-keyword">with</span> m <span class="hljs-keyword">as</span> (
-  select
-    extract(<span class="hljs-built_in">year</span> <span class="hljs-keyword">from</span> order_date) <span class="hljs-string">"year"</span>,
-    extract(<span class="hljs-built_in">month</span> <span class="hljs-keyword">from</span> order_date) <span class="hljs-string">"month"</span>,
-    sum(order_amt) amt
+</pre><p>여기서는 <code>sum</code>을 사용했지만 경우에 따라 <code>count</code>, <code>max</code>, <code>min</code> 등의 다른 Aggregate 함수를 사용해야 할 수도 있다.</p><h2 id="방법2-with와-스칼라-서브쿼리를-사용하는-방법">방법2: WITH와 스칼라 서브쿼리를 사용하는 방법</h2><p><code>with</code>와 스칼라 서브쿼리를 이용해 다음과 같은 쿼리를 작성할 수도 있다.</p><pre><code class="language-sql hljs">with m as (
+  <span class="hljs-keyword">select</span>
+    <span class="hljs-keyword">extract</span>(<span class="hljs-keyword">year</span> <span class="hljs-keyword">from</span> order_date) <span class="hljs-string">"year"</span>,
+    <span class="hljs-keyword">extract</span>(<span class="hljs-keyword">month</span> <span class="hljs-keyword">from</span> order_date) <span class="hljs-string">"month"</span>,
+    <span class="hljs-keyword">sum</span>(order_amt) amt
   <span class="hljs-keyword">from</span> orders
-  <span class="hljs-keyword">where</span> order_date <span class="hljs-keyword">between</span> '<span class="hljs-number">2013</span><span class="hljs-number">-01</span><span class="hljs-number">-01</span>' <span class="hljs-keyword">and</span> '<span class="hljs-number">2014</span><span class="hljs-number">-12</span><span class="hljs-number">-31</span>'
-  group <span class="hljs-keyword">by</span>
-    extract(<span class="hljs-built_in">year</span> <span class="hljs-keyword">from</span> order_date),
-    extract(<span class="hljs-built_in">month</span> <span class="hljs-keyword">from</span> order_date)
+  <span class="hljs-keyword">where</span> order_date <span class="hljs-keyword">between</span> <span class="hljs-string">'2013-01-01'</span> <span class="hljs-keyword">and</span> <span class="hljs-string">'2014-12-31'</span>
+  <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span>
+    <span class="hljs-keyword">extract</span>(<span class="hljs-keyword">year</span> <span class="hljs-keyword">from</span> order_date),
+    <span class="hljs-keyword">extract</span>(<span class="hljs-keyword">month</span> <span class="hljs-keyword">from</span> order_date)
 )
-select <span class="hljs-string">"year"</span>,
-  (select amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.<span class="hljs-built_in">year</span> = t.<span class="hljs-built_in">year</span> <span class="hljs-keyword">and</span> m.<span class="hljs-built_in">month</span> =  <span class="hljs-number">1</span>) <span class="hljs-string">"Jan"</span>,
-  (select amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.<span class="hljs-built_in">year</span> = t.<span class="hljs-built_in">year</span> <span class="hljs-keyword">and</span> m.<span class="hljs-built_in">month</span> =  <span class="hljs-number">2</span>) <span class="hljs-string">"Feb"</span>,
-  (select amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.<span class="hljs-built_in">year</span> = t.<span class="hljs-built_in">year</span> <span class="hljs-keyword">and</span> m.<span class="hljs-built_in">month</span> =  <span class="hljs-number">3</span>) <span class="hljs-string">"Mar"</span>,
-  (select amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.<span class="hljs-built_in">year</span> = t.<span class="hljs-built_in">year</span> <span class="hljs-keyword">and</span> m.<span class="hljs-built_in">month</span> =  <span class="hljs-number">4</span>) <span class="hljs-string">"Apr"</span>,
-  (select amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.<span class="hljs-built_in">year</span> = t.<span class="hljs-built_in">year</span> <span class="hljs-keyword">and</span> m.<span class="hljs-built_in">month</span> =  <span class="hljs-number">5</span>) <span class="hljs-string">"May"</span>,
-  (select amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.<span class="hljs-built_in">year</span> = t.<span class="hljs-built_in">year</span> <span class="hljs-keyword">and</span> m.<span class="hljs-built_in">month</span> =  <span class="hljs-number">6</span>) <span class="hljs-string">"Jun"</span>,
-  (select amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.<span class="hljs-built_in">year</span> = t.<span class="hljs-built_in">year</span> <span class="hljs-keyword">and</span> m.<span class="hljs-built_in">month</span> =  <span class="hljs-number">7</span>) <span class="hljs-string">"Jul"</span>,
-  (select amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.<span class="hljs-built_in">year</span> = t.<span class="hljs-built_in">year</span> <span class="hljs-keyword">and</span> m.<span class="hljs-built_in">month</span> =  <span class="hljs-number">8</span>) <span class="hljs-string">"Aug"</span>,
-  (select amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.<span class="hljs-built_in">year</span> = t.<span class="hljs-built_in">year</span> <span class="hljs-keyword">and</span> m.<span class="hljs-built_in">month</span> =  <span class="hljs-number">9</span>) <span class="hljs-string">"Sep"</span>,
-  (select amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.<span class="hljs-built_in">year</span> = t.<span class="hljs-built_in">year</span> <span class="hljs-keyword">and</span> m.<span class="hljs-built_in">month</span> = <span class="hljs-number">10</span>) <span class="hljs-string">"Oct"</span>,
-  (select amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.<span class="hljs-built_in">year</span> = t.<span class="hljs-built_in">year</span> <span class="hljs-keyword">and</span> m.<span class="hljs-built_in">month</span> = <span class="hljs-number">11</span>) <span class="hljs-string">"Nov"</span>,
-  (select amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.<span class="hljs-built_in">year</span> = t.<span class="hljs-built_in">year</span> <span class="hljs-keyword">and</span> m.<span class="hljs-built_in">month</span> = <span class="hljs-number">12</span>) <span class="hljs-string">"Dec"</span>
+<span class="hljs-keyword">select</span> <span class="hljs-string">"year"</span>,
+  (<span class="hljs-keyword">select</span> amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.year = t.year <span class="hljs-keyword">and</span> m.month =  <span class="hljs-number">1</span>) <span class="hljs-string">"Jan"</span>,
+  (<span class="hljs-keyword">select</span> amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.year = t.year <span class="hljs-keyword">and</span> m.month =  <span class="hljs-number">2</span>) <span class="hljs-string">"Feb"</span>,
+  (<span class="hljs-keyword">select</span> amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.year = t.year <span class="hljs-keyword">and</span> m.month =  <span class="hljs-number">3</span>) <span class="hljs-string">"Mar"</span>,
+  (<span class="hljs-keyword">select</span> amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.year = t.year <span class="hljs-keyword">and</span> m.month =  <span class="hljs-number">4</span>) <span class="hljs-string">"Apr"</span>,
+  (<span class="hljs-keyword">select</span> amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.year = t.year <span class="hljs-keyword">and</span> m.month =  <span class="hljs-number">5</span>) <span class="hljs-string">"May"</span>,
+  (<span class="hljs-keyword">select</span> amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.year = t.year <span class="hljs-keyword">and</span> m.month =  <span class="hljs-number">6</span>) <span class="hljs-string">"Jun"</span>,
+  (<span class="hljs-keyword">select</span> amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.year = t.year <span class="hljs-keyword">and</span> m.month =  <span class="hljs-number">7</span>) <span class="hljs-string">"Jul"</span>,
+  (<span class="hljs-keyword">select</span> amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.year = t.year <span class="hljs-keyword">and</span> m.month =  <span class="hljs-number">8</span>) <span class="hljs-string">"Aug"</span>,
+  (<span class="hljs-keyword">select</span> amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.year = t.year <span class="hljs-keyword">and</span> m.month =  <span class="hljs-number">9</span>) <span class="hljs-string">"Sep"</span>,
+  (<span class="hljs-keyword">select</span> amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.year = t.year <span class="hljs-keyword">and</span> m.month = <span class="hljs-number">10</span>) <span class="hljs-string">"Oct"</span>,
+  (<span class="hljs-keyword">select</span> amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.year = t.year <span class="hljs-keyword">and</span> m.month = <span class="hljs-number">11</span>) <span class="hljs-string">"Nov"</span>,
+  (<span class="hljs-keyword">select</span> amt <span class="hljs-keyword">from</span> m <span class="hljs-keyword">where</span> m.year = t.year <span class="hljs-keyword">and</span> m.month = <span class="hljs-number">12</span>) <span class="hljs-string">"Dec"</span>
 <span class="hljs-keyword">from</span> m t
-group <span class="hljs-keyword">by</span> <span class="hljs-string">"year"</span>
-order <span class="hljs-keyword">by</span> <span class="hljs-number">1</span>;
-</code></pre><h2 id="방법3-pivot을-사용하는-방법">방법3: PIVOT을 사용하는 방법</h2><p>Oracle, PostgreSQL 등의 DBMS는 쿼리에서 pivot을 지원한다. Oracle에는 11g부터 <code>pivot</code>, <code>unpivot</code> 기능이 추가되었다. PostgreSQL에서는 <code>tablefunc</code> 모듈에 있는 <code>crosstab</code>을 이용해 pivot된 결과를 만들 수 있다. PostgreSQL에서 pivot 기능을 사용하려면 먼저 <code>tablefunc</code> 확장기능을 활성화해야 한다.</p><pre><code class="language-sql hljs">CREATE <span class="hljs-keyword">EXTENSION </span>tablefunc<span class="hljs-comment">;</span>
+<span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> <span class="hljs-string">"year"</span>
+<span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-number">1</span>;
+</code></pre><h2 id="방법3-pivot을-사용하는-방법">방법3: PIVOT을 사용하는 방법</h2><p>Oracle, PostgreSQL 등의 DBMS는 쿼리에서 pivot을 지원한다. Oracle에는 11g부터 <code>pivot</code>, <code>unpivot</code> 기능이 추가되었다. PostgreSQL에서는 <code>tablefunc</code> 모듈에 있는 <code>crosstab</code>을 이용해 pivot된 결과를 만들 수 있다. PostgreSQL에서 pivot 기능을 사용하려면 먼저 <code>tablefunc</code> 확장기능을 활성화해야 한다.</p><pre><code class="language-sql hljs"><span class="hljs-keyword">CREATE</span> EXTENSION tablefunc;
 </code></pre><p>이제 다음과 같이 <code>crosstab</code> 함수를 사용할 수 있다.</p><pre><code class="language-sql hljs"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> crosstab(
-  '<span class="hljs-keyword">select</span>
-     extract(year <span class="hljs-keyword">from</span> order_date) as year,
-     extract(month <span class="hljs-keyword">from</span> order_date) as month,
-     <span class="hljs-built_in">sum</span>(order_amt)
-   <span class="hljs-keyword">from</span> orders
-   <span class="hljs-built_in">where</span> order_date between ''<span class="hljs-number">2013</span><span class="hljs-number">-01</span><span class="hljs-number">-01</span>'' <span class="hljs-built_in">and</span> ''<span class="hljs-number">2014</span><span class="hljs-number">-12</span><span class="hljs-number">-31</span>''
-   <span class="hljs-built_in">group</span> <span class="hljs-keyword">by</span> extract(year <span class="hljs-keyword">from</span> order_date), extract(month <span class="hljs-keyword">from</span> order_date)
-   order <span class="hljs-keyword">by</span> <span class="hljs-number">1</span>',
-  '<span class="hljs-keyword">select</span> m <span class="hljs-keyword">from</span> generate_series(<span class="hljs-number">1</span>,<span class="hljs-number">12</span>) m'
-) as (
-  year <span class="hljs-type">int</span>,
-  <span class="hljs-string">"Jan"</span> <span class="hljs-type">int</span>,
-  <span class="hljs-string">"Feb"</span> <span class="hljs-type">int</span>,
-  <span class="hljs-string">"Mar"</span> <span class="hljs-type">int</span>,
-  <span class="hljs-string">"Apr"</span> <span class="hljs-type">int</span>,
-  <span class="hljs-string">"May"</span> <span class="hljs-type">int</span>,
-  <span class="hljs-string">"Jun"</span> <span class="hljs-type">int</span>,
-  <span class="hljs-string">"Jul"</span> <span class="hljs-type">int</span>,
-  <span class="hljs-string">"Aug"</span> <span class="hljs-type">int</span>,
-  <span class="hljs-string">"Sep"</span> <span class="hljs-type">int</span>,
-  <span class="hljs-string">"Oct"</span> <span class="hljs-type">int</span>,
-  <span class="hljs-string">"Nov"</span> <span class="hljs-type">int</span>,
-  <span class="hljs-string">"Dec"</span> <span class="hljs-type">int</span>
+  <span class="hljs-string">'select
+     extract(year from order_date) as year,
+     extract(month from order_date) as month,
+     sum(order_amt)
+   from orders
+   where order_date between ''2013-01-01'' and ''2014-12-31''
+   group by extract(year from order_date), extract(month from order_date)
+   order by 1'</span>,
+  <span class="hljs-string">'select m from generate_series(1,12) m'</span>
+) <span class="hljs-keyword">as</span> (
+  <span class="hljs-keyword">year</span> <span class="hljs-built_in">int</span>,
+  <span class="hljs-string">"Jan"</span> <span class="hljs-built_in">int</span>,
+  <span class="hljs-string">"Feb"</span> <span class="hljs-built_in">int</span>,
+  <span class="hljs-string">"Mar"</span> <span class="hljs-built_in">int</span>,
+  <span class="hljs-string">"Apr"</span> <span class="hljs-built_in">int</span>,
+  <span class="hljs-string">"May"</span> <span class="hljs-built_in">int</span>,
+  <span class="hljs-string">"Jun"</span> <span class="hljs-built_in">int</span>,
+  <span class="hljs-string">"Jul"</span> <span class="hljs-built_in">int</span>,
+  <span class="hljs-string">"Aug"</span> <span class="hljs-built_in">int</span>,
+  <span class="hljs-string">"Sep"</span> <span class="hljs-built_in">int</span>,
+  <span class="hljs-string">"Oct"</span> <span class="hljs-built_in">int</span>,
+  <span class="hljs-string">"Nov"</span> <span class="hljs-built_in">int</span>,
+  <span class="hljs-string">"Dec"</span> <span class="hljs-built_in">int</span>
 );
 </code></pre><h2 id="정리">정리</h2><p>쿼리로 행/열을 전환하는 방법을 살펴봤다. 약간의 기교가 필요하지만 원리를 파악하면 이해하기 어려울 정도는 아니다. Oracle 11g에서는 <code>pivot</code>, <code>unpivot</code>, PostgreSQL에서는 <code>crosstab</code>을 이용하면 다른 방법보다 깔끔하게 행/열을 전환할 수 있다.</p><h2 id="참고">참고</h2><ul><li><a href="http://oraclecoder.com/tutorials/three-ways-to-transpose-rows-into-columns-in-oracle-sql--160">Three Ways To Transpose Rows Into Columns in Oracle SQL</a>
 Oracle에서 행/열을 전환하는 방법을 설명한다.</li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>

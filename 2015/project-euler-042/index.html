@@ -97,8 +97,8 @@ on
  <use xlink:href="#MJMAIN-2F" x="6778" y="0"></use>
  <use xlink:href="#MJMAIN-32" x="7279" y="0"></use>
 </g>
-</svg></span> 정도의 단순한 수식이라면 <code>-&gt;</code> 매크로를 써서 조금 알아보기 쉽게 표현할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name">defn-</span> t [<span class="hljs-name">n</span>]
-  (<span class="hljs-name">-&gt;</span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> n <span class="hljs-number">1</span>) (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> n) (<span class="hljs-name"><span class="hljs-builtin-name">/</span></span> <span class="hljs-number">2</span>)))
+</svg></span> 정도의 단순한 수식이라면 <code>-&gt;</code> 매크로를 써서 조금 알아보기 쉽게 표현할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> t [n]
+  (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> n <span class="hljs-number">1</span>) (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> n) (/ <span class="hljs-number">2</span>)))
 </code></pre><p>삼각수의 목록을 구해 <code>set</code>에 넣어두면 문제를 풀 때 어떤 수가 삼각수인지를 빠르게 판단할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> t-set
   (<span class="hljs-name">set</span> (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> t (<span class="hljs-name"><span class="hljs-builtin-name">range</span></span> <span class="hljs-number">1</span> <span class="hljs-number">100</span>))))
 </code></pre><p>이 <code>set</code>을 이용하면 어떤 수가 삼각수인지 판단하는 함수를 다음과 같이 작성할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> triangle-number? [n]

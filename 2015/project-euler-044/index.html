@@ -236,8 +236,8 @@ n = \frac{1 + \sqrt{1 + 24x}}{6}
  <use xlink:href="#MJMATHI-50" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="908" y="-213"></use>
 </g>
-</svg></span>을 구하는 함수도 다음과 같이 작성할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name">defn-</span> p [<span class="hljs-name">n</span>]
-  (<span class="hljs-name"><span class="hljs-builtin-name">/</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> n (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> <span class="hljs-number">3</span> n) <span class="hljs-number">1</span>)) <span class="hljs-number">2</span>))
+</svg></span>을 구하는 함수도 다음과 같이 작성할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> p [n]
+  (/ (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> n (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> <span class="hljs-number">3</span> n) <span class="hljs-number">1</span>)) <span class="hljs-number">2</span>))
 </code></pre><p>위 두 함수를 이용해 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.794ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 1203.2 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-14-Title">
 <title id="MathJax-SVG-14-Title">i, j</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">

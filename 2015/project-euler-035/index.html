@@ -14,7 +14,7 @@ on
          (<span class="hljs-name"><span class="hljs-builtin-name">take</span></span> len)
          (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> #(<span class="hljs-name">parse-int</span> (<span class="hljs-name"><span class="hljs-builtin-name">apply</span></span> str %))))))
 </code></pre><p><code>circular-nums</code>는 순환수 리스트를 리턴한다. 리스트에 포함된 모든 수가 소수인지를 판별하는 함수는 다음과 같이 작성할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> all-prime? [coll]
-  (<span class="hljs-name"><span class="hljs-builtin-name">every?</span></span> prime? coll))
+  (<span class="hljs-name">every?</span> prime? coll))
 </code></pre><p>이 두 함수를 이용하면 문제는 다음과 같이 간단히 풀 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> solve0 []
   (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> primes
        (<span class="hljs-name"><span class="hljs-builtin-name">take-while</span></span> #(<span class="hljs-name"><span class="hljs-builtin-name">&lt;</span></span> % <span class="hljs-number">1000000</span>))

@@ -74,35 +74,35 @@ SQL&gt; SELECT dbms_xdb.cfg_get FROM dual;
 
  CFG_GET
  -------------------------------------------------------------
- <xdbconfig xmlns="http://xmlns.oracle.com/xdb/xdbconfig.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://xmlns.oracle.com/xdb/xdbconfig.xsd http://xmlns.oracle.com/xdb/xdbconfig.xsd">
-  <sysconfig>
-    <acl-max-age>900</acl-max-age>
-    <acl-cache-size>32</acl-cache-size>
-    <invalid-pathname-chars>,</invalid-pathname-chars>
-    <call-timeout>300</call-timeout>
-    <max-session-use>100</max-session-use>
-    <default-lock-timeout>3600</default-lock-timeout>
-    <resource-view-cache-size>1048576</resource-view-cache-size>
-    <protocolconfig>
-      <common>
+ &lt;xdbconfig xmlns="http://xmlns.oracle.com/xdb/xdbconfig.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.oracle.com/xdb/xdbconfig.xsd http://xmlns.oracle.com/xdb/xdbconfig.xsd"&gt;
+  &lt;sysconfig&gt;
+    &lt;acl-max-age&gt;900&lt;/acl-max-age&gt;
+    &lt;acl-cache-size&gt;32&lt;/acl-cache-size&gt;
+    &lt;invalid-pathname-chars&gt;,&lt;/invalid-pathname-chars&gt;
+    &lt;call-timeout&gt;300&lt;/call-timeout&gt;
+    &lt;max-session-use&gt;100&lt;/max-session-use&gt;
+    &lt;default-lock-timeout&gt;3600&lt;/default-lock-timeout&gt;
+    &lt;resource-view-cache-size&gt;1048576&lt;/resource-view-cache-size&gt;
+    &lt;protocolconfig&gt;
+      &lt;common&gt;
       ...생략...
-      </common>
-      <ftpconfig>
-        <span style="color:#000;background-color:#ff0"><ftp-port>2111</ftp-port></span>
-        <ftp-listener>local_listener</ftp-listener>
-        <ftp-protocol>tcp</ftp-protocol>
-        <session-timeout>6000</session-timeout>
-      </ftpconfig>
-      <httpconfig>
-        <span style="color:#000;background-color:#ff0"><http-port>8081</http-port></span>
-        <http-listener>local_listener</http-listener>
-        <http-protocol>tcp</http-protocol>
-        <session-timeout>6000</session-timeout>
-        <server-name>XDB HTTP Server</server-name>
+      &lt;/common&gt;
+      &lt;ftpconfig&gt;
+        <span style="color:#000;background-color:#ff0">&lt;ftp-port&gt;2111&lt;/ftp-port&gt;</span>
+        &lt;ftp-listener&gt;local_listener&lt;/ftp-listener&gt;
+        &lt;ftp-protocol&gt;tcp&lt;/ftp-protocol&gt;
+        &lt;session-timeout&gt;6000&lt;/session-timeout&gt;
+      &lt;/ftpconfig&gt;
+      &lt;httpconfig&gt;
+        <span style="color:#000;background-color:#ff0">&lt;http-port&gt;8081&lt;/http-port&gt;</span>
+        &lt;http-listener&gt;local_listener&lt;/http-listener&gt;
+        &lt;http-protocol&gt;tcp&lt;/http-protocol&gt;
+        &lt;session-timeout&gt;6000&lt;/session-timeout&gt;
+        &lt;server-name&gt;XDB HTTP Server&lt;/server-name&gt;
         ...생략...
-    </httpconfig></protocolconfig>
-  </sysconfig>
-</xdbconfig>
+    &lt;/protocolconfig&gt;
+  &lt;/sysconfig&gt;
+&lt;/xdbconfig&gt;
 </pre></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2008/deleting-db-link/" id="article-nav-newer">DB 링크 삭제 시 제약사항</a>

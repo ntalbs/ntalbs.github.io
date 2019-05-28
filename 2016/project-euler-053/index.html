@@ -192,11 +192,11 @@ on
  <use transform="scale(0.707)" xlink:href="#MJMATHI-72" x="1011" y="-213"></use>
 </g>
 </g>
-</svg></span>을 구하는 함수는 다음과 같이 간단히 작성할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name">ns</span> p053
-  (<span class="hljs-name">:require</span> [<span class="hljs-name">util</span> :refer [<span class="hljs-name">factorial</span>]]))
+</svg></span>을 구하는 함수는 다음과 같이 간단히 작성할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">ns</span></span> p053
+  (<span class="hljs-symbol">:require</span> [util <span class="hljs-symbol">:refer</span> [factorial]]))
 
-(<span class="hljs-name">defn</span> c [<span class="hljs-name">n</span> r]
-  (<span class="hljs-name"><span class="hljs-builtin-name">/</span></span> (<span class="hljs-name">factorial</span> n) (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span>' (<span class="hljs-name">factorial</span> r) (<span class="hljs-name">factorial</span> (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> n r)))))
+(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> c [n r]
+  (/ (<span class="hljs-name">factorial</span> n) (<span class="hljs-name">*'</span> (<span class="hljs-name">factorial</span> r) (<span class="hljs-name">factorial</span> (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> n r)))))
 </code></pre><p>이제 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.395ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 600.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-13-Title">
 <title id="MathJax-SVG-13-Title">n</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">

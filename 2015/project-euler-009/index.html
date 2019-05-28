@@ -423,8 +423,8 @@ T3 &amp;= (−a + 2b + 2c, −2a + b + 2c, −2a + 2b + 3c)
  <use xlink:href="#MJMAIN-35" x="2280" y="0"></use>
  <use xlink:href="#MJMAIN-29" x="2781" y="0"></use>
 </g>
-</svg></span>를 시작으로 <code>next-triplets</code>을 반복해 다음 피타고라스 수 세 개를 생성해야 한다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name">defn</span> primitive-triplets
-  ([<span class="hljs-name">ts</span>] (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [<span class="hljs-name">more</span> (<span class="hljs-name">for</span> [<span class="hljs-name">t</span> ts, next-t (<span class="hljs-name">next-triplets</span> t)] next-t)]
+</svg></span>를 시작으로 <code>next-triplets</code>을 반복해 다음 피타고라스 수 세 개를 생성해야 한다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> primitive-triplets
+  ([ts] (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [more (<span class="hljs-name"><span class="hljs-builtin-name">for</span></span> [t ts, next-t (<span class="hljs-name">next-triplets</span> t)] next-t)]
           (<span class="hljs-name">lazy-cat</span> ts (<span class="hljs-name">primitive-triplets</span> more))))
   ([] (<span class="hljs-name">primitive-triplets</span> ['(<span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>)])))
 </code></pre><p>REPL에서 확인해보면 잘 동작한다.</p><pre class="console">user=&gt; (take 10 (primitive-triplets))

@@ -2,23 +2,23 @@
 gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Java에서 배열 합치기 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"></head><body><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">Java에서 배열 합치기</div></div></div><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">+</button>
 <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2016-06-18" itemprop="datePublished">2016-06-18</time>
 on
-<a href="/tags/java/">Java</a></p><h1 class="post-title">Java에서 배열 합치기</h1></header><section class="post-content"><p>옆 자리 동료가 Java에서 배열을 합치는 간단한 방법이 있는지 질문했다. 열 개 정도의 배열을 하나로 합치고 싶다는 것이었다. 당장 떠오른 방법은 <code>System.arraycopy</code>를 사용하는 것이었지만 이걸 몰라서 물어보지는 않았을 것이다. <code>System.arraycopy</code>를 사용하면 효율적이긴 하겠지만 코드는 별로 예쁘지 않을 것이다. 혹시 이미 이 기능을 구현한 라이브러리가 있나 확인했지만 찾을 수 없었다.</p><p>간단하지만 재미있는 문제 같아 Java에서 배열을 병합하는 함수를 작성해보기로 했다.</p><pre><code class="language-java hljs">public static &lt;T&gt; T[] merge1(T[]... <span class="hljs-built_in">arrays</span>) {
-  int <span class="hljs-built_in">length</span> = Arrays.stream(<span class="hljs-built_in">arrays</span>).mapToInt(a -&gt; a.<span class="hljs-built_in">length</span>).<span class="hljs-built_in">sum</span>();
+<a href="/tags/java/">Java</a></p><h1 class="post-title">Java에서 배열 합치기</h1></header><section class="post-content"><p>옆 자리 동료가 Java에서 배열을 합치는 간단한 방법이 있는지 질문했다. 열 개 정도의 배열을 하나로 합치고 싶다는 것이었다. 당장 떠오른 방법은 <code>System.arraycopy</code>를 사용하는 것이었지만 이걸 몰라서 물어보지는 않았을 것이다. <code>System.arraycopy</code>를 사용하면 효율적이긴 하겠지만 코드는 별로 예쁘지 않을 것이다. 혹시 이미 이 기능을 구현한 라이브러리가 있나 확인했지만 찾을 수 없었다.</p><p>간단하지만 재미있는 문제 같아 Java에서 배열을 병합하는 함수를 작성해보기로 했다.</p><pre><code class="language-java hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; T[] merge1(T[]... arrays) {
+  <span class="hljs-keyword">int</span> length = Arrays.stream(arrays).mapToInt(a -&gt; a.length).sum();
 
   T[] merged = (T[]) Array.newInstance(
-    <span class="hljs-built_in">arrays</span>[<span class="hljs-number">0</span>].getClass().getComponentType(),
-    <span class="hljs-built_in">length</span>
+    arrays[<span class="hljs-number">0</span>].getClass().getComponentType(),
+    length
   );
-  int destPos = <span class="hljs-number">0</span>;
-  <span class="hljs-keyword">for</span> (T[] arr : <span class="hljs-built_in">arrays</span>) {
-    System.arraycopy(arr, <span class="hljs-number">0</span>, merged, destPos, arr.<span class="hljs-built_in">length</span>);
-    destPos += arr.<span class="hljs-built_in">length</span>;
+  <span class="hljs-keyword">int</span> destPos = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">for</span> (T[] arr : arrays) {
+    System.arraycopy(arr, <span class="hljs-number">0</span>, merged, destPos, arr.length);
+    destPos += arr.length;
   }
-  <span class="hljs-built_in">return</span> merged;
+  <span class="hljs-keyword">return</span> merged;
 }
-</code></pre><p>이렇게 함수를 만들어 놓으면 다음과 같은 식으로 배열을 쉽게 합칠 수 있다.</p><pre><code class="language-java hljs">  String<span class="hljs-string">[]</span> merged = merge1(arr1, arr2, arr3);
-</code></pre><p>구현이 복잡하지는 않지만 아름답지도 않다. <code>for</code> 루프를 돌면서 <code>System.arraycopy</code>를 호출하는 것도 마음에 들지 않고, 리플렉션을 사용해야 하는 것도 마음데 들지 않는다.</p><p>좀더 아름다운 방법이 없을까 해서 인터넷을 찾다가 좋은 방법을 알게 되었다. 배열을 스트림으로 바꾼 다음 <code>flatMap</code>을 적용해 합치는 방법이다.</p><pre><code class="language-java hljs">public static &lt;<span class="hljs-literal">T</span>&gt; <span class="hljs-literal">T</span>[] merge2(<span class="hljs-literal">T</span>[]<span class="hljs-keyword">...</span> arrays) {
-  <span class="hljs-keyword">return</span> (<span class="hljs-literal">T</span>[]) Stream.of(arrays).flatMap(a -&gt; Stream.of(a)).toArray();
+</code></pre><p>이렇게 함수를 만들어 놓으면 다음과 같은 식으로 배열을 쉽게 합칠 수 있다.</p><pre><code class="language-java hljs">  String[] merged = merge1(arr1, arr2, arr3);
+</code></pre><p>구현이 복잡하지는 않지만 아름답지도 않다. <code>for</code> 루프를 돌면서 <code>System.arraycopy</code>를 호출하는 것도 마음에 들지 않고, 리플렉션을 사용해야 하는 것도 마음데 들지 않는다.</p><p>좀더 아름다운 방법이 없을까 해서 인터넷을 찾다가 좋은 방법을 알게 되었다. 배열을 스트림으로 바꾼 다음 <code>flatMap</code>을 적용해 합치는 방법이다.</p><pre><code class="language-java hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; T[] merge2(T[]... arrays) {
+  <span class="hljs-keyword">return</span> (T[]) Stream.of(arrays).flatMap(a -&gt; Stream.of(a)).toArray();
 }
 </code></pre><p>내가 좋아하는 Clojure 코드만큼 아름답지는 않지만, 처음에 작성한 <code>System.arraycopy</code>를 사용한 방법보다는 훨씬 아름답다. Java로 이정도 했다면 선방한 셈이다.</p><p>단점은 느리다는 것이다. 간단히 테스트해보니 스트림 API를 사용한 <code>merge2</code>는 <code>System.arraycopy</code>를 사용한 <code>merge1</code>에 비해 5~10배 정도 느린 것 같다. 아름다운 코드의 대가 치고는 너무 큰 것 같다.</p><h2 id="참고">참고</h2><ul><li><a href="http://www.programcreek.com/2014/01/concat-streams-in-java-8/">Concat Streams in Java 8</a></li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>

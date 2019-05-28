@@ -22,15 +22,15 @@ on
       (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> a <span class="hljs-number">2</span>) v2
       (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> a <span class="hljs-number">3</span>) v3
       <span class="hljs-symbol">:else</span>   vx)
-</code></pre><p>코드를 보면 <code>(= a ?)</code> 패턴이 반복된다. <code>condp</code>를 이용하면 이런 반복도 제거할 수 있다. <code>condp</code> 역시 매크로로 확장하면 위 <code>if</code>로 작성한 것과 동일한 코드가 나온다.</p><pre><code class="language-clojure hljs">(condp = a
-  <span class="hljs-number">1</span> <span class="hljs-built_in">v1</span>
-  <span class="hljs-number">2</span> <span class="hljs-built_in">v2</span>
-  <span class="hljs-number">3</span> <span class="hljs-built_in">v3</span>
+</code></pre><p>코드를 보면 <code>(= a ?)</code> 패턴이 반복된다. <code>condp</code>를 이용하면 이런 반복도 제거할 수 있다. <code>condp</code> 역시 매크로로 확장하면 위 <code>if</code>로 작성한 것과 동일한 코드가 나온다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">condp</span></span> = a
+  <span class="hljs-number">1</span> v1
+  <span class="hljs-number">2</span> v2
+  <span class="hljs-number">3</span> v3
   vx)
-</code></pre><p>predicate이 <code>=</code>이라면 다음과 같이 <code>case</code>를 사용할 수도 있다. <code>case</code>도 매크로이긴 하지만 확장했을 때의 모양이 <code>cond</code>나 <code>condp</code>와는 다르다. 그러나 실행 결과는 동일하다.</p><pre><code class="language-clojure hljs">(case a
-  <span class="hljs-number">1</span> <span class="hljs-built_in">v1</span>
-  <span class="hljs-number">2</span> <span class="hljs-built_in">v2</span>
-  <span class="hljs-number">3</span> <span class="hljs-built_in">v3</span>
+</code></pre><p>predicate이 <code>=</code>이라면 다음과 같이 <code>case</code>를 사용할 수도 있다. <code>case</code>도 매크로이긴 하지만 확장했을 때의 모양이 <code>cond</code>나 <code>condp</code>와는 다르다. 그러나 실행 결과는 동일하다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">case</span></span> a
+  <span class="hljs-number">1</span> v1
+  <span class="hljs-number">2</span> v2
+  <span class="hljs-number">3</span> v3
   vx)
 </code></pre><p>처음에 나온 Java 코드와 비교해보기 바란다. 얼마나 간결한가! Java도 <code>switch~case</code>를 사용하면 코드를 좀더 간결하게 만들 수 있긴 하다.</p><pre><code class="language-java hljs"><span class="hljs-keyword">switch</span> (a) {
   <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:  <span class="hljs-keyword">return</span> v1;

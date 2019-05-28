@@ -211,13 +211,13 @@ S(n, m) &amp;= m + 2m + 3m + ... + n \\
 </g>
 </g>
 </g>
-</svg></span></div><p>3 또는 5의 배수의 합을 구해야 하므로, <code>(3의 배수의 합) + (5의 배수의 합) - (15의 배수의 합)</code>을 계산하면 된다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name">defn</span> s
-  ([<span class="hljs-name">n</span>] (<span class="hljs-name"><span class="hljs-builtin-name">/</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> n (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> n <span class="hljs-number">1</span>)) <span class="hljs-number">2</span>))
-  ([<span class="hljs-name">n</span> m] (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> m (<span class="hljs-name">s</span> (<span class="hljs-name">quot</span> n m)))))
+</svg></span></div><p>3 또는 5의 배수의 합을 구해야 하므로, <code>(3의 배수의 합) + (5의 배수의 합) - (15의 배수의 합)</code>을 계산하면 된다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> s
+  ([n] (/ (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> n (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> n <span class="hljs-number">1</span>)) <span class="hljs-number">2</span>))
+  ([n m] (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> m (<span class="hljs-name">s</span> (<span class="hljs-name"><span class="hljs-builtin-name">quot</span></span> n m)))))
 
-(<span class="hljs-name">defn</span> using-formula [<span class="hljs-name">n</span>]
-  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [<span class="hljs-name">n</span> (<span class="hljs-name">dec</span> n)]
-    (<span class="hljs-name">-&gt;</span> (<span class="hljs-name">s</span> n <span class="hljs-number">3</span>) (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> (<span class="hljs-name">s</span> n <span class="hljs-number">5</span>)) (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> (<span class="hljs-name">s</span> n <span class="hljs-number">15</span>)))))
+(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> using-formula [n]
+  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [n (<span class="hljs-name"><span class="hljs-builtin-name">dec</span></span> n)]
+    (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;</span></span> (<span class="hljs-name">s</span> n <span class="hljs-number">3</span>) (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> (<span class="hljs-name">s</span> n <span class="hljs-number">5</span>)) (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> (<span class="hljs-name">s</span> n <span class="hljs-number">15</span>)))))
 </code></pre><h2 id="정리">정리</h2><p>두 방식의 결과는 다음과 같다.</p><pre class="console">p001=&gt; (time (using-brute-force 1000))
 "Elapsed time: 0.743249 msecs"
 233???

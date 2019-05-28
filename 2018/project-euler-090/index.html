@@ -93,16 +93,16 @@ on
  <use xlink:href="#MJMAIN-30" x="1001" y="0"></use>
 </g>
 </g>
-</svg></span>)으로 비교적 작으므로, 모든 조합을 구해 계산해 보는 무식한 방법을 적용해도 문제를 풀 수 있을 것 같다.</p><p>먼저 다음과 같이 조합을 구할 때 사용할 <code>combination</code>, 차집합을 구할 때 사용할 <code>difference</code>를 사용할 수 있도록 네임스페이스를 설정해둔다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name">ns</span> p090
-  (<span class="hljs-name">:require</span> [<span class="hljs-name">clojure.math.combinatorics</span> :refer [<span class="hljs-name">combinations</span>]]
-            [<span class="hljs-name">clojure.set</span> :refer [<span class="hljs-name">difference</span>]]
-            [<span class="hljs-name">util</span> :refer [<span class="hljs-name">parse-int</span>]]))
+</svg></span>)으로 비교적 작으므로, 모든 조합을 구해 계산해 보는 무식한 방법을 적용해도 문제를 풀 수 있을 것 같다.</p><p>먼저 다음과 같이 조합을 구할 때 사용할 <code>combination</code>, 차집합을 구할 때 사용할 <code>difference</code>를 사용할 수 있도록 네임스페이스를 설정해둔다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">ns</span></span> p090
+  (<span class="hljs-symbol">:require</span> [clojure.math.combinatorics <span class="hljs-symbol">:refer</span> [combinations]]
+            [clojure.set <span class="hljs-symbol">:refer</span> [difference]]
+            [util <span class="hljs-symbol">:refer</span> [parse-int]]))
 </code></pre><p>100 미만의 제곱수 집합을 미리 구해두면 문제를 풀 때 유용하다. 100 미만 제곱수 집합은 다음과 같이 간단히 구할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> sqnums (<span class="hljs-name">set</span> (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> #(<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> % %) (<span class="hljs-name"><span class="hljs-builtin-name">range</span></span> <span class="hljs-number">1</span> <span class="hljs-number">10</span>))))
 </code></pre><p>0부터 9 중 6개의 수를 고른 모든 조합은 다음과 같이 <code>combinations</code> 함수로 쉽게 구할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> digits-sets
   (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> (<span class="hljs-name">combinations</span> (<span class="hljs-name"><span class="hljs-builtin-name">range</span></span> <span class="hljs-number">10</span>) <span class="hljs-number">6</span>)
        (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> set)))
 </code></pre><p>이 조합 중 첫 번째 주사위와 두 번째 주사위에 배정할 조합을 선택해야 한다. <code>digits-sets</code>에서 두 집합을 선택하는 모든 조합은 다음과 같이 구할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> set-pairs
-  (<span class="hljs-name">set</span> (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> set (<span class="hljs-name"><span class="hljs-builtin-name">combinations</span></span> digits-sets <span class="hljs-number">2</span>))))
+  (<span class="hljs-name">set</span> (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> set (<span class="hljs-name">combinations</span> digits-sets <span class="hljs-number">2</span>))))
 </code></pre><p>문제에서 6과 9는 뒤집었을 때 같은 모양이 되므로 뒤집는 것을 허용한다. 이렇게 6과 9를 뒤집는 경우를 고려하려면 숫자 집합에 6이 포함되어 있는 경우 9를 추가하고, 숫자 집합에 9가 포함되어 있는 경우는 6을 추가해야 한다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> adjust-ds [ds]
   (<span class="hljs-name"><span class="hljs-builtin-name">cond</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">contains?</span></span> ds <span class="hljs-number">6</span>) (<span class="hljs-name"><span class="hljs-builtin-name">conj</span></span> ds <span class="hljs-number">9</span>)
         (<span class="hljs-name"><span class="hljs-builtin-name">contains?</span></span> ds <span class="hljs-number">9</span>) (<span class="hljs-name"><span class="hljs-builtin-name">conj</span></span> ds <span class="hljs-number">6</span>)

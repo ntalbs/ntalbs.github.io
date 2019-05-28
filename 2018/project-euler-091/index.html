@@ -685,8 +685,8 @@ y = - \frac{a}{b} x + b + \frac{a^2}{b}
  <use transform="scale(0.707)" xlink:href="#MJMAIN-AF" x="1712" y="0"></use>
 </g>
 </g>
-</svg></span>에 수직이며 점 P를 지나는 직선의 방정식을 리턴하는 함수는 다음과 같이 작성할 수 있다. 전위 표기법을 사용해 수식을 읽기가 거지 같긴 하지만, 위에서 구한 직선의 방정식을 Clojre 코드로 옮긴 것일 뿐이다. 이 함수는 함수를 리턴하는 함수임에 유의한다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name">defn</span> fn-line-perpendicular-to [[<span class="hljs-name">a</span> b]]
-  (<span class="hljs-name">fn</span> [<span class="hljs-name">x</span>] (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">/</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> a) x) b) b (<span class="hljs-name"><span class="hljs-builtin-name">/</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> a a) b))))
+</svg></span>에 수직이며 점 P를 지나는 직선의 방정식을 리턴하는 함수는 다음과 같이 작성할 수 있다. 전위 표기법을 사용해 수식을 읽기가 거지 같긴 하지만, 위에서 구한 직선의 방정식을 Clojre 코드로 옮긴 것일 뿐이다. 이 함수는 함수를 리턴하는 함수임에 유의한다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> fn-line-perpendicular-to [[a b]]
+  (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [x] (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> (/ (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> a) x) b) b (/ (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> a a) b))))
 </code></pre><p>이제 P에 각 점을 대입하면서 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.798ex" height="3.009ex" style="vertical-align: -0.338ex;" viewBox="0 -1150.1 1635.4 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-54-Title">
 <title id="MathJax-SVG-54-Title">\overline{OP}</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">

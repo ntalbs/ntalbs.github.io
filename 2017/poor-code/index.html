@@ -13,32 +13,32 @@ abouta
 aboutit
 <span class="hljs-keyword">about</span> <span class="hljs-keyword">it</span>
 ...
-</code></pre><p>홀수 행은 키에 해당하고 짝수 행은 대체할 문자열(값)에 해당한다. 행이 0부터 시작한다고 생각하면 짝수 행이 키, 홀수 행은 값이 될 것이다. 프로그램이 파일을 읽을 때는 문제가 없겠지만, 항목을 손으로 편집해야 할 때는 신경을 써야 했다.</p><p>키와 값 사이에 구분자를 넣어 키, 값을 한 행에 저장하는 방법도 생각할 수 있다. 그렇게 하면 파일 구조를 눈으로 파악하기가 쉬워질 테지만, 구분자로 뭘 쓸지 고민을 해야 한다. 입력 문자열이나 대체 문자열에 구분자와 같은 문자가 나오면 파일을 읽을 때 오류가 발생할 것이다. 그런 점을 고려하면 위 파일 구조가 꼭 나쁘다고만 할 수는 없을 것이다.</p><p>놀라웠던 것은 위 파일을 읽는 코드였다. 오래 전 일이었지만 하도 어이가 없었기에 지금도 기억하고 있다. 그때는 Java에 try-with-resources는 물론 제너릭조차 없었지만, 핵심 로직을 쉽게 알아볼 수 있도록 현대 Java의 기능을 활용해 코드를 옮기면 다음과 같다.</p><pre><code class="language-java hljs"><span class="hljs-keyword">private</span> Map&lt;<span class="hljs-keyword">String</span>, <span class="hljs-keyword">String</span>&gt; items = <span class="hljs-keyword">new</span> <span class="hljs-keyword">HashMap</span>&lt;&gt;();
+</code></pre><p>홀수 행은 키에 해당하고 짝수 행은 대체할 문자열(값)에 해당한다. 행이 0부터 시작한다고 생각하면 짝수 행이 키, 홀수 행은 값이 될 것이다. 프로그램이 파일을 읽을 때는 문제가 없겠지만, 항목을 손으로 편집해야 할 때는 신경을 써야 했다.</p><p>키와 값 사이에 구분자를 넣어 키, 값을 한 행에 저장하는 방법도 생각할 수 있다. 그렇게 하면 파일 구조를 눈으로 파악하기가 쉬워질 테지만, 구분자로 뭘 쓸지 고민을 해야 한다. 입력 문자열이나 대체 문자열에 구분자와 같은 문자가 나오면 파일을 읽을 때 오류가 발생할 것이다. 그런 점을 고려하면 위 파일 구조가 꼭 나쁘다고만 할 수는 없을 것이다.</p><p>놀라웠던 것은 위 파일을 읽는 코드였다. 오래 전 일이었지만 하도 어이가 없었기에 지금도 기억하고 있다. 그때는 Java에 try-with-resources는 물론 제너릭조차 없었지만, 핵심 로직을 쉽게 알아볼 수 있도록 현대 Java의 기능을 활용해 코드를 옮기면 다음과 같다.</p><pre><code class="language-java hljs"><span class="hljs-keyword">private</span> Map&lt;String, String&gt; items = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
 
 <span class="hljs-comment">// 개선 전 (원래 코드)</span>
-<span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> init() <span class="hljs-keyword">throws</span> IOException {
-  <span class="hljs-keyword">try</span> (<span class="hljs-keyword">BufferedReader</span> r = <span class="hljs-keyword">new</span> <span class="hljs-keyword">BufferedReader</span>(<span class="hljs-keyword">new</span> FileReader(...))) {
-    <span class="hljs-built_in">int</span> <span class="hljs-built_in">line</span> = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">String</span> <span class="hljs-built_in">str</span>, <span class="hljs-built_in">key</span> = <span class="hljs-keyword">null</span>, val = <span class="hljs-keyword">null</span>;
-    <span class="hljs-keyword">while</span> ((<span class="hljs-built_in">str</span> = r.readLine()) != <span class="hljs-keyword">null</span>) {
-      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">line</span> % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
-        <span class="hljs-built_in">key</span> = <span class="hljs-built_in">str</span>;
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>{
+  <span class="hljs-keyword">try</span> (BufferedReader r = <span class="hljs-keyword">new</span> BufferedReader(<span class="hljs-keyword">new</span> FileReader(...))) {
+    <span class="hljs-keyword">int</span> line = <span class="hljs-number">0</span>;
+    String str, key = <span class="hljs-keyword">null</span>, val = <span class="hljs-keyword">null</span>;
+    <span class="hljs-keyword">while</span> ((str = r.readLine()) != <span class="hljs-keyword">null</span>) {
+      <span class="hljs-keyword">if</span> (line % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
+        key = str;
       } <span class="hljs-keyword">else</span> {
-        val = <span class="hljs-built_in">str</span>;
-        items.put(<span class="hljs-built_in">key</span>, val);
+        val = str;
+        items.put(key, val);
       }
-      <span class="hljs-built_in">line</span>++;
+      line++;
     }
   }
 }
 </code></pre><p><code>readLine()</code>으로 파일을 한 줄씩 읽을 때마다 <code>line</code>을 1씩 증가시킨다. <code>line</code>이 짝수면 파일에서 읽은 값을 <code>key</code>에, 홀수면 파일에서 읽은 값을 <code>val</code>에 할당한다. 그리고 <code>line</code>이 홀수일 때 맵에 <code>key</code>, <code>val</code>을 넣는다. 동작하긴 하지만, 단순한 작업을 복잡하게 처리했다. 이렇게 복잡하게 생각할 이유가 없다.</p><p>어차피 키와 값은 항상 쌍이어야 하므로, 다음과 같이 <code>readLine()</code>을 두 번 연달아 호출하면 코드가 단순해진다. <code>line</code>을 증가시키면서 홀수인지 짝수인지 구분해 <code>if</code>로 분기할 필요가 없다.</p><pre><code class="language-java hljs"><span class="hljs-comment">// 개선 후</span>
-<span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> init() <span class="hljs-keyword">throws</span> IOException {
-  <span class="hljs-keyword">try</span> (<span class="hljs-keyword">BufferedReader</span> r = <span class="hljs-keyword">new</span> <span class="hljs-keyword">BufferedReader</span>(<span class="hljs-keyword">new</span> FileReader(...))) {
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>{
+  <span class="hljs-keyword">try</span> (BufferedReader r = <span class="hljs-keyword">new</span> BufferedReader(<span class="hljs-keyword">new</span> FileReader(...))) {
     <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) {
-      <span class="hljs-keyword">String</span> <span class="hljs-built_in">key</span> = r.readLine();
-      <span class="hljs-keyword">String</span> val = r.readLine();
-      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">key</span> == <span class="hljs-keyword">null</span> || val == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">break</span>;
-      items.put(<span class="hljs-built_in">key</span>, val);
+      String key = r.readLine();
+      String val = r.readLine();
+      <span class="hljs-keyword">if</span> (key == <span class="hljs-keyword">null</span> || val == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">break</span>;
+      items.put(key, val);
     }
   }
 }

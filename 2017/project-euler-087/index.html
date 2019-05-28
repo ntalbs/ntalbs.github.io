@@ -339,8 +339,8 @@ c^4 &lt; 50,000,000 \qquad &amp;\therefore c &lt; \lfloor \sqrt[4]{50,000,000} \
 </g>
  <use xlink:href="#MJMAIN-230B" x="1850" y="0"></use>
 </g>
-</svg></span>을 구하는 함수는 다음과 같이 구현할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name">defn-</span> nth-root [<span class="hljs-name">n</span> x]
-  (<span class="hljs-name">int</span> (<span class="hljs-name">Math/pow</span> x (<span class="hljs-name"><span class="hljs-builtin-name">/</span></span> <span class="hljs-number">1.0</span> n))))
+</svg></span>을 구하는 함수는 다음과 같이 구현할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> nth-root [n x]
+  (<span class="hljs-name"><span class="hljs-builtin-name">int</span></span> (<span class="hljs-name">Math/pow</span> x (/ <span class="hljs-number">1.0</span> n))))
 </code></pre><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="5.302ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 2282.8 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-10-Title">
 <title id="MathJax-SVG-10-Title">a, b, c</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">

@@ -3,13 +3,13 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2010-07-27" itemprop="datePublished">2010-07-27</time>
 on
 <a href="/tags/db/">DB</a>
-<a href="/tags/oracle/">Oracle</a></p><h1 class="post-title">SQL*Loader 사용법 (초간단 정리)</h1></header><section class="post-content"><p>간단히 참조할 용도로 정리한다. 자세한 사용법은 <a href="http://docs.oracle.com/cd/E11882_01/server.112/e22490/ldr_concepts.htm#SUTIL003">매뉴얼</a>을 참조해야 한다.</p><h3 id="1-데이터를-로드할-테이블-생성또는-확인">1. 데이터를 로드할 테이블 생성(또는 확인)</h3><pre><code class="language-sql hljs"><span class="hljs-symbol">create</span> table xxx (
-  <span class="hljs-built_in">c1</span> number,
-  <span class="hljs-built_in">c2</span> varchar2(<span class="hljs-number">10</span>),
-  <span class="hljs-built_in">c3</span> varchar2(<span class="hljs-number">10</span>),
-  <span class="hljs-built_in">c4</span> varchar2(<span class="hljs-number">10</span>),
-  <span class="hljs-built_in">c5</span> date
-)<span class="hljs-comment">;</span>
+<a href="/tags/oracle/">Oracle</a></p><h1 class="post-title">SQL*Loader 사용법 (초간단 정리)</h1></header><section class="post-content"><p>간단히 참조할 용도로 정리한다. 자세한 사용법은 <a href="http://docs.oracle.com/cd/E11882_01/server.112/e22490/ldr_concepts.htm#SUTIL003">매뉴얼</a>을 참조해야 한다.</p><h3 id="1-데이터를-로드할-테이블-생성또는-확인">1. 데이터를 로드할 테이블 생성(또는 확인)</h3><pre><code class="language-sql hljs"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> xxx (
+  c1 <span class="hljs-built_in">number</span>,
+  c2 varchar2(<span class="hljs-number">10</span>),
+  c3 varchar2(<span class="hljs-number">10</span>),
+  c4 varchar2(<span class="hljs-number">10</span>),
+  c5 <span class="hljs-built_in">date</span>
+);
 </code></pre><h3 id="2-데이터-파일-확인-xxxdat">2. 데이터 파일 확인 (xxx.dat)</h3><pre><code class="hljs">aaa<span class="hljs-built_in"> aaa aaa
 </span>bbb bbb bbb
 ccc ccc ccc

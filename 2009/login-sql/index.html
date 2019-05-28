@@ -17,7 +17,7 @@ on
 <span class="hljs-keyword">from</span> (<span class="hljs-keyword">select</span> <span class="hljs-keyword">global_name</span>, <span class="hljs-keyword">instr</span>(<span class="hljs-keyword">global_name</span>, <span class="hljs-string">'.'</span>) dot <span class="hljs-keyword">from</span> <span class="hljs-keyword">global_name</span>);
 <span class="hljs-keyword">set</span> sqlprompt <span class="hljs-string">'&amp;gname&gt; '</span>
 <span class="hljs-keyword">set</span> termout <span class="hljs-keyword">on</span>
-</code></pre><p>10g부터는 SQL 프롬프트를 좀더 간단하게 설정할 수 있다.</p><pre><code class="language-sql hljs"><span class="hljs-keyword">set</span> sqlprompt <span class="hljs-comment">'&amp;_user@&amp;_CONNECT_IDENTIFIER&gt; '</span>
+</code></pre><p>10g부터는 SQL 프롬프트를 좀더 간단하게 설정할 수 있다.</p><pre><code class="language-sql hljs"><span class="hljs-keyword">set</span> sqlprompt <span class="hljs-string">'&amp;_user@&amp;_CONNECT_IDENTIFIER&gt; '</span>
 </code></pre><p>사용자 이름을 소문자로 나오게 하고 싶으면 다음과 같이 하면 된다.</p><pre><code class="language-sql hljs">define uname=idle
 column user_name new_value uname
 <span class="hljs-keyword">select</span> <span class="hljs-keyword">lower</span>(<span class="hljs-keyword">user</span>) user_name <span class="hljs-keyword">from</span> dual;

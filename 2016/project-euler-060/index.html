@@ -29,17 +29,17 @@ on
         <span class="hljs-symbol">:when</span> (<span class="hljs-name"><span class="hljs-builtin-name">&lt;</span></span> p1 p2 p3)
         <span class="hljs-symbol">:when</span> (<span class="hljs-name">any-two-concat-prime?</span> [p1 p2 p3])]
     [p1 p2 p3]))
-</code></pre><p><code>ps4</code>, <code>ps5</code>를 구하는 방법도 비슷하다.</p><pre><code class="language-clojure hljs">(def ps4
-  (for [[<span class="hljs-built_in">p1</span> <span class="hljs-built_in">p2</span> <span class="hljs-built_in">p3</span>] ps3, <span class="hljs-built_in">p4</span> ps1
-        :when (&lt; <span class="hljs-built_in">p1</span> <span class="hljs-built_in">p2</span> <span class="hljs-built_in">p3</span> <span class="hljs-built_in">p4</span>)
-        :when (any-two-concat-prime? [<span class="hljs-built_in">p1</span> <span class="hljs-built_in">p2</span> <span class="hljs-built_in">p3</span> <span class="hljs-built_in">p4</span>])]
-    [<span class="hljs-built_in">p1</span> <span class="hljs-built_in">p2</span> <span class="hljs-built_in">p3</span> <span class="hljs-built_in">p4</span>]))
+</code></pre><p><code>ps4</code>, <code>ps5</code>를 구하는 방법도 비슷하다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> ps4
+  (<span class="hljs-name"><span class="hljs-builtin-name">for</span></span> [[p1 p2 p3] ps3, p4 ps1
+        <span class="hljs-symbol">:when</span> (<span class="hljs-name"><span class="hljs-builtin-name">&lt;</span></span> p1 p2 p3 p4)
+        <span class="hljs-symbol">:when</span> (<span class="hljs-name">any-two-concat-prime?</span> [p1 p2 p3 p4])]
+    [p1 p2 p3 p4]))
 
-(def ps5
-  (for [[<span class="hljs-built_in">p1</span> <span class="hljs-built_in">p2</span> <span class="hljs-built_in">p3</span> <span class="hljs-built_in">p4</span>] ps4 <span class="hljs-built_in">p5</span> ps1
-        :when (&lt; <span class="hljs-built_in">p1</span> <span class="hljs-built_in">p2</span> <span class="hljs-built_in">p3</span> <span class="hljs-built_in">p4</span> <span class="hljs-built_in">p5</span>)
-        :when (any-two-concat-prime? [<span class="hljs-built_in">p1</span> <span class="hljs-built_in">p2</span> <span class="hljs-built_in">p3</span> <span class="hljs-built_in">p4</span> <span class="hljs-built_in">p5</span>])]
-    [<span class="hljs-built_in">p1</span> <span class="hljs-built_in">p2</span> <span class="hljs-built_in">p3</span> <span class="hljs-built_in">p4</span> <span class="hljs-built_in">p5</span>]))
+(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> ps5
+  (<span class="hljs-name"><span class="hljs-builtin-name">for</span></span> [[p1 p2 p3 p4] ps4 p5 ps1
+        <span class="hljs-symbol">:when</span> (<span class="hljs-name"><span class="hljs-builtin-name">&lt;</span></span> p1 p2 p3 p4 p5)
+        <span class="hljs-symbol">:when</span> (<span class="hljs-name">any-two-concat-prime?</span> [p1 p2 p3 p4 p5])]
+    [p1 p2 p3 p4 p5]))
 </code></pre><p>이제 <code>ps5</code>의 첫 요소를 구해 그 안의 소수를 모두 더하면 답을 찾을 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> solve []
   (<span class="hljs-name"><span class="hljs-builtin-name">apply</span></span> + (<span class="hljs-name"><span class="hljs-builtin-name">first</span></span> ps5)))
 </code></pre><p>실행 결과는 다음과 같다.</p><pre class="console">p060=&gt; (time (solve))

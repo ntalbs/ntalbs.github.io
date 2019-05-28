@@ -455,23 +455,23 @@ h_{-1} = 1, k_{-1} = 0
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMATHI-78" x="0" y="0"></use>
 </g>
-</svg></span>를 최소화하는 해가 된다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name">ns</span> p066
-  (<span class="hljs-name">:require</span> [<span class="hljs-name">util</span> :refer [<span class="hljs-name">perfect-square?</span>]]
-            [<span class="hljs-name">p064</span> :refer [<span class="hljs-name">expand-continued-fraction</span>]]))
+</svg></span>를 최소화하는 해가 된다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">ns</span></span> p066
+  (<span class="hljs-symbol">:require</span> [util <span class="hljs-symbol">:refer</span> [perfect-square?]]
+            [p064 <span class="hljs-symbol">:refer</span> [expand-continued-fraction]]))
 
-(<span class="hljs-name">defn</span> find-fundamental-solution
+(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> find-fundamental-solution
   <span class="hljs-string">"find the fundamental solution of pell's equation,  x^2 - dy^2 = 1"</span>
-  [<span class="hljs-name">d</span>]
-  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [<span class="hljs-name">cf</span> (<span class="hljs-name">expand-continued-fraction</span> d)
-        as (<span class="hljs-name">lazy-cat</span> cf (<span class="hljs-name">cycle</span> (<span class="hljs-name">rest</span> cf)))]
-    (<span class="hljs-name">loop</span> [<span class="hljs-name">h2</span> <span class="hljs-number">0</span>, h1 <span class="hljs-number">1</span>,
+  [d]
+  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [cf (<span class="hljs-name">expand-continued-fraction</span> d)
+        as (<span class="hljs-name">lazy-cat</span> cf (<span class="hljs-name"><span class="hljs-builtin-name">cycle</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">rest</span></span> cf)))]
+    (<span class="hljs-name"><span class="hljs-builtin-name">loop</span></span> [h2 <span class="hljs-number">0</span>, h1 <span class="hljs-number">1</span>,
            k2 <span class="hljs-number">1</span>, k1 <span class="hljs-number">0</span>,
            as as, n <span class="hljs-number">0</span>]
-      (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">and</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">&gt;=</span></span> n <span class="hljs-number">1</span>) (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> <span class="hljs-number">1</span> (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span>' (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span>' h1 h1) (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span>' d k1 k1))))
-        [<span class="hljs-name">h1</span> k1]
-        (<span class="hljs-name">recur</span> h1 (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span>' (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span>' (<span class="hljs-name">first</span> as) h1) h2)
-               k1 (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span>' (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span>' (<span class="hljs-name">first</span> as) k1) k2)
-               (<span class="hljs-name">rest</span> as) (<span class="hljs-name">inc</span> n))))))
+      (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">and</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">&gt;=</span></span> n <span class="hljs-number">1</span>) (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> <span class="hljs-number">1</span> (<span class="hljs-name">-'</span> (<span class="hljs-name">*'</span> h1 h1) (<span class="hljs-name">*'</span> d k1 k1))))
+        [h1 k1]
+        (<span class="hljs-name"><span class="hljs-builtin-name">recur</span></span> h1 (<span class="hljs-name">+'</span> (<span class="hljs-name">*'</span> (<span class="hljs-name"><span class="hljs-builtin-name">first</span></span> as) h1) h2)
+               k1 (<span class="hljs-name">+'</span> (<span class="hljs-name">*'</span> (<span class="hljs-name"><span class="hljs-builtin-name">first</span></span> as) k1) k2)
+               (<span class="hljs-name"><span class="hljs-builtin-name">rest</span></span> as) (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> n))))))
 </code></pre><p>이제 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.924ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 828.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-24-Title">
 <title id="MathJax-SVG-24-Title">D</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">

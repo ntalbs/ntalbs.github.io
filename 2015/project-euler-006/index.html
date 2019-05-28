@@ -361,12 +361,12 @@ f(n) = \frac{1}{6}n(n+1)(2n+1)
 </g>
 </g>
 </g>
-</svg></span></div><p>(이 결과가 맞는지 수학적 귀납법으로 증명할 수 있지만, 증명은 생략한다.)</p><p>따라서 <strong>합의 제곱</strong>과 <strong>제곱의 합</strong>을 구하는 함수는 다음과 같이 구현할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name">defn</span> sq-of-sum [<span class="hljs-name">n</span>]
-  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [<span class="hljs-name">s</span> (<span class="hljs-name"><span class="hljs-builtin-name">/</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> n (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> n <span class="hljs-number">1</span>)) <span class="hljs-number">2</span>)]
+</svg></span></div><p>(이 결과가 맞는지 수학적 귀납법으로 증명할 수 있지만, 증명은 생략한다.)</p><p>따라서 <strong>합의 제곱</strong>과 <strong>제곱의 합</strong>을 구하는 함수는 다음과 같이 구현할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> sq-of-sum [n]
+  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [s (/ (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> n (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> n <span class="hljs-number">1</span>)) <span class="hljs-number">2</span>)]
     (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> s s)))
 
-(<span class="hljs-name">defn</span> sum-of-sq [<span class="hljs-name">n</span>]
-  (<span class="hljs-name"><span class="hljs-builtin-name">/</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> n (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> n <span class="hljs-number">1</span>) (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> <span class="hljs-number">2</span> n) <span class="hljs-number">1</span>)) <span class="hljs-number">6</span>))
+(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> sum-of-sq [n]
+  (/ (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> n (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> n <span class="hljs-number">1</span>) (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> <span class="hljs-number">2</span> n) <span class="hljs-number">1</span>)) <span class="hljs-number">6</span>))
 </code></pre><p>여기까지 했으면 문제의 답은 다음과 같이 쉽게 구할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> using-formula [n]
   (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> (<span class="hljs-name">sq-of-sum</span> n) (<span class="hljs-name">sum-of-sq</span> n)))
 </code></pre><h2 id="정리">정리</h2><p>실행시킨 결과는 다음과 같다. 범위가 적어 별 차이 없는 것처럼 보인다. 그러나 첫 번째 방법은 범위에 비례해 속도가 느려질 것이다. 두 번째 방법은 범위와 상관 없이 항상 같은 시간에 결과를 구할 것이다.</p><pre class="console">p006=&gt; (time (using-brute-force 100))

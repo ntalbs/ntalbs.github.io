@@ -15,27 +15,27 @@ end_of_record
 ...
 end_of_record
 ...
-</code></pre><p>각 파일에 대한 커버리지 정보를 가지고 있는데, <code>SF:{파일경로+파일이름}</code>으로 시작하고 <code>end_of_record</code>로 끝난다. 따라서 간단한 프로그램을 짜서 불필요한 파일에 대한 정보를 날린 다음 커버리지 리포트를 만들면, 제외하고 싶은 파일을 제거한 상태의 커버리지 리포트를 만들 수 있다.</p><p>이런 작업은 스크립트 언어로 처리하면 쉬울 것 같다. 회사 CI 서버에 python이 깔려 있어 python으로 간단하게 작성해봤다. (다듬을 여지가 많다. 예를 들어 input_file을 명령행 인수로 받도록 처리할 수도 있겠다.)</p><pre><code class="language-python hljs">import shutil
-excludeList = <span class="hljs-built_in">open</span>(<span class="hljs-string">'exclude_coverage.txt'</span>).readlines()
+</code></pre><p>각 파일에 대한 커버리지 정보를 가지고 있는데, <code>SF:{파일경로+파일이름}</code>으로 시작하고 <code>end_of_record</code>로 끝난다. 따라서 간단한 프로그램을 짜서 불필요한 파일에 대한 정보를 날린 다음 커버리지 리포트를 만들면, 제외하고 싶은 파일을 제거한 상태의 커버리지 리포트를 만들 수 있다.</p><p>이런 작업은 스크립트 언어로 처리하면 쉬울 것 같다. 회사 CI 서버에 python이 깔려 있어 python으로 간단하게 작성해봤다. (다듬을 여지가 많다. 예를 들어 input_file을 명령행 인수로 받도록 처리할 수도 있겠다.)</p><pre><code class="language-python hljs"><span class="hljs-keyword">import</span> shutil
+excludeList = open(<span class="hljs-string">'exclude_coverage.txt'</span>).readlines()
 input_file = <span class="hljs-string">'/.../.../jsTestDriver.conf-coverage.dat'</span>
 output_file = <span class="hljs-string">'/.../.../excluded.dat'</span>
 
-<span class="hljs-built_in">input</span> = <span class="hljs-built_in">open</span>(input_file, <span class="hljs-string">'r'</span>)
-<span class="hljs-built_in">output</span> = <span class="hljs-built_in">open</span>(output_file,<span class="hljs-string">'w'</span>)
+input = open(input_file, <span class="hljs-string">'r'</span>)
+output = open(output_file,<span class="hljs-string">'w'</span>)
 
-skip = False
-<span class="hljs-keyword">for</span> l <span class="hljs-keyword">in</span> <span class="hljs-built_in">input</span>:
+skip = <span class="hljs-keyword">False</span>
+<span class="hljs-keyword">for</span> l <span class="hljs-keyword">in</span> input:
   <span class="hljs-keyword">if</span> l.startswith(<span class="hljs-string">'SF:'</span>):
     jsName = l.split(<span class="hljs-string">'/'</span>).pop()
     <span class="hljs-keyword">if</span> excludeList.count(jsName) &gt; <span class="hljs-number">0</span>:
-      skip = True
+      skip = <span class="hljs-keyword">True</span>
   <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> skip:
-    <span class="hljs-built_in">output</span>.<span class="hljs-built_in">write</span>(l)
+    output.write(l)
   <span class="hljs-keyword">if</span> l.startswith(<span class="hljs-string">'end_of_record'</span>):
-    skip = False
+    skip = <span class="hljs-keyword">False</span>
 
-<span class="hljs-built_in">input</span>.<span class="hljs-built_in">close</span>()
-<span class="hljs-built_in">output</span>.<span class="hljs-built_in">close</span>()
+input.close()
+output.close()
 
 shutil.move(output_file, input_file)
 </code></pre><p><code>exclude_coverage.txt</code> 파일에 커버리지 분석에서 제외하고 싶은 파일 이름을 넣으면, 이 프로그램이 JsTestDriver의 커버리지 데이터 파일(...-coverage.dat)에서 <code>exclude_coverage.txt</code>에 기술한 파일과 관련된 내용을 제외한다. <code>exclude_coverage.txt</code> 파일은 다음과 같은 식으로 작성하면 된다.</p><pre><code class="hljs">external-lib1<span class="hljs-selector-class">.js</span>

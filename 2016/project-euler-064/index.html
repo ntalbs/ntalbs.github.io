@@ -322,13 +322,13 @@ a_{n+1} &amp;= \left \lfloor \frac{a_0 + m_{n+1}}{d_{n+1}} \right \rfloor
  <use transform="scale(0.707)" xlink:href="#MJMAIN-30" x="748" y="-213"></use>
 </g>
 </g>
-</svg></span>가 되면 반복이 끝난다. 이 알고리즘을 다음과 같이 Clojure 함수로 옮길 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name">defn</span> expand-continued-fraction [<span class="hljs-name">n</span>]
-  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [<span class="hljs-name">a0</span> (<span class="hljs-name">int</span> (<span class="hljs-name">Math/sqrt</span> n))]
-    (<span class="hljs-name">loop</span> [<span class="hljs-name">m</span> <span class="hljs-number">0</span>, d <span class="hljs-number">1</span>, a a0, acc [<span class="hljs-name">a0</span>]]
+</svg></span>가 되면 반복이 끝난다. 이 알고리즘을 다음과 같이 Clojure 함수로 옮길 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> expand-continued-fraction [n]
+  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [a0 (<span class="hljs-name"><span class="hljs-builtin-name">int</span></span> (<span class="hljs-name">Math/sqrt</span> n))]
+    (<span class="hljs-name"><span class="hljs-builtin-name">loop</span></span> [m <span class="hljs-number">0</span>, d <span class="hljs-number">1</span>, a a0, acc [a0]]
       (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> a (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> <span class="hljs-number">2</span> a0))
         acc
-        (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [<span class="hljs-name">m</span> (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> d a) m), d (<span class="hljs-name"><span class="hljs-builtin-name">/</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> n (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> m m)) d), a (<span class="hljs-name">int</span> (<span class="hljs-name"><span class="hljs-builtin-name">/</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> a0 m) d))]
-          (<span class="hljs-name">recur</span> m d a (<span class="hljs-name">conj</span> acc a)))))))
+        (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [m (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> d a) m), d (/ (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> n (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> m m)) d), a (<span class="hljs-name"><span class="hljs-builtin-name">int</span></span> (/ (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> a0 m) d))]
+          (<span class="hljs-name"><span class="hljs-builtin-name">recur</span></span> m d a (<span class="hljs-name"><span class="hljs-builtin-name">conj</span></span> acc a)))))))
 </code></pre><p>이제 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="10.974ex" height="2.343ex" style="vertical-align: -0.505ex;" viewBox="0 -791.3 4725.1 1008.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-6-Title">
 <title id="MathJax-SVG-6-Title">N \le 10000</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">

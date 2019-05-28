@@ -44,7 +44,7 @@ on
 매뉴얼에는 현재 테이블에서 블록당 레코드 수의 최대값을 구한 다음 나중에 <code>Insert</code>할 때 블록당 레코드 수가 그 최대값을 넘지 않도록 한다고 쓰여 있다.</p><p>따라서 테스트를 다시 해보면... 테이블을 다시 만들고... (<code>truncate</code> 후 다시 테스트하면 원하는 결과가 나오지 않는다)</p><pre><code class="language-sql hljs"><span class="hljs-keyword">drop</span> <span class="hljs-keyword">table</span> t1 <span class="hljs-keyword">purge</span>;
 <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> t1 (n <span class="hljs-built_in">number</span>);
 </code></pre><p>데이터를 1건 넣고</p><pre><code class="language-sql hljs"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t1 <span class="hljs-keyword">values</span> (<span class="hljs-number">0</span>);
-</code></pre><p><code>ALTER TABLE ... MINIMIZE RECORDS_PER_BLOCK</code> 명령을 실행시킨 다음,</p><pre><code class="language-sql hljs">ALTER <span class="hljs-keyword">TABLE</span> t1 <span class="hljs-comment">MINIMIZE RECORDS_PER_BLOCK</span>;
+</code></pre><p><code>ALTER TABLE ... MINIMIZE RECORDS_PER_BLOCK</code> 명령을 실행시킨 다음,</p><pre><code class="language-sql hljs"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> t1 MINIMIZE RECORDS_PER_BLOCK;
 </code></pre><p>데이터를 왕창 넣어 본다.</p><pre><code class="language-sql hljs"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t1
   <span class="hljs-keyword">select</span> <span class="hljs-keyword">level</span> <span class="hljs-keyword">from</span> dual <span class="hljs-keyword">connect</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">level</span> &lt;= <span class="hljs-number">10</span>;
 <span class="hljs-keyword">commit</span>;
@@ -65,14 +65,14 @@ on
    10         421
 
  11 rows selected.
-</pre><p>블록당 레코드 수가 2개에 지나지 않음을 볼 수 있다. (같은 블록 넘버가 2개씩 나오는 것으로 확인할 수 있다.) 좀더 정확히 보려면 다음과 같은 쿼리를 날려보는 것이 좋겠다.</p><pre><code class="language-sql hljs">select
-  dbms_rowid.rowid_block_number(rowid) rowid_blkno,
-  dbms_rowid.rowid_relative_fno(rowid) rel_fno,
-  count(*) rec_cnt
-<span class="hljs-keyword">from</span> t1<span class="hljs-built_in">
-group </span>by
-  dbms_rowid.rowid_block_number(rowid),
-  dbms_rowid.rowid_relative_fno(rowid);
+</pre><p>블록당 레코드 수가 2개에 지나지 않음을 볼 수 있다. (같은 블록 넘버가 2개씩 나오는 것으로 확인할 수 있다.) 좀더 정확히 보려면 다음과 같은 쿼리를 날려보는 것이 좋겠다.</p><pre><code class="language-sql hljs"><span class="hljs-keyword">select</span>
+  dbms_rowid.rowid_block_number(<span class="hljs-keyword">rowid</span>) rowid_blkno,
+  dbms_rowid.rowid_relative_fno(<span class="hljs-keyword">rowid</span>) rel_fno,
+  <span class="hljs-keyword">count</span>(*) rec_cnt
+<span class="hljs-keyword">from</span> t1
+<span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span>
+  dbms_rowid.rowid_block_number(<span class="hljs-keyword">rowid</span>),
+  dbms_rowid.rowid_relative_fno(<span class="hljs-keyword">rowid</span>);
 </code></pre><pre class="console"> ROWID_BLKNO REL_FNO     REC_CNT
  ----------- ----------- -----------
          415           4           2

@@ -16,12 +16,12 @@ on
 }
 </code></pre><p>물론 이건 특별한 경우다. 조금 다른 경우를 생각해보자. 정수 <code>n</code>을 입력받아 1부터 n까지 합을 구하는 함수를 구현해보자. Clojure 구현은 다음과 같다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> sum-to [n]
   (<span class="hljs-name"><span class="hljs-builtin-name">apply</span></span> + (<span class="hljs-name"><span class="hljs-builtin-name">range</span></span> <span class="hljs-number">1</span> n)))
-</code></pre><p>대괄호까지 포함해 네 개의 괄호쌍이 사용되었다. 같은 함수를 Java로 구현하면 다음과 같다.</p><pre><code class="language-java hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> sumTo(<span class="hljs-keyword">int</span> n) {
-  <span class="hljs-keyword">int</span> <span class="hljs-keyword">sum</span> = <span class="hljs-number">0</span>;
+</code></pre><p>대괄호까지 포함해 네 개의 괄호쌍이 사용되었다. 같은 함수를 Java로 구현하면 다음과 같다.</p><pre><code class="language-java hljs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">sumTo</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+  <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>; i &lt;= n; i++) {
-    <span class="hljs-keyword">sum</span> += i;
+    sum += i;
   }
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">sum</span>;
+  <span class="hljs-keyword">return</span> sum;
 }
 </code></pre><p>여기서는 네 개의 괄호쌍이 사용되었다. 함수를 감쌀 클래스의 괄호까지 합하면 다섯 개가 될 것이다.</p><p>코드를 간단히 비교해보면 Clojure 코드에서 괄호가 무지막지하게 많은 것은 아님을 알 수 있다. 단지 LISP에서는 모든 것을 둥근 괄호로 감싸다 보니 괄호가 많아 보일 뿐이다. Clojure는 이런 부분을 어느 정도 보완했다. 둥근 괄호뿐 아니라 대괄호, 중괄호를 적절히 혼합해 다른 LISP 언어처럼 괄호만 많아 보이는 단점을 보완했고, 코드의 가독성도 높아졌다.</p><p>중괄호를 사용하는 언어도 조금 복잡한 프로그램의 경우 다음과 같은 식으로 끝나는 경우도 많다.</p><pre><code class="language-java hljs">        ...
       }

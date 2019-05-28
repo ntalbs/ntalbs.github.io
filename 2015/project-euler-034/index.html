@@ -79,8 +79,8 @@ on
   (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> (<span class="hljs-name">digits</span> n)
        (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> factorial)
        (<span class="hljs-name"><span class="hljs-builtin-name">reduce</span></span> +)))
-</code></pre><p>이 함수를 이용하면 각 자릿수의 팩토리얼을 더한 값이 자기 자신이 되는지 확인하는 함수를 다음과 같이 작성할 수 있다.</p><pre><code class="language-clojure hljs">(defn<span class="hljs-built_in"> check </span>[n]
-  (= n (sum-of-fact n)))
+</code></pre><p>이 함수를 이용하면 각 자릿수의 팩토리얼을 더한 값이 자기 자신이 되는지 확인하는 함수를 다음과 같이 작성할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> check [n]
+  (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> n (<span class="hljs-name">sum-of-fact</span> n)))
 </code></pre><p>이 함수가 <code>true</code>를 리턴하는 수를 찾으면 된다. 그러나 수는 무한하기 때문에 모두 조사할 수 없다. 조사할 수의 범위를 어디까지 할지 결정하는 것이 진짜 문제다.</p><p>상한을 결정하는 방법은 <a href="/2015/project-euler-030/">문제 30</a>에서 사용했던 방법과 비슷하다. 7자리 숫자 중 가장 큰 수는 9,999,999인데, 이 수의 각 자릿수의 팩토리얼을 더하면 2,540,160로 7자리 숫자가 된다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="19.116ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 8230.3 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">
 7 \times 9! = 2,540,160
@@ -136,8 +136,8 @@ on
 </code></pre><p>실행 결과는 다음과 같다.</p><pre class="console">p034=&gt; (time (solve))
 "Elapsed time: 6633.732546 msecs"
 407??
-</pre><p>답을 구하기는 하지만 너무 시간이 오래 걸린다. 좀더 빠르게 할 수 없을까?</p><p>개선할 만한 부분이 한 곳 보인다. 이 문제에서는 각 자릿수의 팩토리얼을 구하므로 항상 0~9의 숫자에 대해서만 팩토리얼을 구할 텐데, 이 값을 항상 반복해서 계산하고 있다. 어차피 값이 아홉 개 뿐이므로 다음과 같이 팩토리얼 값을 미리 계산해 놓은 함수를 만들면 어떨까?</p><pre><code class="language-clojure hljs">(defn factorial [n]
-  (case n
+</pre><p>답을 구하기는 하지만 너무 시간이 오래 걸린다. 좀더 빠르게 할 수 없을까?</p><p>개선할 만한 부분이 한 곳 보인다. 이 문제에서는 각 자릿수의 팩토리얼을 구하므로 항상 0~9의 숫자에 대해서만 팩토리얼을 구할 텐데, 이 값을 항상 반복해서 계산하고 있다. 어차피 값이 아홉 개 뿐이므로 다음과 같이 팩토리얼 값을 미리 계산해 놓은 함수를 만들면 어떨까?</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> factorial [n]
+  (<span class="hljs-name"><span class="hljs-builtin-name">case</span></span> n
     <span class="hljs-number">0</span> <span class="hljs-number">1</span>
     <span class="hljs-number">1</span> <span class="hljs-number">1</span>
     <span class="hljs-number">2</span> <span class="hljs-number">2</span>

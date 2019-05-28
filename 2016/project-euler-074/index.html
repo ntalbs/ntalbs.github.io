@@ -92,8 +92,8 @@ on
 </code></pre><p>실행 결과는 다음과 같다.</p><pre class="console">p074=&gt; (time (solve1))
 "Elapsed time: 66647.941342 msecs"
 4?2
-</pre><p>답을 구하는 데 너무 오래 걸린다. 좀더 빠른 방법이 없을까?</p><h2 id="개선-1">개선 1</h2><p>위에서 사용한 <code>factorial</code> 함수는 <a href="/2015/project-euler-015/">문제 15</a>에서 구현한 것을 그대로 가져다 썼다. 이 문제에서는 0~9의 숫자에 대해서만 계승을 구하면 되므로 계승을 구하는 함수를 다음과 같이 최적화할 수 있을 것 같다.</p><pre><code class="language-clojure hljs">(defn- fact [n]
-  (case n
+</pre><p>답을 구하는 데 너무 오래 걸린다. 좀더 빠른 방법이 없을까?</p><h2 id="개선-1">개선 1</h2><p>위에서 사용한 <code>factorial</code> 함수는 <a href="/2015/project-euler-015/">문제 15</a>에서 구현한 것을 그대로 가져다 썼다. 이 문제에서는 0~9의 숫자에 대해서만 계승을 구하면 되므로 계승을 구하는 함수를 다음과 같이 최적화할 수 있을 것 같다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> fact [n]
+  (<span class="hljs-name"><span class="hljs-builtin-name">case</span></span> n
     <span class="hljs-number">0</span> <span class="hljs-number">1</span>
     <span class="hljs-number">1</span> <span class="hljs-number">1</span>
     <span class="hljs-number">2</span> <span class="hljs-number">2</span>

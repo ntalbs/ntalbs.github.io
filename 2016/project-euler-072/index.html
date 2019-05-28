@@ -313,15 +313,15 @@ p_r^{k_r}\left(1 - \frac{1}{p_r}\right)
  <use xlink:href="#MJMATHI-6E" x="986" y="0"></use>
  <use xlink:href="#MJMAIN-29" x="1586" y="0"></use>
 </g>
-</svg></span>을 구하는 함수를 다음과 같이 Clojure 코드로 옮길 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name">ns</span> p072
-  (<span class="hljs-name">:require</span> [<span class="hljs-name">util</span> :refer [<span class="hljs-name">pow</span> factorize]]))
+</svg></span>을 구하는 함수를 다음과 같이 Clojure 코드로 옮길 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">ns</span></span> p072
+  (<span class="hljs-symbol">:require</span> [util <span class="hljs-symbol">:refer</span> [pow factorize]]))
 
-(<span class="hljs-name">defn</span> phi
-  ([<span class="hljs-name">p</span> k]
-   (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> (<span class="hljs-name">pow</span> p k) (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> <span class="hljs-number">1</span> (<span class="hljs-name"><span class="hljs-builtin-name">/</span></span> <span class="hljs-number">1</span> p))))
-  ([<span class="hljs-name">n</span>]
-   (<span class="hljs-name">-&gt;&gt;</span> (<span class="hljs-name">factorize</span> n)
-        (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> (<span class="hljs-name">fn</span> [[<span class="hljs-name">p</span> k]] (<span class="hljs-name">phi</span> p k)))
+(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> phi
+  ([p k]
+   (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> (<span class="hljs-name">pow</span> p k) (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> <span class="hljs-number">1</span> (/ <span class="hljs-number">1</span> p))))
+  ([n]
+   (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> (<span class="hljs-name">factorize</span> n)
+        (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [[p k]] (<span class="hljs-name">phi</span> p k)))
         (<span class="hljs-name"><span class="hljs-builtin-name">apply</span></span> *))))
 </code></pre><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.357ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 1876 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-10-Title">
 <title id="MathJax-SVG-10-Title">\phi(2)</title>

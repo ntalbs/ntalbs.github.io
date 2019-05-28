@@ -3,26 +3,26 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2015-10-04" itemprop="datePublished">2015-10-04</time>
 on
 <a href="/tags/project-euler/">Project-Euler</a>
-<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 33</h1></header><section class="post-content"><blockquote><p>이상한 방법으로 약분할 수 있는 분수 찾기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=33">[국어]</a> <a href="https://projecteuler.net/problem=33">[영어]</a></p></blockquote><p>값이 1보다 작고 분모와 분자가 모두 두 자릿수인 분수는 모두 4005개다. 이 정도라면 그냥 루프를 돌려 확인해도 금방 답을 찾을 수 있다. 이상한 방법으로 약분하는 함수는 다음과 같이 작성할 수 있다. <code>n</code>은 numerator, 즉 분자를 나타내며, <code>d</code>는 denominator, 즉 분모를 나타낸다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name">ns</span> p033
-  (<span class="hljs-name">:require</span> [<span class="hljs-name">util</span> :refer [<span class="hljs-name">digits</span>]]))
+<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 33</h1></header><section class="post-content"><blockquote><p>이상한 방법으로 약분할 수 있는 분수 찾기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=33">[국어]</a> <a href="https://projecteuler.net/problem=33">[영어]</a></p></blockquote><p>값이 1보다 작고 분모와 분자가 모두 두 자릿수인 분수는 모두 4005개다. 이 정도라면 그냥 루프를 돌려 확인해도 금방 답을 찾을 수 있다. 이상한 방법으로 약분하는 함수는 다음과 같이 작성할 수 있다. <code>n</code>은 numerator, 즉 분자를 나타내며, <code>d</code>는 denominator, 즉 분모를 나타낸다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">ns</span></span> p033
+  (<span class="hljs-symbol">:require</span> [util <span class="hljs-symbol">:refer</span> [digits]]))
 
-(<span class="hljs-name">defn</span> st-cancel <span class="hljs-string">"strange cancel"</span> [[<span class="hljs-name">n</span> d]]
-  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [[<span class="hljs-name">n1</span> n2] (<span class="hljs-name">digits</span> n) [<span class="hljs-name">d1</span> d2] (<span class="hljs-name">digits</span> d)]
-    (<span class="hljs-name"><span class="hljs-builtin-name">cond</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> n1 d1) (<span class="hljs-name"><span class="hljs-builtin-name">/</span></span> n2 d2)
-          (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> n1 d2) (<span class="hljs-name"><span class="hljs-builtin-name">/</span></span> n2 d1)
-          (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> n2 d1) (<span class="hljs-name"><span class="hljs-builtin-name">/</span></span> n1 d2)
-          (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> n2 d2) (<span class="hljs-name"><span class="hljs-builtin-name">/</span></span> n1 d1)
-          :else nil)))
+(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> st-cancel <span class="hljs-string">"strange cancel"</span> [[n d]]
+  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [[n1 n2] (<span class="hljs-name">digits</span> n) [d1 d2] (<span class="hljs-name">digits</span> d)]
+    (<span class="hljs-name"><span class="hljs-builtin-name">cond</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> n1 d1) (/ n2 d2)
+          (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> n1 d2) (/ n2 d1)
+          (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> n2 d1) (/ n1 d2)
+          (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> n2 d2) (/ n1 d1)
+          <span class="hljs-symbol">:else</span> <span class="hljs-literal">nil</span>)))
 </code></pre><p>이상한 방법으로 약분되는 경우만 쉽게 필터링할 수 있도록 이상한 방법으로 약분되지 않는 경우에는 <code>nil</code>을 리턴하도록 했다.</p><p>분자, 분모 모두 두 자리 정수이고 값이 1보다 작은 수 중에서 문제의 조건을 만족하는 수를 찾아야 한다. 값이 1보다 작으려면 분자가 분모보다 작아야 하므로 조사할 대상 분수는 다음과 같이 만들 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> rs
   (<span class="hljs-name"><span class="hljs-builtin-name">for</span></span> [n (<span class="hljs-name"><span class="hljs-builtin-name">range</span></span> <span class="hljs-number">10</span> <span class="hljs-number">100</span>) d (<span class="hljs-name"><span class="hljs-builtin-name">range</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> n) <span class="hljs-number">100</span>)
         <span class="hljs-symbol">:when</span> (<span class="hljs-name"><span class="hljs-builtin-name">not=</span></span> <span class="hljs-number">0</span> (<span class="hljs-name"><span class="hljs-builtin-name">mod</span></span> n <span class="hljs-number">10</span>))
         <span class="hljs-symbol">:when</span> (<span class="hljs-name"><span class="hljs-builtin-name">not=</span></span> <span class="hljs-number">0</span> (<span class="hljs-name"><span class="hljs-builtin-name">mod</span></span> d <span class="hljs-number">10</span>))]
     [n d]))
-</code></pre><p>이제 <code>rs</code>의 각 요소 중에서 문제의 조건을 만족하는 요소만 추려내면 된다. <code>[n d]</code>를 받아 <code>(/ n d)</code>와 <code>(st-cancel n d)</code>가 같은 경우만 <code>filter</code>로 추려낸 다음 <code>(/ n d)</code>를 계산해 모두 곱한 다음 분모를 구하면 된다. 코드로 작성하면 다음과 같이 된다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name">defn</span> solve []
-  (<span class="hljs-name">-&gt;&gt;</span> rs
-       (<span class="hljs-name">filter</span> (<span class="hljs-name">fn</span> [[<span class="hljs-name">n</span> d]] (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">/</span></span> n d) (<span class="hljs-name">st-cancel</span> [<span class="hljs-name">n</span> d]))))
-       (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> (<span class="hljs-name">fn</span> [[<span class="hljs-name">n</span> d]] (<span class="hljs-name"><span class="hljs-builtin-name">/</span></span> n d)))
-       (<span class="hljs-name">reduce</span> *)
+</code></pre><p>이제 <code>rs</code>의 각 요소 중에서 문제의 조건을 만족하는 요소만 추려내면 된다. <code>[n d]</code>를 받아 <code>(/ n d)</code>와 <code>(st-cancel n d)</code>가 같은 경우만 <code>filter</code>로 추려낸 다음 <code>(/ n d)</code>를 계산해 모두 곱한 다음 분모를 구하면 된다. 코드로 작성하면 다음과 같이 된다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> solve []
+  (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> rs
+       (<span class="hljs-name"><span class="hljs-builtin-name">filter</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [[n d]] (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> (/ n d) (<span class="hljs-name">st-cancel</span> [n d]))))
+       (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [[n d]] (/ n d)))
+       (<span class="hljs-name"><span class="hljs-builtin-name">reduce</span></span> *)
        denominator))
 </code></pre><p>실행 결과는 다음과 같다.</p><pre class="console">p033=&gt; (time (solve))
 "Elapsed time: 6.042714 msecs"

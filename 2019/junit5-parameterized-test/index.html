@@ -3,72 +3,72 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2019-04-05" itemprop="datePublished">2019-04-05</time>
 on
 <a href="/tags/java/">Java</a></p><h1 class="post-title">JUnit 5 매개변수 테스트</h1></header><section class="post-content"><p>JUnit 4에서는 매개변수 테스트(parameterized test)를 작성할 때 불편한 점이 몇 가지 있다. 가장 대표적인 단점은 다음과 같이 정리할 수 있겠다.</p><ul><li>테스트 데이터 집합을 한 가지만 정의할 수 있다. 데이터 집합을 여러 개 정의한다고 컴파일 에러가 발생하지는 않지만 실제로 실행해보면 하나만 사용된다.</li><li>매개변수 테스트 클래스에 일반 테스트가 포함되어 있으면 이 일반 테스트가 데이터 수만큼 반복 실행된다. IDE에서 테스트 결과를 보면 각 테이터 밑으로 일반 테스트 결과가 반복해 나타나 알아보기도 어렵다.</li><li>매개변수 테스트 클래스는 <code>@RunWith(ParameterizedTest.class)</code> 어노테이션을 붙여야 하는데, 다른 <code>@RunWith</code>를 사용해야 할 경우 답답해진다.</li><li>매개변수 데이터 집합 모양에 맞게 생성자를 정의해야 한다.</li></ul><p>이런 이유로 테스트 대상 클래스에 매개변수 테스트를 하고 싶은 메서드가 여럿 있다면 매개변수 테스트 클래스 여럿을 만들어야 한다. 매개변수가 필요 없는 테스트가 있다면 따로 모아 별도 테스트 클래스에 추가해야 한다.</p><p><a href="/2019/check-str-rotation/">회전 문자열 검사 방법</a>에서 구현했던 <code>isRotated()</code>에 대한 테스트를 JUnit 4로 작성하면 다음과 같다. 테스트 데이터 집합을 하나만 정의할 수 있으므로 모든 테스트 데이터와 기대 결과를 한 곳에 때려넣었다.</p><pre><code class="language-java hljs"><span class="hljs-meta">@RunWith</span>(Parameterized.class)
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> StringRotationJunit4Test {
-  <span class="hljs-keyword">private</span> <span class="hljs-built_in">String</span> input;
-  <span class="hljs-keyword">private</span> <span class="hljs-built_in">String</span> rotated;
-  <span class="hljs-keyword">private</span> <span class="hljs-built_in">boolean</span> result;
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StringRotationJunit4Test</span> </span>{
+  <span class="hljs-keyword">private</span> String input;
+  <span class="hljs-keyword">private</span> String rotated;
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> result;
 
-  <span class="hljs-keyword">public</span> StringRotationJunit4Test(<span class="hljs-built_in">String</span> s1, <span class="hljs-built_in">String</span> s2, <span class="hljs-built_in">boolean</span> result) {
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">StringRotationJunit4Test</span><span class="hljs-params">(String s1, String s2, <span class="hljs-keyword">boolean</span> result)</span> </span>{
     <span class="hljs-keyword">this</span>.input = s1;
     <span class="hljs-keyword">this</span>.rotated = s2;
     <span class="hljs-keyword">this</span>.result = result;
   }
 
   <span class="hljs-meta">@Parameters</span>(name = <span class="hljs-string">"isRotated({0}, {1}) should be true {2}"</span>)
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">Object</span>[][] rotated() {
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>[][]{
-      {<span class="hljs-string">"abcde"</span>, <span class="hljs-string">"bcdea"</span>, <span class="hljs-literal">true</span>},
-      {<span class="hljs-string">"abcde"</span>, <span class="hljs-string">"cdeab"</span>, <span class="hljs-literal">true</span>},
-      {<span class="hljs-string">"abcda"</span>, <span class="hljs-string">"bcdaa"</span>, <span class="hljs-literal">true</span>},
-      {<span class="hljs-string">"abbcd"</span>, <span class="hljs-string">"bbcda"</span>, <span class="hljs-literal">true</span>},
-      {<span class="hljs-string">""</span>, <span class="hljs-string">""</span>, <span class="hljs-literal">false</span>},
-      {<span class="hljs-string">""</span>, <span class="hljs-string">"abc"</span>, <span class="hljs-literal">false</span>},
-      {<span class="hljs-string">"abc"</span>, <span class="hljs-string">""</span>, <span class="hljs-literal">false</span>},
-      {<span class="hljs-literal">null</span>, <span class="hljs-string">"abc"</span>, <span class="hljs-literal">false</span>},
-      {<span class="hljs-string">"abc"</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>},
-      {<span class="hljs-string">"abc"</span>, <span class="hljs-string">"abc"</span>, <span class="hljs-literal">false</span>},
-      {<span class="hljs-string">"abcde"</span>, <span class="hljs-string">"abcdef"</span>, <span class="hljs-literal">false</span>},
-      {<span class="hljs-string">"abcda"</span>, <span class="hljs-string">"bcdaf"</span>, <span class="hljs-literal">false</span>}
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Object[][] rotated() {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Object[][]{
+      {<span class="hljs-string">"abcde"</span>, <span class="hljs-string">"bcdea"</span>, <span class="hljs-keyword">true</span>},
+      {<span class="hljs-string">"abcde"</span>, <span class="hljs-string">"cdeab"</span>, <span class="hljs-keyword">true</span>},
+      {<span class="hljs-string">"abcda"</span>, <span class="hljs-string">"bcdaa"</span>, <span class="hljs-keyword">true</span>},
+      {<span class="hljs-string">"abbcd"</span>, <span class="hljs-string">"bbcda"</span>, <span class="hljs-keyword">true</span>},
+      {<span class="hljs-string">""</span>, <span class="hljs-string">""</span>, <span class="hljs-keyword">false</span>},
+      {<span class="hljs-string">""</span>, <span class="hljs-string">"abc"</span>, <span class="hljs-keyword">false</span>},
+      {<span class="hljs-string">"abc"</span>, <span class="hljs-string">""</span>, <span class="hljs-keyword">false</span>},
+      {<span class="hljs-keyword">null</span>, <span class="hljs-string">"abc"</span>, <span class="hljs-keyword">false</span>},
+      {<span class="hljs-string">"abc"</span>, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">false</span>},
+      {<span class="hljs-string">"abc"</span>, <span class="hljs-string">"abc"</span>, <span class="hljs-keyword">false</span>},
+      {<span class="hljs-string">"abcde"</span>, <span class="hljs-string">"abcdef"</span>, <span class="hljs-keyword">false</span>},
+      {<span class="hljs-string">"abcda"</span>, <span class="hljs-string">"bcdaf"</span>, <span class="hljs-keyword">false</span>}
     };
   }
 
   <span class="hljs-meta">@Test</span>
-  <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> isRotatedTrue() {
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">isRotatedTrue</span><span class="hljs-params">()</span> </span>{
     assertEquals(result, StringRotation.isRotated(input, rotated));
   }
 }
-</code></pre><p>JUnit 5에서는 매개변수 테스트 데이터 정의 및 테스트 작성 방법이 달라졌다. 테스트 클래스에 별도 어노테이션을 붙이지 않는다. 대신 매개변수 테스트 메서드에 <code>@ParameterizedTest</code> 어노테이션을 붙인다. 따라서 한 테스트 클래스 안에 여러 매개변수 테스트를 정의할 수 있게 되었다.</p><p>또한 하나의 테스트 클래스 안에서 여러 테스트 데이터 집합을 정의할 수 있다. 데이터 집합을 정의하는 방법도 다음과 같이 다양하다.</p><ul><li><code>@ValueSource</code><br>테스트 데이터가 간단한 목록일 경우 사용할 수 있다. 값의 타입에 <code>short</code>, <code>byte</code>, <code>int</code>, <code>long</code>, <code>float</code>, <code>double</code>, <code>char</code>, <code>String</code>, <code>Class</code>만 사용할 수 있다는 제한이 있다.</li><li><code>@CvsSource</code><br>매개변수 테스트에 여러 값을 넘겨야 하는 경우 사용할 수 있다. <code>delimiter</code>로 다른 문자를 지정할 수도 있다.</li><li><code>@CvsFileSource</code><br>별도 CVS 파일을 테스트 데이터로 지정할 수도 있다. <code>numLinesToSkip</code>을 지정해 헤더를 건너뛰도록 할 수 있다.</li><li><code>@MethodSource</code><br>매개변수 데이터를 제공할 메서드를 정의하고, 테스트 메서드에서 <code>@MethodSource</code>로 데이터 소스를 지정할 수 있다. 복잡한 객체를 테스트 인자로 넘겨야 하는 경우 유용하다.</li></ul><p>각 방법에 대한 자세한 사항은 참고 문서를 참조하기 바란다.</p><p>위에서 JUnit 4로 작성했던 테스트를 JUnit 5로 다시 작성하면 다음과 같다. 두 가지 테스트 데이터 집합을 정의했고 이를 이용하는 두 개의 매개변수 테스트 메서드가 있다.</p><pre><code class="language-java hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StringRotationTest</span> {</span>
-  private static Stream&lt;Arguments&gt; rotated() {
-    <span class="hljs-keyword">return</span> Stream.<span class="hljs-keyword">of</span>(
-      Arguments.<span class="hljs-keyword">of</span>(<span class="hljs-string">"abcde"</span>, <span class="hljs-string">"bcdea"</span>),
-      Arguments.<span class="hljs-keyword">of</span>(<span class="hljs-string">"abcde"</span>, <span class="hljs-string">"cdeab"</span>),
-      Arguments.<span class="hljs-keyword">of</span>(<span class="hljs-string">"abcda"</span>, <span class="hljs-string">"bcdaa"</span>),
-      Arguments.<span class="hljs-keyword">of</span>(<span class="hljs-string">"abbcd"</span>, <span class="hljs-string">"bbcda"</span>)
+</code></pre><p>JUnit 5에서는 매개변수 테스트 데이터 정의 및 테스트 작성 방법이 달라졌다. 테스트 클래스에 별도 어노테이션을 붙이지 않는다. 대신 매개변수 테스트 메서드에 <code>@ParameterizedTest</code> 어노테이션을 붙인다. 따라서 한 테스트 클래스 안에 여러 매개변수 테스트를 정의할 수 있게 되었다.</p><p>또한 하나의 테스트 클래스 안에서 여러 테스트 데이터 집합을 정의할 수 있다. 데이터 집합을 정의하는 방법도 다음과 같이 다양하다.</p><ul><li><code>@ValueSource</code><br>테스트 데이터가 간단한 목록일 경우 사용할 수 있다. 값의 타입에 <code>short</code>, <code>byte</code>, <code>int</code>, <code>long</code>, <code>float</code>, <code>double</code>, <code>char</code>, <code>String</code>, <code>Class</code>만 사용할 수 있다는 제한이 있다.</li><li><code>@CvsSource</code><br>매개변수 테스트에 여러 값을 넘겨야 하는 경우 사용할 수 있다. <code>delimiter</code>로 다른 문자를 지정할 수도 있다.</li><li><code>@CvsFileSource</code><br>별도 CVS 파일을 테스트 데이터로 지정할 수도 있다. <code>numLinesToSkip</code>을 지정해 헤더를 건너뛰도록 할 수 있다.</li><li><code>@MethodSource</code><br>매개변수 데이터를 제공할 메서드를 정의하고, 테스트 메서드에서 <code>@MethodSource</code>로 데이터 소스를 지정할 수 있다. 복잡한 객체를 테스트 인자로 넘겨야 하는 경우 유용하다.</li></ul><p>각 방법에 대한 자세한 사항은 참고 문서를 참조하기 바란다.</p><p>위에서 JUnit 4로 작성했던 테스트를 JUnit 5로 다시 작성하면 다음과 같다. 두 가지 테스트 데이터 집합을 정의했고 이를 이용하는 두 개의 매개변수 테스트 메서드가 있다.</p><pre><code class="language-java hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StringRotationTest</span> </span>{
+  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Stream&lt;Arguments&gt; <span class="hljs-title">rotated</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> Stream.of(
+      Arguments.of(<span class="hljs-string">"abcde"</span>, <span class="hljs-string">"bcdea"</span>),
+      Arguments.of(<span class="hljs-string">"abcde"</span>, <span class="hljs-string">"cdeab"</span>),
+      Arguments.of(<span class="hljs-string">"abcda"</span>, <span class="hljs-string">"bcdaa"</span>),
+      Arguments.of(<span class="hljs-string">"abbcd"</span>, <span class="hljs-string">"bbcda"</span>)
     );
   }
 
-  private static Stream&lt;Arguments&gt; nonRotated() {
-    <span class="hljs-keyword">return</span> Stream.<span class="hljs-keyword">of</span>(
-      Arguments.<span class="hljs-keyword">of</span>(<span class="hljs-string">""</span>, <span class="hljs-string">""</span>),
-      Arguments.<span class="hljs-keyword">of</span>(<span class="hljs-string">""</span>, <span class="hljs-string">"abc"</span>),
-      Arguments.<span class="hljs-keyword">of</span>(<span class="hljs-string">"abc"</span>, <span class="hljs-string">""</span>),
-      Arguments.<span class="hljs-keyword">of</span>(<span class="hljs-literal">null</span>, <span class="hljs-string">"abc"</span>),
-      Arguments.<span class="hljs-keyword">of</span>(<span class="hljs-string">"abc"</span>, <span class="hljs-literal">null</span>),
-      Arguments.<span class="hljs-keyword">of</span>(<span class="hljs-string">"abc"</span>, <span class="hljs-string">"abc"</span>),
-      Arguments.<span class="hljs-keyword">of</span>(<span class="hljs-string">"abcde"</span>, <span class="hljs-string">"abcdef"</span>),
-      Arguments.<span class="hljs-keyword">of</span>(<span class="hljs-string">"abcda"</span>, <span class="hljs-string">"bcdaf"</span>)
+  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Stream&lt;Arguments&gt; <span class="hljs-title">nonRotated</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> Stream.of(
+      Arguments.of(<span class="hljs-string">""</span>, <span class="hljs-string">""</span>),
+      Arguments.of(<span class="hljs-string">""</span>, <span class="hljs-string">"abc"</span>),
+      Arguments.of(<span class="hljs-string">"abc"</span>, <span class="hljs-string">""</span>),
+      Arguments.of(<span class="hljs-keyword">null</span>, <span class="hljs-string">"abc"</span>),
+      Arguments.of(<span class="hljs-string">"abc"</span>, <span class="hljs-keyword">null</span>),
+      Arguments.of(<span class="hljs-string">"abc"</span>, <span class="hljs-string">"abc"</span>),
+      Arguments.of(<span class="hljs-string">"abcde"</span>, <span class="hljs-string">"abcdef"</span>),
+      Arguments.of(<span class="hljs-string">"abcda"</span>, <span class="hljs-string">"bcdaf"</span>)
     );
   }
 
-  @ParameterizedTest
-  @MethodSource(<span class="hljs-string">"rotated"</span>)
-  <span class="hljs-literal">void</span> isRotatedTrue(String input, String rotated) {
+  <span class="hljs-meta">@ParameterizedTest</span>
+  <span class="hljs-meta">@MethodSource</span>(<span class="hljs-string">"rotated"</span>)
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">isRotatedTrue</span><span class="hljs-params">(String input, String rotated)</span> </span>{
     assertTrue(StringRotation.isRotated(input, rotated));
   }
 
-  @ParameterizedTest
-  @MethodSource(<span class="hljs-string">"nonRotated"</span>)
-  <span class="hljs-literal">void</span> isRotatedFalse(String input, String rotated) {
+  <span class="hljs-meta">@ParameterizedTest</span>
+  <span class="hljs-meta">@MethodSource</span>(<span class="hljs-string">"nonRotated"</span>)
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">isRotatedFalse</span><span class="hljs-params">(String input, String rotated)</span> </span>{
     assertFalse(StringRotation.isRotated(input, rotated));
   }
 }

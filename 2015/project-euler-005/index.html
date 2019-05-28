@@ -118,11 +118,11 @@ lcm(a,b) = \frac{\lvert a \times b \rvert}{gcd(a,b)}
 </g>
 </g>
 </g>
-</svg></span></div><p>최대공약수(Greatest Common Divisor)를 구하면 최소공배수를 구할 수 있다. 최대공약수와 최소공배수를 구하는 함수는 다음과 같이 구현할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name">defn</span> gcd [<span class="hljs-name">a</span> b]
-  (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> b <span class="hljs-number">0</span>) a (<span class="hljs-name">recur</span> b (<span class="hljs-name">rem</span> a b))))
+</svg></span></div><p>최대공약수(Greatest Common Divisor)를 구하면 최소공배수를 구할 수 있다. 최대공약수와 최소공배수를 구하는 함수는 다음과 같이 구현할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> gcd [a b]
+  (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> b <span class="hljs-number">0</span>) a (<span class="hljs-name"><span class="hljs-builtin-name">recur</span></span> b (<span class="hljs-name"><span class="hljs-builtin-name">rem</span></span> a b))))
 
-(<span class="hljs-name">defn</span> lcm [<span class="hljs-name">a</span> b]
-  (<span class="hljs-name"><span class="hljs-builtin-name">/</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> a b) (<span class="hljs-name"><span class="hljs-builtin-name">gcd</span></span> a b)))
+(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> lcm [a b]
+  (/ (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> a b) (<span class="hljs-name">gcd</span> a b)))
 </code></pre><p>위 함수는 주어진 두 수의 최대공약수, 최소공배수를 구한다. 세 수에 대한 최소공배수를 구하려면 먼저 두 수에 대한 최소공배수를 구한 다음 그 결과와 나머지 수의 최소공배수를 구하면 된다. 따라서 1~20의 최소공배수는 다음과 같이 구할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> solve []
   (<span class="hljs-name"><span class="hljs-builtin-name">reduce</span></span> lcm (<span class="hljs-name"><span class="hljs-builtin-name">range</span></span> <span class="hljs-number">1</span> <span class="hljs-number">21</span>)))
 </code></pre><p>실행시켜보면 다음과 같이 빠르게 답을 구하는 것을 확인할 수 있다.</p><pre class="console">p005=&gt; (time (solve))

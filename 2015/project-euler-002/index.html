@@ -128,10 +128,10 @@ F_2 &amp;= F_1 = 1
 </g>
 </g>
 </g>
-</svg></span></div><p>구현하기 쉬워 보인다.</p><h2 id="방법-1">방법 1</h2><pre><code class="language-clojure hljs">(<span class="hljs-name">defn</span> fibo-rec [<span class="hljs-name">n</span>]
+</svg></span></div><p>구현하기 쉬워 보인다.</p><h2 id="방법-1">방법 1</h2><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> fibo-rec [n]
   (<span class="hljs-name"><span class="hljs-builtin-name">cond</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> <span class="hljs-number">1</span> n) <span class="hljs-number">1</span>
         (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> <span class="hljs-number">2</span> n) <span class="hljs-number">1</span>
-        :else (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span>' (<span class="hljs-name">fibo-rec</span> (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> n <span class="hljs-number">1</span>)) (<span class="hljs-name">fibo-rec</span> (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> n <span class="hljs-number">2</span>)))))
+        <span class="hljs-symbol">:else</span> (<span class="hljs-name">+'</span> (<span class="hljs-name">fibo-rec</span> (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> n <span class="hljs-number">1</span>)) (<span class="hljs-name">fibo-rec</span> (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> n <span class="hljs-number">2</span>)))))
 </code></pre><p>그러나 재귀를 이용한 단순한 구현은 인자가 커짐에 따라 답을 구하는 속도가 급격히 느려진다. <code>fibo-rec</code> 함수 안에서 재귀 호출을 두 번 하는데, 인자가 커지면 재귀호출 회수가 지수적으로 증가하며 이미 구했던 값을 지속적으로 반복해 구하는 비효율이 생긴다.</p><p>이미 계산한 함수 값을 기억해두는 메모이제이션(memoization) 기법을 사용하면 부가적인 메모리를 사용하는 대신 속도를 빠르게 할 수 있다. Clojure에서는 다음과 같이 간단히 메모이제이션을 사용할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> fibo-rec (<span class="hljs-name"><span class="hljs-builtin-name">memoize</span></span> fibo-rec))
 </code></pre><p>이렇게 하면 피보나치 수열의 n번째 항을 빠르게 구할 수 있다. 따라서 다음과 같이 문제를 풀 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> limit <span class="hljs-number">4000000</span>)
 

@@ -228,9 +228,9 @@ on
 </g>
 </svg></span>를 만족하는 경우는 <code>c</code>를 리턴하고, 만족하지 않는 경우는 <code>nil</code>을 리턴한다.</p><p>숫자 벡터를 정수로 바꾸는 함수는 다음과 같이 작성할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> to-int [v]
   (<span class="hljs-name">Integer/parseInt</span> (<span class="hljs-name"><span class="hljs-builtin-name">apply</span></span> str v)))
-</code></pre><p>그리고 다음과 같이 <code>check</code> 함수를 작성한다. 순열을 하나 받아 (1, 4), (2, 3) 조합에 대해 <code>check-pattern</code>을 호출한다.</p><pre><code class="language-clojure hljs">(defn-<span class="hljs-built_in"> check </span>[v]
-  [(check-pattern v 1 4)
-   (check-pattern v 2 3)])
+</code></pre><p>그리고 다음과 같이 <code>check</code> 함수를 작성한다. 순열을 하나 받아 (1, 4), (2, 3) 조합에 대해 <code>check-pattern</code>을 호출한다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> check [v]
+  [(<span class="hljs-name">check-pattern</span> v <span class="hljs-number">1</span> <span class="hljs-number">4</span>)
+   (<span class="hljs-name">check-pattern</span> v <span class="hljs-number">2</span> <span class="hljs-number">3</span>)])
 </code></pre><p>이제 다음과 같이 문제를 풀 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> solve []
   (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> (<span class="hljs-name">permutations</span> (<span class="hljs-name"><span class="hljs-builtin-name">range</span></span> <span class="hljs-number">1</span> <span class="hljs-number">10</span>))
        (<span class="hljs-name"><span class="hljs-builtin-name">mapcat</span></span> check)

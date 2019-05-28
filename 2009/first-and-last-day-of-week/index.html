@@ -14,20 +14,20 @@ on
   <span class="hljs-keyword">last_day</span>(<span class="hljs-keyword">to_date</span>(:yyyymm, <span class="hljs-string">'YYYYMM'</span>) day_last,
   :<span class="hljs-keyword">week</span> <span class="hljs-keyword">week</span>
 <span class="hljs-keyword">from</span> dual
-</code></pre><h3 id="2-해당-달이-몇-주를-가지는지또는-마지막-주가-몇째-주인지-구한다">2. 해당 달이 몇 주를 가지는지(또는 마지막 주가 몇째 주인지) 구한다.</h3><pre><code class="language-sql hljs">select
-  (<span class="hljs-name">trunc</span>(<span class="hljs-name">day_last</span>, 'D')
-    - trunc(<span class="hljs-name">trunc</span>(<span class="hljs-name">day_last</span>, 'MM'), 'D') / <span class="hljs-number">7</span> + <span class="hljs-number">1</span> last_week,
+</code></pre><h3 id="2-해당-달이-몇-주를-가지는지또는-마지막-주가-몇째-주인지-구한다">2. 해당 달이 몇 주를 가지는지(또는 마지막 주가 몇째 주인지) 구한다.</h3><pre><code class="language-sql hljs"><span class="hljs-keyword">select</span>
+  (trunc(day_last, <span class="hljs-string">'D'</span>)
+    - trunc(trunc(day_last, <span class="hljs-string">'MM'</span>), <span class="hljs-string">'D'</span>) / <span class="hljs-number">7</span> + <span class="hljs-number">1</span> last_week,
   day_last,
-  week
-from ...
+  <span class="hljs-keyword">week</span>
+<span class="hljs-keyword">from</span> ...
 </code></pre><h3 id="3-지정된-주에-포함된-날짜를-구한다">3. 지정된 주에 포함된 날짜를 구한다.</h3><pre><code class="language-sql hljs"><span class="hljs-keyword">select</span>
   day_last - <span class="hljs-number">7</span> * <span class="hljs-keyword">decode</span>(<span class="hljs-keyword">least</span>(last_week, <span class="hljs-keyword">week</span>),
                         <span class="hljs-keyword">week</span>, last_week - <span class="hljs-keyword">week</span>) base <span class="hljs-keyword">day</span>
 <span class="hljs-keyword">from</span> ...
-</code></pre><h3 id="4-이-날짜가-포함된-주의-첫-날과-마지막-날을-구한다">4. 이 날짜가 포함된 주의 첫 날과 마지막 날을 구한다.</h3><pre><code class="language-sql hljs">select
-  <span class="hljs-built-in">trunc</span>(base_day, <span class="hljs-string">'D'</span>) start_date,
-  <span class="hljs-built-in">trunc</span>(base_day, <span class="hljs-string">'D'</span>)+<span class="hljs-number">6</span> end_date
-<span class="hljs-function"><span class="hljs-title">from</span></span> ...
+</code></pre><h3 id="4-이-날짜가-포함된-주의-첫-날과-마지막-날을-구한다">4. 이 날짜가 포함된 주의 첫 날과 마지막 날을 구한다.</h3><pre><code class="language-sql hljs"><span class="hljs-keyword">select</span>
+  trunc(base_day, <span class="hljs-string">'D'</span>) start_date,
+  trunc(base_day, <span class="hljs-string">'D'</span>)+<span class="hljs-number">6</span> end_date
+<span class="hljs-keyword">from</span> ...
 </code></pre><p>세번째 단계에서 <code>decode(least(...))</code> 대신 <code>case when week &lt; last_week then last_week - week end</code>로 하는 게 이해하기 더 쉬울 듯 하다.</p><p>이걸 모두 합치면...</p><pre><code class="language-sql hljs"><span class="hljs-keyword">select</span>
   trunc (base_day, <span class="hljs-string">'d'</span>) starting_day,
   trunc (base_day, <span class="hljs-string">'d'</span>) + <span class="hljs-number">6</span> ending_day

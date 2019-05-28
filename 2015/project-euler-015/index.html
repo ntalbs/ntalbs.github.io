@@ -196,9 +196,9 @@ on
 </g>
 </g>
 </g>
-</svg></span></div><p><code>n!</code>을 구하는 함수가 있다면 답을 구한 것이나 마찬가지다. <code>factorial</code>이 구현되어 있다고 한다면 답은 다음과 같이 구할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name">defn</span> solve []
-  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [<span class="hljs-name">f40</span> (<span class="hljs-name">factorial</span> <span class="hljs-number">40</span>) f20 (<span class="hljs-name">factorial</span> <span class="hljs-number">20</span>)]
-    (<span class="hljs-name"><span class="hljs-builtin-name">/</span></span> f40 (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span>' f20 f20))))
+</svg></span></div><p><code>n!</code>을 구하는 함수가 있다면 답을 구한 것이나 마찬가지다. <code>factorial</code>이 구현되어 있다고 한다면 답은 다음과 같이 구할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> solve []
+  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [f40 (<span class="hljs-name">factorial</span> <span class="hljs-number">40</span>) f20 (<span class="hljs-name">factorial</span> <span class="hljs-number">20</span>)]
+    (/ f40 (<span class="hljs-name">*'</span> f20 f20))))
 </code></pre><p>결과는 다음과 같다.</p><pre class="console">p015=&gt; (time (solve))
 "Elapsed time: 0.16456 msecs"
 13784652????N
@@ -254,10 +254,10 @@ n(n-1)! &amp; \mbox {if } n &gt; 0
 </g>
 </g>
 </g>
-</svg></span></div><p>Clojure 코드로는 다음과 같이 구현할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name">defn</span> fact1 [<span class="hljs-name">n</span>]
+</svg></span></div><p>Clojure 코드로는 다음과 같이 구현할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> fact1 [n]
   (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> <span class="hljs-number">0</span> n)
     <span class="hljs-number">1</span>
-    (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span>' n (<span class="hljs-name">fact1</span> (<span class="hljs-name">dec</span> n)))))
+    (<span class="hljs-name">*'</span> n (<span class="hljs-name">fact1</span> (<span class="hljs-name"><span class="hljs-builtin-name">dec</span></span> n)))))
 </code></pre><p><code>factorial</code>은 매우 빠르게 커지는 함수로 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.972ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 1279.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-4-Title">
 <title id="MathJax-SVG-4-Title">21!</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">

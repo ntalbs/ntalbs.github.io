@@ -177,8 +177,8 @@ FILES=$(find <span class="hljs-variable">$SRC_ROOT</span>)
     <span class="hljs-keyword">fi</span>
 <span class="hljs-keyword">done</span>;
 </code></pre><p>이제 블로그를 생성하는 절차가 조금 바뀐다. 예전에는 <code>hugo</code> 명령을 실행하면 <code>public</code> 디렉터리에 블로그가 생성되고 그걸 GitHub에 푸시하면 됐다. 지금부터는 위에서 작성한 스크립트를 실행해 <code>public</code> 디렉터리를 읽어 수식을 렌더링하고 결과를 <code>math-rendered-public</code> 디렉터리에 저장한 후, <code>math-rendered-public</code>의 파일을 GitHub에 푸시해야 한다.</p><p>아, <code>md5</code> 파일을 <code>math-rendered-public</code> 디렉터리로 복사하는 작업은 불필요하므로 다음 <code>elif</code> 블로을 추가해 <code>md5</code> 파일을 무시하도록 하는 게 좋겠다.</p><pre><code class="language-bash hljs">    ...
-    elif <span class="hljs-string">[[ $target =~ .md5$ ]]</span>; <span class="hljs-keyword">then</span>
-        :                       # skip checksum file
+    <span class="hljs-keyword">elif</span> [[ <span class="hljs-variable">$target</span> =~ .md5$ ]]; <span class="hljs-keyword">then</span>
+        :                       <span class="hljs-comment"># skip checksum file</span>
     ...
 </code></pre><p>블로그 생성 절차가 조금 번거로워 졌지만, 블로그에서 수식이 빠르게 표시되는 걸 보니 이 정도 불편은 충분히 감수할 수 있겠다.</p></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
