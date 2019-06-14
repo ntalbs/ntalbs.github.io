@@ -211,7 +211,7 @@ S(n, m) &amp;= m + 2m + 3m + ... + n \\
 </g>
 </g>
 </g>
-</svg></span></span></p><p>3 또는 5의 배수의 합을 구해야 하므로, <code>(3의 배수의 합) + (5의 배수의 합) - (15의 배수의 합)</code>을 계산하면 된다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> s
+</svg></span></span></p><p>3의 배수의 합과 5의 배수의 합을 더하면 15의 배수의 합이 두 번 더해진다. 따라서 답을 구하려면 다음과 같이 3의 배수의 합과 5의 배수의 합을 구한 다음 15의 배수의 합을 빼주면 된다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> s
   ([n] (/ (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> n (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> n <span class="hljs-number">1</span>)) <span class="hljs-number">2</span>))
   ([n m] (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> m (<span class="hljs-name">s</span> (<span class="hljs-name"><span class="hljs-builtin-name">quot</span></span> n m)))))
 
