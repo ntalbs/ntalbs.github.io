@@ -268,8 +268,8 @@ on
  <use transform="scale(0.707)" xlink:href="#MJMATHI-72" x="1011" y="-213"></use>
 </g>
 </g>
-</svg></span>을 구할 때 팩토리얼을 먼저 계산하지 않고 나눗셈을 먼저 계산하면 계산 과정에서 숫자가 지나치게 커지는 문제를 피할 수 있다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="58.921ex" height="18.843ex" style="vertical-align: -8.662ex; margin-bottom: -0.176ex;" viewBox="0 -4307.5 25368.6 8112.8" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-21-Title">
-<title id="MathJax-SVG-21-Title">
+</svg></span>을 구할 때 팩토리얼을 먼저 계산하지 않고 나눗셈을 먼저 계산하면 계산 과정에서 숫자가 지나치게 커지는 문제를 피할 수 있다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="58.921ex" height="18.843ex" style="vertical-align: -8.662ex; margin-bottom: -0.176ex;" viewBox="0 -4307.5 25368.6 8112.8" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-21-Title">
+<title id="MathJax-SVG-21-Title">%math
 \begin{aligned}
 _nC_r &amp;= \frac{n!}{r!(n-r)!} \\
 &amp;= \frac{n \times (n-1) \times ... \times 1}{r \times (r-1)\times ... \times 1 \times (n-r) \times (n-r-1) \times ... \times 1} \\
@@ -445,7 +445,7 @@ _nC_r &amp;= \frac{n!}{r!(n-r)!} \\
 </g>
 </g>
 </g>
-</svg></span></div><p>수식을 잘 보면 알겠지만 분모와 분자의 항 수가 항상 같다. 그리고 C/C++ 또는 Java의 <code>/</code> 연산자는 결과가 항상 정수인 것과 달리 Clojure의 <code>/</code> 함수는 분수(<code>clojure.lang.Ratio</code>)를 리턴할 수 있다. 이 두 가지를 이용하면 다음과 같이 나눗셈을 먼저 계산하로록 함수를 작성할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> c [n r]
+</svg></span></span></p><p>수식을 잘 보면 알겠지만 분모와 분자의 항 수가 항상 같다. 그리고 C/C++ 또는 Java의 <code>/</code> 연산자는 결과가 항상 정수인 것과 달리 Clojure의 <code>/</code> 함수는 분수(<code>clojure.lang.Ratio</code>)를 리턴할 수 있다. 이 두 가지를 이용하면 다음과 같이 나눗셈을 먼저 계산하로록 함수를 작성할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> c [n r]
   (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [nu (<span class="hljs-name"><span class="hljs-builtin-name">range</span></span> <span class="hljs-number">1</span> (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> n))
         de (<span class="hljs-name"><span class="hljs-builtin-name">concat</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">range</span></span> <span class="hljs-number">1</span> (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> r)) (<span class="hljs-name"><span class="hljs-builtin-name">range</span></span> <span class="hljs-number">1</span> (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> n r))))]
     (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> / nu de)
@@ -462,8 +462,8 @@ _nC_r &amp;= \frac{n!}{r!(n-r)!} \\
 </svg></span>을 계산할 수 있게 되었다. 계산하면서 중간 결과가 <code>BigInt</code>로 확장되지 않아서 그런지 실행 속도도 빨라졌다.</p><pre class="console">p053=&gt; (time (solve))
 "Elapsed time: 161.206506 msecs"
 40??
-</pre><p>수식을 자세히 살펴보면 뒷부분은 1로 약분되기 때문에 굳이 계산하지 않아도 된다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="58.226ex" height="13.843ex" style="vertical-align: -6.338ex;" viewBox="0 -3231.2 25069.5 5960" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-23-Title">
-<title id="MathJax-SVG-23-Title">
+</pre><p>수식을 자세히 살펴보면 뒷부분은 1로 약분되기 때문에 굳이 계산하지 않아도 된다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="58.226ex" height="13.843ex" style="vertical-align: -6.338ex;" viewBox="0 -3231.2 25069.5 5960" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-23-Title">
+<title id="MathJax-SVG-23-Title">%math
 \begin{aligned}
 \require{cancel}
 _nC_r &amp;= \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times ... \times \left(\frac{\cancel{n-r}}{\cancel{n-r}}\right) \times ... \times \left(\frac{\cancel{1}}{\cancel{1}}\right) \\
@@ -627,7 +627,7 @@ _nC_r &amp;= \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times
 </g>
 </g>
 </g>
-</svg></span></div><p>따라서 함수를 다음과 같이 수정할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> c [n r]
+</svg></span></span></p><p>따라서 함수를 다음과 같이 수정할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> c [n r]
   (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [nu (<span class="hljs-name"><span class="hljs-builtin-name">range</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> n r)) (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> n))
         de (<span class="hljs-name"><span class="hljs-builtin-name">range</span></span> <span class="hljs-number">1</span> (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> r))]
     (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> / nu de)

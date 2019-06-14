@@ -75,8 +75,8 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2015-01-08" itemprop="datePublished">2015-01-08</time>
 on
 <a href="/tags/project-euler/">Project-Euler</a>
-<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 2</h1></header><section class="post-content"><blockquote><p>피보나치 수열에서 4백만 이하이면서 짝수인 항의 합은?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=2">[국어]</a> <a href="https://projecteuler.net/problem=2">[영어]</a></p></blockquote><p>피보나치 수열의 정의는 다음과 같다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="19.677ex" height="5.843ex" style="vertical-align: -2.338ex;" viewBox="0 -1508.9 8472.2 2515.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
-<title id="MathJax-SVG-1-Title">
+<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 2</h1></header><section class="post-content"><blockquote><p>피보나치 수열에서 4백만 이하이면서 짝수인 항의 합은?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=2">[국어]</a> <a href="https://projecteuler.net/problem=2">[영어]</a></p></blockquote><p>피보나치 수열의 정의는 다음과 같다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="19.677ex" height="5.843ex" style="vertical-align: -2.338ex;" viewBox="0 -1508.9 8472.2 2515.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">%math
 \begin{aligned}
 F_n &amp;= F_{n-1} + F_{n-2}, \\
 F_2 &amp;= F_1 = 1
@@ -128,7 +128,7 @@ F_2 &amp;= F_1 = 1
 </g>
 </g>
 </g>
-</svg></span></div><p>구현하기 쉬워 보인다.</p><h2 id="방법-1">방법 1</h2><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> fibo-rec [n]
+</svg></span></span></p><p>구현하기 쉬워 보인다.</p><h2 id="방법-1">방법 1</h2><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> fibo-rec [n]
   (<span class="hljs-name"><span class="hljs-builtin-name">cond</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> <span class="hljs-number">1</span> n) <span class="hljs-number">1</span>
         (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> <span class="hljs-number">2</span> n) <span class="hljs-number">1</span>
         <span class="hljs-symbol">:else</span> (<span class="hljs-name">+'</span> (<span class="hljs-name">fibo-rec</span> (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> n <span class="hljs-number">1</span>)) (<span class="hljs-name">fibo-rec</span> (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> n <span class="hljs-number">2</span>)))))

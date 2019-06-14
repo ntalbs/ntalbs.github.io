@@ -215,8 +215,8 @@ on
  <use xlink:href="#MJMATHI-54" x="3300" y="0"></use>
  <use xlink:href="#MJMAIN-33" x="4004" y="0"></use>
 </g>
-</svg></span>을 구하는 방법이 나와 있다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="50.832ex" height="9.176ex" style="vertical-align: -4.005ex;" viewBox="0 -2226.5 21886.1 3950.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-12-Title">
-<title id="MathJax-SVG-12-Title">
+</svg></span>을 구하는 방법이 나와 있다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="50.832ex" height="9.176ex" style="vertical-align: -4.005ex;" viewBox="0 -2226.5 21886.1 3950.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-12-Title">
+<title id="MathJax-SVG-12-Title">%math
 \begin{aligned}
 T1 &amp;= (a − 2b + 2c, 2a − b + 2c, 2a − 2b + 3c) \\
 T2 &amp;= (a + 2b + 2c, 2a + b + 2c, 2a + 2b + 3c) \\
@@ -333,7 +333,7 @@ T3 &amp;= (−a + 2b + 2c, −2a + b + 2c, −2a + 2b + 3c)
 </g>
 </g>
 </g>
-</svg></span></div><p>공식을 그대로 적용해 다음과 같이 함수를 만들 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> next-triplets [[a b c]]
+</svg></span></span></p><p>공식을 그대로 적용해 다음과 같이 함수를 만들 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> next-triplets [[a b c]]
   [(<span class="hljs-name"><span class="hljs-builtin-name">sort</span></span> [(<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> a (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> <span class="hljs-number">-2</span> b) (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> <span class="hljs-number">2</span> c))
           (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> <span class="hljs-number">2</span> a) (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> b) (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> <span class="hljs-number">2</span> c))
           (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> <span class="hljs-number">2</span> a) (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> <span class="hljs-number">-2</span> b) (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> <span class="hljs-number">3</span> c))])

@@ -75,8 +75,8 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2015-01-16" itemprop="datePublished">2015-01-16</time>
 on
 <a href="/tags/project-euler/">Project-Euler</a>
-<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 5</h1></header><section class="post-content"><blockquote><p>1 ~ 20 사이의 어떤 수로도 나누어 떨어지는 가장 작은 수는?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=5">[국어]</a> <a href="https://projecteuler.net/problem=5">[영어]</a></p></blockquote><p>1~20의 최소공배수(Least Common Multiple)를 구하는 문제다. 최소공배수는 다음 식으로 간단히 구할 수 있다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="21.907ex" height="6.509ex" style="vertical-align: -2.671ex;" viewBox="0 -1652.5 9431.9 2802.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
-<title id="MathJax-SVG-1-Title">
+<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 5</h1></header><section class="post-content"><blockquote><p>1 ~ 20 사이의 어떤 수로도 나누어 떨어지는 가장 작은 수는?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=5">[국어]</a> <a href="https://projecteuler.net/problem=5">[영어]</a></p></blockquote><p>1~20의 최소공배수(Least Common Multiple)를 구하는 문제다. 최소공배수는 다음 식으로 간단히 구할 수 있다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="21.907ex" height="6.509ex" style="vertical-align: -2.671ex;" viewBox="0 -1652.5 9431.9 2802.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">%math
 \begin{aligned}
 lcm(a,b) = \frac{\lvert a \times b \rvert}{gcd(a,b)}
 \end{aligned}
@@ -118,7 +118,7 @@ lcm(a,b) = \frac{\lvert a \times b \rvert}{gcd(a,b)}
 </g>
 </g>
 </g>
-</svg></span></div><p>최대공약수(Greatest Common Divisor)를 구하면 최소공배수를 구할 수 있다. 최대공약수와 최소공배수를 구하는 함수는 다음과 같이 구현할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> gcd [a b]
+</svg></span></span></p><p>최대공약수(Greatest Common Divisor)를 구하면 최소공배수를 구할 수 있다. 최대공약수와 최소공배수를 구하는 함수는 다음과 같이 구현할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> gcd [a b]
   (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> b <span class="hljs-number">0</span>) a (<span class="hljs-name"><span class="hljs-builtin-name">recur</span></span> b (<span class="hljs-name"><span class="hljs-builtin-name">rem</span></span> a b))))
 
 (<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> lcm [a b]

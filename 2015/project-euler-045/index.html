@@ -75,8 +75,8 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2015-11-04" itemprop="datePublished">2015-11-04</time>
 on
 <a href="/tags/project-euler/">Project-Euler</a>
-<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 45</h1></header><section class="post-content"><blockquote><p>오각수와 육각수도 되는, 40755 다음으로 큰 삼각수는?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=45">[국어]</a> <a href="https://projecteuler.net/problem=45">[영어]</a></p></blockquote><p>육각수를 구하는 공식을 조금 변형해보면 다음과 같은 결과를 얻을 수 있다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="30.773ex" height="17.509ex" style="vertical-align: -8.171ex;" viewBox="0 -4020.5 13249.3 7538.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
-<title id="MathJax-SVG-1-Title">
+<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 45</h1></header><section class="post-content"><blockquote><p>오각수와 육각수도 되는, 40755 다음으로 큰 삼각수는?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=45">[국어]</a> <a href="https://projecteuler.net/problem=45">[영어]</a></p></blockquote><p>육각수를 구하는 공식을 조금 변형해보면 다음과 같은 결과를 얻을 수 있다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="30.773ex" height="17.509ex" style="vertical-align: -8.171ex;" viewBox="0 -4020.5 13249.3 7538.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">%math
 \begin{aligned}
 H_n &amp;= n(2n-1) \\
 &amp;= \frac{2n(2n-1)}{2} \\
@@ -169,7 +169,7 @@ H_n &amp;= n(2n-1) \\
 </g>
 </g>
 </g>
-</svg></span></div><p>즉, 모든 육각수는 삼각수임을 알 수 있다. 따라서 40755보다 큰 육각수 중에서 오각수도 되는 첫 수가 문제의 답이 될 것이다. 어떤 수가 오각수인지 확인하는 함수는 <a href="/2015/project-euler-044/">문제 44</a>에서 이미 작성했다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> pentagonal? [x]
+</svg></span></span></p><p>즉, 모든 육각수는 삼각수임을 알 수 있다. 따라서 40755보다 큰 육각수 중에서 오각수도 되는 첫 수가 문제의 답이 될 것이다. 어떤 수가 오각수인지 확인하는 함수는 <a href="/2015/project-euler-044/">문제 44</a>에서 이미 작성했다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> pentagonal? [x]
   (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [n (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> <span class="hljs-number">24</span> x) (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> <span class="hljs-number">1</span>) (<span class="hljs-name">Math/sqrt</span>) (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> <span class="hljs-number">1</span>) (/ <span class="hljs-number">6</span>))]
     (<span class="hljs-name"><span class="hljs-builtin-name">==</span></span> n (<span class="hljs-name"><span class="hljs-builtin-name">int</span></span> n))))
 </code></pre><p>육각수 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.15ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 1356.1 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">

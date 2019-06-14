@@ -87,8 +87,8 @@ on
  <use xlink:href="#MJMATHI-6E" x="1035" y="0"></use>
  <use xlink:href="#MJMAIN-29" x="1635" y="0"></use>
 </g>
-</svg></span>을 구하는 공식은 다음과 같다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="17.991ex" height="5.509ex" style="vertical-align: -2.171ex;" viewBox="0 -1437.2 7746 2372" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">
-<title id="MathJax-SVG-2-Title">
+</svg></span>을 구하는 공식은 다음과 같다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="17.991ex" height="5.509ex" style="vertical-align: -2.171ex;" viewBox="0 -1437.2 7746 2372" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">
+<title id="MathJax-SVG-2-Title">%math
 \begin{aligned}
 S(n) = \frac{n(n+1)}{2}
 \end{aligned}
@@ -120,7 +120,7 @@ S(n) = \frac{n(n+1)}{2}
 </g>
 </g>
 </g>
-</svg></span></div><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.395ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 600.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-3-Title">
+</svg></span></span></p><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.395ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 600.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-3-Title">
 <title id="MathJax-SVG-3-Title">n</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMATHI-6E" x="0" y="0"></use>
@@ -140,8 +140,8 @@ S(n) = \frac{n(n+1)}{2}
  <use xlink:href="#MJMATHI-6D" x="2080" y="0"></use>
  <use xlink:href="#MJMAIN-29" x="2959" y="0"></use>
 </g>
-</svg></span>이라 하면, 다음과 같이 구할 수 있다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="38.801ex" height="9.176ex" style="vertical-align: -4.005ex;" viewBox="0 -2226.5 16706.1 3950.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-6-Title">
-<title id="MathJax-SVG-6-Title">
+</svg></span>이라 하면, 다음과 같이 구할 수 있다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="38.801ex" height="9.176ex" style="vertical-align: -4.005ex;" viewBox="0 -2226.5 16706.1 3950.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-6-Title">
+<title id="MathJax-SVG-6-Title">%math
 \begin{aligned}
 S(n, m) &amp;= m + 2m + 3m + ... + n \\
 &amp;= m \times (1 + 2 + 3 + ... + n/m) \\
@@ -211,7 +211,7 @@ S(n, m) &amp;= m + 2m + 3m + ... + n \\
 </g>
 </g>
 </g>
-</svg></span></div><p>3 또는 5의 배수의 합을 구해야 하므로, <code>(3의 배수의 합) + (5의 배수의 합) - (15의 배수의 합)</code>을 계산하면 된다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> s
+</svg></span></span></p><p>3 또는 5의 배수의 합을 구해야 하므로, <code>(3의 배수의 합) + (5의 배수의 합) - (15의 배수의 합)</code>을 계산하면 된다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> s
   ([n] (/ (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> n (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> n <span class="hljs-number">1</span>)) <span class="hljs-number">2</span>))
   ([n m] (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> m (<span class="hljs-name">s</span> (<span class="hljs-name"><span class="hljs-builtin-name">quot</span></span> n m)))))
 

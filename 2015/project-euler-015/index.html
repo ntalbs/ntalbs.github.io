@@ -77,17 +77,13 @@ on
 <a href="/tags/project-euler/">Project-Euler</a>
 <a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 15</h1></header><section class="post-content"><blockquote><p>20×20 격자의 좌상단에서 우하단으로 가는 경로의 수?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=15">[국어]</a> <a href="https://projecteuler.net/problem=15">[영어]</a></p></blockquote><p></p><figure><img src="https://projecteuler.net/project/images/p015.gif" alt=""></figure><p></p><p>격자에서 오른쪽으로 이동하는 경로를 <code>r</code>(right), 아래쪽으로 이동하는 경로를 <code>d</code>(down)라 하면 2x2 격자의 좌상단에서 우하단으로 가는 경로는 다음과 같은 식으로 표현할 수 있다.</p><pre><code class="hljs"><span class="hljs-built_in">rrdd,</span> rdrd, rddr
 <span class="hljs-built_in">drrd,</span> drdr, ddrr
-</code></pre><p>결국 이 문제는 <code>rrdd</code>에 대한 순열을 구하는 문제가 된다. <code>r</code> 끼리 또는 <code>d</code>끼리는 순서가 바뀌어도 상관이 없다. 따라서 2x2 격자의 좌상단에서 우하단으로 가는 경로의 수는 다음과 같이 구할 수 있다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="34.71ex" height="5.509ex" style="vertical-align: -1.894ex; margin-bottom: -0.277ex;" viewBox="0 -1437.2 14944.5 2372" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
-<title id="MathJax-SVG-1-Title">
-\begin{aligned}
+</code></pre><p>결국 이 문제는 <code>rrdd</code>에 대한 순열을 구하는 문제가 된다. <code>r</code> 끼리 또는 <code>d</code>끼리는 순서가 바뀌어도 상관이 없다. 따라서 2x2 격자의 좌상단에서 우하단으로 가는 경로의 수는 다음과 같이 구할 수 있다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="33.958ex" height="5.509ex" style="vertical-align: -1.894ex; margin-bottom: -0.277ex;" viewBox="0 -1437.2 14620.9 2372" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">%math
 \begin{aligned}
 (number\, of\, paths) &amp;= \frac{4!}{2! \times 2!} = 6
 \end{aligned}
-\end{aligned}
 </title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
-<g transform="translate(167,0)">
-<g transform="translate(-11,0)">
 <g transform="translate(167,0)">
 <g transform="translate(-11,0)">
 <g transform="translate(0,-79)">
@@ -133,19 +129,13 @@ on
 </g>
 </g>
 </g>
-</g>
-</g>
-</svg></span></div><p>20x20 격자라면 <code>r</code> 20개, <code>d</code> 20개를 일렬로 늘어놓을 수 있는 경우의 수를 구하는 문제가 된다. 따라서 다음 식을 계산하면 문제의 답을 구할 수 있다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="32.774ex" height="5.509ex" style="vertical-align: -1.92ex; margin-bottom: -0.252ex;" viewBox="0 -1437.2 14110.9 2372" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">
-<title id="MathJax-SVG-2-Title">
-\begin{aligned}
+</svg></span></span></p><p>20x20 격자라면 <code>r</code> 20개, <code>d</code> 20개를 일렬로 늘어놓을 수 있는 경우의 수를 구하는 문제가 된다. 따라서 다음 식을 계산하면 문제의 답을 구할 수 있다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="32.022ex" height="5.509ex" style="vertical-align: -1.92ex; margin-bottom: -0.252ex;" viewBox="0 -1437.2 13787.4 2372" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">
+<title id="MathJax-SVG-2-Title">%math
 \begin{aligned}
 (number\, of\, paths) &amp;= \frac{40!}{20! \times 20!}
 \end{aligned}
-\end{aligned}
 </title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
-<g transform="translate(167,0)">
-<g transform="translate(-11,0)">
 <g transform="translate(167,0)">
 <g transform="translate(-11,0)">
 <g transform="translate(0,-68)">
@@ -194,16 +184,14 @@ on
 </g>
 </g>
 </g>
-</g>
-</g>
-</svg></span></div><p><code>n!</code>을 구하는 함수가 있다면 답을 구한 것이나 마찬가지다. <code>factorial</code>이 구현되어 있다고 한다면 답은 다음과 같이 구할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> solve []
+</svg></span></span></p><p><code>n!</code>을 구하는 함수가 있다면 답을 구한 것이나 마찬가지다. <code>factorial</code>이 구현되어 있다고 한다면 답은 다음과 같이 구할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> solve []
   (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [f40 (<span class="hljs-name">factorial</span> <span class="hljs-number">40</span>) f20 (<span class="hljs-name">factorial</span> <span class="hljs-number">20</span>)]
     (/ f40 (<span class="hljs-name">*'</span> f20 f20))))
 </code></pre><p>결과는 다음과 같다.</p><pre class="console">p015=&gt; (time (solve))
 "Elapsed time: 0.16456 msecs"
 13784652????N
-</pre><p>문제 풀이에 대해서는 더 이상 설명할 것이 없으므로, Factorial 함수를 구현하는 방법에 대해 정리해보려 한다.</p><h2 id="factorial-함수-구현">Factorial 함수 구현</h2><p>Factorial은 보통 다음과 같이 재귀적으로 정의된다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="28.199ex" height="6.176ex" style="vertical-align: -2.505ex;" viewBox="0 -1580.7 12141.2 2659.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-3-Title">
-<title id="MathJax-SVG-3-Title">
+</pre><p>문제 풀이에 대해서는 더 이상 설명할 것이 없으므로, Factorial 함수를 구현하는 방법에 대해 정리해보려 한다.</p><h2 id="factorial-함수-구현">Factorial 함수 구현</h2><p>Factorial은 보통 다음과 같이 재귀적으로 정의된다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="28.199ex" height="6.176ex" style="vertical-align: -2.505ex;" viewBox="0 -1580.7 12141.2 2659.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-3-Title">
+<title id="MathJax-SVG-3-Title">%math
 \begin{aligned}
 n! = \begin{cases}
 1 &amp; \mbox{if } n = 0, \cr
@@ -254,7 +242,7 @@ n(n-1)! &amp; \mbox {if } n &gt; 0
 </g>
 </g>
 </g>
-</svg></span></div><p>Clojure 코드로는 다음과 같이 구현할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> fact1 [n]
+</svg></span></span></p><p>Clojure 코드로는 다음과 같이 구현할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> fact1 [n]
   (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> <span class="hljs-number">0</span> n)
     <span class="hljs-number">1</span>
     (<span class="hljs-name">*'</span> n (<span class="hljs-name">fact1</span> (<span class="hljs-name"><span class="hljs-builtin-name">dec</span></span> n)))))
@@ -291,8 +279,8 @@ StackOverflowError   clojure.lang.Util.equiv (Util.java:30)
 </code></pre><p>Factorial 함수는 0 또는 양의 정수에 대해서만 유효하다. <code>fact1</code>의 경우 인자가 음수일 경우 <code>StackOverflowError</code>가 발생할 것이고, <code>fact2</code>, <code>fact3</code>, <code>fact4</code>는 무한루프에 빠질 것이다. 따라서 다음과 같이 선행조건(precondition)을 추가할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> fact4 [n]
   {<span class="hljs-symbol">:pre</span> [(<span class="hljs-name"><span class="hljs-builtin-name">or</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">pos?</span></span> n) (<span class="hljs-name"><span class="hljs-builtin-name">zero?</span></span> n)) (<span class="hljs-name"><span class="hljs-builtin-name">integer?</span></span> n)]}
   ...
-</code></pre><p>Factorial을 다음과 같이 정의할 수도 있다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="27.61ex" height="6.843ex" style="vertical-align: -2.838ex;" viewBox="0 -1724.2 11887.6 2946.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-5-Title">
-<title id="MathJax-SVG-5-Title">
+</code></pre><p>Factorial을 다음과 같이 정의할 수도 있다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="27.61ex" height="6.843ex" style="vertical-align: -2.838ex;" viewBox="0 -1724.2 11887.6 2946.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-5-Title">
+<title id="MathJax-SVG-5-Title">%math
 \begin{aligned}
 n! = \prod_{k=1}^n k = 1 \times 2\, \times ... \times\, n
 \end{aligned}
@@ -328,7 +316,7 @@ n! = \prod_{k=1}^n k = 1 \times 2\, \times ... \times\, n
 </g>
 </g>
 </g>
-</svg></span></div><p>이 정의를 그대로 Clojure 코드로 옮기면 다음과 같다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> factorial [n]
+</svg></span></span></p><p>이 정의를 그대로 Clojure 코드로 옮기면 다음과 같다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> factorial [n]
   (<span class="hljs-name"><span class="hljs-builtin-name">apply</span></span> *' (<span class="hljs-name"><span class="hljs-builtin-name">range</span></span> <span class="hljs-number">1</span> (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> n))))
 </code></pre><p><code>apply</code> 대신 <code>reduce</code>를 사용할 수도 있다.</p><p>이 구현이 0에 대해서도 유효할까?</p><pre class="console">user=&gt; (factorial 0)
 1

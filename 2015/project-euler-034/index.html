@@ -81,8 +81,8 @@ on
        (<span class="hljs-name"><span class="hljs-builtin-name">reduce</span></span> +)))
 </code></pre><p>이 함수를 이용하면 각 자릿수의 팩토리얼을 더한 값이 자기 자신이 되는지 확인하는 함수를 다음과 같이 작성할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> check [n]
   (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> n (<span class="hljs-name">sum-of-fact</span> n)))
-</code></pre><p>이 함수가 <code>true</code>를 리턴하는 수를 찾으면 된다. 그러나 수는 무한하기 때문에 모두 조사할 수 없다. 조사할 수의 범위를 어디까지 할지 결정하는 것이 진짜 문제다.</p><p>상한을 결정하는 방법은 <a href="/2015/project-euler-030/">문제 30</a>에서 사용했던 방법과 비슷하다. 7자리 숫자 중 가장 큰 수는 9,999,999인데, 이 수의 각 자릿수의 팩토리얼을 더하면 2,540,160로 7자리 숫자가 된다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="19.116ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 8230.3 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
-<title id="MathJax-SVG-1-Title">
+</code></pre><p>이 함수가 <code>true</code>를 리턴하는 수를 찾으면 된다. 그러나 수는 무한하기 때문에 모두 조사할 수 없다. 조사할 수의 범위를 어디까지 할지 결정하는 것이 진짜 문제다.</p><p>상한을 결정하는 방법은 <a href="/2015/project-euler-030/">문제 30</a>에서 사용했던 방법과 비슷하다. 7자리 숫자 중 가장 큰 수는 9,999,999인데, 이 수의 각 자릿수의 팩토리얼을 더하면 2,540,160로 7자리 숫자가 된다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="19.116ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 8230.3 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">%math
 7 \times 9! = 2,540,160
 </title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -105,8 +105,8 @@ on
  <use xlink:href="#MJMAIN-30" x="1001" y="0"></use>
 </g>
 </g>
-</svg></span></div><p>그러나 8자리 숫자 중 가장 큰 수인 99,999,999의 각 자릿수의 팩토리얼을 더하면 2,903,040로 8자리 숫자를 만들지 못한다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="19.116ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 8230.3 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">
-<title id="MathJax-SVG-2-Title">
+</svg></span></span></p><p>그러나 8자리 숫자 중 가장 큰 수인 99,999,999의 각 자릿수의 팩토리얼을 더하면 2,903,040로 8자리 숫자를 만들지 못한다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="19.116ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 8230.3 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">
+<title id="MathJax-SVG-2-Title">%math
 8 \times 9! = 2,903,040
 </title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -129,7 +129,7 @@ on
  <use xlink:href="#MJMAIN-30" x="1001" y="0"></use>
 </g>
 </g>
-</svg></span></div><p>8자리 숫자 중 가장 큰 수로도 각 자릿수의 팩토리얼을 더했을 때 8자리 숫자를 만들지 못한다면 그보다 작은 8자리 숫자는 고려할 필요도 없다. 따라서 문제의 조건을 만족하는 수는 7자리 이하의 수여야 함을 알 수 있다. 그리고 7자리 숫자 중 가장 큰 수의 각 자릿수의 팩토리얼을 더해 만든 수가 2,540,160이므로 이 값을 상한으로 할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> solve []
+</svg></span></span></p><p>8자리 숫자 중 가장 큰 수로도 각 자릿수의 팩토리얼을 더했을 때 8자리 숫자를 만들지 못한다면 그보다 작은 8자리 숫자는 고려할 필요도 없다. 따라서 문제의 조건을 만족하는 수는 7자리 이하의 수여야 함을 알 수 있다. 그리고 7자리 숫자 중 가장 큰 수의 각 자릿수의 팩토리얼을 더해 만든 수가 2,540,160이므로 이 값을 상한으로 할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> solve []
   (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">range</span></span> <span class="hljs-number">11</span> (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> <span class="hljs-number">2540160</span>))
        (<span class="hljs-name"><span class="hljs-builtin-name">filter</span></span> check)
        (<span class="hljs-name"><span class="hljs-builtin-name">apply</span></span> +)))

@@ -82,8 +82,8 @@ on
     (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">&lt;</span></span> n <span class="hljs-number">10</span>)
       acc
       (<span class="hljs-name"><span class="hljs-builtin-name">recur</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">quot</span></span> n <span class="hljs-number">10</span>) (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> acc)))))
-</code></pre><h2 id="상용로그-사용">상용로그 사용</h2><p>상용로그(밑이 10인 로그)를 사용해 자릿수를 구하는 것도 가능하다.</p><div><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="35.298ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 15197.9 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
-<title id="MathJax-SVG-1-Title">
+</code></pre><h2 id="상용로그-사용">상용로그 사용</h2><p>상용로그(밑이 10인 로그)를 사용해 자릿수를 구하는 것도 가능하다.</p><p><span class="math"><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="35.298ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 15197.9 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">%math
 \begin{aligned}
 (number\,of\,digits) = \lfloor\log_{10} n\rfloor + 1
 \end{aligned}
@@ -127,7 +127,7 @@ on
 </g>
 </g>
 </g>
-</svg></span></div><p>따라서 코드는 다음과 같이 쓸 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> count-digits-log [n]
+</svg></span></span></p><p>따라서 코드는 다음과 같이 쓸 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> count-digits-log [n]
   (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> n <span class="hljs-number">0</span>)
      <span class="hljs-number">1</span>
      (<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">int</span></span> (<span class="hljs-name">Math/log10</span> n)))))
