@@ -75,7 +75,7 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a href="/archive/">Archive</a></li><li><a href="/tags/">Tags</a></li><li><a href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2019-05-10" itemprop="datePublished">2019-05-10</time>
 on
 <a href="/tags/hugo/">hugo</a>
-<a href="/tags/bash/">bash</a></p><h1 class="post-title">MathJax 서버측 렌더링</h1></header><section class="post-content"><p>블로그 글에 포함된 수식을 표현하기 위해 <a href="https://www.mathjax.org/">MathJax</a>를 사용한다. MathJax 덕분에 수식을 멋지게 표현할 수 있지만 수식 렌더링 속도가 매우 느리다. 브라우저에서 로드했을 때 페이지 안에 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.412ex" height="2.676ex" style="vertical-align: -0.838ex;" viewBox="0 -791.3 1899.5 1152.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<a href="/tags/bash/">bash</a></p><h1 class="post-title">MathJax 서버측 렌더링</h1></header><section class="post-content"><p>블로그 글에 포함된 수식을 표현하기 위해 <a href="https://www.mathjax.org/">MathJax</a>를 사용한다. MathJax 덕분에 수식을 멋지게 표현할 수 있지만 수식 렌더링 속도가 매우 느리다. 브라우저에서 처음 로드했을 때 페이지 안에 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.412ex" height="2.676ex" style="vertical-align: -0.838ex;" viewBox="0 -791.3 1899.5 1152.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\rm\TeX</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMAIN-54" x="0" y="0"></use>
@@ -137,13 +137,13 @@ f(a) = \frac{1}{2\pi i}\oint_{\gamma} \frac{f(z)}{z-a} dz
  <use xlink:href="#MJMATHI-64" x="8927" y="0"></use>
  <use xlink:href="#MJMATHI-7A" x="9451" y="0"></use>
 </g>
-</svg></span></span></p><p><a href="https://katex.org/">KaTex</a>는 MathJax보다 훨씬 빠르게 수식을 표시하고 서버측 렌더링도 지원한다. 그러다 Katex는 MathJax에 있는 모든 기능을 제공하지 못한다. 수식 엔진을 KaTex로 바꾼다면 페이지에 있는 수식이 제대로 표현되는지 하나하나 확인해야 할 것이다. 확인 작업이야 한 번 하면 끝날 일이지만 표현 못하는 수식이 하나라도 있다면 다시 MathJax로 롤백해야 할 것이다.</p><p>수식이 포함된 블로그 페이지의 느려터진 페이지 렌더링 속도를 볼 때마다 어떻게 개선할 수 없을까 생각을 했다. 사이트를 생성할 때 수식도 변환해 놓으면 좋을 것 같았다. 그러다 불현듯 MathJax로도 서버쪽 렌더링을 할 수 있지 않을까 해서 검색해 보았다. 그동안 MathJax는 서버측 렌더링을 지원하지 않는 줄 알았는데, 잘못 알고 있었다. 왜 진작 찾아보지 않았을까?</p><p>내가 찾은 도구는 <a href="https://github.com/pkra/mathjax-node-page">mathjax-node-page</a>다. 다른 도구가 있는지는 모르겠다. mathjax-node-page로 다음과 같이 HTML 파일에 들어있는 수식을 렌더링하는 CLI를 제공한다. 속도는 빠르지 않다. 시험 삼아 HTML 파일 하나를 테스트 해봤는데 1초는 걸리는 것 같다.</p><pre class="console">$ mjpage --help
+</svg></span></span></p><p><a href="https://katex.org/">KaTex</a>는 MathJax보다 훨씬 빠르게 수식을 표시하고 서버측 렌더링도 지원한다. 그러나 Katex는 MathJax에 있는 모든 기능을 제공하지 못한다. 수식 엔진을 KaTex로 바꾼다면 페이지에 있는 수식이 제대로 표현되는지 하나하나 확인해야 할 것이다. 확인 작업이야 한 번 하면 끝날 일이지만 표현 못하는 수식이 하나라도 있다면 다시 MathJax로 롤백해야 할 것이다.</p><p>수식이 포함된 블로그 페이지의 느려터진 페이지 렌더링 속도를 볼 때마다 어떻게 개선할 수 없을까? 사이트를 생성할 때 수식도 미리 변환해 놓을 수 없을까? 불현듯 MathJax로도 서버쪽 렌더링을 할 수 있지 않을까 해서 검색해 보았다. 그동안 MathJax는 서버측 렌더링을 지원하지 않는 줄 알았는데, 잘못 알고 있었다. 왜 진작 찾아보지 않았을까?</p><p>내가 찾은 도구는 <a href="https://github.com/pkra/mathjax-node-page">mathjax-node-page</a>다. 다른 도구가 있는지는 모르겠다. mathjax-node-page로 다음과 같이 HTML 파일에 들어있는 수식을 렌더링하는 CLI를 제공한다. 속도는 빠르지 않다. 시험 삼아 HTML 파일 하나를 테스트 해봤는데 1초는 걸리는 것 같다.</p><pre class="console">$ mjpage --help
 Usage: mjpage [options] &lt; input.html &gt; output.html
 ...
 </pre><p>사용법이 이렇다면 HTML 파일을 하나씩 렌더링할 수밖에 없다. node.js 기반 사이트 생성기라면 내부적으로 mathjax-node-page를 직접 사용할 수 있겠지만, Hugo와 통합은 어려워 보인다. Hugo가 생성한 HTML을 mathjax-node-page CLI로 하나씩 읽어 수식을 렌더링할 셸 스크립트를 작성해야 한다.</p><pre><code class="language-bash hljs"><span class="hljs-meta">#!/usr/bin/env bash
 </span>
 SRC_ROOT=public
-TARGET_ROOT=math-rendered-public
+TARGET_ROOT=rendered-public
 
 FILES=$(find <span class="hljs-variable">$SRC_ROOT</span>)
 
@@ -163,7 +163,7 @@ FILES=$(find <span class="hljs-variable">$SRC_ROOT</span>)
         mjpage --format svg --dollars <span class="hljs-literal">true</span> &lt; <span class="hljs-variable">$src</span> &gt; <span class="hljs-variable">$target</span>
     <span class="hljs-keyword">fi</span>
 <span class="hljs-keyword">done</span>;
-</code></pre><p><code>mjpage</code>는 소스 HTML 페이지 안에 수식이 있든 없든 페이지 하나를 처리하는 데 거의 1초가 걸린다. 이 블로그에는 현재 330개의 페이지가 있으니 이 스크립트로 모든 페이지를 처리하는 데는 5분 넘게 걸릴 것이다. 대상 파일을 조금이라도 줄이려고 수식이 없는 페이지를 제외했지만 효과가 크지는 않다. 확인해보니 제외되는 페이지가 별로 많지 않다.</p><p>수식 렌더링 속도가 이렇게 느리다면 이미 처리한 파일을 반복 처리하지 않도록 해서 속도 향상을 꾀할 수 있다. 소스 파일의 체크섬을 구해 저장해놓고 나중에 체크섬을 비교해 파일이 변했는지 확인한 다음, 변한 파일만 처리하면 시간을 많이 단축할 수 있을 것이다. 다만 이걸 bash로 할 수 있을 만큼 bash를 잘 아는 건 아니라는 게 문제다.</p><p>어떻게 할 수 있을까?. 차라리 node.js로 작성하는 게 낫지 않을까 생각해 잠깐 시도해 보았지만, node.js도 모르긴 마찬가지였다. 조금 찾아보니 파일의 체크섬은 <code>shasum</code> 같은 명령을 사용하면 되지만 Mac OS X에는 해당 명령이 없었다. 대신 <code>md5</code>가 있는데 이걸로 충분할 듯 하다. 파일의 체크섬은 그냥 파일이 있는 디레터리 안에 확장자 <code>.md5</code>로 저장하기로 했다.</p><p>위 스크립트에서 마지막 <code>else</code> 블록을 다음과 같이 수정한다. 처음 실행하면 모든 페이지를 처리해야 하므로 시간이 오래 걸린다. 그러나 그 다음부터는 새로 추가된 페이지나 변경된 페이지만 처리하므로 비교적 빠르게 동작한다.</p><pre><code class="language-bash hljs">    ...
+</code></pre><p><code>mjpage</code>는 소스 HTML 페이지 안에 수식이 있든 없든 페이지 하나를 처리하는 데 거의 1초가 걸린다. 이 블로그에는 현재 330개의 페이지가 있으니 이 스크립트로 모든 페이지를 처리하는 데는 5분 넘게 걸릴 것이다. 대상 파일을 조금이라도 줄이려고 수식이 없는 페이지를 제외했지만 효과가 크지는 않다. 확인해보니 제외되는 페이지가 별로 많지 않다.</p><p>수식 렌더링 속도가 이렇게 느리다면 이미 처리한 파일을 반복 처리하지 않도록 해서 속도 향상을 꾀할 수 있다. 소스 파일의 체크섬을 구해 저장해놓고 나중에 체크섬을 비교해 파일이 변했는지 확인한 다음, 변한 파일만 처리하면 시간을 많이 단축할 수 있을 것이다. 다만 이걸 bash로 할 수 있을 만큼 bash를 잘 아는 건 아니라는 게 문제다.</p><p>어떻게 할 수 있을까?. 차라리 node.js로 작성하는 게 낫지 않을까 생각해 잠깐 시도해 보았지만, node.js도 모르긴 마찬가지. 조금 찾아보니 파일의 체크섬은 <code>shasum</code> 같은 명령을 사용하면 되지만 Mac OS X에는 해당 명령이 없었다. 대신 <code>md5</code>가 있는데 이걸로 충분할 듯 하다. 파일의 체크섬은 그냥 파일이 있는 디레터리 안에 확장자 <code>.md5</code>로 저장하기로 했다.</p><p>위 스크립트에서 마지막 <code>else</code> 블록을 다음과 같이 수정한다. 처음 실행하면 모든 페이지를 처리해야 하므로 시간이 오래 걸린다. 그러나 그 다음부터는 새로 추가된 페이지나 변경된 페이지만 처리하므로 비교적 빠르게 동작한다.</p><pre><code class="language-bash hljs">    ...
     <span class="hljs-keyword">else</span>
         checksum_new=$(md5 -q <span class="hljs-variable">$src</span>)
         checksum_old=$(cat <span class="hljs-variable">$src</span>.md5 2&gt; /dev/null)
@@ -177,7 +177,7 @@ FILES=$(find <span class="hljs-variable">$SRC_ROOT</span>)
         <span class="hljs-keyword">fi</span>
     <span class="hljs-keyword">fi</span>
 <span class="hljs-keyword">done</span>;
-</code></pre><p>이제 블로그를 생성하는 절차가 조금 바뀐다. 예전에는 <code>hugo</code> 명령을 실행하면 <code>public</code> 디렉터리에 블로그가 생성되고 그걸 GitHub에 푸시하면 됐다. 지금부터는 위에서 작성한 스크립트를 실행해 <code>public</code> 디렉터리를 읽어 수식을 렌더링하고 결과를 <code>math-rendered-public</code> 디렉터리에 저장한 후, <code>math-rendered-public</code>의 파일을 GitHub에 푸시해야 한다.</p><p>아, <code>md5</code> 파일을 <code>math-rendered-public</code> 디렉터리로 복사하는 작업은 불필요하므로 다음 <code>elif</code> 블로을 추가해 <code>md5</code> 파일을 무시하도록 하는 게 좋겠다.</p><pre><code class="language-bash hljs">    ...
+</code></pre><p>이제 블로그를 생성하는 절차가 조금 바뀐다. 예전에는 <code>hugo</code> 명령을 실행하면 <code>public</code> 디렉터리에 블로그가 생성되고 그걸 GitHub에 푸시하면 됐다. 지금부터는 위에서 작성한 스크립트를 실행해 <code>public</code> 디렉터리를 읽어 수식을 렌더링하고 결과를 <code>rendered-public</code> 디렉터리에 저장한 후, <code>rendered-public</code>의 파일을 GitHub에 푸시해야 한다.</p><p>아, <code>md5</code> 파일을 <code>rendered-public</code> 디렉터리로 복사하는 작업은 불필요하므로 다음 <code>elif</code> 블록을 추가해 <code>md5</code> 파일을 무시하도록 하는 게 좋겠다.</p><pre><code class="language-bash hljs">    ...
     <span class="hljs-keyword">elif</span> [[ <span class="hljs-variable">$target</span> =~ .md5$ ]]; <span class="hljs-keyword">then</span>
         :                       <span class="hljs-comment"># skip checksum file</span>
     ...
