@@ -352,6 +352,13 @@ ul.pagination
     display block
     margin-left auto
     margin-right auto
+    vertical-align middle
+    transform perspective(1px) translateZ(0)
+    transition-duration 0.3s
+    transition-property box-shadow, transform
+    &:hover
+      box-shadow 5px 10px 20px 0px
+      transform scale(1.2)
 
 .post-content, .post-excerpt
   font-family serif
