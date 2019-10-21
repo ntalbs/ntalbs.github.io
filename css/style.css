@@ -17,6 +17,9 @@ body {
   height: 100%;
   max-height: 100%;
 }
+.unselectable {
+  user-select: none;
+}
 h1,
 h2,
 h3,
@@ -272,7 +275,7 @@ video {
 .navbar-brand:focus,
 .navbar-brand:hover {
   text-decoration: none;
-  color: #ccc;
+  color: #eee;
 }
 .navbar-items {
   float: right;
@@ -297,7 +300,7 @@ video {
 }
 .navbar-items li a:focus,
 .navbar-items li a:hover {
-  color: #ccc;
+  color: #eee;
 }
 .sr-only {
   border: 0;
