@@ -3,59 +3,58 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand unselectable" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a class="unselectable" href="/archive/">Archive</a></li><li><a class="unselectable" href="/tags/">Tags</a></li><li><a class="unselectable" href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2008-10-28" itemprop="datePublished">2008-10-28</time>
 on
 <a href="/tags/db/">DB</a>
-<a href="/tags/oracle/">Oracle</a></p><h1 class="post-title">TIMESTAMP 컬럼으로 파티션 하는 방법</h1></header><section class="post-content"><p>일반적으로 range 파티션 테이블을 만들 때는 다음과 같이 한다.</p><pre><code class="language-sql hljs"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> t (...)
-<span class="hljs-keyword">tablespace</span> ...
-<span class="hljs-keyword">partition</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">range</span> (c)
+<a href="/tags/oracle/">Oracle</a></p><h1 class="post-title">TIMESTAMP 컬럼으로 파티션 하는 방법</h1></header><section class="post-content"><p>일반적으로 range 파티션 테이블을 만들 때는 다음과 같이 한다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">create</span> <span style="color:#00f">table</span> t (...)
+tablespace ...
+partition <span style="color:#00f">by</span> range (<span style="color:#00f">c</span>)
 (
-<span class="hljs-keyword">partition</span> p1 <span class="hljs-keyword">values</span> <span class="hljs-keyword">less</span> <span class="hljs-keyword">than</span> (<span class="hljs-number">100</span>),
-<span class="hljs-keyword">partition</span> p2 <span class="hljs-keyword">values</span> <span class="hljs-keyword">less</span> <span class="hljs-keyword">than</span> (<span class="hljs-number">200</span>),
+partition p1 <span style="color:#00f">values</span> <span style="color:#00f">less</span> <span style="color:#00f">than</span> (100),
+partition p2 <span style="color:#00f">values</span> <span style="color:#00f">less</span> <span style="color:#00f">than</span> (200),
 ...
-<span class="hljs-keyword">partition</span> p_max <span class="hljs-keyword">values</span> <span class="hljs-keyword">less</span> <span class="hljs-keyword">than</span> (maxvalue)
+partition p_max <span style="color:#00f">values</span> <span style="color:#00f">less</span> <span style="color:#00f">than</span> (<span style="color:#00f">maxvalue</span>)
 );
-</code></pre><p>파티션 키 컬럼이 <code>DATE</code> 타입일 경우에는 다음과 같이 하면 된다.</p><pre><code class="language-sql hljs"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> t (...)
-<span class="hljs-keyword">tablespace</span> ...
-<span class="hljs-keyword">partition</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">range</span> (dt)
+</code></pre></div><p>파티션 키 컬럼이 <code>DATE</code> 타입일 경우에는 다음과 같이 하면 된다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">create</span> <span style="color:#00f">table</span> t (...)
+tablespace ...
+partition <span style="color:#00f">by</span> range (dt)
 (
-<span class="hljs-keyword">partition</span> p2006 <span class="hljs-keyword">values</span>
-    <span class="hljs-keyword">less</span> <span class="hljs-keyword">than</span> (<span class="hljs-keyword">to_date</span>(<span class="hljs-string">'20070101'</span>,<span class="hljs-string">'YYYYMMDD'</span>)),
-<span class="hljs-keyword">partition</span> p2007 <span class="hljs-keyword">values</span>
-    <span class="hljs-keyword">less</span> <span class="hljs-keyword">than</span> (<span class="hljs-keyword">to_date</span>(<span class="hljs-string">'20070101'</span>,<span class="hljs-string">'YYYYMMDD'</span>)),
+partition p2006 <span style="color:#00f">values</span>
+    <span style="color:#00f">less</span> <span style="color:#00f">than</span> (to_date(<span style="color:#a31515">'</span><span style="color:#a31515">20070101</span><span style="color:#a31515">'</span>,<span style="color:#a31515">'</span><span style="color:#a31515">YYYYMMDD</span><span style="color:#a31515">'</span>)),
+partition p2007 <span style="color:#00f">values</span>
+    <span style="color:#00f">less</span> <span style="color:#00f">than</span> (to_date(<span style="color:#a31515">'</span><span style="color:#a31515">20070101</span><span style="color:#a31515">'</span>,<span style="color:#a31515">'</span><span style="color:#a31515">YYYYMMDD</span><span style="color:#a31515">'</span>)),
 ...
-<span class="hljs-keyword">partition</span> p_max <span class="hljs-keyword">values</span>
-    <span class="hljs-keyword">less</span> <span class="hljs-keyword">than</span> (maxvalue)
+partition p_max <span style="color:#00f">values</span>
+    <span style="color:#00f">less</span> <span style="color:#00f">than</span> (<span style="color:#00f">maxvalue</span>)
 );
-</code></pre><p>파티션 키 컬럼이 <code>TIMESTAMP</code>인 컬럼으로 파티션을 할 때는 다음과 같이 하면 될 것 같다.</p><pre><code class="language-sql hljs"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> t (...)
-<span class="hljs-keyword">tablespace</span> ...
-<span class="hljs-keyword">partition</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">range</span> (dt)
+</code></pre></div><p>파티션 키 컬럼이 <code>TIMESTAMP</code>인 컬럼으로 파티션을 할 때는 다음과 같이 하면 될 것 같다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">create</span> <span style="color:#00f">table</span> t (...)
+tablespace ...
+partition <span style="color:#00f">by</span> range (dt)
 (
-<span class="hljs-keyword">partition</span> p2006 <span class="hljs-keyword">values</span>
-    <span class="hljs-keyword">less</span> <span class="hljs-keyword">than</span> (to_timestamp(<span class="hljs-string">'20070101'</span>,<span class="hljs-string">'YYYYMMDD'</span>)),
-<span class="hljs-keyword">partition</span> p2007 <span class="hljs-keyword">values</span>
-    <span class="hljs-keyword">less</span> <span class="hljs-keyword">than</span> (to_timestamp(<span class="hljs-string">'20070101'</span>,<span class="hljs-string">'YYYYMMDD'</span>)),
+partition p2006 <span style="color:#00f">values</span>
+    <span style="color:#00f">less</span> <span style="color:#00f">than</span> (to_timestamp(<span style="color:#a31515">'</span><span style="color:#a31515">20070101</span><span style="color:#a31515">'</span>,<span style="color:#a31515">'</span><span style="color:#a31515">YYYYMMDD</span><span style="color:#a31515">'</span>)),
+partition p2007 <span style="color:#00f">values</span>
+    <span style="color:#00f">less</span> <span style="color:#00f">than</span> (to_timestamp(<span style="color:#a31515">'</span><span style="color:#a31515">20070101</span><span style="color:#a31515">'</span>,<span style="color:#a31515">'</span><span style="color:#a31515">YYYYMMDD</span><span style="color:#a31515">'</span>)),
 ...
-<span class="hljs-keyword">partition</span> p_max <span class="hljs-keyword">values</span>
-    <span class="hljs-keyword">less</span> <span class="hljs-keyword">than</span> (maxvalue)
+partition p_max <span style="color:#00f">values</span>
+    <span style="color:#00f">less</span> <span style="color:#00f">than</span> (<span style="color:#00f">maxvalue</span>)
 );
-</code></pre><p>그러나 위와 같은 SQL을 실행시키면 다음과 같은 에러가 발생한다.</p><pre><code class="language-sql hljs">partition p2006 values
-   less than (to_timestamp('20070101','YYYYMMDD')),
+</code></pre></div><p>그러나 위와 같은 SQL을 실행시키면 다음과 같은 에러가 발생한다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">partition p2006 <span style="color:#00f">values</span>
+   <span style="color:#00f">less</span> <span style="color:#00f">than</span> (to_timestamp(<span style="color:#a31515">'</span><span style="color:#a31515">20070101</span><span style="color:#a31515">'</span>,<span style="color:#a31515">'</span><span style="color:#a31515">YYYYMMDD</span><span style="color:#a31515">'</span>)),
               *
-ERROR at line 4:
+ERROR <span style="color:#00f">at</span> line 4:
 ORA-30078: partition bound must be
-TIME/TIMESTAMP WITH TIME ZONE literals
-</code></pre><p><code>TIMESTAMP</code> 컬럼으로 파티션을 하는 정확한 문법은 다음과 같다.</p><pre><code class="language-sql hljs"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> t (...)
-<span class="hljs-keyword">tablespace</span> ...
-<span class="hljs-keyword">partition</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">range</span> (dt)
+TIME/<span style="color:#00f">TIMESTAMP</span> <span style="color:#00f">WITH</span> TIME <span style="color:#00f">ZONE</span> literals
+</code></pre></div><p><code>TIMESTAMP</code> 컬럼으로 파티션을 하는 정확한 문법은 다음과 같다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">create</span> <span style="color:#00f">table</span> t (...)
+tablespace ...
+partition <span style="color:#00f">by</span> range (dt)
 (
-<span class="hljs-keyword">partition</span> p2006 <span class="hljs-keyword">values</span>
-    <span class="hljs-keyword">less</span> <span class="hljs-keyword">than</span> (<span class="hljs-keyword">timestamp</span><span class="hljs-string">'2007-01-01 00:00:00 +0:00'</span>),
-<span class="hljs-keyword">partition</span> p2007 <span class="hljs-keyword">values</span>
-    <span class="hljs-keyword">less</span> <span class="hljs-keyword">than</span> (<span class="hljs-keyword">timestamp</span><span class="hljs-string">'2008-01-01 00:00:00 +0:00'</span>),
+partition p2006 <span style="color:#00f">values</span>
+    <span style="color:#00f">less</span> <span style="color:#00f">than</span> (<span style="color:#00f">timestamp</span><span style="color:#a31515">'</span><span style="color:#a31515">2007-01-01 00:00:00 +0:00</span><span style="color:#a31515">'</span>),
+partition p2007 <span style="color:#00f">values</span>
+    <span style="color:#00f">less</span> <span style="color:#00f">than</span> (<span style="color:#00f">timestamp</span><span style="color:#a31515">'</span><span style="color:#a31515">2008-01-01 00:00:00 +0:00</span><span style="color:#a31515">'</span>),
 ...
-<span class="hljs-keyword">partition</span> p_max <span class="hljs-keyword">values</span>
-    <span class="hljs-keyword">less</span> <span class="hljs-keyword">than</span> (maxvalue)
+partition p_max <span style="color:#00f">values</span>
+    <span style="color:#00f">less</span> <span style="color:#00f">than</span> (<span style="color:#00f">maxvalue</span>)
 );
-</code></pre><h2 id="참고">참고</h2><ul><li><a href="http://www.orafaq.com/forum/t/6418/0/">http://www.orafaq.com/forum/t/6418/0/</a></li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+</code></pre></div><h2 id="heading">참고</h2><ul><li><a href="http://www.orafaq.com/forum/t/6418/0/">http://www.orafaq.com/forum/t/6418/0/</a></li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2008/set-timing/" id="article-nav-newer">set timing을 이용한 SQL 실행 속도 측정법</a>
-<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2008/storing-dates/" id="article-nav-older">날짜 데이터 저장</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer>
-</body></html>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2008/storing-dates/" id="article-nav-older">날짜 데이터 저장</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer></body></html>

@@ -4,53 +4,52 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 on
 <a href="/tags/db/">DB</a>
 <a href="/tags/oracle/">Oracle</a>
-<a href="/tags/sql/">SQL</a></p><h1 class="post-title">테이블 비교</h1></header><section class="post-content"><p>프로젝트를 하다보면 개발DB와 테스트DB 또는 테스트DB와 운영DB간 스키마를 비교해 차이점이 없는지 확인할 일이 많다. 다음은 테이블과 컬럼을 비교하는 스크립트다.</p><p><code>Full Outer Join</code>을 사용할 수도 있으나, 결과가 제대로 나오지 않거나 에러(<code>ora-600</code>)가 발생한다(Oracle 9i, 10g에서 모두 에러 발생했음). 그냥 <code>left outer join</code>, <code>right outer join</code>한 후 둘을 <code>union</code> 하는 것이 결과가 제대로 나온다. (<code>with</code>절은 Oracle 9i부터 사용 가능함.)</p><pre><code class="language-sql hljs">with
-a as (
-  <span class="hljs-keyword">select</span>
-    table_name, column_name,
-    <span class="hljs-keyword">decode</span>(data_type,
-      <span class="hljs-string">'CHAR'</span>, data_type||<span class="hljs-string">'('</span>||data_length||<span class="hljs-string">')'</span>,
-      <span class="hljs-string">'VARCHAR2'</span>, data_type||<span class="hljs-string">'('</span>||data_length||<span class="hljs-string">')'</span>,
-      <span class="hljs-string">'NUMBER'</span>, data_type||<span class="hljs-string">'('</span>||data_precision||<span class="hljs-string">','</span>||data_scale||<span class="hljs-string">')'</span>,
+<a href="/tags/sql/">SQL</a></p><h1 class="post-title">테이블 비교</h1></header><section class="post-content"><p>프로젝트를 하다보면 개발DB와 테스트DB 또는 테스트DB와 운영DB간 스키마를 비교해 차이점이 없는지 확인할 일이 많다. 다음은 테이블과 컬럼을 비교하는 스크립트다.</p><p><code>Full Outer Join</code>을 사용할 수도 있으나, 결과가 제대로 나오지 않거나 에러(<code>ora-600</code>)가 발생한다(Oracle 9i, 10g에서 모두 에러 발생했음). 그냥 <code>left outer join</code>, <code>right outer join</code>한 후 둘을 <code>union</code> 하는 것이 결과가 제대로 나온다. (<code>with</code>절은 Oracle 9i부터 사용 가능함.)</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">with</span>
+a <span style="color:#00f">as</span> (
+  <span style="color:#00f">select</span>
+    <span style="color:#00f">table_name</span>, <span style="color:#00f">column_name</span>,
+    decode(data_type,
+      <span style="color:#a31515">'</span><span style="color:#a31515">CHAR</span><span style="color:#a31515">'</span>, data_type||<span style="color:#a31515">'</span><span style="color:#a31515">(</span><span style="color:#a31515">'</span>||data_length||<span style="color:#a31515">'</span><span style="color:#a31515">)</span><span style="color:#a31515">'</span>,
+      <span style="color:#a31515">'</span><span style="color:#a31515">VARCHAR2</span><span style="color:#a31515">'</span>, data_type||<span style="color:#a31515">'</span><span style="color:#a31515">(</span><span style="color:#a31515">'</span>||data_length||<span style="color:#a31515">'</span><span style="color:#a31515">)</span><span style="color:#a31515">'</span>,
+      <span style="color:#a31515">'</span><span style="color:#a31515">NUMBER</span><span style="color:#a31515">'</span>, data_type||<span style="color:#a31515">'</span><span style="color:#a31515">(</span><span style="color:#a31515">'</span>||data_precision||<span style="color:#a31515">'</span><span style="color:#a31515">,</span><span style="color:#a31515">'</span>||data_scale||<span style="color:#a31515">'</span><span style="color:#a31515">)</span><span style="color:#a31515">'</span>,
       data_type) data_type,
-    nullable
-  <span class="hljs-keyword">from</span> all_tab_columns
-  <span class="hljs-keyword">where</span> owner = <span class="hljs-string">'XXX'</span>
-    <span class="hljs-keyword">and</span> table_name <span class="hljs-keyword">not</span> <span class="hljs-keyword">like</span> <span class="hljs-string">'BIN$%'</span>
+    <span style="color:#00f">nullable</span>
+  <span style="color:#00f">from</span> all_tab_columns
+  <span style="color:#00f">where</span> <span style="color:#00f">owner</span> = <span style="color:#a31515">'</span><span style="color:#a31515">XXX</span><span style="color:#a31515">'</span>
+    <span style="color:#00f">and</span> <span style="color:#00f">table_name</span> <span style="color:#00f">not</span> <span style="color:#00f">like</span> <span style="color:#a31515">'</span><span style="color:#a31515">BIN$%</span><span style="color:#a31515">'</span>
   ),
-b <span class="hljs-keyword">as</span> (
-  <span class="hljs-keyword">select</span>
-    table_name, column_name,
-    <span class="hljs-keyword">decode</span>(data_type,
-      <span class="hljs-string">'CHAR'</span>, data_type||<span class="hljs-string">'('</span>||data_length||<span class="hljs-string">')'</span>,
-      <span class="hljs-string">'VARCHAR2'</span>, data_type||<span class="hljs-string">'('</span>||data_length||<span class="hljs-string">')'</span>,
-      <span class="hljs-string">'NUMBER'</span>, data_type||<span class="hljs-string">'('</span>||data_precision||<span class="hljs-string">','</span>||data_scale||<span class="hljs-string">')'</span>,
+b <span style="color:#00f">as</span> (
+  <span style="color:#00f">select</span>
+    <span style="color:#00f">table_name</span>, <span style="color:#00f">column_name</span>,
+    decode(data_type,
+      <span style="color:#a31515">'</span><span style="color:#a31515">CHAR</span><span style="color:#a31515">'</span>, data_type||<span style="color:#a31515">'</span><span style="color:#a31515">(</span><span style="color:#a31515">'</span>||data_length||<span style="color:#a31515">'</span><span style="color:#a31515">)</span><span style="color:#a31515">'</span>,
+      <span style="color:#a31515">'</span><span style="color:#a31515">VARCHAR2</span><span style="color:#a31515">'</span>, data_type||<span style="color:#a31515">'</span><span style="color:#a31515">(</span><span style="color:#a31515">'</span>||data_length||<span style="color:#a31515">'</span><span style="color:#a31515">)</span><span style="color:#a31515">'</span>,
+      <span style="color:#a31515">'</span><span style="color:#a31515">NUMBER</span><span style="color:#a31515">'</span>, data_type||<span style="color:#a31515">'</span><span style="color:#a31515">(</span><span style="color:#a31515">'</span>||data_precision||<span style="color:#a31515">'</span><span style="color:#a31515">,</span><span style="color:#a31515">'</span>||data_scale||<span style="color:#a31515">'</span><span style="color:#a31515">)</span><span style="color:#a31515">'</span>,
       data_type) data_type,
-    nullable
-  <span class="hljs-keyword">from</span> all_tab_columns&lt;b <span class="hljs-keyword">id</span>=<span class="hljs-string">"ncsj"</span>&gt;@testdb&lt;/b&gt;
-  <span class="hljs-keyword">where</span> owner = <span class="hljs-string">'XXX'</span>
-    <span class="hljs-keyword">and</span> table_name <span class="hljs-keyword">not</span> <span class="hljs-keyword">like</span> <span class="hljs-string">'BIN$%'</span>
+    <span style="color:#00f">nullable</span>
+  <span style="color:#00f">from</span> all_tab_columns&lt;b id=<span style="color:#a31515">"</span><span style="color:#a31515">ncsj</span><span style="color:#a31515">"</span>&gt;@testdb&lt;/b&gt;
+  <span style="color:#00f">where</span> <span style="color:#00f">owner</span> = <span style="color:#a31515">'</span><span style="color:#a31515">XXX</span><span style="color:#a31515">'</span>
+    <span style="color:#00f">and</span> <span style="color:#00f">table_name</span> <span style="color:#00f">not</span> <span style="color:#00f">like</span> <span style="color:#a31515">'</span><span style="color:#a31515">BIN$%</span><span style="color:#a31515">'</span>
   )
-<span class="hljs-keyword">select</span> <span class="hljs-keyword">decode</span>(a.table_name, <span class="hljs-literal">null</span>, b.table_name, a.table_name) tbl,
-       a.column_name, a.data_type, a.nullable,
-       b.column_name, b.data_type, b.nullable
-<span class="hljs-keyword">from</span> a, b
-<span class="hljs-keyword">where</span> a.table_name = b.table_name(+)
-  <span class="hljs-keyword">and</span> a.column_name = b.column_name(+)
-  <span class="hljs-keyword">and</span> (a.data_type &lt;&gt; nvl(b.data_type,<span class="hljs-string">'x'</span>)
-         <span class="hljs-keyword">or</span> a.nullable &lt;&gt; nvl(b.nullable,<span class="hljs-string">'x'</span>))
-<span class="hljs-keyword">union</span>
-<span class="hljs-keyword">select</span> <span class="hljs-keyword">decode</span>(a.table_name, <span class="hljs-literal">null</span>, b.table_name, a.table_name),
-       a.column_name, a.data_type, a.nullable,
-       b.column_name, b.data_type, b.nullable
-<span class="hljs-keyword">from</span> a, b
-<span class="hljs-keyword">where</span> a.table_name(+) = b.table_name
-  <span class="hljs-keyword">and</span> a.column_name(+) = b.column_name
-  <span class="hljs-keyword">and</span> (nvl(a.data_type,<span class="hljs-string">'x'</span>) &lt;&gt; b.data_type
-         <span class="hljs-keyword">or</span> nvl(a.nullable,<span class="hljs-string">'x'</span>) &lt;&gt; b.nullable)
-<span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-number">1</span>;
-</code></pre></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+<span style="color:#00f">select</span> decode(a.<span style="color:#00f">table_name</span>, <span style="color:#00f">null</span>, b.<span style="color:#00f">table_name</span>, a.<span style="color:#00f">table_name</span>) tbl,
+       a.<span style="color:#00f">column_name</span>, a.data_type, a.<span style="color:#00f">nullable</span>,
+       b.<span style="color:#00f">column_name</span>, b.data_type, b.<span style="color:#00f">nullable</span>
+<span style="color:#00f">from</span> a, b
+<span style="color:#00f">where</span> a.<span style="color:#00f">table_name</span> = b.<span style="color:#00f">table_name</span>(+)
+  <span style="color:#00f">and</span> a.<span style="color:#00f">column_name</span> = b.<span style="color:#00f">column_name</span>(+)
+  <span style="color:#00f">and</span> (a.data_type &lt;&gt; nvl(b.data_type,<span style="color:#a31515">'</span><span style="color:#a31515">x</span><span style="color:#a31515">'</span>)
+         <span style="color:#00f">or</span> a.<span style="color:#00f">nullable</span> &lt;&gt; nvl(b.<span style="color:#00f">nullable</span>,<span style="color:#a31515">'</span><span style="color:#a31515">x</span><span style="color:#a31515">'</span>))
+<span style="color:#00f">union</span>
+<span style="color:#00f">select</span> decode(a.<span style="color:#00f">table_name</span>, <span style="color:#00f">null</span>, b.<span style="color:#00f">table_name</span>, a.<span style="color:#00f">table_name</span>),
+       a.<span style="color:#00f">column_name</span>, a.data_type, a.<span style="color:#00f">nullable</span>,
+       b.<span style="color:#00f">column_name</span>, b.data_type, b.<span style="color:#00f">nullable</span>
+<span style="color:#00f">from</span> a, b
+<span style="color:#00f">where</span> a.<span style="color:#00f">table_name</span>(+) = b.<span style="color:#00f">table_name</span>
+  <span style="color:#00f">and</span> a.<span style="color:#00f">column_name</span>(+) = b.<span style="color:#00f">column_name</span>
+  <span style="color:#00f">and</span> (nvl(a.data_type,<span style="color:#a31515">'</span><span style="color:#a31515">x</span><span style="color:#a31515">'</span>) &lt;&gt; b.data_type
+         <span style="color:#00f">or</span> nvl(a.<span style="color:#00f">nullable</span>,<span style="color:#a31515">'</span><span style="color:#a31515">x</span><span style="color:#a31515">'</span>) &lt;&gt; b.<span style="color:#00f">nullable</span>)
+<span style="color:#00f">order</span> <span style="color:#00f">by</span> 1;
+</code></pre></div></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2008/comp-indexes/" id="article-nav-newer">인덱스 비교</a>
-<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2008/db-files/" id="article-nav-older">db_files 개수에 포함되는 파일은?</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer>
-</body></html>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2008/db-files/" id="article-nav-older">db_files 개수에 포함되는 파일은?</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer></body></html>

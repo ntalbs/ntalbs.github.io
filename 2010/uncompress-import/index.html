@@ -4,20 +4,17 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 on
 <a href="/tags/db/">DB</a>
 <a href="/tags/oracle/">Oracle</a>
-<a href="/tags/%ed%8c%81/">팁</a></p><h1 class="post-title">압축 해제와 동시에 import 하기</h1></header><section class="post-content"><p>압축된 덤프 파일을 압축 해제와 동시에 import 하는 방법이다. 압축을 해제할 만큼 디스크 공간이 충분하지 않을 때 유용하게 사용할 수 있다.</p><h2 id="1-파이프로-들어오는-데이터를-import-한다">1. 파이프로 들어오는 데이터를 import 한다.</h2><p>이 명령은 백그라운드로 실행되도록 한다.</p><pre class="console">$ imp system/pw fromuser=scott file=pipe log=imp_${dump_file}.log ignore=y &amp;
-</pre><h2 id="2-dump-파일을-압축-해제해-파이프로-넘긴다">2. dump 파일을 압축 해제해 파이프로 넘긴다.</h2><p><code>uncompress</code>로 압축 해제한 다음 <code>$pipe</code>로 넘긴다.</p><pre class="console">$ uncompress &lt; exp.dmp.Z &gt; $pipe
-</pre><p>이를 응용해 다음과 같은 스크립트를 만들 수 있다.</p><pre><code class="language-sh hljs"><span class="hljs-meta">#!/bin/ksh</span>
-<span class="hljs-keyword">if</span> [ <span class="hljs-string">"<span class="hljs-variable">$1</span>"</span> -eq <span class="hljs-string">""</span> ]; <span class="hljs-keyword">then</span>
-    <span class="hljs-built_in">print</span> <span class="hljs-string">"usage: restore.sh inputfile"</span>
-    <span class="hljs-built_in">exit</span> 1
-<span class="hljs-keyword">fi</span>
+<a href="/tags/%ed%8c%81/">팁</a></p><h1 class="post-title">압축 해제와 동시에 import 하기</h1></header><section class="post-content"><p>압축된 덤프 파일을 압축 해제와 동시에 import 하는 방법이다. 압축을 해제할 만큼 디스크 공간이 충분하지 않을 때 유용하게 사용할 수 있다.</p><h2 id="1----import-">1. 파이프로 들어오는 데이터를 import 한다.</h2><p>이 명령은 백그라운드로 실행되도록 한다.</p><h2 id="2-dump-----">2. dump 파일을 압축 해제해 파이프로 넘긴다.</h2><p><code>uncompress</code>로 압축 해제한 다음 <code>$pipe</code>로 넘긴다.</p><p>이를 응용해 다음과 같은 스크립트를 만들 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#00f">#!/bin/ksh
+</span><span style="color:#00f"></span><span style="color:#00f">if</span> [ <span style="color:#a31515">"</span>$1<span style="color:#a31515">"</span> -eq <span style="color:#a31515">""</span> ]; <span style="color:#00f">then</span>
+    print <span style="color:#a31515">"usage: restore.sh inputfile"</span>
+    exit 1
+<span style="color:#00f">fi</span>
 
 pipe=/tmp/expimp_pipe
-dump_file=<span class="hljs-variable">$1</span>
-imp id/pw fromuser=scott file=pipe <span class="hljs-built_in">log</span>=imp_<span class="hljs-variable">${dump_file}</span>.<span class="hljs-built_in">log</span> ignore=y &amp;
-uncompress &lt; <span class="hljs-variable">$dump_file</span> &gt; <span class="hljs-variable">$pipe</span>
-</code></pre></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+dump_file=$1
+imp id/pw fromuser=scott file=pipe log=imp_<span style="color:#a31515">${</span>dump_file<span style="color:#a31515">}</span>.log ignore=y &amp;
+uncompress &lt; $dump_file &gt; $pipe
+</code></pre></div></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2010/refactoring-korean/" id="article-nav-newer">'리팩터링'과 '리팩토링'</a>
-<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2010/export-compress/" id="article-nav-older">export와 동시에 압축하기</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer>
-</body></html>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2010/export-compress/" id="article-nav-older">export와 동시에 압축하기</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer></body></html>

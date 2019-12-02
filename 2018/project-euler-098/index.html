@@ -75,15 +75,15 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand unselectable" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a class="unselectable" href="/archive/">Archive</a></li><li><a class="unselectable" href="/tags/">Tags</a></li><li><a class="unselectable" href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2018-10-01" itemprop="datePublished">2018-10-01</time>
 on
 <a href="/tags/project-euler/">Project-Euler</a>
-<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 98</h1></header><section class="post-content"><blockquote><p>제곱수를 나타내는 애너그램 쌍 찾기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=98">[국어]</a> <a href="https://projecteuler.net/problem=98">[영어]</a></p></blockquote><p>단어 수는 2천 개도 안 되지만 각 단어의 알파벳을 임의의 수로 치환하는 경우의 수를 생각하면 엄청나게 많은 계산이 필요하다. 알파벳을 임의의 수로 치환하는 대신 제곱수를 미리 구해놓고 알파벳을 치환할 때 제곱수를 이용해 치환한다면 계산 범위를 크게 줄일 수 있다.</p><p>먼저 파일을 읽어 단어 목록을 만들고 애너그램을 구한다. 애너그램은 글자를 정렬했을 때 결과가 같으므로, 단어의 글자로 정렬한 결과를 키로 <code>group-by</code>하면 쉽게 애너그램을 구할 수있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> words
-  (<span class="hljs-name">clojure.string/split</span> (<span class="hljs-name"><span class="hljs-builtin-name">slurp</span></span> <span class="hljs-string">"data/words.txt"</span>) #<span class="hljs-string">"\"(,\")?"</span>))
+<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 98</h1></header><section class="post-content"><blockquote><p>제곱수를 나타내는 애너그램 쌍 찾기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=98">[국어]</a> <a href="https://projecteuler.net/problem=98">[영어]</a></p></blockquote><p>단어 수는 2천 개도 안 되지만 각 단어의 알파벳을 임의의 수로 치환하는 경우의 수를 생각하면 엄청나게 많은 계산이 필요하다. 알파벳을 임의의 수로 치환하는 대신 제곱수를 미리 구해놓고 알파벳을 치환할 때 제곱수를 이용해 치환한다면 계산 범위를 크게 줄일 수 있다.</p><p>먼저 파일을 읽어 단어 목록을 만들고 애너그램을 구한다. 애너그램은 글자를 정렬했을 때 결과가 같으므로, 단어의 글자로 정렬한 결과를 키로 <code>group-by</code>하면 쉽게 애너그램을 구할 수있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">def </span>words
+  (clojure.string/split (slurp <span style="color:#a31515">"data/words.txt"</span>) #<span style="color:#a31515">"\"(,\")?"</span>))
 
-(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> anagrams
-  (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> words
-       (<span class="hljs-name">group-by</span> (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [w] (<span class="hljs-name"><span class="hljs-builtin-name">sort</span></span> w)))
-       (<span class="hljs-name"><span class="hljs-builtin-name">filter</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [[k ws]] (<span class="hljs-name"><span class="hljs-builtin-name">&lt;=</span></span> <span class="hljs-number">2</span> (<span class="hljs-name"><span class="hljs-builtin-name">count</span></span> ws))))
-       (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> second)))
-</code></pre><p>글자수와 같은 자리의 제곱수를 사용할 것이므로 다음과 같이 자릿수별 제곱수 맵을 만든다. 위에서 만든 애너그램에서 제일 긴 것이 9자로 되어 있으므로 제곱수도 9자리 숫자 (<span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="17.18ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 7396.8 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+(<span style="color:#00f">def </span>anagrams
+  (-&gt;&gt; words
+       (group-by (<span style="color:#00f">fn </span>[w] (sort w)))
+       (filter (<span style="color:#00f">fn </span>[[k ws]] (&lt;= 2 (count ws))))
+       (map second)))
+</code></pre></div><p>글자수와 같은 자리의 제곱수를 사용할 것이므로 다음과 같이 자릿수별 제곱수 맵을 만든다. 위에서 만든 애너그램에서 제일 긴 것이 9자로 되어 있으므로 제곱수도 9자리 숫자 (<span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="17.18ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 7396.8 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">&lt; 1,000,000,000</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMAIN-3C" x="0" y="0"></use>
@@ -107,47 +107,43 @@ on
  <use xlink:href="#MJMAIN-30" x="1001" y="0"></use>
 </g>
 </g>
-</svg></span>)까지 만들면 충분하다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> sqnums
-  (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">iterate</span></span> inc <span class="hljs-number">1</span>)
-       (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> #(<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> % %))
-       (<span class="hljs-name"><span class="hljs-builtin-name">take-while</span></span> #(<span class="hljs-name"><span class="hljs-builtin-name">&lt;</span></span> (<span class="hljs-name">Math/log10</span> %) <span class="hljs-number">9</span>))
-       (<span class="hljs-name">group-by</span> #(<span class="hljs-name"><span class="hljs-builtin-name">inc</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">int</span></span> (<span class="hljs-name">Math/log10</span> %))))
-       (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [[k vs]] [k (<span class="hljs-name">set</span> vs)]))
-       (<span class="hljs-name"><span class="hljs-builtin-name">into</span></span> {})))
-</code></pre><p>숫자 벡터를 숫자로 만드는 함수도 있으면 문제 풀이에 도움이 된다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> digits-to-num [ds]
-  (<span class="hljs-name"><span class="hljs-builtin-name">loop</span></span> [ds (<span class="hljs-name"><span class="hljs-builtin-name">reverse</span></span> ds) p <span class="hljs-number">1</span> n <span class="hljs-number">0</span>]
-    (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">seq?</span></span> ds)
-      (<span class="hljs-name"><span class="hljs-builtin-name">recur</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">next</span></span> ds) (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> p <span class="hljs-number">10</span>) (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> n (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">first</span></span> ds) p)))
+</svg></span>)까지 만들면 충분하다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">def </span>sqnums
+  (-&gt;&gt; (iterate inc 1)
+       (map #(* % %))
+       (take-while #(&lt; (Math/log10 %) 9))
+       (group-by #(inc (int (Math/log10 %))))
+       (map (<span style="color:#00f">fn </span>[[k vs]] [k (set vs)]))
+       (into {})))
+</code></pre></div><p>숫자 벡터를 숫자로 만드는 함수도 있으면 문제 풀이에 도움이 된다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>digits-to-num [ds]
+  (<span style="color:#00f">loop </span>[ds (reverse ds) p 1 n 0]
+    (<span style="color:#00f">if </span>(seq? ds)
+      (recur (next ds) (* p 10) (+ n (* (first ds) p)))
       n)))
-</code></pre><p>문제를 풀려면, 단어에 있는 알파벳을 숫자로 치환한 다음 동일한 규칙을 애너그램에 적용했을 때 역시 제곱수가 되는지 확인하는 코드를 작성해야 한다.</p><p>다음 함수는 주어진 단어에 대해 제곱수로 바꾸는 규칙을 담은 맵을 생성해 리턴한다. 이 함수가 리턴한 맵을 이용해 동일한 규칙으로 애너그램을 숫자로 치환해 제곱수가 되는지 확인할 것이다. 알파벳을 숫자로 치환할 때 알파벳이 같으면 치환하는 숫자도 같아야 한다. 또한 다른 알파벳은 다른 수로 치환해야 한다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> w-&gt;sqns [w]
-  (<span class="hljs-name"><span class="hljs-builtin-name">letfn</span></span> [(<span class="hljs-name">same-letters-have-same-digit?</span> [m]
-            (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> <span class="hljs-number">1</span> (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> (<span class="hljs-name">group-by</span> first x)
-                      (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [[_ v]] (<span class="hljs-name"><span class="hljs-builtin-name">count</span></span> (<span class="hljs-name">distinct</span> v))))
-                      (<span class="hljs-name"><span class="hljs-builtin-name">apply</span></span> max))))
-          (<span class="hljs-name">diff-letters-have-diff-digits?</span> [m]
-            (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> <span class="hljs-number">1</span> (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> (<span class="hljs-name">group-by</span> second x)
-                      (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [[_ v]] (<span class="hljs-name"><span class="hljs-builtin-name">count</span></span> v)))
-                      (<span class="hljs-name"><span class="hljs-builtin-name">apply</span></span> max))))]
-    (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">for</span></span> [n (<span class="hljs-name">sqnums</span> (<span class="hljs-name"><span class="hljs-builtin-name">count</span></span> w))] (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> vector w (<span class="hljs-name">digits</span> n)))
-         (<span class="hljs-name"><span class="hljs-builtin-name">filter</span></span> same-letters-have-same-digit?)
-         (<span class="hljs-name"><span class="hljs-builtin-name">filter</span></span> diff-letters-have-diff-digits?)
-         (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [x] (<span class="hljs-name"><span class="hljs-builtin-name">into</span></span> {} x)))))
-</code></pre><p>애너그램 쌍이 제곱 에너그람 쌍인지 확인하는 함수는 다음과 같이 작성할 수 있다. <code>w-&gt;sqns</code> 함수로 구한 치환 규칙을 애너그램에 적용해 역시 제곱수가 되는지 확인한다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> check [[w1 w2]]
-  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [sqns (<span class="hljs-name">sqnums</span> (<span class="hljs-name"><span class="hljs-builtin-name">count</span></span> w1))
-        ms (<span class="hljs-name">w-&gt;sqns</span> w1)
-        ns (<span class="hljs-name"><span class="hljs-builtin-name">for</span></span> [m ms] (<span class="hljs-name">digits-to-num</span> (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> #(<span class="hljs-name">m</span> %) w2)))]
-    (<span class="hljs-name"><span class="hljs-builtin-name">filter</span></span> #(<span class="hljs-name"><span class="hljs-builtin-name">contains?</span></span> sqns %) ns)))
-</code></pre><p>이제 문제를 다음과 같이 풀 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> solve []
-  (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> anagrams
-       (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> #(<span class="hljs-name">check</span> %))
-       (<span class="hljs-name"><span class="hljs-builtin-name">remove</span></span> empty?)
-       (<span class="hljs-name"><span class="hljs-builtin-name">flatten</span></span>)
-       (<span class="hljs-name"><span class="hljs-builtin-name">apply</span></span> max)))
-</code></pre><p>실행 결과는 다음과 같다. 답을 구하는 데 1초 조금 넘게 걸린다.</p><pre class="console">p098&gt; (time (solve))
-"Elapsed time: 1037.136248 msecs"
-18?69
-</pre><h2 id="참고">참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p098.clj">프로젝트 오일러 98 풀이 소스 코드</a></li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+</code></pre></div><p>문제를 풀려면, 단어에 있는 알파벳을 숫자로 치환한 다음 동일한 규칙을 애너그램에 적용했을 때 역시 제곱수가 되는지 확인하는 코드를 작성해야 한다.</p><p>다음 함수는 주어진 단어에 대해 제곱수로 바꾸는 규칙을 담은 맵을 생성해 리턴한다. 이 함수가 리턴한 맵을 이용해 동일한 규칙으로 애너그램을 숫자로 치환해 제곱수가 되는지 확인할 것이다. 알파벳을 숫자로 치환할 때 알파벳이 같으면 치환하는 숫자도 같아야 한다. 또한 다른 알파벳은 다른 수로 치환해야 한다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>w-&gt;sqns [w]
+  (letfn [(same-letters-have-same-digit? [m]
+            (= 1 (-&gt;&gt; (group-by first x)
+                      (map (<span style="color:#00f">fn </span>[[_ v]] (count (distinct v))))
+                      (apply max))))
+          (diff-letters-have-diff-digits? [m]
+            (= 1 (-&gt;&gt; (group-by second x)
+                      (map (<span style="color:#00f">fn </span>[[_ v]] (count v)))
+                      (apply max))))]
+    (-&gt;&gt; (for [n (sqnums (count w))] (map vector w (digits n)))
+         (filter same-letters-have-same-digit?)
+         (filter diff-letters-have-diff-digits?)
+         (map (<span style="color:#00f">fn </span>[x] (into {} x)))))
+</code></pre></div><p>애너그램 쌍이 제곱 에너그람 쌍인지 확인하는 함수는 다음과 같이 작성할 수 있다. <code>w-&gt;sqns</code> 함수로 구한 치환 규칙을 애너그램에 적용해 역시 제곱수가 되는지 확인한다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>check [[w1 w2]]
+  (<span style="color:#00f">let </span>[sqns (sqnums (count w1))
+        ms (w-&gt;sqns w1)
+        <span style="color:#00f">ns </span>(for [m ms] (digits-to-num (map #(m %) w2)))]
+    (filter #(contains? sqns %) ns)))
+</code></pre></div><p>이제 문제를 다음과 같이 풀 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>solve []
+  (-&gt;&gt; anagrams
+       (map #(check %))
+       (remove empty?)
+       (flatten)
+       (apply max)))
+</code></pre></div><p>실행 결과는 다음과 같다. 답을 구하는 데 1초 조금 넘게 걸린다.</p><h2 id="heading">참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p098.clj">프로젝트 오일러 98 풀이 소스 코드</a></li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2018/project-euler-099/" id="article-nav-newer">프로젝트 오일러 99</a>
-<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2018/project-euler-097/" id="article-nav-older">프로젝트 오일러 97</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer>
-<svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs id="MathJax_SVG_glyphs"><path stroke-width="1" id="MJMAIN-3C" d="M694 -11T694 -19T688 -33T678 -40Q671 -40 524 29T234 166L90 235Q83 240 83 250Q83 261 91 266Q664 540 678 540Q681 540 687 534T694 519T687 505Q686 504 417 376L151 250L417 124Q686 -4 687 -5Q694 -11 694 -19Z"></path><path stroke-width="1" id="MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="1" id="MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path><path stroke-width="1" id="MJMAIN-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></defs></svg></body></html>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2018/project-euler-097/" id="article-nav-older">프로젝트 오일러 97</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer><svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs id="MathJax_SVG_glyphs"><path stroke-width="1" id="MJMAIN-3C" d="M694 -11T694 -19T688 -33T678 -40Q671 -40 524 29T234 166L90 235Q83 240 83 250Q83 261 91 266Q664 540 678 540Q681 540 687 534T694 519T687 505Q686 504 417 376L151 250L417 124Q686 -4 687 -5Q694 -11 694 -19Z"></path><path stroke-width="1" id="MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="1" id="MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path><path stroke-width="1" id="MJMAIN-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></defs></svg></body></html>

@@ -3,42 +3,41 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand unselectable" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a class="unselectable" href="/archive/">Archive</a></li><li><a class="unselectable" href="/tags/">Tags</a></li><li><a class="unselectable" href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2008-12-12" itemprop="datePublished">2008-12-12</time>
 on
 <a href="/tags/db/">DB</a>
-<a href="/tags/oracle/">Oracle</a></p><h1 class="post-title">AWR 기본</h1></header><section class="post-content"><p>Oracle10g부터 추가된 AWR(Automatic Workload Repository) 기본 사용법이다.</p><h4 id="1-스냅샷-생성">1. 스냅샷 생성</h4><pre><code class="language-sql hljs"><span class="hljs-keyword">begin</span>
+<a href="/tags/oracle/">Oracle</a></p><h1 class="post-title">AWR 기본</h1></header><section class="post-content"><p>Oracle10g부터 추가된 AWR(Automatic Workload Repository) 기본 사용법이다.</p><h4 id="1--">1. 스냅샷 생성</h4><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">begin</span>
   dbms_workload_repository.create_snapshot();
-<span class="hljs-keyword">end</span>;
+<span style="color:#00f">end</span>;
 /
-</code></pre><p>또는</p><pre><code class="language-sql hljs"><span class="hljs-keyword">select</span> dbms_workload_repository.create_snapshot(<span class="hljs-string">'ALL'</span>)
-<span class="hljs-keyword">from</span> dual;
-</code></pre><h4 id="2-스냅샷-제거">2. 스냅샷 제거</h4><pre><code class="language-sql hljs"><span class="hljs-keyword">begin</span>
+</code></pre></div><p>또는</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">select</span> dbms_workload_repository.create_snapshot(<span style="color:#a31515">'</span><span style="color:#a31515">ALL</span><span style="color:#a31515">'</span>)
+<span style="color:#00f">from</span> dual;
+</code></pre></div><h4 id="2--">2. 스냅샷 제거</h4><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">begin</span>
   dbms_workload_repository.drop_snopshot(
-    low_snap_id=&gt;<span class="hljs-number">10</span>,
-    high_snap_id=&gt;<span class="hljs-number">20</span>);
-<span class="hljs-keyword">end</span>;
+    low_snap_id=&gt;10,
+    high_snap_id=&gt;20);
+<span style="color:#00f">end</span>;
 /
-</code></pre><h4 id="3-베이스라인-생성">3. 베이스라인 생성</h4><pre><code class="language-sql hljs"><span class="hljs-keyword">begin</span>
+</code></pre></div><h4 id="3--">3. 베이스라인 생성</h4><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">begin</span>
   dbms_workload_repository.create_baseline(
-    start_snap_id =&gt; <span class="hljs-number">100</span>,
-    end_snap_id =&gt; <span class="hljs-number">110</span>,
-    baseline_name =&gt; <span class="hljs-string">'Good Nightly Batch'</span>);
-<span class="hljs-keyword">end</span>;
+    start_snap_id =&gt; 100,
+    end_snap_id =&gt; 110,
+    baseline_name =&gt; <span style="color:#a31515">'</span><span style="color:#a31515">Good Nightly Batch</span><span style="color:#a31515">'</span>);
+<span style="color:#00f">end</span>;
 /
-</code></pre><p>또는</p><pre><code class="language-sql hljs"><span class="hljs-keyword">select</span>
-  dbms_workload_repository.create_baseline(<span class="hljs-number">100</span>, <span class="hljs-number">110</span>, <span class="hljs-string">'Good Nightly Batch'</span>)
-<span class="hljs-keyword">from</span> dual;
-</code></pre><h4 id="4-베이스라인-제거">4. 베이스라인 제거</h4><pre><code class="language-sql hljs"><span class="hljs-keyword">begin</span>
-  dbms_workload_repository.drop_baseline(<span class="hljs-string">'Good Nightly Batch'</span>, <span class="hljs-literal">true</span>);
-<span class="hljs-keyword">end</span>;
+</code></pre></div><p>또는</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">select</span>
+  dbms_workload_repository.create_baseline(100, 110, <span style="color:#a31515">'</span><span style="color:#a31515">Good Nightly Batch</span><span style="color:#a31515">'</span>)
+<span style="color:#00f">from</span> dual;
+</code></pre></div><h4 id="4--">4. 베이스라인 제거</h4><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">begin</span>
+  dbms_workload_repository.drop_baseline(<span style="color:#a31515">'</span><span style="color:#a31515">Good Nightly Batch</span><span style="color:#a31515">'</span>, <span style="color:#00f">true</span>);
+<span style="color:#00f">end</span>;
 /
-</code></pre><h4 id="5-awr-리포트-생성">5. AWR 리포트 생성</h4><pre><code class="hljs"><span class="hljs-selector-tag">SQL</span>&gt; @?/<span class="hljs-keyword">rdbms</span>/<span class="hljs-keyword">admin</span>/<span class="hljs-keyword">awrrpt</span>.<span class="hljs-keyword">sql</span>
-</code></pre><h4 id="6-스냅샷-설정-변경">6. 스냅샷 설정 변경</h4><pre><code class="language-sql hljs"><span class="hljs-keyword">begin</span>
+</code></pre></div><h4 id="5-awr--">5. AWR 리포트 생성</h4><pre><code>SQL&gt; @?/rdbms/admin/awrrpt.sql
+</code></pre><h4 id="6---">6. 스냅샷 설정 변경</h4><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">begin</span>
   dbms_workload_repository.modify_snapshot_settings(
-    <span class="hljs-built_in">interval</span>=&gt;<span class="hljs-number">30</span>,
-    <span class="hljs-keyword">retention</span>=&gt;<span class="hljs-number">15</span>*<span class="hljs-number">1440</span>);
-<span class="hljs-keyword">end</span>;
+    interval=&gt;30,
+    retention=&gt;15*1440);
+<span style="color:#00f">end</span>;
 /
-</code></pre><h4 id="7-스냅샷-설정-확인">7. 스냅샷 설정 확인</h4><pre><code class="language-sql hljs"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> dba_hist_wr_control;
-</code></pre><p><code>interval</code>, <code>retention</code> 모두 분 단위임.</p></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+</code></pre></div><h4 id="7---">7. 스냅샷 설정 확인</h4><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">select</span> * <span style="color:#00f">from</span> dba_hist_wr_control;
+</code></pre></div><p><code>interval</code>, <code>retention</code> 모두 분 단위임.</p></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2008/swiss-castle/" id="article-nav-newer">스위스에서 우연히 발견한 성</a>
-<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2008/dbms-metadata/" id="article-nav-older">dbms_metadata를 이용한 DDL 추출</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer>
-</body></html>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2008/dbms-metadata/" id="article-nav-older">dbms_metadata를 이용한 DDL 추출</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer></body></html>

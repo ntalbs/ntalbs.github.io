@@ -3,50 +3,40 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand unselectable" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a class="unselectable" href="/archive/">Archive</a></li><li><a class="unselectable" href="/tags/">Tags</a></li><li><a class="unselectable" href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2009-11-11" itemprop="datePublished">2009-11-11</time>
 on
 <a href="/tags/db/">DB</a>
-<a href="/tags/oracle/">Oracle</a></p><h1 class="post-title">오라클 데이터베이스 생성하기</h1></header><section class="post-content"><p>오라클 데이터베이스를 생성할 때 보통은 DBCA를 이용한다. 그러나 DBCA만 사용해 DB를 생성하다보면, DBCA를 사용할 수 없는 상황에는 당황하게 된다. 다음은 DBCA를 이용할 수 없는 경우 오라클 데이터베이스를 생성하는 절차다.</p><h4 id="1-sid-oraclehome-설정">1. SID, ORACLE_HOME 설정</h4><pre class="console">$ export ORACLE_SID=testdbexport ORACLE_HOME=/path/to/oracle/home
-</pre><h4 id="2-초기화-파라미터-파일-생성-minimal">2. 초기화 파라미터 파일 생성 (minimal)</h4><p><code>$ORACLE_HOME/dbs</code>에 <code>init&lt;SID&gt;.ora</code> 파일을 만든다.</p><pre><code class="hljs">control_files = (/.../control1.ctl,/.../control2.ctl,/.../control3.ctl)
+<a href="/tags/oracle/">Oracle</a></p><h1 class="post-title">오라클 데이터베이스 생성하기</h1></header><section class="post-content"><p>오라클 데이터베이스를 생성할 때 보통은 DBCA를 이용한다. 그러나 DBCA만 사용해 DB를 생성하다보면, DBCA를 사용할 수 없는 상황에는 당황하게 된다. 다음은 DBCA를 이용할 수 없는 경우 오라클 데이터베이스를 생성하는 절차다.</p><h4 id="1-sid-oraclehome-">1. SID, ORACLE_HOME 설정</h4><h4 id="2-----minimal">2. 초기화 파라미터 파일 생성 (minimal)</h4><p><code>$ORACLE_HOME/dbs</code>에 <code>init&lt;SID&gt;.ora</code> 파일을 만든다.</p><pre><code>control_files = (/.../control1.ctl,/.../control2.ctl,/.../control3.ctl)
 undo_management = AUTO
 undo_tablespace = UNDOTBS1
 db_name = test
 db_block_size = 8192
-sga_max_size = 1073741824 <span class="hljs-comment"># 1GB</span>
-sga_target = 1073741824 <span class="hljs-comment"># 1GB</span>
-</code></pre><h4 id="3-패스워드-파일-생성">3. 패스워드 파일 생성</h4><pre class="console">$ $ORACLE_HOME/bin/orapwd file=$ORACLE_HOME/dbs/pwd{sid}.ora \
-password=oracle entries=5
-</pre><h4 id="4-인스턴스-기동">4. 인스턴스 기동</h4><pre class="console">$ sqlplus '/as sysdba'
-...
-SQL&gt; startup nomount
-</pre><h4 id="5-create-database-문-실행">5. <code>CREATE DATABASE</code> 문 실행</h4><pre><code class="language-sql hljs"><span class="hljs-keyword">create</span> <span class="hljs-keyword">database</span> <span class="hljs-keyword">test</span>
-dblogfile <span class="hljs-keyword">group</span> <span class="hljs-number">1</span> (<span class="hljs-string">'/.../redo1.log'</span>) <span class="hljs-keyword">size</span> <span class="hljs-number">100</span>M,
-<span class="hljs-keyword">group</span> <span class="hljs-number">2</span> (<span class="hljs-string">'/.../redo2.log'</span>) <span class="hljs-keyword">size</span> <span class="hljs-number">100</span>M,
-<span class="hljs-keyword">group</span> <span class="hljs-number">3</span> (<span class="hljs-string">'/.../redo3.log'</span>) <span class="hljs-keyword">size</span> <span class="hljs-number">100</span>M
-<span class="hljs-built_in">character</span> <span class="hljs-keyword">set</span> ko16ksc5601
-<span class="hljs-keyword">national</span> <span class="hljs-built_in">character</span> <span class="hljs-keyword">set</span> al16utf16
-<span class="hljs-keyword">datafile</span> <span class="hljs-string">'/.../system.dbf'</span> <span class="hljs-keyword">size</span> <span class="hljs-number">500</span>M <span class="hljs-keyword">autoextend</span> <span class="hljs-keyword">on</span> <span class="hljs-keyword">next</span> <span class="hljs-number">10</span>M <span class="hljs-keyword">maxsize</span> <span class="hljs-keyword">unlimited</span> <span class="hljs-keyword">extent</span> <span class="hljs-keyword">management</span> <span class="hljs-keyword">local</span>
-<span class="hljs-keyword">sysaux</span> <span class="hljs-keyword">datafile</span> <span class="hljs-string">'/.../sysaux.dbf'</span> <span class="hljs-keyword">size</span> <span class="hljs-number">100</span>M <span class="hljs-keyword">autoextend</span> <span class="hljs-keyword">on</span> <span class="hljs-keyword">next</span> <span class="hljs-number">10</span>M <span class="hljs-keyword">maxsize</span> <span class="hljs-keyword">unlimited</span>
-<span class="hljs-keyword">undo</span> <span class="hljs-keyword">tablespace</span> undotbs1 <span class="hljs-keyword">datafile</span> <span class="hljs-string">'/.../undotbs1.dbf'</span> <span class="hljs-keyword">size</span> <span class="hljs-number">100</span>M
-<span class="hljs-keyword">default</span> <span class="hljs-keyword">temporary</span> <span class="hljs-keyword">tablespace</span> temp tempfile <span class="hljs-string">'/.../temp01.dbf'</span>
-<span class="hljs-keyword">size</span> <span class="hljs-number">100</span>M;
-</code></pre><h4 id="6-data-dictionary-view-생성-스크립트-실행">6. Data Dictionary View 생성 스크립트 실행</h4><p></p><pre class="console">$ORACLE_HOME/rdbms/admin/CATALOG.sql
-$ORACLE_HOME/rdbms/admin/CATPROC.sql
-</pre><p></p><h4 id="7-spfile-생성">7. SPFILE 생성</h4><p></p><pre class="console">SQL&gt; create spfile from pfile;
-</pre><p></p><h4 id="8-추가-테이블스페이스-생성">8. 추가 테이블스페이스 생성</h4><p>데이터를 저장할 테이블스페이스를 생성한다.</p><h4 id="9-sys-system-계정-암호-변경">9. sys, system 계정 암호 변경</h4><p>보안을 위해 관리자 계정 암호를 변경한다.</p><h4 id="참고-create-database-문-syntax">참고: <code>CREATE DATABASE</code> 문 Syntax</h4><pre><code class="language-sql hljs"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> [<span class="hljs-keyword">database</span> <span class="hljs-keyword">name</span>]
-  [<span class="hljs-keyword">CONTROLFILE</span> <span class="hljs-keyword">REUSE</span>]
-  [<span class="hljs-keyword">LOGFILE</span> [<span class="hljs-keyword">GROUP</span> <span class="hljs-built_in">integer</span>] <span class="hljs-keyword">file</span> specification]
-  [<span class="hljs-keyword">MAXLOGFILES</span> <span class="hljs-built_in">integer</span>]
-  [<span class="hljs-keyword">MAXLOGMEMBERS</span> <span class="hljs-built_in">integer</span>]
-  [<span class="hljs-keyword">MAXLOGHISTORY</span> <span class="hljs-built_in">integer</span>]
-  [MAXDATAFILES <span class="hljs-built_in">integer</span>]
-  [<span class="hljs-keyword">MAXINSTANCES</span> <span class="hljs-built_in">integer</span>]
-  [<span class="hljs-keyword">ARCHIVELOG</span>|<span class="hljs-keyword">NOARCHIVELOG</span>]
-  [<span class="hljs-built_in">CHARACTER</span> <span class="hljs-keyword">SET</span> <span class="hljs-keyword">charset</span>]
-  [<span class="hljs-keyword">NATIONAL</span> <span class="hljs-built_in">CHARACTER</span> <span class="hljs-keyword">SET</span> <span class="hljs-keyword">charset</span>]
-  [<span class="hljs-keyword">DATAFILE</span> filespec [<span class="hljs-keyword">autoextend</span>]]
-  [<span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">TEMPORARY</span> <span class="hljs-keyword">TABLESPACE</span> <span class="hljs-keyword">tablespace</span> filespec]
-  [<span class="hljs-keyword">UNDO</span> <span class="hljs-keyword">TABLESPACE</span> <span class="hljs-keyword">tablespace</span> <span class="hljs-keyword">DATAFILE</span> filespec]
-  [<span class="hljs-keyword">SET</span> <span class="hljs-keyword">TIME_ZONE</span> [time_zone_region]];
-</code></pre></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+sga_max_size = 1073741824 # 1GB
+sga_target = 1073741824 # 1GB
+</code></pre><h4 id="3---">3. 패스워드 파일 생성</h4><h4 id="4--">4. 인스턴스 기동</h4><h4 id="5-create-database--">5. <code>CREATE DATABASE</code> 문 실행</h4><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">create</span> <span style="color:#00f">database</span> test
+dblogfile <span style="color:#00f">group</span> 1 (<span style="color:#a31515">'</span><span style="color:#a31515">/.../redo1.log</span><span style="color:#a31515">'</span>) <span style="color:#00f">size</span> 100M,
+<span style="color:#00f">group</span> 2 (<span style="color:#a31515">'</span><span style="color:#a31515">/.../redo2.log</span><span style="color:#a31515">'</span>) <span style="color:#00f">size</span> 100M,
+<span style="color:#00f">group</span> 3 (<span style="color:#a31515">'</span><span style="color:#a31515">/.../redo3.log</span><span style="color:#a31515">'</span>) <span style="color:#00f">size</span> 100M
+character <span style="color:#00f">set</span> ko16ksc5601
+<span style="color:#00f">national</span> character <span style="color:#00f">set</span> al16utf16
+datafile <span style="color:#a31515">'</span><span style="color:#a31515">/.../system.dbf</span><span style="color:#a31515">'</span> <span style="color:#00f">size</span> 500M autoextend <span style="color:#00f">on</span> <span style="color:#00f">next</span> 10M maxsize unlimited extent management <span style="color:#00f">local</span>
+sysaux datafile <span style="color:#a31515">'</span><span style="color:#a31515">/.../sysaux.dbf</span><span style="color:#a31515">'</span> <span style="color:#00f">size</span> 100M autoextend <span style="color:#00f">on</span> <span style="color:#00f">next</span> 10M maxsize unlimited
+undo tablespace undotbs1 datafile <span style="color:#a31515">'</span><span style="color:#a31515">/.../undotbs1.dbf</span><span style="color:#a31515">'</span> <span style="color:#00f">size</span> 100M
+<span style="color:#00f">default</span> <span style="color:#00f">temporary</span> tablespace temp tempfile <span style="color:#a31515">'</span><span style="color:#a31515">/.../temp01.dbf</span><span style="color:#a31515">'</span>
+<span style="color:#00f">size</span> 100M;
+</code></pre></div><h4 id="6-data-dictionary-view---">6. Data Dictionary View 생성 스크립트 실행</h4><h4 id="7-spfile-">7. SPFILE 생성</h4><h4 id="8---">8. 추가 테이블스페이스 생성</h4><p>데이터를 저장할 테이블스페이스를 생성한다.</p><h4 id="9-sys-system---">9. sys, system 계정 암호 변경</h4><p>보안을 위해 관리자 계정 암호를 변경한다.</p><h4 id="-create-database--syntax">참고: <code>CREATE DATABASE</code> 문 Syntax</h4><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">CREATE</span> <span style="color:#00f">DATABASE</span> [<span style="color:#00f">database</span> name]
+  [CONTROLFILE REUSE]
+  [LOGFILE [<span style="color:#00f">GROUP</span> integer] file specification]
+  [MAXLOGFILES integer]
+  [MAXLOGMEMBERS integer]
+  [MAXLOGHISTORY integer]
+  [MAXDATAFILES integer]
+  [MAXINSTANCES integer]
+  [ARCHIVELOG|NOARCHIVELOG]
+  [CHARACTER <span style="color:#00f">SET</span> charset]
+  [<span style="color:#00f">NATIONAL</span> CHARACTER <span style="color:#00f">SET</span> charset]
+  [DATAFILE filespec [autoextend]]
+  [<span style="color:#00f">DEFAULT</span> <span style="color:#00f">TEMPORARY</span> TABLESPACE tablespace filespec]
+  [UNDO TABLESPACE tablespace DATAFILE filespec]
+  [<span style="color:#00f">SET</span> TIME_ZONE [time_zone_region]];
+</code></pre></div></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2009/canvas-test/" id="article-nav-newer">Canvas 테스트</a>
-<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2009/resizing-undb-ts/" id="article-nav-older">Undo 테이블스페이스 크기 변경 방법</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer>
-</body></html>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2009/resizing-undb-ts/" id="article-nav-older">Undo 테이블스페이스 크기 변경 방법</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer></body></html>

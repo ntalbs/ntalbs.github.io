@@ -3,31 +3,27 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand unselectable" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a class="unselectable" href="/archive/">Archive</a></li><li><a class="unselectable" href="/tags/">Tags</a></li><li><a class="unselectable" href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2016-05-21" itemprop="datePublished">2016-05-21</time>
 on
 <a href="/tags/project-euler/">Project-Euler</a>
-<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 67</h1></header><section class="post-content"><blockquote><p>삼각형에서 경로의 합 중 최대값을 구하는 효율적인 방법은?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=67">[국어]</a> <a href="https://projecteuler.net/problem=67">[영어]</a></p></blockquote><p><a href="/2015/project-euler-018/">문제 18</a>과 동일한 문제다. 문제 18에서는 삼각형이 15층에 불과했지만, 여기서는 100층이다. 문제 18에서 이미 제대로 된 방법으로 문제를 풀었기 때문에 똑같은 방법을 사용해 문제를 풀 수 있다. 텍스트 파일로 주어진 데이터를 읽어들이는 코드만 추가해주면 된다.</p><p>데이터 파일을 읽어 문제 18에서 사용했던 <code>triangle</code> 구조를 만드는 코드는 다음과 같이 작성할 수 있다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">ns</span></span> p067
-  (<span class="hljs-symbol">:require</span> [util <span class="hljs-symbol">:refer</span> [parse-int]]
-            [clojure.string <span class="hljs-symbol">:refer</span> [split]]))
+<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 67</h1></header><section class="post-content"><blockquote><p>삼각형에서 경로의 합 중 최대값을 구하는 효율적인 방법은?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=67">[국어]</a> <a href="https://projecteuler.net/problem=67">[영어]</a></p></blockquote><p><a href="/2015/project-euler-018/">문제 18</a>과 동일한 문제다. 문제 18에서는 삼각형이 15층에 불과했지만, 여기서는 100층이다. 문제 18에서 이미 제대로 된 방법으로 문제를 풀었기 때문에 똑같은 방법을 사용해 문제를 풀 수 있다. 텍스트 파일로 주어진 데이터를 읽어들이는 코드만 추가해주면 된다.</p><p>데이터 파일을 읽어 문제 18에서 사용했던 <code>triangle</code> 구조를 만드는 코드는 다음과 같이 작성할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">ns </span>p067
+  (<span style="color:#a31515">:require</span> [util <span style="color:#a31515">:refer</span> [parse-int]]
+            [clojure.string <span style="color:#a31515">:refer</span> [split]]))
 
-(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> split-by-line [content]
-  (<span class="hljs-name">split</span> content #<span class="hljs-string">"\r\n"</span>))
+(<span style="color:#00f">defn- </span>split-by-line [content]
+  (split content #<span style="color:#a31515">"\r\n"</span>))
 
-(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> parse-line [line]
-  (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> (<span class="hljs-name">split</span> line #<span class="hljs-string">" "</span>) (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> parse-int)))
+(<span style="color:#00f">defn- </span>parse-line [line]
+  (-&gt;&gt; (split line #<span style="color:#a31515">" "</span>) (map parse-int)))
 
-(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> triangle
-  (<span class="hljs-name"><span class="hljs-builtin-name">-&gt;&gt;</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">slurp</span></span> <span class="hljs-string">"data/triangle.txt"</span>)
+(<span style="color:#00f">def </span>triangle
+  (-&gt;&gt; (slurp <span style="color:#a31515">"data/triangle.txt"</span>)
        split-by-line
-       (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> parse-line)
+       (map parse-line)
        reverse))
-</code></pre><p>풀이는 문제 18과 동일하다.</p><pre><code class="language-clojure hljs">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> find-max [t]
-  (<span class="hljs-name"><span class="hljs-builtin-name">reduce</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [ls vs] (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> max (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> + ls vs) (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> + (<span class="hljs-name"><span class="hljs-builtin-name">rest</span></span> ls) vs))) t))
+</code></pre></div><p>풀이는 문제 18과 동일하다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>find-max [t]
+  (reduce (<span style="color:#00f">fn </span>[ls vs] (map max (map + ls vs) (map + (rest ls) vs))) t))
 
-(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> solve []
-  (<span class="hljs-name"><span class="hljs-builtin-name">first</span></span> (<span class="hljs-name">find-max</span> (<span class="hljs-name"><span class="hljs-builtin-name">reverse</span></span> triangle))))
-</code></pre><p>실행 결과는 다음과 같다. 충분히 빠르게 답을 구한다.</p><pre class="console">p067=&gt; (time (solve))
-"Elapsed time: 14.006805 msecs"
-7??3
-</pre><h2 id="참고">참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p067.clj">프로젝트 오일러 67 풀이 소스 코드</a></li><li><a href="/2015/project-euler-018/">프로젝트 오일러 18</a></li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+(<span style="color:#00f">defn </span>solve []
+  (first (find-max (reverse triangle))))
+</code></pre></div><p>실행 결과는 다음과 같다. 충분히 빠르게 답을 구한다.</p><h2 id="heading">참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p067.clj">프로젝트 오일러 67 풀이 소스 코드</a></li><li><a href="/2015/project-euler-018/">프로젝트 오일러 18</a></li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2016/project-euler-068/" id="article-nav-newer">프로젝트 오일러 68</a>
-<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2016/uk-drivers-license/" id="article-nav-older">영국 운전면허 교환</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><link rel="stylesheet" href="/css/googlecode.css"><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer>
-</body></html>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2016/uk-drivers-license/" id="article-nav-older">영국 운전면허 교환</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2019 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer></body></html>
