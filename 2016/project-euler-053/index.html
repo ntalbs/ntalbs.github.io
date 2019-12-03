@@ -249,7 +249,10 @@ on
   (-&gt;&gt; (for [n (range 1 101) r (range 1 101)] (c n r))
        (filter #(&gt;= % 1000000))
        count))
-</code></pre></div><p>실행 결과는 다음과 같다.</p><p>이렇게 풀고 나니 문제가 너무 쉽다. 사실 이 문제의 의도는 큰 수를 계산하는 방법에 관한 것일 듯 하다. 팩토리얼은 매우 빠르게 증가하기 때문에 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.972ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 1279.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-19-Title">
+</code></pre></div><p>실행 결과는 다음과 같다.</p><pre class="console">p053=&gt; (time (solve))
+"Elapsed time: 485.574244 msecs"
+40??
+</pre><p>이렇게 풀고 나니 문제가 너무 쉽다. 사실 이 문제의 의도는 큰 수를 계산하는 방법에 관한 것일 듯 하다. 팩토리얼은 매우 빠르게 증가하기 때문에 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.972ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 1279.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-19-Title">
 <title id="MathJax-SVG-19-Title">21!</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMAIN-32"></use>
@@ -265,22 +268,27 @@ on
  <use transform="scale(0.707)" xlink:href="#MJMATHI-72" x="1011" y="-213"></use>
 </g>
 </g>
-</svg></span>을 구할 때 팩토리얼을 먼저 계산하지 않고 나눗셈을 먼저 계산하면 계산 과정에서 숫자가 지나치게 커지는 문제를 피할 수 있다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="133.193ex" height="6.509ex" style="vertical-align: -2.671ex;" viewBox="0 -1652.5 57346.8 2802.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-21-Title">
+</svg></span>을 구할 때 팩토리얼을 먼저 계산하지 않고 나눗셈을 먼저 계산하면 계산 과정에서 숫자가 지나치게 커지는 문제를 피할 수 있다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="62.293ex" height="18.843ex" style="vertical-align: -8.662ex; margin-bottom: -0.176ex;" viewBox="0 -4307.5 26820.4 8112.8" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-21-Title">
 <title id="MathJax-SVG-21-Title">%math
 \begin{aligned}
-_nC_r &amp;= \frac{n!}{r!(n-r)!} \ &amp;= \frac{n \times (n-1) \times … \times 1}{r \times (r-1)\times … \times 1 \times (n-r) \times (n-r-1) \times … \times 1} \ &amp;= \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times … \times \left(\frac{n-r}{n-r}\right) \times … \times \left(\frac{1}{1}\right)
+_nC_r &amp;= \frac{n!}{r!(n-r)!} \newline
+&amp;= \frac{n \times (n-1) \times … \times 1}{r \times (r-1)\times … \times 1 \times (n-r) \times (n-r-1) \times … \times 1} \newline
+&amp;= \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times … \times \left(\frac{n-r}{n-r}\right) \times … \times \left(\frac{1}{1}\right)
 \end{aligned}
 </title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
 <g transform="translate(167,0)">
 <g transform="translate(-11,0)">
+<g transform="translate(0,2835)">
  <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="0" y="-213"></use>
 <g transform="translate(524,0)">
  <use xlink:href="#MJMATHI-43" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#MJMATHI-72" x="1011" y="-213"></use>
 </g>
 </g>
+</g>
 <g transform="translate(1648,0)">
+<g transform="translate(0,2835)">
  <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
 <g transform="translate(1056,0)">
 <g transform="translate(397,0)">
@@ -302,9 +310,9 @@ _nC_r &amp;= \frac{n!}{r!(n-r)!} \ &amp;= \frac{n \times (n-1) \times … \times
 </g>
 </g>
 </g>
-<g transform="translate(9655,0)">
- <use xlink:href="#MJMAIN-3D" x="0" y="0"></use>
-<g transform="translate(778,0)">
+<g transform="translate(0,-7)">
+ <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
+<g transform="translate(1056,0)">
 <g transform="translate(397,0)">
 <rect stroke="none" width="23263" height="60" x="0" y="220"></rect>
 <g transform="translate(7109,770)">
@@ -354,7 +362,7 @@ _nC_r &amp;= \frac{n!}{r!(n-r)!} \ &amp;= \frac{n \times (n-1) \times … \times
 </g>
 </g>
 </g>
-<g transform="translate(34465,0)">
+<g transform="translate(0,-2779)">
  <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
 <g transform="translate(1334,0)">
  <use xlink:href="#MJSZ2-28"></use>
@@ -426,6 +434,7 @@ _nC_r &amp;= \frac{n!}{r!(n-r)!} \ &amp;= \frac{n \times (n-1) \times … \times
 </g>
 </g>
 </g>
+</g>
 </svg></span></p><p>수식을 잘 보면 알겠지만 분모와 분자의 항 수가 항상 같다. 그리고 C/C++ 또는 Java의 <code>/</code> 연산자는 결과가 항상 정수인 것과 달리 Clojure의 <code>/</code> 함수는 분수(<code>clojure.lang.Ratio</code>)를 리턴할 수 있다. 이 두 가지를 이용하면 다음과 같이 나눗셈을 먼저 계산하로록 함수를 작성할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>c [n r]
   (<span style="color:#00f">let </span>[nu (range 1 (inc n))
         de (concat (range 1 (inc r)) (range 1 (inc (- n r))))]
@@ -440,23 +449,30 @@ _nC_r &amp;= \frac{n!}{r!(n-r)!} \ &amp;= \frac{n \times (n-1) \times … \times
  <use transform="scale(0.707)" xlink:href="#MJMATHI-72" x="1011" y="-213"></use>
 </g>
 </g>
-</svg></span>을 계산할 수 있게 되었다. 계산하면서 중간 결과가 <code>BigInt</code>로 확장되지 않아서 그런지 실행 속도도 빨라졌다.</p><p>수식을 자세히 살펴보면 뒷부분은 1로 약분되기 때문에 굳이 계산하지 않아도 된다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="107.565ex" height="7.509ex" style="vertical-align: -3.171ex;" viewBox="0 -1867.7 46312.7 3233.2" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-23-Title">
+</svg></span>을 계산할 수 있게 되었다. 계산하면서 중간 결과가 <code>BigInt</code>로 확장되지 않아서 그런지 실행 속도도 빨라졌다.</p><pre class="console">p053=&gt; (time (solve))
+"Elapsed time: 161.206506 msecs"
+40??
+</pre><p>수식을 자세히 살펴보면 뒷부분은 1로 약분되기 때문에 굳이 계산하지 않아도 된다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="60.05ex" height="13.843ex" style="vertical-align: -6.338ex;" viewBox="0 -3231.2 25854.6 5960" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-23-Title">
 <title id="MathJax-SVG-23-Title">%math
 \begin{aligned}
 \require{cancel}
-_nC_r &amp;= \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times … \times \left(\frac{\cancel{n-r}}{\cancel{n-r}}\right) \times … \times \left(\frac{\cancel{1}}{\cancel{1}}\right) \ &amp; = \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times … \times \left(\frac{n-r+1}{1}\right)
+_nC_r &amp;= \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times … \times \left(\frac{\cancel{n-r}}{\cancel{n-r}}\right) \times … \times \left(\frac{\cancel{1}}{\cancel{1}}\right) \newline
+&amp; = \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times … \times \left(\frac{n-r+1}{1}\right)
 \end{aligned}
 </title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
 <g transform="translate(167,0)">
 <g transform="translate(-11,0)">
+<g transform="translate(0,1350)">
  <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="0" y="-213"></use>
 <g transform="translate(524,0)">
  <use xlink:href="#MJMATHI-43" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#MJMATHI-72" x="1011" y="-213"></use>
 </g>
 </g>
+</g>
 <g transform="translate(1648,0)">
+<g transform="translate(0,1350)">
  <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
 <g transform="translate(1334,0)">
  <use xlink:href="#MJSZ2-28"></use>
@@ -538,9 +554,9 @@ _nC_r &amp;= \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times
  <use xlink:href="#MJSZ4-29" x="2203" y="0"></use>
 </g>
 </g>
-<g transform="translate(27937,0)">
- <use xlink:href="#MJMAIN-3D" x="0" y="0"></use>
-<g transform="translate(1056,0)">
+<g transform="translate(0,-1651)">
+ <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
+<g transform="translate(1334,0)">
  <use xlink:href="#MJSZ2-28"></use>
 <g transform="translate(597,0)">
 <g transform="translate(120,0)">
@@ -551,8 +567,8 @@ _nC_r &amp;= \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times
 </g>
  <use xlink:href="#MJSZ2-29" x="1558" y="-1"></use>
 </g>
- <use xlink:href="#MJMAIN-D7" x="3434" y="0"></use>
-<g transform="translate(4434,0)">
+ <use xlink:href="#MJMAIN-D7" x="3711" y="0"></use>
+<g transform="translate(4712,0)">
  <use xlink:href="#MJSZ3-28"></use>
 <g transform="translate(736,0)">
 <g transform="translate(120,0)">
@@ -571,10 +587,10 @@ _nC_r &amp;= \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times
 </g>
  <use xlink:href="#MJSZ3-29" x="3420" y="-1"></use>
 </g>
- <use xlink:href="#MJMAIN-D7" x="8813" y="0"></use>
- <use xlink:href="#MJMAIN-2026" x="9814" y="0"></use>
- <use xlink:href="#MJMAIN-D7" x="11209" y="0"></use>
-<g transform="translate(12210,0)">
+ <use xlink:href="#MJMAIN-D7" x="9091" y="0"></use>
+ <use xlink:href="#MJMAIN-2026" x="10092" y="0"></use>
+ <use xlink:href="#MJMAIN-D7" x="11487" y="0"></use>
+<g transform="translate(12487,0)">
  <use xlink:href="#MJSZ3-28"></use>
 <g transform="translate(736,0)">
 <g transform="translate(120,0)">
@@ -590,6 +606,7 @@ _nC_r &amp;= \left(\frac{n}{r}\right) \times \left(\frac{n-1}{r-1}\right) \times
 </g>
 </g>
  <use xlink:href="#MJSZ3-29" x="5094" y="-1"></use>
+</g>
 </g>
 </g>
 </g>

@@ -114,22 +114,27 @@ on
 <a href="/tags/postgresql/">PostgreSQL</a></span><h1 class="post-title"><a href="https://ntalbs.github.io/2015/sql-transpose/">SQL에서 행을 열로 바꾸는 방법</a></h1></header><section class="post-excerpt"><p></p><p>쿼리를 작성하다 보면 행을 열로 또는 열을 행으로 바꾸고 싶은 경우가 생긴다. 데이터 모델을 만들 때 같은 종류의 데이터는 행으로 저장하는 것이 좋지만, 고객은 열로 표현된 형태의 보고서를 보고 싶을 수 있다. 쿼리 결과를 행에서 열로 또는 열에서 행으로 바꾸는 작업은 원리를 이해하면 어렵지 않지만 약간의 기교가 필요하다. 그래서인지 쿼리 결과의 행/열 전환은 SQL 관련 단골 질문이기도 하다.</p><p></p><p><a class="button is-link" href="https://ntalbs.github.io/2015/sql-transpose/" style="height:28px">Read more...</a></p></section></article><article class="post"><header class="post-header"><span class="post-meta"><time datetime="2015-01-08" itemprop="datePublished">2015-01-08</time>
 on
 <a href="/tags/project-euler/">Project-Euler</a>
-<a href="/tags/clojure/">Clojure</a></span><h1 class="post-title"><a href="https://ntalbs.github.io/2015/project-euler-002/">프로젝트 오일러 2</a></h1></header><section class="post-excerpt"><p></p><blockquote><p>피보나치 수열에서 4백만 이하이면서 짝수인 항의 합은?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=2">[국어]</a> <a href="https://projecteuler.net/problem=2">[영어]</a></p></blockquote><p>피보나치 수열의 정의는 다음과 같다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="37.102ex" height="2.843ex" style="vertical-align: -0.591ex; margin-bottom: -0.247ex;" viewBox="0 -863.1 15974.5 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">
+<a href="/tags/clojure/">Clojure</a></span><h1 class="post-title"><a href="https://ntalbs.github.io/2015/project-euler-002/">프로젝트 오일러 2</a></h1></header><section class="post-excerpt"><p></p><blockquote><p>피보나치 수열에서 4백만 이하이면서 짝수인 항의 합은?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=2">[국어]</a> <a href="https://projecteuler.net/problem=2">[영어]</a></p></blockquote><p>피보나치 수열의 정의는 다음과 같다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="19.677ex" height="5.843ex" style="vertical-align: -2.338ex;" viewBox="0 -1508.9 8472.2 2515.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">
 <title id="MathJax-SVG-2-Title">%math
 \begin{aligned}
-F_n &amp;= F_{n-1} + F_{n-2}, \ F_2 &amp;= F_1 = 1
+F_n &amp;= F_{n-1} + F_{n-2}, \newline
+F_2 &amp;= F_1 = 1
 \end{aligned}
 </title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
 <g transform="translate(167,0)">
 <g transform="translate(-11,0)">
-<g transform="translate(0,-46)">
+<g transform="translate(0,604)">
  <use xlink:href="#MJMATHI-46" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="910" y="-213"></use>
 </g>
+<g transform="translate(70,-705)">
+ <use xlink:href="#MJMATHI-46" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="910" y="-213"></use>
+</g>
 </g>
 <g transform="translate(1157,0)">
-<g transform="translate(0,-46)">
+<g transform="translate(0,604)">
  <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
 <g transform="translate(1334,0)">
  <use xlink:href="#MJMATHI-46" x="0" y="0"></use>
@@ -149,21 +154,15 @@ F_n &amp;= F_{n-1} + F_{n-2}, \ F_2 &amp;= F_1 = 1
 </g>
 </g>
  <use xlink:href="#MJMAIN-2C" x="6702" y="0"></use>
-<g transform="translate(7397,0)">
- <use xlink:href="#MJMATHI-46" x="0" y="0"></use>
- <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="910" y="-213"></use>
 </g>
-</g>
-</g>
-<g transform="translate(11652,0)">
-<g transform="translate(0,-46)">
- <use xlink:href="#MJMAIN-3D" x="0" y="0"></use>
-<g transform="translate(1056,0)">
+<g transform="translate(0,-705)">
+ <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
+<g transform="translate(1334,0)">
  <use xlink:href="#MJMATHI-46" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#MJMAIN-31" x="910" y="-213"></use>
 </g>
- <use xlink:href="#MJMAIN-3D" x="2431" y="0"></use>
- <use xlink:href="#MJMAIN-31" x="3487" y="0"></use>
+ <use xlink:href="#MJMAIN-3D" x="2709" y="0"></use>
+ <use xlink:href="#MJMAIN-31" x="3765" y="0"></use>
 </g>
 </g>
 </g>

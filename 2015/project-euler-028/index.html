@@ -75,124 +75,114 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand unselectable" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a class="unselectable" href="/archive/">Archive</a></li><li><a class="unselectable" href="/tags/">Tags</a></li><li><a class="unselectable" href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2015-09-11" itemprop="datePublished">2015-09-11</time>
 on
 <a href="/tags/project-euler/">Project-Euler</a>
-<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 28</h1></header><section class="post-content"><blockquote><p>1001×1001 나선모양 행렬에서 대각선 원소의 합은?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=28">[국어]</a> <a href="https://projecteuler.net/problem=28">[영어]</a></p></blockquote><p>대각선 원소에 대한 공식을 구하면 쉽게 문제를 풀 수 있다. 첫 번째 링의 요소는 다음과 같다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="25.148ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 10827.5 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 28</h1></header><section class="post-content"><blockquote><p>1001×1001 나선모양 행렬에서 대각선 원소의 합은?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=28">[국어]</a> <a href="https://projecteuler.net/problem=28">[영어]</a></p></blockquote><p>대각선 원소에 대한 공식을 구하면 쉽게 문제를 풀 수 있다. 첫 번째 링의 요소는 다음과 같다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="8.884ex" height="9.176ex" style="vertical-align: -4.005ex;" viewBox="0 -2226.5 3825 3950.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">%math
 \begin{matrix}
-7 &amp; 8 &amp; 9 \ 6 &amp; &amp; 2 \ 5 &amp; 4 &amp; 3
-\end{matrix}
-</title>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
-<g transform="translate(167,0)">
- <use xlink:href="#MJMAIN-37" x="-11" y="-50"></use>
- <use xlink:href="#MJMAIN-38" x="1490" y="-50"></use>
-<g transform="translate(2990,0)">
-<g transform="translate(0,-50)">
- <use xlink:href="#MJMAIN-39" x="0" y="0"></use>
- <use xlink:href="#MJMAIN-36" x="750" y="0"></use>
-</g>
-</g>
-<g transform="translate(6241,0)">
-<g transform="translate(0,-50)">
- <use xlink:href="#MJMAIN-32" x="0" y="0"></use>
- <use xlink:href="#MJMAIN-35" x="750" y="0"></use>
-</g>
-</g>
- <use xlink:href="#MJMAIN-34" x="8492" y="-50"></use>
- <use xlink:href="#MJMAIN-33" x="9993" y="-50"></use>
-</g>
-</g>
-</svg></span></p><p>여기서 대각선 요소를 작은 수부터 나열하면 3, 4, 7, 9다.</p><p>두 번째 링의 요소는 다음과 같다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="86.724ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 37339.5 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">
-<title id="MathJax-SVG-2-Title">%math
-\begin{matrix}
-21 &amp; 22 &amp; 23 &amp; 24 &amp; 25 \ 20 &amp; &amp; &amp; &amp; 10 \ 19 &amp; &amp; &amp; &amp; 11 \ 18 &amp; &amp; &amp; &amp; 12 \ 17 &amp; 16 &amp; 15 &amp; 14 &amp; 13
+7 &amp; 8 &amp; 9 \newline
+6 &amp; &amp; 2 \newline
+5 &amp; 4 &amp; 3
 \end{matrix}
 </title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
 <g transform="translate(167,0)">
 <g transform="translate(-11,0)">
-<g transform="translate(0,-50)">
+ <use xlink:href="#MJMAIN-37" x="0" y="1350"></use>
+ <use xlink:href="#MJMAIN-36" x="0" y="-50"></use>
+ <use xlink:href="#MJMAIN-35" x="0" y="-1450"></use>
+</g>
+<g transform="translate(1490,0)">
+ <use xlink:href="#MJMAIN-38" x="0" y="1350"></use>
+ <use xlink:href="#MJMAIN-34" x="0" y="-1450"></use>
+</g>
+<g transform="translate(2990,0)">
+ <use xlink:href="#MJMAIN-39" x="0" y="1350"></use>
+ <use xlink:href="#MJMAIN-32" x="0" y="-50"></use>
+ <use xlink:href="#MJMAIN-33" x="0" y="-1450"></use>
+</g>
+</g>
+</g>
+</svg></span></p><p>여기서 대각선 요소를 작은 수부터 나열하면 3, 4, 7, 9다.</p><p>두 번째 링의 요소는 다음과 같다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="21.666ex" height="15.843ex" style="vertical-align: -7.338ex;" viewBox="0 -3661.7 9328.5 6821.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">
+<title id="MathJax-SVG-2-Title">%math
+\begin{matrix}
+21 &amp; 22 &amp; 23 &amp; 24 &amp; 25 \newline
+20 &amp; &amp; &amp; &amp; 10 \newline
+19 &amp; &amp; &amp; &amp; 11 \newline
+18 &amp; &amp; &amp; &amp; 12 \newline
+17 &amp; 16 &amp; 15 &amp; 14 &amp; 13
+\end{matrix}
+</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+<g transform="translate(167,0)">
+<g transform="translate(-11,0)">
+<g transform="translate(0,2750)">
  <use xlink:href="#MJMAIN-32"></use>
  <use xlink:href="#MJMAIN-31" x="500" y="0"></use>
 </g>
-</g>
-<g transform="translate(1990,0)">
-<g transform="translate(0,-50)">
- <use xlink:href="#MJMAIN-32"></use>
- <use xlink:href="#MJMAIN-32" x="500" y="0"></use>
-</g>
-</g>
-<g transform="translate(3991,0)">
-<g transform="translate(0,-50)">
- <use xlink:href="#MJMAIN-32"></use>
- <use xlink:href="#MJMAIN-33" x="500" y="0"></use>
-</g>
-</g>
-<g transform="translate(5992,0)">
-<g transform="translate(0,-50)">
- <use xlink:href="#MJMAIN-32"></use>
- <use xlink:href="#MJMAIN-34" x="500" y="0"></use>
-</g>
-</g>
-<g transform="translate(7993,0)">
-<g transform="translate(0,-50)">
- <use xlink:href="#MJMAIN-32"></use>
- <use xlink:href="#MJMAIN-35" x="500" y="0"></use>
-<g transform="translate(1251,0)">
+<g transform="translate(0,1350)">
  <use xlink:href="#MJMAIN-32"></use>
  <use xlink:href="#MJMAIN-30" x="500" y="0"></use>
 </g>
-</g>
-</g>
-<g transform="translate(14245,0)">
 <g transform="translate(0,-50)">
- <use xlink:href="#MJMAIN-31"></use>
- <use xlink:href="#MJMAIN-30" x="500" y="0"></use>
-<g transform="translate(1251,0)">
  <use xlink:href="#MJMAIN-31"></use>
  <use xlink:href="#MJMAIN-39" x="500" y="0"></use>
 </g>
-</g>
-</g>
-<g transform="translate(20497,0)">
-<g transform="translate(0,-50)">
- <use xlink:href="#MJMAIN-31"></use>
- <use xlink:href="#MJMAIN-31" x="500" y="0"></use>
-<g transform="translate(1251,0)">
+<g transform="translate(0,-1450)">
  <use xlink:href="#MJMAIN-31"></use>
  <use xlink:href="#MJMAIN-38" x="500" y="0"></use>
 </g>
-</g>
-</g>
-<g transform="translate(26749,0)">
-<g transform="translate(0,-50)">
- <use xlink:href="#MJMAIN-31"></use>
- <use xlink:href="#MJMAIN-32" x="500" y="0"></use>
-<g transform="translate(1251,0)">
+<g transform="translate(0,-2850)">
  <use xlink:href="#MJMAIN-31"></use>
  <use xlink:href="#MJMAIN-37" x="500" y="0"></use>
 </g>
 </g>
+<g transform="translate(1990,0)">
+<g transform="translate(0,2750)">
+ <use xlink:href="#MJMAIN-32"></use>
+ <use xlink:href="#MJMAIN-32" x="500" y="0"></use>
 </g>
-<g transform="translate(30001,0)">
-<g transform="translate(0,-50)">
+<g transform="translate(0,-2850)">
  <use xlink:href="#MJMAIN-31"></use>
  <use xlink:href="#MJMAIN-36" x="500" y="0"></use>
 </g>
 </g>
-<g transform="translate(32002,0)">
-<g transform="translate(0,-50)">
+<g transform="translate(3991,0)">
+<g transform="translate(0,2750)">
+ <use xlink:href="#MJMAIN-32"></use>
+ <use xlink:href="#MJMAIN-33" x="500" y="0"></use>
+</g>
+<g transform="translate(0,-2850)">
  <use xlink:href="#MJMAIN-31"></use>
  <use xlink:href="#MJMAIN-35" x="500" y="0"></use>
 </g>
 </g>
-<g transform="translate(34003,0)">
-<g transform="translate(0,-50)">
+<g transform="translate(5992,0)">
+<g transform="translate(0,2750)">
+ <use xlink:href="#MJMAIN-32"></use>
+ <use xlink:href="#MJMAIN-34" x="500" y="0"></use>
+</g>
+<g transform="translate(0,-2850)">
  <use xlink:href="#MJMAIN-31"></use>
  <use xlink:href="#MJMAIN-34" x="500" y="0"></use>
 </g>
 </g>
-<g transform="translate(36004,0)">
+<g transform="translate(7993,0)">
+<g transform="translate(0,2750)">
+ <use xlink:href="#MJMAIN-32"></use>
+ <use xlink:href="#MJMAIN-35" x="500" y="0"></use>
+</g>
+<g transform="translate(0,1350)">
+ <use xlink:href="#MJMAIN-31"></use>
+ <use xlink:href="#MJMAIN-30" x="500" y="0"></use>
+</g>
 <g transform="translate(0,-50)">
+ <use xlink:href="#MJMAIN-31"></use>
+ <use xlink:href="#MJMAIN-31" x="500" y="0"></use>
+</g>
+<g transform="translate(0,-1450)">
+ <use xlink:href="#MJMAIN-31"></use>
+ <use xlink:href="#MJMAIN-32" x="500" y="0"></use>
+</g>
+<g transform="translate(0,-2850)">
  <use xlink:href="#MJMAIN-31"></use>
  <use xlink:href="#MJMAIN-33" x="500" y="0"></use>
 </g>
@@ -229,16 +219,17 @@ on
  <use xlink:href="#MJMATHI-6B" x="1858" y="0"></use>
  <use xlink:href="#MJMAIN-29" x="2380" y="0"></use>
 </g>
-</svg></span>는 다음과 같이 쓸 수 있다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="37.581ex" height="3.176ex" style="vertical-align: -1.005ex;" viewBox="0 -934.9 16180.8 1367.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-7-Title">
+</svg></span>는 다음과 같이 쓸 수 있다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="23.526ex" height="6.176ex" style="vertical-align: -2.505ex;" viewBox="0 -1580.7 10129.1 2659.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-7-Title">
 <title id="MathJax-SVG-7-Title">%math
 \begin{aligned}
-d(1, k) &amp;= 2k + 3 \ &amp;= 2(k+1) + 1^2
+d(1, k) &amp;= 2k + 3 \newline
+&amp;= 2(k+1) + 1^2
 \end{aligned}
 </title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
 <g transform="translate(167,0)">
 <g transform="translate(-11,0)">
-<g transform="translate(0,-67)">
+<g transform="translate(0,693)">
  <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
  <use xlink:href="#MJMAIN-28" x="523" y="0"></use>
  <use xlink:href="#MJMAIN-31" x="913" y="0"></use>
@@ -248,25 +239,23 @@ d(1, k) &amp;= 2k + 3 \ &amp;= 2(k+1) + 1^2
 </g>
 </g>
 <g transform="translate(2759,0)">
-<g transform="translate(0,-67)">
+<g transform="translate(0,693)">
  <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
  <use xlink:href="#MJMAIN-32" x="1334" y="0"></use>
  <use xlink:href="#MJMATHI-6B" x="1834" y="0"></use>
  <use xlink:href="#MJMAIN-2B" x="2578" y="0"></use>
  <use xlink:href="#MJMAIN-33" x="3579" y="0"></use>
 </g>
-</g>
-<g transform="translate(9088,0)">
-<g transform="translate(0,-67)">
- <use xlink:href="#MJMAIN-3D" x="0" y="0"></use>
- <use xlink:href="#MJMAIN-32" x="1056" y="0"></use>
- <use xlink:href="#MJMAIN-28" x="1556" y="0"></use>
- <use xlink:href="#MJMATHI-6B" x="1946" y="0"></use>
- <use xlink:href="#MJMAIN-2B" x="2690" y="0"></use>
- <use xlink:href="#MJMAIN-31" x="3690" y="0"></use>
- <use xlink:href="#MJMAIN-29" x="4191" y="0"></use>
- <use xlink:href="#MJMAIN-2B" x="4802" y="0"></use>
-<g transform="translate(5803,0)">
+<g transform="translate(0,-743)">
+ <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
+ <use xlink:href="#MJMAIN-32" x="1334" y="0"></use>
+ <use xlink:href="#MJMAIN-28" x="1834" y="0"></use>
+ <use xlink:href="#MJMATHI-6B" x="2224" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="2967" y="0"></use>
+ <use xlink:href="#MJMAIN-31" x="3968" y="0"></use>
+ <use xlink:href="#MJMAIN-29" x="4469" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="5080" y="0"></use>
+<g transform="translate(6081,0)">
  <use xlink:href="#MJMAIN-31" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="707" y="583"></use>
 </g>
@@ -284,16 +273,18 @@ d(1, k) &amp;= 2k + 3 \ &amp;= 2(k+1) + 1^2
  <use xlink:href="#MJMATHI-6B" x="1858" y="0"></use>
  <use xlink:href="#MJMAIN-29" x="2380" y="0"></use>
 </g>
-</svg></span>는 다음과 같이 쓸 수 있다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="57.453ex" height="3.176ex" style="vertical-align: -1.005ex;" viewBox="0 -934.9 24736.7 1367.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-9-Title">
+</svg></span>는 다음과 같이 쓸 수 있다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="26.367ex" height="9.509ex" style="vertical-align: -4.171ex;" viewBox="0 -2298.3 11352.5 4094.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-9-Title">
 <title id="MathJax-SVG-9-Title">%math
 \begin{aligned}
-d(2, k) &amp;= 4k + 13 \ &amp;= 4(k+1) + 9 \ &amp;= 2 \cdot 2(k+1) + 3^2
+d(2, k) &amp;= 4k + 13 \newline
+&amp;= 4(k+1) + 9 \newline
+&amp;= 2 \cdot 2(k+1) + 3^2
 \end{aligned}
 </title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
 <g transform="translate(167,0)">
 <g transform="translate(-11,0)">
-<g transform="translate(0,-67)">
+<g transform="translate(0,1368)">
  <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
  <use xlink:href="#MJMAIN-28" x="523" y="0"></use>
  <use xlink:href="#MJMAIN-32" x="913" y="0"></use>
@@ -303,7 +294,7 @@ d(2, k) &amp;= 4k + 13 \ &amp;= 4(k+1) + 9 \ &amp;= 2 \cdot 2(k+1) + 3^2
 </g>
 </g>
 <g transform="translate(2759,0)">
-<g transform="translate(0,-67)">
+<g transform="translate(0,1368)">
  <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
  <use xlink:href="#MJMAIN-34" x="1334" y="0"></use>
  <use xlink:href="#MJMATHI-6B" x="1834" y="0"></use>
@@ -313,22 +304,18 @@ d(2, k) &amp;= 4k + 13 \ &amp;= 4(k+1) + 9 \ &amp;= 2 \cdot 2(k+1) + 3^2
  <use xlink:href="#MJMAIN-33" x="500" y="0"></use>
 </g>
 </g>
+<g transform="translate(0,17)">
+ <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
+ <use xlink:href="#MJMAIN-34" x="1334" y="0"></use>
+ <use xlink:href="#MJMAIN-28" x="1834" y="0"></use>
+ <use xlink:href="#MJMATHI-6B" x="2224" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="2967" y="0"></use>
+ <use xlink:href="#MJMAIN-31" x="3968" y="0"></use>
+ <use xlink:href="#MJMAIN-29" x="4469" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="5080" y="0"></use>
+ <use xlink:href="#MJMAIN-39" x="6081" y="0"></use>
 </g>
-<g transform="translate(9589,0)">
-<g transform="translate(0,-67)">
- <use xlink:href="#MJMAIN-3D" x="0" y="0"></use>
- <use xlink:href="#MJMAIN-34" x="1056" y="0"></use>
- <use xlink:href="#MJMAIN-28" x="1556" y="0"></use>
- <use xlink:href="#MJMATHI-6B" x="1946" y="0"></use>
- <use xlink:href="#MJMAIN-2B" x="2690" y="0"></use>
- <use xlink:href="#MJMAIN-31" x="3690" y="0"></use>
- <use xlink:href="#MJMAIN-29" x="4191" y="0"></use>
- <use xlink:href="#MJMAIN-2B" x="4802" y="0"></use>
- <use xlink:href="#MJMAIN-39" x="5803" y="0"></use>
-</g>
-</g>
-<g transform="translate(16143,0)">
-<g transform="translate(0,-67)">
+<g transform="translate(0,-1418)">
  <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
  <use xlink:href="#MJMAIN-32" x="1334" y="0"></use>
  <use xlink:href="#MJMAIN-22C5" x="2056" y="0"></use>
@@ -357,16 +344,18 @@ d(2, k) &amp;= 4k + 13 \ &amp;= 4(k+1) + 9 \ &amp;= 2 \cdot 2(k+1) + 3^2
  <use xlink:href="#MJMATHI-6B" x="1858" y="0"></use>
  <use xlink:href="#MJMAIN-29" x="2380" y="0"></use>
 </g>
-</svg></span>는 다음과 같이 쓸 수 있다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="58.616ex" height="3.176ex" style="vertical-align: -1.005ex;" viewBox="0 -934.9 25237.2 1367.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-11-Title">
+</svg></span>는 다음과 같이 쓸 수 있다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="26.367ex" height="9.509ex" style="vertical-align: -4.171ex;" viewBox="0 -2298.3 11352.5 4094.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-11-Title">
 <title id="MathJax-SVG-11-Title">%math
 \begin{aligned}
-d(3, k) &amp;= 6k + 31 \ &amp;= 6(k+1) + 25 \ &amp;= 2 \cdot 3(k+1) + 5^2
+d(3, k) &amp;= 6k + 31 \newline
+&amp;= 6(k+1) + 25 \newline
+&amp;= 2 \cdot 3(k+1) + 5^2
 \end{aligned}
 </title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
 <g transform="translate(167,0)">
 <g transform="translate(-11,0)">
-<g transform="translate(0,-67)">
+<g transform="translate(0,1368)">
  <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
  <use xlink:href="#MJMAIN-28" x="523" y="0"></use>
  <use xlink:href="#MJMAIN-33" x="913" y="0"></use>
@@ -376,7 +365,7 @@ d(3, k) &amp;= 6k + 31 \ &amp;= 6(k+1) + 25 \ &amp;= 2 \cdot 3(k+1) + 5^2
 </g>
 </g>
 <g transform="translate(2759,0)">
-<g transform="translate(0,-67)">
+<g transform="translate(0,1368)">
  <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
  <use xlink:href="#MJMAIN-36" x="1334" y="0"></use>
  <use xlink:href="#MJMATHI-6B" x="1834" y="0"></use>
@@ -386,25 +375,21 @@ d(3, k) &amp;= 6k + 31 \ &amp;= 6(k+1) + 25 \ &amp;= 2 \cdot 3(k+1) + 5^2
  <use xlink:href="#MJMAIN-31" x="500" y="0"></use>
 </g>
 </g>
-</g>
-<g transform="translate(9589,0)">
-<g transform="translate(0,-67)">
- <use xlink:href="#MJMAIN-3D" x="0" y="0"></use>
- <use xlink:href="#MJMAIN-36" x="1056" y="0"></use>
- <use xlink:href="#MJMAIN-28" x="1556" y="0"></use>
- <use xlink:href="#MJMATHI-6B" x="1946" y="0"></use>
- <use xlink:href="#MJMAIN-2B" x="2690" y="0"></use>
- <use xlink:href="#MJMAIN-31" x="3690" y="0"></use>
- <use xlink:href="#MJMAIN-29" x="4191" y="0"></use>
- <use xlink:href="#MJMAIN-2B" x="4802" y="0"></use>
-<g transform="translate(5803,0)">
+<g transform="translate(0,17)">
+ <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
+ <use xlink:href="#MJMAIN-36" x="1334" y="0"></use>
+ <use xlink:href="#MJMAIN-28" x="1834" y="0"></use>
+ <use xlink:href="#MJMATHI-6B" x="2224" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="2967" y="0"></use>
+ <use xlink:href="#MJMAIN-31" x="3968" y="0"></use>
+ <use xlink:href="#MJMAIN-29" x="4469" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="5080" y="0"></use>
+<g transform="translate(6081,0)">
  <use xlink:href="#MJMAIN-32"></use>
  <use xlink:href="#MJMAIN-35" x="500" y="0"></use>
 </g>
 </g>
-</g>
-<g transform="translate(16643,0)">
-<g transform="translate(0,-67)">
+<g transform="translate(0,-1418)">
  <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
  <use xlink:href="#MJMAIN-32" x="1334" y="0"></use>
  <use xlink:href="#MJMAIN-22C5" x="2056" y="0"></use>
@@ -454,16 +439,18 @@ d(3, k) &amp;= 6k + 31 \ &amp;= 6(k+1) + 25 \ &amp;= 2 \cdot 3(k+1) + 5^2
  <use xlink:href="#MJMATHI-6B" x="1958" y="0"></use>
  <use xlink:href="#MJMAIN-29" x="2480" y="0"></use>
 </g>
-</svg></span>는 다음과 같이 쓸 수 있다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="63.775ex" height="3.176ex" style="vertical-align: -1.005ex;" viewBox="0 -934.9 27458.5 1367.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-16-Title">
+</svg></span>는 다음과 같이 쓸 수 있다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="32.359ex" height="9.176ex" style="vertical-align: -4.005ex;" viewBox="0 -2226.5 13932.5 3950.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-16-Title">
 <title id="MathJax-SVG-16-Title">%math
 \begin{aligned}
-d(n,k) &amp;= 2n(k+1) + (2n-1)^2 \ n &amp;= 1, 2, 3, … \ k &amp;= 0, 1, 2, 3
+d(n,k) &amp;= 2n(k+1) + (2n-1)^2 \newline
+n &amp;= 1, 2, 3, … \newline
+k &amp;= 0, 1, 2, 3
 \end{aligned}
 </title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
 <g transform="translate(167,0)">
 <g transform="translate(-11,0)">
-<g transform="translate(0,-67)">
+<g transform="translate(0,1233)">
  <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
  <use xlink:href="#MJMAIN-28" x="523" y="0"></use>
  <use xlink:href="#MJMATHI-6E" x="913" y="0"></use>
@@ -471,9 +458,11 @@ d(n,k) &amp;= 2n(k+1) + (2n-1)^2 \ n &amp;= 1, 2, 3, … \ k &amp;= 0, 1, 2, 3
  <use xlink:href="#MJMATHI-6B" x="1958" y="0"></use>
  <use xlink:href="#MJMAIN-29" x="2480" y="0"></use>
 </g>
+ <use xlink:href="#MJMATHI-6E" x="2269" y="-118"></use>
+ <use xlink:href="#MJMATHI-6B" x="2348" y="-1418"></use>
 </g>
 <g transform="translate(2859,0)">
-<g transform="translate(0,-67)">
+<g transform="translate(0,1233)">
  <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
  <use xlink:href="#MJMAIN-32" x="1334" y="0"></use>
  <use xlink:href="#MJMATHI-6E" x="1834" y="0"></use>
@@ -492,24 +481,18 @@ d(n,k) &amp;= 2n(k+1) + (2n-1)^2 \ n &amp;= 1, 2, 3, … \ k &amp;= 0, 1, 2, 3
  <use xlink:href="#MJMAIN-29" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="550" y="583"></use>
 </g>
- <use xlink:href="#MJMATHI-6E" x="10989" y="0"></use>
 </g>
+<g transform="translate(0,-118)">
+ <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
+ <use xlink:href="#MJMAIN-31" x="1334" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="1834" y="0"></use>
+ <use xlink:href="#MJMAIN-32" x="2279" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="2780" y="0"></use>
+ <use xlink:href="#MJMAIN-33" x="3225" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="3725" y="0"></use>
+ <use xlink:href="#MJMAIN-2026" x="4171" y="0"></use>
 </g>
-<g transform="translate(16449,0)">
-<g transform="translate(0,-67)">
- <use xlink:href="#MJMAIN-3D" x="0" y="0"></use>
- <use xlink:href="#MJMAIN-31" x="1056" y="0"></use>
- <use xlink:href="#MJMAIN-2C" x="1556" y="0"></use>
- <use xlink:href="#MJMAIN-32" x="2001" y="0"></use>
- <use xlink:href="#MJMAIN-2C" x="2502" y="0"></use>
- <use xlink:href="#MJMAIN-33" x="2947" y="0"></use>
- <use xlink:href="#MJMAIN-2C" x="3448" y="0"></use>
- <use xlink:href="#MJMAIN-2026" x="3893" y="0"></use>
- <use xlink:href="#MJMATHI-6B" x="5482" y="0"></use>
-</g>
-</g>
-<g transform="translate(22452,0)">
-<g transform="translate(0,-67)">
+<g transform="translate(0,-1418)">
  <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
  <use xlink:href="#MJMAIN-30" x="1334" y="0"></use>
  <use xlink:href="#MJMAIN-2C" x="1834" y="0"></use>
@@ -565,7 +548,9 @@ d(n,k) &amp;= 2n(k+1) + (2n-1)^2 \ n &amp;= 1, 2, 3, … \ k &amp;= 0, 1, 2, 3
   (-&gt;&gt; (for [n (range 1 (inc (int (/ size 2)))) k (range 4)] (d n k))
        (apply +)
        (+ 1)))
-</code></pre></div><p>실행 결과는 다음과 같다.</p><p>정답을 구하는 것으로 미루어 위에서 유도한 함수 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="6.665ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 2869.7 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-21-Title">
+</code></pre></div><p>실행 결과는 다음과 같다.</p><pre class="console">p028=&gt; (time (solve))
+"Elapsed time: 11.123947 msecs"
+6691710??</pre><p>정답을 구하는 것으로 미루어 위에서 유도한 함수 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="6.665ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 2869.7 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-21-Title">
 <title id="MathJax-SVG-21-Title">d(n,k)</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMATHI-64" x="0" y="0"></use>

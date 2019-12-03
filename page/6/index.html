@@ -98,24 +98,29 @@ on
 </code></pre></div><p>중복을 제거하면 접속 기록이 서른 세 개밖에 되지 않는다.</p><p></p><p><a class="button is-link" href="https://ntalbs.github.io/2016/project-euler-079/" style="height:28px">Read more...</a></p></section></article><article class="post"><header class="post-header"><span class="post-meta"><time datetime="2016-11-16" itemprop="datePublished">2016-11-16</time>
 on
 <a href="/tags/project-euler/">Project-Euler</a>
-<a href="/tags/clojure/">Clojure</a></span><h1 class="post-title"><a href="https://ntalbs.github.io/2016/project-euler-078/">프로젝트 오일러 78</a></h1></header><section class="post-excerpt"><p></p><blockquote><p>동전을 여러 더미로 나누는 경우의 수 세기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=78">[국어]</a> <a href="https://projecteuler.net/problem=78">[영어]</a></p></blockquote><p>동전을 여러 더미로 나누는 방법의 수는 정수를 덧셈으로 표시할 수 있는 방법의 수와 같다. 위키백과를 찾아보면 다음과 같이 공식이 나와 있다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="49.069ex" height="7.176ex" style="vertical-align: -3.005ex;" viewBox="0 -1796 21126.9 3089.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<a href="/tags/clojure/">Clojure</a></span><h1 class="post-title"><a href="https://ntalbs.github.io/2016/project-euler-078/">프로젝트 오일러 78</a></h1></header><section class="post-excerpt"><p></p><blockquote><p>동전을 여러 더미로 나누는 경우의 수 세기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=78">[국어]</a> <a href="https://projecteuler.net/problem=78">[영어]</a></p></blockquote><p>동전을 여러 더미로 나누는 방법의 수는 정수를 덧셈으로 표시할 수 있는 방법의 수와 같다. 위키백과를 찾아보면 다음과 같이 공식이 나와 있다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="28.959ex" height="11.843ex" style="vertical-align: -5.037ex; margin-bottom: -0.301ex;" viewBox="0 -2800.6 12468.5 5098.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">%math
 \begin{aligned}
-p(n) &amp;= \sum_{k \neq 0} (-1)^{k-1}p(n - g_k) \ g_k &amp;= \frac{k(3k-1)}{2}
+p(n) &amp;= \sum_{k \neq 0} (-1)^{k-1}p(n - g_k) \newline
+g_k &amp;= \frac{k(3k-1)}{2}
 \end{aligned}
 </title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
 <g transform="translate(167,0)">
 <g transform="translate(-11,0)">
-<g transform="translate(0,177)">
+<g transform="translate(0,1717)">
  <use xlink:href="#MJMATHI-70" x="0" y="0"></use>
  <use xlink:href="#MJMAIN-28" x="503" y="0"></use>
  <use xlink:href="#MJMATHI-6E" x="893" y="0"></use>
  <use xlink:href="#MJMAIN-29" x="1493" y="0"></use>
 </g>
+<g transform="translate(936,-1482)">
+ <use xlink:href="#MJMATHI-67" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-6B" x="675" y="-213"></use>
+</g>
 </g>
 <g transform="translate(1872,0)">
-<g transform="translate(0,177)">
+<g transform="translate(0,1717)">
  <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
 <g transform="translate(1334,0)">
  <use xlink:href="#MJSZ2-2211" x="0" y="0"></use>
@@ -145,16 +150,10 @@ p(n) &amp;= \sum_{k \neq 0} (-1)^{k-1}p(n - g_k) \ g_k &amp;= \frac{k(3k-1)}{2}
  <use transform="scale(0.707)" xlink:href="#MJMATHI-6B" x="675" y="-213"></use>
 </g>
  <use xlink:href="#MJMAIN-29" x="9872" y="0"></use>
-<g transform="translate(10511,0)">
- <use xlink:href="#MJMATHI-67" x="0" y="0"></use>
- <use transform="scale(0.707)" xlink:href="#MJMATHI-6B" x="675" y="-213"></use>
 </g>
-</g>
-</g>
-<g transform="translate(15330,0)">
-<g transform="translate(0,177)">
- <use xlink:href="#MJMAIN-3D" x="0" y="0"></use>
-<g transform="translate(778,0)">
+<g transform="translate(0,-1482)">
+ <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
+<g transform="translate(1056,0)">
 <g transform="translate(397,0)">
 <rect stroke="none" width="4165" height="60" x="0" y="220"></rect>
 <g transform="translate(60,770)">
