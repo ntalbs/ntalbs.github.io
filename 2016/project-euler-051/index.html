@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 51 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 51 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -322,11 +322,11 @@ on
 </g>
  <use xlink:href="#MJMAIN-33" x="3057" y="0"></use>
 </g>
-</svg></span>을 해보면 3의 배수가 아닌 숫자가 몇 개 나오는 지 확인할 수 있다. 이런 작업은 다음 함수로 간단히 확인할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>check [n]
-  (map count
-       (for [m [0 1 2]]
-         (for [x (map #(* n %) (range 10)) <span style="color:#a31515">:when</span> (&lt; 0 (mod (+ m x) 3))]
-           [m (+ m x)]))))
+</svg></span>을 해보면 3의 배수가 아닌 숫자가 몇 개 나오는 지 확인할 수 있다. 이런 작업은 다음 함수로 간단히 확인할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">check</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">map </span><span class="nv">count</span>
+       <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">m</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">]</span><span class="p">]</span>
+         <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">x</span> <span class="p">(</span><span class="nb">map </span><span class="o">#</span><span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="nv">%</span><span class="p">)</span> <span class="p">(</span><span class="nb">range </span><span class="mi">10</span><span class="p">)</span><span class="p">)</span> <span class="ss">:when</span> <span class="p">(</span><span class="nb">&lt; </span><span class="mi">0</span> <span class="p">(</span><span class="nf">mod</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">m</span> <span class="nv">x</span><span class="p">)</span> <span class="mi">3</span><span class="p">)</span><span class="p">)</span><span class="p">]</span>
+           <span class="p">[</span><span class="nv">m</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">m</span> <span class="nv">x</span><span class="p">)</span><span class="p">]</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>REPL에서 치환할 자리 수에 따라 만들 수 있는 소수 후보(3의 배수가 아닌)의 개수를 확인해보면 다음과 같다.</p><pre class="console">p051=&gt; (check 1)
 (6 7 7)
 p051=&gt; (check 2)
@@ -367,11 +367,11 @@ p051=&gt; (check 6)
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMAIN-32" x="0" y="0"></use>
 </g>
-</svg></span> 중 하나여야 한다.</p><p>위 세 조건을 이용해 문제를 쉽게 풀 수 있다. 먼저 숫자에서 특정 숫자가 세 번 반복되는지 확인하는 함수가 있으면 좋을 것 같다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>digit-repeated-three-times? [ds d]
-  (-&gt;&gt; ds
-       (filter #(= d %))
-       count
-       (= 3)))
+</svg></span> 중 하나여야 한다.</p><p>위 세 조건을 이용해 문제를 쉽게 풀 수 있다. 먼저 숫자에서 특정 숫자가 세 번 반복되는지 확인하는 함수가 있으면 좋을 것 같다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">digit-repeated-three-times?</span> <span class="p">[</span><span class="nv">ds</span> <span class="nv">d</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">ds</span>
+       <span class="p">(</span><span class="nb">filter </span><span class="o">#</span><span class="p">(</span><span class="nb">= </span><span class="nv">d</span> <span class="nv">%</span><span class="p">)</span><span class="p">)</span>
+       <span class="nv">count</span>
+       <span class="p">(</span><span class="nb">= </span><span class="mi">3</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>위 함수는 숫자 벡터 <code>ds</code>에서 특정 숫자 <code>d</code>가 세 번 반복되는지 확인해 <code>true/false</code>를 리턴한다. 이제 위 함수를 이용해 주어진 숫자 <code>n</code>에 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.162ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 500.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-27-Title">
 <title id="MathJax-SVG-27-Title">0</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -402,31 +402,31 @@ p051=&gt; (check 6)
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMAIN-32" x="0" y="0"></use>
 </g>
-</svg></span>가 세 번 반복되면 <code>2</code>를 리턴하고, 그 외 경우는 <code>nil</code>을 리턴한다. 불리언 대신 숫자를 리턴하게 한 것은 반복되는 숫자를 다른 곳에서 쉽게 활용할 수 있게 하기 위해서다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>three-times-repeated-digit [n]
-  (<span style="color:#00f">let </span>[ds (butlast (digits n))]
-    (cond (digit-repeated-three-times? ds 0) 0
-          (digit-repeated-three-times? ds 1) 1
-          (digit-repeated-three-times? ds 2) 2)))
-</code></pre></div><p>이제 주어진 소수에서 반복되는 자리의 수를 치환해 여덟 개의 다른 소수를 만들 수 있는지 확인하는 함수를 구현할 차례다. 치환할 숫자를 인자로 받으면 구현이 좀더 간편해진다. 치환할 숫자는 위에서 구현한 <code>three-times-repeated-digit</code> 함수의 리턴 값을 그대로 사용할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>eight-prime-family? [p rd]
-  (<span style="color:#00f">let </span>[p (str p) rd (str rd)]
-    (-&gt;&gt; (for [i (range 10)] (s/replace p rd (str i)))
-         (map #(Integer/parseInt %))
-         (filter #(&lt; (count p) (inc (Math/log10 %))))
-         (filter prime?)
-         count
-         (= 8))))
+</svg></span>가 세 번 반복되면 <code>2</code>를 리턴하고, 그 외 경우는 <code>nil</code>을 리턴한다. 불리언 대신 숫자를 리턴하게 한 것은 반복되는 숫자를 다른 곳에서 쉽게 활용할 수 있게 하기 위해서다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">three-times-repeated-digit</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">ds</span> <span class="p">(</span><span class="nb">butlast </span><span class="p">(</span><span class="nf">digits</span> <span class="nv">n</span><span class="p">)</span><span class="p">)</span><span class="p">]</span>
+    <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nf">digit-repeated-three-times?</span> <span class="nv">ds</span> <span class="mi">0</span><span class="p">)</span> <span class="mi">0</span>
+          <span class="p">(</span><span class="nf">digit-repeated-three-times?</span> <span class="nv">ds</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">1</span>
+          <span class="p">(</span><span class="nf">digit-repeated-three-times?</span> <span class="nv">ds</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><p>이제 주어진 소수에서 반복되는 자리의 수를 치환해 여덟 개의 다른 소수를 만들 수 있는지 확인하는 함수를 구현할 차례다. 치환할 숫자를 인자로 받으면 구현이 좀더 간편해진다. 치환할 숫자는 위에서 구현한 <code>three-times-repeated-digit</code> 함수의 리턴 값을 그대로 사용할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">eight-prime-family?</span> <span class="p">[</span><span class="nv">p</span> <span class="nv">rd</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">p</span> <span class="p">(</span><span class="nb">str </span><span class="nv">p</span><span class="p">)</span> <span class="nv">rd</span> <span class="p">(</span><span class="nb">str </span><span class="nv">rd</span><span class="p">)</span><span class="p">]</span>
+    <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">i</span> <span class="p">(</span><span class="nb">range </span><span class="mi">10</span><span class="p">)</span><span class="p">]</span> <span class="p">(</span><span class="nf">s/replace</span> <span class="nv">p</span> <span class="nv">rd</span> <span class="p">(</span><span class="nb">str </span><span class="nv">i</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+         <span class="p">(</span><span class="nb">map </span><span class="o">#</span><span class="p">(</span><span class="nf">Integer/parseInt</span> <span class="nv">%</span><span class="p">)</span><span class="p">)</span>
+         <span class="p">(</span><span class="nb">filter </span><span class="o">#</span><span class="p">(</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">count </span><span class="nv">p</span><span class="p">)</span> <span class="p">(</span><span class="nb">inc </span><span class="p">(</span><span class="nf">Math/log10</span> <span class="nv">%</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+         <span class="p">(</span><span class="nb">filter </span><span class="nv">prime?</span><span class="p">)</span>
+         <span class="nv">count</span>
+         <span class="p">(</span><span class="nb">= </span><span class="mi">8</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>코드가 조금 복잡해 보이지만 차근차근 따져보면 어렵지 않다. 숫자를 문자열로 바꾸면 <code>replace</code> 함수로 특정 숫자를 쉽게 다른 숫자로 바꿀 수 있다. 소수 <code>p</code>와 치환할 숫자 <code>rd</code>를 받아서 <code>rd</code>를 <code>0</code>부터 <code>9</code>로 바꾼 다음 숫자로 변환해 소수인지 확인한다. 이런 식으로 해서 소수가 여덟 개가 생기면 <code>true</code>를 리턴한다.</p><p>중간에 <code>Math/log10</code>의 용도는 숫자의 자리 수를 확인하기 위함이다. 숫자의 맨 앞자리를 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.162ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 500.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-33-Title">
 <title id="MathJax-SVG-33-Title">0</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMAIN-30" x="0" y="0"></use>
 </g>
-</svg></span>으로 치환하면 안 되기 때문에, 숫자로 바꾼 후 자릿수가 줄어들지 않았음을 확인한다.</p><p>위에서 구현한 함수를 이용하면 다음과 같이 문제를 풀 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>solve []
-  (-&gt;&gt; primes
-       (drop-while #(&lt; % 56003))
-       (map (<span style="color:#00f">fn </span>[p] [p (three-times-repeated-digit p)]))
-       (filter second)
-       (filter (<span style="color:#00f">fn </span>[[p rd]] (eight-prime-family? p rd)))
-       ffirst))
+</svg></span>으로 치환하면 안 되기 때문에, 숫자로 바꾼 후 자릿수가 줄어들지 않았음을 확인한다.</p><p>위에서 구현한 함수를 이용하면 다음과 같이 문제를 풀 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">primes</span>
+       <span class="p">(</span><span class="nb">drop-while </span><span class="o">#</span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">%</span> <span class="mi">56003</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">p</span><span class="p">]</span> <span class="p">[</span><span class="nv">p</span> <span class="p">(</span><span class="nf">three-times-repeated-digit</span> <span class="nv">p</span><span class="p">)</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">filter </span><span class="nv">second</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">filter </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="p">[</span><span class="nv">p</span> <span class="nv">rd</span><span class="p">]</span><span class="p">]</span> <span class="p">(</span><span class="nf">eight-prime-family?</span> <span class="nv">p</span> <span class="nv">rd</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+       <span class="nv">ffirst</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>실행 결과는 다음과 같다.</p><pre class="console">p051=&gt; (time (solve))
 "Elapsed time: 603.863756 msecs"
 121??3

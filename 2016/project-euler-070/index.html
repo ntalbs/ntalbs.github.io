@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 70 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 70 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -394,10 +394,10 @@ on
  <use xlink:href="#MJMATHI-6E" x="986" y="0"></use>
  <use xlink:href="#MJMAIN-29" x="1586" y="0"></use>
 </g>
-</svg></span>을 구하는 함수는 다음과 같이 작성할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>phi [p1 p2]
-  (* (dec p1) (dec p2)))
-</code></pre></div><p>한 수가 다른 수의 순열인지 확인하는 함수는 다음과 같이 작성할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>permutation? [m n]
-  (= (sort (digits m)) (sort (digits n))))
+</svg></span>을 구하는 함수는 다음과 같이 작성할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">phi</span> <span class="p">[</span><span class="nv">p1</span> <span class="nv">p2</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nb">dec </span><span class="nv">p1</span><span class="p">)</span> <span class="p">(</span><span class="nb">dec </span><span class="nv">p2</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><p>한 수가 다른 수의 순열인지 확인하는 함수는 다음과 같이 작성할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">permutation?</span> <span class="p">[</span><span class="nv">m</span> <span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">sort </span><span class="p">(</span><span class="nf">digits</span> <span class="nv">m</span><span class="p">)</span><span class="p">)</span> <span class="p">(</span><span class="nb">sort </span><span class="p">(</span><span class="nf">digits</span> <span class="nv">n</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>이제 2000에서 4000 사이의 소수에 대해 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.589ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 1976 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-18-Title">
 <title id="MathJax-SVG-18-Title">\phi(n)</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -434,18 +434,18 @@ on
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMATHI-6E" x="0" y="0"></use>
 </g>
-</svg></span>을 구하면 된다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">def </span>ps
-  (-&gt;&gt; primes
-       (drop-while #(&lt; % 2000))
-       (take-while #(&lt; % 4000))))
+</svg></span>을 구하면 된다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="k">def </span><span class="nv">ps</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">primes</span>
+       <span class="p">(</span><span class="nb">drop-while </span><span class="o">#</span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">%</span> <span class="mi">2000</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">take-while </span><span class="o">#</span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">%</span> <span class="mi">4000</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 
-(<span style="color:#00f">defn </span>solve []
-  (-&gt;&gt; (for [p1 ps, p2 ps <span style="color:#a31515">:when</span> (&lt; (* p1 p2) 10000000)]
-         [p1 p2 (phi p1 p2)])
-       (filter (<span style="color:#00f">fn </span>[[p1 p2 phi]] (permutation? (* p1 p2) phi)))
-       (map (<span style="color:#00f">fn </span>[[p1 p2 phi]] (/ (* p1 p2) phi)))
-       (apply min)
-       numerator))
+<span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">p1</span> <span class="nv">ps</span>, <span class="nv">p2</span> <span class="nv">ps</span> <span class="ss">:when</span> <span class="p">(</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">* </span><span class="nv">p1</span> <span class="nv">p2</span><span class="p">)</span> <span class="mi">10000000</span><span class="p">)</span><span class="p">]</span>
+         <span class="p">[</span><span class="nv">p1</span> <span class="nv">p2</span> <span class="p">(</span><span class="nf">phi</span> <span class="nv">p1</span> <span class="nv">p2</span><span class="p">)</span><span class="p">]</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">filter </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="p">[</span><span class="nv">p1</span> <span class="nv">p2</span> <span class="nv">phi</span><span class="p">]</span><span class="p">]</span> <span class="p">(</span><span class="nf">permutation?</span> <span class="p">(</span><span class="nb">* </span><span class="nv">p1</span> <span class="nv">p2</span><span class="p">)</span> <span class="nv">phi</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="p">[</span><span class="nv">p1</span> <span class="nv">p2</span> <span class="nv">phi</span><span class="p">]</span><span class="p">]</span> <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">* </span><span class="nv">p1</span> <span class="nv">p2</span><span class="p">)</span> <span class="nv">phi</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">apply </span><span class="nv">min</span><span class="p">)</span>
+       <span class="nv">numerator</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>실행 결과는 다음과 같다.</p><pre class="console">p070=&gt; (time (solve))
 "Elapsed time: 110.29622 msecs"
 831??23

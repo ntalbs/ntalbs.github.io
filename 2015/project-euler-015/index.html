@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 15 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 15 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -184,9 +184,9 @@ drrd, drdr, ddrr
 </g>
 </g>
 </g>
-</svg></span></p><p><code>n!</code>을 구하는 함수가 있다면 답을 구한 것이나 마찬가지다. <code>factorial</code>이 구현되어 있다고 한다면 답은 다음과 같이 구할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>solve []
-  (<span style="color:#00f">let </span>[f40 (factorial 40) f20 (factorial 20)]
-    (/ f40 (*' f20 f20))))
+</svg></span></p><p><code>n!</code>을 구하는 함수가 있다면 답을 구한 것이나 마찬가지다. <code>factorial</code>이 구현되어 있다고 한다면 답은 다음과 같이 구할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">f40</span> <span class="p">(</span><span class="nf">factorial</span> <span class="mi">40</span><span class="p">)</span> <span class="nv">f20</span> <span class="p">(</span><span class="nf">factorial</span> <span class="mi">20</span><span class="p">)</span><span class="p">]</span>
+    <span class="p">(</span><span class="nb">/ </span><span class="nv">f40</span> <span class="p">(</span><span class="nf">*</span><span class="o">'</span> <span class="nv">f20</span> <span class="nv">f20</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>결과는 다음과 같다.</p><pre class="console">p015=&gt; (time (solve))
 "Elapsed time: 0.16456 msecs"
 13784652????N
@@ -242,10 +242,10 @@ n(n-1)! &amp; \mbox {if } n &gt; 0
 </g>
 </g>
 </g>
-</svg></span></p><p>Clojure 코드로는 다음과 같이 구현할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>fact1 [n]
-  (<span style="color:#00f">if </span>(= 0 n)
-    1
-    (*' n (fact1 (dec n)))))
+</svg></span></p><p>Clojure 코드로는 다음과 같이 구현할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">fact1</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="mi">0</span> <span class="nv">n</span><span class="p">)</span>
+    <span class="mi">1</span>
+    <span class="p">(</span><span class="nf">*</span><span class="o">'</span> <span class="nv">n</span> <span class="p">(</span><span class="nf">fact1</span> <span class="p">(</span><span class="nb">dec </span><span class="nv">n</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p><code>factorial</code>은 매우 빠르게 커지는 함수로 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.972ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 1279.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-4-Title">
 <title id="MathJax-SVG-4-Title">21!</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -256,29 +256,29 @@ n(n-1)! &amp; \mbox {if } n &gt; 0
 </svg></span>만 되어도 <code>Long</code>의 표현 범위를 넘는다. 범위에 관계 없이 <code>factorial</code>을 구할 수 있도록 <code>*'</code>을 이용해 곱셈을 구했다. 그러나 이렇게 작성하면 매 재귀호출 때마다 스택을 소비하므로 큰 수의 Factorial을 구할 때는 <code>StackOverflowError</code>가 발생할 수 있다.</p><pre class="console">user=&gt; (fact1 20000)
 
 StackOverflowError   clojure.lang.Util.equiv (Util.java:30)
-</pre><p>꼬리재귀(Tail Recursion)을 사용하면 <code>StackOverflowError</code>를 피할 수 있다. Clojure에서 꼬리재귀를 사용하려면 <code>recur</code> Special Form을 사용해야 한다. <code>recur</code>는 tail position에서만 사용할 수 있는데, 위 <code>factorial</code> 구현에서 재귀호출하는 부분은 tail position이 아니다. 따라서 꼬리재귀를 사용하려면 다음과 같이 보조 함수를 도입해 함수 형태를 변경할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>fact-helper [n acc]
-  (<span style="color:#00f">if </span>(= 0 n)
-    acc
-    (recur (dec n) (*' n acc))))
+</pre><p>꼬리재귀(Tail Recursion)을 사용하면 <code>StackOverflowError</code>를 피할 수 있다. Clojure에서 꼬리재귀를 사용하려면 <code>recur</code> Special Form을 사용해야 한다. <code>recur</code>는 tail position에서만 사용할 수 있는데, 위 <code>factorial</code> 구현에서 재귀호출하는 부분은 tail position이 아니다. 따라서 꼬리재귀를 사용하려면 다음과 같이 보조 함수를 도입해 함수 형태를 변경할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">fact-helper</span> <span class="p">[</span><span class="nv">n</span> <span class="nv">acc</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="mi">0</span> <span class="nv">n</span><span class="p">)</span>
+    <span class="nv">acc</span>
+    <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">dec </span><span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nf">*</span><span class="o">'</span> <span class="nv">n</span> <span class="nv">acc</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 
-(<span style="color:#00f">defn </span>fact2 [n]
-  (fact-helper n 1))
+<span class="p">(</span><span class="kd">defn </span><span class="nv">fact2</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">fact-helper</span> <span class="nv">n</span> <span class="mi">1</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>이렇게 하면 큰 수에 대해서도 <code>StackOverflowError</code>가 발생하지 않고 잘 동작한다.</p><pre class="console">user=&gt; (factorial 20000)
 18192063202303451348276417568...
-</pre><p>그러나 <code>fact-helper</code>와 같은 보조 함수가 <code>factorial</code> 밖에서 보이는 게 불만이다. <code>letfn</code>을 사용하면 보조 함수를 <code>factorial</code> 함수 안으로 숨길 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>fact3 [n]
-  (letfn [(f [n acc]
-            (<span style="color:#00f">if </span>(= 0 n)
-              acc
-              (recur (dec n) (* n acc))))]
-    (f n 1)))
-</code></pre></div><p>또는 <code>loop</code>를 사용할 수도 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>fact4 [n]
-  (<span style="color:#00f">loop </span>[n n, acc 1]
-    (<span style="color:#00f">if </span>(= 0 n)
-      acc
-      (recur (dec n) (*' n acc)))))
-</code></pre></div><p>Factorial 함수는 0 또는 양의 정수에 대해서만 유효하다. <code>fact1</code>의 경우 인자가 음수일 경우 <code>StackOverflowError</code>가 발생할 것이고, <code>fact2</code>, <code>fact3</code>, <code>fact4</code>는 무한루프에 빠질 것이다. 따라서 다음과 같이 선행조건(precondition)을 추가할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>fact4 [n]
-  {<span style="color:#a31515">:pre</span> [(or (pos? n) (zero? n)) (integer? n)]}
-  ...
+</pre><p>그러나 <code>fact-helper</code>와 같은 보조 함수가 <code>factorial</code> 밖에서 보이는 게 불만이다. <code>letfn</code>을 사용하면 보조 함수를 <code>factorial</code> 함수 안으로 숨길 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">fact3</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">letfn</span> <span class="p">[</span><span class="p">(</span><span class="nf">f</span> <span class="p">[</span><span class="nv">n</span> <span class="nv">acc</span><span class="p">]</span>
+            <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="mi">0</span> <span class="nv">n</span><span class="p">)</span>
+              <span class="nv">acc</span>
+              <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">dec </span><span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="nv">acc</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">]</span>
+    <span class="p">(</span><span class="nf">f</span> <span class="nv">n</span> <span class="mi">1</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><p>또는 <code>loop</code>를 사용할 수도 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">fact4</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">loop </span><span class="p">[</span><span class="nv">n</span> <span class="nv">n</span>, <span class="nv">acc</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="mi">0</span> <span class="nv">n</span><span class="p">)</span>
+      <span class="nv">acc</span>
+      <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">dec </span><span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nf">*</span><span class="o">'</span> <span class="nv">n</span> <span class="nv">acc</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><p>Factorial 함수는 0 또는 양의 정수에 대해서만 유효하다. <code>fact1</code>의 경우 인자가 음수일 경우 <code>StackOverflowError</code>가 발생할 것이고, <code>fact2</code>, <code>fact3</code>, <code>fact4</code>는 무한루프에 빠질 것이다. 따라서 다음과 같이 선행조건(precondition)을 추가할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">fact4</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">{</span><span class="ss">:pre</span> <span class="p">[</span><span class="p">(</span><span class="nb">or </span><span class="p">(</span><span class="nb">pos? </span><span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nb">zero? </span><span class="nv">n</span><span class="p">)</span><span class="p">)</span> <span class="p">(</span><span class="nf">integer?</span> <span class="nv">n</span><span class="p">)</span><span class="p">]</span><span class="p">}</span>
+  <span class="nv">...</span>
 </code></pre></div><p>Factorial을 다음과 같이 정의할 수도 있다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="29.296ex" height="6.843ex" style="vertical-align: -2.838ex;" viewBox="0 -1724.2 12613.5 2946.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-5-Title">
 <title id="MathJax-SVG-5-Title">%math
 \begin{aligned}
@@ -314,8 +314,8 @@ n! = \prod_{k=1}^n k = 1 \times 2\, \times … \times\, n
 </g>
 </g>
 </g>
-</svg></span></p><p>이 정의를 그대로 Clojure 코드로 옮기면 다음과 같다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>factorial [n]
-  (apply *' (range 1 (inc n))))
+</svg></span></p><p>이 정의를 그대로 Clojure 코드로 옮기면 다음과 같다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">factorial</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">apply </span><span class="nv">*</span><span class="o">'</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="p">(</span><span class="nb">inc </span><span class="nv">n</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p><code>apply</code> 대신 <code>reduce</code>를 사용할 수도 있다.</p><p>이 구현이 0에 대해서도 유효할까?</p><pre class="console">user=&gt; (factorial 0)
 1
 </pre><p>특별히 해준 것도 없는데 0을 입력했을 때 결과가 제대로 나오는 이유는 <code>*'</code> 함수(<code>*</code>도 마찬가지)에 있다. <code>*'</code> 함수는 인자가 없는 경우 1을 리턴하도록 되어 있다. 위 <code>factorial</code> 함수에 0을 입력한 경우 <code>(range 1 (inc 0))</code>은 <code>()</code> 즉 빈 리스트가 될 테고 빈 리스트에 <code>*'</code>를 <code>apply</code>하면 <code>*'</code>의 정의에 따라 1이 리턴된다. 인자가 없는 경우 <code>*'</code>가 1을 리턴하도록 한 이유는 1이 곱셈에 대한 항등원이기 때문일 것이다. <code>+'</code> 함수(<code>+</code>도 마찬가지)의 경우는 인자가 주어지지 않으면 0을 리턴하는데 이 또한 0이 덧셈에 대한 항등원이기 때문일 것이다.</p><h2 id="heading">참고</h2><ul><li><a href="http://en.wikipedia.org/wiki/Factorial">Factorial</a></li><li><a href="http://betterexplained.com/articles/navigate-a-grid-using-combinations-and-permutations/">Navigate a Grid Using Combinations And Permutations</a></li><li><a href="https://github.com/ntalbs/euler/blob/master/src/p015.clj">프로젝트 오일러 15 풀이 소스 코드</a></li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>

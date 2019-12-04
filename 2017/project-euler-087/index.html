@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 87 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 87 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -136,8 +136,8 @@ on
  <use xlink:href="#MJMAIN-2C" x="1404" y="0"></use>
  <use xlink:href="#MJMATHI-63" x="1849" y="0"></use>
 </g>
-</svg></span>를 무한대까지 계산할 수는 없으므로 적절한 범위를 지정해야 한다.</p><p>소수 목록은 <code>clojure.contrib.lazy-seqs/primes</code>를 이용해 쉽게 구할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">ns </span>p087
-  (<span style="color:#a31515">:require</span> [clojure.contrib.lazy-seqs <span style="color:#a31515">:refer</span> [primes]]))
+</svg></span>를 무한대까지 계산할 수는 없으므로 적절한 범위를 지정해야 한다.</p><p>소수 목록은 <code>clojure.contrib.lazy-seqs/primes</code>를 이용해 쉽게 구할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">p087</span>
+  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">clojure.contrib.lazy-seqs</span> <span class="ss">:refer</span> <span class="p">[</span><span class="nv">primes</span><span class="p">]</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="12.078ex" height="2.676ex" style="vertical-align: -0.505ex;" viewBox="0 -934.9 5200.1 1152.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-6-Title">
 <title id="MathJax-SVG-6-Title">a^2 + b^3 + c^4</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -154,8 +154,8 @@ on
  <use transform="scale(0.707)" xlink:href="#MJMAIN-34" x="613" y="513"></use>
 </g>
 </g>
-</svg></span>를 구하는 함수는 다음과 같이 간단히 작성할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>calc [a b c]
-  (+ (* a a) (* b b b) (* c c c c)))
+</svg></span>를 구하는 함수는 다음과 같이 간단히 작성할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">calc</span> <span class="p">[</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="nv">a</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">b</span> <span class="nv">b</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">c</span> <span class="nv">c</span> <span class="nv">c</span> <span class="nv">c</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>다음 사실을 고려하면 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="5.302ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 2282.8 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-7-Title">
 <title id="MathJax-SVG-7-Title">a, b, c</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -339,8 +339,8 @@ c^4 &lt; 50,000,000 \qquad &amp;\therefore c &lt; \lfloor \sqrt[4]{50,000,000} \
 </g>
  <use xlink:href="#MJMAIN-230B" x="1850" y="0"></use>
 </g>
-</svg></span>을 구하는 함수는 다음과 같이 구현할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn- </span>nth-root [n x]
-  (int (Math/pow x (/ 1.0 n))))
+</svg></span>을 구하는 함수는 다음과 같이 구현할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn- </span><span class="nv">nth-root</span> <span class="p">[</span><span class="nv">n</span> <span class="nv">x</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">int </span><span class="p">(</span><span class="nf">Math/pow</span> <span class="nv">x</span> <span class="p">(</span><span class="nb">/ </span><span class="mf">1.0</span> <span class="nv">n</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="5.302ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 2282.8 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-10-Title">
 <title id="MathJax-SVG-10-Title">a, b, c</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -350,9 +350,9 @@ c^4 &lt; 50,000,000 \qquad &amp;\therefore c &lt; \lfloor \sqrt[4]{50,000,000} \
  <use xlink:href="#MJMAIN-2C" x="1404" y="0"></use>
  <use xlink:href="#MJMATHI-63" x="1849" y="0"></use>
 </g>
-</svg></span>에 입력할 소수의 시퀀스 <code>ps1</code>, <code>ps2</code>, <code>ps3</code>는 다음과 같이 정의할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">def </span>ps1 (take-while #(&lt; % (nth-root 2 50000000)) primes))
-(<span style="color:#00f">def </span>ps2 (take-while #(&lt; % (nth-root 3 50000000)) primes))
-(<span style="color:#00f">def </span>ps3 (take-while #(&lt; % (nth-root 4 50000000)) primes))
+</svg></span>에 입력할 소수의 시퀀스 <code>ps1</code>, <code>ps2</code>, <code>ps3</code>는 다음과 같이 정의할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="k">def </span><span class="nv">ps1</span> <span class="p">(</span><span class="nb">take-while </span><span class="o">#</span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">%</span> <span class="p">(</span><span class="nf">nth-root</span> <span class="mi">2</span> <span class="mi">50000000</span><span class="p">)</span><span class="p">)</span> <span class="nv">primes</span><span class="p">)</span><span class="p">)</span>
+<span class="p">(</span><span class="k">def </span><span class="nv">ps2</span> <span class="p">(</span><span class="nb">take-while </span><span class="o">#</span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">%</span> <span class="p">(</span><span class="nf">nth-root</span> <span class="mi">3</span> <span class="mi">50000000</span><span class="p">)</span><span class="p">)</span> <span class="nv">primes</span><span class="p">)</span><span class="p">)</span>
+<span class="p">(</span><span class="k">def </span><span class="nv">ps3</span> <span class="p">(</span><span class="nb">take-while </span><span class="o">#</span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">%</span> <span class="p">(</span><span class="nf">nth-root</span> <span class="mi">4</span> <span class="mi">50000000</span><span class="p">)</span><span class="p">)</span> <span class="nv">primes</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>이제 다음과 같이 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="5.302ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 2282.8 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-11-Title">
 <title id="MathJax-SVG-11-Title">a, b, c</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -396,11 +396,11 @@ c^4 &lt; 50,000,000 \qquad &amp;\therefore c &lt; \lfloor \sqrt[4]{50,000,000} \
  <use xlink:href="#MJMAIN-30" x="1001" y="0"></use>
 </g>
 </g>
-</svg></span> 미만의 수를 추려서 중복을 제거한 다음 개수를 세면 된다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>solve []
-  (-&gt;&gt; (for [a ps1, b ps2, c ps3] (calc a b c))
-       (filter #(&lt; % 50000000))
-       set
-       count))
+</svg></span> 미만의 수를 추려서 중복을 제거한 다음 개수를 세면 된다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">a</span> <span class="nv">ps1</span>, <span class="nv">b</span> <span class="nv">ps2</span>, <span class="nv">c</span> <span class="nv">ps3</span><span class="p">]</span> <span class="p">(</span><span class="nf">calc</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">filter </span><span class="o">#</span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">%</span> <span class="mi">50000000</span><span class="p">)</span><span class="p">)</span>
+       <span class="nv">set</span>
+       <span class="nv">count</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>실행 결과는 다음과 같다.</p><pre class="console">p087=&gt; (time (solve))
 "Elapsed time: 1304.593782 msecs"
 10??343

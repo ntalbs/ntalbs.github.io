@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 45 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 45 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -169,17 +169,17 @@ H_n &amp;= n(2n-1) \newline
 </g>
 </g>
 </g>
-</svg></span></p><p>즉, 모든 육각수는 삼각수임을 알 수 있다. 따라서 40755보다 큰 육각수 중에서 오각수도 되는 첫 수가 문제의 답이 될 것이다. 어떤 수가 오각수인지 확인하는 함수는 <a href="/2015/project-euler-044/">문제 44</a>에서 이미 작성했다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn- </span>pentagonal? [x]
-  (<span style="color:#00f">let </span>[n (-&gt; (* 24 x) (+ 1) (Math/sqrt) (+ 1) (/ 6))]
-    (== n (int n))))
+</svg></span></p><p>즉, 모든 육각수는 삼각수임을 알 수 있다. 따라서 40755보다 큰 육각수 중에서 오각수도 되는 첫 수가 문제의 답이 될 것이다. 어떤 수가 오각수인지 확인하는 함수는 <a href="/2015/project-euler-044/">문제 44</a>에서 이미 작성했다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn- </span><span class="nv">pentagonal?</span> <span class="p">[</span><span class="nv">x</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">n</span> <span class="p">(</span><span class="nb">-&gt; </span><span class="p">(</span><span class="nb">* </span><span class="mi">24</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nf">Math/sqrt</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">6</span><span class="p">)</span><span class="p">)</span><span class="p">]</span>
+    <span class="p">(</span><span class="nb">== </span><span class="nv">n</span> <span class="p">(</span><span class="nb">int </span><span class="nv">n</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>육각수 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.15ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 1356.1 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">
 <title id="MathJax-SVG-2-Title">H_n</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMATHI-48" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="1175" y="-213"></use>
 </g>
-</svg></span>을 구하는 함수는 다음과 같이 작성할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn- </span>h [n]
-  (* n (- (* 2 n) 1)))
+</svg></span>을 구하는 함수는 다음과 같이 작성할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn- </span><span class="nv">h</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">n</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="16.259ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 7000.4 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-3-Title">
 <title id="MathJax-SVG-3-Title">n=144, 145, …</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -205,11 +205,11 @@ H_n &amp;= n(2n-1) \newline
  <use xlink:href="#MJMATHI-48" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="1175" y="-213"></use>
 </g>
-</svg></span>을 구해 이 중 오각수인 것만 필터로 걸러내 그 중 첫번째 요소를 구하면 된다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>solve []
-  (-&gt;&gt; (iterate inc 144) <span style="color:green">; start from H(144)</span>
-       (map h)
-       (filter pentagonal?)
-       first))
+</svg></span>을 구해 이 중 오각수인 것만 필터로 걸러내 그 중 첫번째 요소를 구하면 된다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">iterate </span><span class="nb">inc </span><span class="mi">144</span><span class="p">)</span> <span class="c1">; start from H(144)</span>
+       <span class="p">(</span><span class="nb">map </span><span class="nv">h</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">filter </span><span class="nv">pentagonal?</span><span class="p">)</span>
+       <span class="nv">first</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>실행 결과는 다음과 같다. 충분히 빠르게 답을 구한다.</p><pre class="console">p045=&gt; (time (solve))
 "Elapsed time: 22.899174 msecs"
 15337768??

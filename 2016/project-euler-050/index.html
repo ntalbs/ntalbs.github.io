@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 50 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 50 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -296,14 +296,14 @@ s(m, n) &amp;= p_m + p_{m+1} + … + p_n \newline
 (2 3 5 7 11 13 17 19 23 29)
 p050=&gt; (take 10 (reductions + primes))
 (2 5 10 17 28 41 58 77 100 129)
-</pre><p>문제를 풀 때는 소수의 누적 합이 몇 번째 소소까지의 합인지도 알아야 하므로 다음과 같이 인덱스와 누적 합을 함께 구해 두는게 좋겠다. 누적 합이 1백만 이하인 경우만 구하면 된다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">ns </span>p050
-  (<span style="color:#a31515">:require</span> [clojure.contrib.lazy-seqs <span style="color:#a31515">:refer</span> [primes]]
-            [util <span style="color:#a31515">:refer</span> [prime?]]))
+</pre><p>문제를 풀 때는 소수의 누적 합이 몇 번째 소소까지의 합인지도 알아야 하므로 다음과 같이 인덱스와 누적 합을 함께 구해 두는게 좋겠다. 누적 합이 1백만 이하인 경우만 구하면 된다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">p050</span>
+  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">clojure.contrib.lazy-seqs</span> <span class="ss">:refer</span> <span class="p">[</span><span class="nv">primes</span><span class="p">]</span><span class="p">]</span>
+            <span class="p">[</span><span class="nv">util</span> <span class="ss">:refer</span> <span class="p">[</span><span class="nv">prime?</span><span class="p">]</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
 
-(<span style="color:#00f">def </span>csp <span style="color:#a31515">"indexes and cumulative sums of primes"</span>
-  (-&gt;&gt; primes
-       (reductions (<span style="color:#00f">fn </span>[a p] [(inc (first a)) (+ (second a) p)]) [0 0])
-       (take-while (<span style="color:#00f">fn </span>[[_ s]] (&lt; s 1000000)))))
+<span class="p">(</span><span class="k">def </span><span class="nv">csp</span> <span class="s">"indexes and cumulative sums of primes"</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">primes</span>
+       <span class="p">(</span><span class="nf">reductions</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">a</span> <span class="nv">p</span><span class="p">]</span> <span class="p">[</span><span class="p">(</span><span class="nb">inc </span><span class="p">(</span><span class="nb">first </span><span class="nv">a</span><span class="p">)</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">second </span><span class="nv">a</span><span class="p">)</span> <span class="nv">p</span><span class="p">)</span><span class="p">]</span><span class="p">)</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span><span class="p">]</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">take-while </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="p">[</span><span class="nv">_</span> <span class="nv">s</span><span class="p">]</span><span class="p">]</span> <span class="p">(</span><span class="nb">&lt; </span><span class="nv">s</span> <span class="mi">1000000</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>이렇게 구한 <code>csp</code>의 처음 열 개 항은 다음과 같다. 벡터의 시퀀스로 되어 있고 벡터의 첫 요소는 인덱스를, 둘째 요소는 소수의 누적 합을 나타낸다.</p><pre class="console">p050=&gt; (take 10 csp)
 ([0 0] [1 2] [2 5] [3 10] [4 17] [5 28] [6 41] [7 58] [8 77] [9 100])
 </pre><p>이제 모든 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.469ex" height="2.009ex" style="vertical-align: -0.671ex;" viewBox="0 -576.1 1924.2 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-18-Title">
@@ -347,14 +347,14 @@ p050=&gt; (take 10 (reductions + primes))
  <use xlink:href="#MJMATHI-6E" x="2182" y="0"></use>
  <use xlink:href="#MJMAIN-29" x="2783" y="0"></use>
 </g>
-</svg></span>을 구하면 된다. 이 로직을 코드로 표현하면 다음과 같다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>solve []
-  (-&gt;&gt; (for [csp1 csp, csp2 csp
-             <span style="color:#a31515">:let</span> [[i1 s1] csp1, [i2 s2] csp2]
-             <span style="color:#a31515">:when</span> (&lt; i1 i2)]
-         [(- i2 i1) (- s2 s1)])
-       (filter (<span style="color:#00f">fn </span>[[_ s]] (prime? s)))
-       (apply max-key first)
-       second))
+</svg></span>을 구하면 된다. 이 로직을 코드로 표현하면 다음과 같다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">csp1</span> <span class="nv">csp</span>, <span class="nv">csp2</span> <span class="nv">csp</span>
+             <span class="ss">:let</span> <span class="p">[</span><span class="p">[</span><span class="nv">i1</span> <span class="nv">s1</span><span class="p">]</span> <span class="nv">csp1</span>, <span class="p">[</span><span class="nv">i2</span> <span class="nv">s2</span><span class="p">]</span> <span class="nv">csp2</span><span class="p">]</span>
+             <span class="ss">:when</span> <span class="p">(</span><span class="nb">&lt; </span><span class="nv">i1</span> <span class="nv">i2</span><span class="p">)</span><span class="p">]</span>
+         <span class="p">[</span><span class="p">(</span><span class="nb">- </span><span class="nv">i2</span> <span class="nv">i1</span><span class="p">)</span> <span class="p">(</span><span class="nb">- </span><span class="nv">s2</span> <span class="nv">s1</span><span class="p">)</span><span class="p">]</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">filter </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="p">[</span><span class="nv">_</span> <span class="nv">s</span><span class="p">]</span><span class="p">]</span> <span class="p">(</span><span class="nf">prime?</span> <span class="nv">s</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">apply </span><span class="nb">max-key </span><span class="nv">first</span><span class="p">)</span>
+       <span class="nv">second</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>실행 결과는 다음과 같다.</p><pre class="console">p050=&gt; (time (solve))
 "Elapsed time: 535.549903 msecs"
 9976??

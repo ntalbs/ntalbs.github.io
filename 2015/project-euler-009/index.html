@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 9 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 9 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -186,12 +186,12 @@ on
  <use xlink:href="#MJMAIN-3C" x="2570" y="0"></use>
  <use xlink:href="#MJMATHI-63" x="3627" y="0"></use>
 </g>
-</svg></span>가 명시되어 있으므로 이 조건을 적용하면 루프 회수를 절반 정도로 줄일 수 있다.</p><p>따라서 다음과 같이 간단한 방법으로 문제를 풀 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>using-brute-force []
-  (first (for [a (range 1 1000)
-               b (range a 1000)
-               c [(- 1000 a b)]
-               <span style="color:#a31515">:when</span> (= (+ (* a a) (* b b)) (* c c))]
-           (* a b c))))
+</svg></span>가 명시되어 있으므로 이 조건을 적용하면 루프 회수를 절반 정도로 줄일 수 있다.</p><p>따라서 다음과 같이 간단한 방법으로 문제를 풀 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">using-brute-force</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">first </span><span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">a</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="mi">1000</span><span class="p">)</span>
+               <span class="nv">b</span> <span class="p">(</span><span class="nb">range </span><span class="nv">a</span> <span class="mi">1000</span><span class="p">)</span>
+               <span class="nv">c</span> <span class="p">[</span><span class="p">(</span><span class="nb">- </span><span class="mi">1000</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span><span class="p">]</span>
+               <span class="ss">:when</span> <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="nv">a</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">b</span> <span class="nv">b</span><span class="p">)</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">c</span> <span class="nv">c</span><span class="p">)</span><span class="p">)</span><span class="p">]</span>
+           <span class="p">(</span><span class="nb">* </span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><h2 id="-2">방법 2</h2><p><a href="http://en.wikipedia.org/wiki/Pythagorean_triple#Parent.2Fchild_relationships">Pythagorean Triplet</a>에 보면 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="7.365ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 3170.8 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-10-Title">
 <title id="MathJax-SVG-10-Title">(3, 4, 5)</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -333,16 +333,16 @@ T3 &amp;= (−a + 2b + 2c, −2a + b + 2c, −2a + 2b + 3c)
 </g>
 </g>
 </g>
-</svg></span></p><p>공식을 그대로 적용해 다음과 같이 함수를 만들 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>next-triplets [[a b c]]
-  [(sort [(+ a (* -2 b) (* 2 c))
-          (+ (* 2 a) (- b) (* 2 c))
-          (+ (* 2 a) (* -2 b) (* 3 c))])
-   (sort [(+ a (* 2 b) (* 2 c))
-          (+ (* 2 a) b (* 2 c))
-          (+ (* 2 a) (* 2 b) (* 3 c))])
-   (sort [(+ (- a) (* 2 b) (* 2 c))
-          (+ (* -2 a) b (* 2 c))
-          (+ (* -2 a) (* 2 b) (* 3 c))])])
+</svg></span></p><p>공식을 그대로 적용해 다음과 같이 함수를 만들 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">next-triplets</span> <span class="p">[</span><span class="p">[</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">]</span><span class="p">]</span>
+  <span class="p">[</span><span class="p">(</span><span class="nb">sort </span><span class="p">[</span><span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="p">(</span><span class="nb">* </span><span class="mi">-2</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">c</span><span class="p">)</span><span class="p">)</span>
+          <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nb">- </span><span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">c</span><span class="p">)</span><span class="p">)</span>
+          <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">-2</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">3</span> <span class="nv">c</span><span class="p">)</span><span class="p">)</span><span class="p">]</span><span class="p">)</span>
+   <span class="p">(</span><span class="nb">sort </span><span class="p">[</span><span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">c</span><span class="p">)</span><span class="p">)</span>
+          <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">b</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">c</span><span class="p">)</span><span class="p">)</span>
+          <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">3</span> <span class="nv">c</span><span class="p">)</span><span class="p">)</span><span class="p">]</span><span class="p">)</span>
+   <span class="p">(</span><span class="nb">sort </span><span class="p">[</span><span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">- </span><span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">c</span><span class="p">)</span><span class="p">)</span>
+          <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="mi">-2</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">b</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">c</span><span class="p">)</span><span class="p">)</span>
+          <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="mi">-2</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">3</span> <span class="nv">c</span><span class="p">)</span><span class="p">)</span><span class="p">]</span><span class="p">)</span><span class="p">]</span><span class="p">)</span>
 </code></pre></div><p>중간에 <code>sort</code>가 있는 것은 리턴하는 피타고라스 수가 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.431ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 4060.6 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-13-Title">
 <title id="MathJax-SVG-13-Title">a &lt; b &lt; c</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -423,10 +423,10 @@ T3 &amp;= (−a + 2b + 2c, −2a + b + 2c, −2a + 2b + 3c)
  <use xlink:href="#MJMAIN-35" x="2280" y="0"></use>
  <use xlink:href="#MJMAIN-29" x="2781" y="0"></use>
 </g>
-</svg></span>를 시작으로 <code>next-triplets</code>을 반복해 다음 피타고라스 수 세 개를 생성해야 한다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>primitive-triplets
-  ([ts] (<span style="color:#00f">let </span>[more (for [t ts, next-t (next-triplets t)] next-t)]
-          (lazy-cat ts (primitive-triplets more))))
-  ([] (primitive-triplets ['(3 4 5)])))
+</svg></span>를 시작으로 <code>next-triplets</code>을 반복해 다음 피타고라스 수 세 개를 생성해야 한다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">primitive-triplets</span>
+  <span class="p">(</span><span class="p">[</span><span class="nv">ts</span><span class="p">]</span> <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">more</span> <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">t</span> <span class="nv">ts</span>, <span class="nv">next-t</span> <span class="p">(</span><span class="nf">next-triplets</span> <span class="nv">t</span><span class="p">)</span><span class="p">]</span> <span class="nv">next-t</span><span class="p">)</span><span class="p">]</span>
+          <span class="p">(</span><span class="nb">lazy-cat </span><span class="nv">ts</span> <span class="p">(</span><span class="nf">primitive-triplets</span> <span class="nv">more</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+  <span class="p">(</span><span class="p">[</span><span class="p">]</span> <span class="p">(</span><span class="nf">primitive-triplets</span> <span class="p">[</span><span class="o">'</span><span class="p">(</span><span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)</span><span class="p">]</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>REPL에서 확인해보면 잘 동작한다.</p><pre class="console">user=&gt; (take 10 (primitive-triplets))
 ((3 4 5) (5 12 13) (20 21 29) (8 15 17) (7 24 25) (48 55 73) ...)
 </pre><p>그러나 위 함수를 이용해 생성한 피타고라스 수는 모두 원시 피타고라스 수다. 원시 피타고라스 수의 각 요소에 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.211ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 521.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-20-Title">
@@ -434,16 +434,16 @@ T3 &amp;= (−a + 2b + 2c, −2a + b + 2c, −2a + 2b + 3c)
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMATHI-6B" x="0" y="0"></use>
 </g>
-</svg></span>를 곱해도 여전히 피타고라스 수이므로 문제를 풀 때는 이것도 확인해야 한다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>side-sum-is-not [sum]
-  (<span style="color:#00f">fn </span>[[a b c]] (not= sum (+ a b c))))
+</svg></span>를 곱해도 여전히 피타고라스 수이므로 문제를 풀 때는 이것도 확인해야 한다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">side-sum-is-not</span> <span class="p">[</span><span class="nv">sum</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="p">[</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">]</span><span class="p">]</span> <span class="p">(</span><span class="nb">not= </span><span class="nv">sum</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 
-(<span style="color:#00f">defn </span>using-formula []
-  (-&gt;&gt; (primitive-triplets)
-       (mapcat (<span style="color:#00f">fn </span>[[a b c]] (-&gt;&gt; (for [k (range 100)] [(* k a) (* k b) (* k c)])
-                                  (drop-while (side-sum-is-not 1000)))))
-       (drop-while (side-sum-is-not 1000))
-       (first)
-       (apply *)))
+<span class="p">(</span><span class="kd">defn </span><span class="nv">using-formula</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nf">primitive-triplets</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">mapcat </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="p">[</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">]</span><span class="p">]</span> <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">k</span> <span class="p">(</span><span class="nb">range </span><span class="mi">100</span><span class="p">)</span><span class="p">]</span> <span class="p">[</span><span class="p">(</span><span class="nb">* </span><span class="nv">k</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">k</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">k</span> <span class="nv">c</span><span class="p">)</span><span class="p">]</span><span class="p">)</span>
+                                  <span class="p">(</span><span class="nb">drop-while </span><span class="p">(</span><span class="nf">side-sum-is-not</span> <span class="mi">1000</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">drop-while </span><span class="p">(</span><span class="nf">side-sum-is-not</span> <span class="mi">1000</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">first</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">apply </span><span class="nv">*</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><h2 id="heading">정리</h2><p>무차별 대입법을 사용한 코드보다 훨씬 길고 복잡해졌지만 답을 구하는 속도는 훨씬 빨라졌다. REPL에서 두 방법 모두 실행해보면 얼마나 차이가 나는지 금방 볼 수 있다.</p><pre class="console">p009=&gt; (time (using-brute-force))
 "Elapsed time: 42.426237 msecs"
 318???00

@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 68 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 68 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -206,22 +206,22 @@ on
  <use xlink:href="#MJMAIN-2C" x="12357" y="0"></use>
  <use xlink:href="#MJMATHI-62" x="12802" y="0"></use>
 </g>
-</svg></span> 순으로 숫자를 나열해 이어붙여 숫자를 만든 다음, 16자리 수 중 가장 큰 값을 구하면 답이 된다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">ns </span>p068
-  (<span style="color:#a31515">:require</span> [clojure.math.combinatorics <span style="color:#a31515">:refer</span> [permutations]]))
+</svg></span> 순으로 숫자를 나열해 이어붙여 숫자를 만든 다음, 16자리 수 중 가장 큰 값을 구하면 답이 된다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">p068</span>
+  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">clojure.math.combinatorics</span> <span class="ss">:refer</span> <span class="p">[</span><span class="nv">permutations</span><span class="p">]</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
 
-(<span style="color:#00f">defn </span>solve []
-  (-&gt;&gt; (permutations [1 2 3 4 5 6 7 8 9 10])
-       (filter (<span style="color:#00f">fn </span>[[a b c d e f g h i j]]
-                 (= (+ a b c)
-                    (+ d c e)
-                    (+ f e g)
-                    (+ h g i)
-                    (+ j i b))))
-       (filter (<span style="color:#00f">fn </span>[[a b c d e f g h i j]] (= a (min a d f h j))))
-       (map (<span style="color:#00f">fn </span>[[a b c d e f g h i j]] (apply str [a b c d c e f e g h g i j i b])))
-       (filter #(= 16 (count %)))
-       (map #(Long/parseLong %))
-       (apply max)))
+<span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nf">permutations</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">10</span><span class="p">]</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">filter </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="p">[</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span> <span class="nv">d</span> <span class="nv">e</span> <span class="nv">f</span> <span class="nv">g</span> <span class="nv">h</span> <span class="nv">i</span> <span class="nv">j</span><span class="p">]</span><span class="p">]</span>
+                 <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
+                    <span class="p">(</span><span class="nb">+ </span><span class="nv">d</span> <span class="nv">c</span> <span class="nv">e</span><span class="p">)</span>
+                    <span class="p">(</span><span class="nb">+ </span><span class="nv">f</span> <span class="nv">e</span> <span class="nv">g</span><span class="p">)</span>
+                    <span class="p">(</span><span class="nb">+ </span><span class="nv">h</span> <span class="nv">g</span> <span class="nv">i</span><span class="p">)</span>
+                    <span class="p">(</span><span class="nb">+ </span><span class="nv">j</span> <span class="nv">i</span> <span class="nv">b</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">filter </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="p">[</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span> <span class="nv">d</span> <span class="nv">e</span> <span class="nv">f</span> <span class="nv">g</span> <span class="nv">h</span> <span class="nv">i</span> <span class="nv">j</span><span class="p">]</span><span class="p">]</span> <span class="p">(</span><span class="nb">= </span><span class="nv">a</span> <span class="p">(</span><span class="nb">min </span><span class="nv">a</span> <span class="nv">d</span> <span class="nv">f</span> <span class="nv">h</span> <span class="nv">j</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="p">[</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span> <span class="nv">d</span> <span class="nv">e</span> <span class="nv">f</span> <span class="nv">g</span> <span class="nv">h</span> <span class="nv">i</span> <span class="nv">j</span><span class="p">]</span><span class="p">]</span> <span class="p">(</span><span class="nb">apply </span><span class="nb">str </span><span class="p">[</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span> <span class="nv">d</span> <span class="nv">c</span> <span class="nv">e</span> <span class="nv">f</span> <span class="nv">e</span> <span class="nv">g</span> <span class="nv">h</span> <span class="nv">g</span> <span class="nv">i</span> <span class="nv">j</span> <span class="nv">i</span> <span class="nv">b</span><span class="p">]</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">filter </span><span class="o">#</span><span class="p">(</span><span class="nb">= </span><span class="mi">16</span> <span class="p">(</span><span class="nb">count </span><span class="nv">%</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">map </span><span class="o">#</span><span class="p">(</span><span class="nf">Long/parseLong</span> <span class="nv">%</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">apply </span><span class="nv">max</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>실행 결과는 다음과 같다.</p><pre class="console">user=&gt; (time (p068/solve))
 "Elapsed time: 1971.586311 msecs"
 653103191484??25

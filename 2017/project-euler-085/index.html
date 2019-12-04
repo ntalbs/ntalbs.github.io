@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 85 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 85 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -462,18 +462,18 @@ N(m, n) &amp;= \sum_{x=1}^m N(x) \newline
  <use xlink:href="#MJMAIN-D7" x="1100" y="0"></use>
  <use xlink:href="#MJMATHI-6E" x="2101" y="0"></use>
 </g>
-</svg></span> 격자에 들어갈 수 있는 사각형의 개수를 구하는 함수는 다음과 같이 작성할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>rect-cnt [m n]
-  (/ (* m (inc m) n (inc n)) 4))
-</code></pre></div><p>격자에 포함될 수 있는 사각형의 개수가 2백만 개에 가까운 격자 크기를 구해야 하므로 다음과 같이 주어진 수와 2백만의 차(절대값)를 구하는 함수도 작성해 놓으면 도움이 될 것이다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>delta [n]
-  (Math/abs (- 2000000 n)))
-</code></pre></div><p>이제 격자 크기를 바꿔가며 격자에 포함될 수 있는 사각형의 개수가 2백만에 가장 가까운 경우를 찾으면 된다. 격자 한 변의 최대 크기를 100 이하로 구해보면 될 것 같다. 그래봤자 루프를 1만 번만 돌면 된다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>solve []
-  (<span style="color:#00f">let </span>[MAX 100]
-    (-&gt;&gt; (for [x (range 1 MAX)
-               y (range 1 MAX)
-               <span style="color:#a31515">:let</span> [cnt (rect-cnt x y)]]
-           [x y cnt (delta cnt)])
-         (apply min-key last)
-         ((<span style="color:#00f">fn </span>[[x y _ _]] (* x y))))))
+</svg></span> 격자에 들어갈 수 있는 사각형의 개수를 구하는 함수는 다음과 같이 작성할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">rect-cnt</span> <span class="p">[</span><span class="nv">m</span> <span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">* </span><span class="nv">m</span> <span class="p">(</span><span class="nb">inc </span><span class="nv">m</span><span class="p">)</span> <span class="nv">n</span> <span class="p">(</span><span class="nb">inc </span><span class="nv">n</span><span class="p">)</span><span class="p">)</span> <span class="mi">4</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><p>격자에 포함될 수 있는 사각형의 개수가 2백만 개에 가까운 격자 크기를 구해야 하므로 다음과 같이 주어진 수와 2백만의 차(절대값)를 구하는 함수도 작성해 놓으면 도움이 될 것이다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">delta</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">Math/abs</span> <span class="p">(</span><span class="nb">- </span><span class="mi">2000000</span> <span class="nv">n</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><p>이제 격자 크기를 바꿔가며 격자에 포함될 수 있는 사각형의 개수가 2백만에 가장 가까운 경우를 찾으면 된다. 격자 한 변의 최대 크기를 100 이하로 구해보면 될 것 같다. 그래봤자 루프를 1만 번만 돌면 된다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">MAX</span> <span class="mi">100</span><span class="p">]</span>
+    <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">x</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="nv">MAX</span><span class="p">)</span>
+               <span class="nv">y</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="nv">MAX</span><span class="p">)</span>
+               <span class="ss">:let</span> <span class="p">[</span><span class="nv">cnt</span> <span class="p">(</span><span class="nf">rect-cnt</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span><span class="p">]</span><span class="p">]</span>
+           <span class="p">[</span><span class="nv">x</span> <span class="nv">y</span> <span class="nv">cnt</span> <span class="p">(</span><span class="nf">delta</span> <span class="nv">cnt</span><span class="p">)</span><span class="p">]</span><span class="p">)</span>
+         <span class="p">(</span><span class="nb">apply </span><span class="nb">min-key </span><span class="nv">last</span><span class="p">)</span>
+         <span class="p">(</span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="p">[</span><span class="nv">x</span> <span class="nv">y</span> <span class="nv">_</span> <span class="nv">_</span><span class="p">]</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>실행 결과는 다음과 같다. 빠른 시간에 답을 구한다.</p><pre class="console">p085=&gt; (time (solve))
 "Elapsed time: 91.497031 msecs"
 2??2

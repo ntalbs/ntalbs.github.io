@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 4 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 4 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -86,19 +86,19 @@ on
  <use xlink:href="#MJMAIN-D7" x="4167" y="0"></use>
  <use xlink:href="#MJMATHI-61" x="5168" y="0"></use>
 </g>
-</svg></span>임을 고려해 중복을 제거하면 루프 회수를 절반으로 줄일 수 있다. 따라서 대충 풀어도 금방 답을 구할 수 있다.</p><p>먼저 대칭수인지를 판단하는 함수를 만들어 놓으면 좋을 듯 하다. 대칭수인지 판단하는 간단한 방법은 문자열로 바꾼 다음 원래 문자열과 거꾸로 바꾼 문자열이 같은지 비교하는 것이다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">ns </span>p004
-    (<span style="color:#a31515">:require</span> [clojure.string <span style="color:#a31515">:as</span> s]))
+</svg></span>임을 고려해 중복을 제거하면 루프 회수를 절반으로 줄일 수 있다. 따라서 대충 풀어도 금방 답을 구할 수 있다.</p><p>먼저 대칭수인지를 판단하는 함수를 만들어 놓으면 좋을 듯 하다. 대칭수인지 판단하는 간단한 방법은 문자열로 바꾼 다음 원래 문자열과 거꾸로 바꾼 문자열이 같은지 비교하는 것이다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">p004</span>
+    <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">clojure.string</span> <span class="ss">:as</span> <span class="nv">s</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
 
-(<span style="color:#00f">defn </span>palindrome? [n]
-  (= (str n) (s/reverse (str n))))
-</code></pre></div><p><code>clojure.string/reverse</code> 대신 <code>clojure.core/reverse</code>를 사용할 수도 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>palindrome? [n]
-  (= (str n) (apply str (reverse (str n)))))
-</code></pre></div><p>그러나 <code>clojure.core/reverse</code>는 <code>Character</code>의 시퀀스를 리턴하므로 <code>str</code> 함수를 이용해 다시 문자열로 연결해줘야 한다. 번거로울 뿐 아니라 코드도 너저분해 지고 속도도 느리다.</p><h2 id="1">방법1</h2><p>다음과 같이 무식하게 루프를 돌려도 비교적 빨리 답을 구할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">def </span>limit 1000)
+<span class="p">(</span><span class="kd">defn </span><span class="nv">palindrome?</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">str </span><span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nf">s/reverse</span> <span class="p">(</span><span class="nb">str </span><span class="nv">n</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><p><code>clojure.string/reverse</code> 대신 <code>clojure.core/reverse</code>를 사용할 수도 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">palindrome?</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">str </span><span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nb">apply </span><span class="nb">str </span><span class="p">(</span><span class="nb">reverse </span><span class="p">(</span><span class="nb">str </span><span class="nv">n</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><p>그러나 <code>clojure.core/reverse</code>는 <code>Character</code>의 시퀀스를 리턴하므로 <code>str</code> 함수를 이용해 다시 문자열로 연결해줘야 한다. 번거로울 뿐 아니라 코드도 너저분해 지고 속도도 느리다.</p><h2 id="1">방법1</h2><p>다음과 같이 무식하게 루프를 돌려도 비교적 빨리 답을 구할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="k">def </span><span class="nv">limit</span> <span class="mi">1000</span><span class="p">)</span>
 
-(<span style="color:#00f">defn </span>solve1 []
-  (-&gt;&gt; (for [a (range 100 limit) b (range a limit)] (* a b))
-       (filter palindrome?)
-       (apply max)))
+<span class="p">(</span><span class="kd">defn </span><span class="nv">solve1</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">a</span> <span class="p">(</span><span class="nb">range </span><span class="mi">100</span> <span class="nv">limit</span><span class="p">)</span> <span class="nv">b</span> <span class="p">(</span><span class="nb">range </span><span class="nv">a</span> <span class="nv">limit</span><span class="p">)</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">filter </span><span class="nv">palindrome?</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">apply </span><span class="nv">max</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><h2 id="2">방법2</h2><p>문제를 좀더 분석해보면 위 방법보다 빠르게 풀 수 있다. 세 자리 정수 둘을 곱해 만든 수는 다섯 자리 또는 여섯 자리 수가 나올 것이다. 최대값을 구하는 것이므로 여섯 자리 수에 대해 생각해보면, 대칭수는 다음과 같이 표현할 수 있다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="53.515ex" height="9.176ex" style="vertical-align: -4.005ex;" viewBox="0 -2226.5 23041.3 3950.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">
 <title id="MathJax-SVG-2-Title">%math
 \begin{aligned}
@@ -223,12 +223,12 @@ a \times b &amp;= 100000x + 10000y + 1000z + 100z + 10y + x \newline
 </g>
 </g>
 </g>
-</svg></span></p><p>11은 소수이므로 a 또는 b가 11의 배수가 되어야 한다. 따라서 a 또는 b가 11의 배수일 때만 계산하도록 하면 루프 회수를 줄일 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>solve2 []
-  (-&gt;&gt; (for [a (range 100 limit) b (range a limit)
-             <span style="color:#a31515">:when</span> (or (= 0 (mod a 11)) (= 0 (mod b 11)))]
-         (* a b))
-       (filter palindrome?)
-       (apply max)))
+</svg></span></p><p>11은 소수이므로 a 또는 b가 11의 배수가 되어야 한다. 따라서 a 또는 b가 11의 배수일 때만 계산하도록 하면 루프 회수를 줄일 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve2</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">a</span> <span class="p">(</span><span class="nb">range </span><span class="mi">100</span> <span class="nv">limit</span><span class="p">)</span> <span class="nv">b</span> <span class="p">(</span><span class="nb">range </span><span class="nv">a</span> <span class="nv">limit</span><span class="p">)</span>
+             <span class="ss">:when</span> <span class="p">(</span><span class="nb">or </span><span class="p">(</span><span class="nb">= </span><span class="mi">0</span> <span class="p">(</span><span class="nf">mod</span> <span class="nv">a</span> <span class="mi">11</span><span class="p">)</span><span class="p">)</span> <span class="p">(</span><span class="nb">= </span><span class="mi">0</span> <span class="p">(</span><span class="nf">mod</span> <span class="nv">b</span> <span class="mi">11</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">]</span>
+         <span class="p">(</span><span class="nb">* </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">filter </span><span class="nv">palindrome?</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">apply </span><span class="nv">max</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><h2 id="heading">정리</h2><p>두 방식을 실행해본 결과는 다음과 같다. 두 번째 방법으로 실행한 결과가 첫 번째 방법보다 두 배 정도 빠르다.</p><pre class="console">p004=&gt; (time (solve1))
 "Elapsed time: 78.756448 msecs"
 9066??

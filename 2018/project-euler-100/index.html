@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 100 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 100 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -328,8 +328,8 @@ n_{k+1} = 4b_k + 3n_k - 3
 </g>
 </g>
 </g>
-</svg></span></p><p>이 식은 Clojure 함수로 다음과 같이 나타낼 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>next-b [b n] (+ (* 3 b) (* 2 n) -2))
-(<span style="color:#00f">defn </span>next-n [b n] (+ (* 4 b) (* 3 n) -3))
+</svg></span></p><p>이 식은 Clojure 함수로 다음과 같이 나타낼 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">next-b</span> <span class="p">[</span><span class="nv">b</span> <span class="nv">n</span><span class="p">]</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="mi">3</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">n</span><span class="p">)</span> <span class="mi">-2</span><span class="p">)</span><span class="p">)</span>
+<span class="p">(</span><span class="kd">defn </span><span class="nv">next-n</span> <span class="p">[</span><span class="nv">b</span> <span class="nv">n</span><span class="p">]</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="mi">4</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">3</span> <span class="nv">n</span><span class="p">)</span> <span class="mi">-3</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>문제는 다음과 같이 풀 수 있다. 계속 다음 해를 구해가다 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.395ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 600.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-17-Title">
 <title id="MathJax-SVG-17-Title">n</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -350,13 +350,13 @@ n_{k+1} = 4b_k + 3n_k - 3
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMATHI-62" x="0" y="0"></use>
 </g>
-</svg></span> 값이 답이 된다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">def </span>target 1000000000000)
+</svg></span> 값이 답이 된다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="k">def </span><span class="nv">target</span> <span class="mi">1000000000000</span><span class="p">)</span>
 
-(<span style="color:#00f">defn </span>solve []
-  (<span style="color:#00f">loop </span>[b 15, n 21]
-    (<span style="color:#00f">if </span>(&lt; n target)
-      (recur (next-b b n) (next-n b n))
-      b)))
+<span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">loop </span><span class="p">[</span><span class="nv">b</span> <span class="mi">15</span>, <span class="nv">n</span> <span class="mi">21</span><span class="p">]</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">n</span> <span class="nv">target</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nf">next-b</span> <span class="nv">b</span> <span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nf">next-n</span> <span class="nv">b</span> <span class="nv">n</span><span class="p">)</span><span class="p">)</span>
+      <span class="nv">b</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>실행 결과는 다음과 같다. 빠르게 답을 구한다.</p><pre class="console">p100=&gt; (time (solve))
 "Elapsed time: 0.055501 msecs"
 75687232??73

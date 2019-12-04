@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>정수 자릿수 구하기 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>정수 자릿수 구하기 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -75,13 +75,13 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand unselectable" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a class="unselectable" href="/archive/">Archive</a></li><li><a class="unselectable" href="/tags/">Tags</a></li><li><a class="unselectable" href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2015-07-14" itemprop="datePublished">2015-07-14</time>
 on
 <a href="/tags/%ec%95%8c%ea%b3%a0%eb%a6%ac%ec%a6%98/">알고리즘</a>
-<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">정수 자릿수 구하기</h1></header><section class="post-content"><p>어떤 정수가 몇 자리 수인지 어떻게 판단할 수 있을까? 몇 가지 방법이 떠오른다. 사람에 따라 다르겠지만 내게 가장 먼저 떠오른 방법은 로그 함수를 사용하는 것이었다. 정수를 문자열로 바꾼 다음 문자열의 길이를 구하는 방법도 생각할 수 있다. 10으로 몇 번 나눌 수 있는지 확인하는 방법도 있다.</p><h2 id="---">문자열로 변환해 길이 구하기</h2><p>보통 이 방법을 가장 먼저 떠올리지 않을까 생각된다. 정수를 문자열로 바꾸는 것은 간단한 작업이고, 문자열의 길이를 구하는 것도 간단한 작업이다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>count-digits-str [n]
-  (count (str n)))
-</code></pre></div><h2 id="10---">10으로 나누어지는 횟수 구하기</h2><p>주어진 숫자가 10으로 몇 번 나누어 지는지를 확인하는 방법도 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>count-digits-div [n]
-  (<span style="color:#00f">loop </span>[n n acc 1]
-    (<span style="color:#00f">if </span>(&lt; n 10)
-      acc
-      (recur (quot n 10) (inc acc)))))
+<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">정수 자릿수 구하기</h1></header><section class="post-content"><p>어떤 정수가 몇 자리 수인지 어떻게 판단할 수 있을까? 몇 가지 방법이 떠오른다. 사람에 따라 다르겠지만 내게 가장 먼저 떠오른 방법은 로그 함수를 사용하는 것이었다. 정수를 문자열로 바꾼 다음 문자열의 길이를 구하는 방법도 생각할 수 있다. 10으로 몇 번 나눌 수 있는지 확인하는 방법도 있다.</p><h2 id="---">문자열로 변환해 길이 구하기</h2><p>보통 이 방법을 가장 먼저 떠올리지 않을까 생각된다. 정수를 문자열로 바꾸는 것은 간단한 작업이고, 문자열의 길이를 구하는 것도 간단한 작업이다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">count-digits-str</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">count </span><span class="p">(</span><span class="nb">str </span><span class="nv">n</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><h2 id="10---">10으로 나누어지는 횟수 구하기</h2><p>주어진 숫자가 10으로 몇 번 나누어 지는지를 확인하는 방법도 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">count-digits-div</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">loop </span><span class="p">[</span><span class="nv">n</span> <span class="nv">n</span> <span class="nv">acc</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">n</span> <span class="mi">10</span><span class="p">)</span>
+      <span class="nv">acc</span>
+      <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">quot </span><span class="nv">n</span> <span class="mi">10</span><span class="p">)</span> <span class="p">(</span><span class="nb">inc </span><span class="nv">acc</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><h2 id="-">상용로그 사용</h2><p>상용로그(밑이 10인 로그)를 사용해 자릿수를 구하는 것도 가능하다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="35.298ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 15197.9 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">%math
 \begin{aligned}
@@ -127,10 +127,10 @@ on
 </g>
 </g>
 </g>
-</svg></span></p><p>따라서 코드는 다음과 같이 쓸 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>count-digits-log [n]
-  (<span style="color:#00f">if </span>(= n 0)
-     1
-     (inc (int (Math/log10 n)))))
+</svg></span></p><p>따라서 코드는 다음과 같이 쓸 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">count-digits-log</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">0</span><span class="p">)</span>
+     <span class="mi">1</span>
+     <span class="p">(</span><span class="nb">inc </span><span class="p">(</span><span class="nb">int </span><span class="p">(</span><span class="nf">Math/log10</span> <span class="nv">n</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="13.199ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 5682.9 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">
 <title id="MathJax-SVG-2-Title">log_{10} 0 = -\infty</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -148,18 +148,18 @@ on
  <use xlink:href="#MJMAIN-2212" x="3903" y="0"></use>
  <use xlink:href="#MJMAIN-221E" x="4682" y="0"></use>
 </g>
-</svg></span>이므로 입력이 0인 경우에 대해서는 별도로 처리해야 한다.</p><h2 id="-if">무적의 if</h2><p>숫가자 특정 범위 내에서만 주어진다면 <code>if</code>를 사용해 구현하는 것도 가능하다. Clojure에서는 <code>if</code> 대신 <code>cond</code>나 <code>condp</code>를 사용할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>count-digits-if [n]
-  (cond (&lt; n 10) 1
-        (&lt; n 100) 2
-        (&lt; n 1000) 3
-        (&lt; n 10000) 4
-        (&lt; n 100000) 5
-        (&lt; n 1000000) 6
-        (&lt; n 10000000) 7
-        (&lt; n 100000000) 8
-        (&lt; n 1000000000) 9
-        (&lt; n 10000000000) 10
-        <span style="color:#a31515">:else</span> (count (str n))))
+</svg></span>이므로 입력이 0인 경우에 대해서는 별도로 처리해야 한다.</p><h2 id="-if">무적의 if</h2><p>숫가자 특정 범위 내에서만 주어진다면 <code>if</code>를 사용해 구현하는 것도 가능하다. Clojure에서는 <code>if</code> 대신 <code>cond</code>나 <code>condp</code>를 사용할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">count-digits-if</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">n</span> <span class="mi">10</span><span class="p">)</span> <span class="mi">1</span>
+        <span class="p">(</span><span class="nb">&lt; </span><span class="nv">n</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">2</span>
+        <span class="p">(</span><span class="nb">&lt; </span><span class="nv">n</span> <span class="mi">1000</span><span class="p">)</span> <span class="mi">3</span>
+        <span class="p">(</span><span class="nb">&lt; </span><span class="nv">n</span> <span class="mi">10000</span><span class="p">)</span> <span class="mi">4</span>
+        <span class="p">(</span><span class="nb">&lt; </span><span class="nv">n</span> <span class="mi">100000</span><span class="p">)</span> <span class="mi">5</span>
+        <span class="p">(</span><span class="nb">&lt; </span><span class="nv">n</span> <span class="mi">1000000</span><span class="p">)</span> <span class="mi">6</span>
+        <span class="p">(</span><span class="nb">&lt; </span><span class="nv">n</span> <span class="mi">10000000</span><span class="p">)</span> <span class="mi">7</span>
+        <span class="p">(</span><span class="nb">&lt; </span><span class="nv">n</span> <span class="mi">100000000</span><span class="p">)</span> <span class="mi">8</span>
+        <span class="p">(</span><span class="nb">&lt; </span><span class="nv">n</span> <span class="mi">1000000000</span><span class="p">)</span> <span class="mi">9</span>
+        <span class="p">(</span><span class="nb">&lt; </span><span class="nv">n</span> <span class="mi">10000000000</span><span class="p">)</span> <span class="mi">10</span>
+        <span class="ss">:else</span> <span class="p">(</span><span class="nb">count </span><span class="p">(</span><span class="nb">str </span><span class="nv">n</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>11자리 이상의 숫자에 대해서는 문자열로 변환해 길이를 구하도록 했다. 다른 방법에 비해 길이는 길지만 코드는 직관적이라 할 수 있겠다.</p><h2 id="heading">참고</h2><ul><li><a href="http://stackoverflow.com/questions/11922686/is-there-a-scala-way-to-get-the-length-of-a-number/11922854#11922854">Is there a Scala-way to get the length of a number?</a>
 Scala로 정수 자릿수를 구하는 방법을 묻는 질문. 답변 중 위의 <code>if</code>를 사용한 것과 비슷한 방법이 있다.</li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>

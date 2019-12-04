@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 64 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 64 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -322,13 +322,13 @@ a_{n+1} &amp;= \left \lfloor \frac{a_0 + m_{n+1}}{d_{n+1}} \right \rfloor
  <use transform="scale(0.707)" xlink:href="#MJMAIN-30" x="748" y="-213"></use>
 </g>
 </g>
-</svg></span>가 되면 반복이 끝난다. 이 알고리즘을 다음과 같이 Clojure 함수로 옮길 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>expand-continued-fraction [n]
-  (<span style="color:#00f">let </span>[a0 (int (Math/sqrt n))]
-    (<span style="color:#00f">loop </span>[m 0, d 1, a a0, acc [a0]]
-      (<span style="color:#00f">if </span>(= a (* 2 a0))
-        acc
-        (<span style="color:#00f">let </span>[m (- (* d a) m), d (/ (- n (* m m)) d), a (int (/ (+ a0 m) d))]
-          (recur m d a (conj acc a)))))))
+</svg></span>가 되면 반복이 끝난다. 이 알고리즘을 다음과 같이 Clojure 함수로 옮길 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">expand-continued-fraction</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">a0</span> <span class="p">(</span><span class="nb">int </span><span class="p">(</span><span class="nf">Math/sqrt</span> <span class="nv">n</span><span class="p">)</span><span class="p">)</span><span class="p">]</span>
+    <span class="p">(</span><span class="k">loop </span><span class="p">[</span><span class="nv">m</span> <span class="mi">0</span>, <span class="nv">d</span> <span class="mi">1</span>, <span class="nv">a</span> <span class="nv">a0</span>, <span class="nv">acc</span> <span class="p">[</span><span class="nv">a0</span><span class="p">]</span><span class="p">]</span>
+      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">a</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">a0</span><span class="p">)</span><span class="p">)</span>
+        <span class="nv">acc</span>
+        <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">m</span> <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nb">* </span><span class="nv">d</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">m</span><span class="p">)</span>, <span class="nv">d</span> <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="p">(</span><span class="nb">* </span><span class="nv">m</span> <span class="nv">m</span><span class="p">)</span><span class="p">)</span> <span class="nv">d</span><span class="p">)</span>, <span class="nv">a</span> <span class="p">(</span><span class="nb">int </span><span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">+ </span><span class="nv">a0</span> <span class="nv">m</span><span class="p">)</span> <span class="nv">d</span><span class="p">)</span><span class="p">)</span><span class="p">]</span>
+          <span class="p">(</span><span class="nf">recur</span> <span class="nv">m</span> <span class="nv">d</span> <span class="nv">a</span> <span class="p">(</span><span class="nb">conj </span><span class="nv">acc</span> <span class="nv">a</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>이제 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="10.974ex" height="2.343ex" style="vertical-align: -0.505ex;" viewBox="0 -791.3 4725.1 1008.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-6-Title">
 <title id="MathJax-SVG-6-Title">N \le 10000</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -352,14 +352,14 @@ a_{n+1} &amp;= \left \lfloor \frac{a_0 + m_{n+1}}{d_{n+1}} \right \rfloor
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMAIN-30" x="0" y="0"></use>
 </g>
-</svg></span>이 되는 경우가 생겨 <code>ArithmeticException</code>이 발생하므로 완전제곱수는 제외하고 계산해야 한다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>square [x] (* x x))
+</svg></span>이 되는 경우가 생겨 <code>ArithmeticException</code>이 발생하므로 완전제곱수는 제외하고 계산해야 한다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">square</span> <span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">)</span><span class="p">)</span>
 
-(<span style="color:#00f">defn </span>solve []
-  (-&gt;&gt; (range 2 (inc 10000))
-       (filter #(not= % (square (int (Math/sqrt %)))))
-       (map expand-continued-fraction)
-       (filter #(even? (count %)))
-       count))
+<span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">range </span><span class="mi">2</span> <span class="p">(</span><span class="nb">inc </span><span class="mi">10000</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">filter </span><span class="o">#</span><span class="p">(</span><span class="nb">not= </span><span class="nv">%</span> <span class="p">(</span><span class="nf">square</span> <span class="p">(</span><span class="nb">int </span><span class="p">(</span><span class="nf">Math/sqrt</span> <span class="nv">%</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">map </span><span class="nv">expand-continued-fraction</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">filter </span><span class="o">#</span><span class="p">(</span><span class="nf">even?</span> <span class="p">(</span><span class="nb">count </span><span class="nv">%</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+       <span class="nv">count</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>실행 결과는 다음과 같다.</p><pre class="console">p064&gt; (time (solve))
 "Elapsed time: 135.54102 msecs"
 1?22

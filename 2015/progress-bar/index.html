@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>블로그에 Progress Bar 추가하기 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>블로그에 Progress Bar 추가하기 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -75,46 +75,46 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand unselectable" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a class="unselectable" href="/archive/">Archive</a></li><li><a class="unselectable" href="/tags/">Tags</a></li><li><a class="unselectable" href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2015-07-02" itemprop="datePublished">2015-07-02</time>
 on
 <a href="/tags/javascript/">JavaScript</a>
-<a href="/tags/hexo/">Hexo</a></p><h1 class="post-title">블로그에 Progress Bar 추가하기</h1></header><section class="post-content"><p><a href="http://blog.weirdx.io">이상한 모임</a> 사이트에서 글을 읽을 때 상단에 프로그레스 바(progress bar)가 표시되는 것을 발견했다. 스크롤해서 글을 읽어감에 따라 글을 얼마나 읽었는지, 얼마나 남았는지를 쉽게 알 수 있어 매우 마음에 들었다. 내 블로그에도 이걸 적용하면 좋겠다는 생각이 들어 툭탁툭탁 만들어 봤다.</p><h2 id="heading">마크업</h2><p>마크업은 다음과 같이 구성한다. <code>#progress</code>의 높이는 처음에는 <code>8px</code>였다가 어느 정도 스크롤되면 <code>36px</code>로 글의 제목을 표시할 만큼 두껍게 바꿀 것이다. <code>#progress</code> 안에는 <code>#bar</code>가 있는데, 이걸 사용해 진행률을 표시할 것이다. 처음에는 <code>width</code>를 <code>0%</code>로 했다가 스크롤되어 글의 마지막 부분이 화면에 표시될 때 <code>100%</code>로 맞추면 된다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;div id=<span style="color:#a31515">"progress"</span> style=<span style="color:#a31515">"height: 8px;"</span>&gt;
-  &lt;div id=<span style="color:#a31515">"bar"</span> style=<span style="color:#a31515">"width: 0%;"</span>&gt;&lt;/div&gt;
-  &lt;div class=<span style="color:#a31515">"container"</span>&gt;
-    &lt;div id=<span style="color:#a31515">"scroll-title"</span>&gt;제목&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-</code></pre></div><p><code>#scroll-title</code>은 글의 제목을 표시할 요소다. 처음에는 두께가 얇에서 제목이 보이지 않지만 스크롤해 글의 제목이 브라우저 창 위로 올라가 보이지 않게 되면 프로그레스 바의 두께를 두껍게 변경해 여기에 제목이 표시되게 한다.</p><h2 id="css">CSS</h2><p><code>#progress</code>와 <code>#bar</code>, <code>#scroll-title</code>의 스타일은 다음과 같이 지정한다. <code>#bar</code>와 <code>#scroll-title</code>은 겹쳐 있어야 하므로 모두 <code>position</code>을 <code>absolute</code>로 하고 <code>top</code>을 <code>0</code>으로 지정했다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">#progress {
-  <span style="color:#00f">background</span>: rgba(0,0,0,0.2);
-  <span style="color:#00f">height</span>: 8<span style="color:#2b91af">px</span>;
-  <span style="color:#00f">left</span>: 0;
-  <span style="color:#00f">overflow</span>: <span style="color:#00f">hidden</span>;
-  <span style="color:#00f">position</span>: <span style="color:#00f">fixed</span>;
-  <span style="color:#00f">top</span>: 50<span style="color:#2b91af">px</span>;
-  <span style="color:#00f">-moz-</span><span style="color:#00f">transition</span>: <span style="color:#00f">all</span> .3<span style="color:#2b91af">s</span> <span style="color:#00f">ease</span>;
-  <span style="color:#00f">-ms-</span><span style="color:#00f">transition</span>: <span style="color:#00f">all</span> .3<span style="color:#2b91af">s</span> <span style="color:#00f">ease</span>;
-  <span style="color:#00f">-o-</span><span style="color:#00f">transition</span>: <span style="color:#00f">all</span> .3<span style="color:#2b91af">s</span> <span style="color:#00f">ease</span>;
-  <span style="color:#00f">transition</span>: <span style="color:#00f">all</span> .3<span style="color:#2b91af">s</span> <span style="color:#00f">ease</span>;
-  <span style="color:#00f">width</span>: 100<span style="color:#2b91af">%</span>;
-  <span style="color:#00f">z-index</span>: 900;
-}
+<a href="/tags/hexo/">Hexo</a></p><h1 class="post-title">블로그에 Progress Bar 추가하기</h1></header><section class="post-content"><p><a href="http://blog.weirdx.io">이상한 모임</a> 사이트에서 글을 읽을 때 상단에 프로그레스 바(progress bar)가 표시되는 것을 발견했다. 스크롤해서 글을 읽어감에 따라 글을 얼마나 읽었는지, 얼마나 남았는지를 쉽게 알 수 있어 매우 마음에 들었다. 내 블로그에도 이걸 적용하면 좋겠다는 생각이 들어 툭탁툭탁 만들어 봤다.</p><h2 id="heading">마크업</h2><p>마크업은 다음과 같이 구성한다. <code>#progress</code>의 높이는 처음에는 <code>8px</code>였다가 어느 정도 스크롤되면 <code>36px</code>로 글의 제목을 표시할 만큼 두껍게 바꿀 것이다. <code>#progress</code> 안에는 <code>#bar</code>가 있는데, 이걸 사용해 진행률을 표시할 것이다. 처음에는 <code>width</code>를 <code>0%</code>로 했다가 스크롤되어 글의 마지막 부분이 화면에 표시될 때 <code>100%</code>로 맞추면 된다.</p><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">"progress"</span> <span class="na">style</span><span class="o">=</span><span class="s">"height: 8px;"</span><span class="p"></span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">"bar"</span> <span class="na">style</span><span class="o">=</span><span class="s">"width: 0%;"</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"container"</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">"scroll-title"</span><span class="p"></span><span class="p">&gt;</span>제목<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><p><code>#scroll-title</code>은 글의 제목을 표시할 요소다. 처음에는 두께가 얇에서 제목이 보이지 않지만 스크롤해 글의 제목이 브라우저 창 위로 올라가 보이지 않게 되면 프로그레스 바의 두께를 두껍게 변경해 여기에 제목이 표시되게 한다.</p><h2 id="css">CSS</h2><p><code>#progress</code>와 <code>#bar</code>, <code>#scroll-title</code>의 스타일은 다음과 같이 지정한다. <code>#bar</code>와 <code>#scroll-title</code>은 겹쳐 있어야 하므로 모두 <code>position</code>을 <code>absolute</code>로 하고 <code>top</code>을 <code>0</code>으로 지정했다.</p><div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">#</span><span class="nn">progress</span> <span class="p">{</span>
+  <span class="k">background</span><span class="p">:</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">overflow</span><span class="p">:</span> <span class="kc">hidden</span><span class="p">;</span>
+  <span class="k">position</span><span class="p">:</span> <span class="kc">fixed</span><span class="p">;</span>
+  <span class="k">top</span><span class="p">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+  <span class="kp">-moz-</span><span class="k">transition</span><span class="p">:</span> <span class="kc">all</span> <span class="mf">.3</span><span class="kt">s</span> <span class="kc">ease</span><span class="p">;</span>
+  <span class="kp">-ms-</span><span class="k">transition</span><span class="p">:</span> <span class="kc">all</span> <span class="mf">.3</span><span class="kt">s</span> <span class="kc">ease</span><span class="p">;</span>
+  <span class="kp">-o-</span><span class="k">transition</span><span class="p">:</span> <span class="kc">all</span> <span class="mf">.3</span><span class="kt">s</span> <span class="kc">ease</span><span class="p">;</span>
+  <span class="k">transition</span><span class="p">:</span> <span class="kc">all</span> <span class="mf">.3</span><span class="kt">s</span> <span class="kc">ease</span><span class="p">;</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+  <span class="k">z-index</span><span class="p">:</span> <span class="mi">900</span><span class="p">;</span>
+<span class="p">}</span>
 
-#bar {
-  <span style="color:#00f">background-color</span>: #0898b3;
-  <span style="color:#00f">height</span>: 100<span style="color:#2b91af">%</span>;
-  <span style="color:#00f">position</span>: <span style="color:#00f">absolute</span>;
-  <span style="color:#00f">top</span>: 0;
-  <span style="color:#00f">-webkit-</span><span style="color:#00f">transition</span>: <span style="color:#00f">all</span> .3<span style="color:#2b91af">s</span>;
-  <span style="color:#00f">-moz-</span><span style="color:#00f">transition</span>: <span style="color:#00f">all</span> .3<span style="color:#2b91af">s</span>;
-  <span style="color:#00f">-o-</span><span style="color:#00f">transition</span>: <span style="color:#00f">all</span> .3<span style="color:#2b91af">s</span>;
-  <span style="color:#00f">-ms-</span><span style="color:#00f">transition</span>: <span style="color:#00f">all</span> .3<span style="color:#2b91af">s</span>;
-  <span style="color:#00f">transition</span>: <span style="color:#00f">all</span> .3<span style="color:#2b91af">s</span>;
-  <span style="color:#00f">width</span>: 0;
-}
+<span class="p">#</span><span class="nn">bar</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="p">:</span> <span class="mh">#0898b3</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+  <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
+  <span class="k">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kp">-webkit-</span><span class="k">transition</span><span class="p">:</span> <span class="kc">all</span> <span class="mf">.3</span><span class="kt">s</span><span class="p">;</span>
+  <span class="kp">-moz-</span><span class="k">transition</span><span class="p">:</span> <span class="kc">all</span> <span class="mf">.3</span><span class="kt">s</span><span class="p">;</span>
+  <span class="kp">-o-</span><span class="k">transition</span><span class="p">:</span> <span class="kc">all</span> <span class="mf">.3</span><span class="kt">s</span><span class="p">;</span>
+  <span class="kp">-ms-</span><span class="k">transition</span><span class="p">:</span> <span class="kc">all</span> <span class="mf">.3</span><span class="kt">s</span><span class="p">;</span>
+  <span class="k">transition</span><span class="p">:</span> <span class="kc">all</span> <span class="mf">.3</span><span class="kt">s</span><span class="p">;</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 
-#scroll-title {
-  <span style="color:#00f">color</span>: <span style="color:#00f">white</span>;
-  <span style="color:#00f">position</span>: <span style="color:#00f">absolute</span>;
-  <span style="color:#00f">top</span>: 0<span style="color:#2b91af">px</span>;
-  <span style="color:#00f">padding</span>: 5<span style="color:#2b91af">px</span> 0;
-}
+<span class="p">#</span><span class="nn">scroll-title</span> <span class="p">{</span>
+  <span class="k">color</span><span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
+  <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
+  <span class="k">top</span><span class="p">:</span> <span class="mi">0</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">padding</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div><p>트랜지션을 사용하면 프로그레스 바의 높이나 진행률을 변경할 때 좀더 부드럽게 보인다.</p><h2 id="heading1">로직</h2><p>페이지가 스크롤될 때 이벤트를 받아 지행률을 계산하고 <code>#bar</code>의 <code>width</code>를 변경해야 한다. 처음에 문서가 표시되었을 때는 진행률을 <code>0%</code>로, 글의 마지막 부분이 화면에 표시되면 <code>100%</code>로 표시해야 한다.</p><p><img src="/2015/07-02-progress-bar/scroll.png" alt=""></p><p>글의 안보이는 부분을 기준으로 생각하면 진행률 쉽게 구할 수 있다. 안 보이는 부분이 없으면 <code>100%</code>가 되는 것이다. 다만 안 보이는 부분의 높이를 바로 알 수는 없으므로 약간의 계산이 필요하다. <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.748ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 1183.1 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">h_w</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -253,26 +253,26 @@ progress = \frac{y}{base} \times 100, (%)
 </g>
 </g>
 </g>
-</svg></span></p><h2 id="javascript">JavaScript</h2><p>실제 적용된 JavaScript 코드는 다음과 같다. 설명한 공식을 이용했지만, <code>base</code>가 음수가 되거나 <code>progress</code>가 100 이상이 되는 것은 의미가 없으므로 <code>Math.max</code>, <code>Math.min</code>을 사용해 <code>base</code>와 <code>progress</code>가 특정 범위를 벗어나지 않도록 했다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> threshold = $(<span style="color:#a31515">'h1'</span>).offset().top + $(<span style="color:#a31515">'h1'</span>).height() - $(<span style="color:#a31515">'nav'</span>).height(),
-    $postContent = $(<span style="color:#a31515">'.post-content'</span>),
-    ph = $postContent.height(),       <span style="color:green">// post height
-</span><span style="color:green"></span>    wh = $(window).height();          <span style="color:green">// window height
-</span><span style="color:green"></span>
-$(document).scroll(<span style="color:#00f">function</span> () {
-  <span style="color:#00f">if</span> (!$postContent.length) <span style="color:#00f">return</span>;
+</svg></span></p><h2 id="javascript">JavaScript</h2><p>실제 적용된 JavaScript 코드는 다음과 같다. 설명한 공식을 이용했지만, <code>base</code>가 음수가 되거나 <code>progress</code>가 100 이상이 되는 것은 의미가 없으므로 <code>Math.max</code>, <code>Math.min</code>을 사용해 <code>base</code>와 <code>progress</code>가 특정 범위를 벗어나지 않도록 했다.</p><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">threshold</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'h1'</span><span class="p">)</span><span class="p">.</span><span class="nx">offset</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'h1'</span><span class="p">)</span><span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="p">)</span> <span class="o">-</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'nav'</span><span class="p">)</span><span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="p">)</span><span class="p">,</span>
+    <span class="nx">$postContent</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.post-content'</span><span class="p">)</span><span class="p">,</span>
+    <span class="nx">ph</span> <span class="o">=</span> <span class="nx">$postContent</span><span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="p">)</span><span class="p">,</span>       <span class="c1">// post height
+</span><span class="c1"></span>    <span class="nx">wh</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">)</span><span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>          <span class="c1">// window height
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">)</span><span class="p">.</span><span class="nx">scroll</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">$postContent</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
-  <span style="color:#00f">var</span> offsetTop = $postContent.offset().top,
-      y = $(document).scrollTop(),
-      base = Math.max(5, offsetTop + ph - wh),
-      progress = Math.min(100, y / base * 100);
-  $(<span style="color:#a31515">'#bar'</span>).css({width: progress + <span style="color:#a31515">'%'</span>});
+  <span class="kd">var</span> <span class="nx">offsetTop</span> <span class="o">=</span> <span class="nx">$postContent</span><span class="p">.</span><span class="nx">offset</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="nx">top</span><span class="p">,</span>
+      <span class="nx">y</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">)</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">(</span><span class="p">)</span><span class="p">,</span>
+      <span class="nx">base</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nx">offsetTop</span> <span class="o">+</span> <span class="nx">ph</span> <span class="o">-</span> <span class="nx">wh</span><span class="p">)</span><span class="p">,</span>
+      <span class="nx">progress</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="nx">y</span> <span class="o">/</span> <span class="nx">base</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">'#bar'</span><span class="p">)</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="p">{</span><span class="nx">width</span><span class="o">:</span> <span class="nx">progress</span> <span class="o">+</span> <span class="s1">'%'</span><span class="p">}</span><span class="p">)</span><span class="p">;</span>
 
-  <span style="color:#00f">if</span> (y &lt;= threshold) {
-    $(<span style="color:#a31515">'#progress'</span>).height(<span style="color:#a31515">'8px'</span>);
-  } <span style="color:#00f">else</span> {
-    $(<span style="color:#a31515">'#progress'</span>).height(<span style="color:#a31515">'36px'</span>);
-  }
-});
+  <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&lt;=</span> <span class="nx">threshold</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#progress'</span><span class="p">)</span><span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="s1">'8px'</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#progress'</span><span class="p">)</span><span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="s1">'36px'</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span><span class="p">)</span><span class="p">;</span>
 </code></pre></div><p><code>threshold</code>는 글의 제목이 위로 올라가 안 보이게 되는 높이를 뜻한다. 처음에는 프로그레스 바의 높이가 <code>8px</code>였다 <code>threshold</code> 이상 스크롤 되면 <code>36px</code>로 두껍게 바꿔 프로그레스 바 안에 글의 제목이 보이게 한다.</p><h1 id="heading2">정리</h1><ul><li>마크업 구조가 이상한 모임 사이트와 조금 다르기는 하지만 잘 동작한다. 작업도 재미있었고, 블로그가 훨씬 나아진 것 같다. 이 블로그의 테마를 직접 만들어 사용했기 때문에 프로그레스 바를 붙이는 것도 어려운 작업은 아니었다.</li><li>이상한 모임 사이트에서는 글을 읽는데 걸리는 시간까지 표시해 준다. 이것도 따라 할까 하다 말았다. 글 읽는데 걸리는 시간은 사람마다 다를 것이다. 자세히 읽는 사람도 있겠지만 대부분은 그냥 휘리릭 스크롤 한 번 하고는 창을 닫을 것 같다. 따라서 글을 읽는데 걸리는 시간을 표시하는 게 무의미해 보였다.</li><li>예쁘게 보이게 하려고 노력했지만 색깔은 여전히 촌스럽다.</li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2015/number-of-digits/" id="article-nav-newer">정수 자릿수 구하기</a>

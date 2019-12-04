@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 91 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 91 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -449,11 +449,11 @@ on
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMATHI-79" x="0" y="0"></use>
 </g>
-</svg></span>축 위에 있지 않은 점의 집합은 다음과 같이 구할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">def </span>LIMIT 50)
+</svg></span>축 위에 있지 않은 점의 집합은 다음과 같이 구할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="k">def </span><span class="nv">LIMIT</span> <span class="mi">50</span><span class="p">)</span>
 
-(<span style="color:#00f">def </span>points
-  (for [x (range 1 (inc LIMIT)) y (range 1 (inc LIMIT))]
-    [x y]))
+<span class="p">(</span><span class="k">def </span><span class="nv">points</span>
+  <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">x</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="p">(</span><span class="nb">inc </span><span class="nv">LIMIT</span><span class="p">)</span><span class="p">)</span> <span class="nv">y</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="p">(</span><span class="nb">inc </span><span class="nv">LIMIT</span><span class="p">)</span><span class="p">)</span><span class="p">]</span>
+    <span class="p">[</span><span class="nv">x</span> <span class="nv">y</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>이제 직선 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.798ex" height="3.009ex" style="vertical-align: -0.338ex;" viewBox="0 -1150.1 1635.4 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-39-Title">
 <title id="MathJax-SVG-39-Title">\overline{OP}</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -685,8 +685,8 @@ y = - \frac{a}{b} x + b + \frac{a^2}{b}
  <use transform="scale(0.707)" xlink:href="#MJMAIN-AF" x="1712" y="0"></use>
 </g>
 </g>
-</svg></span>에 수직이며 점 P를 지나는 직선의 방정식을 리턴하는 함수는 다음과 같이 작성할 수 있다. 전위 표기법을 사용해 수식을 읽기가 거지 같긴 하지만, 위에서 구한 직선의 방정식을 Clojre 코드로 옮긴 것일 뿐이다. 이 함수는 함수를 리턴하는 함수임에 유의한다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>fn-line-perpendicular-to [[a b]]
-  (<span style="color:#00f">fn </span>[x] (+ (/ (* (- a) x) b) b (/ (* a a) b))))
+</svg></span>에 수직이며 점 P를 지나는 직선의 방정식을 리턴하는 함수는 다음과 같이 작성할 수 있다. 전위 표기법을 사용해 수식을 읽기가 거지 같긴 하지만, 위에서 구한 직선의 방정식을 Clojre 코드로 옮긴 것일 뿐이다. 이 함수는 함수를 리턴하는 함수임에 유의한다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">fn-line-perpendicular-to</span> <span class="p">[</span><span class="p">[</span><span class="nv">a</span> <span class="nv">b</span><span class="p">]</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nb">- </span><span class="nv">a</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">b</span> <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">* </span><span class="nv">a</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">b</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>이제 P에 각 점을 대입하면서 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.798ex" height="3.009ex" style="vertical-align: -0.338ex;" viewBox="0 -1150.1 1635.4 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-54-Title">
 <title id="MathJax-SVG-54-Title">\overline{OP}</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -734,19 +734,19 @@ y = - \frac{a}{b} x + b + \frac{a^2}{b}
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMATHI-79" x="0" y="0"></use>
 </g>
-</svg></span>를 구할 때 P = Q인 경우는 제외해야 하므로 개수에서 1을 빼야 한다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>solve []
-  (-&gt;&gt; points
-       (map fn-line-perpendicular-to)
-       (map (<span style="color:#00f">fn </span>[f] (-&gt;&gt; (range (inc LIMIT))
-                         (map f)
-                         (filter integer?)
-                         (filter #(&lt;= 0 % 50))
-                         count
-                         dec))) <span style="color:green">; P=Q인 경우는 제외</span>
-       (apply +)
-       (+ 2500)   <span style="color:green">; P, Q가 각각 x축, y축에 있는 경우</span>
-       (+ 2500)   <span style="color:green">; P는 x축, Q는 1사분면 안에 있는 경우</span>
-       (+ 2500))) <span style="color:green">; P는 y축, Q는 1사분면 안에 있는 경우</span>
+</svg></span>를 구할 때 P = Q인 경우는 제외해야 하므로 개수에서 1을 빼야 한다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">points</span>
+       <span class="p">(</span><span class="nb">map </span><span class="nv">fn-line-perpendicular-to</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">f</span><span class="p">]</span> <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">range </span><span class="p">(</span><span class="nb">inc </span><span class="nv">LIMIT</span><span class="p">)</span><span class="p">)</span>
+                         <span class="p">(</span><span class="nb">map </span><span class="nv">f</span><span class="p">)</span>
+                         <span class="p">(</span><span class="nb">filter </span><span class="nv">integer?</span><span class="p">)</span>
+                         <span class="p">(</span><span class="nb">filter </span><span class="o">#</span><span class="p">(</span><span class="nb">&lt;= </span><span class="mi">0</span> <span class="nv">%</span> <span class="mi">50</span><span class="p">)</span><span class="p">)</span>
+                         <span class="nv">count</span>
+                         <span class="nv">dec</span><span class="p">)</span><span class="p">)</span><span class="p">)</span> <span class="c1">; P=Q인 경우는 제외</span>
+       <span class="p">(</span><span class="nb">apply </span><span class="nv">+</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="mi">2500</span><span class="p">)</span>   <span class="c1">; P, Q가 각각 x축, y축에 있는 경우</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="mi">2500</span><span class="p">)</span>   <span class="c1">; P는 x축, Q는 1사분면 안에 있는 경우</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="mi">2500</span><span class="p">)</span><span class="p">)</span><span class="p">)</span> <span class="c1">; P는 y축, Q는 1사분면 안에 있는 경우</span>
 </code></pre></div><p>실행 결과는 다음과 같다.</p><pre class="console">p091=&gt; (time (solve))
 "Elapsed time: 98.809821 msecs"
 ??234

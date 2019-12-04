@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 86 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 86 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -337,29 +337,29 @@ c - \lfloor \frac{l-1}{2} \rfloor &amp; \mbox{if } l &gt; c
 </g>
 </g>
 </g>
-</svg></span></p><p>Clojure 코드로는 다음과 작성할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">ns </span>p086
-  (<span style="color:#a31515">:require</span> [util <span style="color:#a31515">:refer</span> [perfect-square?]]))
+</svg></span></p><p>Clojure 코드로는 다음과 작성할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">p086</span>
+  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">util</span> <span class="ss">:refer</span> <span class="p">[</span><span class="nv">perfect-square?</span><span class="p">]</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
 
-(<span style="color:#00f">defn </span>cnt [c]
-  (apply +
-         (for [l (range 3 (inc (* 2 c))) <span style="color:green">; l &lt;= a+b</span>
-               <span style="color:#a31515">:when</span> (perfect-square? (+ (* c c) (* l l)))]
-           (<span style="color:#00f">if </span>(&lt;= l c)
-             (quot l 2)
-             (- c (quot (- l 1) 2))))))
+<span class="p">(</span><span class="kd">defn </span><span class="nv">cnt</span> <span class="p">[</span><span class="nv">c</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">apply </span><span class="nv">+</span>
+         <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">l</span> <span class="p">(</span><span class="nb">range </span><span class="mi">3</span> <span class="p">(</span><span class="nb">inc </span><span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">c</span><span class="p">)</span><span class="p">)</span><span class="p">)</span> <span class="c1">; l &lt;= a+b</span>
+               <span class="ss">:when</span> <span class="p">(</span><span class="nf">perfect-square?</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="nv">c</span> <span class="nv">c</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">l</span> <span class="nv">l</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">]</span>
+           <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&lt;= </span><span class="nv">l</span> <span class="nv">c</span><span class="p">)</span>
+             <span class="p">(</span><span class="nb">quot </span><span class="nv">l</span> <span class="mi">2</span><span class="p">)</span>
+             <span class="p">(</span><span class="nb">- </span><span class="nv">c</span> <span class="p">(</span><span class="nb">quot </span><span class="p">(</span><span class="nb">- </span><span class="nv">l</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>이제 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.007ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 433.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-23-Title">
 <title id="MathJax-SVG-23-Title">c</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMATHI-63" x="0" y="0"></use>
 </g>
-</svg></span>를 3부터 차례로 증가시키면서 직육면체의 개수가 1백만을 넘을 때까지 직육면체의 개수를 누적해가면 된다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">def </span>^<span style="color:#a31515">:private</span> threshold 1000000)
+</svg></span>를 3부터 차례로 증가시키면서 직육면체의 개수가 1백만을 넘을 때까지 직육면체의 개수를 누적해가면 된다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="k">def </span><span class="o">^</span><span class="ss">:private</span> <span class="nv">threshold</span> <span class="mi">1000000</span><span class="p">)</span>
 
-(<span style="color:#00f">defn </span>solve []
-  (-&gt;&gt; (iterate inc 3)
-       (map (<span style="color:#00f">fn </span>[x] [x (cnt x)]))
-       (reductions (<span style="color:#00f">fn </span>[[a1 a2] [b1 b2]] [b1 (+ a2 b2)]))
-       (drop-while (<span style="color:#00f">fn </span>[[M cnt]] (&lt;= cnt threshold)))
-       ffirst))
+<span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">iterate </span><span class="nb">inc </span><span class="mi">3</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">[</span><span class="nv">x</span> <span class="p">(</span><span class="nf">cnt</span> <span class="nv">x</span><span class="p">)</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">reductions</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="p">[</span><span class="nv">a1</span> <span class="nv">a2</span><span class="p">]</span> <span class="p">[</span><span class="nv">b1</span> <span class="nv">b2</span><span class="p">]</span><span class="p">]</span> <span class="p">[</span><span class="nv">b1</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">a2</span> <span class="nv">b2</span><span class="p">)</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">drop-while </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="p">[</span><span class="nv">M</span> <span class="nv">cnt</span><span class="p">]</span><span class="p">]</span> <span class="p">(</span><span class="nb">&lt;= </span><span class="nv">cnt</span> <span class="nv">threshold</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+       <span class="nv">ffirst</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>실행 결과는 다음과 같다.</p><pre class="console">p086=&gt; (time (solve))
 "Elapsed time: 197.473803 msecs"
 1??8

@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 6 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 6 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -75,12 +75,12 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand unselectable" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a class="unselectable" href="/archive/">Archive</a></li><li><a class="unselectable" href="/tags/">Tags</a></li><li><a class="unselectable" href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2015-01-19" itemprop="datePublished">2015-01-19</time>
 on
 <a href="/tags/project-euler/">Project-Euler</a>
-<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 6</h1></header><section class="post-content"><blockquote><p>1부터 100까지 “제곱의 합"과 “합의 제곱"의 차는?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=6">[국어]</a> <a href="https://projecteuler.net/problem=6">[영어]</a></p></blockquote><p>문제가 단순하고 범위도 적어 아무렇게나 풀어도 쉽게 답을 구할 수 있다.</p><h2 id="-1">방법 1</h2><p>가장 쉽게 생각할 수 있는 방법은 1부터 100까지 루프를 돌리면서 <strong>제곱의 합</strong>을 구하고, 또 1부터 100까지 루프를 돌려 합을 구한 다음 그 결과를 제곱해 <strong>합의 제곱</strong>을 구한 다음, 두 값의 차를 구하는 것이다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>using-brute-force [n]
-  (<span style="color:#00f">let </span>[s (range 1 (inc n))
-        sum-of-sq (reduce + (map (<span style="color:#00f">fn </span>[n] (* n n)) s))
-        sq-of-sum (<span style="color:#00f">let </span>[sum (reduce + s)]
-                    (* sum sum))]
-    (- sq-of-sum sum-of-sq)))
+<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 6</h1></header><section class="post-content"><blockquote><p>1부터 100까지 “제곱의 합"과 “합의 제곱"의 차는?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=6">[국어]</a> <a href="https://projecteuler.net/problem=6">[영어]</a></p></blockquote><p>문제가 단순하고 범위도 적어 아무렇게나 풀어도 쉽게 답을 구할 수 있다.</p><h2 id="-1">방법 1</h2><p>가장 쉽게 생각할 수 있는 방법은 1부터 100까지 루프를 돌리면서 <strong>제곱의 합</strong>을 구하고, 또 1부터 100까지 루프를 돌려 합을 구한 다음 그 결과를 제곱해 <strong>합의 제곱</strong>을 구한 다음, 두 값의 차를 구하는 것이다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">using-brute-force</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">s</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="p">(</span><span class="nb">inc </span><span class="nv">n</span><span class="p">)</span><span class="p">)</span>
+        <span class="nv">sum-of-sq</span> <span class="p">(</span><span class="nb">reduce </span><span class="nb">+ </span><span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">n</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="nv">n</span><span class="p">)</span><span class="p">)</span> <span class="nv">s</span><span class="p">)</span><span class="p">)</span>
+        <span class="nv">sq-of-sum</span> <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">sum</span> <span class="p">(</span><span class="nb">reduce </span><span class="nb">+ </span><span class="nv">s</span><span class="p">)</span><span class="p">]</span>
+                    <span class="p">(</span><span class="nb">* </span><span class="nv">sum</span> <span class="nv">sum</span><span class="p">)</span><span class="p">)</span><span class="p">]</span>
+    <span class="p">(</span><span class="nb">- </span><span class="nv">sq-of-sum</span> <span class="nv">sum-of-sq</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>겨우 100까지 루프를 돌리는 것이기 때문에 이렇게 해도 답을 구하는 데 내 노트북에서 1.5ms밖에 걸리지 않는다. 그러나 이 방법은 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.977ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 2143 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">O(n)</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -361,14 +361,14 @@ f(n) = \frac{1}{6}n(n+1)(2n+1)
 </g>
 </g>
 </g>
-</svg></span></p><p>(이 결과가 맞는지 수학적 귀납법으로 증명할 수 있지만, 증명은 생략한다.)</p><p>따라서 <strong>합의 제곱</strong>과 <strong>제곱의 합</strong>을 구하는 함수는 다음과 같이 구현할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>sq-of-sum [n]
-  (<span style="color:#00f">let </span>[s (/ (* n (+ n 1)) 2)]
-    (* s s)))
+</svg></span></p><p>(이 결과가 맞는지 수학적 귀납법으로 증명할 수 있지만, 증명은 생략한다.)</p><p>따라서 <strong>합의 제곱</strong>과 <strong>제곱의 합</strong>을 구하는 함수는 다음과 같이 구현할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">sq-of-sum</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">s</span> <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span><span class="p">]</span>
+    <span class="p">(</span><span class="nb">* </span><span class="nv">s</span> <span class="nv">s</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 
-(<span style="color:#00f">defn </span>sum-of-sq [n]
-  (/ (* n (+ n 1) (+ (* 2 n) 1)) 6))
-</code></pre></div><p>여기까지 했으면 문제의 답은 다음과 같이 쉽게 구할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>using-formula [n]
-  (- (sq-of-sum n) (sum-of-sq n)))
+<span class="p">(</span><span class="kd">defn </span><span class="nv">sum-of-sq</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">n</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span><span class="p">)</span> <span class="mi">6</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><p>여기까지 했으면 문제의 답은 다음과 같이 쉽게 구할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">using-formula</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">sq-of-sum</span> <span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nf">sum-of-sq</span> <span class="nv">n</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><h2 id="heading">정리</h2><p>실행시킨 결과는 다음과 같다. 범위가 적어 별 차이 없는 것처럼 보인다. 그러나 첫 번째 방법은 범위에 비례해 속도가 느려질 것이다. 두 번째 방법은 범위와 상관 없이 항상 같은 시간에 결과를 구할 것이다.</p><pre class="console">p006=&gt; (time (using-brute-force 100))
 "Elapsed time: 0.076776 msecs"
 25164???

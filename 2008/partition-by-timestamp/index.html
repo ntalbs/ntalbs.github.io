@@ -1,59 +1,59 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TIMESTAMP 컬럼으로 파티션 하는 방법 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"></head><body><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">TIMESTAMP 컬럼으로 파티션 하는 방법</div></div></div><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle unselectable" data-toggle="collapse" data-target="#nav-items">+</button>
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TIMESTAMP 컬럼으로 파티션 하는 방법 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"></head><body><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">TIMESTAMP 컬럼으로 파티션 하는 방법</div></div></div><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle unselectable" data-toggle="collapse" data-target="#nav-items">+</button>
 <a class="navbar-brand unselectable" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a class="unselectable" href="/archive/">Archive</a></li><li><a class="unselectable" href="/tags/">Tags</a></li><li><a class="unselectable" href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2008-10-28" itemprop="datePublished">2008-10-28</time>
 on
 <a href="/tags/db/">DB</a>
-<a href="/tags/oracle/">Oracle</a></p><h1 class="post-title">TIMESTAMP 컬럼으로 파티션 하는 방법</h1></header><section class="post-content"><p>일반적으로 range 파티션 테이블을 만들 때는 다음과 같이 한다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">create</span> <span style="color:#00f">table</span> t (...)
-tablespace ...
-partition <span style="color:#00f">by</span> range (<span style="color:#00f">c</span>)
-(
-partition p1 <span style="color:#00f">values</span> <span style="color:#00f">less</span> <span style="color:#00f">than</span> (100),
-partition p2 <span style="color:#00f">values</span> <span style="color:#00f">less</span> <span style="color:#00f">than</span> (200),
-...
-partition p_max <span style="color:#00f">values</span> <span style="color:#00f">less</span> <span style="color:#00f">than</span> (<span style="color:#00f">maxvalue</span>)
-);
-</code></pre></div><p>파티션 키 컬럼이 <code>DATE</code> 타입일 경우에는 다음과 같이 하면 된다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">create</span> <span style="color:#00f">table</span> t (...)
-tablespace ...
-partition <span style="color:#00f">by</span> range (dt)
-(
-partition p2006 <span style="color:#00f">values</span>
-    <span style="color:#00f">less</span> <span style="color:#00f">than</span> (to_date(<span style="color:#a31515">'</span><span style="color:#a31515">20070101</span><span style="color:#a31515">'</span>,<span style="color:#a31515">'</span><span style="color:#a31515">YYYYMMDD</span><span style="color:#a31515">'</span>)),
-partition p2007 <span style="color:#00f">values</span>
-    <span style="color:#00f">less</span> <span style="color:#00f">than</span> (to_date(<span style="color:#a31515">'</span><span style="color:#a31515">20070101</span><span style="color:#a31515">'</span>,<span style="color:#a31515">'</span><span style="color:#a31515">YYYYMMDD</span><span style="color:#a31515">'</span>)),
-...
-partition p_max <span style="color:#00f">values</span>
-    <span style="color:#00f">less</span> <span style="color:#00f">than</span> (<span style="color:#00f">maxvalue</span>)
-);
-</code></pre></div><p>파티션 키 컬럼이 <code>TIMESTAMP</code>인 컬럼으로 파티션을 할 때는 다음과 같이 하면 될 것 같다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">create</span> <span style="color:#00f">table</span> t (...)
-tablespace ...
-partition <span style="color:#00f">by</span> range (dt)
-(
-partition p2006 <span style="color:#00f">values</span>
-    <span style="color:#00f">less</span> <span style="color:#00f">than</span> (to_timestamp(<span style="color:#a31515">'</span><span style="color:#a31515">20070101</span><span style="color:#a31515">'</span>,<span style="color:#a31515">'</span><span style="color:#a31515">YYYYMMDD</span><span style="color:#a31515">'</span>)),
-partition p2007 <span style="color:#00f">values</span>
-    <span style="color:#00f">less</span> <span style="color:#00f">than</span> (to_timestamp(<span style="color:#a31515">'</span><span style="color:#a31515">20070101</span><span style="color:#a31515">'</span>,<span style="color:#a31515">'</span><span style="color:#a31515">YYYYMMDD</span><span style="color:#a31515">'</span>)),
-...
-partition p_max <span style="color:#00f">values</span>
-    <span style="color:#00f">less</span> <span style="color:#00f">than</span> (<span style="color:#00f">maxvalue</span>)
-);
-</code></pre></div><p>그러나 위와 같은 SQL을 실행시키면 다음과 같은 에러가 발생한다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">partition p2006 <span style="color:#00f">values</span>
-   <span style="color:#00f">less</span> <span style="color:#00f">than</span> (to_timestamp(<span style="color:#a31515">'</span><span style="color:#a31515">20070101</span><span style="color:#a31515">'</span>,<span style="color:#a31515">'</span><span style="color:#a31515">YYYYMMDD</span><span style="color:#a31515">'</span>)),
-              *
-ERROR <span style="color:#00f">at</span> line 4:
-ORA-30078: partition bound must be
-TIME/<span style="color:#00f">TIMESTAMP</span> <span style="color:#00f">WITH</span> TIME <span style="color:#00f">ZONE</span> literals
-</code></pre></div><p><code>TIMESTAMP</code> 컬럼으로 파티션을 하는 정확한 문법은 다음과 같다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">create</span> <span style="color:#00f">table</span> t (...)
-tablespace ...
-partition <span style="color:#00f">by</span> range (dt)
-(
-partition p2006 <span style="color:#00f">values</span>
-    <span style="color:#00f">less</span> <span style="color:#00f">than</span> (<span style="color:#00f">timestamp</span><span style="color:#a31515">'</span><span style="color:#a31515">2007-01-01 00:00:00 +0:00</span><span style="color:#a31515">'</span>),
-partition p2007 <span style="color:#00f">values</span>
-    <span style="color:#00f">less</span> <span style="color:#00f">than</span> (<span style="color:#00f">timestamp</span><span style="color:#a31515">'</span><span style="color:#a31515">2008-01-01 00:00:00 +0:00</span><span style="color:#a31515">'</span>),
-...
-partition p_max <span style="color:#00f">values</span>
-    <span style="color:#00f">less</span> <span style="color:#00f">than</span> (<span style="color:#00f">maxvalue</span>)
-);
+<a href="/tags/oracle/">Oracle</a></p><h1 class="post-title">TIMESTAMP 컬럼으로 파티션 하는 방법</h1></header><section class="post-content"><p>일반적으로 range 파티션 테이블을 만들 때는 다음과 같이 한다.</p><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">create</span> <span class="k">table</span> <span class="n">t</span> <span class="p">(</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">)</span>
+<span class="n">tablespace</span> <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+<span class="n">partition</span> <span class="k">by</span> <span class="n">range</span> <span class="p">(</span><span class="k">c</span><span class="p">)</span>
+<span class="p">(</span>
+<span class="n">partition</span> <span class="n">p1</span> <span class="k">values</span> <span class="k">less</span> <span class="k">than</span> <span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="p">,</span>
+<span class="n">partition</span> <span class="n">p2</span> <span class="k">values</span> <span class="k">less</span> <span class="k">than</span> <span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="p">,</span>
+<span class="p">.</span><span class="p">.</span><span class="p">.</span>
+<span class="n">partition</span> <span class="n">p_max</span> <span class="k">values</span> <span class="k">less</span> <span class="k">than</span> <span class="p">(</span><span class="k">maxvalue</span><span class="p">)</span>
+<span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>파티션 키 컬럼이 <code>DATE</code> 타입일 경우에는 다음과 같이 하면 된다.</p><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">create</span> <span class="k">table</span> <span class="n">t</span> <span class="p">(</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">)</span>
+<span class="n">tablespace</span> <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+<span class="n">partition</span> <span class="k">by</span> <span class="n">range</span> <span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+<span class="p">(</span>
+<span class="n">partition</span> <span class="n">p2006</span> <span class="k">values</span>
+    <span class="k">less</span> <span class="k">than</span> <span class="p">(</span><span class="n">to_date</span><span class="p">(</span><span class="s1">'</span><span class="s1">20070101</span><span class="s1">'</span><span class="p">,</span><span class="s1">'</span><span class="s1">YYYYMMDD</span><span class="s1">'</span><span class="p">)</span><span class="p">)</span><span class="p">,</span>
+<span class="n">partition</span> <span class="n">p2007</span> <span class="k">values</span>
+    <span class="k">less</span> <span class="k">than</span> <span class="p">(</span><span class="n">to_date</span><span class="p">(</span><span class="s1">'</span><span class="s1">20070101</span><span class="s1">'</span><span class="p">,</span><span class="s1">'</span><span class="s1">YYYYMMDD</span><span class="s1">'</span><span class="p">)</span><span class="p">)</span><span class="p">,</span>
+<span class="p">.</span><span class="p">.</span><span class="p">.</span>
+<span class="n">partition</span> <span class="n">p_max</span> <span class="k">values</span>
+    <span class="k">less</span> <span class="k">than</span> <span class="p">(</span><span class="k">maxvalue</span><span class="p">)</span>
+<span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>파티션 키 컬럼이 <code>TIMESTAMP</code>인 컬럼으로 파티션을 할 때는 다음과 같이 하면 될 것 같다.</p><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">create</span> <span class="k">table</span> <span class="n">t</span> <span class="p">(</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">)</span>
+<span class="n">tablespace</span> <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+<span class="n">partition</span> <span class="k">by</span> <span class="n">range</span> <span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+<span class="p">(</span>
+<span class="n">partition</span> <span class="n">p2006</span> <span class="k">values</span>
+    <span class="k">less</span> <span class="k">than</span> <span class="p">(</span><span class="n">to_timestamp</span><span class="p">(</span><span class="s1">'</span><span class="s1">20070101</span><span class="s1">'</span><span class="p">,</span><span class="s1">'</span><span class="s1">YYYYMMDD</span><span class="s1">'</span><span class="p">)</span><span class="p">)</span><span class="p">,</span>
+<span class="n">partition</span> <span class="n">p2007</span> <span class="k">values</span>
+    <span class="k">less</span> <span class="k">than</span> <span class="p">(</span><span class="n">to_timestamp</span><span class="p">(</span><span class="s1">'</span><span class="s1">20070101</span><span class="s1">'</span><span class="p">,</span><span class="s1">'</span><span class="s1">YYYYMMDD</span><span class="s1">'</span><span class="p">)</span><span class="p">)</span><span class="p">,</span>
+<span class="p">.</span><span class="p">.</span><span class="p">.</span>
+<span class="n">partition</span> <span class="n">p_max</span> <span class="k">values</span>
+    <span class="k">less</span> <span class="k">than</span> <span class="p">(</span><span class="k">maxvalue</span><span class="p">)</span>
+<span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>그러나 위와 같은 SQL을 실행시키면 다음과 같은 에러가 발생한다.</p><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">partition</span> <span class="n">p2006</span> <span class="k">values</span>
+   <span class="k">less</span> <span class="k">than</span> <span class="p">(</span><span class="n">to_timestamp</span><span class="p">(</span><span class="s1">'</span><span class="s1">20070101</span><span class="s1">'</span><span class="p">,</span><span class="s1">'</span><span class="s1">YYYYMMDD</span><span class="s1">'</span><span class="p">)</span><span class="p">)</span><span class="p">,</span>
+              <span class="o">*</span>
+<span class="n">ERROR</span> <span class="k">at</span> <span class="n">line</span> <span class="mi">4</span><span class="p">:</span>
+<span class="n">ORA</span><span class="o">-</span><span class="mi">30078</span><span class="p">:</span> <span class="n">partition</span> <span class="n">bound</span> <span class="n">must</span> <span class="n">be</span>
+<span class="n">TIME</span><span class="o">/</span><span class="k">TIMESTAMP</span> <span class="k">WITH</span> <span class="n">TIME</span> <span class="k">ZONE</span> <span class="n">literals</span>
+</code></pre></div><p><code>TIMESTAMP</code> 컬럼으로 파티션을 하는 정확한 문법은 다음과 같다.</p><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">create</span> <span class="k">table</span> <span class="n">t</span> <span class="p">(</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">)</span>
+<span class="n">tablespace</span> <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+<span class="n">partition</span> <span class="k">by</span> <span class="n">range</span> <span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+<span class="p">(</span>
+<span class="n">partition</span> <span class="n">p2006</span> <span class="k">values</span>
+    <span class="k">less</span> <span class="k">than</span> <span class="p">(</span><span class="k">timestamp</span><span class="s1">'</span><span class="s1">2007-01-01 00:00:00 +0:00</span><span class="s1">'</span><span class="p">)</span><span class="p">,</span>
+<span class="n">partition</span> <span class="n">p2007</span> <span class="k">values</span>
+    <span class="k">less</span> <span class="k">than</span> <span class="p">(</span><span class="k">timestamp</span><span class="s1">'</span><span class="s1">2008-01-01 00:00:00 +0:00</span><span class="s1">'</span><span class="p">)</span><span class="p">,</span>
+<span class="p">.</span><span class="p">.</span><span class="p">.</span>
+<span class="n">partition</span> <span class="n">p_max</span> <span class="k">values</span>
+    <span class="k">less</span> <span class="k">than</span> <span class="p">(</span><span class="k">maxvalue</span><span class="p">)</span>
+<span class="p">)</span><span class="p">;</span>
 </code></pre></div><h2 id="heading">참고</h2><ul><li><a href="http://www.orafaq.com/forum/t/6418/0/">http://www.orafaq.com/forum/t/6418/0/</a></li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2008/set-timing/" id="article-nav-newer">set timing을 이용한 SQL 실행 속도 측정법</a>

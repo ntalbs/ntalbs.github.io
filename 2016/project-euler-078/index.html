@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 78 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 78 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -176,7 +176,7 @@ g_k &amp;= \frac{k(3k-1)}{2}
  <use xlink:href="#MJMATHI-67" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#MJMATHI-6B" x="675" y="-213"></use>
 </g>
-</svg></span>는 다음과 같이 쉽게 구현할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn- </span>g [k] (quot (* k (dec (* 3 k))) 2))
+</svg></span>는 다음과 같이 쉽게 구현할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn- </span><span class="nv">g</span> <span class="p">[</span><span class="nv">k</span><span class="p">]</span> <span class="p">(</span><span class="nb">quot </span><span class="p">(</span><span class="nb">* </span><span class="nv">k</span> <span class="p">(</span><span class="nb">dec </span><span class="p">(</span><span class="nb">* </span><span class="mi">3</span> <span class="nv">k</span><span class="p">)</span><span class="p">)</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.501ex" height="2.843ex" style="vertical-align: -0.838ex; margin-left: -0.089ex;" viewBox="-38.5 -863.1 4090.7 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-6-Title">
 <title id="MathJax-SVG-6-Title">p(n-g_k)</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -221,7 +221,7 @@ g_k &amp;= \frac{k(3k-1)}{2}
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMAIN-31" x="0" y="0"></use>
 </g>
-</svg></span>이 되므로 다음과 같이 함수로 정의할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn- </span>s [k] (<span style="color:#00f">if </span>(even? k) -1 1))
+</svg></span>이 되므로 다음과 같이 함수로 정의할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn- </span><span class="nv">s</span> <span class="p">[</span><span class="nv">k</span><span class="p">]</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">even?</span> <span class="nv">k</span><span class="p">)</span> <span class="mi">-1</span> <span class="mi">1</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>다음과 같이 <code>s</code>와 <code>g</code>를 묶어 시퀀스로 만들어 놓으면 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.463ex" height="2.843ex" style="vertical-align: -0.838ex; margin-left: -0.089ex;" viewBox="-38.5 -863.1 1921.5 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-11-Title">
 <title id="MathJax-SVG-11-Title">p(n)</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -255,9 +255,9 @@ g_k &amp;= \frac{k(3k-1)}{2}
  <use xlink:href="#MJMAIN-2C" x="4894" y="0"></use>
  <use xlink:href="#MJMAIN-2026" x="5339" y="0"></use>
 </g>
-</svg></span> 순서로 계산해야 하는데 <code>interleave</code>를 사용하면 해당 정수 수열을 쉽게 만들 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">def </span>^<span style="color:#a31515">:private</span> gs
-  (-&gt;&gt; (interleave (iterate inc 1) (iterate dec -1))
-       (map (<span style="color:#00f">fn </span>[k] [(s k) (g k)]))))
+</svg></span> 순서로 계산해야 하는데 <code>interleave</code>를 사용하면 해당 정수 수열을 쉽게 만들 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="k">def </span><span class="o">^</span><span class="ss">:private</span> <span class="nv">gs</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">interleave </span><span class="p">(</span><span class="nb">iterate </span><span class="nb">inc </span><span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nb">iterate </span><span class="nb">dec </span><span class="mi">-1</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">k</span><span class="p">]</span> <span class="p">[</span><span class="p">(</span><span class="nf">s</span> <span class="nv">k</span><span class="p">)</span> <span class="p">(</span><span class="nf">g</span> <span class="nv">k</span><span class="p">)</span><span class="p">]</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.463ex" height="2.843ex" style="vertical-align: -0.838ex; margin-left: -0.089ex;" viewBox="-38.5 -863.1 1921.5 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-15-Title">
 <title id="MathJax-SVG-15-Title">p(n)</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -274,18 +274,18 @@ g_k &amp;= \frac{k(3k-1)}{2}
  <use xlink:href="#MJMATHI-6E" x="893" y="0"></use>
  <use xlink:href="#MJMAIN-29" x="1493" y="0"></use>
 </g>
-</svg></span>을 구할 차례다. 공식을 코드로 옮기면 다음과 같이 된다. 1백만으로 나누어 떨어지는지만 확인하면 되므로 중간 계산 결과도 1백만으로 나눈 나머지를 이용하면 숫자가 지나치게 거쳐 <code>BigInt</code>가 사용되는 것을 방지할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn- </span>p [n]
-  (cond (&lt; n 0) 0
-        (= n 0) 1
-        (= n 1) 1
-        (= n 2) 2
-        (= n 3) 3
-        <span style="color:#a31515">:else</span> (-&gt;&gt; gs
-                   (take-while #(&lt;= (second %) n))
-                   (map (<span style="color:#00f">fn </span>[[s g]] (mod (* s (p (- n g))) 1000000)))
-                   (apply +))))
+</svg></span>을 구할 차례다. 공식을 코드로 옮기면 다음과 같이 된다. 1백만으로 나누어 떨어지는지만 확인하면 되므로 중간 계산 결과도 1백만으로 나눈 나머지를 이용하면 숫자가 지나치게 거쳐 <code>BigInt</code>가 사용되는 것을 방지할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn- </span><span class="nv">p</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">n</span> <span class="mi">0</span><span class="p">)</span> <span class="mi">0</span>
+        <span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">0</span><span class="p">)</span> <span class="mi">1</span>
+        <span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">1</span>
+        <span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">2</span>
+        <span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">3</span>
+        <span class="ss">:else</span> <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">gs</span>
+                   <span class="p">(</span><span class="nb">take-while </span><span class="o">#</span><span class="p">(</span><span class="nb">&lt;= </span><span class="p">(</span><span class="nb">second </span><span class="nv">%</span><span class="p">)</span> <span class="nv">n</span><span class="p">)</span><span class="p">)</span>
+                   <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="p">[</span><span class="nv">s</span> <span class="nv">g</span><span class="p">]</span><span class="p">]</span> <span class="p">(</span><span class="nf">mod</span> <span class="p">(</span><span class="nb">* </span><span class="nv">s</span> <span class="p">(</span><span class="nf">p</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="nv">g</span><span class="p">)</span><span class="p">)</span><span class="p">)</span> <span class="mi">1000000</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+                   <span class="p">(</span><span class="nb">apply </span><span class="nv">+</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 
-(<span style="color:#00f">def </span>p (memoize p))
+<span class="p">(</span><span class="k">def </span><span class="nv">p</span> <span class="p">(</span><span class="nf">memoize</span> <span class="nv">p</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>이제 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.395ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 600.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-17-Title">
 <title id="MathJax-SVG-17-Title">n</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -304,11 +304,11 @@ g_k &amp;= \frac{k(3k-1)}{2}
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMATHI-6E" x="0" y="0"></use>
 </g>
-</svg></span>을 찾으면 된다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>solve []
-  (-&gt;&gt; (range)
-       (map #(vector % (p %)))
-       (drop-while #(not= 0 (mod (second %) 1000000)))
-       ffirst))
+</svg></span>을 찾으면 된다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nf">range</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">map </span><span class="o">#</span><span class="p">(</span><span class="nb">vector </span><span class="nv">%</span> <span class="p">(</span><span class="nf">p</span> <span class="nv">%</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">drop-while </span><span class="o">#</span><span class="p">(</span><span class="nb">not= </span><span class="mi">0</span> <span class="p">(</span><span class="nf">mod</span> <span class="p">(</span><span class="nb">second </span><span class="nv">%</span><span class="p">)</span> <span class="mi">1000000</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+       <span class="nv">ffirst</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>실행 결과는 다음과 같다.</p><pre class="console">p078=&gt; (time (solve))
 "Elapsed time: 12352.211469 msecs"
 55??4

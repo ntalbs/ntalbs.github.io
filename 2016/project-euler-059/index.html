@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 59 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 59 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -93,41 +93,44 @@ on
  <use xlink:href="#MJMAIN-36" x="1001" y="0"></use>
 </g>
 </g>
-</svg></span>밖에 되지 않는다. 이 정도면 무차별 대입법으로 공략해도 충분할 것 같다.</p><p>문제를 풀기 전에 암호화된 메시지가 들어있는 파일을 읽어 정수의 ASCII 코드의 시퀀스로 만들어 둔다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">ns </span>p059
-  (<span style="color:#a31515">:require</span> [util <span style="color:#a31515">:refer</span> [parse-int]]
-            [clojure.string <span style="color:#a31515">:refer</span> [split trim]]))
+</svg></span>밖에 되지 않는다. 이 정도면 무차별 대입법으로 공략해도 충분할 것 같다.</p><p>문제를 풀기 전에 암호화된 메시지가 들어있는 파일을 읽어 정수의 ASCII 코드의 시퀀스로 만들어 둔다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">p059</span>
+  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">util</span> <span class="ss">:refer</span> <span class="p">[</span><span class="nv">parse-int</span><span class="p">]</span><span class="p">]</span>
+            <span class="p">[</span><span class="nv">clojure.string</span> <span class="ss">:refer</span> <span class="p">[</span><span class="nv">split</span> <span class="nv">trim</span><span class="p">]</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
 
-(<span style="color:#00f">def </span>encrypted-message
-  (-&gt;&gt; (split (slurp <span style="color:#a31515">"data/cipher1.txt"</span>) #<span style="color:#a31515">","</span>)
-       (map trim)
-       (map parse-int)))
-</code></pre></div><p>암호화된 메시지를 복호화하는 함수는 다음과 같이 작성할 수 있다. 암호화된 메시지에 비밀키를 반복적으로 돌아가며 적용해야 하는데, <code>repeat</code> 함수를 이용해 비밀키가 반복되는 시퀀스를 만들고 이것을 메시지와 <code>XOR</code> 하면 복호화된 메세지를 얻을 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>decipher [encrypted key]
-  (<span style="color:#00f">let </span>[key (mapcat identity (repeat key))]
-    (-&gt;&gt; (map bit-xor encrypted key)
-         (map char)
-         (apply str))))
-</code></pre></div><p>이제 <code>aaa</code>부터 <code>zzz</code>까지 모든 키 조합을 입력해가며 복호화를 시도할 차례다. Clojure에서는 <code>a</code>부터 <code>z</code>까지 시퀀스를 만들 때 다음과 같이 할 수 있다. 물론 이렇게 나온 결과는 <code>a</code>부터 <code>z</code>까지 ASCII 코드 값의 시퀀스다. 어차피 <code>XOR</code> 해야 하므로 <code>char</code>로 바꿀 필요는 없다. 정말 <code>a</code>부터 <code>z</code>까지 <code>char</code>의 시퀀스가 필요하다면 <code>(map char ...)</code>를 적용해야 한다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(range (int <span style="color:#a31515">\a</span>) (inc (int <span style="color:#a31515">\z</span>)))
+<span class="p">(</span><span class="k">def </span><span class="nv">encrypted-message</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nf">split</span> <span class="p">(</span><span class="nb">slurp </span><span class="s">"data/cipher1.txt"</span><span class="p">)</span> <span class="o">#</span><span class="s">","</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">map </span><span class="nv">trim</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">map </span><span class="nv">parse-int</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><p>암호화된 메시지를 복호화하는 함수는 다음과 같이 작성할 수 있다. 암호화된 메시지에 비밀키를 반복적으로 돌아가며 적용해야 하는데, <code>repeat</code> 함수를 이용해 비밀키가 반복되는 시퀀스를 만들고 이것을 메시지와 <code>XOR</code> 하면 복호화된 메세지를 얻을 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">decipher</span> <span class="p">[</span><span class="nv">encrypted</span> <span class="nv">key</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nb">key </span><span class="p">(</span><span class="nb">mapcat </span><span class="nb">identity </span><span class="p">(</span><span class="nb">repeat </span><span class="nv">key</span><span class="p">)</span><span class="p">)</span><span class="p">]</span>
+    <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">map </span><span class="nb">bit-xor </span><span class="nv">encrypted</span> <span class="nv">key</span><span class="p">)</span>
+         <span class="p">(</span><span class="nb">map </span><span class="nv">char</span><span class="p">)</span>
+         <span class="p">(</span><span class="nb">apply </span><span class="nv">str</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><p>이제 <code>aaa</code>부터 <code>zzz</code>까지 모든 키 조합을 입력해가며 복호화를 시도할 차례다. Clojure에서는 <code>a</code>부터 <code>z</code>까지 시퀀스를 만들 때 다음과 같이 할 수 있다. 물론 이렇게 나온 결과는 <code>a</code>부터 <code>z</code>까지 ASCII 코드 값의 시퀀스다. 어차피 <code>XOR</code> 해야 하므로 <code>char</code>로 바꿀 필요는 없다. 정말 <code>a</code>부터 <code>z</code>까지 <code>char</code>의 시퀀스가 필요하다면 <code>(map char ...)</code>를 적용해야 한다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="nb">range </span><span class="p">(</span><span class="nb">int </span><span class="sc">\a</span><span class="p">)</span> <span class="p">(</span><span class="nb">inc </span><span class="p">(</span><span class="nb">int </span><span class="sc">\z</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p><code>for</code>를 이용해 <code>aaa</code>부터 <code>zzz</code>까지 키를 생성해 복호화를 시도하다가 성공하면 멈출 수 있다. 그런데 복호화에 성공했다는 것을 어떻게 알 수 있을까? 여기서는 복호화한 메시지에 정규표현식을 적용해 컨트롤 문자나 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0.343ex" style="vertical-align: -0.171ex;" viewBox="0 -73.8 0 147.5" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">
 <title id="MathJax-SVG-2-Title"></title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true"></g>
-</svg></span> <code>, `~</code>가 나오지 않는 경우를 걸러내게 했다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>solve []
-  (<span style="color:#00f">let </span>[a2z (range (int <span style="color:#a31515">\a</span>) (inc (int <span style="color:#a31515">\z</span>)))]
-    (-&gt;&gt; (for [a a2z b a2z c a2z] [a b c])
-         (map #(decipher encrypted-message %))
-         (filter #(re-matches #<span style="color:#a31515">"[^`~\p{Cntrl}]+"</span> %))
-         (first)
-         (map int)
-         (apply +)))
+</svg></span> <code>, `~</code>가 나오지 않는 경우를 걸러내게 했다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">a2z</span> <span class="p">(</span><span class="nb">range </span><span class="p">(</span><span class="nb">int </span><span class="sc">\a</span><span class="p">)</span> <span class="p">(</span><span class="nb">inc </span><span class="p">(</span><span class="nb">int </span><span class="sc">\z</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">]</span>
+    <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">a</span> <span class="nv">a2z</span> <span class="nv">b</span> <span class="nv">a2z</span> <span class="nv">c</span> <span class="nv">a2z</span><span class="p">]</span> <span class="p">[</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">]</span><span class="p">)</span>
+         <span class="p">(</span><span class="nb">map </span><span class="o">#</span><span class="p">(</span><span class="nf">decipher</span> <span class="nv">encrypted-message</span> <span class="nv">%</span><span class="p">)</span><span class="p">)</span>
+         <span class="p">(</span><span class="nb">filter </span><span class="o">#</span><span class="p">(</span><span class="nb">re-matches </span><span class="o">#</span><span class="s">"[^`~\p{Cntrl}]+"</span> <span class="nv">%</span><span class="p">)</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">first</span><span class="p">)</span>
+         <span class="p">(</span><span class="nb">map </span><span class="nv">int</span><span class="p">)</span>
+         <span class="p">(</span><span class="nb">apply </span><span class="nv">+</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>컨트롤 문자는 그렇다 치겠지만 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0.343ex" style="vertical-align: -0.171ex;" viewBox="0 -73.8 0 147.5" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-3-Title">
 <title id="MathJax-SVG-3-Title"></title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true"></g>
-</svg></span> <code>, `~</code>만 걸러내면 된다는 것은 어떻게 알았을까? 사실 이건 복호화한 메시지를 확인하면서 알아낸 것이다.</p><p>메시지 언어가 영어라는 점에 착안해 영어 문장에 흔하게 포함되는 단어인 <code>the</code>나 <code>and</code>가 있는지 확인하는 방법을 사용하는 것도 가능하다. 위 코드에서 <code>filter</code>를 적용하는 부분을 다음과 같이 수정해도 답을 찾는다. <code>the</code>나 <code>and</code> 앞뒤로 공백이 있는 것에 유의해야 한다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>solve []
-  (<span style="color:#00f">let </span>...
-    (-&gt;&gt; ...
-         (filter #(&lt; -1 (.indexOf % <span style="color:#a31515">" the "</span>)))
-         <span style="color:green">;; " the " 대신 " and "를 사용해도 된다.</span>
-         ...
-</code></pre></div><p>실행 결과는 다음과 같다.</p><h2 id="heading">참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p059.clj">프로젝트 오일러 59 풀이 소스 코드</a></li><li><a href="http://stackoverflow.com/questions/11670941/generate-character-sequence-from-a-to-z-in-clojure">Generate character sequence from ‘a’ to ‘z’ in clojure</a>
+</svg></span> <code>, `~</code>만 걸러내면 된다는 것은 어떻게 알았을까? 사실 이건 복호화한 메시지를 확인하면서 알아낸 것이다.</p><p>메시지 언어가 영어라는 점에 착안해 영어 문장에 흔하게 포함되는 단어인 <code>the</code>나 <code>and</code>가 있는지 확인하는 방법을 사용하는 것도 가능하다. 위 코드에서 <code>filter</code>를 적용하는 부분을 다음과 같이 수정해도 답을 찾는다. <code>the</code>나 <code>and</code> 앞뒤로 공백이 있는 것에 유의해야 한다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="nv">...</span>
+    <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">...</span>
+         <span class="p">(</span><span class="nb">filter </span><span class="o">#</span><span class="p">(</span><span class="nb">&lt; </span><span class="mi">-1</span> <span class="p">(</span><span class="nf">.indexOf</span> <span class="nv">%</span> <span class="s">" the "</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+         <span class="c1">;; " the " 대신 " and "를 사용해도 된다.</span>
+         <span class="nv">...</span>
+</code></pre></div><p>실행 결과는 다음과 같다.</p><pre class="console">p059=&gt; (time (solve))
+"Elapsed time: 1444.532458 msecs"
+10??59
+</pre><h2 id="heading">참고</h2><ul><li><a href="https://github.com/ntalbs/euler/blob/master/src/p059.clj">프로젝트 오일러 59 풀이 소스 코드</a></li><li><a href="http://stackoverflow.com/questions/11670941/generate-character-sequence-from-a-to-z-in-clojure">Generate character sequence from ‘a’ to ‘z’ in clojure</a>
 Clojure에서 <code>a`~`z</code> 시퀀스를 만드는 방법에 대한 질문. Clojure에도 Scala의 <code>('a' to 'z')</code>와 같은 우아한 방법이 없을까 질문 했는데, 없었다.</li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2016/project-euler-060/" id="article-nav-newer">프로젝트 오일러 60</a>

@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>오라클에서 factorial 구하기 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>오라클에서 factorial 구하기 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -76,9 +76,9 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 on
 <a href="/tags/db/">DB</a>
 <a href="/tags/oracle/">Oracle</a>
-<a href="/tags/sql/">SQL</a></p><h1 class="post-title">오라클에서 factorial 구하기</h1></header><section class="post-content"><p>오라클에 <code>factorial</code> 함수가 없지만 다음과 같이 구할 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">select</span> exp(<span style="color:#00f">sum</span>(ln(<span style="color:#00f">level</span>)))
-<span style="color:#00f">from</span> dual
-<span style="color:#00f">connect</span> <span style="color:#00f">by</span> <span style="color:#00f">level</span> &lt;= N
+<a href="/tags/sql/">SQL</a></p><h1 class="post-title">오라클에서 factorial 구하기</h1></header><section class="post-content"><p>오라클에 <code>factorial</code> 함수가 없지만 다음과 같이 구할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">exp</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">ln</span><span class="p">(</span><span class="k">level</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+<span class="k">from</span> <span class="n">dual</span>
+<span class="k">connect</span> <span class="k">by</span> <span class="k">level</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">N</span>
 </code></pre></div><h2 id="heading">원리</h2><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="8.272ex" height="2.509ex" style="vertical-align: -0.338ex;" viewBox="0 -934.9 3561.6 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">a = e^{\ln a}</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">

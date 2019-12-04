@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 1 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 1 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -75,10 +75,10 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 <a class="navbar-brand unselectable" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a class="unselectable" href="/archive/">Archive</a></li><li><a class="unselectable" href="/tags/">Tags</a></li><li><a class="unselectable" href="/about/">About</a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post"><header><p class="post-meta"><time datetime="2015-01-01" itemprop="datePublished">2015-01-01</time>
 on
 <a href="/tags/project-euler/">Project-Euler</a>
-<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 1</h1></header><section class="post-content"><blockquote><p>1000보다 작은 자연수 중에서 3 또는 5의 배수를 모두 더하면?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=1">[국어]</a> <a href="https://projecteuler.net/problem=1">[영어]</a></p></blockquote><p>프로젝트 오일러 문제 중 가장 쉬운 문제일 것이다. 처음에는 문제가 이렇게 쉽지만 뒤로 갈수록 조금씩 어려워져 나중에는 문제가 무슨 뜻인지 이해하기도 힘들어진다. 이 문제는 너무 단순해 아무렇게나 풀어도 답을 구할 수 있다.</p><h2 id="-1">방법 1</h2><p>1부터 1000까지 루프를 돌리면서 3 또는 5의 배수만 더하면 된다. Clojure로는 다음과 같이 짤 수 있다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>using-brute-force [n]
-  (-&gt;&gt; (range 1 n)
-       (filter #(or (= 0 (mod % 3) (mod % 5))))
-       (apply +)))
+<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 1</h1></header><section class="post-content"><blockquote><p>1000보다 작은 자연수 중에서 3 또는 5의 배수를 모두 더하면?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=1">[국어]</a> <a href="https://projecteuler.net/problem=1">[영어]</a></p></blockquote><p>프로젝트 오일러 문제 중 가장 쉬운 문제일 것이다. 처음에는 문제가 이렇게 쉽지만 뒤로 갈수록 조금씩 어려워져 나중에는 문제가 무슨 뜻인지 이해하기도 힘들어진다. 이 문제는 너무 단순해 아무렇게나 풀어도 답을 구할 수 있다.</p><h2 id="-1">방법 1</h2><p>1부터 1000까지 루프를 돌리면서 3 또는 5의 배수만 더하면 된다. Clojure로는 다음과 같이 짤 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">using-brute-force</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="nv">n</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">filter </span><span class="o">#</span><span class="p">(</span><span class="nb">or </span><span class="p">(</span><span class="nb">= </span><span class="mi">0</span> <span class="p">(</span><span class="nf">mod</span> <span class="nv">%</span> <span class="mi">3</span><span class="p">)</span> <span class="p">(</span><span class="nf">mod</span> <span class="nv">%</span> <span class="mi">5</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">apply </span><span class="nv">+</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>대부분의 사람들이 이렇게 풀었다.</p><h2 id="-2">방법 2</h2><p>1부터 n까지 자연수의 합 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.703ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 2025 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">S(n)</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -207,13 +207,13 @@ S(n, m) &amp;= m + 2m + 3m + … + n \newline
 </g>
 </g>
 </g>
-</svg></span></p><p>3의 배수의 합과 5의 배수의 합을 더하면 15의 배수의 합이 두 번 더해진다. 따라서 답을 구하려면 다음과 같이 3의 배수의 합과 5의 배수의 합을 구한 다음 15의 배수의 합을 빼주면 된다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>s
-  ([n] (/ (* n (+ n 1)) 2))
-  ([n m] (* m (s (quot n m)))))
+</svg></span></p><p>3의 배수의 합과 5의 배수의 합을 더하면 15의 배수의 합이 두 번 더해진다. 따라서 답을 구하려면 다음과 같이 3의 배수의 합과 5의 배수의 합을 구한 다음 15의 배수의 합을 빼주면 된다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">s</span>
+  <span class="p">(</span><span class="p">[</span><span class="nv">n</span><span class="p">]</span> <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span><span class="p">)</span>
+  <span class="p">(</span><span class="p">[</span><span class="nv">n</span> <span class="nv">m</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">m</span> <span class="p">(</span><span class="nf">s</span> <span class="p">(</span><span class="nb">quot </span><span class="nv">n</span> <span class="nv">m</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 
-(<span style="color:#00f">defn </span>using-formula [n]
-  (<span style="color:#00f">let </span>[n (dec n)]
-    (-&gt; (s n 3) (+ (s n 5)) (- (s n 15)))))
+<span class="p">(</span><span class="kd">defn </span><span class="nv">using-formula</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">n</span> <span class="p">(</span><span class="nb">dec </span><span class="nv">n</span><span class="p">)</span><span class="p">]</span>
+    <span class="p">(</span><span class="nb">-&gt; </span><span class="p">(</span><span class="nf">s</span> <span class="nv">n</span> <span class="mi">3</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">s</span> <span class="nv">n</span> <span class="mi">5</span><span class="p">)</span><span class="p">)</span> <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">s</span> <span class="nv">n</span> <span class="mi">15</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><h2 id="heading">정리</h2><p>두 방식의 결과는 다음과 같다.</p><pre class="console">p001=&gt; (time (using-brute-force 1000))
 "Elapsed time: 0.743249 msecs"
 233???

@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 99 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 99 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -267,18 +267,18 @@ a \log x &amp;\gt b \log y
 </g>
  <use xlink:href="#MJMATHI-62" x="2079" y="0"></use>
 </g>
-</svg></span>를 계산해 가장 큰 수를 찾으면 문제를 풀 수 있다.</p><p>이를 Clojure로 구현하면 다음과 같다. 여기서는 밑이 10인 상용로그를 사용했지만 자연로그를 써도 결과는 같다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">ns </span>p099
-  (<span style="color:#a31515">:require</span> [util <span style="color:#a31515">:refer</span> [parse-int]]
-            [clojure.string <span style="color:#a31515">:refer</span> [split]]))
+</svg></span>를 계산해 가장 큰 수를 찾으면 문제를 풀 수 있다.</p><p>이를 Clojure로 구현하면 다음과 같다. 여기서는 밑이 10인 상용로그를 사용했지만 자연로그를 써도 결과는 같다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">p099</span>
+  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">util</span> <span class="ss">:refer</span> <span class="p">[</span><span class="nv">parse-int</span><span class="p">]</span><span class="p">]</span>
+            <span class="p">[</span><span class="nv">clojure.string</span> <span class="ss">:refer</span> <span class="p">[</span><span class="nv">split</span><span class="p">]</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
 
-(<span style="color:#00f">def </span>log-vals
-  (-&gt;&gt; (split (slurp <span style="color:#a31515">"data/base_exp.txt"</span>) #<span style="color:#a31515">"\r\n"</span>)
-       (map (<span style="color:#00f">fn </span>[s] (split s #<span style="color:#a31515">","</span>)))
-       (map (<span style="color:#00f">fn </span>[[b e]] [(parse-int b) (parse-int e)]))
-       (map (<span style="color:#00f">fn </span>[[b e]] (* e (Math/log10 b))))
-       (map-indexed vector)))
-</code></pre></div><p>가장 큰 수가 몇 번째인 지 구하는 것이 문제이므로 계산한 값과 인덱스를 묶어서 시퀀스로 만들어 두었다. 가장 큰 숫자가 몇 번째인지는 다음 코드로 구할 수 있다. 위에서 인덱스를 0부터 시작했으므로 구한 값에 1을 더해야 답이 된다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>solve []
-  (+ 1 (first (apply max-key (<span style="color:#00f">fn </span>[[i v]] v) log-vals))))
+<span class="p">(</span><span class="k">def </span><span class="nv">log-vals</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nf">split</span> <span class="p">(</span><span class="nb">slurp </span><span class="s">"data/base_exp.txt"</span><span class="p">)</span> <span class="o">#</span><span class="s">"\r\n"</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">s</span><span class="p">]</span> <span class="p">(</span><span class="nf">split</span> <span class="nv">s</span> <span class="o">#</span><span class="s">","</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="p">[</span><span class="nv">b</span> <span class="nv">e</span><span class="p">]</span><span class="p">]</span> <span class="p">[</span><span class="p">(</span><span class="nf">parse-int</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nf">parse-int</span> <span class="nv">e</span><span class="p">)</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="p">[</span><span class="nv">b</span> <span class="nv">e</span><span class="p">]</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">e</span> <span class="p">(</span><span class="nf">Math/log10</span> <span class="nv">b</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">map-indexed</span> <span class="nv">vector</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><p>가장 큰 수가 몇 번째인 지 구하는 것이 문제이므로 계산한 값과 인덱스를 묶어서 시퀀스로 만들어 두었다. 가장 큰 숫자가 몇 번째인지는 다음 코드로 구할 수 있다. 위에서 인덱스를 0부터 시작했으므로 구한 값에 1을 더해야 답이 된다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="p">(</span><span class="nb">first </span><span class="p">(</span><span class="nb">apply </span><span class="nb">max-key </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="p">[</span><span class="nv">i</span> <span class="nv">v</span><span class="p">]</span><span class="p">]</span> <span class="nv">v</span><span class="p">)</span> <span class="nv">log-vals</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>실행 결과는 다음과 같다. 빠르게 답을 구한다.</p><pre class="console">p099=&gt; (time (solve))
 "Elapsed time: 0.218719 msecs"
 7?9

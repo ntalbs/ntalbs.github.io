@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 66 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 66 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -455,23 +455,23 @@ h_{-1} = 1, k_{-1} = 0
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMATHI-78" x="0" y="0"></use>
 </g>
-</svg></span>를 최소화하는 해가 된다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">ns </span>p066
-  (<span style="color:#a31515">:require</span> [util <span style="color:#a31515">:refer</span> [perfect-square?]]
-            [p064 <span style="color:#a31515">:refer</span> [expand-continued-fraction]]))
+</svg></span>를 최소화하는 해가 된다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">p066</span>
+  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">util</span> <span class="ss">:refer</span> <span class="p">[</span><span class="nv">perfect-square?</span><span class="p">]</span><span class="p">]</span>
+            <span class="p">[</span><span class="nv">p064</span> <span class="ss">:refer</span> <span class="p">[</span><span class="nv">expand-continued-fraction</span><span class="p">]</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
 
-(<span style="color:#00f">defn </span>find-fundamental-solution
-  <span style="color:#a31515">"find the fundamental solution of pell's equation,  x^2 - dy^2 = 1"</span>
-  [d]
-  (<span style="color:#00f">let </span>[cf (expand-continued-fraction d)
-        as (lazy-cat cf (cycle (rest cf)))]
-    (<span style="color:#00f">loop </span>[h2 0, h1 1,
-           k2 1, k1 0,
-           as as, n 0]
-      (<span style="color:#00f">if </span>(and (&gt;= n 1) (= 1 (-' (*' h1 h1) (*' d k1 k1))))
-        [h1 k1]
-        (recur h1 (+' (*' (first as) h1) h2)
-               k1 (+' (*' (first as) k1) k2)
-               (rest as) (inc n))))))
+<span class="p">(</span><span class="kd">defn </span><span class="nv">find-fundamental-solution</span>
+  <span class="s">"find the fundamental solution of pell's equation,  x^2 - dy^2 = 1"</span>
+  <span class="p">[</span><span class="nv">d</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">cf</span> <span class="p">(</span><span class="nf">expand-continued-fraction</span> <span class="nv">d</span><span class="p">)</span>
+        <span class="nv">as</span> <span class="p">(</span><span class="nb">lazy-cat </span><span class="nv">cf</span> <span class="p">(</span><span class="nb">cycle </span><span class="p">(</span><span class="nb">rest </span><span class="nv">cf</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">]</span>
+    <span class="p">(</span><span class="k">loop </span><span class="p">[</span><span class="nv">h2</span> <span class="mi">0</span>, <span class="nv">h1</span> <span class="mi">1</span>,
+           <span class="nv">k2</span> <span class="mi">1</span>, <span class="nv">k1</span> <span class="mi">0</span>,
+           <span class="nv">as</span> <span class="nv">as</span>, <span class="nv">n</span> <span class="mi">0</span><span class="p">]</span>
+      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">and </span><span class="p">(</span><span class="nb">&gt;= </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nb">= </span><span class="mi">1</span> <span class="p">(</span><span class="nf">-</span><span class="o">'</span> <span class="p">(</span><span class="nf">*</span><span class="o">'</span> <span class="nv">h1</span> <span class="nv">h1</span><span class="p">)</span> <span class="p">(</span><span class="nf">*</span><span class="o">'</span> <span class="nv">d</span> <span class="nv">k1</span> <span class="nv">k1</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+        <span class="p">[</span><span class="nv">h1</span> <span class="nv">k1</span><span class="p">]</span>
+        <span class="p">(</span><span class="nf">recur</span> <span class="nv">h1</span> <span class="p">(</span><span class="nf">+</span><span class="o">'</span> <span class="p">(</span><span class="nf">*</span><span class="o">'</span> <span class="p">(</span><span class="nb">first </span><span class="nv">as</span><span class="p">)</span> <span class="nv">h1</span><span class="p">)</span> <span class="nv">h2</span><span class="p">)</span>
+               <span class="nv">k1</span> <span class="p">(</span><span class="nf">+</span><span class="o">'</span> <span class="p">(</span><span class="nf">*</span><span class="o">'</span> <span class="p">(</span><span class="nb">first </span><span class="nv">as</span><span class="p">)</span> <span class="nv">k1</span><span class="p">)</span> <span class="nv">k2</span><span class="p">)</span>
+               <span class="p">(</span><span class="nb">rest </span><span class="nv">as</span><span class="p">)</span> <span class="p">(</span><span class="nb">inc </span><span class="nv">n</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>이제 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.924ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 828.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-24-Title">
 <title id="MathJax-SVG-24-Title">D</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -506,11 +506,11 @@ h_{-1} = 1, k_{-1} = 0
  <use xlink:href="#MJMAIN-30" x="1335" y="0"></use>
  <use xlink:href="#MJMAIN-29" x="1835" y="0"></use>
 </g>
-</svg></span>을 제외한 다른 정수해가 존재하지 않으므로 이를 제외해야 한다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">defn </span>solve []
-  (-&gt;&gt; (range 2 (inc 1000))
-       (filter (complement perfect-square?))
-       (map (<span style="color:#00f">fn </span>[d] [d (first (find-fundamental-solution d))]))
-       (apply (partial max-key second))))
+</svg></span>을 제외한 다른 정수해가 존재하지 않으므로 이를 제외해야 한다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">range </span><span class="mi">2</span> <span class="p">(</span><span class="nb">inc </span><span class="mi">1000</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">filter </span><span class="p">(</span><span class="nb">complement </span><span class="nv">perfect-square?</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">d</span><span class="p">]</span> <span class="p">[</span><span class="nv">d</span> <span class="p">(</span><span class="nb">first </span><span class="p">(</span><span class="nf">find-fundamental-solution</span> <span class="nv">d</span><span class="p">)</span><span class="p">)</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">apply </span><span class="p">(</span><span class="nb">partial </span><span class="nb">max-key </span><span class="nv">second</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p>실행 결과는 다음과 같다.</p><pre class="console">p066=&gt; (time (solve))
 "Elapsed time: 21.273114 msecs"
 6?1

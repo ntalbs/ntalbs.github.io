@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><meta name="generator" content="Hugo 0.60.1"><meta name="robots" content="noindex"><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>@ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><style type="text/css">
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>@ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/xcode.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
@@ -158,10 +158,10 @@ on
 </svg></span>)으로 비교적 작으므로, 모든 조합을 구해 계산해 보는 무식한 방법을 적용해도 문제를 풀 수 있을 것 같다.</p><p></p><p><a class="button is-link" href="https://ntalbs.github.io/2018/project-euler-090/" style="height:28px">Read more...</a></p></section></article><article class="post"><header class="post-header"><span class="post-meta"><time datetime="2018-03-10" itemprop="datePublished">2018-03-10</time>
 on
 <a href="/tags/project-euler/">Project-Euler</a>
-<a href="/tags/clojure/">Clojure</a></span><h1 class="post-title"><a href="https://ntalbs.github.io/2018/project-euler-089/">프로젝트 오일러 89</a></h1></header><section class="post-excerpt"><p></p><blockquote><p>로마숫자 최적화하기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=89">[국어]</a> <a href="https://projecteuler.net/problem=89">[영어]</a></p></blockquote><p>먼저 다음과 같이 텍스트 파일을 읽어 시퀀스로 만들어둔다.</p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">ns </span>p089
-  (<span style="color:#a31515">:require</span> [clojure.string <span style="color:#a31515">:as</span> str]))
+<a href="/tags/clojure/">Clojure</a></span><h1 class="post-title"><a href="https://ntalbs.github.io/2018/project-euler-089/">프로젝트 오일러 89</a></h1></header><section class="post-excerpt"><p></p><blockquote><p>로마숫자 최적화하기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=89">[국어]</a> <a href="https://projecteuler.net/problem=89">[영어]</a></p></blockquote><p>먼저 다음과 같이 텍스트 파일을 읽어 시퀀스로 만들어둔다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">p089</span>
+  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">clojure.string</span> <span class="ss">:as</span> <span class="nv">str</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
 
-(<span style="color:#00f">def </span>romans (str/split (slurp <span style="color:#a31515">"data/roman.txt"</span>) #<span style="color:#a31515">"\r\n"</span>))
+<span class="p">(</span><span class="k">def </span><span class="nv">romans</span> <span class="p">(</span><span class="nf">str/split</span> <span class="p">(</span><span class="nb">slurp </span><span class="s">"data/roman.txt"</span><span class="p">)</span> <span class="o">#</span><span class="s">"\r\n"</span><span class="p">)</span><span class="p">)</span>
 </code></pre></div><p></p><p><a class="button is-link" href="https://ntalbs.github.io/2018/project-euler-089/" style="height:28px">Read more...</a></p></section></article><article class="post"><header class="post-header"><span class="post-meta"><time datetime="2018-03-09" itemprop="datePublished">2018-03-09</time>
 on
 <a href="/tags/project-euler/">Project-Euler</a>
