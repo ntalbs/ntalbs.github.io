@@ -6,7 +6,7 @@ on
 ...
 $ brew install app-engine-java-sdk
 </pre><h2 id="clojure--">Clojure 앱 만들기</h2><p>다음과 같이 <a href="https://github.com/yogthos/compojure-template">compojure-template</a>을 이용해 프로젝트를 생성한다.</p><pre class="console">$ lein new compojure-app app-test
-</pre><p>프로젝트를 생성한 다음 아래와 같이 실행하면 브라우저 창에 “Hello World!“를 표시한다.</p><pre class="console">$ lein ring server
+</pre><p>프로젝트를 생성한 다음 아래와 같이 실행하면 브라우저 창에 "Hello World!"를 표시한다.</p><pre class="console">$ lein ring server
 </pre><p>여기서는 이 상태 그대로 앱 엔진에 배포해 볼 것이다. Clojure로 웹 애플리케이션을 만드는 방법은 <a href="http://flowa.fi/blog/2014/04/25/clojure-gae-howto.html">원래 문서</a>나 <strong>참고</strong>에 나온 다른 도서를 보기 바란다.</p><h2 id="--">배포를 위한 패키징</h2><p>다음 명령으로 war 파일을 생성한다.</p><pre class="console">$ lein ring uberwar
 </pre><p>war 파일은 프로젝트 루트 밑의 <code>target</code> 디렉터리 안에 생성된다. 다음과 같이 <code>unzip</code> 명령을 이용해 압축 해제한다. (파일 이름은 다를 수 있으며, 압축 해제할 디렉터리 이름이 꼭 stage일 필요는 없음)</p><pre class="console">$ unzip -d stage target/test-app-0.1.0-SNAPSHOT-standalone.war
 </pre><p><code>stage/WEB-INF</code> 디렉터리에 다음과 같은 내용으로 <code>appengine-web.xml</code> 파일을 만든다.</p><div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;appengine-web-app</span> <span class="na">xmlns=</span><span class="s">"http://appengine.google.com/ns/1.0"</span><span class="nt">&gt;</span>

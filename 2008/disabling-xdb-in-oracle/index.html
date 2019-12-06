@@ -45,7 +45,7 @@ The command completed successfully
  max_dispatchers   integer
 </pre><p>이 파라미터 값을 변경 또는 제거한 다음 DBMS를 다시 시작하면 된다. PFILE을 사용하는 경우 init.ora 파일을 텍스트 에디터로 편집하면 되고, SPFILE을 사용하는 경우에는 다음과 같이 파라미터를 수정한 후 DBMS를 다시 시작한다.</p><pre class="console">SQL&gt; alter system set dispatchers='' scope=both;
 </pre><p>SPFILE을 사용하는 경우 <code>alter system</code> 명령으로 파라미터 값을 바꿀 수는 있지만, 파라미터 값만 바꾼다고 XDB가 바로 비활성화 되는 것은 아니다. DBMS를 다시 시작해줘야 XDB가 비활성화 된다. 데이터베이스를 재기동한 후 <code>netstat</code> 또는 <code>lsnrctl</code>로 확인해보면 <code>8080</code> 포트를 사용하지 않음을 확인할 수 있다.
-Metalink와 일부 문서에는 <code>dispatchers</code> 파라미터에서 <code>"(SERVICE=XDB)"</code> 부분만 제거하면 된다고 되어있지만, Oracle10g에서는 <code>dispatchers</code> 파라미터를 ‘‘로 만들어줘야 했다.</p><h2 id="3-http-ftp--">3. HTTP, FTP 포트 바꾸기</h2><p>다음과 같이 하면 HTTP와 FTP 포트를 바꿔줄 수 있다. 이렇게 한 경우에는 DBMS를 다시 시작시킬 필요가 없다. 프로시저를 실행시킨 후 <code>netstat</code>, <code>lsnrctl</code> 명령을 통해 결과를 바로 확인할 수 있다. 포트를 <code>0</code>으로 설정하면 XML DB를 비활성화 시킬 수 있다.</p><pre class="console">-- HTTP/WEBDAV 포트를 8081로 변경
+Metalink와 일부 문서에는 <code>dispatchers</code> 파라미터에서 <code>"(SERVICE=XDB)"</code> 부분만 제거하면 된다고 되어있지만, Oracle10g에서는 <code>dispatchers</code> 파라미터를 ''로 만들어줘야 했다.</p><h2 id="3-http-ftp--">3. HTTP, FTP 포트 바꾸기</h2><p>다음과 같이 하면 HTTP와 FTP 포트를 바꿔줄 수 있다. 이렇게 한 경우에는 DBMS를 다시 시작시킬 필요가 없다. 프로시저를 실행시킨 후 <code>netstat</code>, <code>lsnrctl</code> 명령을 통해 결과를 바로 확인할 수 있다. 포트를 <code>0</code>으로 설정하면 XML DB를 비활성화 시킬 수 있다.</p><pre class="console">-- HTTP/WEBDAV 포트를 8081로 변경
 SQL&gt; call dbms_xdb.cfg_update(updateXML(
   2   dbms_xdb.cfg_get(),
   3   '/xdbconfig/sysconfig/protocolconfig/httpconfig/http-port/text()',

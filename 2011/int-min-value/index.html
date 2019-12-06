@@ -9,7 +9,7 @@ on
 </code></pre><p>따라서 MIN 값을 -1과 곱하면 다시 자기 자신이 되는 것이다. 실제 <code>Integer</code>나 <code>Long</code>도 자릿수만 더 많다뿐이지 원리는 동일하다. 따라서 <code>Integer.MIN_VALUE = -Integer.MIN_VALUE</code>다. 테스트해보지 않아도 알겠지만 <code>Long</code>도 마찬가지다</p><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span> <span class="o">=</span><span class="o">=</span> <span class="o">-</span><span class="n">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span>
 <span class="n">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">)</span>
 <span class="n">Long</span><span class="o">.</span><span class="na">MIN_VALUE</span> <span class="o">=</span><span class="o">=</span> <span class="o">-</span><span class="n">LONG</span><span class="o">.</span><span class="na">MIN_VALUE</span>
-</code></pre></div><p>조금 더 테스트해보면 <code>Integer.MIN_VALUE와 Integer.MAX_VALUE</code>와의 재미있는 관계도 알 수 있다. 이것도 생각을 쉽게 하기 위해 3비트 정수로 계산해보면…</p><pre><code>     MAX = 011
+</code></pre></div><p>조금 더 테스트해보면 <code>Integer.MIN_VALUE와 Integer.MAX_VALUE</code>와의 재미있는 관계도 알 수 있다. 이것도 생각을 쉽게 하기 위해 3비트 정수로 계산해보면...</p><pre><code>     MAX = 011
   +    1 = 001
   ------------
            100 --&gt; MIN
@@ -17,7 +17,7 @@ on
   +   -1 = 111
   ------------
           1011 --&gt; 011 --&gt; MAX
-</code></pre><p>따라서…</p><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span> <span class="o">+</span> <span class="n">1</span> <span class="o">=</span><span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span>
+</code></pre><p>따라서...</p><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span> <span class="o">+</span> <span class="n">1</span> <span class="o">=</span><span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span>
 <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span> <span class="o">=</span><span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span> <span class="o">-</span> <span class="n">1</span>
 </code></pre></div><p><code>Long</code>도 마찬가지다. 프로그램을 작성하면서 <code>Integer.MIN_VALUE</code>나 <code>Integer.MAX_VALUE</code>를 쓸 일이 없어 미처 깨닫지 못했었는데, 재미있는 사실을 알게 되었다.</p></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>

@@ -71,7 +71,7 @@ Rows  Row Source Operation
 <span class="k">create</span> <span class="k">index</span> <span class="n">ix02</span> <span class="k">on</span> <span class="n">t</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>
 
 <span class="k">analyze</span> <span class="k">table</span> <span class="n">t</span> <span class="n">compute</span> <span class="k">statistics</span><span class="p">;</span>
-</code></pre></div><p>달라진 것은 a 컬럼에 데이터를 넣는 방식 뿐이다. 실제 들어가는 데이터는 거의 동일하나 데이터가 들어가는 순서가 달라진다. 앞에서는 1, 2, …, 998, 999, 0, 1, 2, …, 999, 0, 1, …과 같은 순서로 들어간다면 여기서는 0, 0, …, 0(1000개), 1, 1, …, 1(1000개), 2, 2, …와 같은 순서로 데이터가 들어간다. 이제 위에서 돌렸던 쿼리를 다시 돌려보자.</p><pre class="console">SQL&gt; select * from t where a=10
+</code></pre></div><p>달라진 것은 a 컬럼에 데이터를 넣는 방식 뿐이다. 실제 들어가는 데이터는 거의 동일하나 데이터가 들어가는 순서가 달라진다. 앞에서는 1, 2, ..., 998, 999, 0, 1, 2, ..., 999, 0, 1, ...과 같은 순서로 들어간다면 여기서는 0, 0, ..., 0(1000개), 1, 1, ..., 1(1000개), 2, 2, ...와 같은 순서로 데이터가 들어간다. 이제 위에서 돌렸던 쿼리를 다시 돌려보자.</p><pre class="console">SQL&gt; select * from t where a=10
 
 Call    Count CPU Time Elapsed Time Disk Query Current Rows
 ------- ----- -------- ------------ ---- ----- ------- ----

@@ -97,7 +97,7 @@ run 1 ran in 308.08% of the time
 ... 생략 ...
 
 PL/SQL procedure successfully completed.
-</pre><p>이번에는 방법2가 빠르게 나왔다. 음… 그럼 인덱스를 parallel 4로 바꿔놓은 상태에서 방법 1은 어떨까? t1.sql을 다음과 같이 수정한다.</p><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">alter</span> <span class="k">index</span> <span class="n">t1_pk</span> <span class="n">parallel</span> <span class="mi">4</span><span class="p">;</span>
+</pre><p>이번에는 방법2가 빠르게 나왔다. 음... 그럼 인덱스를 parallel 4로 바꿔놓은 상태에서 방법 1은 어떨까? t1.sql을 다음과 같이 수정한다.</p><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">alter</span> <span class="k">index</span> <span class="n">t1_pk</span> <span class="n">parallel</span> <span class="mi">4</span><span class="p">;</span>
 <span class="k">alter</span> <span class="k">index</span> <span class="n">t1_ix01</span> <span class="n">parallel</span> <span class="mi">4</span><span class="p">;</span>
 
 <span class="k">insert</span> <span class="cm">/*</span><span class="cm">+ append </span><span class="cm">*/</span> <span class="k">into</span> <span class="n">t1</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">t</span><span class="p">;</span>
