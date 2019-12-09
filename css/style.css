@@ -344,7 +344,7 @@ video {
 .post .post-excerpt h4,
 .post .post-excerpt h5,
 .post .post-excerpt h6,
-.post .post-excerpt img:first-child,
+.post .post-excerpt img,
 .post .post-excerpt blockquote {
   display: none;
 }
