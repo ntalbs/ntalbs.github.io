@@ -5,8 +5,8 @@ on
 <a href="/tags/db/">DB</a>
 <a href="/tags/oracle/">Oracle</a></p><h1 class="post-title">noarchivelog mode에서의 복구</h1></header><section class="post-content"><p>redo log 백업이 있을 때와 없을 때의 절차가 다르다.</p><h2 id="redo-log---">redo log 백업이 있을 때</h2><h4 id="1--">1. 데이터베이스 종료</h4><pre class="console">SQL&gt; shutdown abort;
 </pre><h4 id="2---restore">2. 모든 파일 restore</h4><p>참고: 최종 백업 이후 redo log가 겹쳐쓰이지 않았다면 손상된 파일만 restore한 다음 복구할 수 있다.</p><h4 id="3--">3. 데이터베이스 기동</h4><pre class="console">SQL&gt; startup;
-</pre><h2 id="redo-log---1">redo log 백업이 없을 때</h2><h4 id="1--1">1. 데이터베이스 종료</h4><pre class="console">SQL&gt; shutdown immediate;
-</pre><h4 id="2-----restore">2. 데이터 파일과 컨트롤 파일 restore</h4><h4 id="3-cancelbased-recovery-">3. cancel-based recovery 수행</h4><pre class="console">SQL&gt; startup mount;
+</pre><h2 id="redo-log----1">redo log 백업이 없을 때</h2><h4 id="1---1">1. 데이터베이스 종료</h4><pre class="console">SQL&gt; shutdown immediate;
+</pre><h4 id="2-----restore">2. 데이터 파일과 컨트롤 파일 restore</h4><h4 id="3-cancel-based-recovery-">3. cancel-based recovery 수행</h4><pre class="console">SQL&gt; startup mount;
 ...
 SQL&gt; recover database until cancel;
 </pre><h4 id="4-resetlogs---open">4. resetlogs 옵션으로 데이터베이스 open</h4><pre class="console">SQL&gt; alter database open resetlogs;

@@ -15,7 +15,7 @@ on
 F = 크기가 250byte 미만인 컬럼 수
 V = 크기가 250byte 이상인 컬럼 수
 D = combined column length
-</code></pre><h4 id="-----1">④ 인덱스당 필요 블록 수 계산</h4><pre><code>(Number of blocks for index)
+</code></pre><h4 id="------1">④ 인덱스당 필요 블록 수 계산</h4><pre><code>(Number of blocks for index)
   = 1.1 * (number of entries)
     / (TRUNC(Available data space) / (Average entry size)
   = 1.1 * (number of entries) / TRUNC( ② / ③ )
