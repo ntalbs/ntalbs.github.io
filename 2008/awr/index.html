@@ -29,8 +29,8 @@ on
   <span class="n">dbms_workload_repository</span><span class="p">.</span><span class="n">drop_baseline</span><span class="p">(</span><span class="s1">'</span><span class="s1">Good Nightly Batch</span><span class="s1">'</span><span class="p">,</span> <span class="k">true</span><span class="p">)</span><span class="p">;</span>
 <span class="k">end</span><span class="p">;</span>
 <span class="o">/</span>
-</code></pre></div><h4 id="5-awr--">5. AWR 리포트 생성</h4><pre><code>SQL&gt; @?/rdbms/admin/awrrpt.sql
-</code></pre><h4 id="6---">6. 스냅샷 설정 변경</h4><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">begin</span>
+</code></pre></div><h4 id="5-awr--">5. AWR 리포트 생성</h4><div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">SQL&gt; @?/rdbms/admin/awrrpt.sql
+</code></pre></div><h4 id="6---">6. 스냅샷 설정 변경</h4><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">begin</span>
   <span class="n">dbms_workload_repository</span><span class="p">.</span><span class="n">modify_snapshot_settings</span><span class="p">(</span>
     <span class="nb">interval</span><span class="o">=</span><span class="o">&gt;</span><span class="mi">30</span><span class="p">,</span>
     <span class="n">retention</span><span class="o">=</span><span class="o">&gt;</span><span class="mi">15</span><span class="o">*</span><span class="mi">1440</span><span class="p">)</span><span class="p">;</span>
