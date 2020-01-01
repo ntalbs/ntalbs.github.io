@@ -2,16 +2,12 @@
   'use strict'
 
   function randomColor () {
-    if (mode === 'dark') {
-      return '#333300'
-    } else {
-      let colors = [
-        '#003366',
-        '#333300',
-        '#660033', '#089378', '#0898b3', '#1A5276'
-      ]
-      return colors[Math.floor(Math.random() * colors.length)]
-    }
+    let colors = [
+      '#003366',
+      '#333300',
+      '#660033', '#089378', '#0898b3', '#1A5276'
+    ]
+    return colors[Math.floor(Math.random() * colors.length)]
   }
 
   function offsetTop (elm) {
@@ -86,25 +82,6 @@
       let footnote = document.getElementById(id)
       footnote.scrollIntoView({block: 'end'})
     })
-  })
-
-  let modeSwitch = document.getElementById('modeSwitch')
-  let currentMode = localStorage.getItem('mode')
-  if (currentMode === 'dark') {
-    document.getElementById('modeSwitch').textContent = 'Default'
-  } else {
-    document.getElementById('modeSwitch').textContent = 'Dark'
-  }
-  modeSwitch.removeAttribute("tabIndex")
-  modeSwitch.addEventListener('click', e => {
-    let link = document.getElementById('main-style')
-    let currentMode = localStorage.getItem('mode')
-    if (currentMode === 'dark') {
-      localStorage.setItem('mode', 'default')
-    } else {
-      localStorage.setItem('mode', 'dark')
-    }
-    location.reload()
   })
 
   document.querySelector('main').style.minHeight = minHeight()
