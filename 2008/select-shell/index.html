@@ -5,7 +5,7 @@ on
 <a href=/tags/db/>DB</a>
 <a href=/tags/oracle/>Oracle</a>
 <a href=/tags/sqlplus/>SqlPlus</a>
-<a href=/tags/%ed%8c%81/>팁</a></p><h1 class=post-title>SELECT 결과를 shell 변수로 가져오기</h1></header><section class=post-content><p>select한 결과를 shell에서 참조해야 하는 경우 다음과 같이 하면 된다.</p><h4 id=-1>방법 1</h4><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh><span class=cp>#!/bin/ksh
+<a href=/tags/%ed%8c%81/>팁</a></p><h1 class=post-title>SELECT 결과를 shell 변수로 가져오기</h1></header><section class=post-content><p>select한 결과를 shell에서 참조해야 하는 경우 다음과 같이 하면 된다.</p><h4 id=방법-1>방법 1</h4><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh><span class=cp>#!/bin/ksh
 </span><span class=cp></span><span class=nv>VALUE</span><span class=o>=</span><span class=sb>`</span>sqlplus -silent <span class=s2>&#34;user/passwd@sid&#34;</span> &lt; <span class=nb>set</span> pagesize <span class=m>0</span> <span class=se>\
 </span><span class=se></span>feedback off verify off heading off <span class=nb>echo</span> off
 <span class=k>select</span> max<span class=o>(</span>c1<span class=o>)</span> from t1<span class=p>;</span>
@@ -18,7 +18,7 @@ END<span class=sb>`</span>
 <span class=k>else</span>
 <span class=nb>echo</span> <span class=nv>$VALUE</span>
 <span class=k>fi</span>
-</code></pre></div><h4 id=-2>방법 2</h4><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh><span class=cp>#!/bin/ksh
+</code></pre></div><h4 id=방법-2>방법 2</h4><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh><span class=cp>#!/bin/ksh
 </span><span class=cp></span>sqlplus -s &gt; null <span class=s2>&#34;usr/passwd@sid&#34;</span> &lt; column num_rows <span class=se>\
 </span><span class=se></span>new_value num_rows format <span class=m>9999</span>
 <span class=k>select</span> count<span class=o>(</span>*<span class=o>)</span> num_rows

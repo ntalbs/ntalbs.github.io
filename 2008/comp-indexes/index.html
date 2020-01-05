@@ -4,7 +4,7 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset=utf-8
 on
 <a href=/tags/db/>DB</a>
 <a href=/tags/oracle/>Oracle</a>
-<a href=/tags/sql/>SQL</a></p><h1 class=post-title>인덱스 비교</h1></header><section class=post-content><p>개발DB와 테스트DB, 또는 테스트DB와 운영DB간 인덱스를 비교할 때는 다음 쿼리를 사용할 수 있다.</p><h3 id=->인덱스 명세</h3><p>인덱스를 비교하기 위해서는 먼저 인덱스 명세를 만들어야 한다. 인덱스에 포함된 컬럼 개수의 최대값을 구한 다음 그 값만큼 <code>max(decode(..))</code>를 해줘서 인덱스에 대한 명세를 구할 수 있다.</p><div class=highlight><pre class=chroma><code class=language-sql data-lang=sql><span class=c1>-- 인덱스에 포함된 컬럼의 최대 개수 파악
+<a href=/tags/sql/>SQL</a></p><h1 class=post-title>인덱스 비교</h1></header><section class=post-content><p>개발DB와 테스트DB, 또는 테스트DB와 운영DB간 인덱스를 비교할 때는 다음 쿼리를 사용할 수 있다.</p><h3 id=인덱스-명세>인덱스 명세</h3><p>인덱스를 비교하기 위해서는 먼저 인덱스 명세를 만들어야 한다. 인덱스에 포함된 컬럼 개수의 최대값을 구한 다음 그 값만큼 <code>max(decode(..))</code>를 해줘서 인덱스에 대한 명세를 구할 수 있다.</p><div class=highlight><pre class=chroma><code class=language-sql data-lang=sql><span class=c1>-- 인덱스에 포함된 컬럼의 최대 개수 파악
 </span><span class=c1></span><span class=k>select</span> <span class=k>max</span><span class=p>(</span><span class=n>column_position</span><span class=p>)</span>
 <span class=k>from</span> <span class=n>all_ind_columns</span>
 <span class=k>where</span> <span class=n>index_owner</span><span class=o>=</span><span class=s1>&#39;</span><span class=s1>XXX</span><span class=s1>&#39;</span><span class=p>;</span>
@@ -23,7 +23,7 @@ on
 <span class=k>from</span> <span class=n>all_ind_columns</span>
 <span class=k>where</span> <span class=n>index_owner</span> <span class=o>=</span> <span class=s1>&#39;</span><span class=s1>XXX</span><span class=s1>&#39;</span>
 <span class=k>group</span> <span class=k>by</span> <span class=k>table_name</span><span class=p>,</span> <span class=n>index_name</span><span class=p>;</span>
-</code></pre></div><h3 id=db-->DB간 인덱스 비교</h3><p>인덱스 명세를 구할 수 있으면, 양쪽 DB에서 인덱스 명세를 구한 다음 이를 비교하면 된다.</p><div class=highlight><pre class=chroma><code class=language-sql data-lang=sql><span class=k>with</span>
+</code></pre></div><h3 id=db간-인덱스-비교>DB간 인덱스 비교</h3><p>인덱스 명세를 구할 수 있으면, 양쪽 DB에서 인덱스 명세를 구한 다음 이를 비교하면 된다.</p><div class=highlight><pre class=chroma><code class=language-sql data-lang=sql><span class=k>with</span>
 <span class=n>a</span> <span class=k>as</span> <span class=p>(</span>
   <span class=k>select</span> <span class=k>table_name</span><span class=p>,</span> <span class=n>index_name</span><span class=p>,</span>
     <span class=k>max</span><span class=p>(</span><span class=n>decode</span><span class=p>(</span><span class=n>column_position</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=k>column_name</span><span class=p>)</span><span class=p>)</span> <span class=o>|</span><span class=o>|</span>

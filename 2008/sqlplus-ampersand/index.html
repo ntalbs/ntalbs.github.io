@@ -7,9 +7,9 @@ on
 <a href=/tags/sqlplus/>SqlPlus</a></p><h1 class=post-title>SQL*Plus에서 '&'가 포함된 문자열을 변수로 인식하지 않게 하기</h1></header><section class=post-content><p>문자열 자체에 <code>&</code>가 포함되어 있는 경우 SQL*Plus에서 <code>&</code> 뒤의 단어를 변수로 인식해 그에 대한 값의 입력을 요구한다.</p><pre class=console>
 SQL&gt; update tbl set a = 'hello&amp;world' where ...
 Enter value for world: _  &lt -- 입력을 기다림
-</pre><p>이걸 어떻게 회피할 수 있을까?</p><h2 id=--1>해결 방법 1</h2><p>다음 명령을 실행시킨 후 SQL 실행한다.</p><pre class=console>
+</pre><p>이걸 어떻게 회피할 수 있을까?</p><h2 id=해결-방법-1>해결 방법 1</h2><p>다음 명령을 실행시킨 후 SQL 실행한다.</p><pre class=console>
 SQL&gt; set define off
-</pre><p>(<a href=https://docs.oracle.com/cd/E11882_01/server.112/e16604/ch_eight.htm#sthref932>SQL*Plus User's Guide and Reference</a>에서 <code>SET DEFINE OFF</code>절 참조)</p><h2 id=--2>해결 방법 2</h2><p>편법으로 다음과 같은 식으로 문자열 변경할 수도 있다.</p><pre class=console>
+</pre><p>(<a href=https://docs.oracle.com/cd/E11882_01/server.112/e16604/ch_eight.htm#sthref932>SQL*Plus User's Guide and Reference</a>에서 <code>SET DEFINE OFF</code>절 참조)</p><h2 id=해결-방법-2>해결 방법 2</h2><p>편법으로 다음과 같은 식으로 문자열 변경할 수도 있다.</p><pre class=console>
 'hello&world' --&gt; 'hello&'||'world'
 </pre><p>문자열에 <code>&</code>가 많을 경우 노가다 작업이 된다.</p></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>

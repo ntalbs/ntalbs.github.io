@@ -23,7 +23,7 @@ on
 </code></pre></div><p>다만 실행 속도가 썩 만족스럽지는 않다.</p><pre class=console>p035=> (time (solve0))
 "Elapsed time: 1630.826804 msecs"
 5?
-</pre><h2 id=-1>개선 1</h2><p>위 풀이는 비효율적인 부분이 있다. 순환수의 리스트를 만들기 위해 <code>digits</code>, <code>cycle</code>, <code>partition</code> 등을 사용하는 것도 무거워 보인다. 순환수를 만들다 하나라도 소수가 아닌 수를 만나면 바로 <code>false</code>를 리턴하는 방식이 아니라 일단 주어진 수에 대해 모든 순환수를 미리 만들어 놓는 부분도 개선할 수 있을 것 같다.</p><p>위에서와 같이 한꺼번에 순환수의 리스트를 구하는 대신 주어진 수의 다음 단계 순환수만 만드는 함수를 작성한 다음 필요한 만큼만 호출하면 좀더 효율적일 것 같다. 따라서 다음과 같이 한 단계만 순환시키는 함수를 만들어보자.</p><div class=highlight><pre class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>ns </span><span class=nv>p035</span>
+</pre><h2 id=개선-1>개선 1</h2><p>위 풀이는 비효율적인 부분이 있다. 순환수의 리스트를 만들기 위해 <code>digits</code>, <code>cycle</code>, <code>partition</code> 등을 사용하는 것도 무거워 보인다. 순환수를 만들다 하나라도 소수가 아닌 수를 만나면 바로 <code>false</code>를 리턴하는 방식이 아니라 일단 주어진 수에 대해 모든 순환수를 미리 만들어 놓는 부분도 개선할 수 있을 것 같다.</p><p>위에서와 같이 한꺼번에 순환수의 리스트를 구하는 대신 주어진 수의 다음 단계 순환수만 만드는 함수를 작성한 다음 필요한 만큼만 호출하면 좀더 효율적일 것 같다. 따라서 다음과 같이 한 단계만 순환시키는 함수를 만들어보자.</p><div class=highlight><pre class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>ns </span><span class=nv>p035</span>
   <span class=p>(</span><span class=ss>:require</span> <span class=p>[</span><span class=nv>clojure.contrib.lazy-seqs</span> <span class=ss>:refer</span> <span class=p>[</span><span class=nv>primes</span><span class=p>]</span><span class=p>]</span>
             <span class=p>[</span><span class=nv>util</span> <span class=ss>:refer</span> <span class=p>[</span><span class=nv>parse-int</span> <span class=nv>digits</span> <span class=nv>prime?</span> <span class=nv>pow</span><span class=p>]</span><span class=p>]</span><span class=p>)</span><span class=p>)</span> <span class=c1>; pow 추가</span>
 
@@ -45,7 +45,7 @@ on
 </code></pre></div><p>실행 결과는 다음과 같다. 개선되긴 했지만 아직 충분히 빠르지는 않다.</p><pre class=console>p035=> (time (solve1))
 "Elapsed time: 1241.998528 msecs"
 5?
-</pre><h2 id=-2>개선 2</h2><p><strong>개선 1</strong> 풀이에서는 <code>circular-prime1?</code>에 소수만 전달하면서도 그 수가 소수인지 다시 확인하고 있다. <code>prime?</code> 함수에 큰 소수가 입력되면 비용이 많이 든다. 따라서 소수를 <code>prime?</code>으로 확인하는 단계를 제거하면 성능이 향상될 것이다.</p><div class=highlight><pre class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>defn- </span><span class=nv>circular-prime2?</span> <span class=p>[</span><span class=nv>n</span><span class=p>]</span> <span class=c1>;; 처음 전달된 n은 prime이라고 가정</span>
+</pre><h2 id=개선-2>개선 2</h2><p><strong>개선 1</strong> 풀이에서는 <code>circular-prime1?</code>에 소수만 전달하면서도 그 수가 소수인지 다시 확인하고 있다. <code>prime?</code> 함수에 큰 소수가 입력되면 비용이 많이 든다. 따라서 소수를 <code>prime?</code>으로 확인하는 단계를 제거하면 성능이 향상될 것이다.</p><div class=highlight><pre class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>defn- </span><span class=nv>circular-prime2?</span> <span class=p>[</span><span class=nv>n</span><span class=p>]</span> <span class=c1>;; 처음 전달된 n은 prime이라고 가정</span>
   <span class=p>(</span><span class=k>let </span><span class=p>[</span><span class=nv>p</span> <span class=p>(</span><span class=nb>int </span><span class=p>(</span><span class=nf>Math/log10</span> <span class=nv>n</span><span class=p>)</span><span class=p>)</span><span class=p>]</span>
     <span class=p>(</span><span class=k>loop </span><span class=p>[</span><span class=nv>n</span> <span class=p>(</span><span class=nf>cycle1</span> <span class=nv>n</span> <span class=nv>p</span><span class=p>)</span>, <span class=nv>cnt</span> <span class=p>(</span><span class=nb>dec </span><span class=nv>p</span><span class=p>)</span><span class=p>]</span>
       <span class=p>(</span><span class=nf>cond</span>
@@ -60,7 +60,7 @@ on
 </code></pre></div><p><code>circular-prime1?</code>을 쓰던 부분을 <code>circular-prime2?</code>로 바꿨을 뿐이다. 실행 결과는 다음과 같다.</p><pre class=console>p035=> (time (solve2))
 "Elapsed time: 285.24435 msecs"
 5?
-</pre><p>시간이 <strong>개선 1</strong> 풀이의 1/4 이하로 단축되었다.</p><h2 id=heading>참고</h2><ul><li><a href=https://github.com/ntalbs/euler/blob/master/src/p035.clj>프로젝트 오일러 35 풀이 소스 코드</a></li><li><a href=/2015/project-euler-013/>프로젝트 오일러 13</a>
+</pre><p>시간이 <strong>개선 1</strong> 풀이의 1/4 이하로 단축되었다.</p><h2 id=참고>참고</h2><ul><li><a href=https://github.com/ntalbs/euler/blob/master/src/p035.clj>프로젝트 오일러 35 풀이 소스 코드</a></li><li><a href=/2015/project-euler-013/>프로젝트 오일러 13</a>
 <code>digits</code> 함수 구현을 확인할 수 있다.</li><li><a href=/2015/project-euler-007/>프로젝트 오일러 7</a>
 <code>prime?</code> 함수 구현에 대한 설명을 볼 수 있다.</li></ul></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>

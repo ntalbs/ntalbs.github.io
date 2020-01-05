@@ -3,17 +3,17 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset=utf-8
 <a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a></div><div class="navbar-items collapsed" id=nav-items><ul><li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li></ul></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2010-07-27 itemprop=datePublished>2010-07-27</time>
 on
 <a href=/tags/db/>DB</a>
-<a href=/tags/oracle/>Oracle</a></p><h1 class=post-title>SQL*Loader 사용법 (초간단 정리)</h1></header><section class=post-content><p>간단히 참조할 용도로 정리한다. 자세한 사용법은 <a href=http://docs.oracle.com/cd/E11882_01/server.112/e22490/ldr_concepts.htm#SUTIL003>매뉴얼</a>을 참조해야 한다.</p><h3 id=1----->1. 데이터를 로드할 테이블 생성(또는 확인)</h3><div class=highlight><pre class=chroma><code class=language-sql data-lang=sql><span class=k>create</span> <span class=k>table</span> <span class=n>xxx</span> <span class=p>(</span>
+<a href=/tags/oracle/>Oracle</a></p><h1 class=post-title>SQL*Loader 사용법 (초간단 정리)</h1></header><section class=post-content><p>간단히 참조할 용도로 정리한다. 자세한 사용법은 <a href=http://docs.oracle.com/cd/E11882_01/server.112/e22490/ldr_concepts.htm#SUTIL003>매뉴얼</a>을 참조해야 한다.</p><h3 id=1-데이터를-로드할-테이블-생성또는-확인>1. 데이터를 로드할 테이블 생성(또는 확인)</h3><div class=highlight><pre class=chroma><code class=language-sql data-lang=sql><span class=k>create</span> <span class=k>table</span> <span class=n>xxx</span> <span class=p>(</span>
   <span class=n>c1</span> <span class=nb>number</span><span class=p>,</span>
   <span class=n>c2</span> <span class=n>varchar2</span><span class=p>(</span><span class=mi>10</span><span class=p>)</span><span class=p>,</span>
   <span class=n>c3</span> <span class=n>varchar2</span><span class=p>(</span><span class=mi>10</span><span class=p>)</span><span class=p>,</span>
   <span class=n>c4</span> <span class=n>varchar2</span><span class=p>(</span><span class=mi>10</span><span class=p>)</span><span class=p>,</span>
   <span class=n>c5</span> <span class=nb>date</span>
 <span class=p>)</span><span class=p>;</span>
-</code></pre></div><h3 id=2----xxxdat>2. 데이터 파일 확인 (xxx.dat)</h3><div class=highlight><pre class=chroma><code class=language-text data-lang=text>aaa aaa aaa
+</code></pre></div><h3 id=2-데이터-파일-확인-xxxdat>2. 데이터 파일 확인 (xxx.dat)</h3><div class=highlight><pre class=chroma><code class=language-text data-lang=text>aaa aaa aaa
 bbb bbb bbb
 ccc ccc ccc
-</code></pre></div><h3 id=3----xxxctl>3. 컨트롤 파일 작성 (xxx.ctl)</h3><div class=highlight><pre class=chroma><code class=language-sql data-lang=sql><span class=k>load</span> <span class=k>data</span>
+</code></pre></div><h3 id=3-컨트롤-파일-작성-xxxctl>3. 컨트롤 파일 작성 (xxx.ctl)</h3><div class=highlight><pre class=chroma><code class=language-sql data-lang=sql><span class=k>load</span> <span class=k>data</span>
 <span class=n>infile</span> <span class=s1>&#39;</span><span class=s1>xxx.dat</span><span class=s1>&#39;</span>
 <span class=k>into</span> <span class=k>table</span> <span class=n>xxx</span>
 <span class=n>fields</span> <span class=n>terminated</span> <span class=k>by</span> <span class=s1>&#39;</span><span class=s1> </span><span class=s1>&#39;</span>
@@ -23,9 +23,9 @@ ccc ccc ccc
 </span><span class=c1></span><span class=n>c3</span><span class=p>,</span>
 <span class=n>c4</span> <span class=n>constant</span> <span class=s1>&#39;</span><span class=s1>xxx</span><span class=s1>&#39;</span><span class=p>,</span>                <span class=c1>-- constant
 </span><span class=c1></span><span class=n>c5</span> <span class=n>sysdate</span><span class=p>)</span>                       <span class=c1>-- sysdate
-</span></code></pre></div><h3 id=4--->4. 데이터 로드 실행</h3><pre class=console>
+</span></code></pre></div><h3 id=4-데이터-로드-실행>4. 데이터 로드 실행</h3><pre class=console>
 $ sqlldr userid=xxx/xxx control=xxx.ctl
-</pre><h3 id=5--->5. 로드 결과 확인</h3><pre class=console>
+</pre><h3 id=5-로드-결과-확인>5. 로드 결과 확인</h3><pre class=console>
 SQL> select * from xxx;
 
  C1 C2  C3   C4   C5
