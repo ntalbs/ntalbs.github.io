@@ -16,9 +16,11 @@ body {
   line-height: 1.6em;
   height: 100%;
   max-height: 100%;
+  background-color: var(--background);
 }
 .unselectable {
   user-select: none;
+  outline: none;
 }
 h1,
 h2,
@@ -31,14 +33,7 @@ h6 {
   line-height: 1;
   font-family: 'Open Sans', sans-serif;
   font-weight: bold;
-}
-h1 a,
-h2 a,
-h3 a,
-h4 a,
-h5 a,
-h6 a {
-  color: #50585d;
+  color: var(--heading);
 }
 h1 {
   font-size: 2.8rem;
@@ -67,13 +62,14 @@ h6 {
 }
 p {
   text-align: justify;
+  color: var(--text);
 }
 a {
-  color: #666;
+  color: var(--link);
   transition: color ease 0.3s;
 }
 a:hover {
-  color: #999;
+  color: var(--link-hover);
 }
 .footnote-ref {
   padding-top: 88px;
@@ -96,6 +92,9 @@ ul ol,
 ol ul {
   margin: 0.4em 0;
 }
+li p {
+  margin: 0;
+}
 hr {
   display: block;
   height: 1px;
@@ -109,7 +108,7 @@ blockquote {
   margin: 1.6em 0 1.6em 0;
   padding: 0.4em 0.6em;
   line-height: 1.4;
-  background-color: #f5f5f5;
+  background-color: var(--box-bg);
 }
 blockquote ul,
 blockquote ol {
@@ -138,7 +137,7 @@ blockquote cite a {
   font-weight: normal;
 }
 .blockquote-reverse {
-  color: #808080;
+  color: var(--box-fg);
   padding-right: 15px;
   padding-left: 0;
   text-align: right;
@@ -147,11 +146,9 @@ blockquote cite a {
 .button-box {
   text-align: right;
 }
-mark {
-  background-color: #ffc336;
-}
 .highlight pre {
   padding: 5px 10px;
+  background-color: var(--code-block-bg);
 }
 .highlight pre span {
   letter-spacing: -1px;
@@ -162,7 +159,8 @@ li code {
   font-size: 0.9em;
   white-space: pre;
   border: none;
-  background: #eee;
+  color: var(--text);
+  background: var(--inline-code-bg);
   border-radius: 3px;
   hyphens: none;
   text-align: left;
@@ -186,14 +184,6 @@ pre.console {
   background-color: #444;
   letter-spacing: -1px;
   overflow: scroll;
-}
-div.box {
-  margin: 10px;
-  padding: 10px;
-  font-size: 0.9em;
-  border-radius: 5px;
-  border: 1px solid #aaa;
-  background-color: #f5f5f5;
 }
 table {
   -moz-box-sizing: border-box;
@@ -301,28 +291,12 @@ video {
 .navbar-items li a:hover {
   color: #eee;
 }
-.sr-only {
-  border: 0;
-  clip: rect(0, 0, 0, 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
 .site-head,
 .page-head {
   position: relative;
   display: table;
   width: 100%;
   height: 150px;
-}
-.blog-title {
-  color: #fff;
-  font-size: 6rem;
-  font-face: bold;
-  margin-bottom: 0;
 }
 .blog-description {
   font-size: 1.6rem;
@@ -331,7 +305,7 @@ video {
   color: #aaa;
 }
 .page-head .post-title {
-  color: #fff;
+  color: var(--heading);
   font-size: 4rem;
   font-face: bold;
   padding-top: 18px;
@@ -367,7 +341,7 @@ ul.pagination li a {
   text-align: justify;
   position: relative;
   padding-bottom: 2rem;
-  border-bottom: #ebf2f6 1px solid;
+  border-bottom: var(--line) 1px solid;
   margin-bottom: 2rem;
   word-break: break-word;
   hyphens: auto;
@@ -388,16 +362,16 @@ ul.pagination li a {
   content: "";
   width: 7px;
   height: 7px;
-  border: #e7eef2 1px solid;
+  border: var(--line) 1px solid;
   position: absolute;
   bottom: -5px;
   left: 50%;
   margin-left: -5px;
-  background: #fff;
+  background: var(--background);
   -webkit-border-radius: 100%;
   -moz-border-radius: 100%;
   border-radius: 100%;
-  box-shadow: #fff 0 0 0 5px;
+  box-shadow: var(--background) 0 0 0 5px;
 }
 .post img {
   max-width: 95%;
@@ -462,7 +436,7 @@ ul.pagination li a {
   padding-top: 0;
   margin-top: 0;
   margin-bottom: 0;
-  color: #aaa;
+  color: var(--post-meta);
 }
 .post-meta +h1 {
   margin-top: 0;
@@ -499,7 +473,7 @@ selection {
   font-size: 0.8em;
   padding: 2px 6px;
   margin: 2px;
-  color: #555;
+  color: var(--tagbox);
   border-radius: 5px;
   text-decoration: none;
   border: 1px dotted #bbb;
@@ -525,7 +499,7 @@ selection {
 .archive-ul {
   font-size: 2.4rem;
   font-weight: bold;
-  color: #444;
+  color: var(--archive-ul);
   cursor: pointer;
 }
 .archive-ul:before {
@@ -533,6 +507,9 @@ selection {
   display: block;
   height: 50px;
   margin: -50px 0 0;
+}
+.listing-item {
+  color: var(--text);
 }
 .listing-item .post-title {
   margin-top: 0;
@@ -672,12 +649,11 @@ selection {
   position: relative;
   margin: 8rem 0 0 0;
   padding: 4rem 0;
-  border-top: #ebf2f6 1px solid;
   font-family: 'Open Sans', sans-serif;
   font-size: 1.5rem;
   line-height: 1.7em;
   color: #aaa;
-  background-color: #eee;
+  background-color: var(--footer);
   text-align: center;
 }
 .page-bottom a {
@@ -732,10 +708,6 @@ selection {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     height: 150px;
-  }
-  .blog-title {
-    font-size: 4rem;
-    letter-spacing: -1px;
   }
   .blog-description {
     font-size: 1.5rem;
@@ -835,9 +807,6 @@ selection {
   .site-head,
   .page-head {
     height: 100px;
-  }
-  .blog-title {
-    font-size: 2.5rem;
   }
   .blog-description {
     font-size: 1rem;
