@@ -62,7 +62,6 @@ h6 {
 }
 p {
   text-align: justify;
-  color: var(--text);
 }
 a {
   color: var(--link);
@@ -85,6 +84,7 @@ ul,
 ol,
 dl {
   margin: 1.2em 0;
+  color: var(--text);
 }
 ol ol,
 ul ul,
