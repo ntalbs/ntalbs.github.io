@@ -40,6 +40,7 @@ h1 {
   line-height: 1.2em;
   letter-spacing: -2px;
   margin-left: -2px;
+  border: var(--h1-border);
 }
 h2 {
   font-size: 2.4rem;
@@ -111,7 +112,7 @@ blockquote {
   box-sizing: border-box;
   margin: 1.6em 0 1.6em 0;
   padding: 0.4em 0.6em;
-  line-height: 1.4;
+  color: var(--text);
   background-color: var(--box-bg);
 }
 blockquote ul,
@@ -122,8 +123,6 @@ blockquote ol {
 blockquote p {
   text-align: left;
   margin: 0;
-  font-style: normal;
-  color: #444;
 }
 blockquote small {
   display: inline-block;
@@ -140,19 +139,14 @@ blockquote cite {
 blockquote cite a {
   font-weight: normal;
 }
-.blockquote-reverse {
-  color: var(--box-fg);
-  padding-right: 15px;
-  padding-left: 0;
+blockquote.right-align {
   text-align: right;
-  border-left: 0;
 }
 .button-box {
   text-align: right;
 }
 .highlight pre {
   padding: 5px 10px;
-  background-color: var(--code-block-bg);
 }
 .highlight pre span {
   letter-spacing: -1px;
@@ -175,6 +169,8 @@ pre {
   margin: 0;
   padding: 0;
   font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  color: var(--Foreground);
+  background-color: var(--Background);
   font-size: 0.8em;
   line-height: 1.2em;
   white-space: pre;
@@ -184,47 +180,55 @@ pre {
 pre.console {
   font-size: 1.296rem;
   padding: 10px;
-  color: #eee;
-  background-color: #444;
   letter-spacing: -1px;
   overflow: scroll;
 }
+/*
+table
+  -moz-box-sizing border-box
+  box-sizing border-box
+  margin 1.6em 0
+  width 100%
+  max-width 100%
+  background-color transparent
+  border 1px solid #efefef
+  th, td
+    padding 8px
+    line-height 20px
+    text-align left
+    vertical-align top
+    border-top 1px solid #efefef
+  th
+    color #000
+    background-color #ccc
+  caption + thead tr:first-child th, caption + thead tr:first-child td,
+  colgroup + thead tr:first-child th, colgroup + thead tr:first-child td,
+  thead:first-child tr:first-child th, thead:first-child tr:first-child td
+    border-top 0
+  tbody > tr:nth-child(even) > td, tbody > tr:nth-child(even) > th
+    background-color #f6f6f6
+  .plain tbody > tr:nth-child(even) > td, .plain tbody > tr:nth-child(even) > th
+    background transparent
+*/
 table {
-  -moz-box-sizing: border-box;
+  font-size: 1.7rem;
   box-sizing: border-box;
   margin: 1.6em 0;
   width: 100%;
   max-width: 100%;
-  background-color: transparent;
-  border: 1px solid #efefef;
+  border: 1px solid var(--line);
+  color: var(--text);
 }
 table th,
 table td {
-  padding: 8px;
-  line-height: 20px;
-  text-align: left;
-  vertical-align: top;
-  border-top: 1px solid #efefef;
+  padding: 0 8px;
+  border-top: 1px solid var(--line);
 }
-table th {
-  color: #000;
-  background-color: #ccc;
+table thead > tr {
+  background-color: rgba(221,221,221,0.1);
 }
-table caption + thead tr:first-child th,
-table caption + thead tr:first-child td,
-table colgroup + thead tr:first-child th,
-table colgroup + thead tr:first-child td,
-table thead:first-child tr:first-child th,
-table thead:first-child tr:first-child td {
-  border-top: 0;
-}
-table tbody > tr:nth-child(even) > td,
-table tbody > tr:nth-child(even) > th {
-  background-color: #f6f6f6;
-}
-table .plain tbody > tr:nth-child(even) > td,
-table .plain tbody > tr:nth-child(even) > th {
-  background: transparent;
+table tbody > tr:nth-child(even) {
+  background-color: rgba(221,221,221,0.1);
 }
 twitter-widget,
 video {

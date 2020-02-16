@@ -27,53 +27,263 @@ function switchMode (mode) {
   if (mode === light) {
     setMode(light)
     makeLight()
+    xcode()
   } else {
     setMode(dark)
     makeDark()
+    monokai()
   }
   resetDisqus()
 }
 
 function makeDark () {
-  root.style.setProperty('--background', "#2a2e2e");
-  root.style.setProperty('--text', "#bbb");
-  root.style.setProperty('--heading', "#eee");
-  root.style.setProperty('--link', "#aaa");
-  root.style.setProperty('--link-hover', "#ccc");
-  root.style.setProperty('--inline-code-bg', "#444");
-  root.style.setProperty('--code-block-bg', "#888");
-  root.style.setProperty('--box-fg', "#aaa");
-  root.style.setProperty('--box-bg', "#3a3a3a");
+  root.style.setProperty('--background', "#2a2e2e")
+  root.style.setProperty('--text', "#bbb")
+  root.style.setProperty('--heading', "#eee")
+  root.style.setProperty('--link', "#aaa")
+  root.style.setProperty('--link-hover', "#ccc")
+  root.style.setProperty('--inline-code-bg', "#444")
+  root.style.setProperty('--box-fg', "#aaa")
+  root.style.setProperty('--box-bg', "#363636")
 
-  root.style.setProperty('--archive-ul', "#888");
-  root.style.setProperty('--post-meta', "#666");
-  root.style.setProperty('--tagbox', "#888");
+  root.style.setProperty('--archive-ul', "#888")
+  root.style.setProperty('--post-meta', "#666")
+  root.style.setProperty('--tagbox', "#888")
 
-  root.style.setProperty('--line', "#444");
-  root.style.setProperty('--circle', "#444");
-  root.style.setProperty('--footer', "#333");
+  root.style.setProperty('--line', "#444")
+  root.style.setProperty('--circle', "#444")
+  root.style.setProperty('--footer', "#333")
 }
 
 function makeLight () {
-  root.style.setProperty('--background', "#fff");
-  root.style.setProperty('--text', "");
-  root.style.setProperty('--heading', "");
-  root.style.setProperty('--link', "#666");
-  root.style.setProperty('--link-hover', "#999");
-  root.style.setProperty('--inline-code-bg', "#eee");
-  root.style.setProperty('--code-block-bg', "#eee");
-  root.style.setProperty('--box-fg', "#808080");
-  root.style.setProperty('--box-bg', "#f5f5f5");
+  root.style.setProperty('--background', "#fff")
+  root.style.setProperty('--text', "")
+  root.style.setProperty('--heading', "")
+  root.style.setProperty('--link', "#666")
+  root.style.setProperty('--link-hover', "#999")
+  root.style.setProperty('--inline-code-bg', "#eee")
+  root.style.setProperty('--box-fg', "#808080")
+  root.style.setProperty('--box-bg', "#f5f5f5")
 
-  root.style.setProperty('--archive-ul', "#444");
-  root.style.setProperty('--post-meta', "#aaa");
-  root.style.setProperty('--tagbox', "#555");
+  root.style.setProperty('--archive-ul', "#444")
+  root.style.setProperty('--post-meta', "#aaa")
+  root.style.setProperty('--tagbox', "#555")
 
-  root.style.setProperty('--line', "#ebf2f6");
-  root.style.setProperty('--circle', "#fff");
-  root.style.setProperty('--footer', "#eee");
+  root.style.setProperty('--line', "#ebf2f6")
+  root.style.setProperty('--circle', "#fff")
+  root.style.setProperty('--footer', "#eee")
 }
 
-function resetDisqus() {
-  DISQUS.reset({reload: true});
+function xcode() {
+  root.style.setProperty('--Foreground', '#000000')
+  root.style.setProperty('--Background', '#eee')
+  root.style.setProperty('--Error', '#000000')
+  root.style.setProperty('--Keyword', '#a90d91')
+  root.style.setProperty('--KeywordConstant', '#a90d91')
+  root.style.setProperty('--KeywordDeclaration', '#a90d91')
+  root.style.setProperty('--KeywordNamespace', '#a90d91')
+  root.style.setProperty('--KeywordPseudo', '#a90d91')
+  root.style.setProperty('--KeywordReserved', '#a90d91')
+  root.style.setProperty('--KeywordType', '#a90d91')
+  root.style.setProperty('--Name', '#000000')
+  root.style.setProperty('--NameAttribute', '#836c28')
+  root.style.setProperty('--NameBuiltin', '#a90d91')
+  root.style.setProperty('--NameBuiltinPseudo', '#5b269a')
+  root.style.setProperty('--NameClass', '#3f6e75')
+  root.style.setProperty('--NameConstant', '#000000')
+  root.style.setProperty('--NameDecorator', '#000000')
+  root.style.setProperty('--NameEntity', '#000000')
+  root.style.setProperty('--NameException', '#000000')
+  root.style.setProperty('--NameFunction', '#000000')
+  root.style.setProperty('--NameFunctionMagic', '#000000')
+  root.style.setProperty('--NameLabel', '#000000')
+  root.style.setProperty('--NameTag', '')
+  root.style.setProperty('--NameNamespace', '#000000')
+  root.style.setProperty('--NameOther', '#000000')
+  root.style.setProperty('--NameProperty', '#000000')
+  root.style.setProperty('--NameTag', '#000000')
+  root.style.setProperty('--NameVariable', '#000000')
+  root.style.setProperty('--NameVariableClass', '#000000')
+  root.style.setProperty('--NameVariableGlobal', '#000000')
+  root.style.setProperty('--NameVariableInstance', '#000000')
+  root.style.setProperty('--NameVariableMagic', '#000000')
+  root.style.setProperty('--Literal', '#1c01ce')
+  root.style.setProperty('--LiteralDate', '#1c01ce')
+  root.style.setProperty('--LiteralString', '#c41a16')
+  root.style.setProperty('--LiteralStringAffix', '#c41a16')
+  root.style.setProperty('--LiteralStringBacktick', '#c41a16')
+  root.style.setProperty('--LiteralStringChar', '#2300ce')
+  root.style.setProperty('--LiteralStringDelimiter', '#c41a16')
+  root.style.setProperty('--LiteralStringDoc', '#c41a16')
+  root.style.setProperty('--LiteralStringDouble', '#c41a16')
+  root.style.setProperty('--LiteralStringEscape', '#c41a16')
+  root.style.setProperty('--LiteralStringHeredoc', '#c41a16')
+  root.style.setProperty('--LiteralStringInterpol', '#c41a16')
+  root.style.setProperty('--LiteralStringOther', '#c41a16')
+  root.style.setProperty('--LiteralStringRegex', '#c41a16')
+  root.style.setProperty('--LiteralStringSingle', '#c41a16')
+  root.style.setProperty('--LiteralStringSymbol', '#c41a16')
+  root.style.setProperty('--LiteralNumber', '#1c01ce')
+  root.style.setProperty('--LiteralNumberBin', '#1c01ce')
+  root.style.setProperty('--LiteralNumberFloat', '#1c01ce')
+  root.style.setProperty('--LiteralNumberHex', '#1c01ce')
+  root.style.setProperty('--LiteralNumberInteger', '#1c01ce')
+  root.style.setProperty('--LiteralNumberIntegerLong', '#1c01ce')
+  root.style.setProperty('--LiteralNumberOct', '#1c01ce')
+  root.style.setProperty('--Operator', '#000000')
+  root.style.setProperty('--OperatorWord', '#000000')
+  root.style.setProperty('--Comment', '#177500')
+  root.style.setProperty('--CommentHashbang', '#177500')
+  root.style.setProperty('--CommentMultiline', '#177500')
+  root.style.setProperty('--CommentSingle', '#177500')
+  root.style.setProperty('--CommentSpecial', '#177500')
+  root.style.setProperty('--CommentPreproc', '#633820')
+  root.style.setProperty('--CommentPreprocFile', '#633820')
+  root.style.setProperty('--GenericDeleted', '')
+  root.style.setProperty('--GenericOutput', '')
+}
+
+function monokai () {
+  root.style.setProperty('--Foreground', '#f8f8f2')
+  root.style.setProperty('--Background', '#363636')
+  root.style.setProperty('--Error', '#1e0010')
+  root.style.setProperty('--Keyword', '#66d9ef')
+  root.style.setProperty('--KeywordConstant', '#66d9ef')
+  root.style.setProperty('--KeywordDeclaration', '#66d9ef')
+  root.style.setProperty('--KeywordNamespace', '#f92672')
+  root.style.setProperty('--KeywordPseudo', '#66d9ef')
+  root.style.setProperty('--KeywordReserved', '#66d9ef')
+  root.style.setProperty('--KeywordType', '#66d9ef')
+  root.style.setProperty('--Name', '#f8f8f2')
+  root.style.setProperty('--NameAttribute', '#a6e22e')
+  root.style.setProperty('--NameBuiltin', '#f8f8f2')
+  root.style.setProperty('--NameBuiltinPseudo', '#f8f8f2')
+  root.style.setProperty('--NameClass', '#a6e22e')
+  root.style.setProperty('--NameConstant', '#66d9ef')
+  root.style.setProperty('--NameDecorator', '#a6e22e')
+  root.style.setProperty('--NameEntity', '#a6e22e')
+  root.style.setProperty('--NameException', '#a6e22e')
+  root.style.setProperty('--NameFunction', '#a6e22e')
+  root.style.setProperty('--NameFunctionMagic', '#f8f8f2')
+  root.style.setProperty('--NameLabel', '#f8f8f2')
+  root.style.setProperty('--NameTag', '#f8f8f2')
+  root.style.setProperty('--NameNamespace', '#f8f8f2')
+  root.style.setProperty('--NameOther', '#a6e22e')
+  root.style.setProperty('--NameOther', '#f8f8f2')
+  root.style.setProperty('--NameTag', '#f92672')
+  root.style.setProperty('--NameVariable', '#f8f8f2')
+  root.style.setProperty('--NameVariableClass', '#f8f8f2')
+  root.style.setProperty('--NameVariableGlobal', '#f8f8f2')
+  root.style.setProperty('--NameVariableInstance', '#f8f8f2')
+  root.style.setProperty('--NameVariableMagic', '#f8f8f2')
+  root.style.setProperty('--Literal', '#ae81ff')
+  root.style.setProperty('--LiteralDate', '#e6db74')
+  root.style.setProperty('--LiteralString', '#e6db74')
+  root.style.setProperty('--LiteralStringAffix', '#e6db74')
+  root.style.setProperty('--LiteralStringBacktick', '#e6db74')
+  root.style.setProperty('--LiteralStringChar', '#e6db74')
+  root.style.setProperty('--LiteralStringDelimiter', '#e6db74')
+  root.style.setProperty('--LiteralStringDoc', '#e6db74')
+  root.style.setProperty('--LiteralStringDouble', '#e6db74')
+  root.style.setProperty('--LiteralStringEscape', '#ae81ff')
+  root.style.setProperty('--LiteralStringHeredoc', '#e6db74')
+  root.style.setProperty('--LiteralStringInterpol', '#e6db74')
+  root.style.setProperty('--LiteralStringOther', '#e6db74')
+  root.style.setProperty('--LiteralStringRegex', '#e6db74')
+  root.style.setProperty('--LiteralStringSingle', '#e6db74')
+  root.style.setProperty('--LiteralStringSymbol', '#e6db74')
+  root.style.setProperty('--LiteralNumber', '#ae81ff')
+  root.style.setProperty('--LiteralNumberBin', '#ae81ff')
+  root.style.setProperty('--LiteralNumberFloat', '#ae81ff')
+  root.style.setProperty('--LiteralNumberHex', '#ae81ff')
+  root.style.setProperty('--LiteralNumberInteger', '#ae81ff')
+  root.style.setProperty('--LiteralNumberIntegerLong', '#ae81ff')
+  root.style.setProperty('--LiteralNumberOct', '#ae81ff')
+  root.style.setProperty('--Operator', '#f92672')
+  root.style.setProperty('--OperatorWord', '#f92672')
+  root.style.setProperty('--Comment', '#75715e')
+  root.style.setProperty('--CommentHashbang', '#75715e')
+  root.style.setProperty('--CommentMultiline', '#75715e')
+  root.style.setProperty('--CommentSingle', '#75715e')
+  root.style.setProperty('--CommentSpecial', '#75715e')
+  root.style.setProperty('--CommentPreproc', '#75715e')
+  root.style.setProperty('--CommentPreprocFile', '#75715e')
+  root.style.setProperty('--GenericDeleted', '#f92672')
+  root.style.setProperty('--GenericOutput', '')
+
+  root.style.setProperty('--GenericInserted', '#a6e22e')
+  root.style.setProperty('--GenericSubheading', '#75715e')
+}
+
+function dracula () {
+  root.style.setProperty('--Foreground', '#f8f8f2')
+  root.style.setProperty('--Background', '#282a36')
+  root.style.setProperty('--Error', '#f8f8f2')
+  root.style.setProperty('--Keyword', '#ff79c6')
+  root.style.setProperty('--KeywordConstant', '#ff79c6')
+  root.style.setProperty('--KeywordDeclaration', '#8be9fd')
+  root.style.setProperty('--KeywordNamespace', '#ff79c6')
+  root.style.setProperty('--KeywordPseudo', '#ff79c6')
+  root.style.setProperty('--KeywordReserved', '#ff79c6')
+  root.style.setProperty('--KeywordType', '#8be9fd')
+  root.style.setProperty('--Name', '#f8f8f2')
+  root.style.setProperty('--NameAttribute', '#50fa7b')
+  root.style.setProperty('--NameBuiltin', '#8be9fd')
+  root.style.setProperty('--NameBuiltinPseudo', '#f8f8f2')
+  root.style.setProperty('--NameClass', '#f8f8f2')
+  root.style.setProperty('--NameConstant', '#f8f8f2')
+  root.style.setProperty('--NameDecorator', '#f8f8f2')
+  root.style.setProperty('--NameEntity', '#f8f8f2')
+  root.style.setProperty('--NameException', '#f8f8f2')
+  root.style.setProperty('--NameFunction', '#50fa7b')
+  root.style.setProperty('--NameFunctionMagic', '#f8f8f2')
+  root.style.setProperty('--NameLabel', '#8be9fd')
+  root.style.setProperty('--NameTag', '#ff79c6')
+  root.style.setProperty('--NameNamespace', '#f8f8f2')
+  root.style.setProperty('--NameOther', '#f8f8f2')
+  root.style.setProperty('--NameProperty', '#f8f8f2')
+  root.style.setProperty('--NameTag', '')
+  root.style.setProperty('--NameVariable', '#8be9fd')
+  root.style.setProperty('--NameVariableClass', '#8be9fd')
+  root.style.setProperty('--NameVariableGlobal', '#8be9fd')
+  root.style.setProperty('--NameVariableInstance', '#8be9fd')
+  root.style.setProperty('--NameVariableMagic', '#f8f8f2')
+  root.style.setProperty('--Literal', '#f8f8f2')
+  root.style.setProperty('--LiteralDate', '#f8f8f2')
+  root.style.setProperty('--LiteralString', '#f1fa8c')
+  root.style.setProperty('--LiteralStringAffix', '#f1fa8c')
+  root.style.setProperty('--LiteralStringBacktick', '#f1fa8c')
+  root.style.setProperty('--LiteralStringChar', '#f1fa8c')
+  root.style.setProperty('--LiteralStringDelimiter', '#f1fa8c')
+  root.style.setProperty('--LiteralStringDoc', '#f1fa8c')
+  root.style.setProperty('--LiteralStringDouble', '#f1fa8c')
+  root.style.setProperty('--LiteralStringEscape', '#f1fa8c')
+  root.style.setProperty('--LiteralStringHeredoc', '#f1fa8c')
+  root.style.setProperty('--LiteralStringInterpol', '#f1fa8c')
+  root.style.setProperty('--LiteralStringOther', '#f1fa8c')
+  root.style.setProperty('--LiteralStringRegex', '#f1fa8c')
+  root.style.setProperty('--LiteralStringSingle', '#f1fa8c')
+  root.style.setProperty('--LiteralStringSymbol', '#f1fa8c')
+  root.style.setProperty('--LiteralNumber', '#bd93f9')
+  root.style.setProperty('--LiteralNumberBin', '#bd93f9')
+  root.style.setProperty('--LiteralNumberFloat', '#bd93f9')
+  root.style.setProperty('--LiteralNumberHex', '#bd93f9')
+  root.style.setProperty('--LiteralNumberInteger', '#bd93f9')
+  root.style.setProperty('--LiteralNumberIntegerLong', '#bd93f9')
+  root.style.setProperty('--LiteralNumberOct', '#bd93f9')
+  root.style.setProperty('--Operator', '#ff79c6')
+  root.style.setProperty('--OperatorWord', '#ff79c6')
+  root.style.setProperty('--Comment', '#6272a4')
+  root.style.setProperty('--CommentHashbang', '#6272a4')
+  root.style.setProperty('--CommentMultiline', '#6272a4')
+  root.style.setProperty('--CommentSingle', '#6272a4')
+  root.style.setProperty('--CommentSpecial', '#6272a4')
+  root.style.setProperty('--CommentPreproc', '#ff79c6')
+  root.style.setProperty('--CommentPreprocFile', '#ff79c6')
+  root.style.setProperty('--GenericDeleted', '#8b080b')
+  root.style.setProperty('--GenericOutput', '#44475a')
+}
+
+function resetDisqus () {
+  DISQUS.reset({reload: true})
 }
