@@ -147,8 +147,7 @@ blockquote.right-align {
 }
 .highlight pre {
   padding: 5px 10px;
-}
-.highlight pre span {
+  font-size: 1.4rem;
   letter-spacing: -1px;
 }
 p code,
@@ -178,38 +177,11 @@ pre {
   letter-spacing: -1px;
 }
 pre.console {
-  font-size: 1.296rem;
+  font-size: 1.4rem;
   padding: 10px;
   letter-spacing: -1px;
   overflow: scroll;
 }
-/*
-table
-  -moz-box-sizing border-box
-  box-sizing border-box
-  margin 1.6em 0
-  width 100%
-  max-width 100%
-  background-color transparent
-  border 1px solid #efefef
-  th, td
-    padding 8px
-    line-height 20px
-    text-align left
-    vertical-align top
-    border-top 1px solid #efefef
-  th
-    color #000
-    background-color #ccc
-  caption + thead tr:first-child th, caption + thead tr:first-child td,
-  colgroup + thead tr:first-child th, colgroup + thead tr:first-child td,
-  thead:first-child tr:first-child th, thead:first-child tr:first-child td
-    border-top 0
-  tbody > tr:nth-child(even) > td, tbody > tr:nth-child(even) > th
-    background-color #f6f6f6
-  .plain tbody > tr:nth-child(even) > td, .plain tbody > tr:nth-child(even) > th
-    background transparent
-*/
 table {
   font-size: 1.7rem;
   box-sizing: border-box;
@@ -685,7 +657,7 @@ selection {
 }
 /* Override bootstrap classes */
 .container {
-  max-width: 680px;
+  max-width: 720px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 15px;
