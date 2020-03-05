@@ -5,23 +5,23 @@ on
 <a href=/tags/db/>DB</a>
 <a href=/tags/oracle/>Oracle</a></p><h1 class=post-title>SQL*Loader 사용법 (초간단 정리)</h1></header><section class=post-content><p>간단히 참조할 용도로 정리한다. 자세한 사용법은 <a href=http://docs.oracle.com/cd/E11882_01/server.112/e22490/ldr_concepts.htm#SUTIL003>매뉴얼</a>을 참조해야 한다.</p><h3 id=1-데이터를-로드할-테이블-생성또는-확인>1. 데이터를 로드할 테이블 생성(또는 확인)</h3><div class=highlight><pre class=chroma><code class=language-sql data-lang=sql><span class=k>create</span> <span class=k>table</span> <span class=n>xxx</span> <span class=p>(</span>
   <span class=n>c1</span> <span class=nb>number</span><span class=p>,</span>
-  <span class=n>c2</span> <span class=n>varchar2</span><span class=p>(</span><span class=mi>10</span><span class=p>)</span><span class=p>,</span>
-  <span class=n>c3</span> <span class=n>varchar2</span><span class=p>(</span><span class=mi>10</span><span class=p>)</span><span class=p>,</span>
-  <span class=n>c4</span> <span class=n>varchar2</span><span class=p>(</span><span class=mi>10</span><span class=p>)</span><span class=p>,</span>
+  <span class=n>c2</span> <span class=n>varchar2</span><span class=p>(</span><span class=mi>10</span><span class=p>),</span>
+  <span class=n>c3</span> <span class=n>varchar2</span><span class=p>(</span><span class=mi>10</span><span class=p>),</span>
+  <span class=n>c4</span> <span class=n>varchar2</span><span class=p>(</span><span class=mi>10</span><span class=p>),</span>
   <span class=n>c5</span> <span class=nb>date</span>
-<span class=p>)</span><span class=p>;</span>
+<span class=p>);</span>
 </code></pre></div><h3 id=2-데이터-파일-확인-xxxdat>2. 데이터 파일 확인 (xxx.dat)</h3><div class=highlight><pre class=chroma><code class=language-text data-lang=text>aaa aaa aaa
 bbb bbb bbb
 ccc ccc ccc
 </code></pre></div><h3 id=3-컨트롤-파일-작성-xxxctl>3. 컨트롤 파일 작성 (xxx.ctl)</h3><div class=highlight><pre class=chroma><code class=language-sql data-lang=sql><span class=k>load</span> <span class=k>data</span>
-<span class=n>infile</span> <span class=s1>&#39;</span><span class=s1>xxx.dat</span><span class=s1>&#39;</span>
+<span class=n>infile</span> <span class=s1>&#39;xxx.dat&#39;</span>
 <span class=k>into</span> <span class=k>table</span> <span class=n>xxx</span>
-<span class=n>fields</span> <span class=n>terminated</span> <span class=k>by</span> <span class=s1>&#39;</span><span class=s1> </span><span class=s1>&#39;</span>
+<span class=n>fields</span> <span class=n>terminated</span> <span class=k>by</span> <span class=s1>&#39; &#39;</span>
 <span class=p>(</span>
 <span class=n>c1</span> <span class=n>sequence</span><span class=p>,</span>                      <span class=c1>-- sequence
-</span><span class=c1></span><span class=n>c2</span> <span class=n>expression</span> <span class=s2>&#34;</span><span class=s2>to_char(:c1*10)</span><span class=s2>&#34;</span><span class=p>,</span>  <span class=c1>-- expression
+</span><span class=c1></span><span class=n>c2</span> <span class=n>expression</span> <span class=s2>&#34;to_char(:c1*10)&#34;</span><span class=p>,</span>  <span class=c1>-- expression
 </span><span class=c1></span><span class=n>c3</span><span class=p>,</span>
-<span class=n>c4</span> <span class=n>constant</span> <span class=s1>&#39;</span><span class=s1>xxx</span><span class=s1>&#39;</span><span class=p>,</span>                <span class=c1>-- constant
+<span class=n>c4</span> <span class=n>constant</span> <span class=s1>&#39;xxx&#39;</span><span class=p>,</span>                <span class=c1>-- constant
 </span><span class=c1></span><span class=n>c5</span> <span class=n>sysdate</span><span class=p>)</span>                       <span class=c1>-- sysdate
 </span></code></pre></div><h3 id=4-데이터-로드-실행>4. 데이터 로드 실행</h3><pre class=console>
 $ sqlldr userid=xxx/xxx control=xxx.ctl

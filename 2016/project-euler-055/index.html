@@ -4,22 +4,22 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset=utf-8
 on
 <a href=/tags/project-euler/>Project-Euler</a>
 <a href=/tags/clojure/>Clojure</a></p><h1 class=post-title>프로젝트 오일러 55</h1></header><section class=post-content><blockquote><p>10000 미만의 라이크렐 수 (Lychrel number) 세기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=55">[국어]</a> <a href="https://projecteuler.net/problem=55">[영어]</a></p></blockquote><p>숫자를 뒤집어서 더한 후 대칭수인지 확인해야 하므로 다음과 같이 숫자를 뒤집는 함수와 숫자가 대칭수인지 확인하는 함수를 미리 만들어 두면 문제를 푸는 데 도움이 될 것이다.</p><div class=highlight><pre class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>defn </span><span class=nv>reverse-num</span> <span class=p>[</span><span class=nv>n</span><span class=p>]</span>
-  <span class=p>(</span><span class=nf>bigint</span> <span class=p>(</span><span class=nf>clojure.string/reverse</span> <span class=p>(</span><span class=nb>str </span><span class=nv>n</span><span class=p>)</span><span class=p>)</span><span class=p>)</span><span class=p>)</span>
+  <span class=p>(</span><span class=nf>bigint</span> <span class=p>(</span><span class=nf>clojure.string/reverse</span> <span class=p>(</span><span class=nb>str </span><span class=nv>n</span><span class=p>))))</span>
 
 <span class=p>(</span><span class=kd>defn </span><span class=nv>palindrome?</span> <span class=p>[</span><span class=nv>n</span><span class=p>]</span>
-  <span class=p>(</span><span class=nb>= </span><span class=nv>n</span> <span class=p>(</span><span class=nf>reverse-num</span> <span class=nv>n</span><span class=p>)</span><span class=p>)</span><span class=p>)</span>
+  <span class=p>(</span><span class=nb>= </span><span class=nv>n</span> <span class=p>(</span><span class=nf>reverse-num</span> <span class=nv>n</span><span class=p>)))</span>
 </code></pre></div><p>숫자를 뒤집는 데는 여러 방법이 있겠지만 여기서는 숫자를 문자열로 바꾼 다음 <code>clojure.string/reverse</code> 함수를 이용해 뒤집었다. 숫자를 뒤집는 함수를 이용하면 대칭수인지 확인하는 함수도 쉽게 구현할 수 있다.</p><p>이제 라이크렐 수인지 확인하는 함수를 구현해야 한다. 다행히 1만 이하의 수는 50번 미만의 반복으로 라이크렐 수인지 확인할 수 있다. 50번을 반복했는데도 대칭수가 안 되면 라이크렐 수라 할 수 있겠다.</p><div class=highlight><pre class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>defn </span><span class=nv>lychrel?</span> <span class=p>[</span><span class=nv>n</span><span class=p>]</span>
   <span class=p>(</span><span class=k>loop </span><span class=p>[</span><span class=nv>n</span> <span class=nv>n</span> <span class=nv>cnt</span> <span class=mi>1</span><span class=p>]</span>
     <span class=p>(</span><span class=k>if </span><span class=p>(</span><span class=nb>&lt; </span><span class=mi>50</span> <span class=nv>cnt</span><span class=p>)</span>
       <span class=nv>true</span>
-      <span class=p>(</span><span class=k>let </span><span class=p>[</span><span class=nv>sn</span> <span class=p>(</span><span class=nf>+</span><span class=o>&#39;</span> <span class=nv>n</span> <span class=p>(</span><span class=nf>reverse-num</span> <span class=nv>n</span><span class=p>)</span><span class=p>)</span><span class=p>]</span>
+      <span class=p>(</span><span class=k>let </span><span class=p>[</span><span class=nv>sn</span> <span class=p>(</span><span class=nf>+</span><span class=o>&#39;</span> <span class=nv>n</span> <span class=p>(</span><span class=nf>reverse-num</span> <span class=nv>n</span><span class=p>))]</span>
         <span class=p>(</span><span class=k>if </span><span class=p>(</span><span class=nf>palindrome?</span> <span class=nv>sn</span><span class=p>)</span>
           <span class=nv>false</span>
-          <span class=p>(</span><span class=nf>recur</span> <span class=nv>sn</span> <span class=p>(</span><span class=nb>inc </span><span class=nv>cnt</span><span class=p>)</span><span class=p>)</span><span class=p>)</span><span class=p>)</span><span class=p>)</span><span class=p>)</span><span class=p>)</span>
-</code></pre></div><p>라이크렐 수인지 확인하는 함수가 있으므로 1만 이하의 수 중에서 라이크렐 수만 골라 개수를 세면 된다. 한 자리 숫자는 라이크렐 수가 될 수 없으므로 계산에 포함시키지 않아도 된다.</p><div class=highlight><pre class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>defn </span><span class=nv>solve</span> <span class=p>[</span><span class=p>]</span>
-  <span class=p>(</span><span class=nf>-&gt;&gt;</span> <span class=p>(</span><span class=nb>range </span><span class=mi>10</span> <span class=p>(</span><span class=nb>inc </span><span class=mi>10000</span><span class=p>)</span><span class=p>)</span>
+          <span class=p>(</span><span class=nf>recur</span> <span class=nv>sn</span> <span class=p>(</span><span class=nb>inc </span><span class=nv>cnt</span><span class=p>)))))))</span>
+</code></pre></div><p>라이크렐 수인지 확인하는 함수가 있으므로 1만 이하의 수 중에서 라이크렐 수만 골라 개수를 세면 된다. 한 자리 숫자는 라이크렐 수가 될 수 없으므로 계산에 포함시키지 않아도 된다.</p><div class=highlight><pre class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>defn </span><span class=nv>solve</span> <span class=p>[]</span>
+  <span class=p>(</span><span class=nf>-&gt;&gt;</span> <span class=p>(</span><span class=nb>range </span><span class=mi>10</span> <span class=p>(</span><span class=nb>inc </span><span class=mi>10000</span><span class=p>))</span>
        <span class=p>(</span><span class=nb>filter </span><span class=nv>lychrel?</span><span class=p>)</span>
-       <span class=nv>count</span><span class=p>)</span><span class=p>)</span>
+       <span class=nv>count</span><span class=p>))</span>
 </code></pre></div><p>실행 결과는 다음과 같다.</p><pre class=console>
 p055=> (time (solve))
 "Elapsed time: 126.086214 msecs"

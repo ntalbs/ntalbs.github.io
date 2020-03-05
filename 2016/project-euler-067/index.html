@@ -4,25 +4,25 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset=utf-8
 on
 <a href=/tags/project-euler/>Project-Euler</a>
 <a href=/tags/clojure/>Clojure</a></p><h1 class=post-title>프로젝트 오일러 67</h1></header><section class=post-content><blockquote><p>삼각형에서 경로의 합 중 최대값을 구하는 효율적인 방법은?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=67">[국어]</a> <a href="https://projecteuler.net/problem=67">[영어]</a></p></blockquote><p><a href=/2015/project-euler-018/>문제 18</a>과 동일한 문제다. 문제 18에서는 삼각형이 15층에 불과했지만, 여기서는 100층이다. 문제 18에서 이미 제대로 된 방법으로 문제를 풀었기 때문에 똑같은 방법을 사용해 문제를 풀 수 있다. 텍스트 파일로 주어진 데이터를 읽어들이는 코드만 추가해주면 된다.</p><p>데이터 파일을 읽어 문제 18에서 사용했던 <code>triangle</code> 구조를 만드는 코드는 다음과 같이 작성할 수 있다.</p><div class=highlight><pre class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>ns </span><span class=nv>p067</span>
-  <span class=p>(</span><span class=ss>:require</span> <span class=p>[</span><span class=nv>util</span> <span class=ss>:refer</span> <span class=p>[</span><span class=nv>parse-int</span><span class=p>]</span><span class=p>]</span>
-            <span class=p>[</span><span class=nv>clojure.string</span> <span class=ss>:refer</span> <span class=p>[</span><span class=nv>split</span><span class=p>]</span><span class=p>]</span><span class=p>)</span><span class=p>)</span>
+  <span class=p>(</span><span class=ss>:require</span> <span class=p>[</span><span class=nv>util</span> <span class=ss>:refer</span> <span class=p>[</span><span class=nv>parse-int</span><span class=p>]]</span>
+            <span class=p>[</span><span class=nv>clojure.string</span> <span class=ss>:refer</span> <span class=p>[</span><span class=nv>split</span><span class=p>]]))</span>
 
 <span class=p>(</span><span class=kd>defn- </span><span class=nv>split-by-line</span> <span class=p>[</span><span class=nv>content</span><span class=p>]</span>
-  <span class=p>(</span><span class=nf>split</span> <span class=nv>content</span> <span class=o>#</span><span class=s>&#34;\r\n&#34;</span><span class=p>)</span><span class=p>)</span>
+  <span class=p>(</span><span class=nf>split</span> <span class=nv>content</span> <span class=o>#</span><span class=s>&#34;\r\n&#34;</span><span class=p>))</span>
 
 <span class=p>(</span><span class=kd>defn- </span><span class=nv>parse-line</span> <span class=p>[</span><span class=nv>line</span><span class=p>]</span>
-  <span class=p>(</span><span class=nf>-&gt;&gt;</span> <span class=p>(</span><span class=nf>split</span> <span class=nv>line</span> <span class=o>#</span><span class=s>&#34; &#34;</span><span class=p>)</span> <span class=p>(</span><span class=nb>map </span><span class=nv>parse-int</span><span class=p>)</span><span class=p>)</span><span class=p>)</span>
+  <span class=p>(</span><span class=nf>-&gt;&gt;</span> <span class=p>(</span><span class=nf>split</span> <span class=nv>line</span> <span class=o>#</span><span class=s>&#34; &#34;</span><span class=p>)</span> <span class=p>(</span><span class=nb>map </span><span class=nv>parse-int</span><span class=p>)))</span>
 
 <span class=p>(</span><span class=k>def </span><span class=nv>triangle</span>
   <span class=p>(</span><span class=nf>-&gt;&gt;</span> <span class=p>(</span><span class=nb>slurp </span><span class=s>&#34;data/triangle.txt&#34;</span><span class=p>)</span>
        <span class=nv>split-by-line</span>
        <span class=p>(</span><span class=nb>map </span><span class=nv>parse-line</span><span class=p>)</span>
-       <span class=nv>reverse</span><span class=p>)</span><span class=p>)</span>
+       <span class=nv>reverse</span><span class=p>))</span>
 </code></pre></div><p>풀이는 문제 18과 동일하다.</p><div class=highlight><pre class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>defn </span><span class=nv>find-max</span> <span class=p>[</span><span class=nv>t</span><span class=p>]</span>
-  <span class=p>(</span><span class=nb>reduce </span><span class=p>(</span><span class=k>fn </span><span class=p>[</span><span class=nv>ls</span> <span class=nv>vs</span><span class=p>]</span> <span class=p>(</span><span class=nb>map </span><span class=nb>max </span><span class=p>(</span><span class=nb>map </span><span class=nb>+ </span><span class=nv>ls</span> <span class=nv>vs</span><span class=p>)</span> <span class=p>(</span><span class=nb>map </span><span class=nb>+ </span><span class=p>(</span><span class=nb>rest </span><span class=nv>ls</span><span class=p>)</span> <span class=nv>vs</span><span class=p>)</span><span class=p>)</span><span class=p>)</span> <span class=nv>t</span><span class=p>)</span><span class=p>)</span>
+  <span class=p>(</span><span class=nb>reduce </span><span class=p>(</span><span class=k>fn </span><span class=p>[</span><span class=nv>ls</span> <span class=nv>vs</span><span class=p>]</span> <span class=p>(</span><span class=nb>map max </span><span class=p>(</span><span class=nb>map + </span><span class=nv>ls</span> <span class=nv>vs</span><span class=p>)</span> <span class=p>(</span><span class=nb>map + </span><span class=p>(</span><span class=nb>rest </span><span class=nv>ls</span><span class=p>)</span> <span class=nv>vs</span><span class=p>)))</span> <span class=nv>t</span><span class=p>))</span>
 
-<span class=p>(</span><span class=kd>defn </span><span class=nv>solve</span> <span class=p>[</span><span class=p>]</span>
-  <span class=p>(</span><span class=nb>first </span><span class=p>(</span><span class=nf>find-max</span> <span class=p>(</span><span class=nb>reverse </span><span class=nv>triangle</span><span class=p>)</span><span class=p>)</span><span class=p>)</span><span class=p>)</span>
+<span class=p>(</span><span class=kd>defn </span><span class=nv>solve</span> <span class=p>[]</span>
+  <span class=p>(</span><span class=nb>first </span><span class=p>(</span><span class=nf>find-max</span> <span class=p>(</span><span class=nb>reverse </span><span class=nv>triangle</span><span class=p>))))</span>
 </code></pre></div><p>실행 결과는 다음과 같다. 충분히 빠르게 답을 구한다.</p><pre class=console>
 p067=> (time (solve))
 "Elapsed time: 14.006805 msecs"

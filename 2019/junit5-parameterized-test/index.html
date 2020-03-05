@@ -15,61 +15,61 @@ on
   <span class=o>}</span>
 
   <span class=nd>@Parameters</span><span class=o>(</span><span class=n>name</span> <span class=o>=</span> <span class=s>&#34;isRotated({0}, {1}) should be true {2}&#34;</span><span class=o>)</span>
-  <span class=kd>public</span> <span class=kd>static</span> <span class=n>Object</span><span class=o>[</span><span class=o>]</span><span class=o>[</span><span class=o>]</span> <span class=nf>rotated</span><span class=o>(</span><span class=o>)</span> <span class=o>{</span>
-    <span class=k>return</span> <span class=k>new</span> <span class=n>Object</span><span class=o>[</span><span class=o>]</span><span class=o>[</span><span class=o>]</span><span class=o>{</span>
-      <span class=o>{</span><span class=s>&#34;abcde&#34;</span><span class=o>,</span> <span class=s>&#34;bcdea&#34;</span><span class=o>,</span> <span class=kc>true</span><span class=o>}</span><span class=o>,</span>
-      <span class=o>{</span><span class=s>&#34;abcde&#34;</span><span class=o>,</span> <span class=s>&#34;cdeab&#34;</span><span class=o>,</span> <span class=kc>true</span><span class=o>}</span><span class=o>,</span>
-      <span class=o>{</span><span class=s>&#34;abcda&#34;</span><span class=o>,</span> <span class=s>&#34;bcdaa&#34;</span><span class=o>,</span> <span class=kc>true</span><span class=o>}</span><span class=o>,</span>
-      <span class=o>{</span><span class=s>&#34;abbcd&#34;</span><span class=o>,</span> <span class=s>&#34;bbcda&#34;</span><span class=o>,</span> <span class=kc>true</span><span class=o>}</span><span class=o>,</span>
-      <span class=o>{</span><span class=s>&#34;&#34;</span><span class=o>,</span> <span class=s>&#34;&#34;</span><span class=o>,</span> <span class=kc>false</span><span class=o>}</span><span class=o>,</span>
-      <span class=o>{</span><span class=s>&#34;&#34;</span><span class=o>,</span> <span class=s>&#34;abc&#34;</span><span class=o>,</span> <span class=kc>false</span><span class=o>}</span><span class=o>,</span>
-      <span class=o>{</span><span class=s>&#34;abc&#34;</span><span class=o>,</span> <span class=s>&#34;&#34;</span><span class=o>,</span> <span class=kc>false</span><span class=o>}</span><span class=o>,</span>
-      <span class=o>{</span><span class=kc>null</span><span class=o>,</span> <span class=s>&#34;abc&#34;</span><span class=o>,</span> <span class=kc>false</span><span class=o>}</span><span class=o>,</span>
-      <span class=o>{</span><span class=s>&#34;abc&#34;</span><span class=o>,</span> <span class=kc>null</span><span class=o>,</span> <span class=kc>false</span><span class=o>}</span><span class=o>,</span>
-      <span class=o>{</span><span class=s>&#34;abc&#34;</span><span class=o>,</span> <span class=s>&#34;abc&#34;</span><span class=o>,</span> <span class=kc>false</span><span class=o>}</span><span class=o>,</span>
-      <span class=o>{</span><span class=s>&#34;abcde&#34;</span><span class=o>,</span> <span class=s>&#34;abcdef&#34;</span><span class=o>,</span> <span class=kc>false</span><span class=o>}</span><span class=o>,</span>
+  <span class=kd>public</span> <span class=kd>static</span> <span class=n>Object</span><span class=o>[][]</span> <span class=nf>rotated</span><span class=o>()</span> <span class=o>{</span>
+    <span class=k>return</span> <span class=k>new</span> <span class=n>Object</span><span class=o>[][]{</span>
+      <span class=o>{</span><span class=s>&#34;abcde&#34;</span><span class=o>,</span> <span class=s>&#34;bcdea&#34;</span><span class=o>,</span> <span class=kc>true</span><span class=o>},</span>
+      <span class=o>{</span><span class=s>&#34;abcde&#34;</span><span class=o>,</span> <span class=s>&#34;cdeab&#34;</span><span class=o>,</span> <span class=kc>true</span><span class=o>},</span>
+      <span class=o>{</span><span class=s>&#34;abcda&#34;</span><span class=o>,</span> <span class=s>&#34;bcdaa&#34;</span><span class=o>,</span> <span class=kc>true</span><span class=o>},</span>
+      <span class=o>{</span><span class=s>&#34;abbcd&#34;</span><span class=o>,</span> <span class=s>&#34;bbcda&#34;</span><span class=o>,</span> <span class=kc>true</span><span class=o>},</span>
+      <span class=o>{</span><span class=s>&#34;&#34;</span><span class=o>,</span> <span class=s>&#34;&#34;</span><span class=o>,</span> <span class=kc>false</span><span class=o>},</span>
+      <span class=o>{</span><span class=s>&#34;&#34;</span><span class=o>,</span> <span class=s>&#34;abc&#34;</span><span class=o>,</span> <span class=kc>false</span><span class=o>},</span>
+      <span class=o>{</span><span class=s>&#34;abc&#34;</span><span class=o>,</span> <span class=s>&#34;&#34;</span><span class=o>,</span> <span class=kc>false</span><span class=o>},</span>
+      <span class=o>{</span><span class=kc>null</span><span class=o>,</span> <span class=s>&#34;abc&#34;</span><span class=o>,</span> <span class=kc>false</span><span class=o>},</span>
+      <span class=o>{</span><span class=s>&#34;abc&#34;</span><span class=o>,</span> <span class=kc>null</span><span class=o>,</span> <span class=kc>false</span><span class=o>},</span>
+      <span class=o>{</span><span class=s>&#34;abc&#34;</span><span class=o>,</span> <span class=s>&#34;abc&#34;</span><span class=o>,</span> <span class=kc>false</span><span class=o>},</span>
+      <span class=o>{</span><span class=s>&#34;abcde&#34;</span><span class=o>,</span> <span class=s>&#34;abcdef&#34;</span><span class=o>,</span> <span class=kc>false</span><span class=o>},</span>
       <span class=o>{</span><span class=s>&#34;abcda&#34;</span><span class=o>,</span> <span class=s>&#34;bcdaf&#34;</span><span class=o>,</span> <span class=kc>false</span><span class=o>}</span>
-    <span class=o>}</span><span class=o>;</span>
+    <span class=o>};</span>
   <span class=o>}</span>
 
   <span class=nd>@Test</span>
-  <span class=kd>public</span> <span class=kt>void</span> <span class=nf>isRotatedTrue</span><span class=o>(</span><span class=o>)</span> <span class=o>{</span>
-    <span class=n>assertEquals</span><span class=o>(</span><span class=n>result</span><span class=o>,</span> <span class=n>StringRotation</span><span class=o>.</span><span class=na>isRotated</span><span class=o>(</span><span class=n>input</span><span class=o>,</span> <span class=n>rotated</span><span class=o>)</span><span class=o>)</span><span class=o>;</span>
+  <span class=kd>public</span> <span class=kt>void</span> <span class=nf>isRotatedTrue</span><span class=o>()</span> <span class=o>{</span>
+    <span class=n>assertEquals</span><span class=o>(</span><span class=n>result</span><span class=o>,</span> <span class=n>StringRotation</span><span class=o>.</span><span class=na>isRotated</span><span class=o>(</span><span class=n>input</span><span class=o>,</span> <span class=n>rotated</span><span class=o>));</span>
   <span class=o>}</span>
 <span class=o>}</span>
 </code></pre></div><p>JUnit 5에서는 매개변수 테스트 데이터 정의 및 테스트 작성 방법이 달라졌다. 테스트 클래스에 별도 어노테이션을 붙이지 않는다. 대신 매개변수 테스트 메서드에 <code>@ParameterizedTest</code> 어노테이션을 붙인다. 따라서 한 테스트 클래스 안에 여러 매개변수 테스트를 정의할 수 있게 되었다.</p><p>또한 하나의 테스트 클래스 안에서 여러 테스트 데이터 집합을 정의할 수 있다. 데이터 집합을 정의하는 방법도 다음과 같이 다양하다.</p><ul><li><code>@ValueSource</code><br>테스트 데이터가 간단한 목록일 경우 사용할 수 있다. 값의 타입에 <code>short</code>, <code>byte</code>, <code>int</code>, <code>long</code>, <code>float</code>, <code>double</code>, <code>char</code>, <code>String</code>, <code>Class</code>만 사용할 수 있다는 제한이 있다.</li><li><code>@CvsSource</code><br>매개변수 테스트에 여러 값을 넘겨야 하는 경우 사용할 수 있다. <code>delimiter</code>로 다른 문자를 지정할 수도 있다.</li><li><code>@CvsFileSource</code><br>별도 CVS 파일을 테스트 데이터로 지정할 수도 있다. <code>numLinesToSkip</code>을 지정해 헤더를 건너뛰도록 할 수 있다.</li><li><code>@MethodSource</code><br>매개변수 데이터를 제공할 메서드를 정의하고, 테스트 메서드에서 <code>@MethodSource</code>로 데이터 소스를 지정할 수 있다. 복잡한 객체를 테스트 인자로 넘겨야 하는 경우 유용하다.</li></ul><p>문서를 참조하면 각 방법에 대한 자세한 사항을 알 수 있다.</p><p>위에서 JUnit 4로 작성했던 테스트를 JUnit 5로 다시 작성하면 다음과 같다. 두 가지 테스트 데이터 집합을 정의했고 이를 이용하는 두 개의 매개변수 테스트 메서드가 있다.</p><div class=highlight><pre class=chroma><code class=language-java data-lang=java><span class=kd>class</span> <span class=nc>StringRotationTest</span> <span class=o>{</span>
-  <span class=kd>private</span> <span class=kd>static</span> <span class=n>Stream</span><span class=o>&lt;</span><span class=n>Arguments</span><span class=o>&gt;</span> <span class=nf>rotated</span><span class=o>(</span><span class=o>)</span> <span class=o>{</span>
+  <span class=kd>private</span> <span class=kd>static</span> <span class=n>Stream</span><span class=o>&lt;</span><span class=n>Arguments</span><span class=o>&gt;</span> <span class=nf>rotated</span><span class=o>()</span> <span class=o>{</span>
     <span class=k>return</span> <span class=n>Stream</span><span class=o>.</span><span class=na>of</span><span class=o>(</span>
-      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;abcde&#34;</span><span class=o>,</span> <span class=s>&#34;bcdea&#34;</span><span class=o>)</span><span class=o>,</span>
-      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;abcde&#34;</span><span class=o>,</span> <span class=s>&#34;cdeab&#34;</span><span class=o>)</span><span class=o>,</span>
-      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;abcda&#34;</span><span class=o>,</span> <span class=s>&#34;bcdaa&#34;</span><span class=o>)</span><span class=o>,</span>
+      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;abcde&#34;</span><span class=o>,</span> <span class=s>&#34;bcdea&#34;</span><span class=o>),</span>
+      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;abcde&#34;</span><span class=o>,</span> <span class=s>&#34;cdeab&#34;</span><span class=o>),</span>
+      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;abcda&#34;</span><span class=o>,</span> <span class=s>&#34;bcdaa&#34;</span><span class=o>),</span>
       <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;abbcd&#34;</span><span class=o>,</span> <span class=s>&#34;bbcda&#34;</span><span class=o>)</span>
-    <span class=o>)</span><span class=o>;</span>
+    <span class=o>);</span>
   <span class=o>}</span>
 
-  <span class=kd>private</span> <span class=kd>static</span> <span class=n>Stream</span><span class=o>&lt;</span><span class=n>Arguments</span><span class=o>&gt;</span> <span class=nf>nonRotated</span><span class=o>(</span><span class=o>)</span> <span class=o>{</span>
+  <span class=kd>private</span> <span class=kd>static</span> <span class=n>Stream</span><span class=o>&lt;</span><span class=n>Arguments</span><span class=o>&gt;</span> <span class=nf>nonRotated</span><span class=o>()</span> <span class=o>{</span>
     <span class=k>return</span> <span class=n>Stream</span><span class=o>.</span><span class=na>of</span><span class=o>(</span>
-      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;&#34;</span><span class=o>,</span> <span class=s>&#34;&#34;</span><span class=o>)</span><span class=o>,</span>
-      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;&#34;</span><span class=o>,</span> <span class=s>&#34;abc&#34;</span><span class=o>)</span><span class=o>,</span>
-      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;abc&#34;</span><span class=o>,</span> <span class=s>&#34;&#34;</span><span class=o>)</span><span class=o>,</span>
-      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=kc>null</span><span class=o>,</span> <span class=s>&#34;abc&#34;</span><span class=o>)</span><span class=o>,</span>
-      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;abc&#34;</span><span class=o>,</span> <span class=kc>null</span><span class=o>)</span><span class=o>,</span>
-      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;abc&#34;</span><span class=o>,</span> <span class=s>&#34;abc&#34;</span><span class=o>)</span><span class=o>,</span>
-      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;abcde&#34;</span><span class=o>,</span> <span class=s>&#34;abcdef&#34;</span><span class=o>)</span><span class=o>,</span>
+      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;&#34;</span><span class=o>,</span> <span class=s>&#34;&#34;</span><span class=o>),</span>
+      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;&#34;</span><span class=o>,</span> <span class=s>&#34;abc&#34;</span><span class=o>),</span>
+      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;abc&#34;</span><span class=o>,</span> <span class=s>&#34;&#34;</span><span class=o>),</span>
+      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=kc>null</span><span class=o>,</span> <span class=s>&#34;abc&#34;</span><span class=o>),</span>
+      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;abc&#34;</span><span class=o>,</span> <span class=kc>null</span><span class=o>),</span>
+      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;abc&#34;</span><span class=o>,</span> <span class=s>&#34;abc&#34;</span><span class=o>),</span>
+      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;abcde&#34;</span><span class=o>,</span> <span class=s>&#34;abcdef&#34;</span><span class=o>),</span>
       <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;abcda&#34;</span><span class=o>,</span> <span class=s>&#34;bcdaf&#34;</span><span class=o>)</span>
-    <span class=o>)</span><span class=o>;</span>
+    <span class=o>);</span>
   <span class=o>}</span>
 
   <span class=nd>@ParameterizedTest</span>
   <span class=nd>@MethodSource</span><span class=o>(</span><span class=s>&#34;rotated&#34;</span><span class=o>)</span>
   <span class=kt>void</span> <span class=nf>isRotatedTrue</span><span class=o>(</span><span class=n>String</span> <span class=n>input</span><span class=o>,</span> <span class=n>String</span> <span class=n>rotated</span><span class=o>)</span> <span class=o>{</span>
-    <span class=n>assertTrue</span><span class=o>(</span><span class=n>StringRotation</span><span class=o>.</span><span class=na>isRotated</span><span class=o>(</span><span class=n>input</span><span class=o>,</span> <span class=n>rotated</span><span class=o>)</span><span class=o>)</span><span class=o>;</span>
+    <span class=n>assertTrue</span><span class=o>(</span><span class=n>StringRotation</span><span class=o>.</span><span class=na>isRotated</span><span class=o>(</span><span class=n>input</span><span class=o>,</span> <span class=n>rotated</span><span class=o>));</span>
   <span class=o>}</span>
 
   <span class=nd>@ParameterizedTest</span>
   <span class=nd>@MethodSource</span><span class=o>(</span><span class=s>&#34;nonRotated&#34;</span><span class=o>)</span>
   <span class=kt>void</span> <span class=nf>isRotatedFalse</span><span class=o>(</span><span class=n>String</span> <span class=n>input</span><span class=o>,</span> <span class=n>String</span> <span class=n>rotated</span><span class=o>)</span> <span class=o>{</span>
-    <span class=n>assertFalse</span><span class=o>(</span><span class=n>StringRotation</span><span class=o>.</span><span class=na>isRotated</span><span class=o>(</span><span class=n>input</span><span class=o>,</span> <span class=n>rotated</span><span class=o>)</span><span class=o>)</span><span class=o>;</span>
+    <span class=n>assertFalse</span><span class=o>(</span><span class=n>StringRotation</span><span class=o>.</span><span class=na>isRotated</span><span class=o>(</span><span class=n>input</span><span class=o>,</span> <span class=n>rotated</span><span class=o>));</span>
   <span class=o>}</span>
 <span class=o>}</span>
 </code></pre></div><p>물론 매개변수와 상관 없는 다른 테스트도 여기에 추가할 수도 있다. <code>@ParameterizedTest</code>가 아닌 <code>@Test</code>어노테이션이 붙은 메서드는 한 번만 실행된다. JUnit 4보다 매개변수 테스트를 작성하기가 한결 쉬워졌다.</p><h2 id=참고>참고</h2><ul><li><a href=https://www.baeldung.com/parameterized-tests-junit-5>Guide to JUnit 5 Parameterized Tests</a></li><li><a href=https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests>JUnit 5 Parameterized Tests</a></li><li><a href=https://github.com/junit-team/junit4/wiki/parameterized-tests>JUnit 4 Parameterized Tests</a></li></ul></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>

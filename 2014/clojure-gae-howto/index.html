@@ -15,9 +15,9 @@ $ lein ring uberwar
 </pre><p>war 파일은 프로젝트 루트 밑의 <code>target</code> 디렉터리 안에 생성된다. 다음과 같이 <code>unzip</code> 명령을 이용해 압축 해제한다. (파일 이름은 다를 수 있으며, 압축 해제할 디렉터리 이름이 꼭 stage일 필요는 없음)</p><pre class=console>
 $ unzip -d stage target/test-app-0.1.0-SNAPSHOT-standalone.war
 </pre><p><code>stage/WEB-INF</code> 디렉터리에 다음과 같은 내용으로 <code>appengine-web.xml</code> 파일을 만든다.</p><div class=highlight><pre class=chroma><code class=language-xml data-lang=xml><span class=nt>&lt;appengine-web-app</span> <span class=na>xmlns=</span><span class=s>&#34;http://appengine.google.com/ns/1.0&#34;</span><span class=nt>&gt;</span>
-  <span class=nt>&lt;application</span><span class=nt>&gt;</span>your-gae-application-id<span class=nt>&lt;/application&gt;</span>
-  <span class=nt>&lt;version</span><span class=nt>&gt;</span>1<span class=nt>&lt;/version&gt;</span>
-  <span class=nt>&lt;threadsafe</span><span class=nt>&gt;</span>false<span class=nt>&lt;/threadsafe&gt;</span>
+  <span class=nt>&lt;application&gt;</span>your-gae-application-id<span class=nt>&lt;/application&gt;</span>
+  <span class=nt>&lt;version&gt;</span>1<span class=nt>&lt;/version&gt;</span>
+  <span class=nt>&lt;threadsafe&gt;</span>false<span class=nt>&lt;/threadsafe&gt;</span>
 <span class=nt>&lt;/appengine-web-app&gt;</span>
 </code></pre></div><p><code>your-gae-application-id</code>는 <a href=https://appengine.google.com/>https://appengine.google.com/</a>에서 애플리케이션을 생성할 때 지정한 아이디를 넣어주면 된다.</p><h2 id=앱-엔진에-배포>앱 엔진에 배포</h2><p><code>&lt;app-engine-sdk>/bin</code>이 PATH에 잡혀 있어야 한다. MacOS X에서 Homebrew로 설치했다면 이미 PATH에 잡혀있을 것이다. 앱 엔진 서버에 배포하기 전에 로컬에서 테스트 해볼 수 있다</p><pre class=console>
 $ dev_appserver.sh stage

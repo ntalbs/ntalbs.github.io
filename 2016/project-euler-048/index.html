@@ -114,12 +114,12 @@ on
  <use xlink:href="#MJMATHI-6E" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="849" y="513"></use>
 </g>
-</svg></span>을 구해 모두 더한 다음 <code>mod</code>를 이용해 마지막 10자리를 구하면 된다. <code>pow</code> 메서드가 있는 Java의 <code>BigInteger</code> 클래스를 사용하는 게 좀 더 편하겠다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
-  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="p">(</span><span class="nb">inc </span><span class="mi">1000</span><span class="p">)</span><span class="p">)</span>
+</svg></span>을 구해 모두 더한 다음 <code>mod</code>를 이용해 마지막 10자리를 구하면 된다. <code>pow</code> 메서드가 있는 Java의 <code>BigInteger</code> 클래스를 사용하는 게 좀 더 편하겠다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[]</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="p">(</span><span class="nb">inc </span><span class="mi">1000</span><span class="p">))</span>
        <span class="p">(</span><span class="nb">map </span><span class="nv">biginteger</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">map </span><span class="o">#</span><span class="p">(</span><span class="nf">.pow</span> <span class="nv">%</span> <span class="nv">%</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">map </span><span class="o">#</span><span class="p">(</span><span class="nf">.pow</span> <span class="nv">%</span> <span class="nv">%</span><span class="p">))</span>
        <span class="p">(</span><span class="nb">apply </span><span class="nv">+</span><span class="o">'</span><span class="p">)</span>
-       <span class="p">(</span><span class="o">#</span><span class="p">(</span><span class="nf">mod</span> <span class="nv">%</span> <span class="mi">10000000000</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="o">#</span><span class="p">(</span><span class="nf">mod</span> <span class="nv">%</span> <span class="mi">10000000000</span><span class="p">))))</span>
 </code></pre></div><p>실행 결과는 다음과 같다.</p><pre class="console">p048=&gt; (time (solve))
 "Elapsed time: 11.002665 msecs"
 9110??6700N

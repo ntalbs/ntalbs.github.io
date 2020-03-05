@@ -76,9 +76,9 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-
 on
 <a href="/tags/db/">DB</a>
 <a href="/tags/oracle/">Oracle</a>
-<a href="/tags/sql/">SQL</a></p><h1 class="post-title">오라클에서 factorial 구하기</h1></header><section class="post-content"><p>오라클에 <code>factorial</code> 함수가 없지만 다음과 같이 구할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">exp</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">ln</span><span class="p">(</span><span class="k">level</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+<a href="/tags/sql/">SQL</a></p><h1 class="post-title">오라클에서 factorial 구하기</h1></header><section class="post-content"><p>오라클에 <code>factorial</code> 함수가 없지만 다음과 같이 구할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">exp</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">ln</span><span class="p">(</span><span class="k">level</span><span class="p">)))</span>
 <span class="k">from</span> <span class="n">dual</span>
-<span class="k">connect</span> <span class="k">by</span> <span class="k">level</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">N</span>
+<span class="k">connect</span> <span class="k">by</span> <span class="k">level</span> <span class="o">&lt;=</span> <span class="n">N</span>
 </code></pre></div><h2 id="원리">원리</h2><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="8.272ex" height="2.509ex" style="vertical-align: -0.338ex;" viewBox="0 -934.9 3561.6 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">a = e^{\ln a}</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">

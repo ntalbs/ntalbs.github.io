@@ -4,9 +4,9 @@ gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset=utf-8
 on
 <a href=/tags/project-euler/>Project-Euler</a>
 <a href=/tags/clojure/>Clojure</a></p><h1 class=post-title>프로젝트 오일러 89</h1></header><section class=post-content><blockquote><p>로마숫자 최적화하기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=89">[국어]</a> <a href="https://projecteuler.net/problem=89">[영어]</a></p></blockquote><p>먼저 다음과 같이 텍스트 파일을 읽어 시퀀스로 만들어둔다.</p><div class=highlight><pre class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>ns </span><span class=nv>p089</span>
-  <span class=p>(</span><span class=ss>:require</span> <span class=p>[</span><span class=nv>clojure.string</span> <span class=ss>:as</span> <span class=nv>str</span><span class=p>]</span><span class=p>)</span><span class=p>)</span>
+  <span class=p>(</span><span class=ss>:require</span> <span class=p>[</span><span class=nv>clojure.string</span> <span class=ss>:as</span> <span class=nv>str</span><span class=p>]))</span>
 
-<span class=p>(</span><span class=k>def </span><span class=nv>romans</span> <span class=p>(</span><span class=nf>str/split</span> <span class=p>(</span><span class=nb>slurp </span><span class=s>&#34;data/roman.txt&#34;</span><span class=p>)</span> <span class=o>#</span><span class=s>&#34;\r\n&#34;</span><span class=p>)</span><span class=p>)</span>
+<span class=p>(</span><span class=k>def </span><span class=nv>romans</span> <span class=p>(</span><span class=nf>str/split</span> <span class=p>(</span><span class=nb>slurp </span><span class=s>&#34;data/roman.txt&#34;</span><span class=p>)</span> <span class=o>#</span><span class=s>&#34;\r\n&#34;</span><span class=p>))</span>
 </code></pre></div><p>로마숫자 최적화는 다음과 같은 간단한 로직으로 수행할 수 있다.</p><ul><li><code>DCCCC</code>는 <code>CM</code>으로 치환한다.</li><li><code>CCCC</code>는 <code>CD</code>로 치환한다.</li><li><code>LXXXX</code>는 <code>XC</code>로 치환한다.</li><li><code>XXXX</code>는 <code>XL</code>로 치환한다.</li><li><code>VIIII</code>는 <code>IX</code>로 치환한다.</li><li><code>IIII</code>는 <code>IV</code>로 치환한다.</li></ul><p>이를 Clojure 함수로 구현하면 다음과 같다.</p><div class=highlight><pre class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>defn </span><span class=nv>shorten</span> <span class=p>[</span><span class=nv>r</span><span class=p>]</span>
   <span class=p>(</span><span class=nb>-&gt; </span><span class=nv>r</span>
       <span class=p>(</span><span class=nf>str/replace</span> <span class=s>&#34;DCCCC&#34;</span> <span class=s>&#34;CM&#34;</span><span class=p>)</span>
@@ -14,14 +14,14 @@ on
       <span class=p>(</span><span class=nf>str/replace</span> <span class=s>&#34;LXXXX&#34;</span> <span class=s>&#34;XC&#34;</span><span class=p>)</span>
       <span class=p>(</span><span class=nf>str/replace</span> <span class=s>&#34;XXXX&#34;</span>  <span class=s>&#34;XL&#34;</span><span class=p>)</span>
       <span class=p>(</span><span class=nf>str/replace</span> <span class=s>&#34;VIIII&#34;</span> <span class=s>&#34;IX&#34;</span><span class=p>)</span>
-      <span class=p>(</span><span class=nf>str/replace</span> <span class=s>&#34;IIII&#34;</span>  <span class=s>&#34;IV&#34;</span><span class=p>)</span><span class=p>)</span><span class=p>)</span>
+      <span class=p>(</span><span class=nf>str/replace</span> <span class=s>&#34;IIII&#34;</span>  <span class=s>&#34;IV&#34;</span><span class=p>)))</span>
 </code></pre></div><p>시퀀스에 있는 문자의 개수를 구하는 함수가 있으면 문제를 푸는 데 도움이 된다.</p><div class=highlight><pre class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>defn </span><span class=nv>count-chars</span> <span class=p>[</span><span class=nv>coll</span><span class=p>]</span>
-  <span class=p>(</span><span class=nf>-&gt;&gt;</span> <span class=p>(</span><span class=nb>map </span><span class=nb>count </span><span class=nv>coll</span><span class=p>)</span>
-       <span class=p>(</span><span class=nb>apply </span><span class=nv>+</span><span class=p>)</span><span class=p>)</span><span class=p>)</span>
-</code></pre></div><p>위 두 함수를 이용해 다음과 같이 문제를 풀 수 있다. 최적화 전 문자수와 최적화 후 문자수의 차를 구하면 된다.</p><div class=highlight><pre class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>defn </span><span class=nv>solve</span> <span class=p>[</span><span class=p>]</span>
+  <span class=p>(</span><span class=nf>-&gt;&gt;</span> <span class=p>(</span><span class=nb>map count </span><span class=nv>coll</span><span class=p>)</span>
+       <span class=p>(</span><span class=nb>apply </span><span class=nv>+</span><span class=p>)))</span>
+</code></pre></div><p>위 두 함수를 이용해 다음과 같이 문제를 풀 수 있다. 최적화 전 문자수와 최적화 후 문자수의 차를 구하면 된다.</p><div class=highlight><pre class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>defn </span><span class=nv>solve</span> <span class=p>[]</span>
   <span class=p>(</span><span class=k>let </span><span class=p>[</span><span class=nv>cnt0</span> <span class=p>(</span><span class=nf>count-chars</span> <span class=nv>romans</span><span class=p>)</span>
-        <span class=nv>cnt1</span> <span class=p>(</span><span class=nf>count-chars</span> <span class=p>(</span><span class=nb>map </span><span class=nv>shorten</span> <span class=nv>romans</span><span class=p>)</span><span class=p>)</span><span class=p>]</span>
-    <span class=p>(</span><span class=nb>- </span><span class=nv>cnt0</span> <span class=nv>cnt1</span><span class=p>)</span><span class=p>)</span><span class=p>)</span>
+        <span class=nv>cnt1</span> <span class=p>(</span><span class=nf>count-chars</span> <span class=p>(</span><span class=nb>map </span><span class=nv>shorten</span> <span class=nv>romans</span><span class=p>))]</span>
+    <span class=p>(</span><span class=nb>- </span><span class=nv>cnt0</span> <span class=nv>cnt1</span><span class=p>)))</span>
 </code></pre></div><p>실행 결과는 다음과 같다.</p><pre class=console>
 p089=> (time (solve))
 "Elapsed time: 3.597621 msecs"

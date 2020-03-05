@@ -82,9 +82,9 @@ on
         <span class="p">(</span><span class="nb">&lt; </span><span class="nv">n</span> <span class="mi">4</span><span class="p">)</span> <span class="nv">true</span>                    <span class="c1">; 2, 3</span>
         <span class="p">(</span><span class="nf">even?</span> <span class="nv">n</span><span class="p">)</span> <span class="nv">false</span>
         <span class="p">(</span><span class="nb">&lt; </span><span class="nv">n</span> <span class="mi">9</span><span class="p">)</span> <span class="nv">true</span>                    <span class="c1">; 5, 7</span>
-        <span class="p">(</span><span class="nb">= </span><span class="mi">0</span> <span class="p">(</span><span class="nf">mod</span> <span class="nv">n</span> <span class="mi">3</span><span class="p">)</span><span class="p">)</span> <span class="nv">false</span>
-        <span class="ss">:else</span> <span class="p">(</span><span class="nb">nil? </span><span class="p">(</span><span class="nb">take </span><span class="mi">1</span> <span class="p">(</span><span class="nb">filter </span><span class="o">#</span><span class="p">(</span><span class="nb">= </span><span class="mi">0</span> <span class="p">(</span><span class="nf">mod</span> <span class="nv">n</span> <span class="nv">%</span><span class="p">)</span><span class="p">)</span>
-                                    <span class="p">(</span><span class="nb">range </span><span class="mi">3</span> <span class="p">(</span><span class="nb">inc </span><span class="p">(</span><span class="nb">int </span><span class="p">(</span><span class="nf">Math/sqrt</span> <span class="nv">n</span><span class="p">)</span><span class="p">)</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+        <span class="p">(</span><span class="nb">= </span><span class="mi">0</span> <span class="p">(</span><span class="nf">mod</span> <span class="nv">n</span> <span class="mi">3</span><span class="p">))</span> <span class="nv">false</span>
+        <span class="ss">:else</span> <span class="p">(</span><span class="nb">nil? </span><span class="p">(</span><span class="nb">take </span><span class="mi">1</span> <span class="p">(</span><span class="nb">filter </span><span class="o">#</span><span class="p">(</span><span class="nb">= </span><span class="mi">0</span> <span class="p">(</span><span class="nf">mod</span> <span class="nv">n</span> <span class="nv">%</span><span class="p">))</span>
+                                    <span class="p">(</span><span class="nb">range </span><span class="mi">3</span> <span class="p">(</span><span class="nb">inc </span><span class="p">(</span><span class="nb">int </span><span class="p">(</span><span class="nf">Math/sqrt</span> <span class="nv">n</span><span class="p">)))</span> <span class="mi">2</span><span class="p">))))))</span>
 </code></pre></div><p>짝수(=2의 배수) 또는 3의 배수는 소수가 아니므로 바로 <code>false</code>를 리턴한다. 다른 경우에는 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.331ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 1434 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\sqrt{n}</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -92,17 +92,17 @@ on
 <rect stroke="none" width="600" height="60" x="833" y="663"></rect>
  <use xlink:href="#MJMATHI-6E" x="833" y="0"></use>
 </g>
-</svg></span>까지 숫자를 증가시키며 나눠보는 로직이 포함되어 있다. 중간에 하나라도 나눠지는 경우가 있으면 바로 <code>false</code>를 리턴할 것이다.</p><p>소수인지 판단하는 <code>prime?</code> 함수를 구현했다면 10,001번째 소수는 다음과 같이 구할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">using-predicate</span> <span class="p">[</span><span class="p">]</span>
-  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">iterate </span><span class="nb">inc </span><span class="mi">2</span><span class="p">)</span>
+</svg></span>까지 숫자를 증가시키며 나눠보는 로직이 포함되어 있다. 중간에 하나라도 나눠지는 경우가 있으면 바로 <code>false</code>를 리턴할 것이다.</p><p>소수인지 판단하는 <code>prime?</code> 함수를 구현했다면 10,001번째 소수는 다음과 같이 구할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">using-predicate</span> <span class="p">[]</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">iterate inc </span><span class="mi">2</span><span class="p">)</span>
        <span class="p">(</span><span class="nb">filter </span><span class="nv">prime?</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">drop </span><span class="p">(</span><span class="nb">dec </span><span class="nv">limit</span><span class="p">)</span><span class="p">)</span>
-       <span class="nv">first</span><span class="p">)</span><span class="p">)</span>
-</code></pre></div><h2 id="방법-2">방법 2</h2><p><code>clojure.contrib.lazy-seqs/primes</code>를 이용하는 간단한 방법도 있다. 이름이 암시하듯 모든 소수에 대한 지연 시퀀스를 나타낸다. 따라서 10,001번째 소수는 다음과 같이 구할 수도 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="nf">require</span> <span class="o">'</span><span class="p">[</span><span class="nv">clojure.contrib.lazy-seqs</span> <span class="ss">:refer</span> <span class="p">[</span><span class="nv">primes</span><span class="p">]</span><span class="p">]</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">drop </span><span class="p">(</span><span class="nb">dec </span><span class="nv">limit</span><span class="p">))</span>
+       <span class="nv">first</span><span class="p">))</span>
+</code></pre></div><h2 id="방법-2">방법 2</h2><p><code>clojure.contrib.lazy-seqs/primes</code>를 이용하는 간단한 방법도 있다. 이름이 암시하듯 모든 소수에 대한 지연 시퀀스를 나타낸다. 따라서 10,001번째 소수는 다음과 같이 구할 수도 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="nf">require</span> <span class="o">'</span><span class="p">[</span><span class="nv">clojure.contrib.lazy-seqs</span> <span class="ss">:refer</span> <span class="p">[</span><span class="nv">primes</span><span class="p">]])</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">using-seq</span> <span class="p">[</span><span class="p">]</span>
+<span class="p">(</span><span class="kd">defn </span><span class="nv">using-seq</span> <span class="p">[]</span>
   <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">primes</span>
-       <span class="p">(</span><span class="nb">drop </span><span class="p">(</span><span class="nb">dec </span><span class="nv">limit</span><span class="p">)</span><span class="p">)</span>
-       <span class="nv">first</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">drop </span><span class="p">(</span><span class="nb">dec </span><span class="nv">limit</span><span class="p">))</span>
+       <span class="nv">first</span><span class="p">))</span>
 </code></pre></div><h2 id="정리">정리</h2><p>실행해보면 두 방법 모두 충분히 빠르게 답을 구한다.</p><pre class="console">p007=&gt; (time (using-predicate))
 "Elapsed time: 239.324261 msecs"
 104???

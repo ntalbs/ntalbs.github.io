@@ -10,7 +10,7 @@ on
   <span class=p>{</span><span class=ss>:consumer-key</span> <span class=s>&#34;consumer-key&#34;</span>
    <span class=ss>:consumer-secret</span> <span class=s>&#34;consumer-secret&#34;</span>
    <span class=ss>:access-token</span> <span class=s>&#34;access-token&#34;</span>
-   <span class=ss>:access-token-secret</span> <span class=s>&#34;access-token-secret&#34;</span><span class=p>}</span><span class=p>)</span>
+   <span class=ss>:access-token-secret</span> <span class=s>&#34;access-token-secret&#34;</span><span class=p>})</span>
 <span class=c1>;...</span>
 </code></pre></div><p>프로젝트를 사용하려면 <code>_config.clj</code>의 이름을 <code>config.clj</code>로 바꾼 다음 내용을 채우면 된다. 이 방법은 <code>config.clj</code>를 커밋하지 않도록 주의해야 하고, 설정 파일 구조를 바꾸거나 새로운 정보를 추가할 때 두 파일을 수정해야 하는 불편함이 있다. 마음에 드는 방법은 아니었지만 일단 동작했고 다른 모르는 것이 많아 설정에 많은 시간을 들이고 싶지 않아 그냥 썼다. 어느 정도 안정화된 후에도 커밋하지 말아야 한다는 점이 거슬리긴 했지만 큰 불편은 없었다.</p><h2 id=문제>문제</h2><p>그런데 Heroku에 배포하면서 문제가 생겼다. Heroku는 Git에 <code>push</code>하면 알아서 배포하는 구조로 되어 있는데, 배포한 앱이 제대로 실행되려면 <code>config.clj</code>도 Heroku의 Git 저장소에 올려야 했다. 이것 때문에 <code>config.clj</code>가 GitHub에는 올라가면 안 되고 Heroku의 Git 저장소에는 올라가야 하는 모순이 생겼다. 게다가 Heroku에 배포하는 데 계속 이해되지 않는 에러가 발생했다. 디렉터리를 통째로 다른 곳에 복사해 GitHub과 연결을 끊고 파일을 편집해 Heroku에 올리는 방식으로 문제를 해결하긴 했다. 이 과정을 거치며 설정 정보를 어떻게 저장하고 관리하는 것이 좋을지 생각해보게 되었다.</p><h2 id=환경변수에-설정-저장하기>환경변수에 설정 저장하기</h2><p>어떻게 하는게 좋을지 인터넷에서 조금 찾아보니 환경변수에 설정 정보를 저장하는 방법을 알게 되었다. 로컬에서는 셸에 따라 <code>set</code>, <code>export</code> 등의 명령으로 환경변수를 설정하면 되고, Heroku에서는 <code>config:set</code>을 사용해 환경변수를 설정할 수 있다.</p><pre class=console>
 $ heroku config:set DB_USERNAME=xxx

@@ -79,7 +79,7 @@ $ npm install hexo-math --save
 ...
 $ hexo math install
 </pre><p>그리고 <code>_config.yml</code> 파일을 열어 <code>plugins:</code> 설정부분을 찾아 <code>hexo-math</code>를 추가한다.</p><div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">plugins</span><span class="p">:</span><span class="w">
-</span><span class="w"></span><span class="w">  </span>- hexo-math<span class="w">
+</span><span class="w">  </span>- hexo-math<span class="w">
 </span></code></pre></div><p>현재 사용중인 <a href="https://github.com/kywk/hexo-theme-casper">Casper</a> 테마에서는 웹페이지의 설명대로 깔끔하게 설치되지는 않았지만, 약간의 수작업을 통해 문제를 해결할 수 있었다. Casper 테마의 디렉터리 구조가 다른 테마와 조금 달라 생긴 문제인듯 하다. <code>math-jax.ejs</code> 파일을 <code>casper/layout/casper</code> 디렉터리에 복사해주니 잘 동작했다.</p><p>시험 삼아 간단한 수식을 입력해봤는데, 잘 나온다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="22.968ex" height="7.509ex" style="vertical-align: -3.171ex;" viewBox="0 -1867.7 9888.8 3233.2" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">%math
 \begin{aligned}

@@ -113,19 +113,19 @@ on
  <use transform="scale(0.707)" xlink:href="#MJMAIN-37" x="3003" y="0"></use>
 </g>
 </g>
-</svg></span>은 2백만 자리가 넘는 어마어마하게 큰 수지만, Java의 <code>BigInteger</code>를 이용하면 계산하지 못 할 것도 없다. 그러나 이 큰 수의 모든 자릿수가 필요한 게 아니라 마지막 10자리만 필요하므로 <code>modPow</code>를 쓰면 조금 쉽게 계산할 수 있을 것 같다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
-  <span class="p">(</span><span class="nb">-&gt; </span><span class="p">(</span><span class="nf">.modPow</span> <span class="p">(</span><span class="nf">biginteger</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nf">biginteger</span> <span class="mi">7830457</span><span class="p">)</span> <span class="p">(</span><span class="nf">biginteger</span> <span class="mi">10000000000</span><span class="p">)</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">.multiply</span> <span class="p">(</span><span class="nf">biginteger</span> <span class="mi">28433</span><span class="p">)</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">.add</span> <span class="p">(</span><span class="nf">biginteger</span> <span class="mi">1</span><span class="p">)</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">.mod</span> <span class="p">(</span><span class="nf">biginteger</span> <span class="mi">10000000000</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+</svg></span>은 2백만 자리가 넘는 어마어마하게 큰 수지만, Java의 <code>BigInteger</code>를 이용하면 계산하지 못 할 것도 없다. 그러나 이 큰 수의 모든 자릿수가 필요한 게 아니라 마지막 10자리만 필요하므로 <code>modPow</code>를 쓰면 조금 쉽게 계산할 수 있을 것 같다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[]</span>
+  <span class="p">(</span><span class="nb">-&gt; </span><span class="p">(</span><span class="nf">.modPow</span> <span class="p">(</span><span class="nf">biginteger</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nf">biginteger</span> <span class="mi">7830457</span><span class="p">)</span> <span class="p">(</span><span class="nf">biginteger</span> <span class="mi">10000000000</span><span class="p">))</span>
+      <span class="p">(</span><span class="nf">.multiply</span> <span class="p">(</span><span class="nf">biginteger</span> <span class="mi">28433</span><span class="p">))</span>
+      <span class="p">(</span><span class="nf">.add</span> <span class="p">(</span><span class="nf">biginteger</span> <span class="mi">1</span><span class="p">))</span>
+      <span class="p">(</span><span class="nf">.mod</span> <span class="p">(</span><span class="nf">biginteger</span> <span class="mi">10000000000</span><span class="p">))))</span>
 </code></pre></div><p>역시 예상대로 빠르게 답을 구한다.</p><pre class="console">p097=&gt; (time (solve))
 "Elapsed time: 0.477179 msecs"
 873999??77
-</pre><p>그런데, <code>modPow</code>를 쓰지 않고 그냥 무식하게 계산하면 어떨까?</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
+</pre><p>그런데, <code>modPow</code>를 쓰지 않고 그냥 무식하게 계산하면 어떨까?</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[]</span>
   <span class="p">(</span><span class="nb">-&gt; </span><span class="p">(</span><span class="nf">.pow</span> <span class="p">(</span><span class="nf">biginteger</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">7830457</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">.multiply</span> <span class="p">(</span><span class="nf">biginteger</span> <span class="mi">28433</span><span class="p">)</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">.add</span> <span class="p">(</span><span class="nf">biginteger</span> <span class="mi">1</span><span class="p">)</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">.mod</span> <span class="p">(</span><span class="nf">biginteger</span> <span class="mi">10000000000</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">.multiply</span> <span class="p">(</span><span class="nf">biginteger</span> <span class="mi">28433</span><span class="p">))</span>
+      <span class="p">(</span><span class="nf">.add</span> <span class="p">(</span><span class="nf">biginteger</span> <span class="mi">1</span><span class="p">))</span>
+      <span class="p">(</span><span class="nf">.mod</span> <span class="p">(</span><span class="nf">biginteger</span> <span class="mi">10000000000</span><span class="p">))))</span>
 </code></pre></div><p>위와 같이 <code>modPow</code> 대신 <code>pow</code> 메서드를 사용하도록 코드를 조금 수정해 실행해보면...</p><pre class="console">p097=&gt; (time (solve))
 "Elapsed time: 7.865695 msecs"
 873999??77

@@ -293,12 +293,12 @@ on
  <use xlink:href="#MJMAIN-29" x="2687" y="0"></use>
 </g>
 </svg></span>의 값을 최대로 만들 수 있다. 1백만 이하의 수 중에서 소수인 약수를 가장 많이 가지는 수는, 1백만 이하의 수 중 소수의 곱으로만 만들 수 있는 가장 큰 수를 구하면 된다.</p><p>소수의 누적곱 시퀀스를 만들어 1백만을 넘지 않는 최대값을 구하면 문제의 답이 된다. Clojure 코드로는 다음과 같이 표현할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">p069</span>
-  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">clojure.contrib.lazy-seqs</span> <span class="ss">:refer</span> <span class="p">(</span><span class="nf">primes</span><span class="p">)</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
+  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">clojure.contrib.lazy-seqs</span> <span class="ss">:refer</span> <span class="p">(</span><span class="nf">primes</span><span class="p">)]))</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[</span><span class="p">]</span>
+<span class="p">(</span><span class="kd">defn </span><span class="nv">solve</span> <span class="p">[]</span>
   <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nf">reductions</span> <span class="nb">* </span><span class="nv">primes</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">take-while </span><span class="o">#</span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">%</span> <span class="mi">1000000</span><span class="p">)</span><span class="p">)</span>
-       <span class="nv">last</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">take-while </span><span class="o">#</span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">%</span> <span class="mi">1000000</span><span class="p">))</span>
+       <span class="nv">last</span><span class="p">))</span>
 </code></pre></div><p>실행 결과는 다음과 같다.</p><pre class="console">p069=&gt; (time (solve))
 "Elapsed time: 0.05742 msecs"
 51??10

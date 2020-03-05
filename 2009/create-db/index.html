@@ -20,15 +20,15 @@ $ sqlplus '/as sysdba'
 ...
 SQL> startup nomount
 </pre><h4 id=5-create-database-문-실행>5. <code>CREATE DATABASE</code> 문 실행</h4><div class=highlight><pre class=chroma><code class=language-sql data-lang=sql><span class=k>create</span> <span class=k>database</span> <span class=n>test</span>
-<span class=n>dblogfile</span> <span class=k>group</span> <span class=mi>1</span> <span class=p>(</span><span class=s1>&#39;</span><span class=s1>/.../redo1.log</span><span class=s1>&#39;</span><span class=p>)</span> <span class=k>size</span> <span class=mi>100</span><span class=n>M</span><span class=p>,</span>
-<span class=k>group</span> <span class=mi>2</span> <span class=p>(</span><span class=s1>&#39;</span><span class=s1>/.../redo2.log</span><span class=s1>&#39;</span><span class=p>)</span> <span class=k>size</span> <span class=mi>100</span><span class=n>M</span><span class=p>,</span>
-<span class=k>group</span> <span class=mi>3</span> <span class=p>(</span><span class=s1>&#39;</span><span class=s1>/.../redo3.log</span><span class=s1>&#39;</span><span class=p>)</span> <span class=k>size</span> <span class=mi>100</span><span class=n>M</span>
+<span class=n>dblogfile</span> <span class=k>group</span> <span class=mi>1</span> <span class=p>(</span><span class=s1>&#39;/.../redo1.log&#39;</span><span class=p>)</span> <span class=k>size</span> <span class=mi>100</span><span class=n>M</span><span class=p>,</span>
+<span class=k>group</span> <span class=mi>2</span> <span class=p>(</span><span class=s1>&#39;/.../redo2.log&#39;</span><span class=p>)</span> <span class=k>size</span> <span class=mi>100</span><span class=n>M</span><span class=p>,</span>
+<span class=k>group</span> <span class=mi>3</span> <span class=p>(</span><span class=s1>&#39;/.../redo3.log&#39;</span><span class=p>)</span> <span class=k>size</span> <span class=mi>100</span><span class=n>M</span>
 <span class=nb>character</span> <span class=k>set</span> <span class=n>ko16ksc5601</span>
 <span class=k>national</span> <span class=nb>character</span> <span class=k>set</span> <span class=n>al16utf16</span>
-<span class=n>datafile</span> <span class=s1>&#39;</span><span class=s1>/.../system.dbf</span><span class=s1>&#39;</span> <span class=k>size</span> <span class=mi>500</span><span class=n>M</span> <span class=n>autoextend</span> <span class=k>on</span> <span class=k>next</span> <span class=mi>10</span><span class=n>M</span> <span class=n>maxsize</span> <span class=n>unlimited</span> <span class=n>extent</span> <span class=n>management</span> <span class=k>local</span>
-<span class=n>sysaux</span> <span class=n>datafile</span> <span class=s1>&#39;</span><span class=s1>/.../sysaux.dbf</span><span class=s1>&#39;</span> <span class=k>size</span> <span class=mi>100</span><span class=n>M</span> <span class=n>autoextend</span> <span class=k>on</span> <span class=k>next</span> <span class=mi>10</span><span class=n>M</span> <span class=n>maxsize</span> <span class=n>unlimited</span>
-<span class=n>undo</span> <span class=n>tablespace</span> <span class=n>undotbs1</span> <span class=n>datafile</span> <span class=s1>&#39;</span><span class=s1>/.../undotbs1.dbf</span><span class=s1>&#39;</span> <span class=k>size</span> <span class=mi>100</span><span class=n>M</span>
-<span class=k>default</span> <span class=k>temporary</span> <span class=n>tablespace</span> <span class=n>temp</span> <span class=n>tempfile</span> <span class=s1>&#39;</span><span class=s1>/.../temp01.dbf</span><span class=s1>&#39;</span>
+<span class=n>datafile</span> <span class=s1>&#39;/.../system.dbf&#39;</span> <span class=k>size</span> <span class=mi>500</span><span class=n>M</span> <span class=n>autoextend</span> <span class=k>on</span> <span class=k>next</span> <span class=mi>10</span><span class=n>M</span> <span class=n>maxsize</span> <span class=n>unlimited</span> <span class=n>extent</span> <span class=n>management</span> <span class=k>local</span>
+<span class=n>sysaux</span> <span class=n>datafile</span> <span class=s1>&#39;/.../sysaux.dbf&#39;</span> <span class=k>size</span> <span class=mi>100</span><span class=n>M</span> <span class=n>autoextend</span> <span class=k>on</span> <span class=k>next</span> <span class=mi>10</span><span class=n>M</span> <span class=n>maxsize</span> <span class=n>unlimited</span>
+<span class=n>undo</span> <span class=n>tablespace</span> <span class=n>undotbs1</span> <span class=n>datafile</span> <span class=s1>&#39;/.../undotbs1.dbf&#39;</span> <span class=k>size</span> <span class=mi>100</span><span class=n>M</span>
+<span class=k>default</span> <span class=k>temporary</span> <span class=n>tablespace</span> <span class=n>temp</span> <span class=n>tempfile</span> <span class=s1>&#39;/.../temp01.dbf&#39;</span>
 <span class=k>size</span> <span class=mi>100</span><span class=n>M</span><span class=p>;</span>
 </code></pre></div><h4 id=6-data-dictionary-view-생성-스크립트-실행>6. Data Dictionary View 생성 스크립트 실행</h4><pre class=console>
 $ORACLE_HOME/rdbms/admin/CATALOG.sql
@@ -46,10 +46,10 @@ SQL> create spfile from pfile;
   <span class=p>[</span><span class=n>ARCHIVELOG</span><span class=o>|</span><span class=n>NOARCHIVELOG</span><span class=p>]</span>
   <span class=p>[</span><span class=nb>CHARACTER</span> <span class=k>SET</span> <span class=n>charset</span><span class=p>]</span>
   <span class=p>[</span><span class=k>NATIONAL</span> <span class=nb>CHARACTER</span> <span class=k>SET</span> <span class=n>charset</span><span class=p>]</span>
-  <span class=p>[</span><span class=n>DATAFILE</span> <span class=n>filespec</span> <span class=p>[</span><span class=n>autoextend</span><span class=p>]</span><span class=p>]</span>
+  <span class=p>[</span><span class=n>DATAFILE</span> <span class=n>filespec</span> <span class=p>[</span><span class=n>autoextend</span><span class=p>]]</span>
   <span class=p>[</span><span class=k>DEFAULT</span> <span class=k>TEMPORARY</span> <span class=n>TABLESPACE</span> <span class=n>tablespace</span> <span class=n>filespec</span><span class=p>]</span>
   <span class=p>[</span><span class=n>UNDO</span> <span class=n>TABLESPACE</span> <span class=n>tablespace</span> <span class=n>DATAFILE</span> <span class=n>filespec</span><span class=p>]</span>
-  <span class=p>[</span><span class=k>SET</span> <span class=n>TIME_ZONE</span> <span class=p>[</span><span class=n>time_zone_region</span><span class=p>]</span><span class=p>]</span><span class=p>;</span>
+  <span class=p>[</span><span class=k>SET</span> <span class=n>TIME_ZONE</span> <span class=p>[</span><span class=n>time_zone_region</span><span class=p>]];</span>
 </code></pre></div></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
 <script async src=//platform.twitter.com/widgets.js></script></div><nav id=article-nav><a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2009/canvas-test/ id=article-nav-newer>Canvas 테스트</a>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta name="generator" content="Hugo 0.64.1"><meta name="robots" content="noindex"><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+<!DOCTYPE html><html><head><meta name="generator" content="Hugo 0.66.0"><meta name="robots" content="noindex"><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>@ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/highlight.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
@@ -261,7 +261,7 @@ on
 </svg></span>를 구하는 과정을 자세히 살펴보자.</p><p></p><p><a class="button is-link" href="https://ntalbs.github.io/2015/project-euler-026/" style="height:28px">Read more...</a></p></section></article><article class="post"><header class="post-header"><span class="post-meta"><time datetime="2015-08-21" itemprop="datePublished">2015-08-21</time>
 on
 <a href="/tags/java/">Java</a>
-<a href="/tags/%eb%a6%ac%ed%8c%a9%ed%84%b0%eb%a7%81/">리팩터링</a></span><h1 class="post-title"><a href="https://ntalbs.github.io/2015/if-true-return-true/">if (cond == true) return true</a></h1></header><section class="post-excerpt"><p></p><p>회사에서 코드 리뷰를 할 때 다음과 같은 패턴의 코드가 자주 눈에 띈다.</p><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">condition</span> <span class="o">=</span><span class="o">=</span> <span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+<a href="/tags/%eb%a6%ac%ed%8c%a9%ed%84%b0%eb%a7%81/">리팩터링</a></span><h1 class="post-title"><a href="https://ntalbs.github.io/2015/if-true-return-true/">if (cond == true) return true</a></h1></header><section class="post-excerpt"><p></p><p>회사에서 코드 리뷰를 할 때 다음과 같은 패턴의 코드가 자주 눈에 띈다.</p><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">condition</span> <span class="o">==</span> <span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
   <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
 <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
   <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>

@@ -11,7 +11,7 @@ on
 <span class=nt>pre</span> <span class=p>.</span><span class=nc>javadoc</span>
   <span class=nt>color</span> <span class=p>#</span><span class=nn>998</span>
   <span class=nt>font-style</span> <span class=nt>italic</span>
-<span class=o>.</span><span class=o>.</span><span class=o>.</span>
+<span class=o>...</span>
 </code></pre></div><p>이 부분에서 소스 코드 하이라이팅 스타일을 지정하는 것으로 보였다. 내가 색상을 일일히 편집할 수는 없으므로 다른 테마를 적용할 수 있을까 해서 브라우저로 주석에 나온 URL을 열어 보았다. 리디렉트 되어 <a href=https://highlightjs.org/>highlight.js</a>의 <a href=https://highlightjs.org/static/test.html>데모/테스트 페이지</a>가 열렸다. 마음에 드는 스타일을 골라 적용하면 되겠다 싶었다. highlight.js의 소스 코드는 <a href=https://github.com/isagalaev/highlight.js>https://github.com/isagalaev/highlight.js</a>에 있었고, 각 스타일에 대한 CSS 파일도 찾을 수 있었다. 마음에 드는 스타일 파일을 내 테마 디렉터리에 복사하고, 이 CSS를 블로그 페이지에서 참조하도록 수정했다.</p><p>그런데 문제가 있었다. CSS 파일을 살펴보니 모든 클래스에 <code>hljs-</code> 접두어가 붙어 있었다. 이래서는 CSS 파일만 추가해 소스 코드 하이라이팅 스타일을 바꿀 수 없었다. 구글에서 'hexo hljs'로 검색하니 <a href=https://github.com/hexojs/hexo/issues/434>관련 이슈</a>가 나왔는데, 여기서는 내용이 반대였다. 즉 highlight.js가 버전이 올라가면서 <code>hljs-</code> 접두어를 붙이는 바람에 기존 코드 스타일이 깨지니 접두어를 붙이지 않도록 설정하자는 것이었다. 그리고 그게 Hexo 소스(<code>lib/util/highlight.js</code>)에도 반영이 되어 있었다.</p><p>highlight.js의 기능과 스타일을 그대로 사용하기 위해 원래대로 돌려놓아야 했다. 생각해보니 Hexo는 node.js로 작성되었으니 소스 코드는 JavaScript 파일일테고, 내가 찾아 직접 수정할 수 있겠다는 생각이 들었다.</p><p>그래서 먼저 hexo가 설치된 디렉터리를 확인했다.</p><pre class=console>
 $ which hexo
 /usr/local/bin/hexo
@@ -52,14 +52,14 @@ file.js       highlight.js  inflector.js  server.js
 </span><span class=gd></span><span class=gi>+    &#34;highlight.js&#34;: &#34;8.3.0&#34;,
 </span><span class=gi></span>     ...
 </code></pre></div><p>그리고 Hexo 설치 디렉터리에서 <code>npm update</code> 명령을 실행했다. <code>npm list</code>로 확인해보니 제대로 업데이트 된 것 같다. HTML을 생성해 확인해 보니 제대로 되어 있다. 내 테마 스타일 파일에서 소스 코드 스타일을 지정하는 부분은 더 이상 필요하지 않으므로 삭제해도 된다.</p><div class=highlight><pre class=chroma><code class=language-diff data-lang=diff><span class=gd>- /* Theme: Solarized - Github
-</span><span class=gd></span><span class=gd>-  * More theme here: http://softwaremaniacs.org/media/soft/highlight/test.html
-</span><span class=gd></span><span class=gd>-  */
-</span><span class=gd></span><span class=gd>- pre .comment,
-</span><span class=gd></span><span class=gd>- pre .template_comment,
-</span><span class=gd></span><span class=gd>- .diff pre .header,
-</span><span class=gd></span><span class=gd>- pre .javadoc
-</span><span class=gd></span><span class=gd>-   color #998
-</span><span class=gd></span><span class=gd>-   font-style italic
+</span><span class=gd>-  * More theme here: http://softwaremaniacs.org/media/soft/highlight/test.html
+</span><span class=gd>-  */
+</span><span class=gd>- pre .comment,
+</span><span class=gd>- pre .template_comment,
+</span><span class=gd>- .diff pre .header,
+</span><span class=gd>- pre .javadoc
+</span><span class=gd>-   color #998
+</span><span class=gd>-   font-style italic
 </span><span class=gd></span>  ...
 </code></pre></div><p>이제 <code>highlight.js</code> 스타일을 가져다 마음껏 바꿀 수 있게 되었다. 다만 Hexo가 업데이트 되면 내가 수정한 내용도 날아갈테니 Hexo에 내가 수정한 내용을 Pull Request 해봐야 겠다.</p></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>

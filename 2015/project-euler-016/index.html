@@ -122,10 +122,10 @@ on
 </svg></span>의 모든 자릿수를 담을 수 없다.</p><h2 id="준비">준비</h2><p>주어진 수의 자릿수를 모두 더해야 하므로, 주어진 수의 자릿수로 시퀀스를 만들어주는 함수가 있으면 문제를 푸는 데 도움이 될 것이다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">digits</span>
   <span class="s">"Retruns the list of digits of n."</span>
   <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
-  <span class="p">(</span><span class="k">loop </span><span class="p">[</span><span class="nv">n</span> <span class="nv">n</span> <span class="nv">acc</span> <span class="o">'</span><span class="p">(</span><span class="p">)</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">loop </span><span class="p">[</span><span class="nv">n</span> <span class="nv">n</span> <span class="nv">acc</span> <span class="o">'</span><span class="p">()]</span>
     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">0</span><span class="p">)</span>
       <span class="nv">acc</span>
-      <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">quot </span><span class="nv">n</span> <span class="mi">10</span><span class="p">)</span> <span class="p">(</span><span class="nb">conj </span><span class="nv">acc</span> <span class="p">(</span><span class="nb">int </span><span class="p">(</span><span class="nb">rem </span><span class="nv">n</span> <span class="mi">10</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">quot </span><span class="nv">n</span> <span class="mi">10</span><span class="p">)</span> <span class="p">(</span><span class="nb">conj </span><span class="nv">acc</span> <span class="p">(</span><span class="nb">int </span><span class="p">(</span><span class="nb">rem </span><span class="nv">n</span> <span class="mi">10</span><span class="p">)))))))</span>
 </code></pre></div><p>이제 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.683ex" height="2.676ex" style="vertical-align: -0.338ex;" viewBox="0 -1006.6 2016.1 1152.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-5-Title">
 <title id="MathJax-SVG-5-Title">2^{1000}</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -139,12 +139,12 @@ on
 </g>
 </svg></span>을 구하는 방법을 생각해보자.</p><h2 id="방법-1">방법 1</h2><p>Clojure에서는 <code>*'</code> 함수를 사용해 임의의 자릿수에 대한 곱셈을 계산할 수 있다. 정수인 경우 <code>long</code>으로 표현 가능한 범위 안에서는 <code>long</code>으로, <code>long</code>의 표현 범위를 넘는 경우에는 자동으로 <code>BigInt</code>로 전환된다. 따라서 <code>*'</code>를 이용해 다음과 같이 거듭제곱수를 구하는 재귀함수를 작성할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">pow1</span> <span class="p">[</span><span class="nv">x</span> <span class="nv">n</span><span class="p">]</span>
   <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">zero? </span><span class="nv">n</span><span class="p">)</span> <span class="mi">1</span>
-    <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="p">(</span><span class="nf">pow1</span> <span class="nv">x</span> <span class="p">(</span><span class="nb">dec </span><span class="nv">n</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="p">(</span><span class="nf">pow1</span> <span class="nv">x</span> <span class="p">(</span><span class="nb">dec </span><span class="nv">n</span><span class="p">)))))</span>
 </code></pre></div><p>그러나 이렇게 하면 매 재귀호출 때마다 스택을 소비하게 되므로 <code>n</code>이 큰 경우 <code>StackOverflowError</code>가 발생할 수 있다. 꼬리재귀를 사용하면 스택을 소비하지 않아 큰 수에 대해서도 문제 없이 동작하게 할 수 있다. 꼬리재귀를 사용한 구현은 다음과 같다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">pow2</span> <span class="p">[</span><span class="nv">x</span> <span class="nv">n</span><span class="p">]</span>
   <span class="p">(</span><span class="k">loop </span><span class="p">[</span><span class="nv">n</span> <span class="nv">n</span>, <span class="nv">acc</span> <span class="mi">1</span><span class="p">]</span>
     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">zero? </span><span class="nv">n</span><span class="p">)</span>
       <span class="nv">acc</span>
-      <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">dec </span><span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nf">*</span><span class="o">'</span> <span class="nv">x</span> <span class="nv">acc</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">dec </span><span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nf">*</span><span class="o">'</span> <span class="nv">x</span> <span class="nv">acc</span><span class="p">)))))</span>
 </code></pre></div><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.548ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 1097.1 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-6-Title">
 <title id="MathJax-SVG-6-Title">x^n</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -172,13 +172,13 @@ on
  <use xlink:href="#MJMATHI-6E" x="0" y="0"></use>
 </g>
 </svg></span>번 반복되는 시퀀스를 만든 다음 이를 모두 곱하도록 할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">pow3</span> <span class="p">[</span><span class="nv">x</span> <span class="nv">n</span><span class="p">]</span>
-  <span class="p">(</span><span class="nb">apply </span><span class="nv">*</span><span class="o">'</span> <span class="p">(</span><span class="nb">repeat </span><span class="nv">n</span> <span class="nv">x</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">apply </span><span class="nv">*</span><span class="o">'</span> <span class="p">(</span><span class="nb">repeat </span><span class="nv">n</span> <span class="nv">x</span><span class="p">)))</span>
 </code></pre></div><p>Java의 <code>BigInteger</code>를 직접 사용하는 것도 가능하다. <code>BigInteger</code>의 <code>pow</code> 메서드를 사용하는 코드는 다음과 같다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">pow</span> <span class="p">[</span><span class="nv">x</span> <span class="nv">n</span><span class="p">]</span>
-  <span class="p">(</span><span class="nf">.pow</span> <span class="p">(</span><span class="nf">java.math.BigInteger.</span> <span class="p">(</span><span class="nb">str </span><span class="nv">x</span><span class="p">)</span><span class="p">)</span> <span class="nv">n</span><span class="p">)</span><span class="p">)</span>
-</code></pre></div><p>이제 각 자릿수를 더해주면 된다. 앞에서 만들었던 <code>digits</code> 함수를 이용하면 다음과 같이 할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve1</span> <span class="p">[</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">.pow</span> <span class="p">(</span><span class="nf">java.math.BigInteger.</span> <span class="p">(</span><span class="nb">str </span><span class="nv">x</span><span class="p">))</span> <span class="nv">n</span><span class="p">))</span>
+</code></pre></div><p>이제 각 자릿수를 더해주면 된다. 앞에서 만들었던 <code>digits</code> 함수를 이용하면 다음과 같이 할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve1</span> <span class="p">[]</span>
   <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nf">pow</span> <span class="mi">2</span> <span class="mi">1000</span><span class="p">)</span>
        <span class="p">(</span><span class="nf">digits</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">apply </span><span class="nv">+</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">apply </span><span class="nv">+</span><span class="p">)))</span>
 </code></pre></div><p>실행 결과는 다음과 같다.</p><pre class="console">p016=&gt; (time (solve1))
 "Elapsed time: 0.617088 msecs"
 13??
@@ -193,7 +193,7 @@ on
  <use xlink:href="#MJMATHI-78" x="4202" y="0"></use>
 </g>
 </svg></span>이므로, 이를 이용해 다음과 같은 코드를 작성할 수 있다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">twice-digits</span> <span class="p">[</span><span class="nv">x</span><span class="p">]</span>
-  <span class="p">(</span><span class="nf">digits+</span> <span class="nv">x</span> <span class="nv">x</span><span class="p">)</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">digits+</span> <span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
 </code></pre></div><p>이제 <code>[1]</code>에 <code>twice-digits</code>를 1000번 적용하면 된다. <code>[1]</code>을 두 배 하고, 그 결과를 다시 두 배 하는 식으로 1000번을 반복하면 된다. <code>iterate</code> 함수를 사용하면 이 작업을 쉽게 할 수 있다. <code>iterate</code>가 리턴하는 시퀀스의 1001번째 항이 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.683ex" height="2.676ex" style="vertical-align: -0.338ex;" viewBox="0 -1006.6 2016.1 1152.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-12-Title">
 <title id="MathJax-SVG-12-Title">2^{1000}</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
@@ -205,11 +205,11 @@ on
  <use transform="scale(0.707)" xlink:href="#MJMAIN-30" x="1501" y="0"></use>
 </g>
 </g>
-</svg></span>에 대한 자릿수이므로 1001번째 항의 모든 수를 모두 더하면 된다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve2</span> <span class="p">[</span><span class="p">]</span>
-  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">iterate </span><span class="nv">twice-digits</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">)</span>
+</svg></span>에 대한 자릿수이므로 1001번째 항의 모든 수를 모두 더하면 된다.</p><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve2</span> <span class="p">[]</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">iterate </span><span class="nv">twice-digits</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
        <span class="p">(</span><span class="nb">drop </span><span class="mi">1000</span><span class="p">)</span>
        <span class="nv">first</span>
-       <span class="p">(</span><span class="nb">reduce </span><span class="nv">+</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">reduce </span><span class="nv">+</span><span class="p">)))</span>
 </code></pre></div><p>실행 결과는 다음과 같다.</p><pre class="console">p016=&gt; (time (solve2))
 "Elapsed time: 53.205084 msecs"
 13??

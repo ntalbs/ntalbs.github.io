@@ -10,7 +10,7 @@ on
          <span class=p>(</span><span class=nf>init-board</span> <span class=nv>board</span> <span class=nv>puzzle</span><span class=p>)</span>
          <span class=p>(</span><span class=nf>everyg</span> <span class=nv>fd/distinct</span> <span class=nv>rows</span><span class=p>)</span>
          <span class=p>(</span><span class=nf>everyg</span> <span class=nv>fd/distinct</span> <span class=nv>cols</span><span class=p>)</span>
-         <span class=p>(</span><span class=nf>everyg</span> <span class=nv>fd/distinct</span> <span class=nv>squares</span><span class=p>)</span><span class=p>)</span>
+         <span class=p>(</span><span class=nf>everyg</span> <span class=nv>fd/distinct</span> <span class=nv>squares</span><span class=p>))</span>
     <span class=nv>...</span>
 </code></pre></div><p>각 행 숫자가 모두 달라야 하고, 각 열 숫자가 모두 달라야 하고, $3 \times 3$ 격자 안의 숫자가 모두 달라야 한다는 조건을 기술했다. 이렇게 조건을 기술하고 돌리면 엔진이 답을 찾아준다. 50개의 스도쿠 퍼즐을 풀었으면 각 해답지에서 맨 왼쪽 위 숫자를 이어붙인 수를 구해 모두 더하면 된다.</p><p>실행 결과는 다음과 같다.</p><pre class=console>
 p096=> (time (solve))
