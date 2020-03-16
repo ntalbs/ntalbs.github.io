@@ -4,11 +4,12 @@ const light = 'light'
 const dark  = 'dark'
 
 let root = document.documentElement
+let navBar = document.getElementById('nav-items')
 let modeSwitch = document.getElementById('mode-switch')
 modeSwitch.style.width = '46px'
 
 modeSwitch.addEventListener('click', (e) => {
-  switchMode(getMode() === light ? dark : light);
+  switchMode(getMode() === light ? dark : light)
 })
 
 switchMode(getMode())
@@ -33,6 +34,7 @@ function switchMode (mode) {
     makeDark()
     monokai()
   }
+  navBar.classList.add('collapsed')
   resetDisqus()
 }
 
