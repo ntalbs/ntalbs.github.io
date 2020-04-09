@@ -1,47 +1,464 @@
-<!doctype html><html><head><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset=utf-8><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name=viewport content="width=device-width,initial-scale=1"><title>생각해볼 문제 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/highlight.css></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>생각해볼 문제</div></div></div><nav class=navbar role=navigation><div class=container><div class=navbar-header><button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
-<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a></div><div class="navbar-items collapsed" id=nav-items><ul><li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2010-12-15 itemprop=datePublished>2010-12-15</time>
+<!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-2098194-3');</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="viewport" content="width=device-width,initial-scale=1"><title>생각해볼 문제 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/highlight.css"><style type="text/css">
+                            .mjpage .MJX-monospace {
+                            font-family: monospace
+                            }
+
+                            .mjpage .MJX-sans-serif {
+                            font-family: sans-serif
+                            }
+
+                            .mjpage {
+                            display: inline;
+                            font-style: normal;
+                            font-weight: normal;
+                            line-height: normal;
+                            font-size: 100%;
+                            font-size-adjust: none;
+                            text-indent: 0;
+                            text-align: left;
+                            text-transform: none;
+                            letter-spacing: normal;
+                            word-spacing: normal;
+                            word-wrap: normal;
+                            white-space: nowrap;
+                            float: none;
+                            direction: ltr;
+                            max-width: none;
+                            max-height: none;
+                            min-width: 0;
+                            min-height: 0;
+                            border: 0;
+                            padding: 0;
+                            margin: 0
+                            }
+
+                            .mjpage * {
+                            transition: none;
+                            -webkit-transition: none;
+                            -moz-transition: none;
+                            -ms-transition: none;
+                            -o-transition: none
+                            }
+
+                            .mjx-svg-href {
+                            fill: blue;
+                            stroke: blue
+                            }
+
+                            .MathJax_SVG_LineBox {
+                            display: table!important
+                            }
+
+                            .MathJax_SVG_LineBox span {
+                            display: table-cell!important;
+                            width: 10000em!important;
+                            min-width: 0;
+                            max-width: none;
+                            padding: 0;
+                            border: 0;
+                            margin: 0
+                            }
+
+                            .mjpage__block {
+                            text-align: center;
+                            margin: 1em 0em;
+                            position: relative;
+                            display: block!important;
+                            text-indent: 0;
+                            max-width: none;
+                            max-height: none;
+                            min-width: 0;
+                            min-height: 0;
+                            width: 100%
+                            }</style></head><body><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">생각해볼 문제</div></div></div><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle unselectable" data-toggle="collapse" data-target="#nav-items">+</button>
+<a class="navbar-brand unselectable" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a class="unselectable" href="/archive/">Archive</a></li><li><a class="unselectable" href="/tags/">Tags</a></li><li><a class="unselectable" href="/about/">About</a></li><li><a id="mode-switch" class="unselectable" href="#"></a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post with-math"><header><p class="post-meta"><time datetime="2010-12-15" itemprop="datePublished">2010-12-15</time>
 on
-<a href=/tags/db/>DB</a>
-<a href=/tags/sql/>SQL</a></p><h1 class=post-title>생각해볼 문제</h1></header><section class=post-content><p>1부터 100까지 더하는 프로그램을 짜라면 많은 프로그래머들이 다음과 같이 <code>for</code> 루프로 1부터 100까지 돌면서 합을 구하는 형식으로 코드를 작성할 것이다. (Python으로 구현)</p><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=k>def</span> <span class=nf>sum1</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
-  <span class=n>s</span> <span class=o>=</span> <span class=mi>0</span>
-  <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=n>n</span><span class=o>+</span><span class=mi>1</span><span class=p>):</span>
-    <span class=n>s</span> <span class=o>+=</span> <span class=n>i</span>
-  <span class=k>return</span> <span class=n>s</span>
-</code></pre></div><p>컴퓨터는 이런 식의 반복 계산을 잘 하므로 작은 수에 대해서는 이렇게 작성해도 큰 상관은 없을 것이다. 물론 비효율적이기는 하지만. 좀더 효율적으로 작성하려면 간단한 공식을 이용하면 된다.</p><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=k>def</span> <span class=nf>sum2</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
-  <span class=k>return</span> <span class=n>n</span> <span class=o>*</span> <span class=p>(</span><span class=n>n</span> <span class=o>+</span> <span class=mi>1</span><span class=p>)</span> <span class=o>/</span> <span class=mi>2</span>
-</code></pre></div><p><a href=http://ukja.tistory.com/362>Set-based Approach</a>에서 주문 간격 평균을 구하는 문제도 사실은 위와 비슷한 경우라 할 수 있다. (문제는 원래 페이지 참조) 테이블은 다음과 같다. (컬럼 이름을 약간 수정했다.)</p><div class=highlight><pre class=chroma><code class=language-sql data-lang=sql><span class=k>create</span> <span class=k>table</span> <span class=n>orders</span><span class=p>(</span>
-  <span class=n>member_no</span> <span class=nb>int</span><span class=p>,</span> <span class=c1>-- 회원번호
-</span><span class=c1></span>  <span class=n>order_no</span>  <span class=nb>int</span><span class=p>,</span> <span class=c1>-- 주문번호
-</span><span class=c1></span>  <span class=n>order_dt</span>  <span class=nb>date</span> <span class=c1>-- 주문일자
-</span><span class=c1></span><span class=p>);</span>
-</code></pre></div><p>테스트를 위해 샘플 데이터도 넣었다. (테스트는 PostgreSQL에서 진행)</p><div class=highlight><pre class=chroma><code class=language-sql data-lang=sql><span class=k>insert</span> <span class=k>into</span> <span class=n>orders</span> <span class=k>values</span>
-<span class=p>(</span><span class=mi>100</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=s1>&#39;2010-12-01&#39;</span><span class=p>),</span>
-<span class=p>(</span><span class=mi>100</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=s1>&#39;2010-12-10&#39;</span><span class=p>),</span>
-<span class=p>(</span><span class=mi>100</span><span class=p>,</span> <span class=mi>3</span><span class=p>,</span> <span class=s1>&#39;2010-12-15&#39;</span><span class=p>);</span>
-</code></pre></div><p>개발자라면 주문 간격의 평균을 구하라는 문제를 보는 순간 먼저 날짜 간격을 계산한 다음 그에 대한 평균을 구해야겠다고 생각할 것이다. SQL의 윈도우 함수(window function 또는 windowing function, 오라클에서는 analytic function)을 모르면 약간 고민을 하겠지만 이를 알고 있다면 망설임 없이 날짜로 정렬한 다음 현재 날짜에서 바로 전 레코드의 날짜를 빼서 기간을 구하고 이 기간에 대한 평균을 구하려 할 것이다.</p><div class=highlight><pre class=chroma><code class=language-sql data-lang=sql><span class=k>select</span> <span class=k>avg</span><span class=p>(</span><span class=n>order_dt</span> <span class=o>-</span> <span class=n>priv_order_dt</span><span class=p>)</span>
-<span class=k>from</span> <span class=p>(</span>
-  <span class=k>select</span>
-    <span class=n>order_dt</span><span class=p>,</span>
-    <span class=n>lag</span><span class=p>(</span><span class=n>order_dt</span><span class=p>,</span> <span class=mi>1</span><span class=p>)</span>
-      <span class=n>over</span> <span class=p>(</span><span class=n>partition</span> <span class=k>by</span> <span class=n>member_no</span>
-          <span class=k>order</span> <span class=k>by</span> <span class=n>order_dt</span><span class=p>)</span> <span class=n>priv_order_dt</span>
-  <span class=k>from</span> <span class=n>orders</span> <span class=k>where</span> <span class=n>member_no</span><span class=o>=</span><span class=mi>100</span>
-  <span class=p>)</span> <span class=n>a</span>
-<span class=p>;</span>
-</code></pre></div><p>그러나 평균이 무엇인지를 잘 생각해보면 좀더 간단하게 구할 수 있다는 걸 알 수 있다.</p><p><img src=/2010/12-15-sql-problem/2010-12-15-1.png alt></p><p>날짜가 d<sub>1</sub>(처음 주문한 날짜)부터 d<sub>n</sub>(마지막 주문한 날짜)까지 있다면 각 주문 간격은
-d<sub>2</sub>-d<sub>1</sub>, d<sub>3</sub>-d<sub>2</sub>, ..., d<sub>n</sub> - d<sub>n-1</sub>가 된다. 날짜 개수가 n개이므로 각 날짜 사이의 기간 개수는 n-1개가 된다. 따라서 평균을 구하는 식은 다음과 같이 단순화할 수 있다.</p><p><img src=/2010/12-15-sql-problem/2010-12-15-2.png alt></p><p>즉, 마지막 날짜에서 처음 날짜를 뺀 다음 기간 개수로 나눠주면 되는 것이다. 앞에서 윈도우 함수까지 동원해가며 작성했던 SQL은 사실 수식을 단순화하기 전의 방법(수식 첫 줄)으로 기간의 평균을 구한 것이다.</p><p>그러나 마지막의 단순한 식을 이용하면 SQL도 단순해진다.</p><div class=highlight><pre class=chroma><code class=language-sql data-lang=sql><span class=k>select</span> <span class=p>(</span><span class=k>max</span><span class=p>(</span><span class=n>order_dt</span><span class=p>)</span> <span class=o>-</span> <span class=k>min</span><span class=p>(</span><span class=n>order_dt</span><span class=p>))</span> <span class=o>/</span> <span class=p>(</span><span class=k>count</span><span class=p>(</span><span class=o>*</span><span class=p>)</span><span class=o>-</span><span class=mi>1</span><span class=p>)</span>
-<span class=k>from</span> <span class=n>orders</span>
-<span class=k>where</span> <span class=n>member_no</span> <span class=o>=</span> <span class=mi>100</span><span class=p>;</span>
-</code></pre></div><p>그런데 <code>count(*)</code>가 1인 경우, 즉 날짜가 하나뿐인 경우에는 기간이란게 있을 수 없다. 위 SQL도 분모가 0이 되기 때문에 문제가 생긴다. 따라서 다음과 같이 <code>count(*)</code>가 1인 경우에 대해 따로 처리하도록 수정해야 한다.</p><div class=highlight><pre class=chroma><code class=language-sql data-lang=sql><span class=k>select</span>
-  <span class=k>case</span> <span class=k>when</span> <span class=k>count</span><span class=p>(</span><span class=o>*</span><span class=p>)</span> <span class=o>=</span> <span class=mi>1</span> <span class=k>then</span>
-    <span class=k>null</span>
-  <span class=k>else</span>
-    <span class=p>(</span><span class=k>max</span><span class=p>(</span><span class=n>order_dt</span><span class=p>)</span> <span class=o>-</span> <span class=k>min</span><span class=p>(</span><span class=n>order_dt</span><span class=p>))</span> <span class=o>/</span> <span class=p>(</span><span class=k>count</span><span class=p>(</span><span class=o>*</span><span class=p>)</span><span class=o>-</span><span class=mi>1</span><span class=p>)</span>
-  <span class=k>end</span>
-<span class=k>from</span> <span class=n>orders</span>
-<span class=k>where</span> <span class=n>member_no</span> <span class=o>=</span> <span class=mi>100</span><span class=p>;</span>
-</code></pre></div><p>프로그램을 작성할 때, 또는 SQL을 작성할 때 아무 생각없이 코드를 작성하지 말아야 한다는 걸 깨닫게 해주는 좋은 문제다.</p><h2 id=참고>참고</h2><ul><li>위 SQL 코드는 <a href=http://ukja.tistory.com/362>조동욱 님의 블로그에 올라온 글</a>과 그에 달린 답글을 참고하며 작성한 것이다.</li><li>SQL을 작성할 때 한번 더 생각하게 해주는 좋은 예제지만 집합적 사고와는 그다지 관계가 없어 보인다.</li></ul></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
-<a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
-<script async src=//platform.twitter.com/widgets.js></script></div><nav id=article-nav><a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2011/int-min-value/ id=article-nav-newer>Integer.MIN_VALUE</a>
-<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2010/parameter-argument/ id=article-nav-older>parameter와 argument</a></nav></footer></article></main><section class=section><div class=container><aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section><div class="container has-text-centered"><p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script><script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script><footer class=page-bottom><div class=inner><section class=copyright>© 2008-2020 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
+<a href="/tags/db/">DB</a>
+<a href="/tags/sql/">SQL</a></p><h1 class="post-title">생각해볼 문제</h1></header><section class="post-content"><p>1부터 100까지 더하는 프로그램을 짜라면 많은 프로그래머들이 다음과 같이 <code>for</code> 루프로 1부터 100까지 돌면서 합을 구하는 형식으로 코드를 작성할 것이다. (Python으로 구현)</p><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">sum1</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+  <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">+=</span> <span class="n">i</span>
+  <span class="k">return</span> <span class="n">s</span>
+</code></pre></div><p>다음과 같이 <code>reduce</code>를 써서 한 줄로 끝낼 수도 있지만, 이 구현도 본질은 <code>sum1</code>과 같다.</p><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">sum2</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+  <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">:</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+</code></pre></div><p>컴퓨터는 반복 계산을 잘 하므로 작은 수에 대해서는 이렇게 작성해도 큰 상관은 없을 것이다. 물론 비효율적이기는 하지만. 좀더 효율적으로 작성하려면 간단한 공식을 이용하면 된다.</p><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">sum3</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+</code></pre></div><p>주문 간격 평균을 구하는 문제도 위와 비슷한 경우라 할 수 있다. 다음과 같이 <code>orders</code> 테이블이 있을 때 특정 회원의 주문 간격 평균을 어떻게 구할 수 있을까?</p><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">create</span> <span class="k">table</span> <span class="n">orders</span><span class="p">(</span>
+  <span class="n">member_no</span> <span class="nb">int</span><span class="p">,</span> <span class="c1">-- 회원번호
+</span><span class="c1"></span>  <span class="n">order_no</span>  <span class="nb">int</span><span class="p">,</span> <span class="c1">-- 주문번호
+</span><span class="c1"></span>  <span class="n">order_dt</span>  <span class="nb">date</span> <span class="c1">-- 주문일자
+</span><span class="c1"></span><span class="p">);</span>
+</code></pre></div><p>테스트를 위해 샘플 데이터도 넣었다. 테스트는 PostgreSQL에서 진행했다.</p><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">insert</span> <span class="k">into</span> <span class="n">orders</span> <span class="k">values</span>
+<span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'2010-12-01'</span><span class="p">),</span>
+<span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'2010-12-10'</span><span class="p">),</span>
+<span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">'2010-12-15'</span><span class="p">);</span>
+</code></pre></div><p>개발자라면 주문 간격의 평균을 구하라는 문제를 보는 순간 먼저 날짜 간격을 계산한 다음 그에 대한 평균을 구해야겠다고 생각할 것이다. SQL의 윈도우 함수(window function 또는 windowing function, 오라클에서는 analytic function)을 모르면 약간 고민을 하겠지만 이를 알고 있다면 망설임 없이 날짜로 정렬한 다음 현재 날짜에서 바로 전 레코드의 날짜를 빼서 기간을 구하고 이 기간에 대한 평균을 구하려 할 것이다.</p><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="k">avg</span><span class="p">(</span><span class="n">order_dt</span> <span class="o">-</span> <span class="n">priv_order_dt</span><span class="p">)</span>
+<span class="k">from</span> <span class="p">(</span>
+  <span class="k">select</span>
+    <span class="n">order_dt</span><span class="p">,</span>
+    <span class="n">lag</span><span class="p">(</span><span class="n">order_dt</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="n">over</span> <span class="p">(</span><span class="n">partition</span> <span class="k">by</span> <span class="n">member_no</span>
+          <span class="k">order</span> <span class="k">by</span> <span class="n">order_dt</span><span class="p">)</span> <span class="n">priv_order_dt</span>
+  <span class="k">from</span> <span class="n">orders</span> <span class="k">where</span> <span class="n">member_no</span><span class="o">=</span><span class="mi">100</span>
+  <span class="p">)</span> <span class="n">a</span>
+<span class="p">;</span>
+</code></pre></div><p>그러나 평균이 무엇인지를 잘 생각해보면 좀더 간단하게 구할 수 있다는 걸 알 수 있다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="55.081ex" height="2.843ex" style="vertical-align: -0.649ex; margin-bottom: -0.189ex;" viewBox="0 -863.1 23715.3 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">%math
+\require{AMScd}
+\begin{CD}
+d_1 @&gt;&gt;&gt; d_2 @&gt;&gt;&gt; ... @&gt;&gt;&gt;d_{n-1}@&gt;&gt;&gt;d_n
+\end{CD}
+</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+<g transform="translate(167,0)">
+<g transform="translate(-11,0)">
+<g transform="translate(0,-71)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-31" x="736" y="-213"></use>
+<g></g>
+</g>
+</g>
+<g transform="translate(1463,0)">
+<g transform="translate(-28,-71)">
+ <use xlink:href="#MJMAIN-2212" x="-85" y="0"></use>
+<g transform="translate(166.06728433712863,0) scale(3.478493676483685,1)">
+ <use xlink:href="#MJMAIN-2212"></use>
+</g>
+ <use xlink:href="#MJMAIN-2192" x="2375" y="0"></use>
+<g></g>
+</g>
+</g>
+<g transform="translate(5283,0)">
+<g transform="translate(0,-71)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="736" y="-213"></use>
+</g>
+</g>
+<g transform="translate(6758,0)">
+<g transform="translate(-28,-71)">
+ <use xlink:href="#MJMAIN-2212" x="-85" y="0"></use>
+<g transform="translate(166.06728433712863,0) scale(3.478493676483685,1)">
+ <use xlink:href="#MJMAIN-2212"></use>
+</g>
+ <use xlink:href="#MJMAIN-2192" x="2375" y="0"></use>
+<g></g>
+</g>
+</g>
+<g transform="translate(10578,0)">
+<g transform="translate(0,-71)">
+ <use xlink:href="#MJMAIN-2E" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-2E" x="445" y="0"></use>
+ <use xlink:href="#MJMAIN-2E" x="890" y="0"></use>
+</g>
+</g>
+<g transform="translate(12246,0)">
+<g transform="translate(-28,-71)">
+ <use xlink:href="#MJMAIN-2212" x="-85" y="0"></use>
+<g transform="translate(166.06728433712863,0) scale(3.478493676483685,1)">
+ <use xlink:href="#MJMAIN-2212"></use>
+</g>
+ <use xlink:href="#MJMAIN-2192" x="2375" y="0"></use>
+<g></g>
+</g>
+</g>
+<g transform="translate(16066,0)">
+<g transform="translate(0,-71)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+<g transform="translate(520,-150)">
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-2212" x="600" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-31" x="1379" y="0"></use>
+</g>
+</g>
+</g>
+<g transform="translate(18516,0)">
+<g transform="translate(-28,-71)">
+ <use xlink:href="#MJMAIN-2212" x="-85" y="0"></use>
+<g transform="translate(166.06728433712863,0) scale(3.478493676483685,1)">
+ <use xlink:href="#MJMAIN-2212"></use>
+</g>
+ <use xlink:href="#MJMAIN-2192" x="2375" y="0"></use>
+<g></g>
+</g>
+</g>
+<g transform="translate(22336,0)">
+<g transform="translate(0,-71)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="736" y="-213"></use>
+</g>
+</g>
+</g>
+</g>
+</svg></span></p><p>날짜가 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.263ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 974.4 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">
+<title id="MathJax-SVG-2-Title">d_1</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-31" x="736" y="-213"></use>
+</g>
+</svg></span>(처음 주문한 날짜)부터 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.427ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 1045.1 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-3-Title">
+<title id="MathJax-SVG-3-Title">d_{n}</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="736" y="-213"></use>
+</g>
+</svg></span>(마지막 주문한 날짜)까지 있다면 각 주문 간격은
+<span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="8.014ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 3450.3 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-4-Title">
+<title id="MathJax-SVG-4-Title">d_{2}-d_{1},</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="736" y="-213"></use>
+ <use xlink:href="#MJMAIN-2212" x="1196" y="0"></use>
+<g transform="translate(2197,0)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-31" x="736" y="-213"></use>
+</g>
+ <use xlink:href="#MJMAIN-2C" x="3171" y="0"></use>
+</g>
+</svg></span> <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="8.014ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 3450.3 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-5-Title">
+<title id="MathJax-SVG-5-Title">d_{3}-d_{2},</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-33" x="736" y="-213"></use>
+ <use xlink:href="#MJMAIN-2212" x="1196" y="0"></use>
+<g transform="translate(2197,0)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="736" y="-213"></use>
+</g>
+ <use xlink:href="#MJMAIN-2C" x="3171" y="0"></use>
+</g>
+</svg></span> ..., <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.796ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 4217.6 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-6-Title">
+<title id="MathJax-SVG-6-Title">d_{n}-d_{n-1}</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="736" y="-213"></use>
+ <use xlink:href="#MJMAIN-2212" x="1267" y="0"></use>
+<g transform="translate(2268,0)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+<g transform="translate(520,-150)">
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-2212" x="600" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-31" x="1379" y="0"></use>
+</g>
+</g>
+</g>
+</svg></span>가 된다. 날짜 개수가 n개이므로 각 날짜 사이의 기간 개수는 n-1개가 된다. 따라서 평균을 구하는 식은 다음과 같이 단순화할 수 있다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="67.764ex" height="18.843ex" style="vertical-align: -8.563ex; margin-bottom: -0.275ex;" viewBox="0 -4307.5 29176.2 8112.8" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-7-Title">
+<title id="MathJax-SVG-7-Title">%math
+\begin{aligned}
+\require{cancel}
+T &amp;= \frac{(d_n - d_{n-1}) + (d_{n-1} - d_{n-2}) + ... + (d_3 - d_2) + (d_2 - d_1)}{n-1} \newline
+&amp;= \frac{(d_n - \cancel{d_{n-1}) + (d_{n-1}} - \cancel{d_{n-2}) + ... + (d_3} - \cancel{d_2) + (d_2} - d_1)}{n-1} \newline
+&amp;= \frac{d_n - d_1}{n-1}
+\end{aligned}
+</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+<g transform="translate(167,0)">
+<g transform="translate(-11,0)">
+ <use xlink:href="#MJMATHI-54" x="0" y="2665"></use>
+</g>
+<g transform="translate(694,0)">
+<g transform="translate(0,2665)">
+ <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
+<g transform="translate(1056,0)">
+<g transform="translate(397,0)">
+<rect stroke="none" width="24257" height="60" x="0" y="220"></rect>
+<g transform="translate(60,770)">
+ <use xlink:href="#MJMAIN-28" x="0" y="0"></use>
+<g transform="translate(389,0)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="736" y="-213"></use>
+</g>
+ <use xlink:href="#MJMAIN-2212" x="1656" y="0"></use>
+<g transform="translate(2657,0)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+<g transform="translate(520,-150)">
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-2212" x="600" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-31" x="1379" y="0"></use>
+</g>
+</g>
+ <use xlink:href="#MJMAIN-29" x="4607" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="5218" y="0"></use>
+ <use xlink:href="#MJMAIN-28" x="6219" y="0"></use>
+<g transform="translate(6609,0)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+<g transform="translate(520,-150)">
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-2212" x="600" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-31" x="1379" y="0"></use>
+</g>
+</g>
+ <use xlink:href="#MJMAIN-2212" x="8780" y="0"></use>
+<g transform="translate(9781,0)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+<g transform="translate(520,-150)">
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-2212" x="600" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="1379" y="0"></use>
+</g>
+</g>
+ <use xlink:href="#MJMAIN-29" x="11730" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="12120" y="0"></use>
+ <use xlink:href="#MJMAIN-2E" x="12898" y="0"></use>
+ <use xlink:href="#MJMAIN-2E" x="13344" y="0"></use>
+ <use xlink:href="#MJMAIN-2E" x="13789" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="14234" y="0"></use>
+ <use xlink:href="#MJMAIN-28" x="15012" y="0"></use>
+<g transform="translate(15402,0)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-33" x="736" y="-213"></use>
+</g>
+ <use xlink:href="#MJMAIN-2212" x="16599" y="0"></use>
+<g transform="translate(17599,0)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="736" y="-213"></use>
+</g>
+ <use xlink:href="#MJMAIN-29" x="18574" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="19185" y="0"></use>
+ <use xlink:href="#MJMAIN-28" x="20186" y="0"></use>
+<g transform="translate(20576,0)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="736" y="-213"></use>
+</g>
+ <use xlink:href="#MJMAIN-2212" x="21772" y="0"></use>
+<g transform="translate(22773,0)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-31" x="736" y="-213"></use>
+</g>
+ <use xlink:href="#MJMAIN-29" x="23747" y="0"></use>
+</g>
+<g transform="translate(10966,-687)">
+ <use xlink:href="#MJMATHI-6E" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-2212" x="822" y="0"></use>
+ <use xlink:href="#MJMAIN-31" x="1823" y="0"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(0,-476)">
+ <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
+<g transform="translate(1056,0)">
+<g transform="translate(397,0)">
+<rect stroke="none" width="26574" height="60" x="0" y="220"></rect>
+<g transform="translate(60,1045)">
+ <use xlink:href="#MJMAIN-28" x="0" y="0"></use>
+<g transform="translate(389,0)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="736" y="-213"></use>
+</g>
+ <use xlink:href="#MJMAIN-2212" x="1656" y="0"></use>
+<g transform="translate(2879,0)">
+<g transform="translate(275,0)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+<g transform="translate(520,-150)">
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-2212" x="600" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-31" x="1379" y="0"></use>
+</g>
+ <use xlink:href="#MJMAIN-29" x="1949" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="2561" y="0"></use>
+ <use xlink:href="#MJMAIN-28" x="3561" y="0"></use>
+<g transform="translate(3951,0)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+<g transform="translate(520,-150)">
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-2212" x="600" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-31" x="1379" y="0"></use>
+</g>
+</g>
+</g>
+<line fill="none" stroke-width="75" x1="37" y1="-489" x2="6413" y2="988"></line>
+</g>
+ <use xlink:href="#MJMAIN-2212" x="9552" y="0"></use>
+<g transform="translate(10775,0)">
+<g transform="translate(275,0)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+<g transform="translate(520,-150)">
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-2212" x="600" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="1379" y="0"></use>
+</g>
+ <use xlink:href="#MJMAIN-29" x="1949" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="2339" y="0"></use>
+ <use xlink:href="#MJMAIN-2E" x="3117" y="0"></use>
+ <use xlink:href="#MJMAIN-2E" x="3562" y="0"></use>
+ <use xlink:href="#MJMAIN-2E" x="4007" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="4453" y="0"></use>
+ <use xlink:href="#MJMAIN-28" x="5231" y="0"></use>
+<g transform="translate(5621,0)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-33" x="736" y="-213"></use>
+</g>
+</g>
+<line fill="none" stroke-width="75" x1="37" y1="-489" x2="7107" y2="988"></line>
+</g>
+ <use xlink:href="#MJMAIN-2212" x="18143" y="0"></use>
+<g transform="translate(19366,0)">
+<g transform="translate(275,0)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="736" y="-213"></use>
+ <use xlink:href="#MJMAIN-29" x="974" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="1586" y="0"></use>
+ <use xlink:href="#MJMAIN-28" x="2586" y="0"></use>
+<g transform="translate(2976,0)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="736" y="-213"></use>
+</g>
+</g>
+<line fill="none" stroke-width="75" x1="37" y1="-489" x2="4463" y2="988"></line>
+</g>
+ <use xlink:href="#MJMAIN-2212" x="24089" y="0"></use>
+<g transform="translate(25090,0)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-31" x="736" y="-213"></use>
+</g>
+ <use xlink:href="#MJMAIN-29" x="26064" y="0"></use>
+</g>
+<g transform="translate(12125,-687)">
+ <use xlink:href="#MJMATHI-6E" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-2212" x="822" y="0"></use>
+ <use xlink:href="#MJMAIN-31" x="1823" y="0"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(0,-2918)">
+ <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
+<g transform="translate(1056,0)">
+<g transform="translate(397,0)">
+<rect stroke="none" width="3362" height="60" x="0" y="220"></rect>
+<g transform="translate(60,677)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-6E" x="736" y="-213"></use>
+ <use xlink:href="#MJMAIN-2212" x="1267" y="0"></use>
+<g transform="translate(2268,0)">
+ <use xlink:href="#MJMATHI-64" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-31" x="736" y="-213"></use>
+</g>
+</g>
+<g transform="translate(519,-687)">
+ <use xlink:href="#MJMATHI-6E" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-2212" x="822" y="0"></use>
+ <use xlink:href="#MJMAIN-31" x="1823" y="0"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg></span></p><p>즉, 마지막 날짜에서 처음 날짜를 뺀 다음 기간 개수로 나눠주면 되는 것이다. 앞에서 윈도우 함수까지 동원해가며 작성했던 SQL은 사실 수식을 단순화하기 전의 방법(수식 첫 줄)으로 기간의 평균을 구한 것이다.</p><p>그러나 마지막의 단순한 식을 이용하면 SQL도 단순해진다.</p><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="p">(</span><span class="k">max</span><span class="p">(</span><span class="n">order_dt</span><span class="p">)</span> <span class="o">-</span> <span class="k">min</span><span class="p">(</span><span class="n">order_dt</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">from</span> <span class="n">orders</span>
+<span class="k">where</span> <span class="n">member_no</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+</code></pre></div><p>그런데 <code>count(*)</code>가 1인 경우, 즉 날짜가 하나뿐인 경우에는 기간이란게 있을 수 없다. 위 SQL도 분모가 0이 되기 때문에 문제가 생긴다. 따라서 다음과 같이 <code>count(*)</code>가 1인 경우에 대해 따로 처리하도록 수정해야 한다.</p><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span>
+  <span class="k">case</span> <span class="k">when</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">then</span>
+    <span class="k">null</span>
+  <span class="k">else</span>
+    <span class="p">(</span><span class="k">max</span><span class="p">(</span><span class="n">order_dt</span><span class="p">)</span> <span class="o">-</span> <span class="k">min</span><span class="p">(</span><span class="n">order_dt</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">from</span> <span class="n">orders</span>
+<span class="k">where</span> <span class="n">member_no</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+</code></pre></div><p>프로그램을 작성할 때, 또는 SQL을 작성할 때 아무 생각없이 코드를 작성하지 말아야 한다는 걸 깨닫게 해주는 좋은 문제다.</p></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+<a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+<script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2011/int-min-value/" id="article-nav-newer">Integer.MIN_VALUE</a>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2010/parameter-argument/" id="article-nav-older">parameter와 argument</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><script src="https://ntalbs.github.io/js/mode.js" type="text/javascript"></script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2020 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer><svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs id="MathJax_SVG_glyphs"><path stroke-width="1" id="MJMATHI-64" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path><path stroke-width="1" id="MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="1" id="MJMAIN-2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path><path stroke-width="1" id="MJMAIN-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path><path stroke-width="1" id="MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path stroke-width="1" id="MJMAIN-2E" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z"></path><path stroke-width="1" id="MJMATHI-6E" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="1" id="MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path><path stroke-width="1" id="MJMAIN-33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path stroke-width="1" id="MJMATHI-54" d="M40 437Q21 437 21 445Q21 450 37 501T71 602L88 651Q93 669 101 677H569H659Q691 677 697 676T704 667Q704 661 687 553T668 444Q668 437 649 437Q640 437 637 437T631 442L629 445Q629 451 635 490T641 551Q641 586 628 604T573 629Q568 630 515 631Q469 631 457 630T439 622Q438 621 368 343T298 60Q298 48 386 46Q418 46 427 45T436 36Q436 31 433 22Q429 4 424 1L422 0Q419 0 415 0Q410 0 363 1T228 2Q99 2 64 0H49Q43 6 43 9T45 27Q49 40 55 46H83H94Q174 46 189 55Q190 56 191 56Q196 59 201 76T241 233Q258 301 269 344Q339 619 339 625Q339 630 310 630H279Q212 630 191 624Q146 614 121 583T67 467Q60 445 57 441T43 437H40Z"></path><path stroke-width="1" id="MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path stroke-width="1" id="MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path><path stroke-width="1" id="MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path><path stroke-width="1" id="MJMAIN-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></defs></svg></body></html>
