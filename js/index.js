@@ -65,12 +65,22 @@
     return minHeight + 'px'
   }
 
-  // shortcut: j or C-n for down, k or C-p for up
+  // shortcut:
+  // down: j or C-n
+  // up:   k or C-p
+  // prev page: h or C-b
+  // next page: l or C-f
   document.addEventListener('keydown', e => {
     if (e.keyCode === 74 /* j */ || (e.ctrlKey && e.keyCode === 78 /* C-n */)) {
       window.scrollBy(0, 100)
     } else if (e.keyCode === 75 /* k */ || (e.ctrlKey && e.keyCode === 80 /* C-p */)) {
       window.scrollBy(0, -100)
+    } else if (e.keyCode === 72 /* h */ || (e.ctrlKey && e.keyCode === 66)) {
+      let a = document.querySelector('.previous')
+      if (!!a) window.location = a.href
+    } else if (e.keyCode === 76 /* l */ || (e.ctrlKey && e.keyCode === 70)) {
+      let a= document.querySelector('.next')
+      if (!!a) window.location = a.href
     }
   })
 
