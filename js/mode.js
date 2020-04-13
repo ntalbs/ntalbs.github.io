@@ -55,6 +55,8 @@ function makeDark () {
   root.style.setProperty('--line', "#444")
   root.style.setProperty('--circle', "#444")
   root.style.setProperty('--footer', "#333")
+
+  root.style.setProperty('--invert-amt', '0.84')
 }
 
 function makeLight () {
@@ -74,6 +76,8 @@ function makeLight () {
   root.style.setProperty('--line', "#ebf2f6")
   root.style.setProperty('--circle', "#fff")
   root.style.setProperty('--footer', "#eee")
+
+  root.style.setProperty('--invert-amt', '0')
 }
 
 function xcode() {

@@ -61,6 +61,9 @@ h5 {
 h6 {
   font-size: 1.4rem;
 }
+img.invert-safe {
+  filter: invert(--invert-amt);
+}
 p {
   text-align: justify;
 }
@@ -335,9 +338,6 @@ ul.pagination li a {
 .post li img {
   max-width: 100%;
 }
-.post img.right {
-  float: right;
-}
 .post:after {
   display: block;
   content: "";
@@ -359,6 +359,12 @@ ul.pagination li a {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+.post img.right {
+  float: right;
+}
+.post img.invert-safe {
+  filter: invert(var(--invert-amt));
 }
 .post-content,
 .post-excerpt {

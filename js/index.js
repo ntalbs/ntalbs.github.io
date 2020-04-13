@@ -76,13 +76,39 @@
     } else if (e.keyCode === 75 /* k */ || (e.ctrlKey && e.keyCode === 80 /* C-p */)) {
       window.scrollBy(0, -100)
     } else if (e.keyCode === 72 /* h */ || (e.ctrlKey && e.keyCode === 66)) {
-      let a = document.querySelector('.previous')
-      if (!!a) window.location = a.href
+      prevPage()
     } else if (e.keyCode === 76 /* l */ || (e.ctrlKey && e.keyCode === 70)) {
-      let a= document.querySelector('.next')
-      if (!!a) window.location = a.href
+      nextPage()
     }
   })
+
+  function isPostPage(path) {
+    return /^\/\d{4}\//.test(path)
+  }
+
+  function prevPage() {
+    if (isPostPage(window.location.pathname)) {
+      let a = document.querySelector('.previous')
+      if (!!a) window.location = a.href
+    } else {
+      let a = document.querySelector('.page-item+.active')
+          .previousElementSibling
+          .firstElementChild
+      if (!!a.href) window.location = a.href
+    }
+  }
+
+  function nextPage() {
+    if (isPostPage(window.location.pathname)) {
+      let a = document.querySelector('.next')
+      if (!!a) window.location = a.href
+    } else {
+      let a = document.querySelector('.page-item+.active')
+          .nextElementSibling
+          .firstElementChild
+      if (!!a.href) window.location = a.href
+    }
+  }
 
   // footnote
   document.querySelectorAll('.footnote-ref a').forEach(a => {
