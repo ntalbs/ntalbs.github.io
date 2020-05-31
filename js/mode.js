@@ -12,7 +12,7 @@ modeSwitch.addEventListener('click', (e) => {
   switchMode(getMode() === light ? dark : light)
 })
 
-switchMode(getMode())
+switchMode(getMode(), false)
 
 function getMode () {
   let mode = localStorage.getItem('currentMode')
@@ -24,7 +24,7 @@ function setMode (mode) {
   modeSwitch.textContent = (mode===light ? moon : sun)
 }
 
-function switchMode (mode) {
+function switchMode (mode, disqus) {
   if (mode === light) {
     setMode(light)
     makeLight()
@@ -35,7 +35,10 @@ function switchMode (mode) {
     monokai()
   }
   navBar.classList.add('collapsed')
-  resetDisqus()
+
+  if (disqus) {
+    resetDisqus()
+  }
 }
 
 function makeDark () {
