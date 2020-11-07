@@ -44,7 +44,7 @@ $ git push -u origin master
 <span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=p>{</span> <span class=nx>TweetbookStack</span> <span class=p>}</span>
 </code></pre></div><p>이제 콘솔에서 <code>cdk deploy</code> 명령을 실행한다. 실행이 끝난 후 AWS 콘솔에 들어가보면 <code>Tweetbook-Quotes</code> 테이블이 생성된 것을 확인할 수 있다.</p><h2 id=lambda-함수-정의>Lambda 함수 정의</h2><p>Lambda 함수를 만들기 위해서는 <code>@aws-cdk/aws-lambda</code> 모듈이 필요하다.</p><div class=highlight><pre class=chroma><code class=language-shell data-lang=shell>$ npm install @aws-cdk/aws-lambda
 </code></pre></div><p>Lambda 함수의 소스 코드를 저장할 디레터리를 다음과 같이 만든다.</p><div class=highlight><pre class=chroma><code class=language-shell data-lang=shell>$ mkdir -p lambdas/tweet
-</code></pre></div><p>그리고 위 디렉터리에 다음 내용으로 <code>index.js</code> 파일을 만든다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=nx>exports</span><span class=p>.</span><span class=nx>handler</span> <span class=o>=</span> <span class=nx>async</span> <span class=p>(</span><span class=nx>event</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</code></pre></div><p>그리고 위 디렉터리에 다음 내용으로 <code>index.js</code> 파일을 만든다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=nx>exports</span><span class=p>.</span><span class=nx>handler</span> <span class=o>=</span> <span class=kr>async</span> <span class=p>(</span><span class=nx>event</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
   <span class=kr>const</span> <span class=nx>response</span> <span class=o>=</span> <span class=p>{</span>
     <span class=nx>statusCode</span><span class=o>:</span> <span class=mi>200</span><span class=p>,</span>
     <span class=nx>body</span><span class=o>:</span> <span class=s1>&#39;Hello Lambda&#39;</span>
@@ -103,7 +103,7 @@ $ npm install @aws-cdk/aws-events-targets
   <span class=k>return</span> <span class=nb>Math</span><span class=p>.</span><span class=nx>floor</span><span class=p>(</span><span class=nb>Math</span><span class=p>.</span><span class=nx>random</span><span class=p>()</span> <span class=o>*</span> <span class=nx>MAX_INDEX</span><span class=p>)</span>
 <span class=p>}</span>
 
-<span class=nx>async</span> <span class=kd>function</span> <span class=nx>getQuote</span><span class=p>(</span><span class=nx>id</span><span class=p>)</span> <span class=p>{</span>
+<span class=kr>async</span> <span class=kd>function</span> <span class=nx>getQuote</span><span class=p>(</span><span class=nx>id</span><span class=p>)</span> <span class=p>{</span>
   <span class=kd>let</span> <span class=nx>param</span> <span class=o>=</span> <span class=p>{</span>
     <span class=nx>Key</span><span class=o>:</span> <span class=p>{</span>
       <span class=s2>&#34;_id&#34;</span><span class=o>:</span> <span class=nx>id</span>
@@ -111,7 +111,7 @@ $ npm install @aws-cdk/aws-events-targets
     <span class=nx>TableName</span><span class=o>:</span> <span class=s2>&#34;Tweetbook-Quotes&#34;</span>
   <span class=p>}</span>
 
-  <span class=kd>let</span> <span class=nx>q</span> <span class=o>=</span> <span class=nx>await</span> <span class=nx>dynamodb</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=nx>param</span><span class=p>).</span><span class=nx>promise</span><span class=p>()</span>
+  <span class=kd>let</span> <span class=nx>q</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>dynamodb</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=nx>param</span><span class=p>).</span><span class=nx>promise</span><span class=p>()</span>
 
   <span class=k>return</span> <span class=p>{</span>
     <span class=nx>msg</span><span class=o>:</span> <span class=nx>q</span><span class=p>.</span><span class=nx>Item</span><span class=p>.</span><span class=nx>msg</span><span class=p>,</span>
@@ -119,9 +119,9 @@ $ npm install @aws-cdk/aws-events-targets
   <span class=p>}</span>
 <span class=p>}</span>
 
-<span class=nx>exports</span><span class=p>.</span><span class=nx>handler</span> <span class=o>=</span> <span class=nx>async</span> <span class=p>(</span><span class=nx>event</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+<span class=nx>exports</span><span class=p>.</span><span class=nx>handler</span> <span class=o>=</span> <span class=kr>async</span> <span class=p>(</span><span class=nx>event</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
   <span class=kd>let</span> <span class=nx>id</span> <span class=o>=</span> <span class=nx>random</span><span class=p>()</span>
-  <span class=kd>let</span> <span class=nx>quote</span> <span class=o>=</span> <span class=nx>await</span> <span class=nx>getQuote</span><span class=p>(</span><span class=nx>id</span><span class=p>)</span>
+  <span class=kd>let</span> <span class=nx>quote</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>getQuote</span><span class=p>(</span><span class=nx>id</span><span class=p>)</span>
 
   <span class=kr>const</span> <span class=nx>response</span> <span class=o>=</span> <span class=p>{</span>
     <span class=nx>statusCode</span><span class=o>:</span> <span class=mi>200</span><span class=p>,</span>
@@ -146,17 +146,17 @@ $ npm install @aws-cdk/aws-events-targets
 $ npm install twit
 </code></pre></div><p><code>lambdas/tweetbook</code> 디렉터리는 Lambda 함수를 정의하는 새로운 패키지의 루트 디렉터리로, 람다 함수에서 사용하는 외부 라이브러리는 이 디렉터리에 설치되어야 하므로 <code>npm init</code>을 실행해 <code>package.json</code>을 생성해야 한다.</p><p>트위터 API를 초기화하는 데 필요한 <code>consumer_key</code>, <code>consumer_secret</code>, <code>access_token</code>, <code>access_token_secret</code>를 Secrets Manager에서 읽어오도록 <code>index.js</code> 파일에 다음 코드를 추가한다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>Twit</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;twit&#39;</span><span class=p>)</span>
 
-<span class=nx>async</span> <span class=kd>function</span> <span class=nx>getTokens</span> <span class=p>()</span> <span class=p>{</span>
-  <span class=kd>let</span> <span class=nx>secrets</span> <span class=o>=</span> <span class=nx>await</span> <span class=nx>secretsManager</span><span class=p>.</span><span class=nx>getSecretValue</span><span class=p>({</span>
+<span class=kr>async</span> <span class=kd>function</span> <span class=nx>getTokens</span> <span class=p>()</span> <span class=p>{</span>
+  <span class=kd>let</span> <span class=nx>secrets</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>secretsManager</span><span class=p>.</span><span class=nx>getSecretValue</span><span class=p>({</span>
     <span class=nx>SecretId</span><span class=o>:</span> <span class=s1>&#39;TwitterBookBotApiTokens&#39;</span>
   <span class=p>}).</span><span class=nx>promise</span><span class=p>()</span>
   <span class=k>return</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>parse</span><span class=p>(</span><span class=nx>secrets</span><span class=p>.</span><span class=nx>SecretString</span><span class=p>)</span>
 <span class=p>}</span>
 
 <span class=kd>let</span> <span class=nx>T</span><span class=p>;</span>
-<span class=nx>async</span> <span class=kd>function</span> <span class=nx>tweet</span><span class=p>(</span><span class=nx>quote</span><span class=p>)</span> <span class=p>{</span>
+<span class=kr>async</span> <span class=kd>function</span> <span class=nx>tweet</span><span class=p>(</span><span class=nx>quote</span><span class=p>)</span> <span class=p>{</span>
   <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nx>T</span><span class=p>)</span> <span class=p>{</span>
-    <span class=kd>let</span> <span class=nx>tokens</span> <span class=o>=</span> <span class=nx>await</span> <span class=nx>getTokens</span><span class=p>();</span>
+    <span class=kd>let</span> <span class=nx>tokens</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>getTokens</span><span class=p>();</span>
     <span class=nx>T</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Twit</span><span class=p>({</span>
       <span class=nx>consumer_key</span><span class=o>:</span> <span class=nx>tokens</span><span class=p>.</span><span class=nx>TWITTER_CONSUMER_KEY</span><span class=p>,</span>
       <span class=nx>consumer_secret</span><span class=o>:</span> <span class=nx>tokens</span><span class=p>.</span><span class=nx>TWITTER_CONSUMER_SECRET</span><span class=p>,</span>
@@ -168,10 +168,10 @@ $ npm install twit
   <span class=kd>let</span> <span class=nx>msg</span> <span class=o>=</span> <span class=sb>`</span><span class=si>${</span><span class=nx>quote</span><span class=p>.</span><span class=nx>msg</span><span class=si>}</span><span class=err>\</span><span class=sb>n</span><span class=si>${</span><span class=nx>quote</span><span class=p>.</span><span class=nx>src</span><span class=si>}</span><span class=sb>`</span>
   <span class=k>return</span> <span class=nx>T</span><span class=p>.</span><span class=nx>post</span><span class=p>(</span><span class=s1>&#39;statuses/update&#39;</span><span class=p>,</span> <span class=p>{</span><span class=nx>status</span><span class=o>:</span> <span class=nx>msg</span><span class=p>})</span>
 <span class=p>}</span>
-</code></pre></div><p>그리고 DynamoDB에서 읽은 메시지를 트위터에 트윗하도록 <code>handler</code> 함수를 다음과 같이 수정한다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=nx>exports</span><span class=p>.</span><span class=nx>handler</span> <span class=o>=</span> <span class=nx>async</span> <span class=p>(</span><span class=nx>event</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</code></pre></div><p>그리고 DynamoDB에서 읽은 메시지를 트위터에 트윗하도록 <code>handler</code> 함수를 다음과 같이 수정한다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=nx>exports</span><span class=p>.</span><span class=nx>handler</span> <span class=o>=</span> <span class=kr>async</span> <span class=p>(</span><span class=nx>event</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
   <span class=kd>let</span> <span class=nx>id</span> <span class=o>=</span> <span class=nx>random</span><span class=p>()</span>
-  <span class=kd>let</span> <span class=nx>q</span> <span class=o>=</span> <span class=nx>await</span> <span class=nx>getQuote</span><span class=p>(</span><span class=nx>id</span><span class=p>)</span>
-  <span class=kd>let</span> <span class=nx>t</span> <span class=o>=</span> <span class=nx>await</span> <span class=nx>tweet</span><span class=p>(</span><span class=nx>q</span><span class=p>)</span>
+  <span class=kd>let</span> <span class=nx>q</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>getQuote</span><span class=p>(</span><span class=nx>id</span><span class=p>)</span>
+  <span class=kd>let</span> <span class=nx>t</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>tweet</span><span class=p>(</span><span class=nx>q</span><span class=p>)</span>
 
   <span class=kr>const</span> <span class=nx>response</span> <span class=o>=</span> <span class=p>{</span>
     <span class=nx>statusCode</span><span class=o>:</span> <span class=mi>200</span><span class=p>,</span>
