@@ -165,7 +165,7 @@ $ npm install twit
     <span class=p>})</span>
   <span class=p>}</span>
 
-  <span class=kd>let</span> <span class=nx>msg</span> <span class=o>=</span> <span class=sb>`</span><span class=si>${</span><span class=nx>quote</span><span class=p>.</span><span class=nx>msg</span><span class=si>}</span><span class=err>\</span><span class=sb>n</span><span class=si>${</span><span class=nx>quote</span><span class=p>.</span><span class=nx>src</span><span class=si>}</span><span class=sb>`</span>
+  <span class=kd>let</span> <span class=nx>msg</span> <span class=o>=</span> <span class=sb>`</span><span class=si>${</span><span class=nx>quote</span><span class=p>.</span><span class=nx>msg</span><span class=si>}</span><span class=sb>\n</span><span class=si>${</span><span class=nx>quote</span><span class=p>.</span><span class=nx>src</span><span class=si>}</span><span class=sb>`</span>
   <span class=k>return</span> <span class=nx>T</span><span class=p>.</span><span class=nx>post</span><span class=p>(</span><span class=s1>&#39;statuses/update&#39;</span><span class=p>,</span> <span class=p>{</span><span class=nx>status</span><span class=o>:</span> <span class=nx>msg</span><span class=p>})</span>
 <span class=p>}</span>
 </code></pre></div><p>그리고 DynamoDB에서 읽은 메시지를 트위터에 트윗하도록 <code>handler</code> 함수를 다음과 같이 수정한다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=nx>exports</span><span class=p>.</span><span class=nx>handler</span> <span class=o>=</span> <span class=kr>async</span> <span class=p>(</span><span class=nx>event</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
