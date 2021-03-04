@@ -156,7 +156,7 @@ blockquote.right-align {
 p code,
 li code {
   padding: 3px 3px 1px 3px;
-  font-size: 0.9em;
+  font-size: 0.8em;
   white-space: pre-line;
   border: none;
   color: var(--text);
