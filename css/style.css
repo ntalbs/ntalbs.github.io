@@ -315,9 +315,10 @@ ul.pagination {
 }
 ul.pagination li {
   display: inline-block;
-  margin: 3px;
+  margin: 0;
 }
 ul.pagination li a {
+  padding: 3px 6px;
   text-decoration: none;
 }
 /* Every post, on every page */
