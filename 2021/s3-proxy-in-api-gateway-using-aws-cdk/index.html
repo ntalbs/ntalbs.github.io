@@ -13,7 +13,7 @@ on
       <span class=nx>removalPolicy</span><span class=o>:</span> <span class=nx>cdk</span><span class=p>.</span><span class=nx>RemovalPolicy</span><span class=p>.</span><span class=nx>DESTROY</span>
     <span class=p>})</span>
     <span class=p>...</span>
-</code></pre></div><p>테스트할 때는 스택을 생성하고 제거하길 반복할테니 S3 버킷 삭제 정책을 <code>RemovalPolicy.DESTROY</code>로 설정했다. 그러나 S3 버킷을 삭제하려면 버킷이 비어있어야 한다. 버킷에 비어있지 않으면 삭제할 때 에러가 발생하므로 CloudFormation AWS 콘솔이나 <code>cdk destroy</code> 명령으로 스택을 제거할 때 S3 버킷이 비어있지 않으면 스텍 제거에 실패한다. 스택을 깔끔하게 제거하려면 먼저 S3 버킷을 비우는 게 상책이다.</p><h2 id=s3-버킷에-파일-업로드>S3 버킷에 파일 업로드</h2><p>CDK로 버킷을 생성한 다음 바로 파일을 업로드할 수 있다. 다음 코드른 CDK 프로젝트 루트 밑에 있는 <code>web</code> 디렉터리의 파일을 S3 버킷으로 업로드한다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js>    <span class=p>...</span>
+</code></pre></div><p>테스트할 때는 스택을 생성하고 제거하길 반복할테니 S3 버킷 삭제 정책을 <code>RemovalPolicy.DESTROY</code>로 설정했다. 그러나 S3 버킷을 삭제하려면 버킷이 비어있어야 한다. 버킷에 비어있지 않으면 삭제할 때 에러가 발생하므로 CloudFormation AWS 콘솔이나 <code>cdk destroy</code> 명령으로 스택을 제거할 때 S3 버킷이 비어있지 않으면 스텍 제거에 실패한다. 스택을 깔끔하게 제거하려면 먼저 S3 버킷을 비우는 게 상책이다.</p><h2 id=s3-버킷에-파일-업로드>S3 버킷에 파일 업로드</h2><p>CDK로 버킷을 생성한 다음 바로 파일을 업로드할 수 있다. 다음 코드는 CDK 프로젝트 루트 밑에 있는 <code>web</code> 디렉터리의 파일을 S3 버킷으로 업로드한다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js>    <span class=p>...</span>
     <span class=k>new</span> <span class=nx>s3deploy</span><span class=p>.</span><span class=nx>BucketDeployment</span><span class=p>(</span><span class=k>this</span><span class=p>,</span> <span class=s1>&#39;DeployFiles, {
 </span><span class=s1>      sources: [s3deploy.Source.asset(&#39;</span><span class=nx>web</span><span class=s1>&#39;)],
 </span><span class=s1>      destinationBucket: bucket,
