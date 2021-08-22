@@ -1,7 +1,62 @@
-<!doctype html><html><head><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script><meta charset=utf-8><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg"><meta name=viewport content="width=device-width,initial-scale=1"><title>CDK를 이용한 S3 프락시 API Gateway 생성 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/highlight.css></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>CDK를 이용한 S3 프락시 API Gateway 생성</div></div></div><nav class=navbar role=navigation><div class=container><div class=navbar-header><button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
-<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a></div><div class="navbar-items collapsed" id=nav-items><ul><li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2021-05-05 itemprop=datePublished>2021-05-05</time>
+<!doctype html><html>
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script>
+<meta charset=utf-8>
+<meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
+<meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>CDK를 이용한 S3 프락시 API Gateway 생성 @ntalbs' stuff</title>
+<link rel="shortcut icon" href=/images/favicon.ico>
+<link rel=stylesheet href=/css/style.css>
+<link rel=stylesheet href=/css/highlight.css>
+</head>
+<body>
+<div id=progress>
+<div id=bar></div>
+<div class=container>
+<div id=scroll-title>CDK를 이용한 S3 프락시 API Gateway 생성</div>
+</div>
+</div>
+<nav class=navbar role=navigation>
+<div class=container>
+<div class=navbar-header>
+<button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
+<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
+</div>
+<div class="navbar-items collapsed" id=nav-items>
+<ul>
+<li><a class=unselectable href=/archive/>Archive</a></li>
+<li><a class=unselectable href=/tags/>Tags</a></li>
+<li><a class=unselectable href=/about/>About</a></li>
+<li><a id=mode-switch class=unselectable href=#></a></li>
+</ul>
+</div>
+</div>
+</nav>
+<header class=page-head>
+<div class=container>
+<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+</div>
+</header>
+<main class=container role=main>
+<article class=post>
+<header>
+<p class=post-meta>
+<time datetime=2021-05-05 itemprop=datePublished>2021-05-05</time>
 on
-<a href=/tags/aws/>aws</a></p><h1 class=post-title>CDK를 이용한 S3 프락시 API Gateway 생성</h1></header><section class=post-content><p>CDK의 API는 AWS 콘솔의 입력 항목과 직관적 대응 관계가 있어야 할 것 같은데, 꼭 그렇지만은 않은 듯 하다. 여기서는 S3 버킷에 저장되어 있는 파일을 API Gateway를 통해 접근할 수 있도록 프락시 API Gateway를 CDK로 만들어보려 한다.</p><p>S3 버킷을 public으로 만들면 API Gateway를 통하지 않아도 웹을 통해 접근할 수 있다. 그러나 나중에 추가할 람다 함수를 웹에서 접근하게 하려면 API Gateway가 필요하다. 모든 웹 접근을 API Gateway를 통하도록 하는 게 나을 것이다.</p><h2 id=s3-버킷-생성>S3 버킷 생성</h2><p>S3 버킷은 다음과 같이 간단히 생성할 수 있다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>s3</span>       <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;@aws-cdk/aws-s3&#39;</span><span class=p>)</span>
+<a href=/tags/aws/>aws</a>
+</p>
+<h1 class=post-title>
+CDK를 이용한 S3 프락시 API Gateway 생성
+</h1>
+</header>
+<section class=post-content>
+<p>CDK의 API는 AWS 콘솔의 입력 항목과 직관적 대응 관계가 있어야 할 것 같은데, 꼭 그렇지만은 않은 듯 하다. 여기서는 S3 버킷에 저장되어 있는 파일을 API Gateway를 통해 접근할 수 있도록 프락시 API Gateway를 CDK로 만들어보려 한다.</p>
+<p>S3 버킷을 public으로 만들면 API Gateway를 통하지 않아도 웹을 통해 접근할 수 있다. 그러나 나중에 추가할 람다 함수를 웹에서 접근하게 하려면 API Gateway가 필요하다. 모든 웹 접근을 API Gateway를 통하도록 하는 게 나을 것이다.</p>
+<h2 id=s3-버킷-생성>S3 버킷 생성</h2>
+<p>S3 버킷은 다음과 같이 간단히 생성할 수 있다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>s3</span>       <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;@aws-cdk/aws-s3&#39;</span><span class=p>)</span>
 <span class=kr>const</span> <span class=nx>s3deploy</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;@aws-cdk/aws-s3-deployment&#39;</span><span class=p>)</span>
 
 <span class=kr>class</span> <span class=nx>TweetbookStack</span> <span class=kr>extends</span> <span class=nx>cdk</span><span class=p>.</span><span class=nx>Stack</span> <span class=p>{</span>
@@ -13,14 +68,19 @@ on
       <span class=nx>removalPolicy</span><span class=o>:</span> <span class=nx>cdk</span><span class=p>.</span><span class=nx>RemovalPolicy</span><span class=p>.</span><span class=nx>DESTROY</span>
     <span class=p>})</span>
     <span class=p>...</span>
-</code></pre></div><p>테스트할 때는 스택을 생성하고 제거하길 반복할테니 S3 버킷 삭제 정책을 <code>RemovalPolicy.DESTROY</code>로 설정했다. 그러나 S3 버킷을 삭제하려면 버킷이 비어있어야 한다. 버킷에 비어있지 않으면 삭제할 때 에러가 발생하므로 CloudFormation AWS 콘솔이나 <code>cdk destroy</code> 명령으로 스택을 제거할 때 S3 버킷이 비어있지 않으면 스텍 제거에 실패한다. 스택을 깔끔하게 제거하려면 먼저 S3 버킷을 비우는 게 상책이다.</p><h2 id=s3-버킷에-파일-업로드>S3 버킷에 파일 업로드</h2><p>CDK로 버킷을 생성한 다음 바로 파일을 업로드할 수 있다. 다음 코드는 CDK 프로젝트 루트 밑에 있는 <code>web</code> 디렉터리의 파일을 S3 버킷으로 업로드한다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js>    <span class=p>...</span>
+</code></pre></div><p>테스트할 때는 스택을 생성하고 제거하길 반복할테니 S3 버킷 삭제 정책을 <code>RemovalPolicy.DESTROY</code>로 설정했다. 그러나 S3 버킷을 삭제하려면 버킷이 비어있어야 한다. 버킷에 비어있지 않으면 삭제할 때 에러가 발생하므로 CloudFormation AWS 콘솔이나 <code>cdk destroy</code> 명령으로 스택을 제거할 때 S3 버킷이 비어있지 않으면 스텍 제거에 실패한다. 스택을 깔끔하게 제거하려면 먼저 S3 버킷을 비우는 게 상책이다.</p>
+<h2 id=s3-버킷에-파일-업로드>S3 버킷에 파일 업로드</h2>
+<p>CDK로 버킷을 생성한 다음 바로 파일을 업로드할 수 있다. 다음 코드는 CDK 프로젝트 루트 밑에 있는 <code>web</code> 디렉터리의 파일을 S3 버킷으로 업로드한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js>    <span class=p>...</span>
     <span class=k>new</span> <span class=nx>s3deploy</span><span class=p>.</span><span class=nx>BucketDeployment</span><span class=p>(</span><span class=k>this</span><span class=p>,</span> <span class=s1>&#39;DeployFiles, {
 </span><span class=s1>      sources: [s3deploy.Source.asset(&#39;</span><span class=nx>web</span><span class=s1>&#39;)],
 </span><span class=s1>      destinationBucket: bucket,
 </span><span class=s1>      destinationPrefix: &#39;</span><span class=nx>web</span><span class=o>/</span><span class=nx>html</span><span class=err>&#39;</span>
     <span class=p>})</span>
     <span class=p>...</span>
-</code></pre></div><h2 id=role-생성>Role 생성</h2><p>S3 버킷은 API Gateway를 통해서만 접근이 가능하게 만들고 싶다. 따라서 S3 버킷을 public으로 만들지 않고 다음과 같이 IAM Role을 정의한다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js>    <span class=p>...</span>
+</code></pre></div><h2 id=role-생성>Role 생성</h2>
+<p>S3 버킷은 API Gateway를 통해서만 접근이 가능하게 만들고 싶다. 따라서 S3 버킷을 public으로 만들지 않고 다음과 같이 IAM Role을 정의한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js>    <span class=p>...</span>
     <span class=kr>const</span> <span class=nx>role</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>iam</span><span class=p>.</span><span class=nx>Role</span><span class=p>(</span><span class=k>this</span><span class=p>,</span> <span class=s1>&#39;Tweetbook-apigw-role&#39;</span><span class=p>,</span> <span class=p>{</span>
       <span class=nx>roleName</span><span class=o>:</span> <span class=s1>&#39;Tweetbook-ApiGw-S3-ReadOnly&#39;</span><span class=p>,</span>
       <span class=nx>assumedBy</span><span class=o>:</span> <span class=k>new</span> <span class=nx>iam</span><span class=p>.</span><span class=nx>ServicePrincipal</span><span class=p>(</span><span class=s1>&#39;apigateway.amazonaws.com&#39;</span><span class=p>),</span>
@@ -31,7 +91,10 @@ on
       <span class=nx>actions</span><span class=o>:</span> <span class=p>[</span><span class=s1>&#39;s3:GetObject&#39;</span><span class=p>]</span>
     <span class=p>}))</span>
     <span class=p>...</span>
-</code></pre></div><p><code>Getobject</code> 액션의 적용 대상은 버킷 안의 객체라는 점에 유의해야 한다. Policy를 정의할 때 리소스에 버킷을 지정해놓고는 API Gateway에서 S3 객체를 읽지 못해 한참을 헤맸다.</p><h2 id=api-gateway-정의>API Gateway 정의</h2><p>다음과 같이 <code>RestApi</code>를 이용해 API Gateway를 만든다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>apigw</span>    <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;@aws-cdk/aws-apigateway&#39;</span><span class=p>)</span>
+</code></pre></div><p><code>Getobject</code> 액션의 적용 대상은 버킷 안의 객체라는 점에 유의해야 한다. Policy를 정의할 때 리소스에 버킷을 지정해놓고는 API Gateway에서 S3 객체를 읽지 못해 한참을 헤맸다.</p>
+<h2 id=api-gateway-정의>API Gateway 정의</h2>
+<p>다음과 같이 <code>RestApi</code>를 이용해 API Gateway를 만든다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>apigw</span>    <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;@aws-cdk/aws-apigateway&#39;</span><span class=p>)</span>
 
 <span class=kr>class</span> <span class=nx>TweetbookStack</span> <span class=kr>extends</span> <span class=nx>cdk</span><span class=p>.</span><span class=nx>Stack</span> <span class=p>{</span>
 
@@ -39,7 +102,8 @@ on
     <span class=p>...</span>
     <span class=kr>const</span> <span class=nx>api</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>apigw</span><span class=p>.</span><span class=nx>RestApi</span><span class=p>(</span><span class=k>this</span><span class=p>,</span> <span class=s1>&#39;Tweetbook-Web&#39;</span><span class=p>)</span>
     <span class=p>...</span>
-</code></pre></div><p>API Gateway에서 S3에 접근하려면 <code>AwsIntegration</code>을 사용할 수 있다. <code>AwsIntegration</code>을 생성할 때 위에서 정의한 IAM Role을 지정해준다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js>    <span class=nx>api</span><span class=p>.</span><span class=nx>root</span>
+</code></pre></div><p>API Gateway에서 S3에 접근하려면 <code>AwsIntegration</code>을 사용할 수 있다. <code>AwsIntegration</code>을 생성할 때 위에서 정의한 IAM Role을 지정해준다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js>    <span class=nx>api</span><span class=p>.</span><span class=nx>root</span>
       <span class=p>.</span><span class=nx>addResource</span><span class=p>(</span><span class=s1>&#39;{file}&#39;</span><span class=p>)</span>
       <span class=p>.</span><span class=nx>addMethod</span><span class=p>(</span>
         <span class=s1>&#39;GET&#39;</span><span class=p>,</span>
@@ -76,7 +140,47 @@ on
             <span class=nx>statusCode</span><span class=o>:</span> <span class=s1>&#39;404&#39;</span>
           <span class=p>}]</span>
         <span class=p>})</span>
-</code></pre></div><p>코드가 조금 길다. 대부분은 <code>addMethod</code> 메서드의 인자가 차지한다. 코드가 이렇게 늘어지는 게 보기 싫다면 <code>addMethod</code>의 두 인자를 변수로 뽑아낼 수도 있겠다.</p><p>어떻게 하든 코드 모양이 조금 마음에 들지 않는다. <code>requestParameters</code>를 매핑하는 코드와 <code>requestParameters</code>를 지정하는 코드가 분리되어 있다. <code>responseParameters</code>를 매핑하는 코드와 <code>responseparameters</code>를 지정하는 코드도 분리되어 있다. 그리고 <code>requestParameters</code>와 <code>responseparameters</code>를 매핑하고 지정하는 코드가 같은 레벨에 있지 않다.</p><p>CDK API가 이렇게 작성된 데는 분명 이유가 있겠지만, 마음에 들지는 않는다.</p><h2 id=참고>참고</h2><ul><li><a href=https://stackoverflow.com/questions/67112685/create-api-gateway-that-can-read-non-public-s3-bucket-using-cdk>Create API Gateway that can read non-public S3 bucket using CDK</a></li><li><a href=https://stackoverflow.com/questions/67124323/specify-content-type-in-api-gateway-method-response-using-cdk>Specify content-type in API Gateway method response using CDK</a></li></ul></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
+</code></pre></div><p>코드가 조금 길다. 대부분은 <code>addMethod</code> 메서드의 인자가 차지한다. 코드가 이렇게 늘어지는 게 보기 싫다면 <code>addMethod</code>의 두 인자를 변수로 뽑아낼 수도 있겠다.</p>
+<p>어떻게 하든 코드 모양이 조금 마음에 들지 않는다. <code>requestParameters</code>를 매핑하는 코드와 <code>requestParameters</code>를 지정하는 코드가 분리되어 있다. <code>responseParameters</code>를 매핑하는 코드와 <code>responseparameters</code>를 지정하는 코드도 분리되어 있다. 그리고 <code>requestParameters</code>와 <code>responseparameters</code>를 매핑하고 지정하는 코드가 같은 레벨에 있지 않다.</p>
+<p>CDK API가 이렇게 작성된 데는 분명 이유가 있겠지만, 마음에 들지는 않는다.</p>
+<h2 id=참고>참고</h2>
+<ul>
+<li><a href=https://stackoverflow.com/questions/67112685/create-api-gateway-that-can-read-non-public-s3-bucket-using-cdk>Create API Gateway that can read non-public S3 bucket using CDK</a></li>
+<li><a href=https://stackoverflow.com/questions/67124323/specify-content-type-in-api-gateway-method-response-using-cdk>Specify content-type in API Gateway method response using CDK</a></li>
+</ul>
+</section>
+<footer class=post-footer>
+<div class="social button-box">
+<a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
-<script async src=//platform.twitter.com/widgets.js></script></div><nav id=article-nav><a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2021/removing-bamboo/ id=article-nav-newer>대나무 퇴치</a>
-<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2020/creating-lambda-using-aws-cdk/ id=article-nav-older>CDK를 이용한 AWS Lambda 함수 생성</a></nav></footer></article></main><section class=section><div class=container><aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2021/s3-proxy-in-api-gateway-using-aws-cdk/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section><div class="container has-text-centered"><p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script><script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script><footer class=page-bottom><div class=inner><section class=copyright>© 2008-2021 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
+<script async src=//platform.twitter.com/widgets.js></script>
+</div>
+<nav id=article-nav>
+<a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2021/removing-bamboo/ id=article-nav-newer> 대나무 퇴치</a>
+<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2020/creating-lambda-using-aws-cdk/ id=article-nav-older> CDK를 이용한 AWS Lambda 함수 생성</a>
+</nav>
+</footer>
+</article>
+</main>
+<section class=section>
+<div class=container>
+<aside><div id=disqus_thread></div></aside>
+<script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2021/s3-proxy-in-api-gateway-using-aws-cdk/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
+</div>
+</section>
+<section class=section>
+<div class="container has-text-centered">
+<p></p>
+</div>
+</section>
+<script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
+<footer class=page-bottom>
+<div class=inner>
+<section class=copyright>© 2008-2021 <a href=/about>ntalbs</a></section>
+<section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section>
+</div>
+</footer>
+</body>
+</html>

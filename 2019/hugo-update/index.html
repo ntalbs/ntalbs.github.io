@@ -1,20 +1,140 @@
-<!doctype html><html><head><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script><meta charset=utf-8><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg"><meta name=viewport content="width=device-width,initial-scale=1"><title>Hugo 업그레이드 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/highlight.css></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>Hugo 업그레이드</div></div></div><nav class=navbar role=navigation><div class=container><div class=navbar-header><button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
-<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a></div><div class="navbar-items collapsed" id=nav-items><ul><li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2019-12-05 itemprop=datePublished>2019-12-05</time>
+<!doctype html><html>
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script>
+<meta charset=utf-8>
+<meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
+<meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Hugo 업그레이드 @ntalbs' stuff</title>
+<link rel="shortcut icon" href=/images/favicon.ico>
+<link rel=stylesheet href=/css/style.css>
+<link rel=stylesheet href=/css/highlight.css>
+</head>
+<body>
+<div id=progress>
+<div id=bar></div>
+<div class=container>
+<div id=scroll-title>Hugo 업그레이드</div>
+</div>
+</div>
+<nav class=navbar role=navigation>
+<div class=container>
+<div class=navbar-header>
+<button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
+<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
+</div>
+<div class="navbar-items collapsed" id=nav-items>
+<ul>
+<li><a class=unselectable href=/archive/>Archive</a></li>
+<li><a class=unselectable href=/tags/>Tags</a></li>
+<li><a class=unselectable href=/about/>About</a></li>
+<li><a id=mode-switch class=unselectable href=#></a></li>
+</ul>
+</div>
+</div>
+</nav>
+<header class=page-head>
+<div class=container>
+<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+</div>
+</header>
+<main class=container role=main>
+<article class=post>
+<header>
+<p class=post-meta>
+<time datetime=2019-12-05 itemprop=datePublished>2019-12-05</time>
 on
-<a href=/tags/hugo/>Hugo</a></p><h1 class=post-title>Hugo 업그레이드</h1></header><section class=post-content><p>정적 사이트 생성기로 <a href=https://gohugo.io/>Hugo</a>를 사용하고 있다. 속도도 빠르고 상당히 안정적이다. 버전이 바뀌었다고 사이트가 깨진 일은 한 번도 없었기에, 항상 최신 버전으로 업그레이드 해 사용하고 있다. 며칠 전 <code>v0.60.1</code>로 업그레이드 했는데, 사이트를 생성할 때 다음과 같은 경고 메시지가 보였다.</p><pre class=console>
+<a href=/tags/hugo/>Hugo</a>
+</p>
+<h1 class=post-title>
+Hugo 업그레이드
+</h1>
+</header>
+<section class=post-content>
+<p>정적 사이트 생성기로 <a href=https://gohugo.io/>Hugo</a>를 사용하고 있다. 속도도 빠르고 상당히 안정적이다. 버전이 바뀌었다고 사이트가 깨진 일은 한 번도 없었기에, 항상 최신 버전으로 업그레이드 해 사용하고 있다. 며칠 전 <code>v0.60.1</code>로 업그레이드 했는데, 사이트를 생성할 때 다음과 같은 경고 메시지가 보였다.</p>
+<pre class=console>
 Building sites … WARN 2019/12/02 hh:mm:ss Markup type mmark is deprecated
 and will be removed in a future release.
 See https://gohugo.io//content-management/formats/#list-of-content-formats
-</pre><p>에러가 아니고 경고일 뿐이었다. 사이트 생성에도 문제가 생긴 것도 아니었다. 나중에 천천히 살펴봐도 될 일이었다. 그러나 나는 이런 경고 메시지가 보이면 못 참는 성질이다. 당장 고치기로 했다.</p><h2 id=마크다운-프로세서>마크다운 프로세서</h2><p>Hugo의 기본 마크다운 프로세서는 Blackfriday였는데, 예전에 뭔가 문제가 있어 MMark를 쓰도록 바꿨다. 아마 수식 렌더링과 관련된 문제를 회피하려고 MMark로 바꿨던 것 같다. 커밋 메시지를 자세히 남겼으면 좋았을 텐데, 내가 남긴 메시지는 <code>Margrate to mmark</code>가 전부다.</p><p>그땐 MMark가 좀더 개선된 마크다운 프로세서로 보여 시간을 들여 바꿨던 것 같다. 이젠 MMark가 deprecated 되었다는 경고 메시지가 표시된다. 혹시나 해서 확인했더니 v0.60부터 기본 마크다운 프로세서가 Goldmark로 바뀌었다. Blackfriday 또한 deprecated 될 것이라 한다.</p><p>마크다운 프로세서마다 HTML을 조금씩 다르게 생성한다. 마크업 구조가 바뀌면 모든 페이지를 확인하며 CSS를 수정해야 할 수도 있다. 이럴바엔 차라리 <a href=https://orgmode.org/>Org-mode</a>를 쓰면 어떨까 잠시 고민했다. Hugo는 Org-mode도 기본으로 지원한다. <code>md</code> 파일 대신 <code>org</code> 파일을 작성하면 된다.</p><p>Org-mode를 잠시 테스트해보니 또 다른 구조로 HTML이 생성된다. <code>&lt;li></code> 태그 안에 <code>&lt;p></code>가 중첩되면서 목록간 줄간격이 벌어진다. 이건 CSS를 수정해 해결할 수 있다. 그러나 한글로 된 태그가 제대로 동작하지 않았다. 이건 심각하다. 그냥 마크다운을 계속 쓰기로 했다.</p><p>예전에 파일 확장자를 <code>mmark</code>로 바꿨는데 그걸 다시 <code>md</code>로 바꾸기만 하면 된다.</p><h2 id=코드-하이라이팅>코드 하이라이팅</h2><p>파일 확장자를 바꾸니 경고 메시지가 사라졌다. 그런데 페이지를 확인해보니 소스 코드 블록이 조금 이상하게 보였다. 게시물에서 코드 하이라이팅 하는 데는 <a href=https://highlightjs.org/>Highlight.js</a>를 사용했는데, Hugo 새 버전에서는 Hugo가 코드 하이라이팅을 직접 해주며 둘이 충돌한 것 같다.</p><p>예전에 페이지 로딩 속도를 개선하려고 <a href=/2019/highlightjs-server-side-rendering/>highligh.js 서버측 렌더링</a> 작업을 했는데, 이젠 그럴 필요가 없어졌다. 이건 좋은 소식이다. Hugo에 내장된 Chroma 하이라이터가 번개처럼 빠르게 코드를 렌더링 해줄테니 더 이상 느려터진 <code>hljs</code>를 쓸 필요가 없다.</p><p>그런데 문제가 생겼다. Chroma 하이라이터가 HTML을 생성할 때 바탕색을 인라인 스타일로 설정해버려 CSS로 바꿀 수가 없었다. 스타일 갤러리에서 마음에 드는 스타일은 대부분 바탕색이 흰 색이었는데, 나는 코드 바탕색을 옅은 회색으로 하고 싶었다.</p><p>다행히 해결 방법이 있었다. 설정에서 <code>noClasses</code> 속성을 <code>false</code>로 해주면 인라인 스타일을 쓰는 대신 태그에 클래스를 지정한 마크업을 생성해준다.</p><div class=highlight><pre class=chroma><code class=language-toml data-lang=toml><span class=p>[</span><span class=nx>markup</span><span class=p>.</span><span class=nx>highlight</span><span class=p>]</span>
+</pre>
+<p>에러가 아니고 경고일 뿐이었다. 사이트 생성에도 문제가 생긴 것도 아니었다. 나중에 천천히 살펴봐도 될 일이었다. 그러나 나는 이런 경고 메시지가 보이면 못 참는 성질이다. 당장 고치기로 했다.</p>
+<h2 id=마크다운-프로세서>마크다운 프로세서</h2>
+<p>Hugo의 기본 마크다운 프로세서는 Blackfriday였는데, 예전에 뭔가 문제가 있어 MMark를 쓰도록 바꿨다. 아마 수식 렌더링과 관련된 문제를 회피하려고 MMark로 바꿨던 것 같다. 커밋 메시지를 자세히 남겼으면 좋았을 텐데, 내가 남긴 메시지는 <code>Margrate to mmark</code>가 전부다.</p>
+<p>그땐 MMark가 좀더 개선된 마크다운 프로세서로 보여 시간을 들여 바꿨던 것 같다. 이젠 MMark가 deprecated 되었다는 경고 메시지가 표시된다. 혹시나 해서 확인했더니 v0.60부터 기본 마크다운 프로세서가 Goldmark로 바뀌었다. Blackfriday 또한 deprecated 될 것이라 한다.</p>
+<p>마크다운 프로세서마다 HTML을 조금씩 다르게 생성한다. 마크업 구조가 바뀌면 모든 페이지를 확인하며 CSS를 수정해야 할 수도 있다. 이럴바엔 차라리 <a href=https://orgmode.org/>Org-mode</a>를 쓰면 어떨까 잠시 고민했다. Hugo는 Org-mode도 기본으로 지원한다. <code>md</code> 파일 대신 <code>org</code> 파일을 작성하면 된다.</p>
+<p>Org-mode를 잠시 테스트해보니 또 다른 구조로 HTML이 생성된다. <code>&lt;li></code> 태그 안에 <code>&lt;p></code>가 중첩되면서 목록간 줄간격이 벌어진다. 이건 CSS를 수정해 해결할 수 있다. 그러나 한글로 된 태그가 제대로 동작하지 않았다. 이건 심각하다. 그냥 마크다운을 계속 쓰기로 했다.</p>
+<p>예전에 파일 확장자를 <code>mmark</code>로 바꿨는데 그걸 다시 <code>md</code>로 바꾸기만 하면 된다.</p>
+<h2 id=코드-하이라이팅>코드 하이라이팅</h2>
+<p>파일 확장자를 바꾸니 경고 메시지가 사라졌다. 그런데 페이지를 확인해보니 소스 코드 블록이 조금 이상하게 보였다. 게시물에서 코드 하이라이팅 하는 데는 <a href=https://highlightjs.org/>Highlight.js</a>를 사용했는데, Hugo 새 버전에서는 Hugo가 코드 하이라이팅을 직접 해주며 둘이 충돌한 것 같다.</p>
+<p>예전에 페이지 로딩 속도를 개선하려고 <a href=/2019/highlightjs-server-side-rendering/>highligh.js 서버측 렌더링</a> 작업을 했는데, 이젠 그럴 필요가 없어졌다. 이건 좋은 소식이다. Hugo에 내장된 Chroma 하이라이터가 번개처럼 빠르게 코드를 렌더링 해줄테니 더 이상 느려터진 <code>hljs</code>를 쓸 필요가 없다.</p>
+<p>그런데 문제가 생겼다. Chroma 하이라이터가 HTML을 생성할 때 바탕색을 인라인 스타일로 설정해버려 CSS로 바꿀 수가 없었다. 스타일 갤러리에서 마음에 드는 스타일은 대부분 바탕색이 흰 색이었는데, 나는 코드 바탕색을 옅은 회색으로 하고 싶었다.</p>
+<p>다행히 해결 방법이 있었다. 설정에서 <code>noClasses</code> 속성을 <code>false</code>로 해주면 인라인 스타일을 쓰는 대신 태그에 클래스를 지정한 마크업을 생성해준다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=p>[</span><span class=nx>markup</span><span class=p>.</span><span class=nx>highlight</span><span class=p>]</span>
   <span class=p>...</span>
   <span class=nx>noClasses</span> <span class=p>=</span> <span class=kc>false</span>
-</code></pre></div><p>스타일 CSS는 다음과 같이 생성할 수 있다. 일단 마음에 드는 <code>xcode</code> 스타일 CSS를 생성했는데, 나중에 다른 스타일로도 쉽게 바꿀 수 있다.</p><pre class=console>
+</code></pre></div><p>스타일 CSS는 다음과 같이 생성할 수 있다. 일단 마음에 드는 <code>xcode</code> 스타일 CSS를 생성했는데, 나중에 다른 스타일로도 쉽게 바꿀 수 있다.</p>
+<pre class=console>
 $ hugo gen chromastyles --style=xcode > xcode.css
-</pre><p>이렇게 생성한 <code>xcode.css</code>을 편집해 내가 원하는 바탕색을 사용하도록 바꾸고, 이 파일을 사용하도록 테마도 살짝 수정해야 한다.</p><h2 id=인라인-html>인라인 HTML</h2><p>Hugo 서버를 띄워 페이지를 확인하다 다른 문제를 발견했다. 인라인 HTML 블록이 표시되지 않는 것이었다. 마크다운 문서 안에 <code>&lt;pre></code> 등 인라인 HTML을 종종 사용하는데 이게 통째로 표시가 안 된다. 깜짝 놀라 부랴부랴 문서를 확인했다.</p><p>Goldmark 마크다운 프로세스를 사용할 때 인라인 HTML이 사라지는 경우에는 <code>unsafe</code> 모드를 활성화하라는 문서를 찾았다. <code>unsafe</code> 모드라니, 이름이 조금 마음에 들지 않지만 다른 방법이 없으니 일단 활성화 해서 문제를 해결했다.</p><div class=highlight><pre class=chroma><code class=language-toml data-lang=toml><span class=p>[</span><span class=nx>markup</span><span class=p>.</span><span class=nx>goldmark</span><span class=p>.</span><span class=nx>renderer</span><span class=p>]</span>
+</pre>
+<p>이렇게 생성한 <code>xcode.css</code>을 편집해 내가 원하는 바탕색을 사용하도록 바꾸고, 이 파일을 사용하도록 테마도 살짝 수정해야 한다.</p>
+<h2 id=인라인-html>인라인 HTML</h2>
+<p>Hugo 서버를 띄워 페이지를 확인하다 다른 문제를 발견했다. 인라인 HTML 블록이 표시되지 않는 것이었다. 마크다운 문서 안에 <code>&lt;pre></code> 등 인라인 HTML을 종종 사용하는데 이게 통째로 표시가 안 된다. 깜짝 놀라 부랴부랴 문서를 확인했다.</p>
+<p>Goldmark 마크다운 프로세스를 사용할 때 인라인 HTML이 사라지는 경우에는 <code>unsafe</code> 모드를 활성화하라는 문서를 찾았다. <code>unsafe</code> 모드라니, 이름이 조금 마음에 들지 않지만 다른 방법이 없으니 일단 활성화 해서 문제를 해결했다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=p>[</span><span class=nx>markup</span><span class=p>.</span><span class=nx>goldmark</span><span class=p>.</span><span class=nx>renderer</span><span class=p>]</span>
   <span class=nx>unsafe</span> <span class=p>=</span> <span class=kc>true</span>
-</code></pre></div><h2 id=수식>수식</h2><p>여러 행으로 표시되어야 하는 수식이 한 줄로 나오는 문제가 눈에 띄었다. 역시 수식에서 아무 문제 없이 그냥 넘어갈리가 없지. 수식에서 행을 바꿀 때 <code>\\</code>를 사용했는데 어떤 이유에서인지 이게 동작하지 않는다. 인터넷을 조금 찾아보니 <code>\newline</code>를 사용해도 되는 것 같다. 모든 수식에서 <code>\\</code>를 <code>\newline</code>으로 바꿨다.</p><p>조금 실험을 해보니 Goldmark가 마크다운 문서를 처리하면서 <code>\\</code>를 <code>\</code>로 바꾸는 것 같은 생각이 들었다. Hugo가 생성한 HTML 파일을 확인해보니 역시 예상이 맞았다. <code>\\</code>를 <code>\\\\</code>로 바꿔보니 개행이 제대로 됐다. <code>\\</code>를 <code>\</code>로 축약하면서 <code>\newline</code>의 역슬래시는 건드리지 않는 것이 이해가 되지 않는다.</p><p>이제 모든 문제를 해결했다고 생각했지만 다른 문제가 숨어 있었다. 수식에서 <code>\,</code>으로 공백을 주었는데 이게 모두 <code>,</code>로 표시되는 것이었다. 공백 하나가 쉼표로 보이는 것이라 발견하기도 쉽지 않았다. 이것도 <code>\\</code> 문제와 궤를 같이 한다. 역시 <code>\\,</code>로 치환하니 공백이 제대로 표시되었다.</p><p>내가 보기에 이건 Goldmark의 버그가 아닌가 싶다. MathJax 코드를 이런 식으로 건드리면 안 되는 것 아닌가.</p><h2 id=따옴표>따옴표</h2><p>큰따옴표와 작은따옴표가 제대로 표시되지 않는 문제를 발견했다. Goldmark가 따옴표를 둥근따옴표로 바꿔주는데, 따옴표 뒤에 조사가 붙어있는 경우는 제대로 처리하지 못해 앞부분은 둥근 따옴표로 뒷부분은 그냥 따옴표로 표시되었다. 예전에도 같은 문제로 둥근 따옴표를 쓰지 않도록 설정했던 것 같다. 타이포그래퍼 확장을 비활성화했다.</p><div class=highlight><pre class=chroma><code class=language-toml data-lang=toml><span class=p>[</span><span class=nx>markup</span><span class=p>.</span><span class=nx>goldmark</span><span class=p>.</span><span class=nx>extensions</span><span class=p>]</span>
+</code></pre></div><h2 id=수식>수식</h2>
+<p>여러 행으로 표시되어야 하는 수식이 한 줄로 나오는 문제가 눈에 띄었다. 역시 수식에서 아무 문제 없이 그냥 넘어갈리가 없지. 수식에서 행을 바꿀 때 <code>\\</code>를 사용했는데 어떤 이유에서인지 이게 동작하지 않는다. 인터넷을 조금 찾아보니 <code>\newline</code>를 사용해도 되는 것 같다. 모든 수식에서 <code>\\</code>를 <code>\newline</code>으로 바꿨다.</p>
+<p>조금 실험을 해보니 Goldmark가 마크다운 문서를 처리하면서 <code>\\</code>를 <code>\</code>로 바꾸는 것 같은 생각이 들었다. Hugo가 생성한 HTML 파일을 확인해보니 역시 예상이 맞았다. <code>\\</code>를 <code>\\\\</code>로 바꿔보니 개행이 제대로 됐다. <code>\\</code>를 <code>\</code>로 축약하면서 <code>\newline</code>의 역슬래시는 건드리지 않는 것이 이해가 되지 않는다.</p>
+<p>이제 모든 문제를 해결했다고 생각했지만 다른 문제가 숨어 있었다. 수식에서 <code>\,</code>으로 공백을 주었는데 이게 모두 <code>,</code>로 표시되는 것이었다. 공백 하나가 쉼표로 보이는 것이라 발견하기도 쉽지 않았다. 이것도 <code>\\</code> 문제와 궤를 같이 한다. 역시 <code>\\,</code>로 치환하니 공백이 제대로 표시되었다.</p>
+<p>내가 보기에 이건 Goldmark의 버그가 아닌가 싶다. MathJax 코드를 이런 식으로 건드리면 안 되는 것 아닌가.</p>
+<h2 id=따옴표>따옴표</h2>
+<p>큰따옴표와 작은따옴표가 제대로 표시되지 않는 문제를 발견했다. Goldmark가 따옴표를 둥근따옴표로 바꿔주는데, 따옴표 뒤에 조사가 붙어있는 경우는 제대로 처리하지 못해 앞부분은 둥근 따옴표로 뒷부분은 그냥 따옴표로 표시되었다. 예전에도 같은 문제로 둥근 따옴표를 쓰지 않도록 설정했던 것 같다. 타이포그래퍼 확장을 비활성화했다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=p>[</span><span class=nx>markup</span><span class=p>.</span><span class=nx>goldmark</span><span class=p>.</span><span class=nx>extensions</span><span class=p>]</span>
   <span class=nx>typographer</span> <span class=p>=</span> <span class=kc>false</span>
-</code></pre></div><h2 id=마무리>마무리</h2><p>경고 메시지 하나 없애려고 했다가 며칠을 날렸다. 눈에 띄는 문제는 모두 수정했지만, 어떤 문제가 더 숨어있는지 알 수 없다. 앞으로는 Hugo에 이런 식의 큰 변화가 없길 바란다.</p><p>코드 하이라이터가 Hugo에 내장된 것은 마음에 든다. Goldmark에 Mathjax를 위한 확장이 있는 것 같은데 아직 살펴보지 못했다. 이 확장을 Hugo에서 사용할 수 있다면 글을 올릴 때 셸 스크립트를 실행하는 단계를 없앨 수 있겠다.</p><h2 id=참고>참고</h2><ul><li><a href=https://gohugo.io/content-management/formats/>Hugo/Content Formats</a></li><li><a href=https://gohugo.io/content-management/syntax-highlighting/>Hugo/Syntax Highlighting</a></li><li><a href=/2019/highlightjs-server-side-rendering/>highligh.js 서버측 렌더링</a></li><li><a href=/2019/mathjax-server-side-rendering/>MathJax 서버측 렌더링</a></li></ul></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
+</code></pre></div><h2 id=마무리>마무리</h2>
+<p>경고 메시지 하나 없애려고 했다가 며칠을 날렸다. 눈에 띄는 문제는 모두 수정했지만, 어떤 문제가 더 숨어있는지 알 수 없다. 앞으로는 Hugo에 이런 식의 큰 변화가 없길 바란다.</p>
+<p>코드 하이라이터가 Hugo에 내장된 것은 마음에 든다. Goldmark에 Mathjax를 위한 확장이 있는 것 같은데 아직 살펴보지 못했다. 이 확장을 Hugo에서 사용할 수 있다면 글을 올릴 때 셸 스크립트를 실행하는 단계를 없앨 수 있겠다.</p>
+<h2 id=참고>참고</h2>
+<ul>
+<li><a href=https://gohugo.io/content-management/formats/>Hugo/Content Formats</a></li>
+<li><a href=https://gohugo.io/content-management/syntax-highlighting/>Hugo/Syntax Highlighting</a></li>
+<li><a href=/2019/highlightjs-server-side-rendering/>highligh.js 서버측 렌더링</a></li>
+<li><a href=/2019/mathjax-server-side-rendering/>MathJax 서버측 렌더링</a></li>
+</ul>
+</section>
+<footer class=post-footer>
+<div class="social button-box">
+<a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
-<script async src=//platform.twitter.com/widgets.js></script></div><nav id=article-nav><a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2020/dark-mode/ id=article-nav-newer>다크모드</a>
-<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2019/change-file-extension/ id=article-nav-older>파일 확장자 바꾸기</a></nav></footer></article></main><section class=section><div class=container><aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2019/hugo-update/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section><div class="container has-text-centered"><p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script><script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script><footer class=page-bottom><div class=inner><section class=copyright>© 2008-2021 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
+<script async src=//platform.twitter.com/widgets.js></script>
+</div>
+<nav id=article-nav>
+<a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2020/dark-mode/ id=article-nav-newer> 다크모드</a>
+<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2019/change-file-extension/ id=article-nav-older> 파일 확장자 바꾸기</a>
+</nav>
+</footer>
+</article>
+</main>
+<section class=section>
+<div class=container>
+<aside><div id=disqus_thread></div></aside>
+<script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2019/hugo-update/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
+</div>
+</section>
+<section class=section>
+<div class="container has-text-centered">
+<p></p>
+</div>
+</section>
+<script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
+<footer class=page-bottom>
+<div class=inner>
+<section class=copyright>© 2008-2021 <a href=/about>ntalbs</a></section>
+<section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section>
+</div>
+</footer>
+</body>
+</html>

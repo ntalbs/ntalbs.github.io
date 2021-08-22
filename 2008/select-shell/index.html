@@ -1,10 +1,63 @@
-<!doctype html><html><head><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script><meta charset=utf-8><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg"><meta name=viewport content="width=device-width,initial-scale=1"><title>SELECT 결과를 shell 변수로 가져오기 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/highlight.css></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>SELECT 결과를 shell 변수로 가져오기</div></div></div><nav class=navbar role=navigation><div class=container><div class=navbar-header><button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
-<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a></div><div class="navbar-items collapsed" id=nav-items><ul><li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2008-11-01 itemprop=datePublished>2008-11-01</time>
+<!doctype html><html>
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script>
+<meta charset=utf-8>
+<meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
+<meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>SELECT 결과를 shell 변수로 가져오기 @ntalbs' stuff</title>
+<link rel="shortcut icon" href=/images/favicon.ico>
+<link rel=stylesheet href=/css/style.css>
+<link rel=stylesheet href=/css/highlight.css>
+</head>
+<body>
+<div id=progress>
+<div id=bar></div>
+<div class=container>
+<div id=scroll-title>SELECT 결과를 shell 변수로 가져오기</div>
+</div>
+</div>
+<nav class=navbar role=navigation>
+<div class=container>
+<div class=navbar-header>
+<button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
+<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
+</div>
+<div class="navbar-items collapsed" id=nav-items>
+<ul>
+<li><a class=unselectable href=/archive/>Archive</a></li>
+<li><a class=unselectable href=/tags/>Tags</a></li>
+<li><a class=unselectable href=/about/>About</a></li>
+<li><a id=mode-switch class=unselectable href=#></a></li>
+</ul>
+</div>
+</div>
+</nav>
+<header class=page-head>
+<div class=container>
+<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+</div>
+</header>
+<main class=container role=main>
+<article class=post>
+<header>
+<p class=post-meta>
+<time datetime=2008-11-01 itemprop=datePublished>2008-11-01</time>
 on
 <a href=/tags/db/>DB</a>
 <a href=/tags/oracle/>Oracle</a>
 <a href=/tags/sqlplus/>SqlPlus</a>
-<a href=/tags/%ed%8c%81/>팁</a></p><h1 class=post-title>SELECT 결과를 shell 변수로 가져오기</h1></header><section class=post-content><p>select한 결과를 shell에서 참조해야 하는 경우 다음과 같이 하면 된다.</p><h4 id=방법-1>방법 1</h4><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh><span class=cp>#!/bin/ksh
+<a href=/tags/%ed%8c%81/>팁</a>
+</p>
+<h1 class=post-title>
+SELECT 결과를 shell 변수로 가져오기
+</h1>
+</header>
+<section class=post-content>
+<p>select한 결과를 shell에서 참조해야 하는 경우 다음과 같이 하면 된다.</p>
+<h4 id=방법-1>방법 1</h4>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=cp>#!/bin/ksh
 </span><span class=cp></span><span class=nv>VALUE</span><span class=o>=</span><span class=sb>`</span>sqlplus -silent <span class=s2>&#34;user/passwd@sid&#34;</span> &lt; <span class=nb>set</span> pagesize <span class=m>0</span> <span class=se>\
 </span><span class=se></span>feedback off verify off heading off <span class=nb>echo</span> off
 <span class=k>select</span> max<span class=o>(</span>c1<span class=o>)</span> from t1<span class=p>;</span>
@@ -17,7 +70,8 @@ END<span class=sb>`</span>
 <span class=k>else</span>
 <span class=nb>echo</span> <span class=nv>$VALUE</span>
 <span class=k>fi</span>
-</code></pre></div><h4 id=방법-2>방법 2</h4><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh><span class=cp>#!/bin/ksh
+</code></pre></div><h4 id=방법-2>방법 2</h4>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=cp>#!/bin/ksh
 </span><span class=cp></span>sqlplus -s &gt; null <span class=s2>&#34;usr/passwd@sid&#34;</span> &lt; column num_rows <span class=se>\
 </span><span class=se></span>new_value num_rows format <span class=m>9999</span>
 <span class=k>select</span> count<span class=o>(</span>*<span class=o>)</span> num_rows
@@ -25,7 +79,40 @@ from table_name<span class=p>;</span>
 <span class=nb>exit</span> num_rows
 EOF
 <span class=nb>echo</span> <span class=s2>&#34;Number of rows are: </span><span class=nv>$?</span><span class=s2>&#34;</span>
-</code></pre></div></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
+</code></pre></div>
+</section>
+<footer class=post-footer>
+<div class="social button-box">
+<a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
-<script async src=//platform.twitter.com/widgets.js></script></div><nav id=article-nav><a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2008/db-files/ id=article-nav-newer>db_files 개수에 포함되는 파일은?</a>
-<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2008/sqlplus-ampersand/ id=article-nav-older>SQL*Plus에서 '&'가 포함된 문자열을 변수로 인식하지 않게 하기</a></nav></footer></article></main><section class=section><div class=container><aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2008/select-shell/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section><div class="container has-text-centered"><p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script><script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script><footer class=page-bottom><div class=inner><section class=copyright>© 2008-2021 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
+<script async src=//platform.twitter.com/widgets.js></script>
+</div>
+<nav id=article-nav>
+<a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2008/db-files/ id=article-nav-newer> db_files 개수에 포함되는 파일은?</a>
+<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2008/sqlplus-ampersand/ id=article-nav-older> SQL*Plus에서 '&'가 포함된 문자열을 변수로 인식하지 않게 하기</a>
+</nav>
+</footer>
+</article>
+</main>
+<section class=section>
+<div class=container>
+<aside><div id=disqus_thread></div></aside>
+<script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2008/select-shell/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
+</div>
+</section>
+<section class=section>
+<div class="container has-text-centered">
+<p></p>
+</div>
+</section>
+<script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
+<footer class=page-bottom>
+<div class=inner>
+<section class=copyright>© 2008-2021 <a href=/about>ntalbs</a></section>
+<section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section>
+</div>
+</footer>
+</body>
+</html>

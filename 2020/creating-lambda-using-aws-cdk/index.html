@@ -1,13 +1,73 @@
-<!doctype html><html><head><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script><meta charset=utf-8><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg"><meta name=viewport content="width=device-width,initial-scale=1"><title>CDK를 이용한 AWS Lambda 함수 생성 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/highlight.css></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>CDK를 이용한 AWS Lambda 함수 생성</div></div></div><nav class=navbar role=navigation><div class=container><div class=navbar-header><button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
-<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a></div><div class="navbar-items collapsed" id=nav-items><ul><li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2020-07-14 itemprop=datePublished>2020-07-14</time>
+<!doctype html><html>
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script>
+<meta charset=utf-8>
+<meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
+<meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>CDK를 이용한 AWS Lambda 함수 생성 @ntalbs' stuff</title>
+<link rel="shortcut icon" href=/images/favicon.ico>
+<link rel=stylesheet href=/css/style.css>
+<link rel=stylesheet href=/css/highlight.css>
+</head>
+<body>
+<div id=progress>
+<div id=bar></div>
+<div class=container>
+<div id=scroll-title>CDK를 이용한 AWS Lambda 함수 생성</div>
+</div>
+</div>
+<nav class=navbar role=navigation>
+<div class=container>
+<div class=navbar-header>
+<button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
+<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
+</div>
+<div class="navbar-items collapsed" id=nav-items>
+<ul>
+<li><a class=unselectable href=/archive/>Archive</a></li>
+<li><a class=unselectable href=/tags/>Tags</a></li>
+<li><a class=unselectable href=/about/>About</a></li>
+<li><a id=mode-switch class=unselectable href=#></a></li>
+</ul>
+</div>
+</div>
+</nav>
+<header class=page-head>
+<div class=container>
+<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+</div>
+</header>
+<main class=container role=main>
+<article class=post>
+<header>
+<p class=post-meta>
+<time datetime=2020-07-14 itemprop=datePublished>2020-07-14</time>
 on
-<a href=/tags/aws/>aws</a></p><h1 class=post-title>CDK를 이용한 AWS Lambda 함수 생성</h1></header><section class=post-content><p>AWS CDK(Cloud Development Kit)는 프로그래밍 언어를 이용해 클라우드 인프라스트럭처를 정의할 수 있게 해 주는 도구다. CloudFormation 스크립트를 사용하는 것 보다 훨씬 쉽게 인프라스트럭처 컴포넌트를 정의하고 관계를 설정할 수 있다.</p><p>데이터베이스에 저장되어 있는 텍스트를 읽어 트위터에 주기적으로 트윗하는 간단한 앱을 만들려 한다. 데이터베이스로 DynamoDB를 사용할 것이고 트윗 기능은 Lambda 함수로 정의할 것이다. DynamoDB와 Lambda 정의, 이벤트 및 기타 환경 설정에 CDK를 이용할 것이다.</p><img src=/2020/07-14-creating-lambda-using-aws-cdk/lambda.png class=invert-safe><h2 id=cdk-설치>CDK 설치</h2><p>CDK는 <code>npm</code>으로 간단히 설치할 수 있다.</p><div class=highlight><pre class=chroma><code class=language-shell data-lang=shell>$ npm install -g aws-cdk
-</code></pre></div><h2 id=프로젝트-생성>프로젝트 생성</h2><p>다음과 같이 프로젝트 루트로 사용할 디렉터리를 만들고 <code>cdk init</code> 명령으로 디렉터리를 초기화한다.</p><div class=highlight><pre class=chroma><code class=language-shell data-lang=shell>$ mkdir tweetbook
+<a href=/tags/aws/>aws</a>
+</p>
+<h1 class=post-title>
+CDK를 이용한 AWS Lambda 함수 생성
+</h1>
+</header>
+<section class=post-content>
+<p>AWS CDK(Cloud Development Kit)는 프로그래밍 언어를 이용해 클라우드 인프라스트럭처를 정의할 수 있게 해 주는 도구다. CloudFormation 스크립트를 사용하는 것 보다 훨씬 쉽게 인프라스트럭처 컴포넌트를 정의하고 관계를 설정할 수 있다.</p>
+<p>데이터베이스에 저장되어 있는 텍스트를 읽어 트위터에 주기적으로 트윗하는 간단한 앱을 만들려 한다. 데이터베이스로 DynamoDB를 사용할 것이고 트윗 기능은 Lambda 함수로 정의할 것이다. DynamoDB와 Lambda 정의, 이벤트 및 기타 환경 설정에 CDK를 이용할 것이다.</p>
+<img src=/2020/07-14-creating-lambda-using-aws-cdk/lambda.png class=invert-safe>
+<h2 id=cdk-설치>CDK 설치</h2>
+<p>CDK는 <code>npm</code>으로 간단히 설치할 수 있다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>$ npm install -g aws-cdk
+</code></pre></div><h2 id=프로젝트-생성>프로젝트 생성</h2>
+<p>다음과 같이 프로젝트 루트로 사용할 디렉터리를 만들고 <code>cdk init</code> 명령으로 디렉터리를 초기화한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>$ mkdir tweetbook
 $ <span class=nb>cd</span> tweetbook
 $ cdk init --app Tweetbook --language javascript
-</code></pre></div><p><code>cdk init</code> 명령은 해당 디렉터리를 Git 저장소로 만든다. Github에서 <code>tweetbook-lambda-cdk.git</code> 저장소를 생성하고, 연결하려면 다음과 같이 한다.</p><div class=highlight><pre class=chroma><code class=language-shell data-lang=shell>$ git remote add origin git@github.com:ntalbs/tweetbook-lambda-cdk.git
+</code></pre></div><p><code>cdk init</code> 명령은 해당 디렉터리를 Git 저장소로 만든다. Github에서 <code>tweetbook-lambda-cdk.git</code> 저장소를 생성하고, 연결하려면 다음과 같이 한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>$ git remote add origin git@github.com:ntalbs/tweetbook-lambda-cdk.git
 $ git push -u origin master
-</code></pre></div><p><code>lib</code> 디렉터리 안의 <code>tweetbook-stack.js</code>에 인프라스트럭처 정의 코드를 넣을 것이다. 처음에는 다음과 같이 아무것도 안 하는 템플릿 코드만 있다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>cdk</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;@aws-cdk/core&#39;</span><span class=p>);</span>
+</code></pre></div><p><code>lib</code> 디렉터리 안의 <code>tweetbook-stack.js</code>에 인프라스트럭처 정의 코드를 넣을 것이다. 처음에는 다음과 같이 아무것도 안 하는 템플릿 코드만 있다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>cdk</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;@aws-cdk/core&#39;</span><span class=p>);</span>
 
 <span class=kr>class</span> <span class=nx>TweetbookStack</span> <span class=kr>extends</span> <span class=nx>cdk</span><span class=p>.</span><span class=nx>Stack</span> <span class=p>{</span>
   <span class=cm>/**
@@ -24,8 +84,12 @@ $ git push -u origin master
 <span class=p>}</span>
 
 <span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=p>{</span> <span class=nx>TweetbookStack</span> <span class=p>}</span>
-</code></pre></div><p>스택 이름이 <code>TweetbookStack</code>으로 되어 있다. 스택 이름은 디렉터리 이름을 참조해 생성된다.</p><h2 id=dynamodb-테이블-생성>DynamoDB 테이블 생성</h2><p>DynamoDB 테이블을 만들기 위해 다음과 같이 <code>@aws-cdk/aws-dynamodb</code> 모듈을 설치한다.</p><div class=highlight><pre class=chroma><code class=language-shell data-lang=shell>$ npm install @aws-cdk/aws-dynamodb
-</code></pre></div><p>그리고 <code>lib/tweetbook-stack.js</code> 파일을 열어 코드를 다음과 같이 수정한다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>cdk</span>      <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;@aws-cdk/core&#39;</span><span class=p>)</span>
+</code></pre></div><p>스택 이름이 <code>TweetbookStack</code>으로 되어 있다. 스택 이름은 디렉터리 이름을 참조해 생성된다.</p>
+<h2 id=dynamodb-테이블-생성>DynamoDB 테이블 생성</h2>
+<p>DynamoDB 테이블을 만들기 위해 다음과 같이 <code>@aws-cdk/aws-dynamodb</code> 모듈을 설치한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>$ npm install @aws-cdk/aws-dynamodb
+</code></pre></div><p>그리고 <code>lib/tweetbook-stack.js</code> 파일을 열어 코드를 다음과 같이 수정한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>cdk</span>      <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;@aws-cdk/core&#39;</span><span class=p>)</span>
 <span class=kr>const</span> <span class=nx>dynamodb</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;@aws-cdk/aws-dynamodb&#39;</span><span class=p>)</span>
 
 <span class=kr>class</span> <span class=nx>TweetbookStack</span> <span class=kr>extends</span> <span class=nx>cdk</span><span class=p>.</span><span class=nx>Stack</span> <span class=p>{</span>
@@ -41,16 +105,23 @@ $ git push -u origin master
 <span class=p>}</span>
 
 <span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=p>{</span> <span class=nx>TweetbookStack</span> <span class=p>}</span>
-</code></pre></div><p>이제 콘솔에서 <code>cdk deploy</code> 명령을 실행한다. 실행이 끝난 후 AWS 콘솔에 들어가보면 <code>Tweetbook-Quotes</code> 테이블이 생성된 것을 확인할 수 있다.</p><h2 id=lambda-함수-정의>Lambda 함수 정의</h2><p>Lambda 함수를 만들기 위해서는 <code>@aws-cdk/aws-lambda</code> 모듈이 필요하다.</p><div class=highlight><pre class=chroma><code class=language-shell data-lang=shell>$ npm install @aws-cdk/aws-lambda
-</code></pre></div><p>Lambda 함수의 소스 코드를 저장할 디레터리를 다음과 같이 만든다.</p><div class=highlight><pre class=chroma><code class=language-shell data-lang=shell>$ mkdir -p lambdas/tweet
-</code></pre></div><p>그리고 위 디렉터리에 다음 내용으로 <code>index.js</code> 파일을 만든다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=nx>exports</span><span class=p>.</span><span class=nx>handler</span> <span class=o>=</span> <span class=kr>async</span> <span class=p>(</span><span class=nx>event</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</code></pre></div><p>이제 콘솔에서 <code>cdk deploy</code> 명령을 실행한다. 실행이 끝난 후 AWS 콘솔에 들어가보면 <code>Tweetbook-Quotes</code> 테이블이 생성된 것을 확인할 수 있다.</p>
+<h2 id=lambda-함수-정의>Lambda 함수 정의</h2>
+<p>Lambda 함수를 만들기 위해서는 <code>@aws-cdk/aws-lambda</code> 모듈이 필요하다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>$ npm install @aws-cdk/aws-lambda
+</code></pre></div><p>Lambda 함수의 소스 코드를 저장할 디레터리를 다음과 같이 만든다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>$ mkdir -p lambdas/tweet
+</code></pre></div><p>그리고 위 디렉터리에 다음 내용으로 <code>index.js</code> 파일을 만든다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>exports</span><span class=p>.</span><span class=nx>handler</span> <span class=o>=</span> <span class=kr>async</span> <span class=p>(</span><span class=nx>event</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
   <span class=kr>const</span> <span class=nx>response</span> <span class=o>=</span> <span class=p>{</span>
     <span class=nx>statusCode</span><span class=o>:</span> <span class=mi>200</span><span class=p>,</span>
     <span class=nx>body</span><span class=o>:</span> <span class=s1>&#39;Hello Lambda&#39;</span>
   <span class=p>}</span>
   <span class=k>return</span> <span class=nx>response</span>
 <span class=p>}</span>
-</code></pre></div><p>일단은 간단한 JSON을 리턴하도록 했다. 나중에 좀더 의미있는 일을 하도록 수정할 것이다.</p><p>이제 <code>lib/tweetbook-stack.js</code> 파일을 열어 다음 코드를 추가한다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=c1>// ...
+</code></pre></div><p>일단은 간단한 JSON을 리턴하도록 했다. 나중에 좀더 의미있는 일을 하도록 수정할 것이다.</p>
+<p>이제 <code>lib/tweetbook-stack.js</code> 파일을 열어 다음 코드를 추가한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=c1>// ...
 </span><span class=c1></span><span class=kr>const</span> <span class=nx>lambda</span>   <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;@aws-cdk/aws-lambda&#39;</span><span class=p>);</span>
 
 <span class=kr>class</span> <span class=nx>TweetbookStack</span> <span class=kr>extends</span> <span class=nx>cdk</span><span class=p>.</span><span class=nx>Stack</span> <span class=p>{</span>
@@ -65,11 +136,18 @@ $ git push -u origin master
     <span class=p>})</span>
   <span class=p>}</span>
 <span class=c1>// ...
-</span></code></pre></div><p><code>cdk diff</code> 명령을 실행해보면 현재 프로젝트에서 생성할 스택과 이미 배포된 스택과의 차이를 보여준다. <code>cdk deploy</code>를 실행하면 모든 리소스를 새로 만드는 게 아니라 차이를 비교하고 리소스를 생성 또는 제거한다.</p><p>Lambda 함수의 코드가 아주 짧은 경우는 <code>lambda.Code.fromInline</code>을 사용해 코드를 인라인으로 지정하는 것도 가능하다. 파일이 하나라면 <code>fs.readFileSync</code>로 파일을 읽어 문자열로 지정할 수도 있다. 그러나 Lambda 함수에서 다른 모듈을 사용해야 한다면 Asset으로 배포해야 한다.</p><p>여기서는 Asset을 이용해 Lambda 코드를 배포하므로 DynamoDB 테이블을 생성할 때와 같이 그냥 <code>cdk deploy</code>만 실행하면 실패할 것이다. 먼저 <code>cdk bootstrap</code> 명령을 실행해야 한다. <code>cdk bootstrap</code> 명령을 한번 실행한 이후에는 매번 다시 실행하지 않아도 된다.</p><div class=highlight><pre class=chroma><code class=language-shell data-lang=shell>$ cdk bootstrap
+</span></code></pre></div><p><code>cdk diff</code> 명령을 실행해보면 현재 프로젝트에서 생성할 스택과 이미 배포된 스택과의 차이를 보여준다. <code>cdk deploy</code>를 실행하면 모든 리소스를 새로 만드는 게 아니라 차이를 비교하고 리소스를 생성 또는 제거한다.</p>
+<p>Lambda 함수의 코드가 아주 짧은 경우는 <code>lambda.Code.fromInline</code>을 사용해 코드를 인라인으로 지정하는 것도 가능하다. 파일이 하나라면 <code>fs.readFileSync</code>로 파일을 읽어 문자열로 지정할 수도 있다. 그러나 Lambda 함수에서 다른 모듈을 사용해야 한다면 Asset으로 배포해야 한다.</p>
+<p>여기서는 Asset을 이용해 Lambda 코드를 배포하므로 DynamoDB 테이블을 생성할 때와 같이 그냥 <code>cdk deploy</code>만 실행하면 실패할 것이다. 먼저 <code>cdk bootstrap</code> 명령을 실행해야 한다. <code>cdk bootstrap</code> 명령을 한번 실행한 이후에는 매번 다시 실행하지 않아도 된다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>$ cdk bootstrap
 $ cdk deploy
-</code></pre></div><p>AWS 콘솔에 들어가보면 Lambda 함수가 생성된 것을 확인할 수 있다.</p><h2 id=트리거-설정>트리거 설정</h2><p>주기적으로 트윗을 하기 위해서는 Lambda 함수를 주기적으로 호출해야 한다. <code>EventBridge</code>를 트리거로 추가하면 Lambda 함수를 규칙에 따라 주기적으로 호출할 수 있다. 이를 설정하려면 다음 두 모듈을 설치해야 한다.</p><div class=highlight><pre class=chroma><code class=language-shell data-lang=shell>$ npm install @aws-cdk/aws-events
+</code></pre></div><p>AWS 콘솔에 들어가보면 Lambda 함수가 생성된 것을 확인할 수 있다.</p>
+<h2 id=트리거-설정>트리거 설정</h2>
+<p>주기적으로 트윗을 하기 위해서는 Lambda 함수를 주기적으로 호출해야 한다. <code>EventBridge</code>를 트리거로 추가하면 Lambda 함수를 규칙에 따라 주기적으로 호출할 수 있다. 이를 설정하려면 다음 두 모듈을 설치해야 한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>$ npm install @aws-cdk/aws-events
 $ npm install @aws-cdk/aws-events-targets
-</code></pre></div><p>그리고 <code>lib/tweetbook-stack.js</code>에 다음 코드를 추가한다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=c1>// ...
+</code></pre></div><p>그리고 <code>lib/tweetbook-stack.js</code>에 다음 코드를 추가한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=c1>// ...
 </span><span class=c1></span><span class=kr>const</span> <span class=nx>events</span>   <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;@aws-cdk/aws-events&#39;</span><span class=p>);</span>
 <span class=kr>const</span> <span class=nx>targets</span>  <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;@aws-cdk/aws-events-targets&#39;</span><span class=p>);</span>
 
@@ -85,15 +163,22 @@ $ npm install @aws-cdk/aws-events-targets
     <span class=nx>rule</span><span class=p>.</span><span class=nx>addTarget</span><span class=p>(</span><span class=k>new</span> <span class=nx>targets</span><span class=p>.</span><span class=nx>LambdaFunction</span><span class=p>(</span><span class=nx>tweetFn</span><span class=p>));</span>
   <span class=p>}</span>
 <span class=c1>// ...
-</span></code></pre></div><p>트리거 이벤트는 매일 오전 6시(UTC)에 발생하도록 했다. <code>cdk deploy</code>를 실행한 다음 AWS 콘솔에 들어가 확인해보면 Lambda 함수에 트리거가 설정된 것을 확인할 수 있다.</p><h2 id=테이블-접근-권한>테이블 접근 권한</h2><p>Lambda 함수의 원래 목적은 DynamoDB 테이블에서 데이터를 읽어 트위터에 트윗하는 것이다. 그러나 위에서 정의한 Lambda 함수는 <code>Tweetbook-Quotes</code> 테이블을 읽을 권한이 없다. Lambda 함수가 실행될 때 <code>Tweetbook-Quotes</code>에서 데이터 한 건을 읽을 것이므로 지금은 <code>GetItem</code> 권한만 있으면 충분하다. Lambda 함수를 정의한 코드 바로 아래 다음 코드를 추가한다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js>    <span class=c1>// ...
+</span></code></pre></div><p>트리거 이벤트는 매일 오전 6시(UTC)에 발생하도록 했다. <code>cdk deploy</code>를 실행한 다음 AWS 콘솔에 들어가 확인해보면 Lambda 함수에 트리거가 설정된 것을 확인할 수 있다.</p>
+<h2 id=테이블-접근-권한>테이블 접근 권한</h2>
+<p>Lambda 함수의 원래 목적은 DynamoDB 테이블에서 데이터를 읽어 트위터에 트윗하는 것이다. 그러나 위에서 정의한 Lambda 함수는 <code>Tweetbook-Quotes</code> 테이블을 읽을 권한이 없다. Lambda 함수가 실행될 때 <code>Tweetbook-Quotes</code>에서 데이터 한 건을 읽을 것이므로 지금은 <code>GetItem</code> 권한만 있으면 충분하다. Lambda 함수를 정의한 코드 바로 아래 다음 코드를 추가한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js>    <span class=c1>// ...
 </span><span class=c1></span>    <span class=nx>quotesTable</span><span class=p>.</span><span class=nx>grant</span><span class=p>(</span><span class=nx>tweetFn</span><span class=p>,</span> <span class=s1>&#39;dynamodb:GetItem&#39;</span><span class=p>);</span>
     <span class=c1>// ...
-</span></code></pre></div><h2 id=dynamodb-접근>DynamoDB 접근</h2><p>Lambda 함수에서 DynamoDB 데이터를 읽도록 수정하려 한다. DynamoDB를 읽을 때 <code>DocumentClient</code>를 사용하는 게 좀더 편하다. <code>Tweetbook-Quotes</code> 테이블에는 다음과 같은 식의 데이터가 들어있다고 가정한다.</p><div class=highlight><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+</span></code></pre></div><h2 id=dynamodb-접근>DynamoDB 접근</h2>
+<p>Lambda 함수에서 DynamoDB 데이터를 읽도록 수정하려 한다. DynamoDB를 읽을 때 <code>DocumentClient</code>를 사용하는 게 좀더 편하다. <code>Tweetbook-Quotes</code> 테이블에는 다음과 같은 식의 데이터가 들어있다고 가정한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=p>{</span>
     <span class=nt>&#34;_id&#34;</span><span class=p>:</span> <span class=mi>10</span><span class=p>,</span>
     <span class=nt>&#34;msg&#34;</span><span class=p>,</span> <span class=nt>&#34;...&#34;</span><span class=p>,</span>
     <span class=nt>&#34;src&#34;</span><span class=p>,</span> <span class=nt>&#34;...&#34;</span>
 <span class=p>}</span>
-</code></pre></div><p><code>_id</code>는 0부터 999까지 1,000건의 데이터가 들어 있고, 0부터 999 사이의 랜덤 값을 구한 다음, 데이터를 읽을 때 <code>_id</code>로 제시하도록 했다. 범위를 미리 알고 있어야 하는 게 마음에 들지 않지만, DynamoDB에서 랜덤하게 데이터를 읽는 좋은 방법을 찾지 못했다.</p><p>이제 <code>lambdas/tweetbook/index.js</code> 파일을 열어 다음과 같이 수정한다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>aws</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;aws-sdk&#39;</span><span class=p>)</span>
+</code></pre></div><p><code>_id</code>는 0부터 999까지 1,000건의 데이터가 들어 있고, 0부터 999 사이의 랜덤 값을 구한 다음, 데이터를 읽을 때 <code>_id</code>로 제시하도록 했다. 범위를 미리 알고 있어야 하는 게 마음에 들지 않지만, DynamoDB에서 랜덤하게 데이터를 읽는 좋은 방법을 찾지 못했다.</p>
+<p>이제 <code>lambdas/tweetbook/index.js</code> 파일을 열어 다음과 같이 수정한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>aws</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;aws-sdk&#39;</span><span class=p>)</span>
 <span class=kr>const</span> <span class=nx>dynamodb</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>aws</span><span class=p>.</span><span class=nx>DynamoDB</span><span class=p>.</span><span class=nx>DocumentClient</span><span class=p>()</span>
 
 <span class=kr>const</span> <span class=nx>MAX_INDEX</span> <span class=o>=</span> <span class=mi>1000</span>
@@ -128,22 +213,29 @@ $ npm install @aws-cdk/aws-events-targets
   <span class=p>}</span>
   <span class=k>return</span> <span class=nx>response</span>
 <span class=p>}</span>
-</code></pre></div><h2 id=secrets-manager-설정>Secrets Manager 설정</h2><p>트위터에 API로 접근하기 위해서는 API 키와 토큰이 필요하다. 트위터 API 클라이언트로 사용할 <a href=https://github.com/ttezel/twit>twit</a>을 초기화하는 데 <code>consumer_key</code>, <code>consumer_secret</code>, <code>access_token</code>, <code>access_token_secret</code>를 지정해야 하며 이 값은 <a href=https://developer.twitter.com/>트위터 개발자 사이트</a>에서 얻을 수 있다. 여기서는 이 키와 토큰 값을 Secrets Manager에 저장하려 한다. 외부에서 제공하는 비밀정보이므로 AWS 콘솔에서 직접 생성한다.</p><div class=highlight><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+</code></pre></div><h2 id=secrets-manager-설정>Secrets Manager 설정</h2>
+<p>트위터에 API로 접근하기 위해서는 API 키와 토큰이 필요하다. 트위터 API 클라이언트로 사용할 <a href=https://github.com/ttezel/twit>twit</a>을 초기화하는 데 <code>consumer_key</code>, <code>consumer_secret</code>, <code>access_token</code>, <code>access_token_secret</code>를 지정해야 하며 이 값은 <a href=https://developer.twitter.com/>트위터 개발자 사이트</a>에서 얻을 수 있다. 여기서는 이 키와 토큰 값을 Secrets Manager에 저장하려 한다. 외부에서 제공하는 비밀정보이므로 AWS 콘솔에서 직접 생성한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=p>{</span>
   <span class=nt>&#34;TWITTER_ACCESS_TOKEN&#34;</span><span class=p>:</span> <span class=s2>&#34;...access_token_value...&#34;</span><span class=p>,</span>
   <span class=nt>&#34;TWITTER_ACCESS_TOKEN_SECRET&#34;</span><span class=p>:</span> <span class=s2>&#34;...access_token_secret_value...&#34;</span><span class=p>,</span>
   <span class=nt>&#34;TWITTER_CONSUMER_KEY&#34;</span><span class=p>:</span> <span class=s2>&#34;...consumer_key_value...&#34;</span><span class=p>,</span>
   <span class=nt>&#34;TWITTER_CONSUMER_SECRET&#34;</span><span class=p>:</span> <span class=s2>&#34;...consumer_secret_value...&#34;</span>
 <span class=p>}</span>
-</code></pre></div><p>시크릿을 생성했으면 <code>tweetbook-stack.js</code>에 다음 코드를 추가해 Lambda 함수에서 위 시크릿을 읽을 수 있도록 한다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js>    <span class=c1>// ...
+</code></pre></div><p>시크릿을 생성했으면 <code>tweetbook-stack.js</code>에 다음 코드를 추가해 Lambda 함수에서 위 시크릿을 읽을 수 있도록 한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js>    <span class=c1>// ...
 </span><span class=c1></span>    <span class=kr>const</span> <span class=nx>secret</span> <span class=o>=</span> <span class=nx>sm</span><span class=p>.</span><span class=nx>Secret</span><span class=p>.</span><span class=nx>fromSecretAttributes</span><span class=p>(</span><span class=k>this</span><span class=p>,</span> <span class=s1>&#39;TweetbookSecret&#39;</span><span class=p>,</span> <span class=p>{</span>
       <span class=nx>secretArn</span><span class=o>:</span> <span class=s1>&#39;&lt;&lt;secret-arn&gt;&gt;&#39;</span>
     <span class=p>})</span>
 
     <span class=nx>secret</span><span class=p>.</span><span class=nx>grantRead</span><span class=p>(</span><span class=nx>tweetFn</span><span class=p>)</span>
     <span class=c1>// ...
-</span></code></pre></div><h2 id=메시지-트윗>메시지 트윗</h2><p><code>lambdas/tweetbook</code> 디렉터리 안에서 다음 명령을 실행해 <code>Twit</code>을 설치한다.</p><div class=highlight><pre class=chroma><code class=language-shell data-lang=shell>$ npm init
+</span></code></pre></div><h2 id=메시지-트윗>메시지 트윗</h2>
+<p><code>lambdas/tweetbook</code> 디렉터리 안에서 다음 명령을 실행해 <code>Twit</code>을 설치한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>$ npm init
 $ npm install twit
-</code></pre></div><p><code>lambdas/tweetbook</code> 디렉터리는 Lambda 함수를 정의하는 새로운 패키지의 루트 디렉터리로, 람다 함수에서 사용하는 외부 라이브러리는 이 디렉터리에 설치되어야 하므로 <code>npm init</code>을 실행해 <code>package.json</code>을 생성해야 한다.</p><p>트위터 API를 초기화하는 데 필요한 <code>consumer_key</code>, <code>consumer_secret</code>, <code>access_token</code>, <code>access_token_secret</code>를 Secrets Manager에서 읽어오도록 <code>index.js</code> 파일에 다음 코드를 추가한다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>Twit</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;twit&#39;</span><span class=p>)</span>
+</code></pre></div><p><code>lambdas/tweetbook</code> 디렉터리는 Lambda 함수를 정의하는 새로운 패키지의 루트 디렉터리로, 람다 함수에서 사용하는 외부 라이브러리는 이 디렉터리에 설치되어야 하므로 <code>npm init</code>을 실행해 <code>package.json</code>을 생성해야 한다.</p>
+<p>트위터 API를 초기화하는 데 필요한 <code>consumer_key</code>, <code>consumer_secret</code>, <code>access_token</code>, <code>access_token_secret</code>를 Secrets Manager에서 읽어오도록 <code>index.js</code> 파일에 다음 코드를 추가한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>Twit</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;twit&#39;</span><span class=p>)</span>
 
 <span class=kr>async</span> <span class=kd>function</span> <span class=nx>getTokens</span> <span class=p>()</span> <span class=p>{</span>
   <span class=kd>let</span> <span class=nx>secrets</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>secretsManager</span><span class=p>.</span><span class=nx>getSecretValue</span><span class=p>({</span>
@@ -167,7 +259,8 @@ $ npm install twit
   <span class=kd>let</span> <span class=nx>msg</span> <span class=o>=</span> <span class=sb>`</span><span class=si>${</span><span class=nx>quote</span><span class=p>.</span><span class=nx>msg</span><span class=si>}</span><span class=sb>\n</span><span class=si>${</span><span class=nx>quote</span><span class=p>.</span><span class=nx>src</span><span class=si>}</span><span class=sb>`</span>
   <span class=k>return</span> <span class=nx>T</span><span class=p>.</span><span class=nx>post</span><span class=p>(</span><span class=s1>&#39;statuses/update&#39;</span><span class=p>,</span> <span class=p>{</span><span class=nx>status</span><span class=o>:</span> <span class=nx>msg</span><span class=p>})</span>
 <span class=p>}</span>
-</code></pre></div><p>그리고 DynamoDB에서 읽은 메시지를 트위터에 트윗하도록 <code>handler</code> 함수를 다음과 같이 수정한다.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=nx>exports</span><span class=p>.</span><span class=nx>handler</span> <span class=o>=</span> <span class=kr>async</span> <span class=p>(</span><span class=nx>event</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</code></pre></div><p>그리고 DynamoDB에서 읽은 메시지를 트위터에 트윗하도록 <code>handler</code> 함수를 다음과 같이 수정한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>exports</span><span class=p>.</span><span class=nx>handler</span> <span class=o>=</span> <span class=kr>async</span> <span class=p>(</span><span class=nx>event</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
   <span class=kd>let</span> <span class=nx>id</span> <span class=o>=</span> <span class=nx>random</span><span class=p>()</span>
   <span class=kd>let</span> <span class=nx>q</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>getQuote</span><span class=p>(</span><span class=nx>id</span><span class=p>)</span>
   <span class=kd>let</span> <span class=nx>t</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>tweet</span><span class=p>(</span><span class=nx>q</span><span class=p>)</span>
@@ -180,7 +273,45 @@ $ npm install twit
 
   <span class=k>return</span> <span class=nx>response</span><span class=p>;</span>
 <span class=p>}</span>
-</code></pre></div><p>모든 게 제대로 설정되었다면, AWS 콘솔에서 Lambda 함수를 실행한 후 트위터를 확인해보면 메시지가 트윗되었음을 확인할 수 있다.</p><h2 id=스택-제거>스택 제거</h2><p><code>cdk destroy</code> 명령을 실행하면 위에서 생성한 모든 AWS 리소스를 제거한다. DynamoDB 테이블은 삭제되지 않는데 아마도 실수로 인한 데이터 손실을 방지하기 위한 것으로 보인다. Secrets Manager에서 수작업으로 생성한 시크릿 또한 이 스택에 포함되지 않으므로 삭제되지 않는다. 따라서 DynamoDB 테이블과 수작업으로 생성한 시크릿은 직접 제거해야 한다.</p><h2 id=정리>정리</h2><p>AWS CDK를 이용하면 CloudFormation 스크립트나 AWS-CLI를 이용하는 것보다 훨씬 쉽게 AWS 인프라스트럭처를 정의할 수 있다. CDK를 쓸 때 JavaScript 외에도 TypeScript, Python, C#, Java도 지원하므로 마음에 드는 언어를 사용하면 된다.</p><p>사용 언어에 따라 차이가 있겠지만, 여기서 JavsScript로 작성한 CDK 코드는 40여줄에 불과하다. CDK로 생성한 JSON 형식의 CloudFormation 스크립트는 200줄이 넘는다. CDK를 사용하면 CloudFormation 스크립트를 사용할 때보다 훨씩 적은 코드로 AWS 스택을 정의할 수 있다.</p></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
+</code></pre></div><p>모든 게 제대로 설정되었다면, AWS 콘솔에서 Lambda 함수를 실행한 후 트위터를 확인해보면 메시지가 트윗되었음을 확인할 수 있다.</p>
+<h2 id=스택-제거>스택 제거</h2>
+<p><code>cdk destroy</code> 명령을 실행하면 위에서 생성한 모든 AWS 리소스를 제거한다. DynamoDB 테이블은 삭제되지 않는데 아마도 실수로 인한 데이터 손실을 방지하기 위한 것으로 보인다. Secrets Manager에서 수작업으로 생성한 시크릿 또한 이 스택에 포함되지 않으므로 삭제되지 않는다. 따라서 DynamoDB 테이블과 수작업으로 생성한 시크릿은 직접 제거해야 한다.</p>
+<h2 id=정리>정리</h2>
+<p>AWS CDK를 이용하면 CloudFormation 스크립트나 AWS-CLI를 이용하는 것보다 훨씬 쉽게 AWS 인프라스트럭처를 정의할 수 있다. CDK를 쓸 때 JavaScript 외에도 TypeScript, Python, C#, Java도 지원하므로 마음에 드는 언어를 사용하면 된다.</p>
+<p>사용 언어에 따라 차이가 있겠지만, 여기서 JavsScript로 작성한 CDK 코드는 40여줄에 불과하다. CDK로 생성한 JSON 형식의 CloudFormation 스크립트는 200줄이 넘는다. CDK를 사용하면 CloudFormation 스크립트를 사용할 때보다 훨씩 적은 코드로 AWS 스택을 정의할 수 있다.</p>
+</section>
+<footer class=post-footer>
+<div class="social button-box">
+<a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
-<script async src=//platform.twitter.com/widgets.js></script></div><nav id=article-nav><a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2021/s3-proxy-in-api-gateway-using-aws-cdk/ id=article-nav-newer>CDK를 이용한 S3 프락시 API Gateway 생성</a>
-<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2020/java-date-practice/ id=article-nav-older>Java 날짜 연산</a></nav></footer></article></main><section class=section><div class=container><aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2020/creating-lambda-using-aws-cdk/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section><div class="container has-text-centered"><p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script><script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script><footer class=page-bottom><div class=inner><section class=copyright>© 2008-2021 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
+<script async src=//platform.twitter.com/widgets.js></script>
+</div>
+<nav id=article-nav>
+<a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2021/s3-proxy-in-api-gateway-using-aws-cdk/ id=article-nav-newer> CDK를 이용한 S3 프락시 API Gateway 생성</a>
+<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2020/java-date-practice/ id=article-nav-older> Java 날짜 연산</a>
+</nav>
+</footer>
+</article>
+</main>
+<section class=section>
+<div class=container>
+<aside><div id=disqus_thread></div></aside>
+<script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2020/creating-lambda-using-aws-cdk/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
+</div>
+</section>
+<section class=section>
+<div class="container has-text-centered">
+<p></p>
+</div>
+</section>
+<script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
+<footer class=page-bottom>
+<div class=inner>
+<section class=copyright>© 2008-2021 <a href=/about>ntalbs</a></section>
+<section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section>
+</div>
+</footer>
+</body>
+</html>

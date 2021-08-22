@@ -1,25 +1,119 @@
-<!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg"><meta name="viewport" content="width=device-width,initial-scale=1"><title>오라클 테이블 용량 산정 방법 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/highlight.css"></head><body><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">오라클 테이블 용량 산정 방법</div></div></div><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle unselectable" data-toggle="collapse" data-target="#nav-items">+</button>
-<a class="navbar-brand unselectable" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><a class="unselectable" href="/archive/">Archive</a></li><li><a class="unselectable" href="/tags/">Tags</a></li><li><a class="unselectable" href="/about/">About</a></li><li><a id="mode-switch" class="unselectable" href="#"></a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post with-math"><header><p class="post-meta"><time datetime="2008-11-17" itemprop="datePublished">2008-11-17</time>
+<!DOCTYPE html><html><head>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script>
+<meta charset="utf-8">
+<meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
+<meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>오라클 테이블 용량 산정 방법 @ntalbs' stuff</title>
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/highlight.css">
+</head>
+<body>
+<div id="progress">
+<div id="bar"></div>
+<div class="container">
+<div id="scroll-title">오라클 테이블 용량 산정 방법</div>
+</div>
+</div>
+<nav class="navbar" role="navigation">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle unselectable" data-toggle="collapse" data-target="#nav-items">+</button>
+<a class="navbar-brand unselectable" href="/">@ntalbs' stuff</a>
+</div>
+<div class="navbar-items collapsed" id="nav-items">
+<ul>
+<li><a class="unselectable" href="/archive/">Archive</a></li>
+<li><a class="unselectable" href="/tags/">Tags</a></li>
+<li><a class="unselectable" href="/about/">About</a></li>
+<li><a id="mode-switch" class="unselectable" href="#"></a></li>
+</ul>
+</div>
+</div>
+</nav>
+<header class="page-head">
+<div class="container">
+<p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+</div>
+</header>
+<main class="container" role="main">
+<article class="post with-math">
+<header>
+<p class="post-meta">
+<time datetime="2008-11-17" itemprop="datePublished">2008-11-17</time>
 on
 <a href="/tags/db/">DB</a>
-<a href="/tags/oracle/">Oracle</a></p><h1 class="post-title">오라클 테이블 용량 산정 방법</h1></header><section class="post-content"><p>테이블 용량을 산정하기 위한 방법인데 조금 복잡하다. 어차피 추정이므로 간단하게 (평균 row 크기) × (데이터 건수) × 1.3 정도로 해도 되지 않을까 싶다.</p><h4 id="-블록-헤더-크기-계산">① 블록 헤더 크기 계산</h4><div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">(Block header) = (fixed header) + (variable transaction header)
+<a href="/tags/oracle/">Oracle</a>
+</p>
+<h1 class="post-title">
+오라클 테이블 용량 산정 방법
+</h1>
+</header>
+<section class="post-content">
+<p>테이블 용량을 산정하기 위한 방법인데 조금 복잡하다. 어차피 추정이므로 간단하게 (평균 row 크기) × (데이터 건수) × 1.3 정도로 해도 되지 않을까 싶다.</p>
+<h4 id="-블록-헤더-크기-계산">① 블록 헤더 크기 계산</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(Block header) = (fixed header) + (variable transaction header)
     + (table directory) + (row directory)
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">(fixed header) = 57
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(fixed header) = 57
 (variable transaction header) = 23 * initrans
 (table header) = 4 * n,	n은 테이블 개수, clustered table이 아닌 경우 1
 (row directory) = 2 * x, x는 블록당 row 수
-</code></pre></div><h4 id="-블록당-가용-데이터-공간-크기-계산">② 블록당 가용 데이터 공간 크기 계산</h4><div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">(Available data space)
+</code></pre></div><h4 id="-블록당-가용-데이터-공간-크기-계산">② 블록당 가용 데이터 공간 크기 계산</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(Available data space)
   = ((Block size) - (Block header)) * (1 - pctfeee/100)
   = ((Block size) - ①) * (1 - pctfeee/100)
-</code></pre></div><h4 id="-평균-row-크기-계산">③ 평균 row 크기 계산</h4><div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">(Average row size) = (row header) + F + 3*V + D
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">(row header) = clustered table이 아닌 경우 3
+</code></pre></div><h4 id="-평균-row-크기-계산">③ 평균 row 크기 계산</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(Average row size) = (row header) + F + 3*V + D
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(row header) = clustered table이 아닌 경우 3
 F = 크기가 250 byte 미만인 컬럼 수
 V = 크기가 250 byte 이상인 컬럼 수
 D = combined column length
-</code></pre></div><h4 id="-블록당-평균-row-수-계산">④ 블록당 평균 row 수 계산</h4><div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">(Average number of rows per block) = x = TRUNC( ② / ③ )
-</code></pre></div><p>이 식에서 x를 구함.</p><h4 id="-테이블당-필요-블록-수-계산">⑤ 테이블당 필요 블록 수 계산</h4><div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">(Number of blocks for table) = (total number of rows) / ④
-</code></pre></div><h4 id="-테이블-용량-계산">⑥ 테이블 용량 계산</h4><div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">(Table size) = ⑤ * (Block size)
-</code></pre></div><h3 id="참고">참고</h3><ul><li>Meta-Link: Doc ID: 10640.1</li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+</code></pre></div><h4 id="-블록당-평균-row-수-계산">④ 블록당 평균 row 수 계산</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(Average number of rows per block) = x = TRUNC( ② / ③ )
+</code></pre></div><p>이 식에서 x를 구함.</p>
+<h4 id="-테이블당-필요-블록-수-계산">⑤ 테이블당 필요 블록 수 계산</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(Number of blocks for table) = (total number of rows) / ④
+</code></pre></div><h4 id="-테이블-용량-계산">⑥ 테이블 용량 계산</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(Table size) = ⑤ * (Block size)
+</code></pre></div><h3 id="참고">참고</h3>
+<ul>
+<li>Meta-Link: Doc ID: 10640.1</li>
+</ul>
+</section>
+<footer class="post-footer">
+<div class="social button-box">
+<a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
-<script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2008/vsession/" id="article-nav-newer">v$session과 주변 테이블 정리</a>
-<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2008/extract-ddl/" id="article-nav-older">특정 스키마 DDL 추출</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2008/sizing-table/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script><script src="https://ntalbs.github.io/js/mode.js" type="text/javascript"></script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2021 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer></body></html>
+<script async="" src="//platform.twitter.com/widgets.js"></script>
+</div>
+<nav id="article-nav">
+<a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2008/vsession/" id="article-nav-newer"> v$session과 주변 테이블 정리</a>
+<a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2008/extract-ddl/" id="article-nav-older"> 특정 스키마 DDL 추출</a>
+</nav>
+</footer>
+</article>
+</main>
+<section class="section">
+<div class="container">
+<aside><div id="disqus_thread"></div></aside>
+<script type="text/javascript">var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2008/sizing-table/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+<section class="section">
+<div class="container has-text-centered">
+<p></p>
+</div>
+</section>
+<script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script>
+<script src="https://ntalbs.github.io/js/mode.js" type="text/javascript"></script>
+<footer class="page-bottom">
+<div class="inner">
+<section class="copyright">© 2008-2021 <a href="/about">ntalbs</a></section>
+<section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section>
+</div>
+</footer>
+
+</body></html>

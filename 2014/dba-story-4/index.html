@@ -1,13 +1,122 @@
-<!doctype html><html><head><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script><meta charset=utf-8><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg"><meta name=viewport content="width=device-width,initial-scale=1"><title>초보 DBA 삽질기 4 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/highlight.css></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>초보 DBA 삽질기 4</div></div></div><nav class=navbar role=navigation><div class=container><div class=navbar-header><button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
-<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a></div><div class="navbar-items collapsed" id=nav-items><ul><li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2014-10-01 itemprop=datePublished>2014-10-01</time>
+<!doctype html><html>
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script>
+<meta charset=utf-8>
+<meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
+<meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>초보 DBA 삽질기 4 @ntalbs' stuff</title>
+<link rel="shortcut icon" href=/images/favicon.ico>
+<link rel=stylesheet href=/css/style.css>
+<link rel=stylesheet href=/css/highlight.css>
+</head>
+<body>
+<div id=progress>
+<div id=bar></div>
+<div class=container>
+<div id=scroll-title>초보 DBA 삽질기 4</div>
+</div>
+</div>
+<nav class=navbar role=navigation>
+<div class=container>
+<div class=navbar-header>
+<button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
+<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
+</div>
+<div class="navbar-items collapsed" id=nav-items>
+<ul>
+<li><a class=unselectable href=/archive/>Archive</a></li>
+<li><a class=unselectable href=/tags/>Tags</a></li>
+<li><a class=unselectable href=/about/>About</a></li>
+<li><a id=mode-switch class=unselectable href=#></a></li>
+</ul>
+</div>
+</div>
+</nav>
+<header class=page-head>
+<div class=container>
+<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+</div>
+</header>
+<main class=container role=main>
+<article class=post>
+<header>
+<p class=post-meta>
+<time datetime=2014-10-01 itemprop=datePublished>2014-10-01</time>
 on
 <a href=/tags/db/>DB</a>
-<a href=/tags/dba/>DBA</a></p><h1 class=post-title>초보 DBA 삽질기 4</h1></header><section class=post-content><p>입사한지 1년 반이 되어 가고 있었다. 그동안 심각한 장애는 대부분 내 실수에서 비롯되었다. 애플리케이션 서버는 여러 대로 운영하기 때문에 한 대에 문제가 생겨도 거래가 중단되지 않는다. 데이터베이스는 문제가 생기면 모든 거래가 중단되는 단일 실패 지점(Single poing of failure)이었다.</p><p>회사에서도 이 문제를 중요하게 여겨 재해 복구 센터를 준비했다. 주 전산센터와 지리적으로 떨어진(그래봤자 같은 서울 안이지만) 곳에 보조 전산센터를 만들었다. 내가 작성한 데이터베이스 동기화 프로그램을 사용해 두 센터간 데이터를 동기화했다는 점에 대해서는 자부심을 가져도 될 것 같다. 자연 재해로 전산센터가 서비스 불능 상태가 될 가능성은 적었지만, 인재(주로 내 실수)로 한쪽 전산센터에서 장애가 발생할 가능성은 상존했다. 그런 경우 즉시 보조 전산센터로 거래를 돌려 거래가 중단되는 사태를 방지할 수 있게 되었다. 즉, 내가 데이터베이스에서 사고를 쳐도 다른 쪽 데이터베이스로 거래를 받아줄 수 있게 됐다는 말이다.</p><p>데이터베이스에 변경을 가할 때 양쪽에 작업해야 해서 조금 번거로워 젔지만, 마음은 훨씬 가벼워졌다. 실수를 하더라도 거래 중단 사태까지는 가지 않을 수 있게 되었다. 한 쪽에 먼저 작업을 하고 문제가 없음을 확인한 다음 다른 쪽에 작업한다면 예전처럼 수십 분씩 거래가 중단되는 사태는 생기지 않을 것이다. 한 쪽을 작업하고 문제가 없음을 확인한 다음 작업한다면...</p><p>그날 작업도 대단한 일은 아니었다. 테이블에 컬럼 하나를 추가하는 정말 간단한 일이었다. 코드성 테이블이어서 읽기는 많았지만 쓰기는 잦지 않았다. 이런 종류의 테이블은 오라클의 Materialized View를 사용해 동기화했다. 보조 데이터베이스에서 데이터베이스 링크를 통해 10분마다 동기화하도록 설정되어 있었다. 마스터 테이블을 변경한 경우 MView도 다시 생성해줘야 하므로, 이번 작업 절차는 다음과 같았다.</p><ol><li>주 데이터베이스에서 테이블에 컬럼</li><li>해당 테이블에 대한 materialized view log 재생성</li><li>보조 데이터베이스에서 이 MView를 재생성</li></ol><p>데이터가 많은 것도 아니어서 금방 끝날 작업이었다. 컬럼 추가 작업은 그 전에도 많이 했었다. 아무 문제 될 게 없었다.</p><div class=highlight><pre class=chroma><code class=language-sql data-lang=sql><span class=k>alter</span> <span class=k>table</span> <span class=p>...</span> <span class=k>add</span> <span class=p>(...);</span>
-<span class=k>drop</span> <span class=n>materialized</span> <span class=k>view</span> <span class=n>log</span> <span class=k>on</span> <span class=p>...;</span>
-<span class=k>create</span> <span class=n>materialized</span> <span class=k>view</span> <span class=n>log</span> <span class=k>on</span> <span class=p>...;</span>
-</code></pre></div><p>주 데이터베이스에서 컬럼을 추가한 다음 바로 보조 데이터베이스에 들어갔다. 전산센터에 연락해 보조 데이터베이스로 들어오는 거래를 주 데이터베이스로 전환하라고 한 다음 MView 재생성 작업을 시작했다.</p><div class=highlight><pre class=chroma><code class=language-sql data-lang=sql><span class=k>drop</span> <span class=n>materialized</span> <span class=k>view</span> <span class=p>...;</span>
-<span class=k>create</span> <span class=n>materialized</span> <span class=k>view</span> <span class=p>...;</span>
-</code></pre></div><p>그런데 몇 초 안에 재생성되어야 할 MView가 계속 기다려도 재생성되지 않았다.</p><p>'뭐지?'</p><p>주 데이터베이스에 접속된 쿼리 도구에서 해당 테이블을 <code>select</code> 해봤다. 아무런 문제가 없었다.</p><p>'왜 이렇게 오래 걸리는 거야?'</p><p>불안한 느낌이 드는 찰나에 여기 저기서 전화벨이 울리기 시작했다. 전산센터에서도 전화가 왔다. 거래에서 에러가 발생한다는 것이었다.</p><p>결제 프로그램에서 내가 수정한 테이블을 조회할 때 결과가 가지 않고 대기 상태로 빠지고 있었다. 데이터베이스 상태를 확인해보니 커넥션 수가 <code>max_processes</code>에 도달해 거래가 밀렸다. 왜 그런지 알 수는 없지만 내 작업 때문에 생긴 문제임엔 틀림없었다.</p><p>보조 데이터베이스로 거래를 넘길 수도 없었다. 그쪽에서는 이미 테이블을 날려 버리지 않았던가.</p><p>'아아...'</p><p>어떻게 해야 할지 알 수 없었다. 시간은 계속 흘렀고 장애 시간은 계속 늘어났고 회사 피해액은 계속 커졌다. 팀장, 본부장, 영업팀 사람들까지 모두 와서 내 뒤에 섰다. 식은땀으로 뒷덜미가 축축해졌다. 겪어보지 않은 사람은 그 무게감을 알지 못할 것이다.</p><p>멍하게 있을 수만은 없었다. DBA로서 뭔가 해야 했다. 그러나 뭘 해야 할지 몰랐다. 데이터베이스에 무의미한 명령만 날리고 있다가 문득 며칠 전 테스트 DB에 백업해둔 데이터가 생각났다. 재빨리 테스트 DB에 접근했다. 데이터를 확인하고 보조 데이터베이스로 복사해 테이블을 만들었다. 그리고 전산선터에 연락해 거래를 보조 데이터베이스로 돌려달라고 했다. 그렇게 해서 겨우 거래를 재개했다. 그때까지 걸린 시간은 약 28분. 숨을 돌리고 주 데이터베이스를 재시작했다. 이제 주 데이터베이스도 거래를 받을 수 있게 되었다고 전산센터에 알렸다.</p><p>왜 프로그램에서 해당 테이블을 조회하지 못했는지 지금도 모른다. 메타링크를 열심히 뒤져 JDBC 드라이버 버그일 수 있다는 문서를 찾긴 했지만 추정일 뿐이었다. 비슷한 상황을 재연해보려 했지만 재연되지 않았다.</p><p>이번 장애의 가장 큰 원인도 역시 나였다. 제대로 확인을 안 하고 작업을 진행해 장애가 발생한 것이다. 누구도 탓할 수 없었다. 주 데이터베이스에서 작업한 다음 거래가 제대로 되고 있는지 확인 했다면 이번 사고를 방지할 수 있었을 것이다. 물론 예전에는 그렇게 했었다. 그러나 비슷한 일을 여러 번 반복하면서 익숙해지다 보니 뻔한 작업이라 방심했고, 당연히 될 것이라 가정해 확인하지 않았다.</p><p>정말 대형 사고였다. 시간도 길었고 피해액도 컸다. 나에게까지 문책이 내려오지는 않았지만, 얼마 후 개발본부장이 바뀌었다. 그게 이 사고 때문에 그런게 아니었나 싶다. (아아... 그분께는 지금도 죄송하다.)</p><p>사고 후 데이터베이스 작업 프로세스를 정리했다. 아무리 간단한 작업이라도 DBA가 임의로 처리하지 않고 팀장 승인하에 처리하도록 했고 작업 전 최소 세 번의 확인 절차를 거치도록 했다. 일하기가 정말 갑갑해졌다. 내가 죄인이라, 그리고 내가 직접 만든 프로세스라 뭐라 불평하기 어려웠지만, 사실 다 부질없는 짓이었다. 데이터베이스 작업을 팀장에게 설명해줘도 데이터베이스에 문외한인 팀장이 그 작업 절차가 옳은지, 작업중 위험요소는 없는지, 돌발상황의 대처 방법이 적절한지 등에 대해 제대로 판단할 수 있겠는가? 절차만 까다로워졌고 작업하기만 번거로워졌지 위험은 그대로였다. 결국 내가 실수하면 다 소용없는 짓이었다. 정말 필요한 것은 내 작업을 검증할 능력이 있는 데이터베이스 전문가였다.</p><p>그 사고 이후로 운영 DBA란 직업에 회의를 느끼기 시작했다. 내가 데이터베이스 운영에 적합하지 않다는 생각이 들었다. 지난 1년 반 정도의 기간 동안 전산센터 이전, 재해 복구 센터 구축, 타 결제회사 데이터 통합 같은 굵직한 프로젝트성 업무가 있었고 그런 일을 하면서 보람과 재미를 느꼈지만, 반복적인 운영 업무만 한다면 아무런 재미도 없을 것 같았다. DBA란 직업은 하는 일에 비해 부담이 큰 직업이란 생각이 들었다. 데이터베이스를 정상적으로 잘 운영하면 당연한 것이고 장애가 나면 일을 제대로 못한 것이 된다. 데이터베이스와 관련된 모든 문제를 통제하고 싶지만 그러기에 DBMS는 너무나 복잡한 시스템이고 내 지적 능력은 턱없이 모자란 것으로 보였다. 거기다가 조심성까지 없으니...</p></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
+<a href=/tags/dba/>DBA</a>
+</p>
+<h1 class=post-title>
+초보 DBA 삽질기 4
+</h1>
+</header>
+<section class=post-content>
+<p>입사한지 1년 반이 되어 가고 있었다. 그동안 심각한 장애는 대부분 내 실수에서 비롯되었다. 애플리케이션 서버는 여러 대로 운영하기 때문에 한 대에 문제가 생겨도 거래가 중단되지 않는다. 데이터베이스는 문제가 생기면 모든 거래가 중단되는 단일 실패 지점(Single poing of failure)이었다.</p>
+<p>회사에서도 이 문제를 중요하게 여겨 재해 복구 센터를 준비했다. 주 전산센터와 지리적으로 떨어진(그래봤자 같은 서울 안이지만) 곳에 보조 전산센터를 만들었다. 내가 작성한 데이터베이스 동기화 프로그램을 사용해 두 센터간 데이터를 동기화했다는 점에 대해서는 자부심을 가져도 될 것 같다. 자연 재해로 전산센터가 서비스 불능 상태가 될 가능성은 적었지만, 인재(주로 내 실수)로 한쪽 전산센터에서 장애가 발생할 가능성은 상존했다. 그런 경우 즉시 보조 전산센터로 거래를 돌려 거래가 중단되는 사태를 방지할 수 있게 되었다. 즉, 내가 데이터베이스에서 사고를 쳐도 다른 쪽 데이터베이스로 거래를 받아줄 수 있게 됐다는 말이다.</p>
+<p>데이터베이스에 변경을 가할 때 양쪽에 작업해야 해서 조금 번거로워 젔지만, 마음은 훨씬 가벼워졌다. 실수를 하더라도 거래 중단 사태까지는 가지 않을 수 있게 되었다. 한 쪽에 먼저 작업을 하고 문제가 없음을 확인한 다음 다른 쪽에 작업한다면 예전처럼 수십 분씩 거래가 중단되는 사태는 생기지 않을 것이다. 한 쪽을 작업하고 문제가 없음을 확인한 다음 작업한다면...</p>
+<p>그날 작업도 대단한 일은 아니었다. 테이블에 컬럼 하나를 추가하는 정말 간단한 일이었다. 코드성 테이블이어서 읽기는 많았지만 쓰기는 잦지 않았다. 이런 종류의 테이블은 오라클의 Materialized View를 사용해 동기화했다. 보조 데이터베이스에서 데이터베이스 링크를 통해 10분마다 동기화하도록 설정되어 있었다. 마스터 테이블을 변경한 경우 MView도 다시 생성해줘야 하므로, 이번 작업 절차는 다음과 같았다.</p>
+<ol>
+<li>주 데이터베이스에서 테이블에 컬럼</li>
+<li>해당 테이블에 대한 materialized view log 재생성</li>
+<li>보조 데이터베이스에서 이 MView를 재생성</li>
+</ol>
+<p>데이터가 많은 것도 아니어서 금방 끝날 작업이었다. 컬럼 추가 작업은 그 전에도 많이 했었다. 아무 문제 될 게 없었다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=k>alter</span><span class=w> </span><span class=k>table</span><span class=w> </span><span class=p>...</span><span class=w> </span><span class=k>add</span><span class=w> </span><span class=p>(...);</span><span class=w>
+</span><span class=w></span><span class=k>drop</span><span class=w> </span><span class=n>materialized</span><span class=w> </span><span class=k>view</span><span class=w> </span><span class=n>log</span><span class=w> </span><span class=k>on</span><span class=w> </span><span class=p>...;</span><span class=w>
+</span><span class=w></span><span class=k>create</span><span class=w> </span><span class=n>materialized</span><span class=w> </span><span class=k>view</span><span class=w> </span><span class=n>log</span><span class=w> </span><span class=k>on</span><span class=w> </span><span class=p>...;</span><span class=w>
+</span></code></pre></div><p>주 데이터베이스에서 컬럼을 추가한 다음 바로 보조 데이터베이스에 들어갔다. 전산센터에 연락해 보조 데이터베이스로 들어오는 거래를 주 데이터베이스로 전환하라고 한 다음 MView 재생성 작업을 시작했다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=k>drop</span><span class=w> </span><span class=n>materialized</span><span class=w> </span><span class=k>view</span><span class=w> </span><span class=p>...;</span><span class=w>
+</span><span class=w></span><span class=k>create</span><span class=w> </span><span class=n>materialized</span><span class=w> </span><span class=k>view</span><span class=w> </span><span class=p>...;</span><span class=w>
+</span></code></pre></div><p>그런데 몇 초 안에 재생성되어야 할 MView가 계속 기다려도 재생성되지 않았다.</p>
+<p>'뭐지?'</p>
+<p>주 데이터베이스에 접속된 쿼리 도구에서 해당 테이블을 <code>select</code> 해봤다. 아무런 문제가 없었다.</p>
+<p>'왜 이렇게 오래 걸리는 거야?'</p>
+<p>불안한 느낌이 드는 찰나에 여기 저기서 전화벨이 울리기 시작했다. 전산센터에서도 전화가 왔다. 거래에서 에러가 발생한다는 것이었다.</p>
+<p>결제 프로그램에서 내가 수정한 테이블을 조회할 때 결과가 가지 않고 대기 상태로 빠지고 있었다. 데이터베이스 상태를 확인해보니 커넥션 수가 <code>max_processes</code>에 도달해 거래가 밀렸다. 왜 그런지 알 수는 없지만 내 작업 때문에 생긴 문제임엔 틀림없었다.</p>
+<p>보조 데이터베이스로 거래를 넘길 수도 없었다. 그쪽에서는 이미 테이블을 날려 버리지 않았던가.</p>
+<p>'아아...'</p>
+<p>어떻게 해야 할지 알 수 없었다. 시간은 계속 흘렀고 장애 시간은 계속 늘어났고 회사 피해액은 계속 커졌다. 팀장, 본부장, 영업팀 사람들까지 모두 와서 내 뒤에 섰다. 식은땀으로 뒷덜미가 축축해졌다. 겪어보지 않은 사람은 그 무게감을 알지 못할 것이다.</p>
+<p>멍하게 있을 수만은 없었다. DBA로서 뭔가 해야 했다. 그러나 뭘 해야 할지 몰랐다. 데이터베이스에 무의미한 명령만 날리고 있다가 문득 며칠 전 테스트 DB에 백업해둔 데이터가 생각났다. 재빨리 테스트 DB에 접근했다. 데이터를 확인하고 보조 데이터베이스로 복사해 테이블을 만들었다. 그리고 전산선터에 연락해 거래를 보조 데이터베이스로 돌려달라고 했다. 그렇게 해서 겨우 거래를 재개했다. 그때까지 걸린 시간은 약 28분. 숨을 돌리고 주 데이터베이스를 재시작했다. 이제 주 데이터베이스도 거래를 받을 수 있게 되었다고 전산센터에 알렸다.</p>
+<p>왜 프로그램에서 해당 테이블을 조회하지 못했는지 지금도 모른다. 메타링크를 열심히 뒤져 JDBC 드라이버 버그일 수 있다는 문서를 찾긴 했지만 추정일 뿐이었다. 비슷한 상황을 재연해보려 했지만 재연되지 않았다.</p>
+<p>이번 장애의 가장 큰 원인도 역시 나였다. 제대로 확인을 안 하고 작업을 진행해 장애가 발생한 것이다. 누구도 탓할 수 없었다. 주 데이터베이스에서 작업한 다음 거래가 제대로 되고 있는지 확인 했다면 이번 사고를 방지할 수 있었을 것이다. 물론 예전에는 그렇게 했었다. 그러나 비슷한 일을 여러 번 반복하면서 익숙해지다 보니 뻔한 작업이라 방심했고, 당연히 될 것이라 가정해 확인하지 않았다.</p>
+<p>정말 대형 사고였다. 시간도 길었고 피해액도 컸다. 나에게까지 문책이 내려오지는 않았지만, 얼마 후 개발본부장이 바뀌었다. 그게 이 사고 때문에 그런게 아니었나 싶다. (아아... 그분께는 지금도 죄송하다.)</p>
+<p>사고 후 데이터베이스 작업 프로세스를 정리했다. 아무리 간단한 작업이라도 DBA가 임의로 처리하지 않고 팀장 승인하에 처리하도록 했고 작업 전 최소 세 번의 확인 절차를 거치도록 했다. 일하기가 정말 갑갑해졌다. 내가 죄인이라, 그리고 내가 직접 만든 프로세스라 뭐라 불평하기 어려웠지만, 사실 다 부질없는 짓이었다. 데이터베이스 작업을 팀장에게 설명해줘도 데이터베이스에 문외한인 팀장이 그 작업 절차가 옳은지, 작업중 위험요소는 없는지, 돌발상황의 대처 방법이 적절한지 등에 대해 제대로 판단할 수 있겠는가? 절차만 까다로워졌고 작업하기만 번거로워졌지 위험은 그대로였다. 결국 내가 실수하면 다 소용없는 짓이었다. 정말 필요한 것은 내 작업을 검증할 능력이 있는 데이터베이스 전문가였다.</p>
+<p>그 사고 이후로 운영 DBA란 직업에 회의를 느끼기 시작했다. 내가 데이터베이스 운영에 적합하지 않다는 생각이 들었다. 지난 1년 반 정도의 기간 동안 전산센터 이전, 재해 복구 센터 구축, 타 결제회사 데이터 통합 같은 굵직한 프로젝트성 업무가 있었고 그런 일을 하면서 보람과 재미를 느꼈지만, 반복적인 운영 업무만 한다면 아무런 재미도 없을 것 같았다. DBA란 직업은 하는 일에 비해 부담이 큰 직업이란 생각이 들었다. 데이터베이스를 정상적으로 잘 운영하면 당연한 것이고 장애가 나면 일을 제대로 못한 것이 된다. 데이터베이스와 관련된 모든 문제를 통제하고 싶지만 그러기에 DBMS는 너무나 복잡한 시스템이고 내 지적 능력은 턱없이 모자란 것으로 보였다. 거기다가 조심성까지 없으니...</p>
+</section>
+<footer class=post-footer>
+<div class="social button-box">
+<a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
-<script async src=//platform.twitter.com/widgets.js></script></div><nav id=article-nav><a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2014/dba-story-5/ id=article-nav-newer>초보 DBA 삽질기 5</a>
-<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2014/dba-story-3/ id=article-nav-older>초보 DBA 삽질기 3</a></nav></footer></article></main><section class=section><div class=container><aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2014/dba-story-4/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section><div class="container has-text-centered"><p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script><script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script><footer class=page-bottom><div class=inner><section class=copyright>© 2008-2021 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
+<script async src=//platform.twitter.com/widgets.js></script>
+</div>
+<nav id=article-nav>
+<a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2014/dba-story-5/ id=article-nav-newer> 초보 DBA 삽질기 5</a>
+<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2014/dba-story-3/ id=article-nav-older> 초보 DBA 삽질기 3</a>
+</nav>
+</footer>
+</article>
+</main>
+<section class=section>
+<div class=container>
+<aside><div id=disqus_thread></div></aside>
+<script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2014/dba-story-4/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
+</div>
+</section>
+<section class=section>
+<div class="container has-text-centered">
+<p></p>
+</div>
+</section>
+<script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
+<footer class=page-bottom>
+<div class=inner>
+<section class=copyright>© 2008-2021 <a href=/about>ntalbs</a></section>
+<section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section>
+</div>
+</footer>
+</body>
+</html>

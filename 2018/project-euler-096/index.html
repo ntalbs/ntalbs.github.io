@@ -1,8 +1,65 @@
-<!doctype html><html><head><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script><meta charset=utf-8><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg"><meta name=viewport content="width=device-width,initial-scale=1"><title>프로젝트 오일러 96 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/highlight.css></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>프로젝트 오일러 96</div></div></div><nav class=navbar role=navigation><div class=container><div class=navbar-header><button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
-<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a></div><div class="navbar-items collapsed" id=nav-items><ul><li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2018-09-07 itemprop=datePublished>2018-09-07</time>
+<!doctype html><html>
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script>
+<meta charset=utf-8>
+<meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
+<meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>프로젝트 오일러 96 @ntalbs' stuff</title>
+<link rel="shortcut icon" href=/images/favicon.ico>
+<link rel=stylesheet href=/css/style.css>
+<link rel=stylesheet href=/css/highlight.css>
+</head>
+<body>
+<div id=progress>
+<div id=bar></div>
+<div class=container>
+<div id=scroll-title>프로젝트 오일러 96</div>
+</div>
+</div>
+<nav class=navbar role=navigation>
+<div class=container>
+<div class=navbar-header>
+<button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
+<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
+</div>
+<div class="navbar-items collapsed" id=nav-items>
+<ul>
+<li><a class=unselectable href=/archive/>Archive</a></li>
+<li><a class=unselectable href=/tags/>Tags</a></li>
+<li><a class=unselectable href=/about/>About</a></li>
+<li><a id=mode-switch class=unselectable href=#></a></li>
+</ul>
+</div>
+</div>
+</nav>
+<header class=page-head>
+<div class=container>
+<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+</div>
+</header>
+<main class=container role=main>
+<article class=post>
+<header>
+<p class=post-meta>
+<time datetime=2018-09-07 itemprop=datePublished>2018-09-07</time>
 on
 <a href=/tags/project-euler/>Project-Euler</a>
-<a href=/tags/clojure/>Clojure</a></p><h1 class=post-title>프로젝트 오일러 96</h1></header><section class=post-content><blockquote><p>스도쿠 퍼즐 풀기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=96">[국어]</a> <a href="https://projecteuler.net/problem=96">[영어]</a></p></blockquote><p>예전에 어디선가 Scala 코드 15줄로 스도쿠 퍼즐을 풀 수 있다는 글을 본 생각이 났다. 어떤 놀라운 알고리즘이 있나 봤는데 알고보니 CSP(Constraint Satisfaction Problem) 라이브러리를 사용한 것이었다. Clojure에서는 <a href=https://github.com/clojure/core.logic>core.logic</a>을 사용해 Scala 풀이와 비슷하게 문제를 풀 수 있다.</p><p>자세한 내용은 모르지만, 간만히 말하자면 코드에 조건을 기술하고 실행하면 CSP 엔진이 가능한 답을 찾아준다는 것이다. <a href=https://github.com/ntalbs/euler/blob/master/src/p096.clj>풀이</a> 코드 대부분은 텍스트 파일을 읽고 보드를 초기화하고 루프를 돌면서 스도쿠 퍼즐을 푸는 것이라 여기서 따로 설명하지 않는다. 핵심은 다음 코드 블록이라 할 수 있겠다.</p><div class=highlight><pre class=chroma><code class=language-clojure data-lang=clojure>    <span class=nv>...</span>
+<a href=/tags/clojure/>Clojure</a>
+</p>
+<h1 class=post-title>
+프로젝트 오일러 96
+</h1>
+</header>
+<section class=post-content>
+<blockquote>
+<p>스도쿠 퍼즐 풀기</p>
+<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=96">[국어]</a> <a href="https://projecteuler.net/problem=96">[영어]</a></p>
+</blockquote>
+<p>예전에 어디선가 Scala 코드 15줄로 스도쿠 퍼즐을 풀 수 있다는 글을 본 생각이 났다. 어떤 놀라운 알고리즘이 있나 봤는데 알고보니 CSP(Constraint Satisfaction Problem) 라이브러리를 사용한 것이었다. Clojure에서는 <a href=https://github.com/clojure/core.logic>core.logic</a>을 사용해 Scala 풀이와 비슷하게 문제를 풀 수 있다.</p>
+<p>자세한 내용은 모르지만, 간만히 말하자면 코드에 조건을 기술하고 실행하면 CSP 엔진이 가능한 답을 찾아준다는 것이다. <a href=https://github.com/ntalbs/euler/blob/master/src/p096.clj>풀이</a> 코드 대부분은 텍스트 파일을 읽고 보드를 초기화하고 루프를 돌면서 스도쿠 퍼즐을 푸는 것이라 여기서 따로 설명하지 않는다. 핵심은 다음 코드 블록이라 할 수 있겠다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-clojure data-lang=clojure>    <span class=nv>...</span>
     <span class=p>(</span><span class=nf>run*</span> <span class=p>[</span><span class=nv>q</span><span class=p>]</span>
          <span class=p>(</span><span class=nb>== </span><span class=nv>q</span> <span class=nv>board</span><span class=p>)</span>
          <span class=p>(</span><span class=nf>everyg</span> <span class=o>#</span><span class=p>(</span><span class=nf>fd/in</span> <span class=nv>%</span> <span class=nv>sdnum</span><span class=p>)</span> <span class=nv>board</span><span class=p>)</span>
@@ -11,11 +68,57 @@ on
          <span class=p>(</span><span class=nf>everyg</span> <span class=nv>fd/distinct</span> <span class=nv>cols</span><span class=p>)</span>
          <span class=p>(</span><span class=nf>everyg</span> <span class=nv>fd/distinct</span> <span class=nv>squares</span><span class=p>))</span>
     <span class=nv>...</span>
-</code></pre></div><p>각 행 숫자가 모두 달라야 하고, 각 열 숫자가 모두 달라야 하고, $3 \times 3$ 격자 안의 숫자가 모두 달라야 한다는 조건을 기술했다. 이렇게 조건을 기술하고 돌리면 엔진이 답을 찾아준다. 50개의 스도쿠 퍼즐을 풀었으면 각 해답지에서 맨 왼쪽 위 숫자를 이어붙인 수를 구해 모두 더하면 된다.</p><p>실행 결과는 다음과 같다.</p><pre class=console>
+</code></pre></div><p>각 행 숫자가 모두 달라야 하고, 각 열 숫자가 모두 달라야 하고, $3 \times 3$ 격자 안의 숫자가 모두 달라야 한다는 조건을 기술했다. 이렇게 조건을 기술하고 돌리면 엔진이 답을 찾아준다. 50개의 스도쿠 퍼즐을 풀었으면 각 해답지에서 맨 왼쪽 위 숫자를 이어붙인 수를 구해 모두 더하면 된다.</p>
+<p>실행 결과는 다음과 같다.</p>
+<pre class=console>
 p096=> (time (solve))
 "Elapsed time: 2904.611072 msecs"
 24?02
-</pre><p>이건 내가 문제를 푼 게 아니라 core.logic이 푼 것이다. 스도쿠 퍼즐을 푸는 알고리즘은 아직도 모른다.</p><h2 id=참고>참고</h2><ul><li><a href=https://github.com/ntalbs/euler/blob/master/src/p096.clj>프로젝트 오일러 96 풀이 소스 코드</a></li><li><a href="https://news.ycombinator.com/item?id=4325746">A sudoku solver in 33 lines of Clojure</a></li><li><a href=https://gist.github.com/orb/5884956>orb/sudoku.clj</a></li><li><a href=http://en.wikipedia.org/wiki/Constraint_logic_programming>Constraint logic programming</a></li><li><a href=https://en.wikipedia.org/wiki/Constraint_satisfaction_problem>Constraint satisfaction problem</a></li><li><a href=https://github.com/clojure/core.logic>core.logic</a></li><li><a href=https://sciss.github.io/sudoku/>Solving a sudoku puzzle in 15 lines of scala code</a></li></ul></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
+</pre>
+<p>이건 내가 문제를 푼 게 아니라 core.logic이 푼 것이다. 스도쿠 퍼즐을 푸는 알고리즘은 아직도 모른다.</p>
+<h2 id=참고>참고</h2>
+<ul>
+<li><a href=https://github.com/ntalbs/euler/blob/master/src/p096.clj>프로젝트 오일러 96 풀이 소스 코드</a></li>
+<li><a href="https://news.ycombinator.com/item?id=4325746">A sudoku solver in 33 lines of Clojure</a></li>
+<li><a href=https://gist.github.com/orb/5884956>orb/sudoku.clj</a></li>
+<li><a href=http://en.wikipedia.org/wiki/Constraint_logic_programming>Constraint logic programming</a></li>
+<li><a href=https://en.wikipedia.org/wiki/Constraint_satisfaction_problem>Constraint satisfaction problem</a></li>
+<li><a href=https://github.com/clojure/core.logic>core.logic</a></li>
+<li><a href=https://sciss.github.io/sudoku/>Solving a sudoku puzzle in 15 lines of scala code</a></li>
+</ul>
+</section>
+<footer class=post-footer>
+<div class="social button-box">
+<a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
-<script async src=//platform.twitter.com/widgets.js></script></div><nav id=article-nav><a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2018/last-this-next-friday/ id=article-nav-newer>Last, this, next Friday</a>
-<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2018/project-euler-095/ id=article-nav-older>프로젝트 오일러 95</a></nav></footer></article></main><section class=section><div class=container><aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2018/project-euler-096/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section><div class="container has-text-centered"><p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script><script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script><footer class=page-bottom><div class=inner><section class=copyright>© 2008-2021 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
+<script async src=//platform.twitter.com/widgets.js></script>
+</div>
+<nav id=article-nav>
+<a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2018/last-this-next-friday/ id=article-nav-newer> Last, this, next Friday</a>
+<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2018/project-euler-095/ id=article-nav-older> 프로젝트 오일러 95</a>
+</nav>
+</footer>
+</article>
+</main>
+<section class=section>
+<div class=container>
+<aside><div id=disqus_thread></div></aside>
+<script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2018/project-euler-096/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
+</div>
+</section>
+<section class=section>
+<div class="container has-text-centered">
+<p></p>
+</div>
+</section>
+<script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
+<footer class=page-bottom>
+<div class=inner>
+<section class=copyright>© 2008-2021 <a href=/about>ntalbs</a></section>
+<section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section>
+</div>
+</footer>
+</body>
+</html>
