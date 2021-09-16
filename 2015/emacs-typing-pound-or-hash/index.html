@@ -76,7 +76,7 @@ Emacs에서 £ 기호 입력하기
 </code></pre></div><p>이렇게 하면 <code>M-3</code>으로 숫자 인자를 전달하는 것은 포기해야 한다. <code>C-3</code>으로 대신할 수는 있겠지만 마음이 편하지는 않다.</p>
 <h2 id=오른쪽-alt키-설정-변경>오른쪽 <code>Alt</code>키 설정 변경</h2>
 <p><code>ns-right-alternate-modifier</code>를 <code>none</code>으로 설정하면 오른쪽 <code>Alt</code>키를 Emacs가 처리하지 않도록 할 수 있다. 이렇게 한 후 오른쪽 <code>Alt</code>키와 <code>3</code>을 동시에 누르면 다른 일반 에디터에서 <code>Alt+3</code>을 눌렀을 때와 동일하게 동작하므로 <code>£</code>이 입력될 것이다. 다음과 같이 <code>ns-right-alternate-modifier</code> 설정값을 바꿀 수 있다.</p>
-<pre><code>M-x customize-variable &lt;RET&gt; ns-right-alternate-modifier
+<pre tabindex=0><code>M-x customize-variable &lt;RET&gt; ns-right-alternate-modifier
 </code></pre><p>Emacs를 사용할 때 <code>M-</code>를 사용는 경우 왼쪽 <code>Alt</code> 키를 사용하고 오른쪽 <code>Alt</code> 키를 사용하는 경우는 없었다. 맥 키보드에서는 <code>Alt</code> 키와 다른 키를 조합해 다양한 기호를 입력할 수 있는데, 오른쪽 <code>Alt</code>키의 설정을 변경하면 Emacs 사용에 영향을 주지 않으면서 다양한 기호를 입력할 수 있게 된다. <code>Alt+3</code>만 오버라이드 하는 것보다 이 방법이 더 좋아 보인다.</p>
 <h2 id=c-x-8-l로--입력><code>C-x 8 L</code>로 £ 입력</h2>
 <p><code>C-x 8 C-h</code>를 누르면 <code>C-x 8</code> 변환으로 입력할 수 있는 문자 목록이 나온다. <code>£</code> 기호는 <code>C-x 8 L</code>(대문자 L)로 입력할 수 있다. 이 방법은 Emacs에서만 가능한 것이다.</p>

@@ -58,7 +58,7 @@ on
 <p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=22">[국어]</a> <a href="https://projecteuler.net/problem=22">[영어]</a></p>
 </blockquote>
 <p>수학적 사고나 특별한 기교가 필요한 문제는 아니다. 그냥 문제에서 설명한 대로 처리하면 답을 얻을 수 있다. <code>names.txt</code> 파일을 열어보면 다음과 같이 이름이 따옴표로 묶여 있고 각 이름 사이에는 쉼표가 있다.</p>
-<pre><code>&quot;MARY&quot;,&quot;PATRICIA&quot;,&quot;LINDA&quot;,&quot;BARBARA&quot;,&quot;ELIZABETH&quot;,...
+<pre tabindex=0><code>&quot;MARY&quot;,&quot;PATRICIA&quot;,&quot;LINDA&quot;,&quot;BARBARA&quot;,&quot;ELIZABETH&quot;,...
 </code></pre><p>먼저 파일을 읽어 불필요한 문자(따옴표, 쉼표)를 제거한 이름 목록을 만들고 이후 문제가 요구한 대로 계산하면 된다. Clojure에서는 <code>slurp</code> 함수를 사용하면 텍스트 파일을 쉽게 읽을 수 있다.</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>ns </span><span class=nv>p022</span>
   <span class=p>(</span><span class=ss>:require</span> <span class=p>[</span><span class=nv>clojure.string</span> <span class=ss>:as</span> <span class=nv>str</span><span class=p>]))</span>

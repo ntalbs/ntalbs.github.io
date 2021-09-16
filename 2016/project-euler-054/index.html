@@ -78,7 +78,7 @@ on
 <span class=p>(</span><span class=kd>defn </span><span class=nv>flush?</span> <span class=p>[</span><span class=nv>hand</span><span class=p>]</span>
   <span class=p>(</span><span class=nb>= </span><span class=mi>1</span> <span class=p>(</span><span class=nf>-&gt;&gt;</span> <span class=nv>hand</span> <span class=p>(</span><span class=nb>map </span><span class=nv>second</span><span class=p>)</span> <span class=nb>set </span><span class=nv>count</span><span class=p>)))</span>
 </code></pre></div><p>카드 숫자를 정렬해 파티션한 다음 각 파티션의 원소 수를 나타낸 패턴을 구하면 그 패턴으로 계급을 알 수 있다.</p>
-<pre><code>[1 1 1 1 1] =&gt; high card
+<pre tabindex=0><code>[1 1 1 1 1] =&gt; high card
 [2 1 1 1]   =&gt; one pair
 [2 2 1]     =&gt; two pairs
 [3 1 1]     =&gt; threee of a kind

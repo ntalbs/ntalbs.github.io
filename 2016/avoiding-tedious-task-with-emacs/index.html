@@ -156,7 +156,7 @@ Emacs를 이용한 단순 반복 작업
         <span class="o">...</span>
         <span class="p">))</span>
 </code></pre></div><p><code>cond</code>의 각 브랜치는 엑셀 포뮬러를 이용해 쉽게 만들 수 있었다.</p>
-<pre><code class="language-vba" data-lang="vba">=CONCATENATE("((equal cc """,C2,""")"," ", """",D2,""")")
+<pre tabindex="0"><code class="language-vba" data-lang="vba">=CONCATENATE("((equal cc """,C2,""")"," ", """",D2,""")")
 </code></pre><p>포뮬러를 매핑 컬럼 전체에 적용해 생성한 <code>cond</code> 브랜치를 복사해 Emacs Lisp 함수에 붙여넣으면 된다. 이제 엑셀 파일과 설정 파일을 왔다갔다 하지 않아도 된다. 매핑 값을 넣어야 하는 곳에서 함수를 호출하면 된다. 그러나 몇 가지 고려 사항이 더 있었다.</p>
 <ul>
 <li>함수에 인자를 어떻게 전달할 것인가?</li>

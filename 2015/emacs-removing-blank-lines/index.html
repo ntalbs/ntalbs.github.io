@@ -55,9 +55,9 @@ Emacs: 빈 줄 지우기
 <p>편집중인 버퍼에서 빈 줄을 모두 지우고 싶으면 어떻게 해야 할까? 코드를 작성할 때는 이런 경우가 거의 없지만 다른 파일을 편집할 때는 빈 줄을 모두 삭제해야 하는 경우가 종종 생긴다.</p>
 <p>Vim이라면 <code>:g/^$/d</code>로 가능하다. <code>:g[lobal]</code>는 정규표현식에 매치되는 행에 대해 명령을 실행하라는 뜻이고 <code>^$</code>가 빈 줄을 뜻하는 정규표현식이다. 행의 시작과 끝 사이에 아무 것도 없으면 빈 줄이다. 약간 응용해서 공백문자만 포함한 행도 삭제하고 싶다면 정규표현식을 <code>^\s*$</code>로 할 수 있다. <code>:d</code> 명령은 삭제(delete)를 뜻한다.</p>
 <p>Emacs에서는 <code>flush-lines</code> 함수를 사용한다. 적용할 영역을 선택(mark)한 후 다음 명령을 실행하면 된다.</p>
-<pre><code>M-x flush-lines RET ^$ RET
+<pre tabindex=0><code>M-x flush-lines RET ^$ RET
 </code></pre><p><code>flush-lines</code>는 정규표현식에 매치되는 행을 삭제하는 함수다. <code>^$</code>는 Vim에서와 마찬가지로 빈 줄을 뜻하는 정규표현식이다. 공백만 포함한 행도 삭제하고 싶다면 정규표현식으로 <code>^\s-*$</code>를 입력해야 한다. Emacs에서는 <code>\s-</code>가 공백문자를 나타내는 정규표현식이다.</p>
-<pre><code>M-x flush-lines RET ^\s-*$ RET
+<pre tabindex=0><code>M-x flush-lines RET ^\s-*$ RET
 </code></pre><p><a href=http://www.masteringemacs.org/article/removing-blank-lines-buffer>Removing blank lines in a buffer</a>에서는 여러 개의 빈 줄을 하나로 합치는 방법도 설명한다. 정규표현식을 사용하는 방법과 키보드 매크로를 사용하는 방법 두 가지를 설명하는데, 정규표현식을 사용하는 방법이 조금 더 간단해 보인다.</p>
 <p>여기서는 <a href=https://github.com/benma/visual-regexp.el>visual-regexp</a> + <a href=https://github.com/benma/visual-regexp-steroids.el/>visual-regexp-steroids</a>를 사용해 빈 줄을 제거하는 방법과 여러 개의 빈 줄을 하나로 합치는 방법을 추가하려 한다. 빈 줄을 삭제하는 방법은 다음과 같다.</p>
 <ol>

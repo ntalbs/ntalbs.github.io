@@ -56,7 +56,7 @@ Integer.MIN_VALUE
 <p><a href=http://www.amazon.com/Effective-Java-2nd-Joshua-Bloch/dp/0321356683>Effective Java</a>로 유명한 <a href=https://twitter.com/joshbloch>Joshua Bloch</a>의 트윗에 재미있는 글이 올라왔다. 엥, 어떤 수에 -1을 곱했는데 자기 자신이 된다고? 곧장 테스트 프로그램을 만들어 돌려봤더니 정말 그렇다.</p>
 <p>확인 해보니 예전에 학교에서 배웠던 게 생각이 났다. 정수형을 표현할 때 <strong>2의 보수법</strong>을 사용해 표현한다는 것! 정확한 내용이 생각나지 않아 잠시 인터넷에서 검색해보니 잘 설명된 자료(2의 보수 표기법)가 있다.</p>
 <p>3비트 정수를 2의 보수법으로 표현했을 때 MIN_VALUE=100, -1=111이 될 것이다.</p>
-<pre><code>      -1 = 111
+<pre tabindex=0><code>      -1 = 111
   x  MIN = 100
   ------------
          11100 --&gt; 100 = MIN
@@ -65,11 +65,11 @@ Integer.MIN_VALUE
 <span class=n>Integer</span><span class=o>.</span><span class=na>MIN_VALUE</span> <span class=o>=</span> <span class=n>Math</span><span class=o>.</span><span class=na>abs</span><span class=o>(</span><span class=n>Integer</span><span class=o>.</span><span class=na>MIN_VALUE</span><span class=o>)</span>
 <span class=n>Long</span><span class=o>.</span><span class=na>MIN_VALUE</span> <span class=o>==</span> <span class=o>-</span><span class=n>LONG</span><span class=o>.</span><span class=na>MIN_VALUE</span>
 </code></pre></div><p>조금 더 테스트해보면 <code>Integer.MIN_VALUE와 Integer.MAX_VALUE</code>와의 재미있는 관계도 알 수 있다. 이것도 생각을 쉽게 하기 위해 3비트 정수로 계산해보면...</p>
-<pre><code>     MAX = 011
+<pre tabindex=0><code>     MAX = 011
   +    1 = 001
   ------------
            100 --&gt; MIN
-</code></pre><pre><code>     MIN = 100
+</code></pre><pre tabindex=0><code>     MIN = 100
   +   -1 = 111
   ------------
           1011 --&gt; 011 --&gt; MAX
