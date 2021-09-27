@@ -75,9 +75,9 @@
       window.scrollBy(0, 100)
     } else if (e.keyCode === 75 /* k */ || (e.ctrlKey && e.keyCode === 80 /* C-p */)) {
       window.scrollBy(0, -100)
-    } else if (e.keyCode === 72 /* h */ || (e.ctrlKey && e.keyCode === 66)) {
+    } else if (e.keyCode === 72 && !(e.ctrlKey || e.metaKey) /* h */ || (e.ctrlKey && e.keyCode === 66)) {
       prevPage()
-    } else if (e.keyCode === 76 /* l */ || (e.ctrlKey && e.keyCode === 70)) {
+    } else if (e.keyCode === 76 && !(e.ctrlKey || e.metaKey) /* l */ || (e.ctrlKey && e.keyCode === 70)) {
       nextPage()
     }
   })
