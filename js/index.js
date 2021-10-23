@@ -4,7 +4,6 @@
   function randomColor () {
     let colors = [
       '#003366',
-      '#333300',
       '#660033', '#089378', '#0898b3', '#1A5276'
     ]
     return colors[Math.floor(Math.random() * colors.length)]

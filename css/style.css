@@ -218,7 +218,7 @@ video {
   border: 1px solid transparent;
   margin-bottom: 20px;
   min-height: 50px;
-  background-color: #444;
+  background-color: var(--navbar-bg);
   border-color: #333;
   border-width: 0 0 1px;
   top: 0;
@@ -367,6 +367,9 @@ ul.pagination li a {
 }
 .post img.invert-safe {
   filter: invert(var(--invert-amt));
+}
+.post img.dim {
+  filter: brightness(var(--img-brightness));
 }
 .post-content,
 .post-excerpt {
@@ -642,7 +645,7 @@ selection {
   font-size: 1.5rem;
   line-height: 1.7em;
   color: #aaa;
-  background-color: var(--footer);
+  background-color: var(--footer-bg);
   text-align: center;
 }
 .page-bottom a {

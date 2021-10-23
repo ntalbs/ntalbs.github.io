@@ -42,14 +42,14 @@ function switchMode (mode, disqus) {
 }
 
 function makeDark () {
-  root.style.setProperty('--background', "#2a2e2e")
+  root.style.setProperty('--background', "#151d26")
   root.style.setProperty('--text', "#bbb")
   root.style.setProperty('--heading', "#eee")
   root.style.setProperty('--link', "#aaa")
   root.style.setProperty('--link-hover', "#ccc")
-  root.style.setProperty('--inline-code-bg', "#444")
+  root.style.setProperty('--inline-code-bg', "#212d39")
   root.style.setProperty('--box-fg', "#aaa")
-  root.style.setProperty('--box-bg', "#363636")
+  root.style.setProperty('--box-bg', "#212d39")
 
   root.style.setProperty('--archive-ul', "#888")
   root.style.setProperty('--post-meta', "#666")
@@ -57,9 +57,12 @@ function makeDark () {
 
   root.style.setProperty('--line', "#444")
   root.style.setProperty('--circle', "#444")
-  root.style.setProperty('--footer', "#333")
+
+  root.style.setProperty('--navbar-bg', "#242933")
+  root.style.setProperty('--footer-bg', "#242933")
 
   root.style.setProperty('--invert-amt', '0.84')
+  root.style.setProperty('--img-brightness', '0.5')
 }
 
 function makeLight () {
@@ -78,9 +81,11 @@ function makeLight () {
 
   root.style.setProperty('--line', "#ebf2f6")
   root.style.setProperty('--circle', "#fff")
-  root.style.setProperty('--footer', "#eee")
+  root.style.setProperty('--navbar-bg', "#444")
+  root.style.setProperty('--footer-bg', "#333")
 
   root.style.setProperty('--invert-amt', '0')
+  root.style.setProperty('--img-brightness', '1.0')
 }
 
 function xcode() {
@@ -154,7 +159,7 @@ function xcode() {
 
 function monokai () {
   root.style.setProperty('--Foreground', '#f8f8f2')
-  root.style.setProperty('--Background', '#363636')
+  root.style.setProperty('--Background', '#212d39')
   root.style.setProperty('--Error', '#1e0010')
   root.style.setProperty('--Keyword', '#66d9ef')
   root.style.setProperty('--KeywordConstant', '#66d9ef')
@@ -208,7 +213,7 @@ function monokai () {
   root.style.setProperty('--LiteralNumberInteger', '#ae81ff')
   root.style.setProperty('--LiteralNumberIntegerLong', '#ae81ff')
   root.style.setProperty('--LiteralNumberOct', '#ae81ff')
-  root.style.setProperty('--Operator', '#f92672')
+  root.style.setProperty('--Operator', '#f8f8f2')
   root.style.setProperty('--OperatorWord', '#f92672')
   root.style.setProperty('--Comment', '#75715e')
   root.style.setProperty('--CommentHashbang', '#75715e')

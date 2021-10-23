@@ -39,6 +39,28 @@
 <article class=post>
 <header class=post-header>
 <span class=post-meta>
+<time datetime=2010-09-03 itemprop=datePublished>2010-09-03</time>
+on
+<a href=/tags/%ec%83%81%eb%85%90/>상념</a>
+</span>
+<h1 class=post-title>
+<a href=https://ntalbs.github.io/2010/removing-rubbish-files/>잡동사니 파일 정리</a>
+</h1>
+</header>
+<section class=post-excerpt>
+<p>
+<p>어제 운영체제를 WinXP에서 Win7으로 바꾸기 위해 기존 파일을 백업하는데 백업해야 할 양이 30 GB에 달했다. 예전에는 5~600 MB면 충분했는데... 컴퓨터를 오래 사용하다보면 온갖 잡동사니 파일이 생기게 마련이다. 이런 것들이 쌓이면 그 양이 어마어마해진다. 다행히 나는 동영상을 모으는 취미가 없다. 동영상까지 모았다면 정말 엄청났을 것이다. 내 디스크에 쌓이는 파일은 다음과 같이 분류할 수 있다.</p>
+</p>
+<p>
+<a class="button is-link" href=https://ntalbs.github.io/2010/removing-rubbish-files/ style=height:28px>
+Read more...
+</a>
+</p>
+</section>
+</article>
+<article class=post>
+<header class=post-header>
+<span class=post-meta>
 <time datetime=2010-08-13 itemprop=datePublished>2010-08-13</time>
 on
 <a href=/tags/%ec%98%81%ec%96%b4/>영어</a>
@@ -244,40 +266,6 @@ Read more...
 </p>
 </section>
 </article>
-<article class=post>
-<header class=post-header>
-<span class=post-meta>
-<time datetime=2010-05-16 itemprop=datePublished>2010-05-16</time>
-on
-<a href=/tags/%eb%a6%ac%ed%8c%a9%ed%84%b0%eb%a7%81/>리팩터링</a>
-</span>
-<h1 class=post-title>
-<a href=https://ntalbs.github.io/2010/duplicated-codes/>코드 중복과 보이스카우트 규칙</a>
-</h1>
-</header>
-<section class=post-excerpt>
-<p>
-<blockquote class=right-align>캠핑 장은 처음 왔을 때보다 더 깨끗하게 해놓고 떠나라!<br>
-보이스카우트 규칙 (클린 코드, p50)
-</blockquote>
-<p>때로는 아주 사소한 코드 중복이 큰 문제를 만드는 경우도 있다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kd>var</span> <span class=nx>fnCallback</span> <span class=o>=</span> <span class=nx>$Fn</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>bSuccess</span><span class=p>,</span> <span class=nx>sMessage</span><span class=p>,</span> <span class=nx>oData</span><span class=p>)</span> <span class=p>{</span>
-  <span class=c1>//...
-</span><span class=c1></span>  <span class=k>if</span> <span class=p>(</span><span class=nx>acrobat</span><span class=p>.</span><span class=nx>isInstalled</span><span class=p>)</span> <span class=p>{</span>
-      <span class=k>this</span><span class=p>.</span><span class=nx>printUrl</span> <span class=o>=</span> <span class=nx>oData</span><span class=p>.</span><span class=nx>redirectURL</span> <span class=o>+</span> <span class=s2>&#34;&amp;isSilent=true&#34;</span><span class=p>;</span>
-  <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
-      <span class=k>this</span><span class=p>.</span><span class=nx>printUrl</span> <span class=o>=</span> <span class=nx>oData</span><span class=p>.</span><span class=nx>redirectURL</span><span class=p>;</span>
-  <span class=p>}</span>
-<span class=p>},</span> <span class=k>this</span><span class=p>).</span><span class=nx>bind</span><span class=p>();</span>
-</code></pre></div><p>중복 코드에 민감한 개발자라면 당장에 중복된 부분이 눈에 들어올 것이다. 4째 줄과 6째 줄에 <code>this.printUrl = oData.redirectURL</code> 부분이 중복이다. 단순한 코드라서 언듯 보기에는 별 문제가 없어 보일는지 모르겠다. 그러나 꼭 그렇지만은 않다. <strong>문제가 생길 가능성이 있다면 꼭 문제가 생긴다.</strong></p>
-</p>
-<p>
-<a class="button is-link" href=https://ntalbs.github.io/2010/duplicated-codes/ style=height:28px>
-Read more...
-</a>
-</p>
-</section>
-</article>
 </main>
 <ul class="pagination pagination-default">
 <li class=page-item>
@@ -305,7 +293,7 @@ Read more...
 <a href=/page/26/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a>
 </li>
 <li class=page-item>
-<a href=/page/30/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
+<a href=/page/31/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
 </li>
 </ul>
 <footer class=page-bottom>
