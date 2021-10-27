@@ -361,15 +361,13 @@ ul.pagination li a {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  filter: brightness(var(--img-brightness));
 }
 .post img.right {
   float: right;
 }
 .post img.invert-safe {
   filter: invert(var(--invert-amt));
-}
-.post img.dim {
-  filter: brightness(var(--img-brightness));
 }
 .post-content,
 .post-excerpt {

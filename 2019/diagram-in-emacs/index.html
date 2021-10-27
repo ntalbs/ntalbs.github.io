@@ -133,7 +133,7 @@ Emacs: 다이어그램 그리기
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">M-x customize-mode &lt;RET&gt;
 plantuml-mode &lt;RET&gt;
 </code></pre></div><p>모드 설정 화면에서 <code>Plantuml Jar Path</code>나 <code>Plantuml Java Command</code>를 설정하면 된다. brew로 설치했다면 <code>Plantuml Java Command</code>에 <code>/usr/local/bin/plantuml</code>를 지정하면 된다.</p>
-<img src="/2019/02-08-diagram-in-emacs/plantuml-emacs.png" class="dim">
+<img src="/2019/02-08-diagram-in-emacs/plantuml-emacs.png">
 <p>PlantUml 언어 문법은 상당히 직관적이다. 클래스 다이어그램, 시퀀스 다이어그램 등의 UML 다이어그램을 쉽게 그릴 수 있다. 자세한 사항은 PlantUml 웹사이트를 참조하기 바란다.</p>
 <p>중간에 새로운 요소를 추가해야 할 경우 다른 다이어그램 요소를 일일히 손으로 이동할 필요 없이 코드를 고친 다음 다이어그램을 다시 생성하면 된다. PNG, SVG뿐 아니라 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="5.947ex" height="2.676ex" style="vertical-align: -0.838ex;" viewBox="0 -791.3 2560.7 1152.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\rm\LaTeX</title>
@@ -152,7 +152,7 @@ plantuml-mode &lt;RET&gt;
 <h2 id="graphviz">Graphviz</h2>
 <p>UML이 아닌 일반 다이어그램을 그리고 싶을 때는 <a href="https://graphviz.gitlab.io/">Graphviz</a>를 활용할 수 있다. Homebrew로 plantuml을 설치했다면 graphviz도 함께 설치되어 있을 것이다. Graphviz만 따로 설치하고 싶은 경우도 역시 Homebrew를 사용할 수 있다.</p>
 <p>Emacs에서는 <a href="https://github.com/ppareit/graphviz-dot-mode">graphviz-dot-mode</a>를 활용할 수 있다. Graphviz에는 <code>dot</code>뿐 아니라 <code>neato</code>, <code>fdp</code>, <code>sfdp</code>, <code>twopi</code>, <code>circo</code> 명령이 있지만, graphviz-dot-mode는 모드 이름이 암시하듯 <code>dot</code>만 지원한다. <code>dot</code>이 아닌 다른 명령을 사용하려면 콘솔에서 직접 명령을 실행해야 한다.</p>
-<img src="/2019/02-08-diagram-in-emacs/g.png" class="dim">
+<img src="/2019/02-08-diagram-in-emacs/g.png">
 <p>Graphviz를 이용하면 위와 같은 복잡한 다이어그램도 아래와 같은 간단한 코드로 생성할 수 있다.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">digraph G {
   rankdir = LR
