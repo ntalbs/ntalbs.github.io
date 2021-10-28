@@ -155,7 +155,7 @@ JSON 파서 구현 1 - 스캐너
     <span class=k>return</span> <span class=n>source</span><span class=o>.</span><span class=na>charAt</span><span class=o>(</span><span class=n>current</span><span class=o>);</span>
   <span class=o>}</span>
 </code></pre></div><p><code>peek()</code>는 <code>advance()</code>와 비슷하지만 <code>current</code> 인덱스를 증가시키지 않는다.</p>
-<h3 id=숫자-리터럴>숫자 리터럴</h3>
+<h2 id=숫자-리터럴>숫자 리터럴</h2>
 <p>숫자 리터럴을 처리하기 위해 <code>scanToken()</code>의 <code>switch</code>에 다음을 추가한다.</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java>      <span class=k>case</span> <span class=sc>&#39;-&#39;</span><span class=o>,</span> <span class=sc>&#39;0&#39;</span><span class=o>,</span> <span class=sc>&#39;1&#39;</span><span class=o>,</span> <span class=sc>&#39;2&#39;</span><span class=o>,</span> <span class=sc>&#39;3&#39;</span><span class=o>,</span> <span class=sc>&#39;4&#39;</span><span class=o>,</span>
            <span class=sc>&#39;5&#39;</span><span class=o>,</span> <span class=sc>&#39;6&#39;</span><span class=o>,</span> <span class=sc>&#39;7&#39;</span><span class=o>,</span> <span class=sc>&#39;8&#39;</span><span class=o>,</span> <span class=sc>&#39;9&#39;</span> <span class=o>-&gt;</span> <span class=n>number</span><span class=o>();</span>
