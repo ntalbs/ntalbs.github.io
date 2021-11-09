@@ -50,6 +50,7 @@ function makeDark () {
   root.style.setProperty('--inline-code-bg', "#212d39")
   root.style.setProperty('--box-fg', "#aaa")
   root.style.setProperty('--box-bg', "#212d39")
+  root.style.setProperty('--progress-bg', 'rgba(0,0,0,0.5)')
 
   root.style.setProperty('--archive-ul', "#888")
   root.style.setProperty('--post-meta', "#666")
@@ -58,7 +59,7 @@ function makeDark () {
   root.style.setProperty('--line', "#444")
   root.style.setProperty('--circle', "#444")
 
-  root.style.setProperty('--navbar-bg', "#242933")
+  root.style.setProperty('--navbar-bg', "#1c2733")
   root.style.setProperty('--footer-bg', "#242933")
 
   root.style.setProperty('--invert-amt', '0.84')
@@ -74,6 +75,7 @@ function makeLight () {
   root.style.setProperty('--inline-code-bg', "#eee")
   root.style.setProperty('--box-fg', "#808080")
   root.style.setProperty('--box-bg', "#f5f5f5")
+  root.style.setProperty('--progress-bg', 'rgba(80,80,80,0.5)')
 
   root.style.setProperty('--archive-ul', "#444")
   root.style.setProperty('--post-meta', "#aaa")
@@ -159,7 +161,7 @@ function xcode() {
 
 function monokai () {
   root.style.setProperty('--Foreground', '#f8f8f2')
-  root.style.setProperty('--Background', '#212d39')
+  root.style.setProperty('--Background', '#1c2733')
   root.style.setProperty('--Error', '#1e0010')
   root.style.setProperty('--Keyword', '#66d9ef')
   root.style.setProperty('--KeywordConstant', '#66d9ef')

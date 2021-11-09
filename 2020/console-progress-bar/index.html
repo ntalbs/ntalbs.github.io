@@ -62,20 +62,20 @@ on
 </span><span class=w>  </span><span class=kd>let</span><span class=w> </span><span class=n>complete_char</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;=&#34;</span><span class=p>;</span><span class=w>
 </span><span class=w>  </span><span class=kd>let</span><span class=w> </span><span class=n>pause_time</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>time</span>::<span class=n>Duration</span>::<span class=n>from_millis</span><span class=p>(</span><span class=mi>50</span><span class=p>);</span><span class=w>
 </span><span class=w>
-</span><span class=w>  </span><span class=n>println</span><span class=o>!</span><span class=p>(</span><span class=s>&#34;Start:&#34;</span><span class=p>);</span><span class=w>
-</span><span class=w>  </span><span class=n>print</span><span class=o>!</span><span class=p>(</span><span class=s>&#34;\u{001b}[?25l&#34;</span><span class=p>);</span><span class=w>      </span><span class=c1>// hide cursor
-</span><span class=c1></span><span class=w>  </span><span class=n>print</span><span class=o>!</span><span class=p>(</span><span class=s>&#34;\u{001b}[34m&#34;</span><span class=p>);</span><span class=w>       </span><span class=c1>// change text color to yellow
-</span><span class=c1></span><span class=w>  </span><span class=k>for</span><span class=w> </span><span class=n>_i</span><span class=w> </span><span class=k>in</span><span class=w> </span><span class=mi>1</span><span class=p>..</span><span class=o>=</span><span class=mi>100</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>  </span><span class=fm>println!</span><span class=p>(</span><span class=s>&#34;Start:&#34;</span><span class=p>);</span><span class=w>
+</span><span class=w>  </span><span class=fm>print!</span><span class=p>(</span><span class=s>&#34;\u{001b}[?25l&#34;</span><span class=p>);</span><span class=w>      </span><span class=c1>// hide cursor
+</span><span class=c1></span><span class=w>  </span><span class=fm>print!</span><span class=p>(</span><span class=s>&#34;\u{001b}[34m&#34;</span><span class=p>);</span><span class=w>       </span><span class=c1>// change text color to yellow
+</span><span class=c1></span><span class=w>  </span><span class=k>for</span><span class=w> </span><span class=n>_i</span><span class=w> </span><span class=k>in</span><span class=w> </span><span class=mi>1</span><span class=o>..=</span><span class=mi>100</span><span class=w> </span><span class=p>{</span><span class=w>
 </span><span class=w>    </span><span class=kd>let</span><span class=w> </span><span class=n>complete</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>complete_char</span><span class=p>.</span><span class=n>repeat</span><span class=p>(</span><span class=n>_i</span><span class=o>/</span><span class=mi>2</span><span class=p>);</span><span class=w>
-</span><span class=w>    </span><span class=n>print</span><span class=o>!</span><span class=p>(</span><span class=s>&#34;\rProgress: |{:-&lt;50}| {:3}%&#34;</span><span class=p>,</span><span class=w> </span><span class=n>complete</span><span class=p>,</span><span class=w> </span><span class=n>_i</span><span class=p>);</span><span class=w>
+</span><span class=w>    </span><span class=fm>print!</span><span class=p>(</span><span class=s>&#34;\rProgress: |{:-&lt;50}| {:3}%&#34;</span><span class=p>,</span><span class=w> </span><span class=n>complete</span><span class=p>,</span><span class=w> </span><span class=n>_i</span><span class=p>);</span><span class=w>
 </span><span class=w>
 </span><span class=w>    </span><span class=n>stdout</span><span class=p>().</span><span class=n>flush</span><span class=p>().</span><span class=n>unwrap</span><span class=p>();</span><span class=w>
 </span><span class=w>    </span><span class=n>thread</span>::<span class=n>sleep</span><span class=p>(</span><span class=n>pause_time</span><span class=p>);</span><span class=w>
 </span><span class=w>  </span><span class=p>}</span><span class=w>
 </span><span class=w>
-</span><span class=w>  </span><span class=n>print</span><span class=o>!</span><span class=p>(</span><span class=s>&#34;\u{001b}[0m&#34;</span><span class=p>);</span><span class=w>        </span><span class=c1>// reset color
-</span><span class=c1></span><span class=w>  </span><span class=n>println</span><span class=o>!</span><span class=p>(</span><span class=s>&#34;\nFinished.&#34;</span><span class=p>);</span><span class=w>
-</span><span class=w>  </span><span class=n>print</span><span class=o>!</span><span class=p>(</span><span class=s>&#34;\u{001b}[?25h&#34;</span><span class=p>);</span><span class=w>      </span><span class=c1>// show cursor
+</span><span class=w>  </span><span class=fm>print!</span><span class=p>(</span><span class=s>&#34;\u{001b}[0m&#34;</span><span class=p>);</span><span class=w>        </span><span class=c1>// reset color
+</span><span class=c1></span><span class=w>  </span><span class=fm>println!</span><span class=p>(</span><span class=s>&#34;\nFinished.&#34;</span><span class=p>);</span><span class=w>
+</span><span class=w>  </span><span class=fm>print!</span><span class=p>(</span><span class=s>&#34;\u{001b}[?25h&#34;</span><span class=p>);</span><span class=w>      </span><span class=c1>// show cursor
 </span><span class=c1></span><span class=p>}</span><span class=w>
 </span></code></pre></div><p>여기서는 프로그레스 바를 그릴 때는 러스트의 포매팅 기능을 사용했지만, 다른 방법을 사용해도 된다. 프로그레스 바를 업데이트한 다음 버퍼를 <code>flush</code> 해야 화면이 바로바로 갱신된다.</p>
 <p>프로그래밍 언어별로 콘솔에서 프로그레스 바를 표시하게 해 주는 라이브러리가 이미 개발되어 있다. 프로그레스 바 모양을 쉽게 바꿀 수 있고 사용하기 편리한 프로그래밍 인터페이스도 제공한다. 콘솔에 프로그레스 바를 그릴 일이 있다면 아마도 라이브러리를 사용하는 편이 나을 것이다.</p>

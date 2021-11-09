@@ -383,7 +383,7 @@ ul.pagination li a {
   position: fixed;
   height: 8px;
   width: 100%;
-  background: rgba(0,0,0,0.2);
+  background: var(--progress-bg);
   z-index: 900;
   -moz-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
