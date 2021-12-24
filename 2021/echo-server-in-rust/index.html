@@ -1,0 +1,330 @@
+<!doctype html><html>
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script>
+<meta charset=utf-8>
+<meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
+<meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Rust Echo 서버 @ntalbs' stuff</title>
+<link rel="shortcut icon" href=/images/favicon.ico>
+<link rel=stylesheet href=/css/style.css>
+<link rel=stylesheet href=/css/highlight.css>
+</head>
+<body>
+<div id=progress>
+<div id=bar></div>
+<div class=container>
+<div id=scroll-title>Rust Echo 서버</div>
+</div>
+</div>
+<nav class=navbar role=navigation>
+<div class=container>
+<div class=navbar-header>
+<button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
+<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
+</div>
+<div class="navbar-items collapsed" id=nav-items>
+<ul>
+<li><a class=unselectable href=/archive/>Archive</a></li>
+<li><a class=unselectable href=/tags/>Tags</a></li>
+<li><a class=unselectable href=/about/>About</a></li>
+<li><a id=mode-switch class=unselectable href=#></a></li>
+</ul>
+</div>
+</div>
+</nav>
+<header class=page-head>
+<div class=container>
+<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+</div>
+</header>
+<main class=container role=main>
+<article class=post>
+<header>
+<p class=post-meta>
+<time datetime=2021-12-25 itemprop=datePublished>2021-12-25</time>
+on
+<a href=/tags/rust/>rust</a>
+</p>
+<h1 class=post-title>
+Rust Echo 서버
+</h1>
+</header>
+<section class=post-content>
+<p>요즘 <a href=https://www.rust-lang.org/>Rust</a>를 조금씩 보고 있는데, 갑자기 Rust로 에코 서버를 만들어보면 어떨까 하는 생각이 들었다. 에코 서버는 요청을 그대로 리턴하는 서버를 말하며, 보통 클라이언트가 서버에 제대로 연결되었는지 테스트하는 용도로 사용된다.</p>
+<p>HTTP 에코 서버는 HTTP 요청에 포함된 메서드, 요청 경로, 헤더, 쿼리 파라미터, 본문(body)을 HTTP 응답에 모두 포함시켜 리턴한다. 서버 응답을 보면 클라이언트가 보낸 요청을 재구성할 수 있다.</p>
+<h2 id=actix>Actix</h2>
+<p>Rust로 웹 서버를 만들 때 사용할 수 있는 프레임워크가 몇 가지 있는데, 그 중 <a href=https://actix.rs>Actix</a>를 택했다. 다른 프레임워크를 모두 둘러본 후 결정한 것은 아니고, Actix가 언듯 보기에 괜찮아 보였고 이름이 마음에 들었다.</p>
+<p>Actix를 사용하려면 먼저 <code>Cargo.toml</code>의 <code>[dependencies]</code> 섹션에 <code>antix-web</code> 종속성을 추가해야 한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=p>[</span><span class=nx>dependencies</span><span class=p>]</span>
+<span class=nx>actix-web</span> <span class=p>=</span> <span class=s2>&#34;3&#34;</span>
+</code></pre></div><p>그리고 다음과 같이 <code>main</code> 함수를 정의한다. <code>App</code> 인스턴스를 생성하고, <code>App::service</code>로 <code>echo</code> 핸들러를 등록한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-rust data-lang=rust><span class=cp>#[actix_web::main]</span><span class=w>
+</span><span class=w></span><span class=k>async</span><span class=w> </span><span class=k>fn</span> <span class=nf>main</span><span class=p>()</span><span class=w> </span>-&gt; <span class=nc>std</span>::<span class=n>io</span>::<span class=nb>Result</span><span class=o>&lt;</span><span class=p>()</span><span class=o>&gt;</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>    </span><span class=kd>let</span><span class=w> </span><span class=n>server</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>HttpServer</span>::<span class=n>new</span><span class=p>(</span><span class=o>||</span><span class=w> </span><span class=n>App</span>::<span class=n>new</span><span class=p>().</span><span class=n>service</span><span class=p>(</span><span class=n>echo</span><span class=p>));</span><span class=w>
+</span><span class=w>    </span><span class=fm>println!</span><span class=p>(</span><span class=s>&#34;Serving on http://localhost:8080&#34;</span><span class=p>);</span><span class=w>
+</span><span class=w>
+</span><span class=w>    </span><span class=n>server</span><span class=w>
+</span><span class=w>        </span><span class=p>.</span><span class=n>bind</span><span class=p>(</span><span class=s>&#34;127.0.0.1:8080&#34;</span><span class=p>)</span><span class=o>?</span><span class=w>
+</span><span class=w>        </span><span class=p>.</span><span class=n>run</span><span class=p>()</span><span class=w>
+</span><span class=w>        </span><span class=p>.</span><span class=k>await</span><span class=w>
+</span><span class=w></span><span class=p>}</span><span class=w>
+</span></code></pre></div><h2 id=에코-핸들러>에코 핸들러</h2>
+<p><code>echo</code> 핸들러는 다음과 같다. 모든 HTTP 요청을 이 핸들러에서 처리할 것이므로 경로에 <code>/*</code>를 설정했다. 핸들러에서 처리할 HTTP 메서드를 이런 식으로 나열하는 것이 마음에 썩 들지는 않지만, HTTP 메서드가 수백 개씩 있는 것도 아니니 크게 문제될 것 없다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-rust data-lang=rust><span class=cp>#[route(
+</span><span class=cp>    </span><span class=s>&#34;/*&#34;</span><span class=cp>,
+</span><span class=cp>    method = </span><span class=s>&#34;GET&#34;</span><span class=cp>,
+</span><span class=cp>    method = </span><span class=s>&#34;POST&#34;</span><span class=cp>,
+</span><span class=cp>    method = </span><span class=s>&#34;PUT&#34;</span><span class=cp>,
+</span><span class=cp>    method = </span><span class=s>&#34;DELETE&#34;</span><span class=cp>,
+</span><span class=cp>    method = </span><span class=s>&#34;HEAD&#34;</span><span class=cp>,
+</span><span class=cp>    method = </span><span class=s>&#34;CONNECT&#34;</span><span class=cp>,
+</span><span class=cp>    method = </span><span class=s>&#34;OPTIONS&#34;</span><span class=cp>,
+</span><span class=cp>    method = </span><span class=s>&#34;TRACE&#34;</span><span class=cp>,
+</span><span class=cp>    method = </span><span class=s>&#34;PATCH&#34;</span><span class=cp>
+</span><span class=cp>)]</span><span class=w>
+</span><span class=w></span><span class=k>async</span><span class=w> </span><span class=k>fn</span> <span class=nf>echo</span><span class=p>(</span><span class=n>req</span>: <span class=nc>HttpRequest</span><span class=p>,</span><span class=w> </span><span class=n>body</span>: <span class=nb>String</span><span class=p>)</span><span class=w> </span>-&gt; <span class=nc>impl</span><span class=w> </span><span class=n>Responder</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>    </span><span class=kd>let</span><span class=w> </span><span class=n>response</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>EchoResponse</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>        </span><span class=n>method</span>: <span class=nc>req</span><span class=p>.</span><span class=n>method</span><span class=p>().</span><span class=n>as_str</span><span class=p>(),</span><span class=w>
+</span><span class=w>        </span><span class=n>path</span>: <span class=nc>req</span><span class=p>.</span><span class=n>path</span><span class=p>(),</span><span class=w>
+</span><span class=w>        </span><span class=n>queries</span>: <span class=nc>queries_as_map</span><span class=p>(</span><span class=n>req</span><span class=p>.</span><span class=n>query_string</span><span class=p>()),</span><span class=w>
+</span><span class=w>        </span><span class=n>headers</span>: <span class=nc>headers_as_map</span><span class=p>(</span><span class=n>req</span><span class=p>.</span><span class=n>headers</span><span class=p>()),</span><span class=w>
+</span><span class=w>        </span><span class=n>body</span><span class=p>,</span><span class=w>
+</span><span class=w>    </span><span class=p>};</span><span class=w>
+</span><span class=w>
+</span><span class=w>    </span><span class=n>HttpResponse</span>::<span class=nb>Ok</span><span class=p>()</span><span class=w>
+</span><span class=w>        </span><span class=p>.</span><span class=n>header</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json&#34;</span><span class=p>)</span><span class=w>
+</span><span class=w>        </span><span class=p>.</span><span class=n>body</span><span class=p>(</span><span class=n>serde_json</span>::<span class=n>to_string</span><span class=p>(</span><span class=o>&amp;</span><span class=n>response</span><span class=p>).</span><span class=n>unwrap</span><span class=p>())</span><span class=w>
+</span><span class=w></span><span class=p>}</span><span class=w>
+</span></code></pre></div><p><code>EchoResponse</code> 구조체를 만들고, <code>HttpRequest</code>로부터 필요한 데이터를 얻어 필드를 채운 다음, <code>serde_json::to_string()</code>을 이용해 JSON으로 변환해 리턴한다. Serde JSON은 <a href=#%EC%97%90%EC%BD%94-%EC%9D%91%EB%8B%B5>다음 섹션</a>에서 자세히 설명한다.</p>
+<p>요청 본문을 <code>Bytes</code>로 받을 수도 있지만, 여기서는 문자열로 변환해 응답 JSON에 넣을 것이므로 그냥 <code>String</code>으로 받았다. 테스트해 보지는 않았지만, 요청 본문이 바이너리 데이터라면 아마 에러가 발생할 것이다.</p>
+<h2 id=에코-응답>에코 응답</h2>
+<p>응답으로 메서드, 경로, 쿼리 파라미터, 헤더, 본문을 포함한 JSON을 리턴할 것이다. 데이터를 JSON으로 렌더링 하는 데는 <a href=https://github.com/serde-rs/json>Serde JSON</a>을 쓰면 된다. Serde JSON을 쓰려면 <code>Cargo.toml</code>에 다음을 추가한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=p>[</span><span class=nx>dependencies</span><span class=p>]</span>
+<span class=p>...</span>
+<span class=nx>serde</span> <span class=p>=</span> <span class=s2>&#34;1&#34;</span>
+<span class=nx>serde_json</span> <span class=p>=</span> <span class=s2>&#34;1&#34;</span>
+</code></pre></div><p><code>json!</code> 매크로를 사용하면 JSON을 아주 간단히 만들 수 있다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-rust data-lang=rust><span class=w>    </span><span class=kd>let</span><span class=w> </span><span class=n>response</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>json</span><span class=o>!</span><span class=p>({</span><span class=w>
+</span><span class=w>        </span><span class=s>&#34;method&#34;</span>: <span class=nc>req</span><span class=p>.</span><span class=n>method</span><span class=p>().</span><span class=n>as_str</span><span class=p>(),</span><span class=w>
+</span><span class=w>        </span><span class=s>&#34;path&#34;</span>: <span class=nc>req</span><span class=p>.</span><span class=n>path</span><span class=p>(),</span><span class=w>
+</span><span class=w>        </span><span class=s>&#34;queries&#34;</span>: <span class=nc>queries_as_map</span><span class=p>(</span><span class=n>req</span><span class=p>.</span><span class=n>query_string</span><span class=p>()),</span><span class=w>
+</span><span class=w>        </span><span class=s>&#34;headers&#34;</span>: <span class=nc>headers_as_map</span><span class=p>(</span><span class=n>req</span><span class=p>.</span><span class=n>headers</span><span class=p>()),</span><span class=w>
+</span><span class=w>        </span><span class=s>&#34;body&#34;</span>: <span class=nc>body</span><span class=p>,</span><span class=w>
+</span><span class=w>    </span><span class=p>});</span><span class=w>
+</span><span class=w>    </span><span class=o>..</span><span class=p>.</span><span class=w>
+</span></code></pre></div><p>처음에는 이렇게 했는데, 응답의 키 순서가 엉망이 되는 문제가 있었다. <code>method</code>, <code>path</code>, ... 순으로 나오도록 응답을 만들고 싶은데, <code>json!</code>으로 생성된 JSON은 순서가 제멋대로 바뀌었다. 아마 내부적으로 <code>HashMap</code>을 사용해 그런 것 같다. 여기까지는 이해를 했지만, 매 요청마다 키 순서가 마음대로 바뀌는 것까지는 참을 수 없었다.</p>
+<p>내가 원하는 키 순서를 강제하기 위해 다음과 같이 구조체를 만들었다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-rust data-lang=rust><span class=k>struct</span> <span class=nc>EchoResponse</span><span class=o>&lt;&#39;</span><span class=na>a</span><span class=o>&gt;</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>    </span><span class=n>method</span>: <span class=kp>&amp;</span><span class=o>&#39;</span><span class=na>a</span> <span class=kt>str</span><span class=p>,</span><span class=w>
+</span><span class=w>    </span><span class=n>path</span>: <span class=kp>&amp;</span><span class=o>&#39;</span><span class=na>a</span> <span class=kt>str</span><span class=p>,</span><span class=w>
+</span><span class=w>    </span><span class=n>queries</span>: <span class=nc>BTreeMap</span><span class=o>&lt;&amp;&#39;</span><span class=na>a</span><span class=w> </span><span class=kt>str</span><span class=p>,</span><span class=w> </span><span class=n>SingleOrMulti</span><span class=o>&lt;&#39;</span><span class=na>a</span><span class=o>&gt;&gt;</span><span class=p>,</span><span class=w>
+</span><span class=w>    </span><span class=n>headers</span>: <span class=nc>BTreeMap</span><span class=o>&lt;&amp;&#39;</span><span class=na>a</span><span class=w> </span><span class=kt>str</span><span class=p>,</span><span class=w> </span><span class=n>SingleOrMulti</span><span class=o>&lt;&#39;</span><span class=na>a</span><span class=o>&gt;&gt;</span><span class=p>,</span><span class=w>
+</span><span class=w>    </span><span class=n>body</span>: <span class=nb>String</span><span class=p>,</span><span class=w>
+</span><span class=w></span><span class=p>}</span><span class=w>
+</span></code></pre></div><p>헤더와 쿼리 파라미터 키가 알파벳 순으로 정렬되게 하기 위해 <code>queries</code>와 <code>headers</code>의 데이터 타입을 <code>HashMap</code> 대신 <code>BTreeMap</code>으로 했다. <code>SingleOrMulti</code>에 대해서는 <a href=#%ED%97%A4%EB%8D%94>헤더</a> 섹션에서 설명한다.</p>
+<p>여기에 <code>#[derive(Serialize)]</code>를 추가하고 <code>json!</code> 매크로를 사용할 수도 있지만, 이 경우에는 키가 알파벳 순으로 정렬된다. 요청마다 키 순서가 바뀌는 것보다는 훨씬 낫지만, 여전히 내가 원하는 순서는 아니다. 다음과 같이 <code>EchoResponse</code>에 대해 <code>Serialize</code>를 구현하면 키 순서가 항상 <code>method</code>, <code>path</code>, <code>queries</code>, ... 순으로 나온다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-rust data-lang=rust><span class=k>impl</span><span class=o>&lt;&#39;</span><span class=na>a</span><span class=o>&gt;</span><span class=w> </span><span class=n>Serialize</span><span class=w> </span><span class=k>for</span><span class=w> </span><span class=n>EchoResponse</span><span class=o>&lt;&#39;</span><span class=na>a</span><span class=o>&gt;</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>    </span><span class=k>fn</span> <span class=nf>serialize</span><span class=o>&lt;</span><span class=n>S</span><span class=o>&gt;</span><span class=p>(</span><span class=o>&amp;</span><span class=bp>self</span><span class=p>,</span><span class=w> </span><span class=n>serializer</span>: <span class=nc>S</span><span class=p>)</span><span class=w> </span>-&gt; <span class=nb>Result</span><span class=o>&lt;</span><span class=n>S</span>::<span class=nb>Ok</span><span class=p>,</span><span class=w> </span><span class=n>S</span>::<span class=n>Error</span><span class=o>&gt;</span><span class=w>
+</span><span class=w>    </span><span class=k>where</span><span class=w>
+</span><span class=w>        </span><span class=n>S</span>: <span class=nc>serde</span>::<span class=n>Serializer</span><span class=p>,</span><span class=w>
+</span><span class=w>    </span><span class=p>{</span><span class=w>
+</span><span class=w>        </span><span class=kd>let</span><span class=w> </span><span class=k>mut</span><span class=w> </span><span class=n>state</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>serializer</span><span class=p>.</span><span class=n>serialize_struct</span><span class=p>(</span><span class=s>&#34;Echo&#34;</span><span class=p>,</span><span class=w> </span><span class=mi>5</span><span class=p>)</span><span class=o>?</span><span class=p>;</span><span class=w>
+</span><span class=w>        </span><span class=n>state</span><span class=p>.</span><span class=n>serialize_field</span><span class=p>(</span><span class=s>&#34;method&#34;</span><span class=p>,</span><span class=w> </span><span class=o>&amp;</span><span class=bp>self</span><span class=p>.</span><span class=n>method</span><span class=p>)</span><span class=o>?</span><span class=p>;</span><span class=w>
+</span><span class=w>        </span><span class=n>state</span><span class=p>.</span><span class=n>serialize_field</span><span class=p>(</span><span class=s>&#34;path&#34;</span><span class=p>,</span><span class=w> </span><span class=o>&amp;</span><span class=bp>self</span><span class=p>.</span><span class=n>path</span><span class=p>)</span><span class=o>?</span><span class=p>;</span><span class=w>
+</span><span class=w>        </span><span class=n>state</span><span class=p>.</span><span class=n>serialize_field</span><span class=p>(</span><span class=s>&#34;queries&#34;</span><span class=p>,</span><span class=w> </span><span class=o>&amp;</span><span class=bp>self</span><span class=p>.</span><span class=n>queries</span><span class=p>)</span><span class=o>?</span><span class=p>;</span><span class=w>
+</span><span class=w>        </span><span class=n>state</span><span class=p>.</span><span class=n>serialize_field</span><span class=p>(</span><span class=s>&#34;headers&#34;</span><span class=p>,</span><span class=w> </span><span class=o>&amp;</span><span class=bp>self</span><span class=p>.</span><span class=n>headers</span><span class=p>)</span><span class=o>?</span><span class=p>;</span><span class=w>
+</span><span class=w>        </span><span class=n>state</span><span class=p>.</span><span class=n>serialize_field</span><span class=p>(</span><span class=s>&#34;body&#34;</span><span class=p>,</span><span class=w> </span><span class=o>&amp;</span><span class=bp>self</span><span class=p>.</span><span class=n>body</span><span class=p>)</span><span class=o>?</span><span class=p>;</span><span class=w>
+</span><span class=w>        </span><span class=n>state</span><span class=p>.</span><span class=n>end</span><span class=p>()</span><span class=w>
+</span><span class=w>    </span><span class=p>}</span><span class=w>
+</span><span class=w></span><span class=p>}</span><span class=w>
+</span></code></pre></div><h2 id=헤더>헤더</h2>
+<p>Actix에서는 <code>HttpRequest</code>에 정의된 <code>headers()</code> 메서드로 해더 맵을 얻을 수 있다. HTTP 요청에서 헤더는 중복될 수 있으므로 <code>headers()</code>가 리턴하는 <code>HeaderMap</code>은 멀티맵이다. Serde가 <code>HeadMap</code>을 적절히 JSON으로 렌더링해준다면 문제가 쉽겠지만, 안타깝게 <code>HeaderMap</code>은 <code>Serialize</code>를 구현하지 않았다.</p>
+<p>Serde는 이미 <code>HashMap</code>을 JSON으로 렌더링할 수 있으므로, <code>HeaderMap</code>을 <code>HashMap&lt;String, String></code>으로 바꾸는 걸 고려해 볼 수도 있다. 그러나 <code>HeaderMap</code>은 멀티맵, 즉 키 하나에 여러 개의 값이 연결될 수 있으므로 적절해보이지 않는다. Java에서라면 <code>Map&lt;String, Object></code>와 같이 값의 타입을 <code>Object</code>로 지정하고, 여기에 <code>String</code>이나 <code>List&lt;String></code>을 넣는 방법을 썼을텐데, Rust에서는 그렇게 할 수 없다.</p>
+<p>내가 생각한 방법은 다음과 같은 <code>enum</code>을 만드는 것이었다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-rust data-lang=rust><span class=k>enum</span> <span class=nc>SingleOrMulti</span><span class=o>&lt;&#39;</span><span class=na>a</span><span class=o>&gt;</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>    </span><span class=n>Single</span><span class=p>(</span><span class=o>&amp;&#39;</span><span class=na>a</span><span class=w> </span><span class=kt>str</span><span class=p>),</span><span class=w>
+</span><span class=w>    </span><span class=n>Multi</span><span class=p>(</span><span class=nb>Vec</span><span class=o>&lt;&amp;&#39;</span><span class=na>a</span><span class=w> </span><span class=kt>str</span><span class=o>&gt;</span><span class=p>),</span><span class=w>
+</span><span class=w></span><span class=p>}</span><span class=w>
+</span></code></pre></div><p>이 <code>enum</code>이 있으면 <code>HeaderMap</code>을 <code>HashMap&lt;&str, SingleOrMulti></code>로 변환하면 된다. 물론 다음과 같이 <code>SingleOrMulti</code>에 대해 <code>Serialize</code>를 구현해줘야 한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-rust data-lang=rust><span class=k>impl</span><span class=w> </span><span class=o>&lt;&#39;</span><span class=na>a</span><span class=o>&gt;</span><span class=w> </span><span class=n>Serialize</span><span class=w> </span><span class=k>for</span><span class=w> </span><span class=n>SingleOrMulti</span><span class=o>&lt;&#39;</span><span class=na>a</span><span class=o>&gt;</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>    </span><span class=k>fn</span> <span class=nf>serialize</span><span class=o>&lt;</span><span class=n>S</span><span class=o>&gt;</span><span class=p>(</span><span class=o>&amp;</span><span class=bp>self</span><span class=p>,</span><span class=w> </span><span class=n>serializer</span>: <span class=nc>S</span><span class=p>)</span><span class=w> </span>-&gt; <span class=nb>Result</span><span class=o>&lt;</span><span class=n>S</span>::<span class=nb>Ok</span><span class=p>,</span><span class=w> </span><span class=n>S</span>::<span class=n>Error</span><span class=o>&gt;</span><span class=w>
+</span><span class=w>    </span><span class=k>where</span><span class=w>
+</span><span class=w>        </span><span class=n>S</span>: <span class=nc>serde</span>::<span class=n>Serializer</span><span class=w>
+</span><span class=w>    </span><span class=p>{</span><span class=w>
+</span><span class=w>        </span><span class=k>match</span><span class=w> </span><span class=bp>self</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>            </span><span class=n>SingleOrMulti</span>::<span class=n>Single</span><span class=p>(</span><span class=n>v</span><span class=p>)</span><span class=w> </span><span class=o>=&gt;</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>                </span><span class=n>serializer</span><span class=p>.</span><span class=n>serialize_str</span><span class=p>(</span><span class=n>v</span><span class=p>)</span><span class=w>
+</span><span class=w>            </span><span class=p>},</span><span class=w>
+</span><span class=w>            </span><span class=n>SingleOrMulti</span>::<span class=n>Multi</span><span class=p>(</span><span class=n>vs</span><span class=p>)</span><span class=w> </span><span class=o>=&gt;</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>                </span><span class=kd>let</span><span class=w> </span><span class=k>mut</span><span class=w> </span><span class=n>seq</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>serializer</span><span class=p>.</span><span class=n>serialize_seq</span><span class=p>(</span><span class=nb>Some</span><span class=p>(</span><span class=n>vs</span><span class=p>.</span><span class=n>len</span><span class=p>()))</span><span class=o>?</span><span class=p>;</span><span class=w>
+</span><span class=w>                </span><span class=k>for</span><span class=w> </span><span class=n>e</span><span class=w> </span><span class=k>in</span><span class=w> </span><span class=n>vs</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>                    </span><span class=n>seq</span><span class=p>.</span><span class=n>serialize_element</span><span class=p>(</span><span class=n>e</span><span class=p>)</span><span class=o>?</span><span class=p>;</span><span class=w>
+</span><span class=w>                </span><span class=p>}</span><span class=w>
+</span><span class=w>                </span><span class=n>seq</span><span class=p>.</span><span class=n>end</span><span class=p>()</span><span class=w>
+</span><span class=w>            </span><span class=p>}</span><span class=w>
+</span><span class=w>        </span><span class=p>}</span><span class=w>
+</span><span class=w>    </span><span class=p>}</span><span class=w>
+</span><span class=w></span><span class=p>}</span><span class=w>
+</span></code></pre></div><p><code>HeaderMap</code>을 <code>HashMap&lt;&str, SingleOrMulti></code>로 변환할 수도 있지만, <code>HashMap</code>을 사용할 경우 키 순서가 요청마다 임의로 바뀌어 보기 좋지 않다. 헤더 이름이 알파벳 순으로 정렬되도록 <code>BTreeMap</code>을 사용한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-rust data-lang=rust><span class=k>fn</span> <span class=nf>headers_as_map</span><span class=p>(</span><span class=n>headers</span>: <span class=kp>&amp;</span><span class=nc>HeaderMap</span><span class=p>)</span><span class=w> </span>-&gt; <span class=nc>BTreeMap</span><span class=o>&lt;&amp;</span><span class=kt>str</span><span class=p>,</span><span class=w> </span><span class=n>SingleOrMulti</span><span class=o>&gt;</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>    </span><span class=kd>let</span><span class=w> </span><span class=k>mut</span><span class=w> </span><span class=n>ret</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>BTreeMap</span>::<span class=n>new</span><span class=p>();</span><span class=w>
+</span><span class=w>    </span><span class=k>for</span><span class=w> </span><span class=n>key</span><span class=w> </span><span class=k>in</span><span class=w> </span><span class=n>headers</span><span class=p>.</span><span class=n>keys</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>        </span><span class=kd>let</span><span class=w> </span><span class=n>vs</span>: <span class=nb>Vec</span><span class=o>&lt;&amp;</span><span class=kt>str</span><span class=o>&gt;</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>headers</span><span class=p>.</span><span class=n>get_all</span><span class=p>(</span><span class=n>key</span><span class=p>).</span><span class=n>into_iter</span><span class=p>()</span><span class=w>
+</span><span class=w>            </span><span class=p>.</span><span class=n>map</span><span class=p>(</span><span class=o>|</span><span class=n>v</span><span class=o>|</span><span class=w> </span><span class=n>v</span><span class=p>.</span><span class=n>to_str</span><span class=p>().</span><span class=n>unwrap_or</span><span class=p>(</span><span class=s>&#34;&lt;&lt;Error: Contains Non-visible ASCII characters&gt;&gt;&#34;</span><span class=p>))</span><span class=w>
+</span><span class=w>            </span><span class=p>.</span><span class=n>collect</span><span class=p>();</span><span class=w>
+</span><span class=w>
+</span><span class=w>        </span><span class=kd>let</span><span class=w> </span><span class=n>k</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>key</span><span class=p>.</span><span class=n>as_str</span><span class=p>();</span><span class=w>
+</span><span class=w>        </span><span class=kd>let</span><span class=w> </span><span class=n>v</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>if</span><span class=w> </span><span class=n>vs</span><span class=p>.</span><span class=n>len</span><span class=p>()</span><span class=w> </span><span class=o>&gt;</span><span class=w> </span><span class=mi>1</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>            </span><span class=n>SingleOrMulti</span>::<span class=n>Multi</span><span class=p>(</span><span class=n>vs</span><span class=p>)</span><span class=w>
+</span><span class=w>        </span><span class=p>}</span><span class=w> </span><span class=k>else</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>            </span><span class=n>SingleOrMulti</span>::<span class=n>Single</span><span class=p>(</span><span class=n>vs</span><span class=p>[</span><span class=mi>0</span><span class=p>])</span><span class=w>
+</span><span class=w>        </span><span class=p>};</span><span class=w>
+</span><span class=w>        </span><span class=n>ret</span><span class=p>.</span><span class=n>insert</span><span class=p>(</span><span class=n>k</span><span class=p>,</span><span class=w> </span><span class=n>v</span><span class=p>);</span><span class=w>
+</span><span class=w>    </span><span class=p>}</span><span class=w>
+</span><span class=w>    </span><span class=n>ret</span><span class=w>
+</span><span class=w></span><span class=p>}</span><span class=w>
+</span></code></pre></div><h2 id=쿼리-파라미터>쿼리 파라미터</h2>
+<p>Actix에 <code>HeaderMap</code>처럼 <code>QueryMap</code> 같은 게 있을 줄 알았는데 찾지 못했다. 쿼리 스트링은 <code>HttpRequest</code>의 <code>query_string()</code> 메서드로 얻을 수 있다. 여기서는 쿼리 스트링을 <code>serde_urlencoded::from_str()</code>로 파싱해 처리하려 한다.</p>
+<p>다음과 같이 <code>serde_urlencoded</code>를 <code>Cargo.toml</code>의 <code>[dependencies]</code> 섹션에 추가한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=p>[</span><span class=nx>dependencies</span><span class=p>]</span>
+<span class=p>...</span>
+<span class=nx>serde_urlencoded</span> <span class=p>=</span> <span class=s2>&#34;0&#34;</span>
+</code></pre></div><p>헤더를 처리할 때는 <code>HeaderMap</code>의 <code>get_all()</code> 메서드로 특정 키에 대한 값을 모두 얻어 처리했다. <code>serde_urlencoded::from_str()</code>은 <code>(key, value)</code> 튜플의 벡터를 리턴하므로, 처리 방법이 조금 다르다. 튜플을 하나씩 읽으며 맵을 업데이트해야 한다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-rust data-lang=rust><span class=k>fn</span> <span class=nf>queries_as_map</span><span class=p>(</span><span class=n>query_string</span>: <span class=kp>&amp;</span><span class=kt>str</span><span class=p>)</span><span class=w> </span>-&gt; <span class=nc>BTreeMap</span><span class=o>&lt;&amp;</span><span class=kt>str</span><span class=p>,</span><span class=w> </span><span class=n>SingleOrMulti</span><span class=o>&gt;</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>    </span><span class=kd>let</span><span class=w> </span><span class=k>mut</span><span class=w> </span><span class=n>ret</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>BTreeMap</span>::<span class=n>new</span><span class=p>();</span><span class=w>
+</span><span class=w>    </span><span class=kd>let</span><span class=w> </span><span class=n>queries</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>from_str</span>::<span class=o>&lt;</span><span class=nb>Vec</span><span class=o>&lt;</span><span class=p>(</span><span class=o>&amp;</span><span class=kt>str</span><span class=p>,</span><span class=w> </span><span class=o>&amp;</span><span class=kt>str</span><span class=p>)</span><span class=o>&gt;&gt;</span><span class=p>(</span><span class=n>query_string</span><span class=p>).</span><span class=n>unwrap</span><span class=p>();</span><span class=w>
+</span><span class=w>
+</span><span class=w>    </span><span class=k>for</span><span class=w> </span><span class=p>(</span><span class=n>k</span><span class=p>,</span><span class=w> </span><span class=n>v</span><span class=p>)</span><span class=w> </span><span class=k>in</span><span class=w> </span><span class=n>queries</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>        </span><span class=k>match</span><span class=w> </span><span class=n>ret</span><span class=p>.</span><span class=n>get_mut</span><span class=p>(</span><span class=n>k</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>            </span><span class=nb>None</span><span class=w> </span><span class=o>=&gt;</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>                </span><span class=n>ret</span><span class=p>.</span><span class=n>insert</span><span class=p>(</span><span class=n>k</span><span class=p>,</span><span class=w> </span><span class=n>SingleOrMulti</span>::<span class=n>Single</span><span class=p>(</span><span class=n>v</span><span class=p>));</span><span class=w>
+</span><span class=w>            </span><span class=p>}</span><span class=w>
+</span><span class=w>            </span><span class=nb>Some</span><span class=p>(</span><span class=n>SingleOrMulti</span>::<span class=n>Single</span><span class=p>(</span><span class=n>ov</span><span class=p>))</span><span class=w> </span><span class=o>=&gt;</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>                </span><span class=kd>let</span><span class=w> </span><span class=n>vs</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=fm>vec!</span><span class=p>[</span><span class=o>*</span><span class=n>ov</span><span class=p>,</span><span class=w> </span><span class=n>v</span><span class=p>];</span><span class=w>
+</span><span class=w>                </span><span class=n>ret</span><span class=p>.</span><span class=n>insert</span><span class=p>(</span><span class=n>k</span><span class=p>,</span><span class=w> </span><span class=n>SingleOrMulti</span>::<span class=n>Multi</span><span class=p>(</span><span class=n>vs</span><span class=p>));</span><span class=w>
+</span><span class=w>            </span><span class=p>}</span><span class=w>
+</span><span class=w>            </span><span class=nb>Some</span><span class=p>(</span><span class=n>SingleOrMulti</span>::<span class=n>Multi</span><span class=p>(</span><span class=n>vs</span><span class=p>))</span><span class=w> </span><span class=o>=&gt;</span><span class=w> </span><span class=p>{</span><span class=w>
+</span><span class=w>                </span><span class=n>vs</span><span class=p>.</span><span class=n>push</span><span class=p>(</span><span class=n>v</span><span class=p>);</span><span class=w>
+</span><span class=w>            </span><span class=p>}</span><span class=w>
+</span><span class=w>        </span><span class=p>}</span><span class=w>
+</span><span class=w>    </span><span class=p>}</span><span class=w>
+</span><span class=w>
+</span><span class=w>    </span><span class=n>ret</span><span class=w>
+</span><span class=w></span><span class=p>}</span><span class=w>
+</span></code></pre></div><p>역시 키 순서가 알파벳 순으로 정렬되도록 <code>BTreeMap</code>을 사용했다.</p>
+<h2 id=테스트>테스트</h2>
+<p>다음과 같이 HTTP 요청을 만들어 보냈다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>POST http://localhost:8080/echo/hello/world?a=10&amp;b=20&amp;c=31&amp;c=32&amp;c=33
+Accept-charset: utf-8
+x-header-1: hello
+h: 10
+h: 20
+h: 30
+
+{
+  &#34;hello&#34;: &#34;world&#34;,
+  &#34;ping&#34;: &#34;pong&#34;
+}
+</code></pre></div><p>에코 서버 응답은 다음과 같다.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+  <span class=nt>&#34;method&#34;</span><span class=p>:</span> <span class=s2>&#34;POST&#34;</span><span class=p>,</span>
+  <span class=nt>&#34;path&#34;</span><span class=p>:</span> <span class=s2>&#34;/echo/hello/world&#34;</span><span class=p>,</span>
+  <span class=nt>&#34;queries&#34;</span><span class=p>:</span> <span class=p>{</span>
+    <span class=nt>&#34;a&#34;</span><span class=p>:</span> <span class=s2>&#34;10&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;b&#34;</span><span class=p>:</span> <span class=s2>&#34;20&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;c&#34;</span><span class=p>:</span> <span class=p>[</span>
+      <span class=s2>&#34;31&#34;</span><span class=p>,</span>
+      <span class=s2>&#34;32&#34;</span><span class=p>,</span>
+      <span class=s2>&#34;33&#34;</span>
+    <span class=p>]</span>
+  <span class=p>},</span>
+  <span class=nt>&#34;headers&#34;</span><span class=p>:</span> <span class=p>{</span>
+    <span class=nt>&#34;accept&#34;</span><span class=p>:</span> <span class=s2>&#34;*/*&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;accept-encoding&#34;</span><span class=p>:</span> <span class=s2>&#34;gzip&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;connection&#34;</span><span class=p>:</span> <span class=s2>&#34;keep-alive&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;content-length&#34;</span><span class=p>:</span> <span class=s2>&#34;41&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;extension&#34;</span><span class=p>:</span> <span class=s2>&#34;Security/Digest Security/SSL&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;h&#34;</span><span class=p>:</span> <span class=p>[</span>
+      <span class=s2>&#34;20&#34;</span><span class=p>,</span>
+      <span class=s2>&#34;10&#34;</span><span class=p>,</span>
+      <span class=s2>&#34;30&#34;</span>
+    <span class=p>],</span>
+    <span class=nt>&#34;host&#34;</span><span class=p>:</span> <span class=s2>&#34;localhost:8080&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;mime-version&#34;</span><span class=p>:</span> <span class=s2>&#34;1.0&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;x-header-1&#34;</span><span class=p>:</span> <span class=s2>&#34;hello&#34;</span>
+  <span class=p>},</span>
+  <span class=nt>&#34;body&#34;</span><span class=p>:</span> <span class=s2>&#34;{\n  \&#34;hello\&#34;: \&#34;world\&#34;,\n  \&#34;ping\&#34;: \&#34;pong\&#34;\n}\n&#34;</span>
+<span class=p>}</span>
+</code></pre></div><p>쿼리 파라미터 <code>c</code>의 모든 값과 헤더 <code>h</code>의 모든 값이 배열로 표시되었다. 요청에는 없는 <code>accept</code>, <code>connection</code> 등의 헤더가 보이는데, 이는 내 HTTP 클라이언트 (<a href=https://github.com/pashky/restclient.el>restclient.el</a>)가 요청에 포함시켜 보낸 것이다.</p>
+<h2 id=성능>성능</h2>
+<p>이 간단한 서버의 성능은 어느 정도일까? <a href=https://github.com/wg/wrk>wrk</a>로 맥북에서 테스트해보니 다음과 같은 결과가 나왔다.</p>
+<table>
+<thead>
+<tr>
+<th>Server</th>
+<th style=text-align:right>RPS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>reflexive (debug build)</td>
+<td style=text-align:right>35,951</td>
+</tr>
+<tr>
+<td>reflexive (release build)</td>
+<td style=text-align:right>64,398</td>
+</tr>
+<tr>
+<td>Velociraptor (vert.x)</td>
+<td style=text-align:right>55,357</td>
+</tr>
+</tbody>
+</table>
+<p>제대로 된 성능 테스트라 볼 수는 없지만, 서버가 어느 정도 요청을 처리할 수 있는지 대략적인 감을 잡는 용도로는 사용할 수 있을 것 같다. 디버그 빌드와 릴리즈 빌드의 차이가 거의 두 배에 가까운 것을 볼 수 있다.</p>
+<h2 id=마무리>마무리</h2>
+<p>아직 Rust를 많이 공부하지는 않았지만, 에코 서버를 구현하는 난이도는 Java로 구현했을 때보다 많이 어렵지는 않았다. 헤더나 쿼리 파라미터를 처리할 때 약간 헤맸지만, <code>enum</code>을 이용해 해결할 수 있었다.</p>
+<p>Rust에는 <code>null</code>도 없고 예외(exception)도 없다. 대충 예외를 던지거나 <code>null</code>을 리턴할 수 없으므로, 그런 예외상황을 코드로 작성할 때 어떻게 하는 게 옳을지 더 깊히 생각하게 되는 것 같다.</p>
+<h2 id=참고>참고</h2>
+<ul>
+<li><a href=https://actix.rs>Actix</a> Rust용 웹 프레임워크.</li>
+<li><a href=https://github.com/ntalbs/reflexive>reflexive</a>: 위에서 설명한 코드 전체를 확인할 수 있다.</li>
+<li><a href=https://github.com/ntalbs/Velociraptor>Velociraptor</a>: Java(<a href=https://vertx.io/>Vert.x</a>)로 구현한 에코 서버. 에코 외에도 몇 가지 잡다한 기능이 더 있다.</li>
+<li><a href=https://blog.thomasheartman.com/posts/building-a-request-inspector>Building a request inspector</a>: <code>HeaderMap</code>을 <code>HashMap&lt;String, String></code>으로 변환하는 접근법을 택했다. 특정 키에 값이 여럿이 있는 경우에는 <code>,</code>를 구분자로 연결한 문자열을 만들어 넣는다. 글쓴이도 인정했듯이 우아한 접근법은 아니다.</li>
+</ul>
+</section>
+<footer class=post-footer>
+<div class="social button-box">
+<a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
+<a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
+<script async src=//platform.twitter.com/widgets.js></script>
+</div>
+<nav id=article-nav>
+<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2021/json-parser-impl-2-parser/ id=article-nav-older> JSON 파서 구현 2 - 파서</a>
+</nav>
+</footer>
+</article>
+</main>
+<section class=section>
+<div class=container>
+<aside><div id=disqus_thread></div></aside>
+<script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2021/echo-server-in-rust/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
+</div>
+</section>
+<section class=section>
+<div class="container has-text-centered">
+<p></p>
+</div>
+</section>
+<script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
+<footer class=page-bottom>
+<div class=inner>
+<section class=copyright>© 2008-2021 <a href=/about>ntalbs</a></section>
+<section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section>
+</div>
+</footer>
+</body>
+</html>
