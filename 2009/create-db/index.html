@@ -54,11 +54,11 @@ on
 </header>
 <section class=post-content>
 <p>오라클 데이터베이스를 생성할 때 보통은 DBCA를 이용한다. 그러나 DBCA만 사용해 DB를 생성하다보면, DBCA를 사용할 수 없는 상황에는 당황하게 된다. 다음은 DBCA를 이용할 수 없는 경우 오라클 데이터베이스를 생성하는 절차다.</p>
-<h4 id=1-sid-oracle_home-설정>1. SID, ORACLE_HOME 설정</h4>
+<h2 id=1-sid-oracle_home-설정>1. SID, ORACLE_HOME 설정</h2>
 <pre class=console>
 $ export ORACLE_SID=testdbexport ORACLE_HOME=/path/to/oracle/home
 </pre>
-<h4 id=2-초기화-파라미터-파일-생성-minimal>2. 초기화 파라미터 파일 생성 (minimal)</h4>
+<h2 id=2-초기화-파라미터-파일-생성-minimal>2. 초기화 파라미터 파일 생성 (minimal)</h2>
 <p><code>$ORACLE_HOME/dbs</code>에 <code>init&lt;SID>.ora</code> 파일을 만든다.</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>control_files = (/.../control1.ctl,/.../control2.ctl,/.../control3.ctl)
 undo_management = AUTO
@@ -67,18 +67,18 @@ db_name = test
 db_block_size = 8192
 sga_max_size = 1073741824 # 1GB
 sga_target = 1073741824 # 1GB
-</code></pre></div><h4 id=3-패스워드-파일-생성>3. 패스워드 파일 생성</h4>
+</code></pre></div><h2 id=3-패스워드-파일-생성>3. 패스워드 파일 생성</h2>
 <pre class=console>
 $ $ORACLE_HOME/bin/orapwd file=$ORACLE_HOME/dbs/pwd{sid}.ora \
 password=oracle entries=5
 </pre>
-<h4 id=4-인스턴스-기동>4. 인스턴스 기동</h4>
+<h2 id=4-인스턴스-기동>4. 인스턴스 기동</h2>
 <pre class=console>
 $ sqlplus '/as sysdba'
 ...
 SQL> startup nomount
 </pre>
-<h4 id=5-create-database-문-실행>5. <code>CREATE DATABASE</code> 문 실행</h4>
+<h2 id=5-create-database-문-실행>5. <code>CREATE DATABASE</code> 문 실행</h2>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=k>create</span><span class=w> </span><span class=k>database</span><span class=w> </span><span class=n>test</span><span class=w>
 </span><span class=w></span><span class=n>dblogfile</span><span class=w> </span><span class=k>group</span><span class=w> </span><span class=mi>1</span><span class=w> </span><span class=p>(</span><span class=s1>&#39;/.../redo1.log&#39;</span><span class=p>)</span><span class=w> </span><span class=k>size</span><span class=w> </span><span class=mi>100</span><span class=n>M</span><span class=p>,</span><span class=w>
 </span><span class=w></span><span class=k>group</span><span class=w> </span><span class=mi>2</span><span class=w> </span><span class=p>(</span><span class=s1>&#39;/.../redo2.log&#39;</span><span class=p>)</span><span class=w> </span><span class=k>size</span><span class=w> </span><span class=mi>100</span><span class=n>M</span><span class=p>,</span><span class=w>
@@ -90,20 +90,20 @@ SQL> startup nomount
 </span><span class=w></span><span class=n>undo</span><span class=w> </span><span class=n>tablespace</span><span class=w> </span><span class=n>undotbs1</span><span class=w> </span><span class=n>datafile</span><span class=w> </span><span class=s1>&#39;/.../undotbs1.dbf&#39;</span><span class=w> </span><span class=k>size</span><span class=w> </span><span class=mi>100</span><span class=n>M</span><span class=w>
 </span><span class=w></span><span class=k>default</span><span class=w> </span><span class=k>temporary</span><span class=w> </span><span class=n>tablespace</span><span class=w> </span><span class=n>temp</span><span class=w> </span><span class=n>tempfile</span><span class=w> </span><span class=s1>&#39;/.../temp01.dbf&#39;</span><span class=w>
 </span><span class=w></span><span class=k>size</span><span class=w> </span><span class=mi>100</span><span class=n>M</span><span class=p>;</span><span class=w>
-</span></code></pre></div><h4 id=6-data-dictionary-view-생성-스크립트-실행>6. Data Dictionary View 생성 스크립트 실행</h4>
+</span></code></pre></div><h2 id=6-data-dictionary-view-생성-스크립트-실행>6. Data Dictionary View 생성 스크립트 실행</h2>
 <pre class=console>
 $ORACLE_HOME/rdbms/admin/CATALOG.sql
 $ORACLE_HOME/rdbms/admin/CATPROC.sql
 </pre>
-<h4 id=7-spfile-생성>7. SPFILE 생성</h4>
+<h2 id=7-spfile-생성>7. SPFILE 생성</h2>
 <pre class=console>
 SQL> create spfile from pfile;
 </pre>
-<h4 id=8-추가-테이블스페이스-생성>8. 추가 테이블스페이스 생성</h4>
+<h2 id=8-추가-테이블스페이스-생성>8. 추가 테이블스페이스 생성</h2>
 <p>데이터를 저장할 테이블스페이스를 생성한다.</p>
-<h4 id=9-sys-system-계정-암호-변경>9. sys, system 계정 암호 변경</h4>
+<h2 id=9-sys-system-계정-암호-변경>9. sys, system 계정 암호 변경</h2>
 <p>보안을 위해 관리자 계정 암호를 변경한다.</p>
-<h4 id=참고-create-database-문-syntax>참고: <code>CREATE DATABASE</code> 문 Syntax</h4>
+<h2 id=참고-create-database-문-syntax>참고: <code>CREATE DATABASE</code> 문 Syntax</h2>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=k>CREATE</span><span class=w> </span><span class=k>DATABASE</span><span class=w> </span><span class=p>[</span><span class=k>database</span><span class=w> </span><span class=n>name</span><span class=p>]</span><span class=w>
 </span><span class=w>  </span><span class=p>[</span><span class=n>CONTROLFILE</span><span class=w> </span><span class=n>REUSE</span><span class=p>]</span><span class=w>
 </span><span class=w>  </span><span class=p>[</span><span class=n>LOGFILE</span><span class=w> </span><span class=p>[</span><span class=k>GROUP</span><span class=w> </span><span class=nb>integer</span><span class=p>]</span><span class=w> </span><span class=n>file</span><span class=w> </span><span class=n>specification</span><span class=p>]</span><span class=w>

@@ -97,7 +97,7 @@ DBMS 성능 테스트
 <p><span style=color:#d3d3d3>MySQL의 경우 Buffer Pool을 160MB로 늘려 다시 작업해도 10분 넘도록 끝나지 않아 중단시켰다.</span></p>
 <p>두 테스트에서 Oracle이 월등한 성능 우위를 나타냈으며, MySQL이 가장 나쁜 성능을 보였다. 일반적으로 MySQL은 가볍고 빠른 DBMS로 알려져 있으나, 가벼운 만큼 허접한 느낌이다. PostgreSQL은 Oracle보다는 성능이 좋지 못했지만, 데이터 로딩의 경우 MySQL보다는 조금 나았고, group by를 통한 테이블 생성에서는 MySQL 보다 훨씬 좋았다. PostgreSQL에서 5분 정도 걸리는 작업을 MySQL에서는 1시간이 지나도록 끝내지 못했다.</p>
 <p>MySQL은 위에서 언급한 특징 때문에 데이터를 로드한 후 인덱스를 생성하는 것이 별로 효율적이미 못하므로 인덱스가 있는 상태에서 데이터를 로딩해야 하는데 이 경우 데이터가 테이블에 Insert되면서 지속적인 인덱스 업데이트가 필요하므로 더욱 비효율적이 될 수밖에 없다. 특히 Unique 인덱스가 있는 경우에는 데이터가 많아짐에 따라 Insert 속도가 점점 느려지는 문제가 있다. MySQL에서 Unique 인덱스가 있는 테이블에 대량 데이터를 넣어보면 시간이 지남에 따라 Insert 속도가 점점 느려지는 것을 확인할 수 있다.</p>
-<h3 id=결론>결론</h3>
+<h2 id=결론>결론</h2>
 <p>역시 DBMS는 Oracle이 좋은 것 같다. 비용문제만 없다면 Oracle이 최선이다(위 셋 중에서). 그러나 비용문제로 오픈소스 DBMS를 사용해야 한다면 PostgreSQL을 추천하고 싶다. PostgreSQL은 스스로를 The world's most advanced open source database라 주장한다. MySQL 홈페이지 상단에는 The world's most popular open source database라는 문구가 있다. 가장 인기있는 오픈소스 데이터베이스인지는 몰라도 셋 중에서 가장 허접한 것 같다.</p>
 </section>
 <footer class=post-footer>

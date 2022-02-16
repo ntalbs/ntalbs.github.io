@@ -53,31 +53,31 @@ on
 </header>
 <section class="post-content">
 <p>테이블 용량을 산정하기 위한 방법인데 조금 복잡하다. 어차피 추정이므로 간단하게 (평균 row 크기) × (데이터 건수) × 1.3 정도로 해도 되지 않을까 싶다.</p>
-<h4 id="-블록-헤더-크기-계산">① 블록 헤더 크기 계산</h4>
+<h2 id="-블록-헤더-크기-계산">① 블록 헤더 크기 계산</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(Block header) = (fixed header) + (variable transaction header)
     + (table directory) + (row directory)
 </code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(fixed header) = 57
 (variable transaction header) = 23 * initrans
 (table header) = 4 * n,	n은 테이블 개수, clustered table이 아닌 경우 1
 (row directory) = 2 * x, x는 블록당 row 수
-</code></pre></div><h4 id="-블록당-가용-데이터-공간-크기-계산">② 블록당 가용 데이터 공간 크기 계산</h4>
+</code></pre></div><h2 id="-블록당-가용-데이터-공간-크기-계산">② 블록당 가용 데이터 공간 크기 계산</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(Available data space)
   = ((Block size) - (Block header)) * (1 - pctfeee/100)
   = ((Block size) - ①) * (1 - pctfeee/100)
-</code></pre></div><h4 id="-평균-row-크기-계산">③ 평균 row 크기 계산</h4>
+</code></pre></div><h2 id="-평균-row-크기-계산">③ 평균 row 크기 계산</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(Average row size) = (row header) + F + 3*V + D
 </code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(row header) = clustered table이 아닌 경우 3
 F = 크기가 250 byte 미만인 컬럼 수
 V = 크기가 250 byte 이상인 컬럼 수
 D = combined column length
-</code></pre></div><h4 id="-블록당-평균-row-수-계산">④ 블록당 평균 row 수 계산</h4>
+</code></pre></div><h2 id="-블록당-평균-row-수-계산">④ 블록당 평균 row 수 계산</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(Average number of rows per block) = x = TRUNC( ② / ③ )
 </code></pre></div><p>이 식에서 x를 구함.</p>
-<h4 id="-테이블당-필요-블록-수-계산">⑤ 테이블당 필요 블록 수 계산</h4>
+<h2 id="-테이블당-필요-블록-수-계산">⑤ 테이블당 필요 블록 수 계산</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(Number of blocks for table) = (total number of rows) / ④
-</code></pre></div><h4 id="-테이블-용량-계산">⑥ 테이블 용량 계산</h4>
+</code></pre></div><h2 id="-테이블-용량-계산">⑥ 테이블 용량 계산</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(Table size) = ⑤ * (Block size)
-</code></pre></div><h3 id="참고">참고</h3>
+</code></pre></div><h2 id="참고">참고</h2>
 <ul>
 <li>Meta-Link: Doc ID: 10640.1</li>
 </ul>

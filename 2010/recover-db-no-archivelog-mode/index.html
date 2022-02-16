@@ -55,32 +55,47 @@ noarchivelog mode에서의 복구
 <section class=post-content>
 <p>redo log 백업이 있을 때와 없을 때의 절차가 다르다.</p>
 <h2 id=redo-log-백업이-있을-때>redo log 백업이 있을 때</h2>
-<h4 id=1-데이터베이스-종료>1. 데이터베이스 종료</h4>
+<ol>
+<li>데이터베이스 종료
 <pre class=console>
 SQL> shutdown abort;
 </pre>
-<h4 id=2-모든-파일-restore>2. 모든 파일 restore</h4>
-<p>참고: 최종 백업 이후 redo log가 겹쳐쓰이지 않았다면 손상된 파일만 restore한 다음 복구할 수 있다.</p>
-<h4 id=3-데이터베이스-기동>3. 데이터베이스 기동</h4>
+<br>
+</li>
+<li>모든 파일 restore<br>
+참고: 최종 백업 이후 redo log가 겹쳐쓰이지 않았다면 손상된 파일만 restore한 다음 복구할 수 있다.
+<br>
+<br>
+</li>
+<li>데이터베이스 기동
 <pre class=console>
 SQL> startup;
 </pre>
+</li>
+</ol>
 <h2 id=redo-log-백업이-없을-때>redo log 백업이 없을 때</h2>
-<h4 id=1-데이터베이스-종료-1>1. 데이터베이스 종료</h4>
+<ol>
+<li>데이터베이스 종료
 <pre class=console>
 SQL> shutdown immediate;
 </pre>
-<h4 id=2-데이터-파일과-컨트롤-파일-restore>2. 데이터 파일과 컨트롤 파일 restore</h4>
-<h4 id=3-cancel-based-recovery-수행>3. cancel-based recovery 수행</h4>
+<br>
+</li>
+<li>데이터 파일과 컨트롤 파일 restore<br><br></li>
+<li>cancel-based recovery 수행
 <pre class=console>
 SQL> startup mount;
 ...
 SQL> recover database until cancel;
 </pre>
-<h4 id=4-resetlogs-옵션으로-데이터베이스-open>4. resetlogs 옵션으로 데이터베이스 open</h4>
+<br>
+</li>
+<li>resetlogs 옵션으로 데이터베이스 open
 <pre class=console>
 SQL> alter database open resetlogs;
 </pre>
+</li>
+</ol>
 </section>
 <footer class=post-footer>
 <div class="social button-box">

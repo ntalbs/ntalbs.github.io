@@ -53,30 +53,30 @@ on
 </header>
 <section class="post-content">
 <p>인덱스 용량을 산정하기 위한 방법인데 조금 복잡하다.</p>
-<h4 id="-블록-헤더-크기-계산">① 블록 헤더 크기 계산</h4>
+<h2 id="-블록-헤더-크기-계산">① 블록 헤더 크기 계산</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(Block header) = (fixed header) + (variable transaction header)
 </code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(fixed header) = 113
 (variable transaction header) = 23 * initrans
-</code></pre></div><h4 id="-블록당-가용-데이터-공간-크기-계산">② 블록당 가용 데이터 공간 크기 계산</h4>
+</code></pre></div><h2 id="-블록당-가용-데이터-공간-크기-계산">② 블록당 가용 데이터 공간 크기 계산</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(Available data space)
   = ( (Block size) - (Block header) ) * (1 - pctfree/100)
   = ( (Block size) - ① ) * (1 - pctfree/100)
-</code></pre></div><h4 id="-평균-인덱스-엔트리-크기-계산">③ 평균 인덱스 엔트리 크기 계산</h4>
+</code></pre></div><h2 id="-평균-인덱스-엔트리-크기-계산">③ 평균 인덱스 엔트리 크기 계산</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(Average entry size) = (entry header) + (rowid size) + F + 3*V + D
 </code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(entry header) = 1
 (rowid size) = 6
 F = 크기가 250byte 미만인 컬럼 수
 V = 크기가 250byte 이상인 컬럼 수
 D = combined column length
-</code></pre></div><h4 id="-인덱스당-필요-블록-수-계산">④ 인덱스당 필요 블록 수 계산</h4>
+</code></pre></div><h2 id="-인덱스당-필요-블록-수-계산">④ 인덱스당 필요 블록 수 계산</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(Number of blocks for index)
   = 1.1 * (number of entries)
     / (TRUNC(Available data space) / (Average entry size)
   = 1.1 * (number of entries) / TRUNC( ② / ③ )
-</code></pre></div><h4 id="-인덱스-용량-계산">⑤ 인덱스 용량 계산</h4>
+</code></pre></div><h2 id="-인덱스-용량-계산">⑤ 인덱스 용량 계산</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">(Index size) = (Number of blocks for index) * (Block size)
   = ④ * (Block size)
-</code></pre></div><h3 id="참고">참고</h3>
+</code></pre></div><h2 id="참고">참고</h2>
 <ul>
 <li>Meta-Link: Doc ID: 10640.1</li>
 <li>어차피 추정이므로 간단하게 다음과 같이 간단히 계산해도 되지 않을까 싶다.<br>

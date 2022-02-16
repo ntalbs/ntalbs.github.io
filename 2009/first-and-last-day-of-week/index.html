@@ -62,30 +62,35 @@ on
 </span><span class=w>    </span><span class=o>+</span><span class=w> </span><span class=p>(</span><span class=mi>7</span><span class=w> </span><span class=o>-</span><span class=w> </span><span class=n>to_number</span><span class=p>(</span><span class=n>to_char</span><span class=p>(</span><span class=n>to_date</span><span class=p>(:</span><span class=n>d</span><span class=p>,</span><span class=s1>&#39;YYYYMMDD&#39;</span><span class=p>),</span><span class=s1>&#39;D&#39;</span><span class=p>))))</span><span class=w> </span><span class=n>end_dt</span><span class=w>
 </span><span class=w></span><span class=k>from</span><span class=w> </span><span class=n>dual</span><span class=p>;</span><span class=w>
 </span></code></pre></div><p>그러나 이 쿼리는 주어진 주에 대한 날짜를 구하는 방법이 들어있지 않아 완전한 답이 될 수 없다. 그런데 바로 아래 어느 훌륭한 분이 완벽한 답을 달았다. 끙끙대며 열심히 이해한 결과를 설명하면... 다음과 같다. 그리고 <code>trunc</code> 함수를 쓰면 식도 훨씬 단순해짐을 알았다.</p>
-<h3 id=1-해당-달의-마지막-날짜-구한다>1. 해당 달의 마지막 날짜 구한다.</h3>
+<h2 id=1-달의-마지막-날짜-계산>1. 달의 마지막 날짜 계산</h2>
+<p>해당 달의 마지막 날짜 구한다.</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=k>select</span><span class=w>
 </span><span class=w>  </span><span class=n>last_day</span><span class=p>(</span><span class=n>to_date</span><span class=p>(:</span><span class=n>yyyymm</span><span class=p>,</span><span class=w> </span><span class=s1>&#39;YYYYMM&#39;</span><span class=p>)</span><span class=w> </span><span class=n>day_last</span><span class=p>,</span><span class=w>
 </span><span class=w>  </span><span class=p>:</span><span class=n>week</span><span class=w> </span><span class=n>week</span><span class=w>
 </span><span class=w></span><span class=k>from</span><span class=w> </span><span class=n>dual</span><span class=w>
-</span></code></pre></div><h3 id=2-해당-달이-몇-주를-가지는지또는-마지막-주가-몇째-주인지-구한다>2. 해당 달이 몇 주를 가지는지(또는 마지막 주가 몇째 주인지) 구한다.</h3>
+</span></code></pre></div><h2 id=2-달이-가진-주-수-계산>2. 달이 가진 주 수 계산</h2>
+<p>해당 달이 몇 주를 가지는지(또는 마지막 주가 몇째 주인지) 구한다.</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=k>select</span><span class=w>
 </span><span class=w>  </span><span class=p>(</span><span class=n>trunc</span><span class=p>(</span><span class=n>day_last</span><span class=p>,</span><span class=w> </span><span class=s1>&#39;D&#39;</span><span class=p>)</span><span class=w>
 </span><span class=w>    </span><span class=o>-</span><span class=w> </span><span class=n>trunc</span><span class=p>(</span><span class=n>trunc</span><span class=p>(</span><span class=n>day_last</span><span class=p>,</span><span class=w> </span><span class=s1>&#39;MM&#39;</span><span class=p>),</span><span class=w> </span><span class=s1>&#39;D&#39;</span><span class=p>)</span><span class=w> </span><span class=o>/</span><span class=w> </span><span class=mi>7</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=mi>1</span><span class=w> </span><span class=n>last_week</span><span class=p>,</span><span class=w>
 </span><span class=w>  </span><span class=n>day_last</span><span class=p>,</span><span class=w>
 </span><span class=w>  </span><span class=n>week</span><span class=w>
 </span><span class=w></span><span class=k>from</span><span class=w> </span><span class=p>...</span><span class=w>
-</span></code></pre></div><h3 id=3-지정된-주에-포함된-날짜를-구한다>3. 지정된 주에 포함된 날짜를 구한다.</h3>
+</span></code></pre></div><h2 id=3-지정된-주-날짜-계산>3. 지정된 주 날짜 계산</h2>
+<p>지정된 주에 포함된 날짜를 구한다.</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=k>select</span><span class=w>
 </span><span class=w>  </span><span class=n>day_last</span><span class=w> </span><span class=o>-</span><span class=w> </span><span class=mi>7</span><span class=w> </span><span class=o>*</span><span class=w> </span><span class=n>decode</span><span class=p>(</span><span class=n>least</span><span class=p>(</span><span class=n>last_week</span><span class=p>,</span><span class=w> </span><span class=n>week</span><span class=p>),</span><span class=w>
 </span><span class=w>                        </span><span class=n>week</span><span class=p>,</span><span class=w> </span><span class=n>last_week</span><span class=w> </span><span class=o>-</span><span class=w> </span><span class=n>week</span><span class=p>)</span><span class=w> </span><span class=n>base</span><span class=w> </span><span class=k>day</span><span class=w>
 </span><span class=w></span><span class=k>from</span><span class=w> </span><span class=p>...</span><span class=w>
-</span></code></pre></div><h3 id=4-이-날짜가-포함된-주의-첫-날과-마지막-날을-구한다>4. 이 날짜가 포함된 주의 첫 날과 마지막 날을 구한다.</h3>
+</span></code></pre></div><h2 id=4-주의-첫-날과-마지막-날-계산>4. 주의 첫 날과 마지막 날 계산</h2>
+<p>이 날짜가 포함된 주의 첫 날과 마지막 날을 구한다.</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=k>select</span><span class=w>
 </span><span class=w>  </span><span class=n>trunc</span><span class=p>(</span><span class=n>base_day</span><span class=p>,</span><span class=w> </span><span class=s1>&#39;D&#39;</span><span class=p>)</span><span class=w> </span><span class=n>start_date</span><span class=p>,</span><span class=w>
 </span><span class=w>  </span><span class=n>trunc</span><span class=p>(</span><span class=n>base_day</span><span class=p>,</span><span class=w> </span><span class=s1>&#39;D&#39;</span><span class=p>)</span><span class=o>+</span><span class=mi>6</span><span class=w> </span><span class=n>end_date</span><span class=w>
 </span><span class=w></span><span class=k>from</span><span class=w> </span><span class=p>...</span><span class=w>
 </span></code></pre></div><p>세번째 단계에서 <code>decode(least(...))</code> 대신 <code>case when week &lt; last_week then last_week - week end</code>로 하는 게 이해하기 더 쉬울 듯 하다.</p>
-<p>이걸 모두 합치면...</p>
+<h2 id=통합>통합</h2>
+<p>위 쿼리를 모두 합치면 다음과 같은 쿼리를 얻을 수 있다.</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=k>select</span><span class=w>
 </span><span class=w>  </span><span class=n>trunc</span><span class=w> </span><span class=p>(</span><span class=n>base_day</span><span class=p>,</span><span class=w> </span><span class=s1>&#39;d&#39;</span><span class=p>)</span><span class=w> </span><span class=n>starting_day</span><span class=p>,</span><span class=w>
 </span><span class=w>  </span><span class=n>trunc</span><span class=w> </span><span class=p>(</span><span class=n>base_day</span><span class=p>,</span><span class=w> </span><span class=s1>&#39;d&#39;</span><span class=p>)</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=mi>6</span><span class=w> </span><span class=n>ending_day</span><span class=w>
@@ -104,7 +109,7 @@ on
 </span><span class=w>        </span><span class=n>last_day</span><span class=w> </span><span class=p>(</span><span class=n>to_date</span><span class=w> </span><span class=p>(:</span><span class=n>yyyymm</span><span class=p>,</span><span class=w> </span><span class=s1>&#39;yyyymm&#39;</span><span class=p>))</span><span class=w> </span><span class=n>day_last</span><span class=p>,</span><span class=w>
 </span><span class=w>        </span><span class=p>:</span><span class=n>week</span><span class=w> </span><span class=n>week</span><span class=w>
 </span><span class=w>      </span><span class=k>from</span><span class=w> </span><span class=n>dual</span><span class=p>)));</span><span class=w>
-</span></code></pre></div><p>여기까지도 멋졌는데, 다음 쿼리를 보니... 더 멋지네.</p>
+</span></code></pre></div><p>여기까지도 멋졌는데, 다음 쿼리를 보니... 더 멋지다.</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=k>select</span><span class=w>
 </span><span class=w>  </span><span class=n>decode</span><span class=p>(</span><span class=n>least</span><span class=p>(</span><span class=n>day_last</span><span class=p>,</span><span class=w> </span><span class=n>base_fday</span><span class=p>),</span><span class=w>
 </span><span class=w>         </span><span class=n>base_fday</span><span class=p>,</span><span class=w> </span><span class=n>base_fday</span><span class=p>)</span><span class=w> </span><span class=n>start_date</span><span class=p>,</span><span class=w>

@@ -60,7 +60,7 @@ Direct-path Insert시 주의사항
 <li>parallel direct-path load시 에러가 발생하면 인덱스가 UNUSABLE 상태가 될 수 있다. 그러나 Parallel direct-path INSERT시 인덱스를 업데이트하다 에러가 발생하면 해당 실행문이 롤백된다.</li>
 </ul>
 <p>Direct-path INSERT가 끝난 다음 대상 테이블에 인덱스가 있다면 index maintenance가 수행되는데, parallel direct-path INSERT로 실행된 경우에는 병렬 프로세스로, serial direct-path INSERT로 실행된 경우에는 단일(single) 프로세스로 처리된다. 인덱스를 삭제한 다음 Direct-path INSERT 작업을 하고, 그 후에 인덱스를 재생성하면 index maintenance 관련 성능 문제를 해소할수 있다.</p>
-<h3 id=참고>참고</h3>
+<h2 id=참고>참고</h2>
 <ul>
 <li><a href=http://docs.oracle.com/cd/B19306_01/server.102/b14231/tables.htm#CJAEJGJF>Oracle® Database Administrator's Guide 10g Release 2 (10.2) > 15 Managing Tables > Loading Tables</a></li>
 </ul>
