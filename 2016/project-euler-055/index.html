@@ -1,45 +1,27 @@
 <!doctype html><html>
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script>
 <meta charset=utf-8>
 <meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
 <meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>프로젝트 오일러 55 @ntalbs' stuff</title>
-<link rel="shortcut icon" href=/images/favicon.ico>
+<title>프로젝트 오일러 55 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico>
 <link rel=stylesheet href=/css/style.css>
 <link rel=stylesheet href=/css/highlight.css>
-</head>
-<body>
+</head><body>
 <div id=progress>
-<div id=bar></div>
-<div class=container>
-<div id=scroll-title>프로젝트 오일러 55</div>
-</div>
-</div>
-<nav class=navbar role=navigation>
+<div id=bar></div><div class=container>
+<div id=scroll-title>프로젝트 오일러 55</div></div></div><nav class=navbar role=navigation>
 <div class=container>
 <div class=navbar-header>
 <button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
 <a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
-</div>
-<div class="navbar-items collapsed" id=nav-items>
+</div><div class="navbar-items collapsed" id=nav-items>
 <ul>
-<li><a class=unselectable href=/archive/>Archive</a></li>
-<li><a class=unselectable href=/tags/>Tags</a></li>
-<li><a class=unselectable href=/about/>About</a></li>
-<li><a id=mode-switch class=unselectable href=#></a></li>
-</ul>
-</div>
-</div>
-</nav>
-<header class=page-head>
+<li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head>
 <div class=container>
-<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-</div>
-</header>
-<main class=container role=main>
+<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main>
 <article class=post>
 <header>
 <p class=post-meta>
@@ -47,80 +29,47 @@
 on
 <a href=/tags/project-euler/>Project-Euler</a>
 <a href=/tags/clojure/>Clojure</a>
-</p>
-<h1 class=post-title>
+</p><h1 class=post-title>
 프로젝트 오일러 55
-</h1>
-</header>
-<section class=post-content>
+</h1></header><section class=post-content>
 <blockquote>
-<p>10000 미만의 라이크렐 수 (Lychrel number) 세기</p>
-<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=55">[국어]</a> <a href="https://projecteuler.net/problem=55">[영어]</a></p>
-</blockquote>
-<p>숫자를 뒤집어서 더한 후 대칭수인지 확인해야 하므로 다음과 같이 숫자를 뒤집는 함수와 숫자가 대칭수인지 확인하는 함수를 미리 만들어 두면 문제를 푸는 데 도움이 될 것이다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>defn </span><span class=nv>reverse-num</span> <span class=p>[</span><span class=nv>n</span><span class=p>]</span>
-  <span class=p>(</span><span class=nf>bigint</span> <span class=p>(</span><span class=nf>clojure.string/reverse</span> <span class=p>(</span><span class=nb>str </span><span class=nv>n</span><span class=p>))))</span>
-
-<span class=p>(</span><span class=kd>defn </span><span class=nv>palindrome?</span> <span class=p>[</span><span class=nv>n</span><span class=p>]</span>
-  <span class=p>(</span><span class=nb>= </span><span class=nv>n</span> <span class=p>(</span><span class=nf>reverse-num</span> <span class=nv>n</span><span class=p>)))</span>
-</code></pre></div><p>숫자를 뒤집는 데는 여러 방법이 있겠지만 여기서는 숫자를 문자열로 바꾼 다음 <code>clojure.string/reverse</code> 함수를 이용해 뒤집었다. 숫자를 뒤집는 함수를 이용하면 대칭수인지 확인하는 함수도 쉽게 구현할 수 있다.</p>
-<p>이제 라이크렐 수인지 확인하는 함수를 구현해야 한다. 다행히 1만 이하의 수는 50번 미만의 반복으로 라이크렐 수인지 확인할 수 있다. 50번을 반복했는데도 대칭수가 안 되면 라이크렐 수라 할 수 있겠다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>defn </span><span class=nv>lychrel?</span> <span class=p>[</span><span class=nv>n</span><span class=p>]</span>
-  <span class=p>(</span><span class=k>loop </span><span class=p>[</span><span class=nv>n</span> <span class=nv>n</span> <span class=nv>cnt</span> <span class=mi>1</span><span class=p>]</span>
-    <span class=p>(</span><span class=k>if </span><span class=p>(</span><span class=nb>&lt; </span><span class=mi>50</span> <span class=nv>cnt</span><span class=p>)</span>
-      <span class=nv>true</span>
-      <span class=p>(</span><span class=k>let </span><span class=p>[</span><span class=nv>sn</span> <span class=p>(</span><span class=nf>+</span><span class=o>&#39;</span> <span class=nv>n</span> <span class=p>(</span><span class=nf>reverse-num</span> <span class=nv>n</span><span class=p>))]</span>
-        <span class=p>(</span><span class=k>if </span><span class=p>(</span><span class=nf>palindrome?</span> <span class=nv>sn</span><span class=p>)</span>
-          <span class=nv>false</span>
-          <span class=p>(</span><span class=nf>recur</span> <span class=nv>sn</span> <span class=p>(</span><span class=nb>inc </span><span class=nv>cnt</span><span class=p>)))))))</span>
-</code></pre></div><p>라이크렐 수인지 확인하는 함수가 있으므로 1만 이하의 수 중에서 라이크렐 수만 골라 개수를 세면 된다. 한 자리 숫자는 라이크렐 수가 될 수 없으므로 계산에 포함시키지 않아도 된다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>defn </span><span class=nv>solve</span> <span class=p>[]</span>
-  <span class=p>(</span><span class=nf>-&gt;&gt;</span> <span class=p>(</span><span class=nb>range </span><span class=mi>10</span> <span class=p>(</span><span class=nb>inc </span><span class=mi>10000</span><span class=p>))</span>
-       <span class=p>(</span><span class=nb>filter </span><span class=nv>lychrel?</span><span class=p>)</span>
-       <span class=nv>count</span><span class=p>))</span>
-</code></pre></div><p>실행 결과는 다음과 같다.</p>
-<pre class=console>
+<p>10000 미만의 라이크렐 수 (Lychrel number) 세기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=55">[국어]</a> <a href="https://projecteuler.net/problem=55">[영어]</a></p></blockquote><p>숫자를 뒤집어서 더한 후 대칭수인지 확인해야 하므로 다음과 같이 숫자를 뒤집는 함수와 숫자가 대칭수인지 확인하는 함수를 미리 만들어 두면 문제를 푸는 데 도움이 될 것이다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-clojure data-lang=clojure><span class=line><span class=cl><span class=p>(</span><span class=kd>defn </span><span class=nv>reverse-num</span> <span class=p>[</span><span class=nv>n</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nf>bigint</span> <span class=p>(</span><span class=nf>clojure.string/reverse</span> <span class=p>(</span><span class=nb>str </span><span class=nv>n</span><span class=p>))))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=kd>defn </span><span class=nv>palindrome?</span> <span class=p>[</span><span class=nv>n</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nb>= </span><span class=nv>n</span> <span class=p>(</span><span class=nf>reverse-num</span> <span class=nv>n</span><span class=p>)))</span>
+</span></span></code></pre></div><p>숫자를 뒤집는 데는 여러 방법이 있겠지만 여기서는 숫자를 문자열로 바꾼 다음 <code>clojure.string/reverse</code> 함수를 이용해 뒤집었다. 숫자를 뒤집는 함수를 이용하면 대칭수인지 확인하는 함수도 쉽게 구현할 수 있다.</p><p>이제 라이크렐 수인지 확인하는 함수를 구현해야 한다. 다행히 1만 이하의 수는 50번 미만의 반복으로 라이크렐 수인지 확인할 수 있다. 50번을 반복했는데도 대칭수가 안 되면 라이크렐 수라 할 수 있겠다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-clojure data-lang=clojure><span class=line><span class=cl><span class=p>(</span><span class=kd>defn </span><span class=nv>lychrel?</span> <span class=p>[</span><span class=nv>n</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=k>loop </span><span class=p>[</span><span class=nv>n</span> <span class=nv>n</span> <span class=nv>cnt</span> <span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=p>(</span><span class=k>if </span><span class=p>(</span><span class=nb>&lt; </span><span class=mi>50</span> <span class=nv>cnt</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=nv>true</span>
+</span></span><span class=line><span class=cl>      <span class=p>(</span><span class=k>let </span><span class=p>[</span><span class=nv>sn</span> <span class=p>(</span><span class=nf>+</span><span class=o>&#39;</span> <span class=nv>n</span> <span class=p>(</span><span class=nf>reverse-num</span> <span class=nv>n</span><span class=p>))]</span>
+</span></span><span class=line><span class=cl>        <span class=p>(</span><span class=k>if </span><span class=p>(</span><span class=nf>palindrome?</span> <span class=nv>sn</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>          <span class=nv>false</span>
+</span></span><span class=line><span class=cl>          <span class=p>(</span><span class=nf>recur</span> <span class=nv>sn</span> <span class=p>(</span><span class=nb>inc </span><span class=nv>cnt</span><span class=p>)))))))</span>
+</span></span></code></pre></div><p>라이크렐 수인지 확인하는 함수가 있으므로 1만 이하의 수 중에서 라이크렐 수만 골라 개수를 세면 된다. 한 자리 숫자는 라이크렐 수가 될 수 없으므로 계산에 포함시키지 않아도 된다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-clojure data-lang=clojure><span class=line><span class=cl><span class=p>(</span><span class=kd>defn </span><span class=nv>solve</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nf>-&gt;&gt;</span> <span class=p>(</span><span class=nb>range </span><span class=mi>10</span> <span class=p>(</span><span class=nb>inc </span><span class=mi>10000</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>       <span class=p>(</span><span class=nb>filter </span><span class=nv>lychrel?</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>       <span class=nv>count</span><span class=p>))</span>
+</span></span></code></pre></div><p>실행 결과는 다음과 같다.</p><pre class=console>
 p055=> (time (solve))
 "Elapsed time: 126.086214 msecs"
 2?9
-</pre>
-<h2 id=참고>참고</h2>
-<ul>
-<li><a href=https://github.com/ntalbs/euler/blob/master/src/p055.clj>프로젝트 오일러 55 풀이 소스 코드</a></li>
-</ul>
-</section>
-<footer class=post-footer>
+</pre><h2 id=참고>참고</h2><ul>
+<li><a href=https://github.com/ntalbs/euler/blob/master/src/p055.clj>프로젝트 오일러 55 풀이 소스 코드</a></li></ul></section><footer class=post-footer>
 <div class="social button-box">
 <a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
 <script async src=//platform.twitter.com/widgets.js></script>
-</div>
-<nav id=article-nav>
+</div><nav id=article-nav>
 <a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2016/project-euler-056/ id=article-nav-newer> 프로젝트 오일러 56</a>
 <a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2016/project-euler-054/ id=article-nav-older> 프로젝트 오일러 54</a>
-</nav>
-</footer>
-</article>
-</main>
-<section class=section>
+</nav></footer></article></main><section class=section>
 <div class=container>
-<aside><div id=disqus_thread></div></aside>
-<script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2016/project-euler-055/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
-</div>
-</section>
-<section class=section>
+<aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2016/project-euler-055/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section>
 <div class="container has-text-centered">
-<p></p>
-</div>
-</section>
-<script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
 <script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
 <footer class=page-bottom>
 <div class=inner>
-<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section>
-<section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section>
-</div>
-</footer>
-</body>
-</html>
+<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>

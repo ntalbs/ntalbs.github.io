@@ -1,45 +1,27 @@
 <!doctype html><html>
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script>
 <meta charset=utf-8>
 <meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
 <meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>오라클 데이터베이스 생성하기 @ntalbs' stuff</title>
-<link rel="shortcut icon" href=/images/favicon.ico>
+<title>오라클 데이터베이스 생성하기 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico>
 <link rel=stylesheet href=/css/style.css>
 <link rel=stylesheet href=/css/highlight.css>
-</head>
-<body>
+</head><body>
 <div id=progress>
-<div id=bar></div>
-<div class=container>
-<div id=scroll-title>오라클 데이터베이스 생성하기</div>
-</div>
-</div>
-<nav class=navbar role=navigation>
+<div id=bar></div><div class=container>
+<div id=scroll-title>오라클 데이터베이스 생성하기</div></div></div><nav class=navbar role=navigation>
 <div class=container>
 <div class=navbar-header>
 <button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
 <a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
-</div>
-<div class="navbar-items collapsed" id=nav-items>
+</div><div class="navbar-items collapsed" id=nav-items>
 <ul>
-<li><a class=unselectable href=/archive/>Archive</a></li>
-<li><a class=unselectable href=/tags/>Tags</a></li>
-<li><a class=unselectable href=/about/>About</a></li>
-<li><a id=mode-switch class=unselectable href=#></a></li>
-</ul>
-</div>
-</div>
-</nav>
-<header class=page-head>
+<li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head>
 <div class=container>
-<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-</div>
-</header>
-<main class=container role=main>
+<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main>
 <article class=post>
 <header>
 <p class=post-meta>
@@ -47,112 +29,71 @@
 on
 <a href=/tags/db/>DB</a>
 <a href=/tags/oracle/>Oracle</a>
-</p>
-<h1 class=post-title>
+</p><h1 class=post-title>
 오라클 데이터베이스 생성하기
-</h1>
-</header>
-<section class=post-content>
-<p>오라클 데이터베이스를 생성할 때 보통은 DBCA를 이용한다. 그러나 DBCA만 사용해 DB를 생성하다보면, DBCA를 사용할 수 없는 상황에는 당황하게 된다. 다음은 DBCA를 이용할 수 없는 경우 오라클 데이터베이스를 생성하는 절차다.</p>
-<h2 id=1-sid-oracle_home-설정>1. SID, ORACLE_HOME 설정</h2>
-<pre class=console>
+</h1></header><section class=post-content>
+<p>오라클 데이터베이스를 생성할 때 보통은 DBCA를 이용한다. 그러나 DBCA만 사용해 DB를 생성하다보면, DBCA를 사용할 수 없는 상황에는 당황하게 된다. 다음은 DBCA를 이용할 수 없는 경우 오라클 데이터베이스를 생성하는 절차다.</p><h2 id=1-sid-oracle_home-설정>1. SID, ORACLE_HOME 설정</h2><pre class=console>
 $ export ORACLE_SID=testdbexport ORACLE_HOME=/path/to/oracle/home
-</pre>
-<h2 id=2-초기화-파라미터-파일-생성-minimal>2. 초기화 파라미터 파일 생성 (minimal)</h2>
-<p><code>$ORACLE_HOME/dbs</code>에 <code>init&lt;SID>.ora</code> 파일을 만든다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>control_files = (/.../control1.ctl,/.../control2.ctl,/.../control3.ctl)
-undo_management = AUTO
-undo_tablespace = UNDOTBS1
-db_name = test
-db_block_size = 8192
-sga_max_size = 1073741824 # 1GB
-sga_target = 1073741824 # 1GB
-</code></pre></div><h2 id=3-패스워드-파일-생성>3. 패스워드 파일 생성</h2>
-<pre class=console>
+</pre><h2 id=2-초기화-파라미터-파일-생성-minimal>2. 초기화 파라미터 파일 생성 (minimal)</h2><p><code>$ORACLE_HOME/dbs</code>에 <code>init&lt;SID>.ora</code> 파일을 만든다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>control_files = (/.../control1.ctl,/.../control2.ctl,/.../control3.ctl)
+</span></span><span class=line><span class=cl>undo_management = AUTO
+</span></span><span class=line><span class=cl>undo_tablespace = UNDOTBS1
+</span></span><span class=line><span class=cl>db_name = test
+</span></span><span class=line><span class=cl>db_block_size = 8192
+</span></span><span class=line><span class=cl>sga_max_size = 1073741824 # 1GB
+</span></span><span class=line><span class=cl>sga_target = 1073741824 # 1GB
+</span></span></code></pre></div><h2 id=3-패스워드-파일-생성>3. 패스워드 파일 생성</h2><pre class=console>
 $ $ORACLE_HOME/bin/orapwd file=$ORACLE_HOME/dbs/pwd{sid}.ora \
 password=oracle entries=5
-</pre>
-<h2 id=4-인스턴스-기동>4. 인스턴스 기동</h2>
-<pre class=console>
+</pre><h2 id=4-인스턴스-기동>4. 인스턴스 기동</h2><pre class=console>
 $ sqlplus '/as sysdba'
 ...
 SQL> startup nomount
-</pre>
-<h2 id=5-create-database-문-실행>5. <code>CREATE DATABASE</code> 문 실행</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=k>create</span><span class=w> </span><span class=k>database</span><span class=w> </span><span class=n>test</span><span class=w>
-</span><span class=w></span><span class=n>dblogfile</span><span class=w> </span><span class=k>group</span><span class=w> </span><span class=mi>1</span><span class=w> </span><span class=p>(</span><span class=s1>&#39;/.../redo1.log&#39;</span><span class=p>)</span><span class=w> </span><span class=k>size</span><span class=w> </span><span class=mi>100</span><span class=n>M</span><span class=p>,</span><span class=w>
-</span><span class=w></span><span class=k>group</span><span class=w> </span><span class=mi>2</span><span class=w> </span><span class=p>(</span><span class=s1>&#39;/.../redo2.log&#39;</span><span class=p>)</span><span class=w> </span><span class=k>size</span><span class=w> </span><span class=mi>100</span><span class=n>M</span><span class=p>,</span><span class=w>
-</span><span class=w></span><span class=k>group</span><span class=w> </span><span class=mi>3</span><span class=w> </span><span class=p>(</span><span class=s1>&#39;/.../redo3.log&#39;</span><span class=p>)</span><span class=w> </span><span class=k>size</span><span class=w> </span><span class=mi>100</span><span class=n>M</span><span class=w>
-</span><span class=w></span><span class=nb>character</span><span class=w> </span><span class=k>set</span><span class=w> </span><span class=n>ko16ksc5601</span><span class=w>
-</span><span class=w></span><span class=k>national</span><span class=w> </span><span class=nb>character</span><span class=w> </span><span class=k>set</span><span class=w> </span><span class=n>al16utf16</span><span class=w>
-</span><span class=w></span><span class=n>datafile</span><span class=w> </span><span class=s1>&#39;/.../system.dbf&#39;</span><span class=w> </span><span class=k>size</span><span class=w> </span><span class=mi>500</span><span class=n>M</span><span class=w> </span><span class=n>autoextend</span><span class=w> </span><span class=k>on</span><span class=w> </span><span class=k>next</span><span class=w> </span><span class=mi>10</span><span class=n>M</span><span class=w> </span><span class=n>maxsize</span><span class=w> </span><span class=n>unlimited</span><span class=w> </span><span class=n>extent</span><span class=w> </span><span class=n>management</span><span class=w> </span><span class=k>local</span><span class=w>
-</span><span class=w></span><span class=n>sysaux</span><span class=w> </span><span class=n>datafile</span><span class=w> </span><span class=s1>&#39;/.../sysaux.dbf&#39;</span><span class=w> </span><span class=k>size</span><span class=w> </span><span class=mi>100</span><span class=n>M</span><span class=w> </span><span class=n>autoextend</span><span class=w> </span><span class=k>on</span><span class=w> </span><span class=k>next</span><span class=w> </span><span class=mi>10</span><span class=n>M</span><span class=w> </span><span class=n>maxsize</span><span class=w> </span><span class=n>unlimited</span><span class=w>
-</span><span class=w></span><span class=n>undo</span><span class=w> </span><span class=n>tablespace</span><span class=w> </span><span class=n>undotbs1</span><span class=w> </span><span class=n>datafile</span><span class=w> </span><span class=s1>&#39;/.../undotbs1.dbf&#39;</span><span class=w> </span><span class=k>size</span><span class=w> </span><span class=mi>100</span><span class=n>M</span><span class=w>
-</span><span class=w></span><span class=k>default</span><span class=w> </span><span class=k>temporary</span><span class=w> </span><span class=n>tablespace</span><span class=w> </span><span class=n>temp</span><span class=w> </span><span class=n>tempfile</span><span class=w> </span><span class=s1>&#39;/.../temp01.dbf&#39;</span><span class=w>
-</span><span class=w></span><span class=k>size</span><span class=w> </span><span class=mi>100</span><span class=n>M</span><span class=p>;</span><span class=w>
-</span></code></pre></div><h2 id=6-data-dictionary-view-생성-스크립트-실행>6. Data Dictionary View 생성 스크립트 실행</h2>
-<pre class=console>
+</pre><h2 id=5-create-database-문-실행>5. <code>CREATE DATABASE</code> 문 실행</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=line><span class=cl><span class=k>create</span><span class=w> </span><span class=k>database</span><span class=w> </span><span class=n>test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=n>dblogfile</span><span class=w> </span><span class=k>group</span><span class=w> </span><span class=mi>1</span><span class=w> </span><span class=p>(</span><span class=s1>&#39;/.../redo1.log&#39;</span><span class=p>)</span><span class=w> </span><span class=k>size</span><span class=w> </span><span class=mi>100</span><span class=n>M</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=k>group</span><span class=w> </span><span class=mi>2</span><span class=w> </span><span class=p>(</span><span class=s1>&#39;/.../redo2.log&#39;</span><span class=p>)</span><span class=w> </span><span class=k>size</span><span class=w> </span><span class=mi>100</span><span class=n>M</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=k>group</span><span class=w> </span><span class=mi>3</span><span class=w> </span><span class=p>(</span><span class=s1>&#39;/.../redo3.log&#39;</span><span class=p>)</span><span class=w> </span><span class=k>size</span><span class=w> </span><span class=mi>100</span><span class=n>M</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nb>character</span><span class=w> </span><span class=k>set</span><span class=w> </span><span class=n>ko16ksc5601</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=k>national</span><span class=w> </span><span class=nb>character</span><span class=w> </span><span class=k>set</span><span class=w> </span><span class=n>al16utf16</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=n>datafile</span><span class=w> </span><span class=s1>&#39;/.../system.dbf&#39;</span><span class=w> </span><span class=k>size</span><span class=w> </span><span class=mi>500</span><span class=n>M</span><span class=w> </span><span class=n>autoextend</span><span class=w> </span><span class=k>on</span><span class=w> </span><span class=k>next</span><span class=w> </span><span class=mi>10</span><span class=n>M</span><span class=w> </span><span class=n>maxsize</span><span class=w> </span><span class=n>unlimited</span><span class=w> </span><span class=n>extent</span><span class=w> </span><span class=n>management</span><span class=w> </span><span class=k>local</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=n>sysaux</span><span class=w> </span><span class=n>datafile</span><span class=w> </span><span class=s1>&#39;/.../sysaux.dbf&#39;</span><span class=w> </span><span class=k>size</span><span class=w> </span><span class=mi>100</span><span class=n>M</span><span class=w> </span><span class=n>autoextend</span><span class=w> </span><span class=k>on</span><span class=w> </span><span class=k>next</span><span class=w> </span><span class=mi>10</span><span class=n>M</span><span class=w> </span><span class=n>maxsize</span><span class=w> </span><span class=n>unlimited</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=n>undo</span><span class=w> </span><span class=n>tablespace</span><span class=w> </span><span class=n>undotbs1</span><span class=w> </span><span class=n>datafile</span><span class=w> </span><span class=s1>&#39;/.../undotbs1.dbf&#39;</span><span class=w> </span><span class=k>size</span><span class=w> </span><span class=mi>100</span><span class=n>M</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=k>default</span><span class=w> </span><span class=k>temporary</span><span class=w> </span><span class=n>tablespace</span><span class=w> </span><span class=n>temp</span><span class=w> </span><span class=n>tempfile</span><span class=w> </span><span class=s1>&#39;/.../temp01.dbf&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=k>size</span><span class=w> </span><span class=mi>100</span><span class=n>M</span><span class=p>;</span><span class=w>
+</span></span></span></code></pre></div><h2 id=6-data-dictionary-view-생성-스크립트-실행>6. Data Dictionary View 생성 스크립트 실행</h2><pre class=console>
 $ORACLE_HOME/rdbms/admin/CATALOG.sql
 $ORACLE_HOME/rdbms/admin/CATPROC.sql
-</pre>
-<h2 id=7-spfile-생성>7. SPFILE 생성</h2>
-<pre class=console>
+</pre><h2 id=7-spfile-생성>7. SPFILE 생성</h2><pre class=console>
 SQL> create spfile from pfile;
-</pre>
-<h2 id=8-추가-테이블스페이스-생성>8. 추가 테이블스페이스 생성</h2>
-<p>데이터를 저장할 테이블스페이스를 생성한다.</p>
-<h2 id=9-sys-system-계정-암호-변경>9. sys, system 계정 암호 변경</h2>
-<p>보안을 위해 관리자 계정 암호를 변경한다.</p>
-<h2 id=참고-create-database-문-syntax>참고: <code>CREATE DATABASE</code> 문 Syntax</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=k>CREATE</span><span class=w> </span><span class=k>DATABASE</span><span class=w> </span><span class=p>[</span><span class=k>database</span><span class=w> </span><span class=n>name</span><span class=p>]</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=n>CONTROLFILE</span><span class=w> </span><span class=n>REUSE</span><span class=p>]</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=n>LOGFILE</span><span class=w> </span><span class=p>[</span><span class=k>GROUP</span><span class=w> </span><span class=nb>integer</span><span class=p>]</span><span class=w> </span><span class=n>file</span><span class=w> </span><span class=n>specification</span><span class=p>]</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=n>MAXLOGFILES</span><span class=w> </span><span class=nb>integer</span><span class=p>]</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=n>MAXLOGMEMBERS</span><span class=w> </span><span class=nb>integer</span><span class=p>]</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=n>MAXLOGHISTORY</span><span class=w> </span><span class=nb>integer</span><span class=p>]</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=n>MAXDATAFILES</span><span class=w> </span><span class=nb>integer</span><span class=p>]</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=n>MAXINSTANCES</span><span class=w> </span><span class=nb>integer</span><span class=p>]</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=n>ARCHIVELOG</span><span class=o>|</span><span class=n>NOARCHIVELOG</span><span class=p>]</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=nb>CHARACTER</span><span class=w> </span><span class=k>SET</span><span class=w> </span><span class=n>charset</span><span class=p>]</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=k>NATIONAL</span><span class=w> </span><span class=nb>CHARACTER</span><span class=w> </span><span class=k>SET</span><span class=w> </span><span class=n>charset</span><span class=p>]</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=n>DATAFILE</span><span class=w> </span><span class=n>filespec</span><span class=w> </span><span class=p>[</span><span class=n>autoextend</span><span class=p>]]</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=k>DEFAULT</span><span class=w> </span><span class=k>TEMPORARY</span><span class=w> </span><span class=n>TABLESPACE</span><span class=w> </span><span class=n>tablespace</span><span class=w> </span><span class=n>filespec</span><span class=p>]</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=n>UNDO</span><span class=w> </span><span class=n>TABLESPACE</span><span class=w> </span><span class=n>tablespace</span><span class=w> </span><span class=n>DATAFILE</span><span class=w> </span><span class=n>filespec</span><span class=p>]</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=k>SET</span><span class=w> </span><span class=n>TIME_ZONE</span><span class=w> </span><span class=p>[</span><span class=n>time_zone_region</span><span class=p>]];</span><span class=w>
-</span></code></pre></div>
-</section>
-<footer class=post-footer>
+</pre><h2 id=8-추가-테이블스페이스-생성>8. 추가 테이블스페이스 생성</h2><p>데이터를 저장할 테이블스페이스를 생성한다.</p><h2 id=9-sys-system-계정-암호-변경>9. sys, system 계정 암호 변경</h2><p>보안을 위해 관리자 계정 암호를 변경한다.</p><h2 id=참고-create-database-문-syntax>참고: <code>CREATE DATABASE</code> 문 Syntax</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=line><span class=cl><span class=k>CREATE</span><span class=w> </span><span class=k>DATABASE</span><span class=w> </span><span class=p>[</span><span class=k>database</span><span class=w> </span><span class=n>name</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>[</span><span class=n>CONTROLFILE</span><span class=w> </span><span class=n>REUSE</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>[</span><span class=n>LOGFILE</span><span class=w> </span><span class=p>[</span><span class=k>GROUP</span><span class=w> </span><span class=nb>integer</span><span class=p>]</span><span class=w> </span><span class=n>file</span><span class=w> </span><span class=n>specification</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>[</span><span class=n>MAXLOGFILES</span><span class=w> </span><span class=nb>integer</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>[</span><span class=n>MAXLOGMEMBERS</span><span class=w> </span><span class=nb>integer</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>[</span><span class=n>MAXLOGHISTORY</span><span class=w> </span><span class=nb>integer</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>[</span><span class=n>MAXDATAFILES</span><span class=w> </span><span class=nb>integer</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>[</span><span class=n>MAXINSTANCES</span><span class=w> </span><span class=nb>integer</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>[</span><span class=n>ARCHIVELOG</span><span class=o>|</span><span class=n>NOARCHIVELOG</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>[</span><span class=nb>CHARACTER</span><span class=w> </span><span class=k>SET</span><span class=w> </span><span class=n>charset</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>[</span><span class=k>NATIONAL</span><span class=w> </span><span class=nb>CHARACTER</span><span class=w> </span><span class=k>SET</span><span class=w> </span><span class=n>charset</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>[</span><span class=n>DATAFILE</span><span class=w> </span><span class=n>filespec</span><span class=w> </span><span class=p>[</span><span class=n>autoextend</span><span class=p>]]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>[</span><span class=k>DEFAULT</span><span class=w> </span><span class=k>TEMPORARY</span><span class=w> </span><span class=n>TABLESPACE</span><span class=w> </span><span class=n>tablespace</span><span class=w> </span><span class=n>filespec</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>[</span><span class=n>UNDO</span><span class=w> </span><span class=n>TABLESPACE</span><span class=w> </span><span class=n>tablespace</span><span class=w> </span><span class=n>DATAFILE</span><span class=w> </span><span class=n>filespec</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>[</span><span class=k>SET</span><span class=w> </span><span class=n>TIME_ZONE</span><span class=w> </span><span class=p>[</span><span class=n>time_zone_region</span><span class=p>]];</span><span class=w>
+</span></span></span></code></pre></div></section><footer class=post-footer>
 <div class="social button-box">
 <a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
 <script async src=//platform.twitter.com/widgets.js></script>
-</div>
-<nav id=article-nav>
+</div><nav id=article-nav>
 <a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2009/canvas-test/ id=article-nav-newer> Canvas 테스트</a>
 <a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2009/resizing-undb-ts/ id=article-nav-older> Undo 테이블스페이스 크기 변경 방법</a>
-</nav>
-</footer>
-</article>
-</main>
-<section class=section>
+</nav></footer></article></main><section class=section>
 <div class=container>
-<aside><div id=disqus_thread></div></aside>
-<script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2009/create-db/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
-</div>
-</section>
-<section class=section>
+<aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2009/create-db/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section>
 <div class="container has-text-centered">
-<p></p>
-</div>
-</section>
-<script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
 <script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
 <footer class=page-bottom>
 <div class=inner>
-<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section>
-<section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section>
-</div>
-</footer>
-</body>
-</html>
+<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>

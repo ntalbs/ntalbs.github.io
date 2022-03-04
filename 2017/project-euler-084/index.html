@@ -1,45 +1,27 @@
 <!doctype html><html>
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script>
 <meta charset=utf-8>
 <meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
 <meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>프로젝트 오일러 84 @ntalbs' stuff</title>
-<link rel="shortcut icon" href=/images/favicon.ico>
+<title>프로젝트 오일러 84 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico>
 <link rel=stylesheet href=/css/style.css>
 <link rel=stylesheet href=/css/highlight.css>
-</head>
-<body>
+</head><body>
 <div id=progress>
-<div id=bar></div>
-<div class=container>
-<div id=scroll-title>프로젝트 오일러 84</div>
-</div>
-</div>
-<nav class=navbar role=navigation>
+<div id=bar></div><div class=container>
+<div id=scroll-title>프로젝트 오일러 84</div></div></div><nav class=navbar role=navigation>
 <div class=container>
 <div class=navbar-header>
 <button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
 <a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
-</div>
-<div class="navbar-items collapsed" id=nav-items>
+</div><div class="navbar-items collapsed" id=nav-items>
 <ul>
-<li><a class=unselectable href=/archive/>Archive</a></li>
-<li><a class=unselectable href=/tags/>Tags</a></li>
-<li><a class=unselectable href=/about/>About</a></li>
-<li><a id=mode-switch class=unselectable href=#></a></li>
-</ul>
-</div>
-</div>
-</nav>
-<header class=page-head>
+<li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head>
 <div class=container>
-<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-</div>
-</header>
-<main class=container role=main>
+<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main>
 <article class=post>
 <header>
 <p class=post-meta>
@@ -47,161 +29,129 @@
 on
 <a href=/tags/project-euler/>Project-Euler</a>
 <a href=/tags/clojure/>Clojure</a>
-</p>
-<h1 class=post-title>
+</p><h1 class=post-title>
 프로젝트 오일러 84
-</h1>
-</header>
-<section class=post-content>
+</h1></header><section class=post-content>
 <blockquote>
-<p>모노폴리 게임을 4면체 주사위로 할 때 가장 많이 방문하는 칸은?</p>
-<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=84">[국어]</a> <a href="https://projecteuler.net/problem=84">[영어]</a></p>
-</blockquote>
-<p>이 문제를 수학적으로 푸는 방법이 있는지 모르겠다. 여기서는 문제에 주어진 게임 규칙을 모두 구현한 후, 직접 사면체 주사위를 1백만 번 던져 어느 칸을 가장 많이 방문했는지 세는 방법으로 문제를 풀었다.</p>
-<p>코드가 조금 길긴 하지만, 게임 규칙을 구현한 것에 불과하며 특별히 복잡한 알고리즘이 있는 것은 아니다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=k>def </span><span class=nv>board</span> <span class=p>(</span><span class=nf>atom</span> <span class=p>(</span><span class=nf>vec</span> <span class=p>(</span><span class=nb>repeat </span><span class=mi>40</span> <span class=mi>0</span><span class=p>))))</span> <span class=c1>; 게임보드에서 각 칸 방문 회수</span>
-<span class=p>(</span><span class=k>def </span><span class=nv>pos</span> <span class=p>(</span><span class=nf>atom</span> <span class=mi>0</span><span class=p>))</span>                     <span class=c1>; 현재 위치</span>
-<span class=p>(</span><span class=k>def </span><span class=nv>double-cnt</span> <span class=p>(</span><span class=nf>atom</span> <span class=mi>0</span><span class=p>))</span>              <span class=c1>; 더블 회수</span>
-<span class=p>(</span><span class=k>def </span><span class=nv>chi</span> <span class=p>(</span><span class=nf>atom</span> <span class=mi>0</span><span class=p>))</span>                     <span class=c1>; 공동기금 카드 인덱스</span>
-<span class=p>(</span><span class=k>def </span><span class=nv>cci</span> <span class=p>(</span><span class=nf>atom</span> <span class=mi>0</span><span class=p>))</span>                     <span class=c1>; 찬스 카드 인덱스</span>
-
-<span class=p>(</span><span class=kd>defn- </span><span class=nv>roll</span> <span class=p>[]</span>
-  <span class=p>[(</span><span class=nb>inc </span><span class=p>(</span><span class=nb>rand-int </span><span class=mi>4</span><span class=p>))</span> <span class=p>(</span><span class=nb>inc </span><span class=p>(</span><span class=nb>rand-int </span><span class=mi>4</span><span class=p>))])</span>
-
-<span class=p>(</span><span class=kd>defn- </span><span class=nv>init</span> <span class=p>[]</span>
-  <span class=p>(</span><span class=nf>reset!</span> <span class=nv>board</span> <span class=p>(</span><span class=nf>vec</span> <span class=p>(</span><span class=nb>repeat </span><span class=mi>40</span> <span class=mi>0</span><span class=p>)))</span>
-  <span class=p>(</span><span class=nf>reset!</span> <span class=nv>pos</span> <span class=mi>0</span><span class=p>)</span>
-  <span class=p>(</span><span class=nf>reset!</span> <span class=nv>double-cnt</span> <span class=mi>0</span><span class=p>))</span>
-
-<span class=p>(</span><span class=kd>defn- </span><span class=nv>visit</span> <span class=p>[</span><span class=nv>n</span><span class=p>]</span>
-  <span class=p>(</span><span class=nf>reset!</span> <span class=nv>pos</span> <span class=nv>n</span><span class=p>)</span>
-  <span class=p>(</span><span class=nf>swap!</span> <span class=nv>board</span> <span class=nb>assoc </span><span class=nv>n</span> <span class=p>(</span><span class=nb>inc </span><span class=p>(</span><span class=nb>nth </span><span class=o>@</span><span class=nv>board</span> <span class=nv>n</span><span class=p>))))</span>
-
-<span class=p>(</span><span class=kd>defn- </span><span class=nv>go-to</span> <span class=p>[</span><span class=nv>dest</span><span class=p>]</span>
-  <span class=p>(</span><span class=k>let </span><span class=p>[</span><span class=nv>n</span> <span class=p>({</span><span class=ss>:start</span> <span class=mi>0</span>, <span class=ss>:jail</span> <span class=mi>10</span>, <span class=ss>:c1</span> <span class=mi>11</span>, <span class=ss>:e3</span> <span class=mi>24</span>, <span class=ss>:h2</span> <span class=mi>39</span>, <span class=ss>:r1</span> <span class=mi>5</span><span class=p>}</span> <span class=nv>dest</span><span class=p>)]</span>
-    <span class=p>(</span><span class=nf>visit</span> <span class=nv>n</span><span class=p>)))</span>
-
-<span class=p>(</span><span class=kd>defn- </span><span class=nv>forward</span> <span class=p>[</span><span class=nv>n</span><span class=p>]</span>
-  <span class=p>(</span><span class=k>let </span><span class=p>[</span><span class=nv>p</span> <span class=p>(</span><span class=nf>mod</span> <span class=p>(</span><span class=nb>+ </span><span class=o>@</span><span class=nv>pos</span> <span class=nv>n</span><span class=p>)</span> <span class=mi>40</span><span class=p>)]</span>
-    <span class=p>(</span><span class=k>if </span><span class=p>(</span><span class=nb>= </span><span class=mi>30</span> <span class=nv>p</span><span class=p>)</span>
-      <span class=p>(</span><span class=nf>go-to</span> <span class=ss>:jail</span><span class=p>)</span>
-      <span class=p>(</span><span class=nf>visit</span> <span class=nv>p</span><span class=p>))))</span>
-
-<span class=p>(</span><span class=kd>defn- </span><span class=nv>next-pos</span> <span class=p>[</span><span class=nv>n</span> <span class=nv>dest</span><span class=p>]</span>
-  <span class=p>(</span><span class=nb>cond </span><span class=p>(</span><span class=nb>= </span><span class=nv>dest</span> <span class=ss>:r</span><span class=p>)</span> <span class=p>(</span><span class=nf>condp</span> <span class=nb>= </span><span class=nv>n</span> <span class=mi>7</span> <span class=mi>15</span> <span class=mi>22</span> <span class=mi>25</span> <span class=mi>36</span> <span class=mi>5</span><span class=p>)</span>
-        <span class=p>(</span><span class=nb>= </span><span class=nv>dest</span> <span class=ss>:u</span><span class=p>)</span> <span class=p>(</span><span class=nf>condp</span> <span class=nb>= </span><span class=nv>n</span> <span class=mi>7</span> <span class=mi>12</span> <span class=mi>22</span> <span class=mi>28</span> <span class=mi>36</span> <span class=mi>12</span><span class=p>)))</span>
-
-<span class=p>(</span><span class=kd>defn- </span><span class=nv>roll</span> <span class=p>[]</span>
-  <span class=p>[(</span><span class=nb>inc </span><span class=p>(</span><span class=nb>rand-int </span><span class=mi>4</span><span class=p>))</span> <span class=p>(</span><span class=nb>inc </span><span class=p>(</span><span class=nb>rand-int </span><span class=mi>4</span><span class=p>))])</span>
-
-<span class=p>(</span><span class=kd>defn- </span><span class=nv>inc-index</span>
-  <span class=s>&#34;increase the card index&#34;</span>
-  <span class=p>[</span><span class=nv>n</span><span class=p>]</span>
-  <span class=p>(</span><span class=nf>mod</span> <span class=p>(</span><span class=nb>inc </span><span class=nv>n</span><span class=p>)</span> <span class=mi>16</span><span class=p>))</span>
-
-<span class=p>(</span><span class=kd>defn- </span><span class=nv>cc-instruction</span>
-  <span class=s>&#34;community chest&#34;</span>
-  <span class=p>[</span><span class=nv>pos</span><span class=p>]</span>
-  <span class=p>(</span><span class=nf>swap!</span> <span class=nv>cci</span> <span class=nv>inc-index</span><span class=p>)</span>
-  <span class=p>(</span><span class=nf>condp</span> <span class=nb>= </span><span class=o>@</span><span class=nv>cci</span>
-    <span class=mi>1</span> <span class=o>#</span><span class=p>(</span><span class=nf>go-to</span> <span class=ss>:start</span><span class=p>)</span>
-    <span class=mi>2</span> <span class=o>#</span><span class=p>(</span><span class=nf>go-to</span> <span class=ss>:jail</span><span class=p>)</span>
-    <span class=o>#</span><span class=p>(</span><span class=nf>visit</span> <span class=nv>pos</span><span class=p>)))</span>
-
-<span class=p>(</span><span class=kd>defn- </span><span class=nv>chance-instruction</span>
-  <span class=s>&#34;chance&#34;</span>
-  <span class=p>[</span><span class=nv>pos</span><span class=p>]</span>
-  <span class=p>(</span><span class=nf>swap!</span> <span class=nv>chi</span> <span class=nv>inc-index</span><span class=p>)</span>
-  <span class=p>(</span><span class=nf>condp</span> <span class=nb>= </span><span class=o>@</span><span class=nv>chi</span>
-    <span class=mi>1</span> <span class=o>#</span><span class=p>(</span><span class=nf>go-to</span> <span class=ss>:start</span><span class=p>)</span>
-    <span class=mi>2</span> <span class=o>#</span><span class=p>(</span><span class=nf>go-to</span> <span class=ss>:jail</span><span class=p>)</span>
-    <span class=mi>3</span> <span class=o>#</span><span class=p>(</span><span class=nf>go-to</span> <span class=ss>:c1</span><span class=p>)</span>
-    <span class=mi>4</span> <span class=o>#</span><span class=p>(</span><span class=nf>go-to</span> <span class=ss>:e3</span><span class=p>)</span>
-    <span class=mi>5</span> <span class=o>#</span><span class=p>(</span><span class=nf>go-to</span> <span class=ss>:h2</span><span class=p>)</span>
-    <span class=mi>6</span> <span class=o>#</span><span class=p>(</span><span class=nf>go-to</span> <span class=ss>:r1</span><span class=p>)</span>
-    <span class=mi>7</span> <span class=o>#</span><span class=p>(</span><span class=nf>visit</span> <span class=p>(</span><span class=nf>next-pos</span> <span class=nv>pos</span> <span class=ss>:r</span><span class=p>))</span>
-    <span class=mi>8</span> <span class=o>#</span><span class=p>(</span><span class=nf>visit</span> <span class=p>(</span><span class=nf>next-pos</span> <span class=nv>pos</span> <span class=ss>:r</span><span class=p>))</span>
-    <span class=mi>9</span> <span class=o>#</span><span class=p>(</span><span class=nf>visit</span> <span class=p>(</span><span class=nf>next-pos</span> <span class=nv>pos</span> <span class=ss>:u</span><span class=p>))</span>
-    <span class=mi>0</span> <span class=o>#</span><span class=p>(</span><span class=nf>forward</span> <span class=mi>-3</span><span class=p>)</span>
-    <span class=o>#</span><span class=p>(</span><span class=nf>visit</span> <span class=nv>pos</span><span class=p>)))</span>
-
-<span class=p>(</span><span class=kd>defn- </span><span class=nv>follow</span> <span class=p>[</span><span class=nv>instruction</span><span class=p>]</span>
-  <span class=p>(</span><span class=k>if </span><span class=nv>instruction</span> <span class=p>(</span><span class=nf>instruction</span><span class=p>)))</span>
-
-<span class=p>(</span><span class=kd>defn- </span><span class=nv>roll-and-move</span> <span class=p>[]</span>
-  <span class=p>(</span><span class=k>let </span><span class=p>[[</span><span class=nv>r1</span> <span class=nv>r2</span><span class=p>]</span> <span class=p>(</span><span class=nf>roll</span><span class=p>)</span> <span class=nv>p</span> <span class=p>(</span><span class=nb>+ </span><span class=nv>r1</span> <span class=nv>r2</span> <span class=o>@</span><span class=nv>pos</span><span class=p>)]</span>
-    <span class=p>(</span><span class=k>if </span><span class=p>(</span><span class=nb>= </span><span class=nv>r1</span> <span class=nv>r2</span><span class=p>)</span>
-      <span class=p>(</span><span class=nf>swap!</span> <span class=nv>double-cnt</span> <span class=nv>inc</span><span class=p>)</span>
-      <span class=p>(</span><span class=nf>reset!</span> <span class=nv>double-cnt</span> <span class=mi>0</span><span class=p>))</span>
-    <span class=p>(</span><span class=nb>cond </span><span class=p>(</span><span class=nb>= </span><span class=mi>3</span> <span class=o>@</span><span class=nv>double-cnt</span><span class=p>)</span> <span class=p>(</span><span class=nf>go-to</span> <span class=ss>:jail</span><span class=p>)</span>
-          <span class=p>(</span><span class=o>#</span><span class=p>{</span><span class=mi>2</span> <span class=mi>17</span> <span class=mi>33</span><span class=p>}</span> <span class=nv>p</span><span class=p>)</span> <span class=p>(</span><span class=nf>follow</span> <span class=p>(</span><span class=nf>cc-instruction</span> <span class=nv>p</span><span class=p>))</span>
-          <span class=p>(</span><span class=o>#</span><span class=p>{</span><span class=mi>7</span> <span class=mi>22</span> <span class=mi>36</span><span class=p>}</span> <span class=nv>p</span><span class=p>)</span> <span class=p>(</span><span class=nf>follow</span> <span class=p>(</span><span class=nf>chance-instruction</span> <span class=nv>p</span><span class=p>))</span>
-          <span class=ss>:else</span> <span class=p>(</span><span class=nf>forward</span> <span class=p>(</span><span class=nb>+ </span><span class=nv>r1</span> <span class=nv>r2</span><span class=p>)))))</span>
-
-<span class=p>(</span><span class=kd>defn </span><span class=nv>run</span> <span class=p>[</span><span class=nv>n</span><span class=p>]</span>
-  <span class=p>(</span><span class=nf>-&gt;&gt;</span> <span class=p>(</span><span class=nf>repeatedly</span> <span class=nv>n</span> <span class=nv>roll-and-move</span><span class=p>)</span>
-       <span class=p>(</span><span class=nf>last</span><span class=p>)</span>
-       <span class=p>(</span><span class=nf>map-indexed</span> <span class=p>(</span><span class=k>fn </span><span class=p>[</span><span class=nv>i</span> <span class=nv>v</span><span class=p>]</span> <span class=p>[</span><span class=nv>i</span> <span class=nv>v</span><span class=p>]))</span>
-       <span class=p>(</span><span class=nb>sort-by second </span><span class=o>#</span><span class=p>(</span><span class=nf>compare</span> <span class=nv>%2</span> <span class=nv>%1</span><span class=p>))</span>
-       <span class=p>(</span><span class=nb>take </span><span class=mi>3</span><span class=p>)</span>
-       <span class=p>(</span><span class=nb>map </span><span class=nv>first</span><span class=p>)</span>
-       <span class=p>(</span><span class=nb>map </span><span class=o>#</span><span class=p>(</span><span class=nf>format</span> <span class=s>&#34;%02d&#34;</span> <span class=nv>%</span><span class=p>))</span>
-       <span class=p>(</span><span class=nb>apply </span><span class=nv>str</span><span class=p>)))</span>
-
-<span class=p>(</span><span class=kd>defn </span><span class=nv>simulate</span> <span class=p>[]</span>
-  <span class=p>(</span><span class=nf>init</span><span class=p>)</span>
-  <span class=p>(</span><span class=nf>run</span> <span class=mi>100000</span><span class=p>))</span>
-
-<span class=p>(</span><span class=kd>defn </span><span class=nv>solve</span> <span class=p>[]</span>
-  <span class=p>(</span><span class=nf>-&gt;&gt;</span> <span class=p>(</span><span class=nf>repeatedly</span> <span class=mi>10</span> <span class=nv>simulate</span><span class=p>)</span>
-       <span class=p>(</span><span class=nf>group-by</span> <span class=nv>identity</span><span class=p>)</span>
-       <span class=p>(</span><span class=nb>map </span><span class=p>(</span><span class=k>fn </span><span class=p>[[</span><span class=nv>k</span> <span class=nv>xs</span><span class=p>]]</span> <span class=p>[</span><span class=nv>k</span> <span class=p>(</span><span class=nb>count </span><span class=nv>xs</span><span class=p>)]))</span>
-       <span class=p>(</span><span class=nb>sort-by </span><span class=nv>second</span><span class=p>)</span>
-       <span class=p>(</span><span class=nf>ffirst</span><span class=p>)))</span>
-</code></pre></div><p>실행 결과는 다음과 같다.</p>
-<pre class=console>
+<p>모노폴리 게임을 4면체 주사위로 할 때 가장 많이 방문하는 칸은?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=84">[국어]</a> <a href="https://projecteuler.net/problem=84">[영어]</a></p></blockquote><p>이 문제를 수학적으로 푸는 방법이 있는지 모르겠다. 여기서는 문제에 주어진 게임 규칙을 모두 구현한 후, 직접 사면체 주사위를 1백만 번 던져 어느 칸을 가장 많이 방문했는지 세는 방법으로 문제를 풀었다.</p><p>코드가 조금 길긴 하지만, 게임 규칙을 구현한 것에 불과하며 특별히 복잡한 알고리즘이 있는 것은 아니다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-clojure data-lang=clojure><span class=line><span class=cl><span class=p>(</span><span class=k>def </span><span class=nv>board</span> <span class=p>(</span><span class=nf>atom</span> <span class=p>(</span><span class=nf>vec</span> <span class=p>(</span><span class=nb>repeat </span><span class=mi>40</span> <span class=mi>0</span><span class=p>))))</span> <span class=c1>; 게임보드에서 각 칸 방문 회수</span>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=k>def </span><span class=nv>pos</span> <span class=p>(</span><span class=nf>atom</span> <span class=mi>0</span><span class=p>))</span>                     <span class=c1>; 현재 위치</span>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=k>def </span><span class=nv>double-cnt</span> <span class=p>(</span><span class=nf>atom</span> <span class=mi>0</span><span class=p>))</span>              <span class=c1>; 더블 회수</span>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=k>def </span><span class=nv>chi</span> <span class=p>(</span><span class=nf>atom</span> <span class=mi>0</span><span class=p>))</span>                     <span class=c1>; 공동기금 카드 인덱스</span>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=k>def </span><span class=nv>cci</span> <span class=p>(</span><span class=nf>atom</span> <span class=mi>0</span><span class=p>))</span>                     <span class=c1>; 찬스 카드 인덱스</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=kd>defn- </span><span class=nv>roll</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>  <span class=p>[(</span><span class=nb>inc </span><span class=p>(</span><span class=nb>rand-int </span><span class=mi>4</span><span class=p>))</span> <span class=p>(</span><span class=nb>inc </span><span class=p>(</span><span class=nb>rand-int </span><span class=mi>4</span><span class=p>))])</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=kd>defn- </span><span class=nv>init</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nf>reset!</span> <span class=nv>board</span> <span class=p>(</span><span class=nf>vec</span> <span class=p>(</span><span class=nb>repeat </span><span class=mi>40</span> <span class=mi>0</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nf>reset!</span> <span class=nv>pos</span> <span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nf>reset!</span> <span class=nv>double-cnt</span> <span class=mi>0</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=kd>defn- </span><span class=nv>visit</span> <span class=p>[</span><span class=nv>n</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nf>reset!</span> <span class=nv>pos</span> <span class=nv>n</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nf>swap!</span> <span class=nv>board</span> <span class=nb>assoc </span><span class=nv>n</span> <span class=p>(</span><span class=nb>inc </span><span class=p>(</span><span class=nb>nth </span><span class=o>@</span><span class=nv>board</span> <span class=nv>n</span><span class=p>))))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=kd>defn- </span><span class=nv>go-to</span> <span class=p>[</span><span class=nv>dest</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=k>let </span><span class=p>[</span><span class=nv>n</span> <span class=p>({</span><span class=ss>:start</span> <span class=mi>0</span>, <span class=ss>:jail</span> <span class=mi>10</span>, <span class=ss>:c1</span> <span class=mi>11</span>, <span class=ss>:e3</span> <span class=mi>24</span>, <span class=ss>:h2</span> <span class=mi>39</span>, <span class=ss>:r1</span> <span class=mi>5</span><span class=p>}</span> <span class=nv>dest</span><span class=p>)]</span>
+</span></span><span class=line><span class=cl>    <span class=p>(</span><span class=nf>visit</span> <span class=nv>n</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=kd>defn- </span><span class=nv>forward</span> <span class=p>[</span><span class=nv>n</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=k>let </span><span class=p>[</span><span class=nv>p</span> <span class=p>(</span><span class=nf>mod</span> <span class=p>(</span><span class=nb>+ </span><span class=o>@</span><span class=nv>pos</span> <span class=nv>n</span><span class=p>)</span> <span class=mi>40</span><span class=p>)]</span>
+</span></span><span class=line><span class=cl>    <span class=p>(</span><span class=k>if </span><span class=p>(</span><span class=nb>= </span><span class=mi>30</span> <span class=nv>p</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=p>(</span><span class=nf>go-to</span> <span class=ss>:jail</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=p>(</span><span class=nf>visit</span> <span class=nv>p</span><span class=p>))))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=kd>defn- </span><span class=nv>next-pos</span> <span class=p>[</span><span class=nv>n</span> <span class=nv>dest</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nb>cond </span><span class=p>(</span><span class=nb>= </span><span class=nv>dest</span> <span class=ss>:r</span><span class=p>)</span> <span class=p>(</span><span class=nf>condp</span> <span class=nb>= </span><span class=nv>n</span> <span class=mi>7</span> <span class=mi>15</span> <span class=mi>22</span> <span class=mi>25</span> <span class=mi>36</span> <span class=mi>5</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>(</span><span class=nb>= </span><span class=nv>dest</span> <span class=ss>:u</span><span class=p>)</span> <span class=p>(</span><span class=nf>condp</span> <span class=nb>= </span><span class=nv>n</span> <span class=mi>7</span> <span class=mi>12</span> <span class=mi>22</span> <span class=mi>28</span> <span class=mi>36</span> <span class=mi>12</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=kd>defn- </span><span class=nv>roll</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>  <span class=p>[(</span><span class=nb>inc </span><span class=p>(</span><span class=nb>rand-int </span><span class=mi>4</span><span class=p>))</span> <span class=p>(</span><span class=nb>inc </span><span class=p>(</span><span class=nb>rand-int </span><span class=mi>4</span><span class=p>))])</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=kd>defn- </span><span class=nv>inc-index</span>
+</span></span><span class=line><span class=cl>  <span class=s>&#34;increase the card index&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>[</span><span class=nv>n</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nf>mod</span> <span class=p>(</span><span class=nb>inc </span><span class=nv>n</span><span class=p>)</span> <span class=mi>16</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=kd>defn- </span><span class=nv>cc-instruction</span>
+</span></span><span class=line><span class=cl>  <span class=s>&#34;community chest&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>[</span><span class=nv>pos</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nf>swap!</span> <span class=nv>cci</span> <span class=nv>inc-index</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nf>condp</span> <span class=nb>= </span><span class=o>@</span><span class=nv>cci</span>
+</span></span><span class=line><span class=cl>    <span class=mi>1</span> <span class=o>#</span><span class=p>(</span><span class=nf>go-to</span> <span class=ss>:start</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=mi>2</span> <span class=o>#</span><span class=p>(</span><span class=nf>go-to</span> <span class=ss>:jail</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=o>#</span><span class=p>(</span><span class=nf>visit</span> <span class=nv>pos</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=kd>defn- </span><span class=nv>chance-instruction</span>
+</span></span><span class=line><span class=cl>  <span class=s>&#34;chance&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>[</span><span class=nv>pos</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nf>swap!</span> <span class=nv>chi</span> <span class=nv>inc-index</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nf>condp</span> <span class=nb>= </span><span class=o>@</span><span class=nv>chi</span>
+</span></span><span class=line><span class=cl>    <span class=mi>1</span> <span class=o>#</span><span class=p>(</span><span class=nf>go-to</span> <span class=ss>:start</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=mi>2</span> <span class=o>#</span><span class=p>(</span><span class=nf>go-to</span> <span class=ss>:jail</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=mi>3</span> <span class=o>#</span><span class=p>(</span><span class=nf>go-to</span> <span class=ss>:c1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=mi>4</span> <span class=o>#</span><span class=p>(</span><span class=nf>go-to</span> <span class=ss>:e3</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=mi>5</span> <span class=o>#</span><span class=p>(</span><span class=nf>go-to</span> <span class=ss>:h2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=mi>6</span> <span class=o>#</span><span class=p>(</span><span class=nf>go-to</span> <span class=ss>:r1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=mi>7</span> <span class=o>#</span><span class=p>(</span><span class=nf>visit</span> <span class=p>(</span><span class=nf>next-pos</span> <span class=nv>pos</span> <span class=ss>:r</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=mi>8</span> <span class=o>#</span><span class=p>(</span><span class=nf>visit</span> <span class=p>(</span><span class=nf>next-pos</span> <span class=nv>pos</span> <span class=ss>:r</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=mi>9</span> <span class=o>#</span><span class=p>(</span><span class=nf>visit</span> <span class=p>(</span><span class=nf>next-pos</span> <span class=nv>pos</span> <span class=ss>:u</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=mi>0</span> <span class=o>#</span><span class=p>(</span><span class=nf>forward</span> <span class=mi>-3</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=o>#</span><span class=p>(</span><span class=nf>visit</span> <span class=nv>pos</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=kd>defn- </span><span class=nv>follow</span> <span class=p>[</span><span class=nv>instruction</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=k>if </span><span class=nv>instruction</span> <span class=p>(</span><span class=nf>instruction</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=kd>defn- </span><span class=nv>roll-and-move</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=k>let </span><span class=p>[[</span><span class=nv>r1</span> <span class=nv>r2</span><span class=p>]</span> <span class=p>(</span><span class=nf>roll</span><span class=p>)</span> <span class=nv>p</span> <span class=p>(</span><span class=nb>+ </span><span class=nv>r1</span> <span class=nv>r2</span> <span class=o>@</span><span class=nv>pos</span><span class=p>)]</span>
+</span></span><span class=line><span class=cl>    <span class=p>(</span><span class=k>if </span><span class=p>(</span><span class=nb>= </span><span class=nv>r1</span> <span class=nv>r2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=p>(</span><span class=nf>swap!</span> <span class=nv>double-cnt</span> <span class=nv>inc</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=p>(</span><span class=nf>reset!</span> <span class=nv>double-cnt</span> <span class=mi>0</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=p>(</span><span class=nb>cond </span><span class=p>(</span><span class=nb>= </span><span class=mi>3</span> <span class=o>@</span><span class=nv>double-cnt</span><span class=p>)</span> <span class=p>(</span><span class=nf>go-to</span> <span class=ss>:jail</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>          <span class=p>(</span><span class=o>#</span><span class=p>{</span><span class=mi>2</span> <span class=mi>17</span> <span class=mi>33</span><span class=p>}</span> <span class=nv>p</span><span class=p>)</span> <span class=p>(</span><span class=nf>follow</span> <span class=p>(</span><span class=nf>cc-instruction</span> <span class=nv>p</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>          <span class=p>(</span><span class=o>#</span><span class=p>{</span><span class=mi>7</span> <span class=mi>22</span> <span class=mi>36</span><span class=p>}</span> <span class=nv>p</span><span class=p>)</span> <span class=p>(</span><span class=nf>follow</span> <span class=p>(</span><span class=nf>chance-instruction</span> <span class=nv>p</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>          <span class=ss>:else</span> <span class=p>(</span><span class=nf>forward</span> <span class=p>(</span><span class=nb>+ </span><span class=nv>r1</span> <span class=nv>r2</span><span class=p>)))))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=kd>defn </span><span class=nv>run</span> <span class=p>[</span><span class=nv>n</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nf>-&gt;&gt;</span> <span class=p>(</span><span class=nf>repeatedly</span> <span class=nv>n</span> <span class=nv>roll-and-move</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>       <span class=p>(</span><span class=nf>last</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>       <span class=p>(</span><span class=nf>map-indexed</span> <span class=p>(</span><span class=k>fn </span><span class=p>[</span><span class=nv>i</span> <span class=nv>v</span><span class=p>]</span> <span class=p>[</span><span class=nv>i</span> <span class=nv>v</span><span class=p>]))</span>
+</span></span><span class=line><span class=cl>       <span class=p>(</span><span class=nb>sort-by second </span><span class=o>#</span><span class=p>(</span><span class=nf>compare</span> <span class=nv>%2</span> <span class=nv>%1</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>       <span class=p>(</span><span class=nb>take </span><span class=mi>3</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>       <span class=p>(</span><span class=nb>map </span><span class=nv>first</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>       <span class=p>(</span><span class=nb>map </span><span class=o>#</span><span class=p>(</span><span class=nf>format</span> <span class=s>&#34;%02d&#34;</span> <span class=nv>%</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>       <span class=p>(</span><span class=nb>apply </span><span class=nv>str</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=kd>defn </span><span class=nv>simulate</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nf>init</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nf>run</span> <span class=mi>100000</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=kd>defn </span><span class=nv>solve</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nf>-&gt;&gt;</span> <span class=p>(</span><span class=nf>repeatedly</span> <span class=mi>10</span> <span class=nv>simulate</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>       <span class=p>(</span><span class=nf>group-by</span> <span class=nv>identity</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>       <span class=p>(</span><span class=nb>map </span><span class=p>(</span><span class=k>fn </span><span class=p>[[</span><span class=nv>k</span> <span class=nv>xs</span><span class=p>]]</span> <span class=p>[</span><span class=nv>k</span> <span class=p>(</span><span class=nb>count </span><span class=nv>xs</span><span class=p>)]))</span>
+</span></span><span class=line><span class=cl>       <span class=p>(</span><span class=nb>sort-by </span><span class=nv>second</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>       <span class=p>(</span><span class=nf>ffirst</span><span class=p>)))</span>
+</span></span></code></pre></div><p>실행 결과는 다음과 같다.</p><pre class=console>
 p084=> (time (solve))
 "Elapsed time: 5255.086709 msecs"
 "1015??"
-</pre>
-<p>운이 좋아 답을 구하기는 했지만, 실행 결과가 항상 정답을 구한다는 보장은 없다. D1(16)과 E3(24)의 방문 확률의 차이가 크지 않아 1백만번을 돌려도 종종 D1이 이기는 경우가 있다. 1백만번 돌리는 시뮬레이션을 10번 수행해서 많이 나오는 쪽으로 판단했지만, 이렇게 해도 D1이 이기는 경우가 있다.</p>
-<h2 id=참고>참고</h2>
-<ul>
-<li><a href=https://github.com/ntalbs/euler/blob/master/src/p084.clj>프로젝트 오일러 84 풀이 소스 코드</a></li>
-</ul>
-</section>
-<footer class=post-footer>
+</pre><p>운이 좋아 답을 구하기는 했지만, 실행 결과가 항상 정답을 구한다는 보장은 없다. D1(16)과 E3(24)의 방문 확률의 차이가 크지 않아 1백만번을 돌려도 종종 D1이 이기는 경우가 있다. 1백만번 돌리는 시뮬레이션을 10번 수행해서 많이 나오는 쪽으로 판단했지만, 이렇게 해도 D1이 이기는 경우가 있다.</p><h2 id=참고>참고</h2><ul>
+<li><a href=https://github.com/ntalbs/euler/blob/master/src/p084.clj>프로젝트 오일러 84 풀이 소스 코드</a></li></ul></section><footer class=post-footer>
 <div class="social button-box">
 <a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
 <script async src=//platform.twitter.com/widgets.js></script>
-</div>
-<nav id=article-nav>
+</div><nav id=article-nav>
 <a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2017/project-euler-085/ id=article-nav-newer> 프로젝트 오일러 85</a>
 <a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2017/project-euler-083/ id=article-nav-older> 프로젝트 오일러 83</a>
-</nav>
-</footer>
-</article>
-</main>
-<section class=section>
+</nav></footer></article></main><section class=section>
 <div class=container>
-<aside><div id=disqus_thread></div></aside>
-<script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2017/project-euler-084/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
-</div>
-</section>
-<section class=section>
+<aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2017/project-euler-084/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section>
 <div class="container has-text-centered">
-<p></p>
-</div>
-</section>
-<script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
 <script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
 <footer class=page-bottom>
 <div class=inner>
-<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section>
-<section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section>
-</div>
-</footer>
-</body>
-</html>
+<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>

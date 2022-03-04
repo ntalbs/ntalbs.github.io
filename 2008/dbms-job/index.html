@@ -1,45 +1,27 @@
 <!doctype html><html>
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script>
 <meta charset=utf-8>
 <meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
 <meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>원하는 시간에만 DB 작업 실행하기 @ntalbs' stuff</title>
-<link rel="shortcut icon" href=/images/favicon.ico>
+<title>원하는 시간에만 DB 작업 실행하기 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico>
 <link rel=stylesheet href=/css/style.css>
 <link rel=stylesheet href=/css/highlight.css>
-</head>
-<body>
+</head><body>
 <div id=progress>
-<div id=bar></div>
-<div class=container>
-<div id=scroll-title>원하는 시간에만 DB 작업 실행하기</div>
-</div>
-</div>
-<nav class=navbar role=navigation>
+<div id=bar></div><div class=container>
+<div id=scroll-title>원하는 시간에만 DB 작업 실행하기</div></div></div><nav class=navbar role=navigation>
 <div class=container>
 <div class=navbar-header>
 <button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
 <a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
-</div>
-<div class="navbar-items collapsed" id=nav-items>
+</div><div class="navbar-items collapsed" id=nav-items>
 <ul>
-<li><a class=unselectable href=/archive/>Archive</a></li>
-<li><a class=unselectable href=/tags/>Tags</a></li>
-<li><a class=unselectable href=/about/>About</a></li>
-<li><a id=mode-switch class=unselectable href=#></a></li>
-</ul>
-</div>
-</div>
-</nav>
-<header class=page-head>
+<li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head>
 <div class=container>
-<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-</div>
-</header>
-<main class=container role=main>
+<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main>
 <article class=post>
 <header>
 <p class=post-meta>
@@ -47,131 +29,64 @@
 on
 <a href=/tags/db/>DB</a>
 <a href=/tags/oracle/>Oracle</a>
-</p>
-<h1 class=post-title>
+</p><h1 class=post-title>
 원하는 시간에만 DB 작업 실행하기
-</h1>
-</header>
-<section class=post-content>
-<p>예전에 <a href="http://database.sarang.net/?criteria=oracle">database.sarang.net 오라클 게시판</a>에 <code>DBMS_JOB</code>을 이용해 원하는 작업을 08시, 14시, 20시에 실행시키는 방법을 묻는 질문이 올라왔다. 작업 간격이 규칙적일 때는 문제가 간단하지만 원하는 시간 간격이 불규칙하므로 그냥 JOB을 세 개 등록하면 어떻겠냐고 답했더니 이번에는 이 작업을 평일에만 실행시키게 하고 싶다고 했다. 즉 평일 08시, 14시, 20시에 작업이 실행되도록 하고 싶다는 것이었다.</p>
-<p>문제를 풀기 전에 <code>DBMS_JOB.SUBMIT</code> 프로시저 사용법을 살펴보는 게 좋겠다. <code>DBMS_JOB</code>을 이용해 작업을 등록하려면 <code>SUBMIT</code> 프로시저를 사용해야 한다. 파라미터 중 <code>next_date</code>와 <code>interval</code>을 통해 작업 실행 시각을 조절할 수 있다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=n>DBMS_JOB</span><span class=p>.</span><span class=n>SUBMIT</span><span class=w> </span><span class=p>(</span><span class=w>
-</span><span class=w>  </span><span class=n>job</span><span class=w>       </span><span class=k>OUT</span><span class=w> </span><span class=n>BINARY_INTEGER</span><span class=p>,</span><span class=w>
-</span><span class=w>  </span><span class=n>what</span><span class=w>      </span><span class=k>IN</span><span class=w>  </span><span class=n>VARCHAR2</span><span class=p>,</span><span class=w>
-</span><span class=w>  </span><span class=n>next_date</span><span class=w> </span><span class=k>IN</span><span class=w>  </span><span class=nb>DATE</span><span class=w> </span><span class=k>DEFAULT</span><span class=w> </span><span class=n>sysdate</span><span class=p>,</span><span class=w>    </span><span class=c1>-- 실행할 시각
-</span><span class=c1></span><span class=w>  </span><span class=nb>interval</span><span class=w>  </span><span class=k>IN</span><span class=w>  </span><span class=n>VARCHAR2</span><span class=w> </span><span class=k>DEFAULT</span><span class=w> </span><span class=s1>&#39;null&#39;</span><span class=p>,</span><span class=w> </span><span class=c1>-- 다음 실행될 시점을 계산할 수식
-</span><span class=c1></span><span class=w>  </span><span class=n>no_parse</span><span class=w>  </span><span class=k>IN</span><span class=w>  </span><span class=nb>BOOLEAN</span><span class=w> </span><span class=k>DEFAULT</span><span class=w> </span><span class=k>FALSE</span><span class=p>,</span><span class=w>
-</span><span class=w>  </span><span class=n>instance</span><span class=w>  </span><span class=k>IN</span><span class=w>  </span><span class=n>BINARY_INTEGER</span><span class=w> </span><span class=k>DEFAULT</span><span class=w> </span><span class=n>any_instance</span><span class=p>,</span><span class=w>
-</span><span class=w>  </span><span class=k>force</span><span class=w>     </span><span class=k>IN</span><span class=w>  </span><span class=nb>BOOLEAN</span><span class=w> </span><span class=k>DEFAULT</span><span class=w> </span><span class=k>FALSE</span><span class=p>);</span><span class=w>
-</span></code></pre></div><p><code>next_date</code>의 디폴트 값은 <code>sysdate</code>이므로 값을 주지 않으면 등록 즉시 실행된다. 그 다음 실행 시각은 JOB이 실행되기 직전 <code>interval</code>에 지정된 수식을 이용해 계산한다. <code>interval</code>이 <code>NULL</code>일 경우는 작업이 한 번만 실행된다. 파라미터 이름이 <code>interval</code>이지만 실제 의미는 <strong>다음 실행될 시점을 계산할 수식</strong>이다. 만약 어떤 작업을 1시간에 1번씩 실행시키고 싶다면 <code>interval</code>을 <code>'sysdate+1/24'</code>로 주면 된다. 작업을 시작하기 전에 <code>sysdate+1/24</code>를 통해 다음 실행할 시각을 구하면 작업 시작 시간으로부터 1시간 후인 시각이 된다. 다음 작업 시작 시각을 알고 싶으면 <code>ALL_JOBS</code>의 <code>NEXT_DATE</code> 컬럼을 조회해 확인할 수 있다.</p>
-<table>
+</h1></header><section class=post-content>
+<p>예전에 <a href="http://database.sarang.net/?criteria=oracle">database.sarang.net 오라클 게시판</a>에 <code>DBMS_JOB</code>을 이용해 원하는 작업을 08시, 14시, 20시에 실행시키는 방법을 묻는 질문이 올라왔다. 작업 간격이 규칙적일 때는 문제가 간단하지만 원하는 시간 간격이 불규칙하므로 그냥 JOB을 세 개 등록하면 어떻겠냐고 답했더니 이번에는 이 작업을 평일에만 실행시키게 하고 싶다고 했다. 즉 평일 08시, 14시, 20시에 작업이 실행되도록 하고 싶다는 것이었다.</p><p>문제를 풀기 전에 <code>DBMS_JOB.SUBMIT</code> 프로시저 사용법을 살펴보는 게 좋겠다. <code>DBMS_JOB</code>을 이용해 작업을 등록하려면 <code>SUBMIT</code> 프로시저를 사용해야 한다. 파라미터 중 <code>next_date</code>와 <code>interval</code>을 통해 작업 실행 시각을 조절할 수 있다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=line><span class=cl><span class=n>DBMS_JOB</span><span class=p>.</span><span class=n>SUBMIT</span><span class=w> </span><span class=p>(</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>job</span><span class=w>       </span><span class=k>OUT</span><span class=w> </span><span class=n>BINARY_INTEGER</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>what</span><span class=w>      </span><span class=k>IN</span><span class=w>  </span><span class=n>VARCHAR2</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>next_date</span><span class=w> </span><span class=k>IN</span><span class=w>  </span><span class=nb>DATE</span><span class=w> </span><span class=k>DEFAULT</span><span class=w> </span><span class=n>sysdate</span><span class=p>,</span><span class=w>    </span><span class=c1>-- 실행할 시각
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=w>  </span><span class=nb>interval</span><span class=w>  </span><span class=k>IN</span><span class=w>  </span><span class=n>VARCHAR2</span><span class=w> </span><span class=k>DEFAULT</span><span class=w> </span><span class=s1>&#39;null&#39;</span><span class=p>,</span><span class=w> </span><span class=c1>-- 다음 실행될 시점을 계산할 수식
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=w>  </span><span class=n>no_parse</span><span class=w>  </span><span class=k>IN</span><span class=w>  </span><span class=nb>BOOLEAN</span><span class=w> </span><span class=k>DEFAULT</span><span class=w> </span><span class=k>FALSE</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>instance</span><span class=w>  </span><span class=k>IN</span><span class=w>  </span><span class=n>BINARY_INTEGER</span><span class=w> </span><span class=k>DEFAULT</span><span class=w> </span><span class=n>any_instance</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=k>force</span><span class=w>     </span><span class=k>IN</span><span class=w>  </span><span class=nb>BOOLEAN</span><span class=w> </span><span class=k>DEFAULT</span><span class=w> </span><span class=k>FALSE</span><span class=p>);</span><span class=w>
+</span></span></span></code></pre></div><p><code>next_date</code>의 디폴트 값은 <code>sysdate</code>이므로 값을 주지 않으면 등록 즉시 실행된다. 그 다음 실행 시각은 JOB이 실행되기 직전 <code>interval</code>에 지정된 수식을 이용해 계산한다. <code>interval</code>이 <code>NULL</code>일 경우는 작업이 한 번만 실행된다. 파라미터 이름이 <code>interval</code>이지만 실제 의미는 <strong>다음 실행될 시점을 계산할 수식</strong>이다. 만약 어떤 작업을 1시간에 1번씩 실행시키고 싶다면 <code>interval</code>을 <code>'sysdate+1/24'</code>로 주면 된다. 작업을 시작하기 전에 <code>sysdate+1/24</code>를 통해 다음 실행할 시각을 구하면 작업 시작 시간으로부터 1시간 후인 시각이 된다. 다음 작업 시작 시각을 알고 싶으면 <code>ALL_JOBS</code>의 <code>NEXT_DATE</code> 컬럼을 조회해 확인할 수 있다.</p><table>
 <thead>
 <tr>
-<th>interval</th>
-<th>작업 주기</th>
-</tr>
-</thead>
-<tbody>
+<th>interval</th><th>작업 주기</th></tr></thead><tbody>
 <tr>
-<td><code>'sysdate + 1/24'</code></td>
-<td>1시간에 1번</td>
-</tr>
-<tr>
-<td><code>'sysdate + 1'</code></td>
-<td>1일에 1번</td>
-</tr>
-<tr>
-<td><code>'sysdate + 7'</code></td>
-<td>7일(일주일)에 한번</td>
-</tr>
-</tbody>
-</table>
-<p>작업 주기만 지정하려면 위와 같이 해도 충분하다. 특정 시각에 JOB을 실행하려면 다음과 같이 한다.</p>
-<table>
+<td><code>'sysdate + 1/24'</code></td><td>1시간에 1번</td></tr><tr>
+<td><code>'sysdate + 1'</code></td><td>1일에 1번</td></tr><tr>
+<td><code>'sysdate + 7'</code></td><td>7일(일주일)에 한번</td></tr></tbody></table><p>작업 주기만 지정하려면 위와 같이 해도 충분하다. 특정 시각에 JOB을 실행하려면 다음과 같이 한다.</p><table>
 <thead>
 <tr>
-<th>interval</th>
-<th>작업 시각</th>
-</tr>
-</thead>
-<tbody>
+<th>interval</th><th>작업 시각</th></tr></thead><tbody>
 <tr>
-<td><code>'trunc(sysdate) + 1 + 1/24'</code></td>
-<td>매일 01시에 작업 실행</td>
-</tr>
-<tr>
-<td><code>'trunc(sysdate, ''D'') + 7'</code></td>
-<td>매주 일요일 00시에 작업 실행</td>
-</tr>
-</tbody>
-</table>
-<p><code>interval</code> 파라미터에는 문자열을 넘겨야 하므로 수식 내에 따옴표(single quotation)이 있으면 따옴표를 두 개 써줘야 하는 것에 유의해야 한다. interval 수식이 복잡할 때는 확인하기가 어려울 수 있는데, 그럴 때는 interval 수식으로 직접 쿼리를 작성해 확인할 수 있다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=k>select</span><span class=w> </span><span class=n>trunc</span><span class=p>(</span><span class=n>sysdate</span><span class=p>,</span><span class=w> </span><span class=s1>&#39;D&#39;</span><span class=p>)</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=mi>7</span><span class=w> </span><span class=k>from</span><span class=w> </span><span class=n>dual</span><span class=p>;</span><span class=w>
-</span></code></pre></div><p>이제 다음과 같이 다양한 경우에 대한 interval을 구해보자.</p>
-<ol>
-<li>매주 토요일 새벽 1시에 실행</li>
-<li>매월 1일 새벽 0시에 실행</li>
-<li>매월 말일 밤 11시에 실행</li>
-<li>평일(월화수목금) 밤 10시에 실행</li>
-<li>불규칙한 시각, 8시, 14시, 20시에 한번씩</li>
-</ol>
-<p>1번은 쉽다. 일단 <code>next_date</code>를 이번 주 토요일 새벽 1시로 지정하고, 그 다음 실행될 날은 거기서 7일 후가 된다. 즉,</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=p>...</span><span class=w>
-</span><span class=w></span><span class=n>next_date</span><span class=o>=&gt;</span><span class=n>to_date</span><span class=p>(</span><span class=s1>&#39;2007102701&#39;</span><span class=p>,</span><span class=s1>&#39;YYYYMMDDHH24&#39;</span><span class=p>),</span><span class=w>
-</span><span class=w></span><span class=nb>interval</span><span class=o>=&gt;</span><span class=s1>&#39;sysdate + 7&#39;</span><span class=w>
-</span><span class=w></span><span class=p>...</span><span class=w>
-</span></code></pre></div><p>월초나 월말의 경우는 <code>add_months</code>나 <code>last_day</code>를 이용해 구하면 된다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=c1>-- 매월1일 새벽 0시 작업 실행
-</span><span class=c1></span><span class=p>...</span><span class=w>
-</span><span class=w></span><span class=n>next_date</span><span class=o>=&gt;</span><span class=n>add_months</span><span class=p>(</span><span class=n>trunc</span><span class=p>(</span><span class=n>sysdate</span><span class=p>,</span><span class=s1>&#39;MM&#39;</span><span class=p>),</span><span class=mi>1</span><span class=p>),</span><span class=w>
-</span><span class=w></span><span class=nb>interval</span><span class=o>=&gt;</span><span class=s1>&#39;add_months(trunc(sysdate,&#39;&#39;MM&#39;&#39;),1)&#39;</span><span class=w>
-</span><span class=w></span><span class=p>...</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=c1>-- 매월 말일 밤 11시에 작업 실행
-</span><span class=c1></span><span class=p>...</span><span class=w>
-</span><span class=w></span><span class=n>next_date</span><span class=o>=&gt;</span><span class=n>last_day</span><span class=p>(</span><span class=n>trunc</span><span class=p>(</span><span class=n>sysdate</span><span class=p>))</span><span class=o>+</span><span class=mi>23</span><span class=o>/</span><span class=mi>24</span><span class=p>,</span><span class=w>
-</span><span class=w></span><span class=nb>interval</span><span class=o>=&gt;</span><span class=s1>&#39;last_day(trunc(sysdate)+1)+23/24&#39;</span><span class=w>  </span><span class=c1>-- 말일+1일은 다음달 1일
-</span><span class=c1></span><span class=p>...</span><span class=w>
-</span></code></pre></div><p>평일만 실행되도록 하기 위해서는 interval이 좀더 복잡해진다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=p>...</span><span class=w>
-</span><span class=w></span><span class=nb>interval</span><span class=o>=&gt;</span><span class=s1>&#39;trunc(sysdate) + decode(to_char(sysdate,&#39;&#39;D&#39;&#39;), &#39;&#39;6&#39;&#39;, 3, &#39;&#39;7&#39;&#39;, 2, 1) + 22/24&#39;</span><span class=w>
-</span><span class=w></span><span class=p>...</span><span class=w>
-</span></code></pre></div><p>요일을 구한 다음 토요일(<code>to_char(sysdate,'D')='6'</code>)에는 작업 후 3일 후에, 일요일(<code>to_char(sysdate,'D')='7'</code>)에는 작업 후 2일 후에, 평일에는 자업 후 1일 후에 작업이 다시 시작되도록 하면 된다. 이를 위해 <code>DECODE</code> 함수를 활용했다.</p>
-<p>불규칙한 시간 간격일 경우에도 작업 시각을 기반으로 <code>DECODE</code>를 활용하면 가능할 것 같다. 그러나 하루 수행 횟수가 서너 번 정도라면 그냥 각 시각마다 실행되도록 서너 개의 JOB을 등록하는 게 나을 수 있다.</p>
-<p>원래 문제는 불규칙한 시각+평일 조건을 만족해야 하므로 하나의 interval 수식으로 해결하려면 수식이 무척 복잡해질 것 같다. interval 수식이 복잡하면 이해가기 어렵고, 나중에 수정하고 싶을 때 문제가 생길 수도 있다.</p>
-<p>오라클 10g부터는 <code>DBMS_JOB</code> 대신 <code>DBMS_SCHEDULER</code>을 쓰는 것이 좋다.</p>
-</section>
-<footer class=post-footer>
+<td><code>'trunc(sysdate) + 1 + 1/24'</code></td><td>매일 01시에 작업 실행</td></tr><tr>
+<td><code>'trunc(sysdate, ''D'') + 7'</code></td><td>매주 일요일 00시에 작업 실행</td></tr></tbody></table><p><code>interval</code> 파라미터에는 문자열을 넘겨야 하므로 수식 내에 따옴표(single quotation)이 있으면 따옴표를 두 개 써줘야 하는 것에 유의해야 한다. interval 수식이 복잡할 때는 확인하기가 어려울 수 있는데, 그럴 때는 interval 수식으로 직접 쿼리를 작성해 확인할 수 있다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=line><span class=cl><span class=k>select</span><span class=w> </span><span class=n>trunc</span><span class=p>(</span><span class=n>sysdate</span><span class=p>,</span><span class=w> </span><span class=s1>&#39;D&#39;</span><span class=p>)</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=mi>7</span><span class=w> </span><span class=k>from</span><span class=w> </span><span class=n>dual</span><span class=p>;</span><span class=w>
+</span></span></span></code></pre></div><p>이제 다음과 같이 다양한 경우에 대한 interval을 구해보자.</p><ol>
+<li>매주 토요일 새벽 1시에 실행</li><li>매월 1일 새벽 0시에 실행</li><li>매월 말일 밤 11시에 실행</li><li>평일(월화수목금) 밤 10시에 실행</li><li>불규칙한 시각, 8시, 14시, 20시에 한번씩</li></ol><p>1번은 쉽다. 일단 <code>next_date</code>를 이번 주 토요일 새벽 1시로 지정하고, 그 다음 실행될 날은 거기서 7일 후가 된다. 즉,</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=line><span class=cl><span class=p>...</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=n>next_date</span><span class=o>=&gt;</span><span class=n>to_date</span><span class=p>(</span><span class=s1>&#39;2007102701&#39;</span><span class=p>,</span><span class=s1>&#39;YYYYMMDDHH24&#39;</span><span class=p>),</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nb>interval</span><span class=o>=&gt;</span><span class=s1>&#39;sysdate + 7&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>...</span><span class=w>
+</span></span></span></code></pre></div><p>월초나 월말의 경우는 <code>add_months</code>나 <code>last_day</code>를 이용해 구하면 된다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=line><span class=cl><span class=c1>-- 매월1일 새벽 0시 작업 실행
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>...</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=n>next_date</span><span class=o>=&gt;</span><span class=n>add_months</span><span class=p>(</span><span class=n>trunc</span><span class=p>(</span><span class=n>sysdate</span><span class=p>,</span><span class=s1>&#39;MM&#39;</span><span class=p>),</span><span class=mi>1</span><span class=p>),</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nb>interval</span><span class=o>=&gt;</span><span class=s1>&#39;add_months(trunc(sysdate,&#39;&#39;MM&#39;&#39;),1)&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>...</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c1>-- 매월 말일 밤 11시에 작업 실행
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>...</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=n>next_date</span><span class=o>=&gt;</span><span class=n>last_day</span><span class=p>(</span><span class=n>trunc</span><span class=p>(</span><span class=n>sysdate</span><span class=p>))</span><span class=o>+</span><span class=mi>23</span><span class=o>/</span><span class=mi>24</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nb>interval</span><span class=o>=&gt;</span><span class=s1>&#39;last_day(trunc(sysdate)+1)+23/24&#39;</span><span class=w>  </span><span class=c1>-- 말일+1일은 다음달 1일
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>...</span><span class=w>
+</span></span></span></code></pre></div><p>평일만 실행되도록 하기 위해서는 interval이 좀더 복잡해진다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=line><span class=cl><span class=p>...</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nb>interval</span><span class=o>=&gt;</span><span class=s1>&#39;trunc(sysdate) + decode(to_char(sysdate,&#39;&#39;D&#39;&#39;), &#39;&#39;6&#39;&#39;, 3, &#39;&#39;7&#39;&#39;, 2, 1) + 22/24&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>...</span><span class=w>
+</span></span></span></code></pre></div><p>요일을 구한 다음 토요일(<code>to_char(sysdate,'D')='6'</code>)에는 작업 후 3일 후에, 일요일(<code>to_char(sysdate,'D')='7'</code>)에는 작업 후 2일 후에, 평일에는 자업 후 1일 후에 작업이 다시 시작되도록 하면 된다. 이를 위해 <code>DECODE</code> 함수를 활용했다.</p><p>불규칙한 시간 간격일 경우에도 작업 시각을 기반으로 <code>DECODE</code>를 활용하면 가능할 것 같다. 그러나 하루 수행 횟수가 서너 번 정도라면 그냥 각 시각마다 실행되도록 서너 개의 JOB을 등록하는 게 나을 수 있다.</p><p>원래 문제는 불규칙한 시각+평일 조건을 만족해야 하므로 하나의 interval 수식으로 해결하려면 수식이 무척 복잡해질 것 같다. interval 수식이 복잡하면 이해가기 어렵고, 나중에 수정하고 싶을 때 문제가 생길 수도 있다.</p><p>오라클 10g부터는 <code>DBMS_JOB</code> 대신 <code>DBMS_SCHEDULER</code>을 쓰는 것이 좋다.</p></section><footer class=post-footer>
 <div class="social button-box">
 <a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
 <script async src=//platform.twitter.com/widgets.js></script>
-</div>
-<nav id=article-nav>
+</div><nav id=article-nav>
 <a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2008/refactoring/ id=article-nav-newer> 코드 수정</a>
-</nav>
-</footer>
-</article>
-</main>
-<section class=section>
+</nav></footer></article></main><section class=section>
 <div class=container>
-<aside><div id=disqus_thread></div></aside>
-<script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2008/dbms-job/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
-</div>
-</section>
-<section class=section>
+<aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2008/dbms-job/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section>
 <div class="container has-text-centered">
-<p></p>
-</div>
-</section>
-<script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
 <script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
 <footer class=page-bottom>
 <div class=inner>
-<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section>
-<section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section>
-</div>
-</footer>
-</body>
-</html>
+<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>

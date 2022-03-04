@@ -1,45 +1,27 @@
 <!doctype html><html>
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script>
 <meta charset=utf-8>
 <meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
 <meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>프로젝트 오일러 47 @ntalbs' stuff</title>
-<link rel="shortcut icon" href=/images/favicon.ico>
+<title>프로젝트 오일러 47 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico>
 <link rel=stylesheet href=/css/style.css>
 <link rel=stylesheet href=/css/highlight.css>
-</head>
-<body>
+</head><body>
 <div id=progress>
-<div id=bar></div>
-<div class=container>
-<div id=scroll-title>프로젝트 오일러 47</div>
-</div>
-</div>
-<nav class=navbar role=navigation>
+<div id=bar></div><div class=container>
+<div id=scroll-title>프로젝트 오일러 47</div></div></div><nav class=navbar role=navigation>
 <div class=container>
 <div class=navbar-header>
 <button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
 <a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
-</div>
-<div class="navbar-items collapsed" id=nav-items>
+</div><div class="navbar-items collapsed" id=nav-items>
 <ul>
-<li><a class=unselectable href=/archive/>Archive</a></li>
-<li><a class=unselectable href=/tags/>Tags</a></li>
-<li><a class=unselectable href=/about/>About</a></li>
-<li><a id=mode-switch class=unselectable href=#></a></li>
-</ul>
-</div>
-</div>
-</nav>
-<header class=page-head>
+<li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head>
 <div class=container>
-<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-</div>
-</header>
-<main class=container role=main>
+<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main>
 <article class=post>
 <header>
 <p class=post-meta>
@@ -47,71 +29,38 @@
 on
 <a href=/tags/project-euler/>Project-Euler</a>
 <a href=/tags/clojure/>Clojure</a>
-</p>
-<h1 class=post-title>
+</p><h1 class=post-title>
 프로젝트 오일러 47
-</h1>
-</header>
-<section class=post-content>
+</h1></header><section class=post-content>
 <blockquote>
-<p>서로 다른 네 개의 소인수를 갖는 수들이 처음으로 네 번 연속되는 경우는?</p>
-<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=47">[국어]</a> <a href="https://projecteuler.net/problem=47">[영어]</a></p>
-</blockquote>
-<p>소인수의 개수를 구하는 함수가 있다면 문제를 쉽게 풀 수 있다. <a href=/2015/project-euler-003/>문제 3</a>에서 소인수 분해 함수를 구현했으므로, 소인수 개수를 구하는 함수는 다음과 같이 간단히 작성할 수 있다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>defn </span><span class=nv>count-prime-factors</span> <span class=p>[</span><span class=nv>n</span><span class=p>]</span>
-  <span class=p>(</span><span class=nb>count </span><span class=p>(</span><span class=nf>factorize</span> <span class=nv>n</span><span class=p>)))</span>
-</code></pre></div><p>서로 다른 네 개의 소인수를 갖는 수가 네 번 연속되는지를 확인하는 데는 <code>partition</code> 함수를 사용하면 편하다. 2부터 시작하는 정수 시퀀스를 <code>[정수, 소인수_개수]</code> 쌍의 시퀀스로 바꾸고, <code>partition</code>을 이용해 네 개씩 묶어낸 다음 묶음 안의 모든 쌍이 소인수가 4개인지 확인하면 된다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-clojure data-lang=clojure><span class=p>(</span><span class=kd>defn </span><span class=nv>solve</span> <span class=p>[]</span>
-  <span class=p>(</span><span class=nf>-&gt;&gt;</span> <span class=p>(</span><span class=nb>iterate inc </span><span class=mi>2</span><span class=p>)</span>
-       <span class=p>(</span><span class=nb>map </span><span class=p>(</span><span class=k>fn </span><span class=p>[</span><span class=nv>n</span><span class=p>]</span> <span class=p>[</span><span class=nv>n</span> <span class=p>(</span><span class=nf>count-prime-factors</span> <span class=nv>n</span><span class=p>)]))</span>
-       <span class=p>(</span><span class=nf>partition</span> <span class=mi>4</span> <span class=mi>1</span><span class=p>)</span>
-       <span class=p>(</span><span class=nb>filter </span><span class=p>(</span><span class=k>fn </span><span class=p>[</span><span class=nv>ns</span><span class=p>]</span> <span class=p>(</span><span class=nb>every? </span><span class=o>#</span><span class=p>(</span><span class=nb>= </span><span class=mi>4</span> <span class=nv>%</span><span class=p>)</span> <span class=p>(</span><span class=nb>map </span><span class=p>(</span><span class=k>fn </span><span class=p>[[</span><span class=nv>_</span> <span class=nv>c</span><span class=p>]]</span> <span class=nv>c</span><span class=p>)</span> <span class=nv>ns</span><span class=p>))))</span>
-       <span class=nb>first first </span><span class=nv>first</span><span class=p>))</span>
-</code></pre></div><p>실행 결과는 다음과 같다.</p>
-<pre class=console>
+<p>서로 다른 네 개의 소인수를 갖는 수들이 처음으로 네 번 연속되는 경우는?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=47">[국어]</a> <a href="https://projecteuler.net/problem=47">[영어]</a></p></blockquote><p>소인수의 개수를 구하는 함수가 있다면 문제를 쉽게 풀 수 있다. <a href=/2015/project-euler-003/>문제 3</a>에서 소인수 분해 함수를 구현했으므로, 소인수 개수를 구하는 함수는 다음과 같이 간단히 작성할 수 있다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-clojure data-lang=clojure><span class=line><span class=cl><span class=p>(</span><span class=kd>defn </span><span class=nv>count-prime-factors</span> <span class=p>[</span><span class=nv>n</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nb>count </span><span class=p>(</span><span class=nf>factorize</span> <span class=nv>n</span><span class=p>)))</span>
+</span></span></code></pre></div><p>서로 다른 네 개의 소인수를 갖는 수가 네 번 연속되는지를 확인하는 데는 <code>partition</code> 함수를 사용하면 편하다. 2부터 시작하는 정수 시퀀스를 <code>[정수, 소인수_개수]</code> 쌍의 시퀀스로 바꾸고, <code>partition</code>을 이용해 네 개씩 묶어낸 다음 묶음 안의 모든 쌍이 소인수가 4개인지 확인하면 된다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-clojure data-lang=clojure><span class=line><span class=cl><span class=p>(</span><span class=kd>defn </span><span class=nv>solve</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nf>-&gt;&gt;</span> <span class=p>(</span><span class=nb>iterate inc </span><span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>       <span class=p>(</span><span class=nb>map </span><span class=p>(</span><span class=k>fn </span><span class=p>[</span><span class=nv>n</span><span class=p>]</span> <span class=p>[</span><span class=nv>n</span> <span class=p>(</span><span class=nf>count-prime-factors</span> <span class=nv>n</span><span class=p>)]))</span>
+</span></span><span class=line><span class=cl>       <span class=p>(</span><span class=nf>partition</span> <span class=mi>4</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>       <span class=p>(</span><span class=nb>filter </span><span class=p>(</span><span class=k>fn </span><span class=p>[</span><span class=nv>ns</span><span class=p>]</span> <span class=p>(</span><span class=nb>every? </span><span class=o>#</span><span class=p>(</span><span class=nb>= </span><span class=mi>4</span> <span class=nv>%</span><span class=p>)</span> <span class=p>(</span><span class=nb>map </span><span class=p>(</span><span class=k>fn </span><span class=p>[[</span><span class=nv>_</span> <span class=nv>c</span><span class=p>]]</span> <span class=nv>c</span><span class=p>)</span> <span class=nv>ns</span><span class=p>))))</span>
+</span></span><span class=line><span class=cl>       <span class=nb>first first </span><span class=nv>first</span><span class=p>))</span>
+</span></span></code></pre></div><p>실행 결과는 다음과 같다.</p><pre class=console>
 p047=> (time (solve))
 "Elapsed time: 11139.792077 msecs"
 1340??
-</pre>
-<p>실행 결과가 만족스럽지 않다. 좀더 빠르게 답을 구하도록 여러 방법을 시도해봤지만 성공하지 못했다.</p>
-<h2 id=참고>참고</h2>
-<ul>
-<li><a href=https://github.com/ntalbs/euler/blob/master/src/p047.clj>프로젝트 오일러 47 풀이 소스 코드</a></li>
-<li><a href=/2015/project-euler-003/>프로젝트 오일러 3</a></li>
-</ul>
-</section>
-<footer class=post-footer>
+</pre><p>실행 결과가 만족스럽지 않다. 좀더 빠르게 답을 구하도록 여러 방법을 시도해봤지만 성공하지 못했다.</p><h2 id=참고>참고</h2><ul>
+<li><a href=https://github.com/ntalbs/euler/blob/master/src/p047.clj>프로젝트 오일러 47 풀이 소스 코드</a></li><li><a href=/2015/project-euler-003/>프로젝트 오일러 3</a></li></ul></section><footer class=post-footer>
 <div class="social button-box">
 <a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
 <script async src=//platform.twitter.com/widgets.js></script>
-</div>
-<nav id=article-nav>
+</div><nav id=article-nav>
 <a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2016/project-euler-048/ id=article-nav-newer> 프로젝트 오일러 48</a>
 <a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2016/project-euler-046/ id=article-nav-older> 프로젝트 오일러 46</a>
-</nav>
-</footer>
-</article>
-</main>
-<section class=section>
+</nav></footer></article></main><section class=section>
 <div class=container>
-<aside><div id=disqus_thread></div></aside>
-<script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2016/project-euler-047/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
-</div>
-</section>
-<section class=section>
+<aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2016/project-euler-047/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section>
 <div class="container has-text-centered">
-<p></p>
-</div>
-</section>
-<script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
 <script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
 <footer class=page-bottom>
 <div class=inner>
-<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section>
-<section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section>
-</div>
-</footer>
-</body>
-</html>
+<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>

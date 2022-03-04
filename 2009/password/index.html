@@ -1,45 +1,27 @@
 <!doctype html><html>
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script>
 <meta charset=utf-8>
 <meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
 <meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>암호 @ntalbs' stuff</title>
-<link rel="shortcut icon" href=/images/favicon.ico>
+<title>암호 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico>
 <link rel=stylesheet href=/css/style.css>
 <link rel=stylesheet href=/css/highlight.css>
-</head>
-<body>
+</head><body>
 <div id=progress>
-<div id=bar></div>
-<div class=container>
-<div id=scroll-title>암호</div>
-</div>
-</div>
-<nav class=navbar role=navigation>
+<div id=bar></div><div class=container>
+<div id=scroll-title>암호</div></div></div><nav class=navbar role=navigation>
 <div class=container>
 <div class=navbar-header>
 <button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
 <a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
-</div>
-<div class="navbar-items collapsed" id=nav-items>
+</div><div class="navbar-items collapsed" id=nav-items>
 <ul>
-<li><a class=unselectable href=/archive/>Archive</a></li>
-<li><a class=unselectable href=/tags/>Tags</a></li>
-<li><a class=unselectable href=/about/>About</a></li>
-<li><a id=mode-switch class=unselectable href=#></a></li>
-</ul>
-</div>
-</div>
-</nav>
-<header class=page-head>
+<li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head>
 <div class=container>
-<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-</div>
-</header>
-<main class=container role=main>
+<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main>
 <article class=post>
 <header>
 <p class=post-meta>
@@ -47,63 +29,25 @@
 on
 <a href=/tags/%eb%b3%b4%ec%95%88/>보안</a>
 <a href=/tags/%ec%83%81%eb%85%90/>상념</a>
-</p>
-<h1 class=post-title>
+</p><h1 class=post-title>
 암호
-</h1>
-</header>
-<section class=post-content>
-<p>웹 사이트에 가입할 때마다 계정과 암호를 정해 입력해야 한다. 처음에는 계정을 정하는 것도 어려웠고 사이트마다 달라지는 문제 때문에 고민했다. 아이디로 쓸만한 것은 이미 다른 사람에게 선점당했기 때문이다. 지금은 계정때문에 고민하는 일은 거의 없다. 사람들이 거의 사용할 일이 없을 문자열로 내 아이디를 정했기 때문이다. 다른 사람이 보기에 내 아이디는 알파벳의 무의미한 나열일 뿐이리라. 어떤 이상한 사이트는 아이디도 영문자와 숫자 조합으로 만들라는 이상한 제약조건을 걸어두기도 하지만, 그런 사이트는 가입하지 않으면 그만이다.</p>
-<p>그러나 암호의 경우는얘기가 약간 달라진다 . 우선 각 사이트마다 신뢰도가 다르기 때문에 보안수준이 약할 것이라 판단되는 사이트의 암호와 보안수준이 강할 것으로 판단되는 사이트의 암호를 같게 할 수 없다. 예를 들어 은행 등의 금융기관 사이트의 암호와 별로 유명하지도 않은 커뮤니티 사이트의 암호를 같게 할 수는 없는 것이다. 보안 측면에서 봤을때는 사이트마다 암호를 다르게 하는 것이 좋겠지만 내 머리로는 그 모든 암호를 다 기억하지 못할 것이다. 그래서 나는 암호 집합을 미리 만들어두고 그것들을 약간씩 변형하며 번갈아 쓴다.</p>
-<p>그런데 일부 사이트는 암호에 온갖 제약을 걸어 놓는다. 암호 길이를 몇자 이상으로 강제하기도 하고, 특수문자가 입력되지 않게 하기도 하고, 문자와 숫자의 조합만 가능하게 하기도 한다. 물론 암호의 길이를 강제하는 것은 이해할 수 있다. 너무 짧은 암호는 뚫리기도 쉬우니까. 그러나 암호에 반드시 숫자를 포함하도록 하거나 특수문자를 입력하지 못하게 하는 것이 어떤 의미를 가진단 말인가?</p>
-<h2 id=암호-길이-제한>암호 길이 제한</h2>
-<p>최소 길이 제한은 당연히 있어야 한다. 그러나 12자 또는 15자 이상으로 너무 길게 제한하면 곤란하다. 금융기관이 아니라면 8자~10자 정도로 정해도 충분하지 않을까 싶다. 입력 문자를 제한하지 않는다면 길이는 원하는 만큼 맞춰줄 수 있다고 생각한다. 그런데 암호의 최대 길이를 제한하는 사이트도 있다. 디스크를 얼마나 아끼려고 암호가 8자 또는 10자를 초과하지 못하게 하는지 알 수 없다. 정 길이를 제한하려 했다면 사용자가 입력한 문자열을 앞에서 원하는 길이만큼만 잘라 사용하면 될텐데 입력한 암호가 자릿수를 초과한다고 에러 메시지를 뿌리는 것을 보면 어떤 멍청한 개발자가 만들었는지 짜증이 날 뿐이다.</p>
-<p>너무 짧고 간단한 암호라면 제한하는 게 맞겠지만 특정 길이 이하로 암호를 제한하는 일은 없으면 좋겠다. 그냥 사용자가 원하는 만큼 충분히 길게 정할 수 있게 해주자. 한 30자 정도까지 가능하게 하면 충분하지 않을까?</p>
-<h2 id=특수문자-입력>특수문자 입력</h2>
-<p>암호는 키보드로 입력하는 문자열이므로 특수문자를 막을 이유가 없다. 특수문자 입력을 허용하면 그만큼 조합의 개수가 많아지므로 보안이 더욱 강화되는 것 아닌가? 왜 특수문자 입력을 막아 조합의 수를 제한하려 하는지 이해할 수 없다. 기본적으로 암호를 입력하는데 있어 키보드로 입력가능한 특수문자는 모두 허용해야 한다.</p>
-<p>어떤 사이트는 반드시 특수문자를 포함하도록 강제하는 경우도 있다. 암호의 복잡도를 측정하거나 이미 사전에 등록된 단어 하나로 정해진 암호를 제한해 사용자가 사전 공격으로 쉽게 뚫릴 수 있는 암호 사용하지 못하게 하는 것은 의미가 있겠지만, 특수문자 사용을 강제하는 것은 사용자의 자율성을 침해하는 것이다. 특수문자가 포함되어 있는 암호를 사용자가 어떻게 외우겠는가? 결국 사용자는 특수문자를 딱 하나만 사용하거나 암호를 포스트잇 같은 데 적어 컴퓨터 근처(모니터 옆이나 키보드 밑)에 둘 가능성이 커진다. 보안을 강화하려던 의도가 오히려 보안을 약화시키는 결과를 낳을 수도 있다.</p>
-<h2 id=숫자-입력-강제>숫자 입력 강제</h2>
-<p>역시 마찬가지다. 사용자가 암호로 뭘 쓰든 그것은 사용자 자율에 맡겨야 한다. 다만 너무 간단한 암호를 사용하려 할때 제한을 할 수는 있겠다. 예를들어 '1234', 'abcd', 'aaaa', 'qwert' 같은 암호는 사전 공격(dictionary attack)을 하면 바로 뚫릴 암호이므로 사용을 제한할 수 있다. 이런 사전은 인터넷에서 쉽게 구할 수 있다고 한다.</p>
-<h2 id=결론>결론</h2>
-<p>암호는 그저 사용자가 알아서 정하게 하는 것이 상책이다. 다만 쉽게 뚫릴 위험이 있는 암호는 제한할 수 있다. 길이가 너무 짧은 암호는 일정 길이 이상이 되도록 강제할 수 있다. 너무 단순한 암호도 사용을 제한할 수 있을 것이다. 가령 해킹할 때 사전 공격에 사용되는 사전을 구해 사전에 있는 단어를 암호로 사용하는 것을 금지하는 방법을 고려할 수 있을 것 같다. 그러나 그 외의 제한은 없는 것이 좋겠다. 내가 암호에 숫자를 넣든 특수문자를 넣든 그건 내 마음대로 하고 싶다는 말이다. 그래야 내가 관리 가능한 암호를 만들 수 있다. 암호는 어디에 적어두지 않고 내 머릿속에서 관리할 수 있어야 보안도 그만큼 강력해지는 것이라 생각한다.</p>
-<h2 id=참고>참고</h2>
-<ul>
-<li><a href=/2010/id-1/>아이디 1</a></li>
-<li><a href=/2010/id-2/>아이디 2</a></li>
-</ul>
-</section>
-<footer class=post-footer>
+</h1></header><section class=post-content>
+<p>웹 사이트에 가입할 때마다 계정과 암호를 정해 입력해야 한다. 처음에는 계정을 정하는 것도 어려웠고 사이트마다 달라지는 문제 때문에 고민했다. 아이디로 쓸만한 것은 이미 다른 사람에게 선점당했기 때문이다. 지금은 계정때문에 고민하는 일은 거의 없다. 사람들이 거의 사용할 일이 없을 문자열로 내 아이디를 정했기 때문이다. 다른 사람이 보기에 내 아이디는 알파벳의 무의미한 나열일 뿐이리라. 어떤 이상한 사이트는 아이디도 영문자와 숫자 조합으로 만들라는 이상한 제약조건을 걸어두기도 하지만, 그런 사이트는 가입하지 않으면 그만이다.</p><p>그러나 암호의 경우는얘기가 약간 달라진다 . 우선 각 사이트마다 신뢰도가 다르기 때문에 보안수준이 약할 것이라 판단되는 사이트의 암호와 보안수준이 강할 것으로 판단되는 사이트의 암호를 같게 할 수 없다. 예를 들어 은행 등의 금융기관 사이트의 암호와 별로 유명하지도 않은 커뮤니티 사이트의 암호를 같게 할 수는 없는 것이다. 보안 측면에서 봤을때는 사이트마다 암호를 다르게 하는 것이 좋겠지만 내 머리로는 그 모든 암호를 다 기억하지 못할 것이다. 그래서 나는 암호 집합을 미리 만들어두고 그것들을 약간씩 변형하며 번갈아 쓴다.</p><p>그런데 일부 사이트는 암호에 온갖 제약을 걸어 놓는다. 암호 길이를 몇자 이상으로 강제하기도 하고, 특수문자가 입력되지 않게 하기도 하고, 문자와 숫자의 조합만 가능하게 하기도 한다. 물론 암호의 길이를 강제하는 것은 이해할 수 있다. 너무 짧은 암호는 뚫리기도 쉬우니까. 그러나 암호에 반드시 숫자를 포함하도록 하거나 특수문자를 입력하지 못하게 하는 것이 어떤 의미를 가진단 말인가?</p><h2 id=암호-길이-제한>암호 길이 제한</h2><p>최소 길이 제한은 당연히 있어야 한다. 그러나 12자 또는 15자 이상으로 너무 길게 제한하면 곤란하다. 금융기관이 아니라면 8자~10자 정도로 정해도 충분하지 않을까 싶다. 입력 문자를 제한하지 않는다면 길이는 원하는 만큼 맞춰줄 수 있다고 생각한다. 그런데 암호의 최대 길이를 제한하는 사이트도 있다. 디스크를 얼마나 아끼려고 암호가 8자 또는 10자를 초과하지 못하게 하는지 알 수 없다. 정 길이를 제한하려 했다면 사용자가 입력한 문자열을 앞에서 원하는 길이만큼만 잘라 사용하면 될텐데 입력한 암호가 자릿수를 초과한다고 에러 메시지를 뿌리는 것을 보면 어떤 멍청한 개발자가 만들었는지 짜증이 날 뿐이다.</p><p>너무 짧고 간단한 암호라면 제한하는 게 맞겠지만 특정 길이 이하로 암호를 제한하는 일은 없으면 좋겠다. 그냥 사용자가 원하는 만큼 충분히 길게 정할 수 있게 해주자. 한 30자 정도까지 가능하게 하면 충분하지 않을까?</p><h2 id=특수문자-입력>특수문자 입력</h2><p>암호는 키보드로 입력하는 문자열이므로 특수문자를 막을 이유가 없다. 특수문자 입력을 허용하면 그만큼 조합의 개수가 많아지므로 보안이 더욱 강화되는 것 아닌가? 왜 특수문자 입력을 막아 조합의 수를 제한하려 하는지 이해할 수 없다. 기본적으로 암호를 입력하는데 있어 키보드로 입력가능한 특수문자는 모두 허용해야 한다.</p><p>어떤 사이트는 반드시 특수문자를 포함하도록 강제하는 경우도 있다. 암호의 복잡도를 측정하거나 이미 사전에 등록된 단어 하나로 정해진 암호를 제한해 사용자가 사전 공격으로 쉽게 뚫릴 수 있는 암호 사용하지 못하게 하는 것은 의미가 있겠지만, 특수문자 사용을 강제하는 것은 사용자의 자율성을 침해하는 것이다. 특수문자가 포함되어 있는 암호를 사용자가 어떻게 외우겠는가? 결국 사용자는 특수문자를 딱 하나만 사용하거나 암호를 포스트잇 같은 데 적어 컴퓨터 근처(모니터 옆이나 키보드 밑)에 둘 가능성이 커진다. 보안을 강화하려던 의도가 오히려 보안을 약화시키는 결과를 낳을 수도 있다.</p><h2 id=숫자-입력-강제>숫자 입력 강제</h2><p>역시 마찬가지다. 사용자가 암호로 뭘 쓰든 그것은 사용자 자율에 맡겨야 한다. 다만 너무 간단한 암호를 사용하려 할때 제한을 할 수는 있겠다. 예를들어 '1234', 'abcd', 'aaaa', 'qwert' 같은 암호는 사전 공격(dictionary attack)을 하면 바로 뚫릴 암호이므로 사용을 제한할 수 있다. 이런 사전은 인터넷에서 쉽게 구할 수 있다고 한다.</p><h2 id=결론>결론</h2><p>암호는 그저 사용자가 알아서 정하게 하는 것이 상책이다. 다만 쉽게 뚫릴 위험이 있는 암호는 제한할 수 있다. 길이가 너무 짧은 암호는 일정 길이 이상이 되도록 강제할 수 있다. 너무 단순한 암호도 사용을 제한할 수 있을 것이다. 가령 해킹할 때 사전 공격에 사용되는 사전을 구해 사전에 있는 단어를 암호로 사용하는 것을 금지하는 방법을 고려할 수 있을 것 같다. 그러나 그 외의 제한은 없는 것이 좋겠다. 내가 암호에 숫자를 넣든 특수문자를 넣든 그건 내 마음대로 하고 싶다는 말이다. 그래야 내가 관리 가능한 암호를 만들 수 있다. 암호는 어디에 적어두지 않고 내 머릿속에서 관리할 수 있어야 보안도 그만큼 강력해지는 것이라 생각한다.</p><h2 id=참고>참고</h2><ul>
+<li><a href=/2010/id-1/>아이디 1</a></li><li><a href=/2010/id-2/>아이디 2</a></li></ul></section><footer class=post-footer>
 <div class="social button-box">
 <a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
 <script async src=//platform.twitter.com/widgets.js></script>
-</div>
-<nav id=article-nav>
+</div><nav id=article-nav>
 <a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2009/login-sql/ id=article-nav-newer> login.sql</a>
 <a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2009/625/ id=article-nav-older> '한국 전쟁'과 '육이오'</a>
-</nav>
-</footer>
-</article>
-</main>
-<section class=section>
+</nav></footer></article></main><section class=section>
 <div class=container>
-<aside><div id=disqus_thread></div></aside>
-<script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2009/password/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
-</div>
-</section>
-<section class=section>
+<aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2009/password/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section>
 <div class="container has-text-centered">
-<p></p>
-</div>
-</section>
-<script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
 <script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
 <footer class=page-bottom>
 <div class=inner>
-<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section>
-<section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section>
-</div>
-</footer>
-</body>
-</html>
+<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>

@@ -1,319 +1,232 @@
 <!doctype html><html>
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script>
 <meta charset=utf-8>
 <meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
 <meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>JSON 파서 구현 2 - 파서 @ntalbs' stuff</title>
-<link rel="shortcut icon" href=/images/favicon.ico>
+<title>JSON 파서 구현 2 - 파서 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico>
 <link rel=stylesheet href=/css/style.css>
 <link rel=stylesheet href=/css/highlight.css>
-</head>
-<body>
+</head><body>
 <div id=progress>
-<div id=bar></div>
-<div class=container>
-<div id=scroll-title>JSON 파서 구현 2 - 파서</div>
-</div>
-</div>
-<nav class=navbar role=navigation>
+<div id=bar></div><div class=container>
+<div id=scroll-title>JSON 파서 구현 2 - 파서</div></div></div><nav class=navbar role=navigation>
 <div class=container>
 <div class=navbar-header>
 <button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
 <a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
-</div>
-<div class="navbar-items collapsed" id=nav-items>
+</div><div class="navbar-items collapsed" id=nav-items>
 <ul>
-<li><a class=unselectable href=/archive/>Archive</a></li>
-<li><a class=unselectable href=/tags/>Tags</a></li>
-<li><a class=unselectable href=/about/>About</a></li>
-<li><a id=mode-switch class=unselectable href=#></a></li>
-</ul>
-</div>
-</div>
-</nav>
-<header class=page-head>
+<li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head>
 <div class=container>
-<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-</div>
-</header>
-<main class=container role=main>
+<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main>
 <article class=post>
 <header>
 <p class=post-meta>
 <time datetime=2021-11-01 itemprop=datePublished>2021-11-01</time>
 on
 <a href=/tags/java/>java</a>
-</p>
-<h1 class=post-title>
+</p><h1 class=post-title>
 JSON 파서 구현 2 - 파서
-</h1>
-</header>
-<section class=post-content>
-<p>1부에서 JSON 스캐너를 구현했다. JSON 스캐너는 JSON을 읽어 토큰 리스트를 생성한다. 이제 토큰 리스트를 읽어 데이터 구조로 바꿔줄 파서를 구현할 차례다.</p>
-<p>JSON의 문법을 <a href=https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form>BNF(Backus-Naur Form)</a>으로 다음과 같이 나타낼 수 있다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bnf data-lang=bnf>json   <span class=o>::=</span> object
-         | array
-         | string
-         | number
-         | &#34;true&#34;
-         | &#34;false&#34;
-         | &#34;null&#34;
-object <span class=o>::=</span> &#34;{&#34; &#34;}&#34;
-         | &#34;{&#34; member (&#34;,&#34; member)* &#34;}&#34;
-array  <span class=o>::=</span> &#34;[&#34; &#34;]&#34;
-         | &#34;[&#34; json (&#34;,&#34; json)* &#34;]&#34;
-member <span class=o>::=</span> string &#34;:&#34; json
-</code></pre></div><p>스캐너에서 문자열이나 숫자 등 토큰을 이미 분리했으므로 여기서 <code>string</code>이나 <code>number</code>에 대한 문법을 상세히 기술하지 않았다. 그 외에도 구현 복잡도를 줄이기 위해 문법을 단순화했다. JSON의 전체 문법은 <a href=https://www.json.org/json-en.html>Json.org</a>에서 확인할 수 있다.</p>
-<h2 id=json-클래스>Json 클래스</h2>
-<p>파서는 스캐너로 생성한 토큰 리스트를 JSON 구조를 나타내는 자료구조로 변환할 것이다. 따라서 JSON을 어떻게 나타내는 게 좋을지 생각해봐야 한다. 여기서는 위 문법 구조를 나타내는 <code>Json</code> 클래스를 다음과 같이 정의한다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>abstract</span> <span class=kd>class</span> <span class=nc>Json</span> <span class=o>{</span>
-  <span class=kd>static</span> <span class=kd>class</span> <span class=nc>Obj</span> <span class=kd>extends</span> <span class=n>Json</span> <span class=o>{</span>
-    <span class=n>List</span><span class=o>&lt;</span><span class=n>Member</span><span class=o>&gt;</span> <span class=n>members</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ArrayList</span><span class=o>&lt;&gt;();</span>
-  <span class=o>}</span>
-
-  <span class=kd>static</span> <span class=kd>class</span> <span class=nc>Arr</span> <span class=kd>extends</span> <span class=n>Json</span> <span class=o>{</span>
-    <span class=n>List</span><span class=o>&lt;</span><span class=n>Json</span><span class=o>&gt;</span> <span class=n>elements</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ArrayList</span><span class=o>&lt;&gt;();</span>
-  <span class=o>}</span>
-
-  <span class=kd>static</span> <span class=kd>class</span> <span class=nc>Member</span> <span class=o>{</span>
-    <span class=n>String</span> <span class=n>key</span><span class=o>;</span>
-    <span class=n>Json</span> <span class=n>val</span><span class=o>;</span>
-
-    <span class=n>Member</span><span class=o>(</span><span class=n>String</span> <span class=n>key</span><span class=o>,</span> <span class=n>Json</span> <span class=n>val</span><span class=o>)</span> <span class=o>{</span>
-      <span class=k>this</span><span class=o>.</span><span class=na>key</span> <span class=o>=</span> <span class=n>key</span><span class=o>;</span>
-      <span class=k>this</span><span class=o>.</span><span class=na>val</span> <span class=o>=</span> <span class=n>val</span><span class=o>;</span>
-    <span class=o>}</span>
-  <span class=o>}</span>
-
-  <span class=kd>static</span> <span class=kd>class</span> <span class=nc>Literal</span> <span class=kd>extends</span> <span class=n>Json</span> <span class=o>{</span>
-    <span class=n>Object</span> <span class=n>val</span><span class=o>;</span>
-    <span class=n>Literal</span><span class=o>(</span><span class=n>Object</span> <span class=n>val</span><span class=o>)</span> <span class=o>{</span>
-      <span class=k>this</span><span class=o>.</span><span class=na>val</span> <span class=o>=</span> <span class=n>val</span><span class=o>;</span>
-    <span class=o>}</span>
-  <span class=o>}</span>
-<span class=o>}</span>
-</code></pre></div><p><code>Json.Obj</code>는 JSON 객체를 나타낼 클래스로 <code>List&lt;Member></code> 타입의 필드를 가지고 있다. <code>Map&lt;String, Json></code> 타입을 쓸 수도 있지만, 위에서 보인 JSON 문법 구조와 비슷하게 하기 위해 <code>List&lt;Member></code>를 썼다.</p>
-<h2 id=재귀-하향-파서>재귀 하향 파서</h2>
-<p>재귀 하향 파서(recursive descent parser)는 상호 순환 절차의 집합으로 이루어진 하향식(top-down) 파서다. 재위 하향은 <a href=https://en.wikipedia.org/wiki/Yacc>Yacc</a>, <a href=https://www.gnu.org/software/bison/>Bison</a> 또는 <a href=https://www.antlr.org/>ANTLR</a> 같은 파서 생성기 도움 없이 파서를 만드는 가장 단순한 방법이다. 재귀 하향 파서는 최상위 문법 규칙(여기서는 <code>json</code>)부터 시작해 문법 트리의 종말(여기서는 <code>string</code>, <code>number</code>, <code>true</code>, <code>false</code>, <code>null</code>)까지 처리해가기 때문에 하향식이라 불린다. 또한 문법 규칙이 직간접적으로 자신을 참조하기 때문에 재귀적이라 할 수 있다. 각 문법 규칙은 하나의 함수(또는 메서드)가 될 것이다.</p>
-<h2 id=파서-클래스>파서 클래스</h2>
-<p>이제 파서 클래스 구현을 시작해보자.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>Parser</span> <span class=o>{</span>
-  <span class=kd>private</span> <span class=kd>final</span> <span class=n>List</span><span class=o>&lt;</span><span class=n>Token</span><span class=o>&gt;</span> <span class=n>tokens</span><span class=o>;</span>
-  <span class=kd>private</span> <span class=kt>int</span> <span class=n>current</span> <span class=o>=</span> <span class=n>0</span><span class=o>;</span>
-
-  <span class=n>Parser</span><span class=o>(</span><span class=n>List</span><span class=o>&lt;</span><span class=n>Token</span><span class=o>&gt;</span> <span class=n>tokens</span><span class=o>)</span> <span class=o>{</span>
-    <span class=k>this</span><span class=o>.</span><span class=na>tokens</span> <span class=o>=</span> <span class=n>tokens</span><span class=o>;</span>
-  <span class=o>}</span>
-<span class=o>}</span>
-</code></pre></div><p>파서는 토큰 리스트를 입력으로 받아, 토큰을 하나씩 읽어가며 JSON 구조를 생성할 것이다. <code>current</code>는 파싱을 위해 읽어들일 토큰 리스트의 인덱스다.</p>
-<p>그리고 다음과 같이 현재 토큰이 인자로 주어진 토큰 타입에 매치되는지 확인하는 도우미 메서드를 추가한다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java>  <span class=kd>private</span> <span class=kt>boolean</span> <span class=nf>match</span><span class=o>(</span><span class=n>TokenType</span><span class=o>...</span> <span class=n>types</span><span class=o>)</span> <span class=o>{</span>
-    <span class=k>for</span> <span class=o>(</span><span class=n>TokenType</span> <span class=n>type</span> <span class=o>:</span> <span class=n>types</span><span class=o>)</span> <span class=o>{</span>
-      <span class=k>if</span> <span class=o>(</span><span class=n>check</span><span class=o>(</span><span class=n>type</span><span class=o>))</span> <span class=o>{</span>
-        <span class=n>advance</span><span class=o>();</span>
-        <span class=k>return</span> <span class=kc>true</span><span class=o>;</span>
-      <span class=o>}</span>
-    <span class=o>}</span>
-    <span class=k>return</span> <span class=kc>false</span><span class=o>;</span>
-  <span class=o>}</span>
-</code></pre></div><p><code>match()</code> 메서드는 인자로 주어진 토큰 타입 중 하나라도 현재 토큰 타입과 같으면 <code>advance()</code>를 호출한 후 <code>true</code>를 리턴한다.</p>
-<p><code>check()</code> 메서드는 주어진 인자 타입이 현재 토큰 타입과 같으면 <code>true</code>를 리턴한다. <code>match()</code>와 달리 <code>current</code> 인덱스를 증가시키지 않는다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java>  <span class=kd>private</span> <span class=kt>boolean</span> <span class=nf>check</span><span class=o>(</span><span class=n>TokenType</span> <span class=n>type</span><span class=o>)</span> <span class=o>{</span>
-    <span class=k>if</span> <span class=o>(</span><span class=n>isAtEnd</span><span class=o>())</span> <span class=k>return</span> <span class=kc>false</span><span class=o>;</span>
-    <span class=k>return</span> <span class=n>peek</span><span class=o>().</span><span class=na>type</span><span class=o>()</span> <span class=o>==</span> <span class=n>type</span><span class=o>;</span>
-  <span class=o>}</span>
-</code></pre></div><p><code>advance()</code> 현재 토큰을 리턴하면서 <code>current</code> 인덱스를 하나 증가시킨다. 스캐너에 있던 <code>advance()</code> 메서드와 비슷하다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java>  <span class=kd>private</span> <span class=n>Token</span> <span class=nf>advance</span><span class=o>()</span> <span class=o>{</span>
-    <span class=k>if</span> <span class=o>(!</span><span class=n>isAtEnd</span><span class=o>())</span> <span class=n>current</span><span class=o>++;</span>
-    <span class=k>return</span> <span class=n>previous</span><span class=o>();</span>
-  <span class=o>}</span>
-</code></pre></div><p>그리고 다음 도우미 메서드도 추가한다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java>  <span class=kd>private</span> <span class=kt>boolean</span> <span class=nf>isAtEnd</span><span class=o>()</span> <span class=o>{</span>
-    <span class=k>return</span> <span class=n>peek</span><span class=o>().</span><span class=na>type</span><span class=o>()</span> <span class=o>==</span> <span class=n>EOF</span><span class=o>;</span>
-  <span class=o>}</span>
-
-  <span class=kd>private</span> <span class=n>Token</span> <span class=nf>peek</span><span class=o>()</span> <span class=o>{</span>
-    <span class=k>return</span> <span class=n>tokens</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=n>current</span><span class=o>);</span>
-  <span class=o>}</span>
-
-  <span class=kd>private</span> <span class=n>Token</span> <span class=nf>previous</span><span class=o>()</span> <span class=o>{</span>
-    <span class=k>return</span> <span class=n>tokens</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=n>current</span> <span class=o>-</span> <span class=n>1</span><span class=o>);</span>
-  <span class=o>}</span>
-</code></pre></div><p><code>isAtEnd()</code>는 처리할 토큰이 남아있지 않은지 확인한다. <code>peek()</code>는 현재 토큰을, <code>previous()</code>는 바로 전 토큰을 리턴한다.</p>
-<p>그리고 다음과 같이 <code>consume()</code> 메서드를 정의한다. <code>consume()</code>은 현재 토큰이 인자로 주어진 토큰 타입과 같은 경우 토큰을 소모한다. <code>}</code>나 <code>]</code>를 처리할 때 사용할 것이다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java>  <span class=kd>private</span> <span class=n>Token</span> <span class=nf>consume</span><span class=o>(</span><span class=n>TokenType</span> <span class=n>type</span><span class=o>,</span> <span class=n>String</span> <span class=n>message</span><span class=o>)</span> <span class=o>{</span>
-    <span class=k>if</span> <span class=o>(</span><span class=n>check</span><span class=o>(</span><span class=n>type</span><span class=o>))</span> <span class=k>return</span> <span class=n>advance</span><span class=o>();</span>
-    <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=n>message</span><span class=o>);</span>
-  <span class=o>}</span>
-</code></pre></div><p>그리고 다음과 같이 <code>parse()</code> 메서드를 추가한다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java>  <span class=n>Json</span> <span class=nf>parse</span><span class=o>()</span> <span class=o>{</span>
-    <span class=k>return</span> <span class=n>json</span><span class=o>();</span>
-  <span class=o>}</span>
-</code></pre></div><h2 id=json-객체-파싱>JSON 객체 파싱</h2>
-<p>지금부터 문법 규칙을 하나씩 코드로 바꿔갈 것이다. 첫 규칙은 <code>json</code>이다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bnf data-lang=bnf>json   <span class=o>::=</span> object
-         | array
-         | string
-         | number
-         | &#34;true&#34;
-         | &#34;false&#34;
-         | &#34;null&#34;
-</code></pre></div><p>이걸 코드로 옮기면 다음과 같다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java>  <span class=n>Json</span> <span class=nf>json</span><span class=o>()</span> <span class=o>{</span>
-    <span class=k>if</span> <span class=o>(</span><span class=n>match</span><span class=o>(</span><span class=n>LEFT_BRACE</span><span class=o>))</span> <span class=k>return</span> <span class=n>obj</span><span class=o>();</span>
-    <span class=k>if</span> <span class=o>(</span><span class=n>match</span><span class=o>(</span><span class=n>LEFT_BRACKET</span><span class=o>))</span> <span class=k>return</span> <span class=n>arr</span><span class=o>();</span>
-    <span class=k>if</span> <span class=o>(</span><span class=n>match</span><span class=o>(</span><span class=n>STRING</span><span class=o>,</span> <span class=n>NUMBER</span><span class=o>,</span> <span class=n>TRUE</span><span class=o>,</span> <span class=n>FALSE</span><span class=o>,</span> <span class=n>NULL</span><span class=o>))</span> <span class=k>return</span> <span class=n>literal</span><span class=o>();</span>
-    <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=s>&#34;Invalid Json&#34;</span><span class=o>);</span>
-  <span class=o>}</span>
-</code></pre></div><p>첫 토큰이 <code>LEFT_BRACE</code>(<code>{</code>)면 객체 시작으로 판단하고, <code>LEFT_BRACKET</code>(<code>[</code>)이면 배열 시작으로 판단하며, <code>STRING</code>, <code>NUMBER</code>, <code>TRUE</code>, <code>FALSE</code>, <code>NULL</code>인 경우는 모두 리터럴로 판단한다.</p>
-<p>다음 문법 규칙은 JSON 객체다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bnf data-lang=bnf>object <span class=o>::=</span> &#34;{&#34; &#34;}&#34;
-         | &#34;{&#34; member (&#34;,&#34; member)* &#34;}&#34;
-</code></pre></div><p>코드로 옮기면 다음과 같다. 문법에 나오는 <code>*</code>는 코드에서 루프로 바뀐다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java>  <span class=n>Json</span> <span class=nf>obj</span><span class=o>()</span> <span class=o>{</span>
-    <span class=n>Json</span><span class=o>.</span><span class=na>Obj</span> <span class=n>obj</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Json</span><span class=o>.</span><span class=na>Obj</span><span class=o>();</span>
-
-    <span class=k>if</span> <span class=o>(</span><span class=n>check</span><span class=o>(</span><span class=n>RIGHT_BRACE</span><span class=o>))</span> <span class=o>{</span> <span class=c1>// empty object
-</span><span class=c1></span>      <span class=n>advance</span><span class=o>();</span>
-      <span class=k>return</span> <span class=n>obj</span><span class=o>;</span>
-    <span class=o>}</span>
-
-    <span class=n>Json</span><span class=o>.</span><span class=na>Member</span> <span class=n>member</span> <span class=o>=</span> <span class=n>member</span><span class=o>();</span>
-    <span class=k>if</span> <span class=o>(</span><span class=n>member</span> <span class=o>!=</span> <span class=kc>null</span><span class=o>)</span> <span class=o>{</span>
-      <span class=n>obj</span><span class=o>.</span><span class=na>members</span><span class=o>.</span><span class=na>add</span><span class=o>(</span><span class=n>member</span><span class=o>);</span>
-    <span class=o>}</span>
-
-    <span class=k>while</span> <span class=o>(</span><span class=n>match</span><span class=o>(</span><span class=n>COMMA</span><span class=o>))</span> <span class=o>{</span>
-      <span class=n>member</span> <span class=o>=</span> <span class=n>member</span><span class=o>();</span>
-      <span class=n>obj</span><span class=o>.</span><span class=na>members</span><span class=o>.</span><span class=na>add</span><span class=o>(</span><span class=n>member</span><span class=o>);</span>
-    <span class=o>}</span>
-
-    <span class=n>consume</span><span class=o>(</span><span class=n>RIGHT_BRACE</span><span class=o>,</span> <span class=s>&#34;Invalid token: expected &#39;}&#39;&#34;</span><span class=o>);</span>
-    <span class=k>return</span> <span class=n>obj</span><span class=o>;</span>
-  <span class=o>}</span>
-</code></pre></div><p>현재 토큰이 <code>RIGHT_BRACE</code>면 빈 객체가 된다. 빈 객체가 아니면 <code>member</code>가 한 번 이상 나올 수 있고 <code>member</code>간에는 <code>COMMA</code>가 있다. 마지막 <code>member</code>를 처리하고 나면 <code>RIGHT_BRACE</code>가 나와야 한다.</p>
-<p><code>member</code> 규칙은 다음과 같다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bnf data-lang=bnf>member <span class=o>::=</span> string &#34;:&#34; json
-</code></pre></div><p>코드로 옮기면 다음과 같다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java>  <span class=n>Json</span><span class=o>.</span><span class=na>Member</span> <span class=nf>member</span><span class=o>()</span> <span class=o>{</span>
-    <span class=n>String</span> <span class=n>key</span> <span class=o>=</span> <span class=o>(</span><span class=n>String</span><span class=o>)</span> <span class=n>string</span><span class=o>().</span><span class=na>val</span><span class=o>;</span>
-    <span class=k>if</span> <span class=o>(!</span><span class=n>match</span><span class=o>(</span><span class=n>COLON</span><span class=o>))</span> <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=s>&#34;Invalid token: expected `:` &#34;</span><span class=o>);</span>
-    <span class=n>Json</span> <span class=n>val</span> <span class=o>=</span> <span class=n>json</span><span class=o>();</span>
-    <span class=k>return</span> <span class=k>new</span> <span class=n>Json</span><span class=o>.</span><span class=na>Member</span><span class=o>(</span><span class=n>key</span><span class=o>,</span> <span class=n>val</span><span class=o>);</span>
-  <span class=o>}</span>
-</code></pre></div><p><code>string()</code>은 현재 토큰이 문자열인 경우 문자열 리터럴을 리턴하고, 문자열이 아닌 경우는 예외를 던진다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java>  <span class=kd>private</span> <span class=n>Json</span><span class=o>.</span><span class=na>Literal</span> <span class=nf>string</span><span class=o>()</span> <span class=o>{</span>
-    <span class=k>if</span> <span class=o>(</span><span class=n>match</span><span class=o>(</span><span class=n>STRING</span><span class=o>))</span> <span class=k>return</span> <span class=k>new</span> <span class=n>Json</span><span class=o>.</span><span class=na>Literal</span><span class=o>(</span><span class=n>previous</span><span class=o>().</span><span class=na>literal</span><span class=o>());</span>
-    <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=s>&#34;Invalid token: expected string&#34;</span><span class=o>);</span>
-  <span class=o>}</span>
-</code></pre></div><h2 id=배열-파싱>배열 파싱</h2>
-<p>배열의 문법 규칙은 다음과 같다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bnf data-lang=bnf>array  <span class=o>::=</span> &#34;[&#34; &#34;]&#34;
-         | &#34;[&#34; json (&#34;,&#34; json)* &#34;]&#34;
-</code></pre></div><p><code>obj</code> 규칙과 비슷하지만 <code>{</code>, <code>}</code> 사이에 <code>member</code>가 있는 대신 <code>[</code>, <code>]</code> 사이에 <code>json</code>이 있다. 따라서 코드도 <code>obj()</code> 메서드와 비슷하다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java>  <span class=n>Json</span> <span class=nf>arr</span><span class=o>()</span> <span class=o>{</span>
-    <span class=n>Json</span><span class=o>.</span><span class=na>Arr</span> <span class=n>arr</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Json</span><span class=o>.</span><span class=na>Arr</span><span class=o>();</span>
-
-    <span class=k>if</span> <span class=o>(</span><span class=n>check</span><span class=o>(</span><span class=n>RIGHT_BRACKET</span><span class=o>))</span> <span class=o>{</span> <span class=c1>// empty array
-</span><span class=c1></span>      <span class=n>advance</span><span class=o>();</span>
-      <span class=k>return</span> <span class=n>arr</span><span class=o>;</span>
-    <span class=o>}</span>
-
-    <span class=n>arr</span><span class=o>.</span><span class=na>elements</span><span class=o>.</span><span class=na>add</span><span class=o>(</span><span class=n>json</span><span class=o>());</span>
-
-    <span class=k>while</span> <span class=o>(</span><span class=n>match</span><span class=o>(</span><span class=n>COMMA</span><span class=o>))</span> <span class=o>{</span>
-      <span class=n>arr</span><span class=o>.</span><span class=na>elements</span><span class=o>.</span><span class=na>add</span><span class=o>(</span><span class=n>json</span><span class=o>());</span>
-    <span class=o>}</span>
-
-    <span class=n>consume</span><span class=o>(</span><span class=n>RIGHT_BRACKET</span><span class=o>,</span> <span class=s>&#34;Invalue token: expected &#39;]&#39;&#34;</span><span class=o>);</span>
-    <span class=k>return</span> <span class=n>arr</span><span class=o>;</span>
-  <span class=o>}</span>
-</code></pre></div><h2 id=리터럴-파싱>리터럴 파싱</h2>
-<p>객체나 배열이 아닌 경우는 모두 리터럴로 처리한다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java>  <span class=kd>private</span> <span class=n>Json</span><span class=o>.</span><span class=na>Literal</span> <span class=nf>literal</span><span class=o>()</span> <span class=o>{</span>
-    <span class=k>return</span> <span class=k>new</span> <span class=n>Json</span><span class=o>.</span><span class=na>Literal</span><span class=o>(</span><span class=n>previous</span><span class=o>().</span><span class=na>literal</span><span class=o>());</span>
-  <span class=o>}</span>
-</code></pre></div><p><code>match()</code> 메서드가 <code>current</code> 인덱스를 증가시키므로 리터럴 값을 얻으려면 <code>previous().literal()</code>을 호출해야 한다.</p>
-<p>그런데 문자열도 리터럴인데 왜 위에서 <code>string()</code>을 따로 정의했는지 의아할 수 있다. <code>string()</code>은 <code>member</code>를 파싱할 때 사용했는데 <code>member</code>의 키는 반드시 문자열이어야 하기 때문이다.</p>
-<h2 id=파서-연결하기>파서 연결하기</h2>
-<p><a href=/2021/json-parser-impl-1-scanner>1부</a>에서 구현한 스캐너와 여기서 구현한 파서는 다음과 같이 사용할 수 있다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>Test</span> <span class=o>{</span>
-  <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
-    <span class=n>String</span> <span class=n>input</span> <span class=o>=</span> <span class=s>&#34;&#34;&#34;
-</span><span class=s>      {
-</span><span class=s>        &#34;</span><span class=n>a</span><span class=s>&#34;: 10,
-</span><span class=s>        &#34;</span><span class=n>b</span><span class=s>&#34;: true,
-</span><span class=s>        &#34;</span><span class=n>c</span><span class=s>&#34;: &#34;</span><span class=n>hello</span><span class=s>&#34;,
-</span><span class=s>        &#34;</span><span class=n>d</span><span class=s>&#34;: null,
-</span><span class=s>        &#34;</span><span class=n>e</span><span class=s>&#34;: [1,2,3,4,5],
-</span><span class=s>        &#34;</span><span class=n>f</span><span class=s>&#34;: {
-</span><span class=s>          &#34;</span><span class=n>f1</span><span class=s>&#34;: &#34;</span><span class=n>hello</span><span class=s>&#34;,
-</span><span class=s>          &#34;</span><span class=n>f2</span><span class=s>&#34;: &#34;</span><span class=n>world</span><span class=s>&#34;,
-</span><span class=s>          &#34;</span><span class=n>arr</span><span class=s>&#34;: [{&#34;</span><span class=n>a</span><span class=s>&#34;:10}, {&#34;</span><span class=n>b</span><span class=s>&#34;:20}]
-</span><span class=s>        },
-</span><span class=s>        &#34;</span><span class=n>g</span><span class=s>&#34;: [-10, 20.0, 0.003, -0.04],
-</span><span class=s>        &#34;</span><span class=n>h</span><span class=s>&#34;: {},
-</span><span class=s>        &#34;</span><span class=n>i</span><span class=s>&#34;: []
-</span><span class=s>      }
-</span><span class=s>      &#34;&#34;&#34;</span><span class=o>;</span>
-    <span class=n>Scanner</span> <span class=n>scanner</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Scanner</span><span class=o>(</span><span class=n>input</span><span class=o>);</span>
-    <span class=n>List</span><span class=o>&lt;</span><span class=n>Token</span><span class=o>&gt;</span> <span class=n>tokens</span> <span class=o>=</span> <span class=n>scanner</span><span class=o>.</span><span class=na>scanTokens</span><span class=o>();</span>
-    <span class=n>Parser</span> <span class=n>parser</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Parser</span><span class=o>(</span><span class=n>tokens</span><span class=o>);</span>
-    <span class=n>Json</span> <span class=n>json</span> <span class=o>=</span> <span class=n>parser</span><span class=o>.</span><span class=na>parse</span><span class=o>();</span>
-
-    <span class=o>...</span>
-  <span class=o>}</span>
-<span class=o>}</span>
-
-</code></pre></div><h2 id=다음-단계>다음 단계</h2>
-<p>지금까지 JSON 스캐너와 파서를 간단히 구현해 보았다. 스캐너와 파서 모두 100줄 조금 넘는 간단한 프로그램이고, 스캐너/파서 생성기의 도움을 받지 않고 구현했다. JSON을 어떻게 파싱할 수 있을지 확인하는 정도로는 충분하지만 몇 가지 개선점이 눈에 보인다.</p>
-<ul>
-<li>스캐너도 그렇고 파서도 그렇고 에러를 만나면 예외를 던진다. 입력 JSON에 오류가 많은 경우 모든 오류를 한꺼번에 보여주지 않고 처음 만나는 에러 하나만 보여주며 에러 위치도 알려주지 않기 때문에, 모든 오류를 찾는 게 지루한 작업이 될 수 있다. 에러를 만났을 때 예외를 던지는 대신 에러 위치와 내용을 기록해두었다가 입력 JSON을 끝까지 처리한 다음 모든 에러를 위치와 함께 보여준다면 더욱 사용하기 편리한 JSON 파서가 될 것이다.</li>
-<li><code>parse()</code>는 <code>Json</code> 타입을 리턴하는데, 이것만 가지고는 파싱한 결과를 제대로 사용하기 어렵다. 이것은 JSON이 어떤 타입인지 알 수 없기 때문에 일부러 이렇게 한 것이지만, 클라이언트 쪽에서 쉽게 사용할 수 있도록 개선할 필요가 있다.</li>
-</ul>
-<h2 id=참고>참고</h2>
-<ul>
+</h1></header><section class=post-content>
+<p>1부에서 JSON 스캐너를 구현했다. JSON 스캐너는 JSON을 읽어 토큰 리스트를 생성한다. 이제 토큰 리스트를 읽어 데이터 구조로 바꿔줄 파서를 구현할 차례다.</p><p>JSON의 문법을 <a href=https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form>BNF(Backus-Naur Form)</a>으로 다음과 같이 나타낼 수 있다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bnf data-lang=bnf><span class=line><span class=cl>json   <span class=o>::=</span> object
+</span></span><span class=line><span class=cl>         | array
+</span></span><span class=line><span class=cl>         | string
+</span></span><span class=line><span class=cl>         | number
+</span></span><span class=line><span class=cl>         | &#34;true&#34;
+</span></span><span class=line><span class=cl>         | &#34;false&#34;
+</span></span><span class=line><span class=cl>         | &#34;null&#34;
+</span></span><span class=line><span class=cl>object <span class=o>::=</span> &#34;{&#34; &#34;}&#34;
+</span></span><span class=line><span class=cl>         | &#34;{&#34; member (&#34;,&#34; member)* &#34;}&#34;
+</span></span><span class=line><span class=cl>array  <span class=o>::=</span> &#34;[&#34; &#34;]&#34;
+</span></span><span class=line><span class=cl>         | &#34;[&#34; json (&#34;,&#34; json)* &#34;]&#34;
+</span></span><span class=line><span class=cl>member <span class=o>::=</span> string &#34;:&#34; json
+</span></span></code></pre></div><p>스캐너에서 문자열이나 숫자 등 토큰을 이미 분리했으므로 여기서 <code>string</code>이나 <code>number</code>에 대한 문법을 상세히 기술하지 않았다. 그 외에도 구현 복잡도를 줄이기 위해 문법을 단순화했다. JSON의 전체 문법은 <a href=https://www.json.org/json-en.html>Json.org</a>에서 확인할 수 있다.</p><h2 id=json-클래스>Json 클래스</h2><p>파서는 스캐너로 생성한 토큰 리스트를 JSON 구조를 나타내는 자료구조로 변환할 것이다. 따라서 JSON을 어떻게 나타내는 게 좋을지 생각해봐야 한다. 여기서는 위 문법 구조를 나타내는 <code>Json</code> 클래스를 다음과 같이 정의한다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kd>public</span> <span class=kd>abstract</span> <span class=kd>class</span> <span class=nc>Json</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>static</span> <span class=kd>class</span> <span class=nc>Obj</span> <span class=kd>extends</span> <span class=n>Json</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>List</span><span class=o>&lt;</span><span class=n>Member</span><span class=o>&gt;</span> <span class=n>members</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ArrayList</span><span class=o>&lt;&gt;();</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kd>static</span> <span class=kd>class</span> <span class=nc>Arr</span> <span class=kd>extends</span> <span class=n>Json</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>List</span><span class=o>&lt;</span><span class=n>Json</span><span class=o>&gt;</span> <span class=n>elements</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ArrayList</span><span class=o>&lt;&gt;();</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kd>static</span> <span class=kd>class</span> <span class=nc>Member</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>String</span> <span class=n>key</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>Json</span> <span class=n>val</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>Member</span><span class=o>(</span><span class=n>String</span> <span class=n>key</span><span class=o>,</span> <span class=n>Json</span> <span class=n>val</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>this</span><span class=o>.</span><span class=na>key</span> <span class=o>=</span> <span class=n>key</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>this</span><span class=o>.</span><span class=na>val</span> <span class=o>=</span> <span class=n>val</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kd>static</span> <span class=kd>class</span> <span class=nc>Literal</span> <span class=kd>extends</span> <span class=n>Json</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>Object</span> <span class=n>val</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>Literal</span><span class=o>(</span><span class=n>Object</span> <span class=n>val</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>this</span><span class=o>.</span><span class=na>val</span> <span class=o>=</span> <span class=n>val</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></div><p><code>Json.Obj</code>는 JSON 객체를 나타낼 클래스로 <code>List&lt;Member></code> 타입의 필드를 가지고 있다. <code>Map&lt;String, Json></code> 타입을 쓸 수도 있지만, 위에서 보인 JSON 문법 구조와 비슷하게 하기 위해 <code>List&lt;Member></code>를 썼다.</p><h2 id=재귀-하향-파서>재귀 하향 파서</h2><p>재귀 하향 파서(recursive descent parser)는 상호 순환 절차의 집합으로 이루어진 하향식(top-down) 파서다. 재위 하향은 <a href=https://en.wikipedia.org/wiki/Yacc>Yacc</a>, <a href=https://www.gnu.org/software/bison/>Bison</a> 또는 <a href=https://www.antlr.org/>ANTLR</a> 같은 파서 생성기 도움 없이 파서를 만드는 가장 단순한 방법이다. 재귀 하향 파서는 최상위 문법 규칙(여기서는 <code>json</code>)부터 시작해 문법 트리의 종말(여기서는 <code>string</code>, <code>number</code>, <code>true</code>, <code>false</code>, <code>null</code>)까지 처리해가기 때문에 하향식이라 불린다. 또한 문법 규칙이 직간접적으로 자신을 참조하기 때문에 재귀적이라 할 수 있다. 각 문법 규칙은 하나의 함수(또는 메서드)가 될 것이다.</p><h2 id=파서-클래스>파서 클래스</h2><p>이제 파서 클래스 구현을 시작해보자.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kd>public</span> <span class=kd>class</span> <span class=nc>Parser</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>private</span> <span class=kd>final</span> <span class=n>List</span><span class=o>&lt;</span><span class=n>Token</span><span class=o>&gt;</span> <span class=n>tokens</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>  <span class=kd>private</span> <span class=kt>int</span> <span class=n>current</span> <span class=o>=</span> <span class=n>0</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>Parser</span><span class=o>(</span><span class=n>List</span><span class=o>&lt;</span><span class=n>Token</span><span class=o>&gt;</span> <span class=n>tokens</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>this</span><span class=o>.</span><span class=na>tokens</span> <span class=o>=</span> <span class=n>tokens</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></div><p>파서는 토큰 리스트를 입력으로 받아, 토큰을 하나씩 읽어가며 JSON 구조를 생성할 것이다. <code>current</code>는 파싱을 위해 읽어들일 토큰 리스트의 인덱스다.</p><p>그리고 다음과 같이 현재 토큰이 인자로 주어진 토큰 타입에 매치되는지 확인하는 도우미 메서드를 추가한다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl>  <span class=kd>private</span> <span class=kt>boolean</span> <span class=nf>match</span><span class=o>(</span><span class=n>TokenType</span><span class=o>...</span> <span class=n>types</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=o>(</span><span class=n>TokenType</span> <span class=n>type</span> <span class=o>:</span> <span class=n>types</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=o>(</span><span class=n>check</span><span class=o>(</span><span class=n>type</span><span class=o>))</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>advance</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=kc>true</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>      <span class=o>}</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=kc>false</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span></code></pre></div><p><code>match()</code> 메서드는 인자로 주어진 토큰 타입 중 하나라도 현재 토큰 타입과 같으면 <code>advance()</code>를 호출한 후 <code>true</code>를 리턴한다.</p><p><code>check()</code> 메서드는 주어진 인자 타입이 현재 토큰 타입과 같으면 <code>true</code>를 리턴한다. <code>match()</code>와 달리 <code>current</code> 인덱스를 증가시키지 않는다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl>  <span class=kd>private</span> <span class=kt>boolean</span> <span class=nf>check</span><span class=o>(</span><span class=n>TokenType</span> <span class=n>type</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>(</span><span class=n>isAtEnd</span><span class=o>())</span> <span class=k>return</span> <span class=kc>false</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>peek</span><span class=o>().</span><span class=na>type</span><span class=o>()</span> <span class=o>==</span> <span class=n>type</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span></code></pre></div><p><code>advance()</code> 현재 토큰을 리턴하면서 <code>current</code> 인덱스를 하나 증가시킨다. 스캐너에 있던 <code>advance()</code> 메서드와 비슷하다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl>  <span class=kd>private</span> <span class=n>Token</span> <span class=nf>advance</span><span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>(!</span><span class=n>isAtEnd</span><span class=o>())</span> <span class=n>current</span><span class=o>++;</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>previous</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span></code></pre></div><p>그리고 다음 도우미 메서드도 추가한다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl>  <span class=kd>private</span> <span class=kt>boolean</span> <span class=nf>isAtEnd</span><span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>peek</span><span class=o>().</span><span class=na>type</span><span class=o>()</span> <span class=o>==</span> <span class=n>EOF</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kd>private</span> <span class=n>Token</span> <span class=nf>peek</span><span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>tokens</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=n>current</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kd>private</span> <span class=n>Token</span> <span class=nf>previous</span><span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>tokens</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=n>current</span> <span class=o>-</span> <span class=n>1</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span></code></pre></div><p><code>isAtEnd()</code>는 처리할 토큰이 남아있지 않은지 확인한다. <code>peek()</code>는 현재 토큰을, <code>previous()</code>는 바로 전 토큰을 리턴한다.</p><p>그리고 다음과 같이 <code>consume()</code> 메서드를 정의한다. <code>consume()</code>은 현재 토큰이 인자로 주어진 토큰 타입과 같은 경우 토큰을 소모한다. <code>}</code>나 <code>]</code>를 처리할 때 사용할 것이다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl>  <span class=kd>private</span> <span class=n>Token</span> <span class=nf>consume</span><span class=o>(</span><span class=n>TokenType</span> <span class=n>type</span><span class=o>,</span> <span class=n>String</span> <span class=n>message</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>(</span><span class=n>check</span><span class=o>(</span><span class=n>type</span><span class=o>))</span> <span class=k>return</span> <span class=n>advance</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>    <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=n>message</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span></code></pre></div><p>그리고 다음과 같이 <code>parse()</code> 메서드를 추가한다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl>  <span class=n>Json</span> <span class=nf>parse</span><span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>json</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span></code></pre></div><h2 id=json-객체-파싱>JSON 객체 파싱</h2><p>지금부터 문법 규칙을 하나씩 코드로 바꿔갈 것이다. 첫 규칙은 <code>json</code>이다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bnf data-lang=bnf><span class=line><span class=cl>json   <span class=o>::=</span> object
+</span></span><span class=line><span class=cl>         | array
+</span></span><span class=line><span class=cl>         | string
+</span></span><span class=line><span class=cl>         | number
+</span></span><span class=line><span class=cl>         | &#34;true&#34;
+</span></span><span class=line><span class=cl>         | &#34;false&#34;
+</span></span><span class=line><span class=cl>         | &#34;null&#34;
+</span></span></code></pre></div><p>이걸 코드로 옮기면 다음과 같다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl>  <span class=n>Json</span> <span class=nf>json</span><span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>(</span><span class=n>match</span><span class=o>(</span><span class=n>LEFT_BRACE</span><span class=o>))</span> <span class=k>return</span> <span class=n>obj</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>(</span><span class=n>match</span><span class=o>(</span><span class=n>LEFT_BRACKET</span><span class=o>))</span> <span class=k>return</span> <span class=n>arr</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>(</span><span class=n>match</span><span class=o>(</span><span class=n>STRING</span><span class=o>,</span> <span class=n>NUMBER</span><span class=o>,</span> <span class=n>TRUE</span><span class=o>,</span> <span class=n>FALSE</span><span class=o>,</span> <span class=n>NULL</span><span class=o>))</span> <span class=k>return</span> <span class=n>literal</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>    <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=s>&#34;Invalid Json&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span></code></pre></div><p>첫 토큰이 <code>LEFT_BRACE</code>(<code>{</code>)면 객체 시작으로 판단하고, <code>LEFT_BRACKET</code>(<code>[</code>)이면 배열 시작으로 판단하며, <code>STRING</code>, <code>NUMBER</code>, <code>TRUE</code>, <code>FALSE</code>, <code>NULL</code>인 경우는 모두 리터럴로 판단한다.</p><p>다음 문법 규칙은 JSON 객체다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bnf data-lang=bnf><span class=line><span class=cl>object <span class=o>::=</span> &#34;{&#34; &#34;}&#34;
+</span></span><span class=line><span class=cl>         | &#34;{&#34; member (&#34;,&#34; member)* &#34;}&#34;
+</span></span></code></pre></div><p>코드로 옮기면 다음과 같다. 문법에 나오는 <code>*</code>는 코드에서 루프로 바뀐다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl>  <span class=n>Json</span> <span class=nf>obj</span><span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>Json</span><span class=o>.</span><span class=na>Obj</span> <span class=n>obj</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Json</span><span class=o>.</span><span class=na>Obj</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>(</span><span class=n>check</span><span class=o>(</span><span class=n>RIGHT_BRACE</span><span class=o>))</span> <span class=o>{</span> <span class=c1>// empty object
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=n>advance</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=n>obj</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>Json</span><span class=o>.</span><span class=na>Member</span> <span class=n>member</span> <span class=o>=</span> <span class=n>member</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>(</span><span class=n>member</span> <span class=o>!=</span> <span class=kc>null</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>      <span class=n>obj</span><span class=o>.</span><span class=na>members</span><span class=o>.</span><span class=na>add</span><span class=o>(</span><span class=n>member</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=o>(</span><span class=n>match</span><span class=o>(</span><span class=n>COMMA</span><span class=o>))</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>      <span class=n>member</span> <span class=o>=</span> <span class=n>member</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>      <span class=n>obj</span><span class=o>.</span><span class=na>members</span><span class=o>.</span><span class=na>add</span><span class=o>(</span><span class=n>member</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>consume</span><span class=o>(</span><span class=n>RIGHT_BRACE</span><span class=o>,</span> <span class=s>&#34;Invalid token: expected &#39;}&#39;&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>obj</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span></code></pre></div><p>현재 토큰이 <code>RIGHT_BRACE</code>면 빈 객체가 된다. 빈 객체가 아니면 <code>member</code>가 한 번 이상 나올 수 있고 <code>member</code>간에는 <code>COMMA</code>가 있다. 마지막 <code>member</code>를 처리하고 나면 <code>RIGHT_BRACE</code>가 나와야 한다.</p><p><code>member</code> 규칙은 다음과 같다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bnf data-lang=bnf><span class=line><span class=cl>member <span class=o>::=</span> string &#34;:&#34; json
+</span></span></code></pre></div><p>코드로 옮기면 다음과 같다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl>  <span class=n>Json</span><span class=o>.</span><span class=na>Member</span> <span class=nf>member</span><span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>String</span> <span class=n>key</span> <span class=o>=</span> <span class=o>(</span><span class=n>String</span><span class=o>)</span> <span class=n>string</span><span class=o>().</span><span class=na>val</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>(!</span><span class=n>match</span><span class=o>(</span><span class=n>COLON</span><span class=o>))</span> <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=s>&#34;Invalid token: expected `:` &#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>Json</span> <span class=n>val</span> <span class=o>=</span> <span class=n>json</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=k>new</span> <span class=n>Json</span><span class=o>.</span><span class=na>Member</span><span class=o>(</span><span class=n>key</span><span class=o>,</span> <span class=n>val</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span></code></pre></div><p><code>string()</code>은 현재 토큰이 문자열인 경우 문자열 리터럴을 리턴하고, 문자열이 아닌 경우는 예외를 던진다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl>  <span class=kd>private</span> <span class=n>Json</span><span class=o>.</span><span class=na>Literal</span> <span class=nf>string</span><span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>(</span><span class=n>match</span><span class=o>(</span><span class=n>STRING</span><span class=o>))</span> <span class=k>return</span> <span class=k>new</span> <span class=n>Json</span><span class=o>.</span><span class=na>Literal</span><span class=o>(</span><span class=n>previous</span><span class=o>().</span><span class=na>literal</span><span class=o>());</span>
+</span></span><span class=line><span class=cl>    <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=s>&#34;Invalid token: expected string&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span></code></pre></div><h2 id=배열-파싱>배열 파싱</h2><p>배열의 문법 규칙은 다음과 같다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bnf data-lang=bnf><span class=line><span class=cl>array  <span class=o>::=</span> &#34;[&#34; &#34;]&#34;
+</span></span><span class=line><span class=cl>         | &#34;[&#34; json (&#34;,&#34; json)* &#34;]&#34;
+</span></span></code></pre></div><p><code>obj</code> 규칙과 비슷하지만 <code>{</code>, <code>}</code> 사이에 <code>member</code>가 있는 대신 <code>[</code>, <code>]</code> 사이에 <code>json</code>이 있다. 따라서 코드도 <code>obj()</code> 메서드와 비슷하다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl>  <span class=n>Json</span> <span class=nf>arr</span><span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>Json</span><span class=o>.</span><span class=na>Arr</span> <span class=n>arr</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Json</span><span class=o>.</span><span class=na>Arr</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>(</span><span class=n>check</span><span class=o>(</span><span class=n>RIGHT_BRACKET</span><span class=o>))</span> <span class=o>{</span> <span class=c1>// empty array
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=n>advance</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=n>arr</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>arr</span><span class=o>.</span><span class=na>elements</span><span class=o>.</span><span class=na>add</span><span class=o>(</span><span class=n>json</span><span class=o>());</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=o>(</span><span class=n>match</span><span class=o>(</span><span class=n>COMMA</span><span class=o>))</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>      <span class=n>arr</span><span class=o>.</span><span class=na>elements</span><span class=o>.</span><span class=na>add</span><span class=o>(</span><span class=n>json</span><span class=o>());</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>consume</span><span class=o>(</span><span class=n>RIGHT_BRACKET</span><span class=o>,</span> <span class=s>&#34;Invalue token: expected &#39;]&#39;&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>arr</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span></code></pre></div><h2 id=리터럴-파싱>리터럴 파싱</h2><p>객체나 배열이 아닌 경우는 모두 리터럴로 처리한다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl>  <span class=kd>private</span> <span class=n>Json</span><span class=o>.</span><span class=na>Literal</span> <span class=nf>literal</span><span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=k>new</span> <span class=n>Json</span><span class=o>.</span><span class=na>Literal</span><span class=o>(</span><span class=n>previous</span><span class=o>().</span><span class=na>literal</span><span class=o>());</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span></code></pre></div><p><code>match()</code> 메서드가 <code>current</code> 인덱스를 증가시키므로 리터럴 값을 얻으려면 <code>previous().literal()</code>을 호출해야 한다.</p><p>그런데 문자열도 리터럴인데 왜 위에서 <code>string()</code>을 따로 정의했는지 의아할 수 있다. <code>string()</code>은 <code>member</code>를 파싱할 때 사용했는데 <code>member</code>의 키는 반드시 문자열이어야 하기 때문이다.</p><h2 id=파서-연결하기>파서 연결하기</h2><p><a href=/2021/json-parser-impl-1-scanner>1부</a>에서 구현한 스캐너와 여기서 구현한 파서는 다음과 같이 사용할 수 있다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kd>public</span> <span class=kd>class</span> <span class=nc>Test</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>String</span> <span class=n>input</span> <span class=o>=</span> <span class=s>&#34;&#34;&#34;
+</span></span></span><span class=line><span class=cl><span class=s>      {
+</span></span></span><span class=line><span class=cl><span class=s>        &#34;</span><span class=n>a</span><span class=s>&#34;: 10,
+</span></span></span><span class=line><span class=cl><span class=s>        &#34;</span><span class=n>b</span><span class=s>&#34;: true,
+</span></span></span><span class=line><span class=cl><span class=s>        &#34;</span><span class=n>c</span><span class=s>&#34;: &#34;</span><span class=n>hello</span><span class=s>&#34;,
+</span></span></span><span class=line><span class=cl><span class=s>        &#34;</span><span class=n>d</span><span class=s>&#34;: null,
+</span></span></span><span class=line><span class=cl><span class=s>        &#34;</span><span class=n>e</span><span class=s>&#34;: [1,2,3,4,5],
+</span></span></span><span class=line><span class=cl><span class=s>        &#34;</span><span class=n>f</span><span class=s>&#34;: {
+</span></span></span><span class=line><span class=cl><span class=s>          &#34;</span><span class=n>f1</span><span class=s>&#34;: &#34;</span><span class=n>hello</span><span class=s>&#34;,
+</span></span></span><span class=line><span class=cl><span class=s>          &#34;</span><span class=n>f2</span><span class=s>&#34;: &#34;</span><span class=n>world</span><span class=s>&#34;,
+</span></span></span><span class=line><span class=cl><span class=s>          &#34;</span><span class=n>arr</span><span class=s>&#34;: [{&#34;</span><span class=n>a</span><span class=s>&#34;:10}, {&#34;</span><span class=n>b</span><span class=s>&#34;:20}]
+</span></span></span><span class=line><span class=cl><span class=s>        },
+</span></span></span><span class=line><span class=cl><span class=s>        &#34;</span><span class=n>g</span><span class=s>&#34;: [-10, 20.0, 0.003, -0.04],
+</span></span></span><span class=line><span class=cl><span class=s>        &#34;</span><span class=n>h</span><span class=s>&#34;: {},
+</span></span></span><span class=line><span class=cl><span class=s>        &#34;</span><span class=n>i</span><span class=s>&#34;: []
+</span></span></span><span class=line><span class=cl><span class=s>      }
+</span></span></span><span class=line><span class=cl><span class=s>      &#34;&#34;&#34;</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>Scanner</span> <span class=n>scanner</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Scanner</span><span class=o>(</span><span class=n>input</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>List</span><span class=o>&lt;</span><span class=n>Token</span><span class=o>&gt;</span> <span class=n>tokens</span> <span class=o>=</span> <span class=n>scanner</span><span class=o>.</span><span class=na>scanTokens</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>    <span class=n>Parser</span> <span class=n>parser</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Parser</span><span class=o>(</span><span class=n>tokens</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>Json</span> <span class=n>json</span> <span class=o>=</span> <span class=n>parser</span><span class=o>.</span><span class=na>parse</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=o>...</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></div><h2 id=다음-단계>다음 단계</h2><p>지금까지 JSON 스캐너와 파서를 간단히 구현해 보았다. 스캐너와 파서 모두 100줄 조금 넘는 간단한 프로그램이고, 스캐너/파서 생성기의 도움을 받지 않고 구현했다. JSON을 어떻게 파싱할 수 있을지 확인하는 정도로는 충분하지만 몇 가지 개선점이 눈에 보인다.</p><ul>
+<li>스캐너도 그렇고 파서도 그렇고 에러를 만나면 예외를 던진다. 입력 JSON에 오류가 많은 경우 모든 오류를 한꺼번에 보여주지 않고 처음 만나는 에러 하나만 보여주며 에러 위치도 알려주지 않기 때문에, 모든 오류를 찾는 게 지루한 작업이 될 수 있다. 에러를 만났을 때 예외를 던지는 대신 에러 위치와 내용을 기록해두었다가 입력 JSON을 끝까지 처리한 다음 모든 에러를 위치와 함께 보여준다면 더욱 사용하기 편리한 JSON 파서가 될 것이다.</li><li><code>parse()</code>는 <code>Json</code> 타입을 리턴하는데, 이것만 가지고는 파싱한 결과를 제대로 사용하기 어렵다. 이것은 JSON이 어떤 타입인지 알 수 없기 때문에 일부러 이렇게 한 것이지만, 클라이언트 쪽에서 쉽게 사용할 수 있도록 개선할 필요가 있다.</li></ul><h2 id=참고>참고</h2><ul>
 <li>Robert Nystrom, <a href=https://craftinginterpreters.com/contents.html>Crafting Interpreters</a>, Chapter 6<br>
-1부에서와 마찬가지로 위에서 설명한 코드 역시 이 책에 나오는 코드를 JSON에 맞게 변형한 것이다.</li>
-<li><a href=https://github.com/ntalbs/JsonParser>JsonParser</a>
-위에서 설명한 코드 전체를 확인할 수 있다.</li>
-</ul>
-</section>
-<footer class=post-footer>
+1부에서와 마찬가지로 위에서 설명한 코드 역시 이 책에 나오는 코드를 JSON에 맞게 변형한 것이다.</li><li><a href=https://github.com/ntalbs/JsonParser>JsonParser</a>
+위에서 설명한 코드 전체를 확인할 수 있다.</li></ul></section><footer class=post-footer>
 <div class="social button-box">
 <a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
 <script async src=//platform.twitter.com/widgets.js></script>
-</div>
-<nav id=article-nav>
+</div><nav id=article-nav>
 <a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2021/echo-server-in-rust/ id=article-nav-newer> Rust Echo 서버</a>
 <a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2021/json-parser-impl-1-scanner/ id=article-nav-older> JSON 파서 구현 1 - 스캐너</a>
-</nav>
-</footer>
-</article>
-</main>
-<section class=section>
+</nav></footer></article></main><section class=section>
 <div class=container>
-<aside><div id=disqus_thread></div></aside>
-<script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2021/json-parser-impl-2-parser/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
-</div>
-</section>
-<section class=section>
+<aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2021/json-parser-impl-2-parser/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section>
 <div class="container has-text-centered">
-<p></p>
-</div>
-</section>
-<script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
 <script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
 <footer class=page-bottom>
 <div class=inner>
-<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section>
-<section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section>
-</div>
-</footer>
-</body>
-</html>
+<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>

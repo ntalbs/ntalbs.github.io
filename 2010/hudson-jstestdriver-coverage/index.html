@@ -1,128 +1,69 @@
 <!doctype html><html>
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script>
 <meta charset=utf-8>
 <meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
 <meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>Hudson에서 JsTestDriver를 이용한 커버리지 분석 설정 @ntalbs' stuff</title>
-<link rel="shortcut icon" href=/images/favicon.ico>
+<title>Hudson에서 JsTestDriver를 이용한 커버리지 분석 설정 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico>
 <link rel=stylesheet href=/css/style.css>
 <link rel=stylesheet href=/css/highlight.css>
-</head>
-<body>
+</head><body>
 <div id=progress>
-<div id=bar></div>
-<div class=container>
-<div id=scroll-title>Hudson에서 JsTestDriver를 이용한 커버리지 분석 설정</div>
-</div>
-</div>
-<nav class=navbar role=navigation>
+<div id=bar></div><div class=container>
+<div id=scroll-title>Hudson에서 JsTestDriver를 이용한 커버리지 분석 설정</div></div></div><nav class=navbar role=navigation>
 <div class=container>
 <div class=navbar-header>
 <button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
 <a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
-</div>
-<div class="navbar-items collapsed" id=nav-items>
+</div><div class="navbar-items collapsed" id=nav-items>
 <ul>
-<li><a class=unselectable href=/archive/>Archive</a></li>
-<li><a class=unselectable href=/tags/>Tags</a></li>
-<li><a class=unselectable href=/about/>About</a></li>
-<li><a id=mode-switch class=unselectable href=#></a></li>
-</ul>
-</div>
-</div>
-</nav>
-<header class=page-head>
+<li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head>
 <div class=container>
-<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-</div>
-</header>
-<main class=container role=main>
+<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main>
 <article class=post>
 <header>
 <p class=post-meta>
 <time datetime=2010-11-24 itemprop=datePublished>2010-11-24</time>
 on
 <a href=/tags/%ed%85%8c%ec%8a%a4%ed%8c%85/>테스팅</a>
-</p>
-<h1 class=post-title>
+</p><h1 class=post-title>
 Hudson에서 JsTestDriver를 이용한 커버리지 분석 설정
-</h1>
-</header>
-<section class=post-content>
-<p><a href=/2010/hudson-jstestdriver/>Hudson에서 JsTestDriver 설정</a>에서 Hudson에서 JsTestDriver를 설정하는 방법을 설명했다. 여기서는 Hudson에서 JsTestDriver를 이용해 테스트 커버리지 리포트를 생성하는 방법을 살펴보자.</p>
-<p>JsTestDriver에 coverage 플러그인을 설치하면 단위테스트에 대한 라인 커버리지를 볼 수 있다. Hudson에서 JsTestDriver 설정에서 설명한 대로 설치했다면 이미 coverage 플러그인도 설치되어 있는 상태다. coverage 플러그인은 JsTestDriver 실행시 지정한 testOutput 디렉터리에 LCOV 포맷의 <config filename>-coverage.dat 파일을 생성한다. 이 파일은 LCOV의 genhtml을 통해 HTML 형식의 리포트로 만들 수 있다.</p>
-<h2 id=lcov-설치>LCOV 설치﻿</h2>
-<ol>
-<li><a href=http://ltp.sourceforge.net/coverage/lcov.php>http://ltp.sourceforge.net/coverage/lcov.php</a>에서 lcov 최신버전 다운로드</li>
-<li>설치할 디렉터리(여기서는 <code>/opt/</code>)에 압축 해제</li>
-</ol>
-<h2 id=jstestcoverageconf-설정>jsTestCoverage.conf 설정</h2>
-<p>jsTestCoverage.conf 파일에 다음 내용을 추가한다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=nt>plugin</span><span class=p>:</span><span class=w>
-</span><span class=w>  </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;coverage&#34;</span><span class=w>
-</span><span class=w>    </span><span class=nt>jar</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;plugins/coverage-1.2.2.jar&#34;</span><span class=w>
-</span><span class=w>    </span><span class=nt>module</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;com.google.jstestdriver.coverage.CoverageModule&#34;</span><span class=w>
-</span></code></pre></div><h2 id=hudson-설정>Hudson 설정</h2>
-<ol>
+</h1></header><section class=post-content>
+<p><a href=/2010/hudson-jstestdriver/>Hudson에서 JsTestDriver 설정</a>에서 Hudson에서 JsTestDriver를 설정하는 방법을 설명했다. 여기서는 Hudson에서 JsTestDriver를 이용해 테스트 커버리지 리포트를 생성하는 방법을 살펴보자.</p><p>JsTestDriver에 coverage 플러그인을 설치하면 단위테스트에 대한 라인 커버리지를 볼 수 있다. Hudson에서 JsTestDriver 설정에서 설명한 대로 설치했다면 이미 coverage 플러그인도 설치되어 있는 상태다. coverage 플러그인은 JsTestDriver 실행시 지정한 testOutput 디렉터리에 LCOV 포맷의 <config filename>-coverage.dat 파일을 생성한다. 이 파일은 LCOV의 genhtml을 통해 HTML 형식의 리포트로 만들 수 있다.</p><h2 id=lcov-설치>LCOV 설치﻿</h2><ol>
+<li><a href=http://ltp.sourceforge.net/coverage/lcov.php>http://ltp.sourceforge.net/coverage/lcov.php</a>에서 lcov 최신버전 다운로드</li><li>설치할 디렉터리(여기서는 <code>/opt/</code>)에 압축 해제</li></ol><h2 id=jstestcoverageconf-설정>jsTestCoverage.conf 설정</h2><p>jsTestCoverage.conf 파일에 다음 내용을 추가한다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>plugin</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;coverage&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>jar</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;plugins/coverage-1.2.2.jar&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>module</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;com.google.jstestdriver.coverage.CoverageModule&#34;</span><span class=w>
+</span></span></span></code></pre></div><h2 id=hudson-설정>Hudson 설정</h2><ol>
 <li>HTML Publisher Plugin을 설치
 (<a href=http://wiki.hudson-ci.org/display/HUDSON/HTML+Publisher+Plugin>http://wiki.hudson-ci.org/display/HUDSON/HTML+Publisher+Plugin</a> 참조)
 LCOV의 <code>genhtml</code>로 생성한 HTML 리포트를 Hudson에서 보는 데 필요하다
-플러그인을 설치한 다음 Hudson을 재시작해야 한다.</li>
-<li>프로젝트 설정 페이지의 Build 섹션에 genhtml 실행 명령 추가
+플러그인을 설치한 다음 Hudson을 재시작해야 한다.</li><li>프로젝트 설정 페이지의 Build 섹션에 genhtml 실행 명령 추가
 <img src=/2010/11-24-hudson-jstestdriver-coverage/2010-11-24-1.png class=invert-safe>
 이렇게 하면 빌드 실행 후 <code>report/js_coverage_report</code> 디렉터리에 HTML 형식의 테스트 커버리지 리포트가 생성된다.
 <blockquote>
 <p><strong>JsTestDriver 실행 시 주의사항</strong><br>
 coverage를 설정한 경우 임의의 위치에서 JsTestDriver를 실행시키면 <code>com.google.jstestdriver.coverage.CoverageModule</code> 클래스를 찾지 못하는 문제(<code>ClassNotFoundException</code>)가 발생한다. 실행 위치를 JsTestDriver 설치 디렉터리(<code>/opt/jsTestDriver</code>)로 옮긴 다음 JsTestDriver를 실행하면 이런 문제가 발생하지 않는다.
-따라서 그림과 같이 cd 명령으로 jsTestDriver 설치 디렉터리로 이동한 다음 JsTestDriver를 실행하고, 옵션에서 허드슨 환경변수(<code>$WORKSPACE</code>)를 사용해 설정 파일과 테스트 결과 파일의 위치를 지정한다.</p>
-</blockquote>
-</li>
-<li>프로젝트 설정 페이지의 Post-build Actions 섹션에서 HTML Publisher Plugin 설정을 추가한다.
+따라서 그림과 같이 cd 명령으로 jsTestDriver 설치 디렉터리로 이동한 다음 JsTestDriver를 실행하고, 옵션에서 허드슨 환경변수(<code>$WORKSPACE</code>)를 사용해 설정 파일과 테스트 결과 파일의 위치를 지정한다.</p></blockquote></li><li>프로젝트 설정 페이지의 Post-build Actions 섹션에서 HTML Publisher Plugin 설정을 추가한다.
 <img src=/2010/11-24-hudson-jstestdriver-coverage/2010-11-24-2.png class=invert-safe>
 <ul>
-<li><code>HTML directory to archive</code> - HTML 리포트를 포함하는 디렉터리를 입력. 여기서는 trunk/report/js_coverage_report</li>
-<li><code>Index page[s]</code> - 표시할 파일 (디폴트는 index.html)</li>
-<li><code>Report title</code> - 리포트 제목, 여기서는 JsCoverage</li>
-</ul>
-</li>
-</ol>
-<p>빌드가 끝나면 프로젝트 페이지에 JsCoverage 링크가 생기고, 이 링크를 클릭하면 HTML 리포트를 볼 수 있다.</p>
-</section>
-<footer class=post-footer>
+<li><code>HTML directory to archive</code> - HTML 리포트를 포함하는 디렉터리를 입력. 여기서는 trunk/report/js_coverage_report</li><li><code>Index page[s]</code> - 표시할 파일 (디폴트는 index.html)</li><li><code>Report title</code> - 리포트 제목, 여기서는 JsCoverage</li></ul></li></ol><p>빌드가 끝나면 프로젝트 페이지에 JsCoverage 링크가 생기고, 이 링크를 클릭하면 HTML 리포트를 볼 수 있다.</p></section><footer class=post-footer>
 <div class="social button-box">
 <a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
 <script async src=//platform.twitter.com/widgets.js></script>
-</div>
-<nav id=article-nav>
+</div><nav id=article-nav>
 <a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2010/parameter-argument/ id=article-nav-newer> parameter와 argument</a>
 <a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2010/hudson-jstestdriver/ id=article-nav-older> Hudson에서 JsTestDriver 설정</a>
-</nav>
-</footer>
-</article>
-</main>
-<section class=section>
+</nav></footer></article></main><section class=section>
 <div class=container>
-<aside><div id=disqus_thread></div></aside>
-<script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2010/hudson-jstestdriver-coverage/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
-</div>
-</section>
-<section class=section>
+<aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2010/hudson-jstestdriver-coverage/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section>
 <div class="container has-text-centered">
-<p></p>
-</div>
-</section>
-<script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
 <script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
 <footer class=page-bottom>
 <div class=inner>
-<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section>
-<section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section>
-</div>
-</footer>
-</body>
-</html>
+<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>

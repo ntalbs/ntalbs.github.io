@@ -1,12 +1,11 @@
 <!DOCTYPE html><html><head>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script>
 <meta charset="utf-8">
 <meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
 <meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>프로젝트 오일러 74 @ntalbs' stuff</title>
-<link rel="shortcut icon" href="/images/favicon.ico">
+<title>프로젝트 오일러 74 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/highlight.css">
 <style type="text/css">
@@ -81,36 +80,19 @@
                             min-width: 0;
                             min-height: 0;
                             width: 100%
-                            }</style></head>
-<body>
+                            }</style></head><body>
 <div id="progress">
-<div id="bar"></div>
-<div class="container">
-<div id="scroll-title">프로젝트 오일러 74</div>
-</div>
-</div>
-<nav class="navbar" role="navigation">
+<div id="bar"></div><div class="container">
+<div id="scroll-title">프로젝트 오일러 74</div></div></div><nav class="navbar" role="navigation">
 <div class="container">
 <div class="navbar-header">
 <button type="button" class="navbar-toggle unselectable" data-toggle="collapse" data-target="#nav-items">+</button>
 <a class="navbar-brand unselectable" href="/">@ntalbs' stuff</a>
-</div>
-<div class="navbar-items collapsed" id="nav-items">
+</div><div class="navbar-items collapsed" id="nav-items">
 <ul>
-<li><a class="unselectable" href="/archive/">Archive</a></li>
-<li><a class="unselectable" href="/tags/">Tags</a></li>
-<li><a class="unselectable" href="/about/">About</a></li>
-<li><a id="mode-switch" class="unselectable" href="#"></a></li>
-</ul>
-</div>
-</div>
-</nav>
-<header class="page-head">
+<li><a class="unselectable" href="/archive/">Archive</a></li><li><a class="unselectable" href="/tags/">Tags</a></li><li><a class="unselectable" href="/about/">About</a></li><li><a id="mode-switch" class="unselectable" href="#"></a></li></ul></div></div></nav><header class="page-head">
 <div class="container">
-<p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-</div>
-</header>
-<main class="container" role="main">
+<p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main">
 <article class="post with-math">
 <header>
 <p class="post-meta">
@@ -118,69 +100,49 @@
 on
 <a href="/tags/project-euler/">Project-Euler</a>
 <a href="/tags/clojure/">Clojure</a>
-</p>
-<h1 class="post-title">
+</p><h1 class="post-title">
 프로젝트 오일러 74
-</h1>
-</header>
-<section class="post-content">
+</h1></header><section class="post-content">
 <blockquote>
-<p>자릿수의 계승값을 더해갈 때, 반복이 일어나기 전의 단계가 60번인 경우 찾기</p>
-<p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=74">[국어]</a> <a href="https://projecteuler.net/problem=74">[영어]</a></p>
-</blockquote>
-<p>각 자릿수의 계승값을 더하는 함수는 다음과 같이 간단히 작성할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn- </span><span class="nv">fact-sum</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
-  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nf">digits</span> <span class="nv">n</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">map </span><span class="nv">factorial</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">apply </span><span class="nv">+</span><span class="p">)))</span>
-</code></pre></div><p>단계의 길이를 구하는 함수는 다음과 같이 작성할 수 있다. 위에서 작성한 <code>fact-sum</code>을 반복 적용해가며 결과를 집합에 넣고 길이를 1씩 증가시킨다. 새로 구한 <code>fact-sum</code> 값이 이미 집합에 포함되어 있다면 그때까지의 길이가 단계의 길이가 된다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn- </span><span class="nv">chain-length</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
-  <span class="p">(</span><span class="k">loop </span><span class="p">[</span><span class="nv">s</span> <span class="nv">n</span> <span class="nv">chain</span> <span class="o">#</span><span class="p">{</span><span class="nv">n</span><span class="p">}</span> <span class="nv">cnt</span> <span class="mi">1</span><span class="p">]</span>
-    <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">x</span> <span class="p">(</span><span class="nf">fact-sum</span> <span class="nv">s</span><span class="p">)]</span>
-      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">contains? </span><span class="nv">chain</span> <span class="nv">x</span><span class="p">)</span>
-        <span class="nv">cnt</span>
-        <span class="p">(</span><span class="nf">recur</span> <span class="nv">x</span> <span class="p">(</span><span class="nb">conj </span><span class="nv">chain</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nb">inc </span><span class="nv">cnt</span><span class="p">))))))</span>
-</code></pre></div><p>이제 1부터 1000000까지 숫자를 대입해가며 단계 길이가 60인 경우만 세면 된다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve1</span> <span class="p">[]</span>
-  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="p">(</span><span class="nb">inc </span><span class="mi">1000000</span><span class="p">))</span>
-       <span class="p">(</span><span class="nb">filter </span><span class="o">#</span><span class="p">(</span><span class="nb">= </span><span class="mi">60</span> <span class="p">(</span><span class="nf">chain-length</span> <span class="nv">%</span><span class="p">)))</span>
-       <span class="nv">count</span><span class="p">))</span>
-</code></pre></div><p>실행 결과는 다음과 같다.</p>
-<pre class="console">p074=&gt; (time (solve1))
+<p>자릿수의 계승값을 더해갈 때, 반복이 일어나기 전의 단계가 60번인 경우 찾기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=74">[국어]</a> <a href="https://projecteuler.net/problem=74">[영어]</a></p></blockquote><p>각 자릿수의 계승값을 더하는 함수는 다음과 같이 간단히 작성할 수 있다.</p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn- </span><span class="nv">fact-sum</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nf">digits</span> <span class="nv">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nb">map </span><span class="nv">factorial</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nb">apply </span><span class="nv">+</span><span class="p">)))</span>
+</span></span></code></pre></div><p>단계의 길이를 구하는 함수는 다음과 같이 작성할 수 있다. 위에서 작성한 <code>fact-sum</code>을 반복 적용해가며 결과를 집합에 넣고 길이를 1씩 증가시킨다. 새로 구한 <code>fact-sum</code> 값이 이미 집합에 포함되어 있다면 그때까지의 길이가 단계의 길이가 된다.</p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn- </span><span class="nv">chain-length</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="k">loop </span><span class="p">[</span><span class="nv">s</span> <span class="nv">n</span> <span class="nv">chain</span> <span class="o">#</span><span class="p">{</span><span class="nv">n</span><span class="p">}</span> <span class="nv">cnt</span> <span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">x</span> <span class="p">(</span><span class="nf">fact-sum</span> <span class="nv">s</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">contains? </span><span class="nv">chain</span> <span class="nv">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">cnt</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="nf">recur</span> <span class="nv">x</span> <span class="p">(</span><span class="nb">conj </span><span class="nv">chain</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nb">inc </span><span class="nv">cnt</span><span class="p">))))))</span>
+</span></span></code></pre></div><p>이제 1부터 1000000까지 숫자를 대입해가며 단계 길이가 60인 경우만 세면 된다.</p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve1</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="p">(</span><span class="nb">inc </span><span class="mi">1000000</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nb">filter </span><span class="o">#</span><span class="p">(</span><span class="nb">= </span><span class="mi">60</span> <span class="p">(</span><span class="nf">chain-length</span> <span class="nv">%</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">count</span><span class="p">))</span>
+</span></span></code></pre></div><p>실행 결과는 다음과 같다.</p><pre class="console">p074=&gt; (time (solve1))
 "Elapsed time: 66647.941342 msecs"
 4?2
-</pre>
-<p>답을 구하는 데 너무 오래 걸린다. 좀더 빠른 방법이 없을까?</p>
-<h2 id="개선-1">개선 1</h2>
-<p>위에서 사용한 <code>factorial</code> 함수는 <a href="/2015/project-euler-015/">문제 15</a>에서 구현한 것을 그대로 가져다 썼다. 이 문제에서는 0~9의 숫자에 대해서만 계승을 구하면 되므로 계승을 구하는 함수를 다음과 같이 최적화할 수 있을 것 같다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn- </span><span class="nv">fact</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
-  <span class="p">(</span><span class="nf">case</span> <span class="nv">n</span>
-    <span class="mi">0</span> <span class="mi">1</span>
-    <span class="mi">1</span> <span class="mi">1</span>
-    <span class="mi">2</span> <span class="mi">2</span>
-    <span class="mi">3</span> <span class="mi">6</span>
-    <span class="mi">4</span> <span class="mi">24</span>
-    <span class="mi">5</span> <span class="mi">120</span>
-    <span class="mi">6</span> <span class="mi">720</span>
-    <span class="mi">7</span> <span class="mi">5040</span>
-    <span class="mi">8</span> <span class="mi">40320</span>
-    <span class="mi">9</span> <span class="mi">362880</span><span class="p">))</span>
-</code></pre></div><p>새로 작성한 <code>fact</code> 함수를 사용하도록 수정한 후 실행한 결과는 다음과 같다.</p>
-<pre class="console">p074=&gt; (time (solve1))
+</pre><p>답을 구하는 데 너무 오래 걸린다. 좀더 빠른 방법이 없을까?</p><h2 id="개선-1">개선 1</h2><p>위에서 사용한 <code>factorial</code> 함수는 <a href="/2015/project-euler-015/">문제 15</a>에서 구현한 것을 그대로 가져다 썼다. 이 문제에서는 0~9의 숫자에 대해서만 계승을 구하면 되므로 계승을 구하는 함수를 다음과 같이 최적화할 수 있을 것 같다.</p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn- </span><span class="nv">fact</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">case</span> <span class="nv">n</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">0</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">1</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">2</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">3</span> <span class="mi">6</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">4</span> <span class="mi">24</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">5</span> <span class="mi">120</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">6</span> <span class="mi">720</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">7</span> <span class="mi">5040</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">8</span> <span class="mi">40320</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">9</span> <span class="mi">362880</span><span class="p">))</span>
+</span></span></code></pre></div><p>새로 작성한 <code>fact</code> 함수를 사용하도록 수정한 후 실행한 결과는 다음과 같다.</p><pre class="console">p074=&gt; (time (solve1))
 "Elapsed time: 36881.277101 msecs"
 4?2
-</pre>
-<p>실행 시간이 절반 가까이 줄어들긴 했지만 여전히 만족스럽지 못하다.</p>
-<h2 id="개선-2">개선 2</h2>
-<p>가만히 생각해보면 <code>fact-sum</code>의 값은 주어진 숫자가 어떤 숫자를 포함하고 있느냐에 의해서만 결정됨을 알 수 있다. 즉 <code>fact-sum</code>는 169나 691이나 916이나 모두 값을 리턴한다.</p>
-<pre class="console">p074=&gt; (fact-sum 169)
+</pre><p>실행 시간이 절반 가까이 줄어들긴 했지만 여전히 만족스럽지 못하다.</p><h2 id="개선-2">개선 2</h2><p>가만히 생각해보면 <code>fact-sum</code>의 값은 주어진 숫자가 어떤 숫자를 포함하고 있느냐에 의해서만 결정됨을 알 수 있다. 즉 <code>fact-sum</code>는 169나 691이나 916이나 모두 값을 리턴한다.</p><pre class="console">p074=&gt; (fact-sum 169)
 363601
 p074=&gt; (fact-sum 691)
 363601
 p074=&gt; (fact-sum 916)
 363601
-</pre>
-<p>따라서 169의 <code>fact-sum</code>을 구했으면 196, 691, 619 등 1, 6, 9의 순열로 된 다른 수에 대해 반복해서 계산할 필요가 없을 것이다. 각 자릿수의 순열로 된 수를 하나의 그룹으로 묶는 방법 중 하나는 자릿수로 정렬해 다시 숫자로 만든 값을 키로 사용해 묶는 것이다. <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="6.07ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 2613.6 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</pre><p>따라서 169의 <code>fact-sum</code>을 구했으면 196, 691, 619 등 1, 6, 9의 순열로 된 다른 수에 대해 반복해서 계산할 필요가 없을 것이다. 각 자릿수의 순열로 된 수를 하나의 그룹으로 묶는 방법 중 하나는 자릿수로 정렬해 다시 숫자로 만든 값을 키로 사용해 묶는 것이다. <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="6.07ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 2613.6 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">0! = 1</title>
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#MJMAIN-30" x="0" y="0"></use>
@@ -188,64 +150,38 @@ p074=&gt; (fact-sum 916)
  <use xlink:href="#MJMAIN-3D" x="1056" y="0"></use>
  <use xlink:href="#MJMAIN-31" x="2113" y="0"></use>
 </g>
-</svg></span>이므로 자릿수를 정렬할 때 내림차순으로 정렬해 0이 사라지지 않도록 해야 한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn- </span><span class="nv">sorted-digits-num</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
-  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nf">digits</span> <span class="nv">n</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">sort </span><span class="nv">&gt;</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">apply </span><span class="nv">str</span><span class="p">)</span>
-       <span class="p">(</span><span class="nf">Integer/parseInt</span><span class="p">)))</span>
-</code></pre></div><p>이 함수를 이용해 다음과 같이 문제를 풀 수 있다. <code>sorted-digits-num</code>와 <code>frequencies</code>를 이용해 특정 수의 순열로 된 수를 한 그룹으로 묶으면 <code>chain-length</code>를 호출하는 횟수를 1백만 번에서 8천 번으로 줄일 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve2</span> <span class="p">[]</span>
-  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">range </span><span class="mi">3</span> <span class="p">(</span><span class="nb">inc </span><span class="mi">1000000</span><span class="p">))</span>
-       <span class="p">(</span><span class="nb">map </span><span class="nv">sorted-digits-num</span><span class="p">)</span>
-       <span class="nv">frequencies</span>
-       <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[[</span><span class="nv">k</span> <span class="nv">cnt</span><span class="p">]]</span> <span class="p">[(</span><span class="nf">chain-length</span> <span class="nv">k</span><span class="p">)</span> <span class="nv">cnt</span><span class="p">]))</span>
-       <span class="p">(</span><span class="nb">filter </span><span class="p">(</span><span class="k">fn </span><span class="p">[[</span><span class="nv">k</span> <span class="nv">_</span><span class="p">]]</span> <span class="p">(</span><span class="nb">= </span><span class="nv">k</span> <span class="mi">60</span><span class="p">)))</span>
-       <span class="p">(</span><span class="nb">map </span><span class="nv">second</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">apply </span><span class="nv">+</span><span class="p">)))</span>
-</code></pre></div><p>실행 결과는 다음과 같다.</p>
-<pre class="console">p074=&gt; (time (solve2))
+</svg></span>이므로 자릿수를 정렬할 때 내림차순으로 정렬해 0이 사라지지 않도록 해야 한다.</p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn- </span><span class="nv">sorted-digits-num</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nf">digits</span> <span class="nv">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nb">sort </span><span class="nv">&gt;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nb">apply </span><span class="nv">str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nf">Integer/parseInt</span><span class="p">)))</span>
+</span></span></code></pre></div><p>이 함수를 이용해 다음과 같이 문제를 풀 수 있다. <code>sorted-digits-num</code>와 <code>frequencies</code>를 이용해 특정 수의 순열로 된 수를 한 그룹으로 묶으면 <code>chain-length</code>를 호출하는 횟수를 1백만 번에서 8천 번으로 줄일 수 있다.</p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve2</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">range </span><span class="mi">3</span> <span class="p">(</span><span class="nb">inc </span><span class="mi">1000000</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nb">map </span><span class="nv">sorted-digits-num</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">frequencies</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[[</span><span class="nv">k</span> <span class="nv">cnt</span><span class="p">]]</span> <span class="p">[(</span><span class="nf">chain-length</span> <span class="nv">k</span><span class="p">)</span> <span class="nv">cnt</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nb">filter </span><span class="p">(</span><span class="k">fn </span><span class="p">[[</span><span class="nv">k</span> <span class="nv">_</span><span class="p">]]</span> <span class="p">(</span><span class="nb">= </span><span class="nv">k</span> <span class="mi">60</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nb">map </span><span class="nv">second</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nb">apply </span><span class="nv">+</span><span class="p">)))</span>
+</span></span></code></pre></div><p>실행 결과는 다음과 같다.</p><pre class="console">p074=&gt; (time (solve2))
 "Elapsed time: 1324.311954 msecs"
 4?2
-</pre>
-<p>전과 비교해 상당히 빨라졌다고 할 수 있다.</p>
-<h2 id="참고">참고</h2>
-<ul>
-<li><a href="https://github.com/ntalbs/euler/blob/master/src/p074.clj">프로젝트 오일러 74 풀이 소스 코드</a></li>
-</ul>
-</section>
-<footer class="post-footer">
+</pre><p>전과 비교해 상당히 빨라졌다고 할 수 있다.</p><h2 id="참고">참고</h2><ul>
+<li><a href="https://github.com/ntalbs/euler/blob/master/src/p074.clj">프로젝트 오일러 74 풀이 소스 코드</a></li></ul></section><footer class="post-footer">
 <div class="social button-box">
 <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script>
-</div>
-<nav id="article-nav">
+</div><nav id="article-nav">
 <a class="article-nav-link-wrap previous" href="https://ntalbs.github.io/2016/project-euler-075/" id="article-nav-newer"> 프로젝트 오일러 75</a>
 <a class="article-nav-link-wrap next" href="https://ntalbs.github.io/2016/online-banking-in-uk/" id="article-nav-older"> 영국 인터넷 뱅킹</a>
-</nav>
-</footer>
-</article>
-</main>
-<section class="section">
+</nav></footer></article></main><section class="section">
 <div class="container">
-<aside><div id="disqus_thread"></div></aside>
-<script type="text/javascript">var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2016/project-euler-074/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
-</div>
-</section>
-<section class="section">
+<aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2016/project-euler-074/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section">
 <div class="container has-text-centered">
-<p></p>
-</div>
-</section>
-<script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script>
+<p></p></div></section><script src="https://ntalbs.github.io/js/index.js" type="text/javascript"></script>
 <script src="https://ntalbs.github.io/js/mode.js" type="text/javascript"></script>
 <footer class="page-bottom">
 <div class="inner">
-<section class="copyright">© 2008-2022 <a href="/about">ntalbs</a></section>
-<section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section>
-</div>
-</footer>
-
-<svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs id="MathJax_SVG_glyphs"><path stroke-width="1" id="MJMAIN-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path><path stroke-width="1" id="MJMAIN-21" d="M78 661Q78 682 96 699T138 716T180 700T199 661Q199 654 179 432T158 206Q156 198 139 198Q121 198 119 206Q118 209 98 431T78 661ZM79 61Q79 89 97 105T141 121Q164 119 181 104T198 61Q198 31 181 16T139 1Q114 1 97 16T79 61Z"></path><path stroke-width="1" id="MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path stroke-width="1" id="MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></defs></svg></body></html>
+<section class="copyright">© 2008-2022 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer><svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs id="MathJax_SVG_glyphs"><path stroke-width="1" id="MJMAIN-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path><path stroke-width="1" id="MJMAIN-21" d="M78 661Q78 682 96 699T138 716T180 700T199 661Q199 654 179 432T158 206Q156 198 139 198Q121 198 119 206Q118 209 98 431T78 661ZM79 61Q79 89 97 105T141 121Q164 119 181 104T198 61Q198 31 181 16T139 1Q114 1 97 16T79 61Z"></path><path stroke-width="1" id="MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path stroke-width="1" id="MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></defs></svg></body></html>

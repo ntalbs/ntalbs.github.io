@@ -1,127 +1,62 @@
 <!doctype html><html>
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-2098194-3')</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script>
 <meta charset=utf-8>
 <meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
 <meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>Emacs에서 £ 기호 입력하기 @ntalbs' stuff</title>
-<link rel="shortcut icon" href=/images/favicon.ico>
+<title>Emacs에서 £ 기호 입력하기 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico>
 <link rel=stylesheet href=/css/style.css>
 <link rel=stylesheet href=/css/highlight.css>
-</head>
-<body>
+</head><body>
 <div id=progress>
-<div id=bar></div>
-<div class=container>
-<div id=scroll-title>Emacs에서 £ 기호 입력하기</div>
-</div>
-</div>
-<nav class=navbar role=navigation>
+<div id=bar></div><div class=container>
+<div id=scroll-title>Emacs에서 £ 기호 입력하기</div></div></div><nav class=navbar role=navigation>
 <div class=container>
 <div class=navbar-header>
 <button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
 <a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
-</div>
-<div class="navbar-items collapsed" id=nav-items>
+</div><div class="navbar-items collapsed" id=nav-items>
 <ul>
-<li><a class=unselectable href=/archive/>Archive</a></li>
-<li><a class=unselectable href=/tags/>Tags</a></li>
-<li><a class=unselectable href=/about/>About</a></li>
-<li><a id=mode-switch class=unselectable href=#></a></li>
-</ul>
-</div>
-</div>
-</nav>
-<header class=page-head>
+<li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head>
 <div class=container>
-<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
-</div>
-</header>
-<main class=container role=main>
+<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main>
 <article class=post>
 <header>
 <p class=post-meta>
 <time datetime=2015-10-30 itemprop=datePublished>2015-10-30</time>
 on
 <a href=/tags/emacs/>Emacs</a>
-</p>
-<h1 class=post-title>
+</p><h1 class=post-title>
 Emacs에서 £ 기호 입력하기
-</h1>
-</header>
-<section class=post-content>
-<p>최근 영국과 메일을 주고 받다 보니 영국 화폐 단위인 파운드 기호(£)를 입력하는 일이 잦아졌다. 처음에는 Mac OS X에서 제공하는 특수문자 입력 기능을 사용했지만 너무 불편했다. 영국 키보드로는 파운드 기호를 쉽게 입력할 수 있겠다 생각되어 시스템 설정에서 입력 소스를 British로 바꾸니 <code>Shift+3</code>으로 파운드 기호를 쉽게 입력할 수 있었다.</p>
-<p>그러나 여전히 다음과 같은 불편함이 있었다.</p>
-<ul>
-<li>입력 소스가 British, U.S, 한글 세 가지가 되어 한영 전환할 때 너무 불편하다.</li>
-<li>영국 키보드는 <code>Shift+3</code>을 누르면 <code>£</code>가 입력되는데 이렇게 하니 <code>#</code>을 입력하기가 불편해졌다.</li>
-<li>겨우 영국 키보드에서 <code>Alt+3</code>을 누르면 <code>#</code>이 입련된다는 사실을 알게 되었지만, Emacs에서 <code>Alt+(숫자)</code> 키는 명령에 숫자 인자를 전달할 때 사용되고 있어 <code>Alt+3</code>을 사용할 수 없다.</li>
-</ul>
-<p><a href=http://emacs.stackexchange.com/questions/17546/how-to-input-in-emacs-with-uk-keyboard>StackExchange에 질문</a>도 올리고, 구글로 검색한 결과 다음과 같은 사실을 알게 되었다.</p>
-<ul>
-<li>영국 키보드에서 <code>Shift+3</code>은 <code>£</code>, <code>Alt+3</code>은 <code>#</code>가 입력된다.</li>
-<li>미국 키보드에서 <code>Shift+3</code>은 <code>#</code>, <code>Alt+3</code>은 <code>£</code>가 입력된다.</li>
-</ul>
-<p>나머지 일반 알파벳이나 숫자, 특수 기호에 대한 레이아웃은 동일한 것으로 보였다. Emacs에서 <code>Alt+(숫자)</code> 키의 특수한 동작 문제만 해결할 수 있다면 굳이 영국 키보드를 쓸 필요는 없어 보였다.</p>
-<p>해결 방법은 다음과 같다.</p>
-<h2 id=alt3-키-바인딩-변경><code>Alt+3</code> 키 바인딩 변경</h2>
-<p><code>Alt+3</code> 키 바인딩을 오버라이드 하는 방법이다. 다음과 같이 £ 기호를 입력하는 <code>insert-pound</code> 함수를 작성하고 <code>M-3</code>을 눌렀을 때 <code>insert-pound</code>를 호출하도록 하면 된다.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-lisp data-lang=lisp><span class=p>(</span><span class=nb>defun</span> <span class=nv>insert-pound</span> <span class=p>()</span>
-  <span class=s>&#34;Inserts a pound into the buffer&#34;</span>
-  <span class=p>(</span><span class=nv>interactive</span><span class=p>)</span>
-  <span class=p>(</span><span class=nv>insert</span> <span class=s>&#34;£&#34;</span><span class=p>))</span>
-<span class=p>(</span><span class=nv>global-set-key</span> <span class=p>(</span><span class=nv>kbd</span> <span class=s>&#34;M-3&#34;</span><span class=p>)</span> <span class=ss>&#39;insert-pound</span><span class=p>)</span>
-</code></pre></div><p>이렇게 하면 <code>M-3</code>으로 숫자 인자를 전달하는 것은 포기해야 한다. <code>C-3</code>으로 대신할 수는 있겠지만 마음이 편하지는 않다.</p>
-<h2 id=오른쪽-alt키-설정-변경>오른쪽 <code>Alt</code>키 설정 변경</h2>
-<p><code>ns-right-alternate-modifier</code>를 <code>none</code>으로 설정하면 오른쪽 <code>Alt</code>키를 Emacs가 처리하지 않도록 할 수 있다. 이렇게 한 후 오른쪽 <code>Alt</code>키와 <code>3</code>을 동시에 누르면 다른 일반 에디터에서 <code>Alt+3</code>을 눌렀을 때와 동일하게 동작하므로 <code>£</code>이 입력될 것이다. 다음과 같이 <code>ns-right-alternate-modifier</code> 설정값을 바꿀 수 있다.</p>
-<pre tabindex=0><code>M-x customize-variable &lt;RET&gt; ns-right-alternate-modifier
-</code></pre><p>Emacs를 사용할 때 <code>M-</code>를 사용는 경우 왼쪽 <code>Alt</code> 키를 사용하고 오른쪽 <code>Alt</code> 키를 사용하는 경우는 없었다. 맥 키보드에서는 <code>Alt</code> 키와 다른 키를 조합해 다양한 기호를 입력할 수 있는데, 오른쪽 <code>Alt</code>키의 설정을 변경하면 Emacs 사용에 영향을 주지 않으면서 다양한 기호를 입력할 수 있게 된다. <code>Alt+3</code>만 오버라이드 하는 것보다 이 방법이 더 좋아 보인다.</p>
-<h2 id=c-x-8-l로--입력><code>C-x 8 L</code>로 £ 입력</h2>
-<p><code>C-x 8 C-h</code>를 누르면 <code>C-x 8</code> 변환으로 입력할 수 있는 문자 목록이 나온다. <code>£</code> 기호는 <code>C-x 8 L</code>(대문자 L)로 입력할 수 있다. 이 방법은 Emacs에서만 가능한 것이다.</p>
-<p>메일을 보낼 때는 브라우저에서 <code>£</code> 기호를 사용해야 하므로 오른쪽 <code>Alt</code> 키 설정을 변경하는 방법이 더 마음에 든다. 사용하는 프로그램에 관계 없이 같은 방법으로 <code>£</code>를 입력할 수 있기 때문이다.</p>
-<h2 id=참고>참고</h2>
-<ul>
+</h1></header><section class=post-content>
+<p>최근 영국과 메일을 주고 받다 보니 영국 화폐 단위인 파운드 기호(£)를 입력하는 일이 잦아졌다. 처음에는 Mac OS X에서 제공하는 특수문자 입력 기능을 사용했지만 너무 불편했다. 영국 키보드로는 파운드 기호를 쉽게 입력할 수 있겠다 생각되어 시스템 설정에서 입력 소스를 British로 바꾸니 <code>Shift+3</code>으로 파운드 기호를 쉽게 입력할 수 있었다.</p><p>그러나 여전히 다음과 같은 불편함이 있었다.</p><ul>
+<li>입력 소스가 British, U.S, 한글 세 가지가 되어 한영 전환할 때 너무 불편하다.</li><li>영국 키보드는 <code>Shift+3</code>을 누르면 <code>£</code>가 입력되는데 이렇게 하니 <code>#</code>을 입력하기가 불편해졌다.</li><li>겨우 영국 키보드에서 <code>Alt+3</code>을 누르면 <code>#</code>이 입련된다는 사실을 알게 되었지만, Emacs에서 <code>Alt+(숫자)</code> 키는 명령에 숫자 인자를 전달할 때 사용되고 있어 <code>Alt+3</code>을 사용할 수 없다.</li></ul><p><a href=http://emacs.stackexchange.com/questions/17546/how-to-input-in-emacs-with-uk-keyboard>StackExchange에 질문</a>도 올리고, 구글로 검색한 결과 다음과 같은 사실을 알게 되었다.</p><ul>
+<li>영국 키보드에서 <code>Shift+3</code>은 <code>£</code>, <code>Alt+3</code>은 <code>#</code>가 입력된다.</li><li>미국 키보드에서 <code>Shift+3</code>은 <code>#</code>, <code>Alt+3</code>은 <code>£</code>가 입력된다.</li></ul><p>나머지 일반 알파벳이나 숫자, 특수 기호에 대한 레이아웃은 동일한 것으로 보였다. Emacs에서 <code>Alt+(숫자)</code> 키의 특수한 동작 문제만 해결할 수 있다면 굳이 영국 키보드를 쓸 필요는 없어 보였다.</p><p>해결 방법은 다음과 같다.</p><h2 id=alt3-키-바인딩-변경><code>Alt+3</code> 키 바인딩 변경</h2><p><code>Alt+3</code> 키 바인딩을 오버라이드 하는 방법이다. 다음과 같이 £ 기호를 입력하는 <code>insert-pound</code> 함수를 작성하고 <code>M-3</code>을 눌렀을 때 <code>insert-pound</code>를 호출하도록 하면 된다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-lisp data-lang=lisp><span class=line><span class=cl><span class=p>(</span><span class=nb>defun</span> <span class=nv>insert-pound</span> <span class=p>()</span>
+</span></span><span class=line><span class=cl>  <span class=s>&#34;Inserts a pound into the buffer&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nv>interactive</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nv>insert</span> <span class=s>&#34;£&#34;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=nv>global-set-key</span> <span class=p>(</span><span class=nv>kbd</span> <span class=s>&#34;M-3&#34;</span><span class=p>)</span> <span class=ss>&#39;insert-pound</span><span class=p>)</span>
+</span></span></code></pre></div><p>이렇게 하면 <code>M-3</code>으로 숫자 인자를 전달하는 것은 포기해야 한다. <code>C-3</code>으로 대신할 수는 있겠지만 마음이 편하지는 않다.</p><h2 id=오른쪽-alt키-설정-변경>오른쪽 <code>Alt</code>키 설정 변경</h2><p><code>ns-right-alternate-modifier</code>를 <code>none</code>으로 설정하면 오른쪽 <code>Alt</code>키를 Emacs가 처리하지 않도록 할 수 있다. 이렇게 한 후 오른쪽 <code>Alt</code>키와 <code>3</code>을 동시에 누르면 다른 일반 에디터에서 <code>Alt+3</code>을 눌렀을 때와 동일하게 동작하므로 <code>£</code>이 입력될 것이다. 다음과 같이 <code>ns-right-alternate-modifier</code> 설정값을 바꿀 수 있다.</p><pre tabindex=0><code>M-x customize-variable &lt;RET&gt; ns-right-alternate-modifier
+</code></pre><p>Emacs를 사용할 때 <code>M-</code>를 사용는 경우 왼쪽 <code>Alt</code> 키를 사용하고 오른쪽 <code>Alt</code> 키를 사용하는 경우는 없었다. 맥 키보드에서는 <code>Alt</code> 키와 다른 키를 조합해 다양한 기호를 입력할 수 있는데, 오른쪽 <code>Alt</code>키의 설정을 변경하면 Emacs 사용에 영향을 주지 않으면서 다양한 기호를 입력할 수 있게 된다. <code>Alt+3</code>만 오버라이드 하는 것보다 이 방법이 더 좋아 보인다.</p><h2 id=c-x-8-l로--입력><code>C-x 8 L</code>로 £ 입력</h2><p><code>C-x 8 C-h</code>를 누르면 <code>C-x 8</code> 변환으로 입력할 수 있는 문자 목록이 나온다. <code>£</code> 기호는 <code>C-x 8 L</code>(대문자 L)로 입력할 수 있다. 이 방법은 Emacs에서만 가능한 것이다.</p><p>메일을 보낼 때는 브라우저에서 <code>£</code> 기호를 사용해야 하므로 오른쪽 <code>Alt</code> 키 설정을 변경하는 방법이 더 마음에 든다. 사용하는 프로그램에 관계 없이 같은 방법으로 <code>£</code>를 입력할 수 있기 때문이다.</p><h2 id=참고>참고</h2><ul>
 <li><a href=http://jimbarritt.com/non-random/2010/11/07/typing-the-pound-or-hash-key-in-emacs-on-uk-macbook/>Typing the pound, or hash (#) key in emacs on Uk Macbook</a>
-영국 키보드에서 <code>Alt+3</code>을 오버라이드 해 <code>#</code>이 입력되도록 하는 방법을 설명한다. <code>Alt+3</code> 키 바인딩 변경 방법을 설명하면서 보인 코드는 여기 나온 코드를 조금 수정한 것이다.</li>
-<li><a href=http://stackoverflow.com/questions/3977069/emacs-question-hash-key>Emacs question - hash key</a>
-스택오버플로우에도 관련 질문이 올라와 있다. 여기에도 <code>Alt+3</code>을 오버라이드 하는 방법과 <code>ns-right-alternate-modifier</code> 설정을 바꾸는 방법에 대한 설명이 있다.</li>
-<li><a href=http://emacs.stackexchange.com/questions/17546/how-to-input-in-emacs-with-uk-keyboard>How to input '#' in emacs with UK keyboard?</a></li>
-</ul>
-</section>
-<footer class=post-footer>
+영국 키보드에서 <code>Alt+3</code>을 오버라이드 해 <code>#</code>이 입력되도록 하는 방법을 설명한다. <code>Alt+3</code> 키 바인딩 변경 방법을 설명하면서 보인 코드는 여기 나온 코드를 조금 수정한 것이다.</li><li><a href=http://stackoverflow.com/questions/3977069/emacs-question-hash-key>Emacs question - hash key</a>
+스택오버플로우에도 관련 질문이 올라와 있다. 여기에도 <code>Alt+3</code>을 오버라이드 하는 방법과 <code>ns-right-alternate-modifier</code> 설정을 바꾸는 방법에 대한 설명이 있다.</li><li><a href=http://emacs.stackexchange.com/questions/17546/how-to-input-in-emacs-with-uk-keyboard>How to input '#' in emacs with UK keyboard?</a></li></ul></section><footer class=post-footer>
 <div class="social button-box">
 <a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
 <script async src=//platform.twitter.com/widgets.js></script>
-</div>
-<nav id=article-nav>
+</div><nav id=article-nav>
 <a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2015/project-euler-044/ id=article-nav-newer> 프로젝트 오일러 44</a>
 <a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2015/project-euler-043/ id=article-nav-older> 프로젝트 오일러 43</a>
-</nav>
-</footer>
-</article>
-</main>
-<section class=section>
+</nav></footer></article></main><section class=section>
 <div class=container>
-<aside><div id=disqus_thread></div></aside>
-<script type=text/javascript>var disqus_shortname='ntalbs-stuff',permalink="https://ntalbs.github.io/2015/emacs-typing-pound-or-hash/".replace(/\//g,'/'),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var a=document,b=a.createElement('script');b.src='https://'+disqus_shortname+'.disqus.com/embed.js',b.setAttribute('data-timestamp',+new Date),(a.head||a.body).appendChild(b)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
-</div>
-</section>
-<section class=section>
+<aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2015/emacs-typing-pound-or-hash/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section>
 <div class="container has-text-centered">
-<p></p>
-</div>
-</section>
-<script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
 <script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
 <footer class=page-bottom>
 <div class=inner>
-<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section>
-<section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section>
-</div>
-</footer>
-</body>
-</html>
+<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
