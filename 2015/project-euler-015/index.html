@@ -350,7 +350,7 @@ n! = \prod_{k=1}^n k = 1 \times 2\, \times ... \times\, n
 </span></span></code></pre></div><p><code>apply</code> 대신 <code>reduce</code>를 사용할 수도 있다.</p><p>이 구현이 0에 대해서도 유효할까?</p><pre class="console">user=&gt; (factorial 0)
 1
 </pre><p>특별히 해준 것도 없는데 0을 입력했을 때 결과가 제대로 나오는 이유는 <code>*'</code> 함수(<code>*</code>도 마찬가지)에 있다. <code>*'</code> 함수는 인자가 없는 경우 1을 리턴하도록 되어 있다. 위 <code>factorial</code> 함수에 0을 입력한 경우 <code>(range 1 (inc 0))</code>은 <code>()</code> 즉 빈 리스트가 될 테고 빈 리스트에 <code>*'</code>를 <code>apply</code>하면 <code>*'</code>의 정의에 따라 1이 리턴된다. 인자가 없는 경우 <code>*'</code>가 1을 리턴하도록 한 이유는 1이 곱셈에 대한 항등원이기 때문일 것이다. <code>+'</code> 함수(<code>+</code>도 마찬가지)의 경우는 인자가 주어지지 않으면 0을 리턴하는데 이 또한 0이 덧셈에 대한 항등원이기 때문일 것이다.</p><h2 id="참고">참고</h2><ul>
-<li><a href="http://en.wikipedia.org/wiki/Factorial">Factorial</a></li><li><a href="http://betterexplained.com/articles/navigate-a-grid-using-combinations-and-permutations/">Navigate a Grid Using Combinations And Permutations</a></li><li><a href="https://github.com/ntalbs/euler/blob/master/src/p015.clj">프로젝트 오일러 15 풀이 소스 코드</a></li></ul></section><footer class="post-footer">
+<li><a href="http://en.wikipedia.org/wiki/Factorial">Factorial</a></li><li><a href="http://betterexplained.com/articles/navigate-a-grid-using-combinations-and-permutations/">Navigate a Grid Using Combinations And Permutations</a></li><li><a href="https://github.com/ntalbs/euler-clj/blob/master/src/p015.clj">프로젝트 오일러 15 풀이 소스 코드</a></li></ul></section><footer class="post-footer">
 <div class="social button-box">
 <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>

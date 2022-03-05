@@ -747,7 +747,7 @@ p_r^{k_r}\left(1 - \frac{1}{p_r}\right)
 "Elapsed time: 350.048542 msecs"
 303963??2391
 </pre><h2 id="참고">참고</h2><ul>
-<li><a href="https://github.com/ntalbs/euler/blob/master/src/p072.clj">프로젝트 오일러 72 풀이 소스 코드</a></li><li><a href="https://en.wikipedia.org/wiki/Euler%27s_totient_function">Euler’s totient function</a></li><li><a href="http://codereview.stackexchange.com/questions/135238/clojure-performance-for-solving-project-euler-72-counting-proper-reduced-fracti">Clojure performance for solving Project Euler 72 (counting proper reduced fractions)</a>
+<li><a href="https://github.com/ntalbs/euler-clj/blob/master/src/p072.clj">프로젝트 오일러 72 풀이 소스 코드</a></li><li><a href="https://en.wikipedia.org/wiki/Euler%27s_totient_function">Euler’s totient function</a></li><li><a href="http://codereview.stackexchange.com/questions/135238/clojure-performance-for-solving-project-euler-72-counting-proper-reduced-fracti">Clojure performance for solving Project Euler 72 (counting proper reduced fractions)</a>
 <code>aset-int</code> 대신 <code>aset</code>을 쓰면 답을 구하는 데 25초 이상 걸린다. <code>aset-int</code>으로 나아졌지만 여전히 Java보다 두 배 이상 느린 것은 <code>(aget phi i)</code>가 <code>phi[i]</code>보다 느리기 때문일 것 같다. 아직 이 부분을 개선할 방법을 찾지 못했다.</li></ul></section><footer class="post-footer">
 <div class="social button-box">
 <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
