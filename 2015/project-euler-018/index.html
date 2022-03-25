@@ -1,44 +1,9 @@
-<!doctype html><html>
-<head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script>
-<meta charset=utf-8>
-<meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
-<meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>프로젝트 오일러 18 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico>
-<link rel=stylesheet href=/css/style.css>
-<link rel=stylesheet href=/css/highlight.css>
-</head><body>
-<div id=progress>
-<div id=bar></div><div class=container>
-<div id=scroll-title>프로젝트 오일러 18</div></div></div><nav class=navbar role=navigation>
-<div class=container>
-<div class=navbar-header>
-<button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
-<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
-</div><div class="navbar-items collapsed" id=nav-items>
-<ul>
-<li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head>
-<div class=container>
-<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main>
-<article class=post>
-<header>
-<p class=post-meta>
-<time datetime=2015-05-12 itemprop=datePublished>2015-05-12</time>
+<!doctype html><html><head><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta charset=utf-8><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg"><meta name=viewport content="width=device-width,initial-scale=1"><title>프로젝트 오일러 18 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/highlight.css></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>프로젝트 오일러 18</div></div></div><nav class=navbar role=navigation><div class=container><div class=navbar-header><button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
+<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a></div><div class="navbar-items collapsed" id=nav-items><ul><li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2015-05-12 itemprop=datePublished>2015-05-12</time>
 on
 <a href=/tags/project-euler/>Project-Euler</a>
-<a href=/tags/clojure/>Clojure</a>
-</p><h1 class=post-title>
-프로젝트 오일러 18
-</h1></header><section class=post-content>
-<blockquote>
-<p>삼각형을 따라 내려가면서 합이 최대가 되는 경로 찾기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=18">[국어]</a> <a href="https://projecteuler.net/problem=18">[영어]</a></p></blockquote><p>문제를 언듯 보면 합이 최대가 되는 경로를 찾아야 할 것 같지만, 명시적으로 경로를 구하지 않더라도 경로의 합이 최대가 되는 값을 찾을 수 있다.</p><h2 id=알고리즘>알고리즘</h2><p>삼각형 꼭데기에 서 있다면 왼쪽 또는 오른쪽으로 내려갈 수 있다. 합이 최대가 되는 경로로 가려면 왼쪽으로 갔을 때의 합이 큰지 오른쪽으로 갔을 때의 합이 큰지 알아야 한다. 합이 최대가 되는 경로에 있는 숫자의 합을 그 삼각형의 <strong>최대합</strong>이라 한다면, 왼쪽 삼각형의 최대합이 큰지 오른쪽 삼각형의 최대합이 큰지 알아야 한다.</p><img src=/2015/05-12-project-euler-018/triangle1.png class=invert-safe>
-<p>오른쪽 삼각형과 왼쪽 삼각형의 꼭데기에서도 마찬가지다. 다시 말해 왼쪽으로 갈지 오른쪽으로 갈지를 결정하려면 그 아래 단계에 있는 삼각형의 최대합을 구할 수 있어야 한다. 아래 단계의 삼각형 역시 여러 층으로 되어 있다면 바로 최대합을 구할 수 없다. 계속해서 아래 단계로 내려가 거의 바닥까지 내려가면 아래 단계 삼각형이 이층 삼각형이 된다.</p><img src=/2015/05-12-project-euler-018/triangle2.png class=invert-safe>
-<p>이층 삼각형이라면 왼쪽으로 갔을 때의 합과 오른쪽으로 갔을 때의 합을 바로 구할 수 있다. 맨 아래 단계에 있는 각 삼각형에 대해 왼쪽 합과 오른쪽의 합을 구해 큰 값을 꼭데기에 쓴다면 다음 그림과 같이 될 것이다. 맨 아래층은 더 이상 필요하지 않으므로 지울 수 있다.</p><img src=/2015/05-12-project-euler-018/triangle3.png class=invert-safe>
-<p>다시 맨 아래 두 층에 대해서 같은 작업을 반복한다. 이런 식으로 밑에서부터 왼쪽 합과 오른쪽 합 중 큰 값을 계속해 위로 올리는 식으로 작업할 수 있다.</p><img src=/2015/05-12-project-euler-018/triangle4.png class=invert-safe>
-<p>계속 올라가다보면 결국 맨 위 두 층만 남을 것이다. 여기서 왼쪽과 오른쪽의 합 중 큰 값을 구하면 그 값이 합이 최대가 되는 경로의 합이 된다.</p><h2 id=코드>코드</h2><p>다음 그림과 같이 맨 아래층과 그 위층의 숫자에 대해 한 번은 왼쪽으로, 또 한 번은 오른쪽으로 더한 다음 큰 값을 구하는 작업을 반복해 문제를 풀 수 있다.</p><img src=/2015/05-12-project-euler-018/triangle5.png class=invert-safe>
-<p>각 층을 <code>vector</code>로 표현하면, 위 그림의 맨 아래층은 <code>[8 5 9 3]</code>으로, 그 윗층은 <code>[2 4 6]</code>으로 나타낼 수 있다.</p><pre class=console>
+<a href=/tags/clojure/>Clojure</a></p><h1 class=post-title>프로젝트 오일러 18</h1></header><section class=post-content><blockquote><p>삼각형을 따라 내려가면서 합이 최대가 되는 경로 찾기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=18">[국어]</a> <a href="https://projecteuler.net/problem=18">[영어]</a></p></blockquote><p>문제를 언듯 보면 합이 최대가 되는 경로를 찾아야 할 것 같지만, 명시적으로 경로를 구하지 않더라도 경로의 합이 최대가 되는 값을 찾을 수 있다.</p><h2 id=알고리즘>알고리즘</h2><p>삼각형 꼭데기에 서 있다면 왼쪽 또는 오른쪽으로 내려갈 수 있다. 합이 최대가 되는 경로로 가려면 왼쪽으로 갔을 때의 합이 큰지 오른쪽으로 갔을 때의 합이 큰지 알아야 한다. 합이 최대가 되는 경로에 있는 숫자의 합을 그 삼각형의 <strong>최대합</strong>이라 한다면, 왼쪽 삼각형의 최대합이 큰지 오른쪽 삼각형의 최대합이 큰지 알아야 한다.</p><img src=/2015/05-12-project-euler-018/triangle1.png class=invert-safe><p>오른쪽 삼각형과 왼쪽 삼각형의 꼭데기에서도 마찬가지다. 다시 말해 왼쪽으로 갈지 오른쪽으로 갈지를 결정하려면 그 아래 단계에 있는 삼각형의 최대합을 구할 수 있어야 한다. 아래 단계의 삼각형 역시 여러 층으로 되어 있다면 바로 최대합을 구할 수 없다. 계속해서 아래 단계로 내려가 거의 바닥까지 내려가면 아래 단계 삼각형이 이층 삼각형이 된다.</p><img src=/2015/05-12-project-euler-018/triangle2.png class=invert-safe><p>이층 삼각형이라면 왼쪽으로 갔을 때의 합과 오른쪽으로 갔을 때의 합을 바로 구할 수 있다. 맨 아래 단계에 있는 각 삼각형에 대해 왼쪽 합과 오른쪽의 합을 구해 큰 값을 꼭데기에 쓴다면 다음 그림과 같이 될 것이다. 맨 아래층은 더 이상 필요하지 않으므로 지울 수 있다.</p><img src=/2015/05-12-project-euler-018/triangle3.png class=invert-safe><p>다시 맨 아래 두 층에 대해서 같은 작업을 반복한다. 이런 식으로 밑에서부터 왼쪽 합과 오른쪽 합 중 큰 값을 계속해 위로 올리는 식으로 작업할 수 있다.</p><img src=/2015/05-12-project-euler-018/triangle4.png class=invert-safe><p>계속 올라가다보면 결국 맨 위 두 층만 남을 것이다. 여기서 왼쪽과 오른쪽의 합 중 큰 값을 구하면 그 값이 합이 최대가 되는 경로의 합이 된다.</p><h2 id=코드>코드</h2><p>다음 그림과 같이 맨 아래층과 그 위층의 숫자에 대해 한 번은 왼쪽으로, 또 한 번은 오른쪽으로 더한 다음 큰 값을 구하는 작업을 반복해 문제를 풀 수 있다.</p><img src=/2015/05-12-project-euler-018/triangle5.png class=invert-safe><p>각 층을 <code>vector</code>로 표현하면, 위 그림의 맨 아래층은 <code>[8 5 9 3]</code>으로, 그 윗층은 <code>[2 4 6]</code>으로 나타낼 수 있다.</p><pre class=console>
 user=> (def ls [8 5 9 3])
 #'user/ls
 user=> (def us [2 4 6])
@@ -77,22 +42,8 @@ user=> (map max *1 *2)
 p018=> (time (solve))
 "Elapsed time: 0.382559 msecs"
 (1074)
-</pre><h2 id=참고>참고</h2><ul>
-<li><a href=https://github.com/ntalbs/euler-clj/blob/mainline/src/p018.clj>프로젝트 오일러 18 풀이 소스 코드</a></li><li><a href=/2016/project-euler-067/>프로젝트 오일러 67</a> 같은 문제다. 여기서는 삼각형이 15층에 불과했지만, 이 문제에서는 100층짜리 삼각형을 다뤄야 한다.</li></ul></section><footer class=post-footer>
-<div class="social button-box">
-<a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
+</pre><h2 id=참고>참고</h2><ul><li><a href=https://github.com/ntalbs/euler-clj/blob/mainline/src/p018.clj>프로젝트 오일러 18 풀이 소스 코드</a></li><li><a href=/2016/project-euler-067/>프로젝트 오일러 67</a> 같은 문제다. 여기서는 삼각형이 15층에 불과했지만, 이 문제에서는 100층짜리 삼각형을 다뤄야 한다.</li></ul></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
-<script async src=//platform.twitter.com/widgets.js></script>
-</div><nav id=article-nav>
-<a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2015/project-euler-019/ id=article-nav-newer> 프로젝트 오일러 19</a>
-<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2015/excessive-logging/ id=article-nav-older> 과도한 로깅</a>
-</nav></footer></article></main><section class=section>
-<div class=container>
-<aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2015/project-euler-018/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section>
-<div class="container has-text-centered">
-<p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
-<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
-<footer class=page-bottom>
-<div class=inner>
-<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
+<script async src=//platform.twitter.com/widgets.js></script></div><nav id=article-nav><a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2015/project-euler-019/ id=article-nav-newer>프로젝트 오일러 19</a>
+<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2015/excessive-logging/ id=article-nav-older>과도한 로깅</a></nav></footer></article></main><section class=section><div class=container><aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2015/project-euler-018/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section><div class="container has-text-centered"><p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script><footer class=page-bottom><div class=inner><section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>

@@ -1,40 +1,9 @@
-<!doctype html><html>
-<head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script>
-<meta charset=utf-8>
-<meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
-<meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>Oracle XDB 비활성화 방법 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico>
-<link rel=stylesheet href=/css/style.css>
-<link rel=stylesheet href=/css/highlight.css>
-</head><body>
-<div id=progress>
-<div id=bar></div><div class=container>
-<div id=scroll-title>Oracle XDB 비활성화 방법</div></div></div><nav class=navbar role=navigation>
-<div class=container>
-<div class=navbar-header>
-<button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
-<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
-</div><div class="navbar-items collapsed" id=nav-items>
-<ul>
-<li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head>
-<div class=container>
-<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main>
-<article class=post>
-<header>
-<p class=post-meta>
-<time datetime=2008-10-30 itemprop=datePublished>2008-10-30</time>
+<!doctype html><html><head><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta charset=utf-8><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg"><meta name=viewport content="width=device-width,initial-scale=1"><title>Oracle XDB 비활성화 방법 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/highlight.css></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>Oracle XDB 비활성화 방법</div></div></div><nav class=navbar role=navigation><div class=container><div class=navbar-header><button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
+<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a></div><div class="navbar-items collapsed" id=nav-items><ul><li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2008-10-30 itemprop=datePublished>2008-10-30</time>
 on
 <a href=/tags/db/>DB</a>
-<a href=/tags/oracle/>Oracle</a>
-</p><h1 class=post-title>
-Oracle XDB 비활성화 방법
-</h1></header><section class=post-content>
-<p>Oracle9i부터는 XML DB가 포함되어 있는데, 이 녀석은 HTTP/WebDAV과 FTP 포트로 각각 <code>8080</code>과 <code>2100</code> 포트를 사용한다. 데이터베이스 서버에 Oracle만 실행 중이라면 XML DB가 떠있다고 해서 당장 문제될 것이 없으니 그냥 무시할 수도 있다(보안을 생각한다면 내려야 하겠지만). 개발 서버나 테스트 서버의 경우 <code>8080</code> 포트를 쓰는 다른 서버 프로그램(가령 Tomcat 같은)을 띄워야 하는 경우 포트가 충돌해 문제가 발생할 수 있다. Oracle9i에는 그나마 DBCA를 이용해 DB를 생성할 때 XML DB를 제외할 수 있는 옵션이 있었던 것 같은데, 10g에는 그 옵션이 사라져버렸다.</p><p>Oracle이 <code>8080</code> 포트를 사용하지 않게 하려면 XML DB가 뜨지 않게 해야 하는데, 이에 대한 방법이 정확히 나와 있지 않고, Metalink 등을 찾아봐도 설명이 정확하지 않아 다른 인터넷 사이트에서 알아낸 정보와 테스트 결과를 다음과 같이 정리한다.</p><blockquote>
-<p><strong>참고:</strong><br> 원격 사용자가 비정상적인 HTTP 헤더로 Oracle XDB 서버에 HTTP 요청을 보내면 DoS 상태에 빠지게 할 수 있다. 권한이 없는 사용자가 Oracle 데이터베이스 인스턴스의 서비스를 중지시킬 수 있다는 뜻이다. 또한 XDB가 실행중인 시스템에서는 원격 사용자가 임의의 코드를 Oracle 서버 프로세스 권한으로 실행시킬 수 있는 문제도 있다. 이에 대한 패치가 있는지는 확인하지 못했지만, 사용하지 않는다면 XDB 서비스를 중지시키는 것이 좋다.
-</blockquote><h2 id=1-포트-사용-여부-확인>1. 포트 사용 여부 확인</h2><p>UNIX의 <code>netstat</code> 명령이나 Oracle의 <code>lsnrctl</code>을 사용해 다음과 같이 확인할 수 있다.</p><pre class=console>
+<a href=/tags/oracle/>Oracle</a></p><h1 class=post-title>Oracle XDB 비활성화 방법</h1></header><section class=post-content><p>Oracle9i부터는 XML DB가 포함되어 있는데, 이 녀석은 HTTP/WebDAV과 FTP 포트로 각각 <code>8080</code>과 <code>2100</code> 포트를 사용한다. 데이터베이스 서버에 Oracle만 실행 중이라면 XML DB가 떠있다고 해서 당장 문제될 것이 없으니 그냥 무시할 수도 있다(보안을 생각한다면 내려야 하겠지만). 개발 서버나 테스트 서버의 경우 <code>8080</code> 포트를 쓰는 다른 서버 프로그램(가령 Tomcat 같은)을 띄워야 하는 경우 포트가 충돌해 문제가 발생할 수 있다. Oracle9i에는 그나마 DBCA를 이용해 DB를 생성할 때 XML DB를 제외할 수 있는 옵션이 있었던 것 같은데, 10g에는 그 옵션이 사라져버렸다.</p><p>Oracle이 <code>8080</code> 포트를 사용하지 않게 하려면 XML DB가 뜨지 않게 해야 하는데, 이에 대한 방법이 정확히 나와 있지 않고, Metalink 등을 찾아봐도 설명이 정확하지 않아 다른 인터넷 사이트에서 알아낸 정보와 테스트 결과를 다음과 같이 정리한다.</p><blockquote><p><strong>참고:</strong><br>원격 사용자가 비정상적인 HTTP 헤더로 Oracle XDB 서버에 HTTP 요청을 보내면 DoS 상태에 빠지게 할 수 있다. 권한이 없는 사용자가 Oracle 데이터베이스 인스턴스의 서비스를 중지시킬 수 있다는 뜻이다. 또한 XDB가 실행중인 시스템에서는 원격 사용자가 임의의 코드를 Oracle 서버 프로세스 권한으로 실행시킬 수 있는 문제도 있다. 이에 대한 패치가 있는지는 확인하지 못했지만, 사용하지 않는다면 XDB 서비스를 중지시키는 것이 좋다.</blockquote><h2 id=1-포트-사용-여부-확인>1. 포트 사용 여부 확인</h2><p>UNIX의 <code>netstat</code> 명령이나 Oracle의 <code>lsnrctl</code>을 사용해 다음과 같이 확인할 수 있다.</p><pre class=console>
 $ netstat -a | grep LISTEN | grep 8080
 tcp      0    0  *.8080     *.*        LISTEN
 
@@ -140,21 +109,8 @@ SQL> SELECT dbms_xdb.cfg_get FROM dual;
     &lt;/protocolconfig>
   &lt;/sysconfig>
 &lt;/xdbconfig>
-</pre></section><footer class=post-footer>
-<div class="social button-box">
-<a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
+</pre></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
-<script async src=//platform.twitter.com/widgets.js></script>
-</div><nav id=article-nav>
-<a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2008/deleting-db-link/ id=article-nav-newer> DB 링크 삭제 시 제약사항</a>
-<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2008/not-to-do-things/ id=article-nav-older> 하지 말 것 목록</a>
-</nav></footer></article></main><section class=section>
-<div class=container>
-<aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2008/disabling-xdb-in-oracle/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section>
-<div class="container has-text-centered">
-<p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
-<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
-<footer class=page-bottom>
-<div class=inner>
-<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
+<script async src=//platform.twitter.com/widgets.js></script></div><nav id=article-nav><a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2008/deleting-db-link/ id=article-nav-newer>DB 링크 삭제 시 제약사항</a>
+<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2008/not-to-do-things/ id=article-nav-older>하지 말 것 목록</a></nav></footer></article></main><section class=section><div class=container><aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2008/disabling-xdb-in-oracle/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section><div class="container has-text-centered"><p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script><footer class=page-bottom><div class=inner><section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>

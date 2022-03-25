@@ -1,40 +1,9 @@
-<!doctype html><html>
-<head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script>
-<meta charset=utf-8>
-<meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
-<meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>프로젝트 오일러 93 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico>
-<link rel=stylesheet href=/css/style.css>
-<link rel=stylesheet href=/css/highlight.css>
-</head><body>
-<div id=progress>
-<div id=bar></div><div class=container>
-<div id=scroll-title>프로젝트 오일러 93</div></div></div><nav class=navbar role=navigation>
-<div class=container>
-<div class=navbar-header>
-<button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
-<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
-</div><div class="navbar-items collapsed" id=nav-items>
-<ul>
-<li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head>
-<div class=container>
-<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main>
-<article class=post>
-<header>
-<p class=post-meta>
-<time datetime=2018-06-27 itemprop=datePublished>2018-06-27</time>
+<!doctype html><html><head><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta charset=utf-8><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg"><meta name=viewport content="width=device-width,initial-scale=1"><title>프로젝트 오일러 93 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/highlight.css></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>프로젝트 오일러 93</div></div></div><nav class=navbar role=navigation><div class=container><div class=navbar-header><button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
+<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a></div><div class="navbar-items collapsed" id=nav-items><ul><li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2018-06-27 itemprop=datePublished>2018-06-27</time>
 on
 <a href=/tags/project-euler/>Project-Euler</a>
-<a href=/tags/clojure/>Clojure</a>
-</p><h1 class=post-title>
-프로젝트 오일러 93
-</h1></header><section class=post-content>
-<blockquote>
-<p>숫자 4개와 사칙연산을 써서 가장 길게 이어지는 숫자 만들기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=93">[국어]</a> <a href="https://projecteuler.net/problem=93">[영어]</a></p></blockquote><p>숫자 네 개에 사칙연산자를 세 개 사용할 수 있으므로, 각 숫자를 A, B, C, D라 하고 사칙연산자를 <code>Op<sub>1</sub></code>, <code>Op<sub>2</sub></code>, <code>Op<sub>3</sub></code>라 하면, 다음과 같은 조합을 생각할 수 있다. 모든 연산은 괄호로 둘러싸 연산자 우선순위를 고려하지 않게 하면 생각하기가 조금 쉬워진다.</p><ul>
-<li>((A <code>Op<sub>1</sub></code> B) <code>Op<sub>2</sub></code> C) <code>Op<sub>3</sub></code> D</li><li>(A <code>Op<sub>1</sub></code> B) <code>Op<sub>2</sub></code> (C <code>Op<sub>3</sub></code> D)</li><li>(A <code>Op<sub>1</sub></code> (B <code>Op<sub>2</sub></code> C)) <code>Op<sub>3</sub></code> D</li><li>A <code>Op<sub>1</sub></code> ((B <code>Op<sub>2</sub></code> C) <code>Op<sub>3</sub></code> D)</li><li>A <code>Op<sub>1</sub></code> (B <code>Op<sub>2</sub></code> (C <code>Op<sub>3</sub></code> D))</li></ul><p>0부터 9까지 수 중 4개를 선택해 A, B, C, D에 할당하고 <code>Op<sub>1</sub></code>, <code>Op<sub>2</sub></code>, <code>Op<sub>3</sub></code>에 사칙연산을 할당해 계산한 결과를 모은 집합을 구한 다음 1부터 가장 길게 이어지는 숫자를 생성하는 A, B, C, D를 구하면 문제를 풀 수 있다. 0부터 9의 수 중 4개를 선택할 때는 <code>combinations</code>를, 이렇게 선택한 수의 순열을 구할 때는 <code>permutations</code>를 쓸 수 있다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-clojure data-lang=clojure><span class=line><span class=cl><span class=p>(</span><span class=kd>ns </span><span class=nv>p093</span>
+<a href=/tags/clojure/>Clojure</a></p><h1 class=post-title>프로젝트 오일러 93</h1></header><section class=post-content><blockquote><p>숫자 4개와 사칙연산을 써서 가장 길게 이어지는 숫자 만들기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=93">[국어]</a> <a href="https://projecteuler.net/problem=93">[영어]</a></p></blockquote><p>숫자 네 개에 사칙연산자를 세 개 사용할 수 있으므로, 각 숫자를 A, B, C, D라 하고 사칙연산자를 <code>Op<sub>1</sub></code>, <code>Op<sub>2</sub></code>, <code>Op<sub>3</sub></code>라 하면, 다음과 같은 조합을 생각할 수 있다. 모든 연산은 괄호로 둘러싸 연산자 우선순위를 고려하지 않게 하면 생각하기가 조금 쉬워진다.</p><ul><li>((A <code>Op<sub>1</sub></code> B) <code>Op<sub>2</sub></code> C) <code>Op<sub>3</sub></code> D</li><li>(A <code>Op<sub>1</sub></code> B) <code>Op<sub>2</sub></code> (C <code>Op<sub>3</sub></code> D)</li><li>(A <code>Op<sub>1</sub></code> (B <code>Op<sub>2</sub></code> C)) <code>Op<sub>3</sub></code> D</li><li>A <code>Op<sub>1</sub></code> ((B <code>Op<sub>2</sub></code> C) <code>Op<sub>3</sub></code> D)</li><li>A <code>Op<sub>1</sub></code> (B <code>Op<sub>2</sub></code> (C <code>Op<sub>3</sub></code> D))</li></ul><p>0부터 9까지 수 중 4개를 선택해 A, B, C, D에 할당하고 <code>Op<sub>1</sub></code>, <code>Op<sub>2</sub></code>, <code>Op<sub>3</sub></code>에 사칙연산을 할당해 계산한 결과를 모은 집합을 구한 다음 1부터 가장 길게 이어지는 숫자를 생성하는 A, B, C, D를 구하면 문제를 풀 수 있다. 0부터 9의 수 중 4개를 선택할 때는 <code>combinations</code>를, 이렇게 선택한 수의 순열을 구할 때는 <code>permutations</code>를 쓸 수 있다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-clojure data-lang=clojure><span class=line><span class=cl><span class=p>(</span><span class=kd>ns </span><span class=nv>p093</span>
 </span></span><span class=line><span class=cl>    <span class=p>(</span><span class=ss>:require</span> <span class=p>[</span><span class=nv>clojure.math.combinatorics</span> <span class=ss>:refer</span> <span class=p>[</span><span class=nv>permutations</span> <span class=nv>combinations</span><span class=p>]]))</span>
 </span></span></code></pre></div><p>어떤 수를 0으로 나누면 예외가 발생하므로 다음과 같이 예외를 던지지 않는 <code>div</code> 함수를 만들어두는 것이 좋겠다. 이 함수는 제수가 0인 경우 <code>nil</code>을 리턴한다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-clojure data-lang=clojure><span class=line><span class=cl><span class=p>(</span><span class=kd>defn- </span><span class=nv>div</span> <span class=p>[</span><span class=nv>a</span> <span class=nv>b</span><span class=p>]</span>
 </span></span><span class=line><span class=cl>  <span class=p>(</span><span class=k>if </span><span class=p>(</span><span class=nb>zero? </span><span class=nv>b</span><span class=p>)</span> <span class=nv>nil</span> <span class=p>(</span><span class=nb>/ </span><span class=nv>a</span> <span class=nv>b</span><span class=p>)))</span>
@@ -75,22 +44,8 @@ on
 p093=> (time (solve))
 "Elapsed time: 2542.856429 msecs"
 1??8
-</pre><h2 id=참고>참고</h2><ul>
-<li><a href=https://github.com/ntalbs/euler-clj/blob/mainline/src/p093.clj>프로젝트 오일러 93 풀이 소스 코드</a></li></ul></section><footer class=post-footer>
-<div class="social button-box">
-<a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
+</pre><h2 id=참고>참고</h2><ul><li><a href=https://github.com/ntalbs/euler-clj/blob/mainline/src/p093.clj>프로젝트 오일러 93 풀이 소스 코드</a></li></ul></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
-<script async src=//platform.twitter.com/widgets.js></script>
-</div><nav id=article-nav>
-<a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2018/project-euler-094/ id=article-nav-newer> 프로젝트 오일러 94</a>
-<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2018/uk-tax-return/ id=article-nav-older> 소득신고</a>
-</nav></footer></article></main><section class=section>
-<div class=container>
-<aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2018/project-euler-093/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section>
-<div class="container has-text-centered">
-<p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
-<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
-<footer class=page-bottom>
-<div class=inner>
-<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
+<script async src=//platform.twitter.com/widgets.js></script></div><nav id=article-nav><a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2018/project-euler-094/ id=article-nav-newer>프로젝트 오일러 94</a>
+<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2018/uk-tax-return/ id=article-nav-older>소득신고</a></nav></footer></article></main><section class=section><div class=container><aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2018/project-euler-093/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section><div class="container has-text-centered"><p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script><footer class=page-bottom><div class=inner><section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>

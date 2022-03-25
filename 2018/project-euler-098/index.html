@@ -1,39 +1,9 @@
-<!doctype html><html>
-<head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script>
-<meta charset=utf-8>
-<meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
-<meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>프로젝트 오일러 98 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico>
-<link rel=stylesheet href=/css/style.css>
-<link rel=stylesheet href=/css/highlight.css>
-</head><body>
-<div id=progress>
-<div id=bar></div><div class=container>
-<div id=scroll-title>프로젝트 오일러 98</div></div></div><nav class=navbar role=navigation>
-<div class=container>
-<div class=navbar-header>
-<button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
-<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
-</div><div class="navbar-items collapsed" id=nav-items>
-<ul>
-<li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head>
-<div class=container>
-<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main>
-<article class=post>
-<header>
-<p class=post-meta>
-<time datetime=2018-10-01 itemprop=datePublished>2018-10-01</time>
+<!doctype html><html><head><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta charset=utf-8><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg"><meta name=viewport content="width=device-width,initial-scale=1"><title>프로젝트 오일러 98 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/highlight.css></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>프로젝트 오일러 98</div></div></div><nav class=navbar role=navigation><div class=container><div class=navbar-header><button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
+<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a></div><div class="navbar-items collapsed" id=nav-items><ul><li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2018-10-01 itemprop=datePublished>2018-10-01</time>
 on
 <a href=/tags/project-euler/>Project-Euler</a>
-<a href=/tags/clojure/>Clojure</a>
-</p><h1 class=post-title>
-프로젝트 오일러 98
-</h1></header><section class=post-content>
-<blockquote>
-<p>제곱수를 나타내는 애너그램 쌍 찾기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=98">[국어]</a> <a href="https://projecteuler.net/problem=98">[영어]</a></p></blockquote><p>단어 수는 2천 개도 안 되지만 각 단어의 알파벳을 임의의 수로 치환하는 경우의 수를 생각하면 엄청나게 많은 계산이 필요하다. 알파벳을 임의의 수로 치환하는 대신 제곱수를 미리 구해놓고 알파벳을 치환할 때 제곱수를 이용해 치환한다면 계산 범위를 크게 줄일 수 있다.</p><p>먼저 파일을 읽어 단어 목록을 만들고 애너그램을 구한다. 애너그램은 글자를 정렬했을 때 결과가 같으므로, 단어의 글자로 정렬한 결과를 키로 <code>group-by</code>하면 쉽게 애너그램을 구할 수있다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-clojure data-lang=clojure><span class=line><span class=cl><span class=p>(</span><span class=k>def </span><span class=nv>words</span>
+<a href=/tags/clojure/>Clojure</a></p><h1 class=post-title>프로젝트 오일러 98</h1></header><section class=post-content><blockquote><p>제곱수를 나타내는 애너그램 쌍 찾기</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=98">[국어]</a> <a href="https://projecteuler.net/problem=98">[영어]</a></p></blockquote><p>단어 수는 2천 개도 안 되지만 각 단어의 알파벳을 임의의 수로 치환하는 경우의 수를 생각하면 엄청나게 많은 계산이 필요하다. 알파벳을 임의의 수로 치환하는 대신 제곱수를 미리 구해놓고 알파벳을 치환할 때 제곱수를 이용해 치환한다면 계산 범위를 크게 줄일 수 있다.</p><p>먼저 파일을 읽어 단어 목록을 만들고 애너그램을 구한다. 애너그램은 글자를 정렬했을 때 결과가 같으므로, 단어의 글자로 정렬한 결과를 키로 <code>group-by</code>하면 쉽게 애너그램을 구할 수있다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-clojure data-lang=clojure><span class=line><span class=cl><span class=p>(</span><span class=k>def </span><span class=nv>words</span>
 </span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nf>clojure.string/split</span> <span class=p>(</span><span class=nb>slurp </span><span class=s>&#34;data/words.txt&#34;</span><span class=p>)</span> <span class=o>#</span><span class=s>&#34;\&#34;(,\&#34;)?&#34;</span><span class=p>))</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=p>(</span><span class=k>def </span><span class=nv>anagrams</span>
@@ -81,22 +51,8 @@ on
 p098> (time (solve))
 "Elapsed time: 1037.136248 msecs"
 18?69
-</pre><h2 id=참고>참고</h2><ul>
-<li><a href=https://github.com/ntalbs/euler-clj/blob/mainline/src/p098.clj>프로젝트 오일러 98 풀이 소스 코드</a></li></ul></section><footer class=post-footer>
-<div class="social button-box">
-<a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
+</pre><h2 id=참고>참고</h2><ul><li><a href=https://github.com/ntalbs/euler-clj/blob/mainline/src/p098.clj>프로젝트 오일러 98 풀이 소스 코드</a></li></ul></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
-<script async src=//platform.twitter.com/widgets.js></script>
-</div><nav id=article-nav>
-<a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2018/project-euler-099/ id=article-nav-newer> 프로젝트 오일러 99</a>
-<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2018/project-euler-097/ id=article-nav-older> 프로젝트 오일러 97</a>
-</nav></footer></article></main><section class=section>
-<div class=container>
-<aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2018/project-euler-098/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section>
-<div class="container has-text-centered">
-<p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
-<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
-<footer class=page-bottom>
-<div class=inner>
-<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
+<script async src=//platform.twitter.com/widgets.js></script></div><nav id=article-nav><a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2018/project-euler-099/ id=article-nav-newer>프로젝트 오일러 99</a>
+<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2018/project-euler-097/ id=article-nav-older>프로젝트 오일러 97</a></nav></footer></article></main><section class=section><div class=container><aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2018/project-euler-098/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section><div class="container has-text-centered"><p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script><footer class=page-bottom><div class=inner><section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>

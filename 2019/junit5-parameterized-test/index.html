@@ -1,38 +1,8 @@
-<!doctype html><html>
-<head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script>
-<meta charset=utf-8>
-<meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
-<meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>JUnit 5 매개변수 테스트 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico>
-<link rel=stylesheet href=/css/style.css>
-<link rel=stylesheet href=/css/highlight.css>
-</head><body>
-<div id=progress>
-<div id=bar></div><div class=container>
-<div id=scroll-title>JUnit 5 매개변수 테스트</div></div></div><nav class=navbar role=navigation>
-<div class=container>
-<div class=navbar-header>
-<button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
-<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
-</div><div class="navbar-items collapsed" id=nav-items>
-<ul>
-<li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head>
-<div class=container>
-<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main>
-<article class=post>
-<header>
-<p class=post-meta>
-<time datetime=2019-04-05 itemprop=datePublished>2019-04-05</time>
+<!doctype html><html><head><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta charset=utf-8><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg"><meta name=viewport content="width=device-width,initial-scale=1"><title>JUnit 5 매개변수 테스트 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/highlight.css></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>JUnit 5 매개변수 테스트</div></div></div><nav class=navbar role=navigation><div class=container><div class=navbar-header><button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
+<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a></div><div class="navbar-items collapsed" id=nav-items><ul><li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2019-04-05 itemprop=datePublished>2019-04-05</time>
 on
-<a href=/tags/java/>Java</a>
-</p><h1 class=post-title>
-JUnit 5 매개변수 테스트
-</h1></header><section class=post-content>
-<p>JUnit 4에서는 매개변수 테스트(parameterized test)를 작성할 때 불편한 점이 몇 가지 있다. 가장 대표적인 단점은 다음과 같이 정리할 수 있겠다.</p><ul>
-<li>테스트 데이터 집합을 한 가지만 정의할 수 있다. 데이터 집합을 여러 개 정의한다고 컴파일 에러가 발생하지는 않지만 실제로 실행해보면 하나만 사용된다.</li><li>매개변수 테스트 클래스에 일반 테스트가 포함되어 있으면 이 일반 테스트가 데이터 수만큼 반복 실행된다. IDE에서 테스트 결과를 보면 각 테이터 밑으로 일반 테스트 결과가 반복해 나타나 알아보기도 어렵다.</li><li>매개변수 테스트 클래스는 <code>@RunWith(ParameterizedTest.class)</code> 어노테이션을 붙여야 하는데, 다른 <code>@RunWith</code>를 사용해야 할 경우 답답해진다.</li><li>매개변수 데이터 집합 모양에 맞게 생성자를 정의해야 한다.</li></ul><p>이런 이유로 테스트 대상 클래스에 매개변수 테스트를 하고 싶은 메서드가 여럿 있다면 매개변수 테스트 클래스 여럿을 만들어야 한다. 매개변수가 필요 없는 테스트가 있다면 따로 모아 별도 테스트 클래스에 추가해야 한다.</p><p><a href=/2019/check-str-rotation/>회전 문자열 검사 방법</a>에서 구현했던 <code>isRotated()</code>에 대한 테스트를 JUnit 4로 작성하면 다음과 같다. 테스트 데이터 집합을 하나만 정의할 수 있으므로 모든 테스트 데이터와 기대 결과를 한 곳에 때려넣었다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=nd>@RunWith</span><span class=o>(</span><span class=n>Parameterized</span><span class=o>.</span><span class=na>class</span><span class=o>)</span>
+<a href=/tags/java/>Java</a></p><h1 class=post-title>JUnit 5 매개변수 테스트</h1></header><section class=post-content><p>JUnit 4에서는 매개변수 테스트(parameterized test)를 작성할 때 불편한 점이 몇 가지 있다. 가장 대표적인 단점은 다음과 같이 정리할 수 있겠다.</p><ul><li>테스트 데이터 집합을 한 가지만 정의할 수 있다. 데이터 집합을 여러 개 정의한다고 컴파일 에러가 발생하지는 않지만 실제로 실행해보면 하나만 사용된다.</li><li>매개변수 테스트 클래스에 일반 테스트가 포함되어 있으면 이 일반 테스트가 데이터 수만큼 반복 실행된다. IDE에서 테스트 결과를 보면 각 테이터 밑으로 일반 테스트 결과가 반복해 나타나 알아보기도 어렵다.</li><li>매개변수 테스트 클래스는 <code>@RunWith(ParameterizedTest.class)</code> 어노테이션을 붙여야 하는데, 다른 <code>@RunWith</code>를 사용해야 할 경우 답답해진다.</li><li>매개변수 데이터 집합 모양에 맞게 생성자를 정의해야 한다.</li></ul><p>이런 이유로 테스트 대상 클래스에 매개변수 테스트를 하고 싶은 메서드가 여럿 있다면 매개변수 테스트 클래스 여럿을 만들어야 한다. 매개변수가 필요 없는 테스트가 있다면 따로 모아 별도 테스트 클래스에 추가해야 한다.</p><p><a href=/2019/check-str-rotation/>회전 문자열 검사 방법</a>에서 구현했던 <code>isRotated()</code>에 대한 테스트를 JUnit 4로 작성하면 다음과 같다. 테스트 데이터 집합을 하나만 정의할 수 있으므로 모든 테스트 데이터와 기대 결과를 한 곳에 때려넣었다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=nd>@RunWith</span><span class=o>(</span><span class=n>Parameterized</span><span class=o>.</span><span class=na>class</span><span class=o>)</span>
 </span></span><span class=line><span class=cl><span class=kd>public</span> <span class=kd>class</span> <span class=nc>StringRotationJunit4Test</span> <span class=o>{</span>
 </span></span><span class=line><span class=cl>  <span class=kd>private</span> <span class=n>String</span> <span class=n>input</span><span class=o>;</span>
 </span></span><span class=line><span class=cl>  <span class=kd>private</span> <span class=n>String</span> <span class=n>rotated</span><span class=o>;</span>
@@ -67,12 +37,7 @@ JUnit 5 매개변수 테스트
 </span></span><span class=line><span class=cl>    <span class=n>assertEquals</span><span class=o>(</span><span class=n>result</span><span class=o>,</span> <span class=n>StringRotation</span><span class=o>.</span><span class=na>isRotated</span><span class=o>(</span><span class=n>input</span><span class=o>,</span> <span class=n>rotated</span><span class=o>));</span>
 </span></span><span class=line><span class=cl>  <span class=o>}</span>
 </span></span><span class=line><span class=cl><span class=o>}</span>
-</span></span></code></pre></div><p>JUnit 5에서는 매개변수 테스트 데이터 정의 및 테스트 작성 방법이 달라졌다. 테스트 클래스에 별도 어노테이션을 붙이지 않는다. 대신 매개변수 테스트 메서드에 <code>@ParameterizedTest</code> 어노테이션을 붙인다. 따라서 한 테스트 클래스 안에 여러 매개변수 테스트를 정의할 수 있게 되었다.</p><p>또한 하나의 테스트 클래스 안에서 여러 테스트 데이터 집합을 정의할 수 있다. 데이터 집합을 정의하는 방법도 다음과 같이 다양하다.</p><ul>
-<li><code>@ValueSource</code><br>
-테스트 데이터가 간단한 목록일 경우 사용할 수 있다. 값의 타입에 <code>short</code>, <code>byte</code>, <code>int</code>, <code>long</code>, <code>float</code>, <code>double</code>, <code>char</code>, <code>String</code>, <code>Class</code>만 사용할 수 있다는 제한이 있다.</li><li><code>@CvsSource</code><br>
-매개변수 테스트에 여러 값을 넘겨야 하는 경우 사용할 수 있다. <code>delimiter</code>로 다른 문자를 지정할 수도 있다.</li><li><code>@CvsFileSource</code><br>
-별도 CVS 파일을 테스트 데이터로 지정할 수도 있다. <code>numLinesToSkip</code>을 지정해 헤더를 건너뛰도록 할 수 있다.</li><li><code>@MethodSource</code><br>
-매개변수 데이터를 제공할 메서드를 정의하고, 테스트 메서드에서 <code>@MethodSource</code>로 데이터 소스를 지정할 수 있다. 복잡한 객체를 테스트 인자로 넘겨야 하는 경우 유용하다.</li></ul><p>문서를 참조하면 각 방법에 대한 자세한 사항을 알 수 있다.</p><p>위에서 JUnit 4로 작성했던 테스트를 JUnit 5로 다시 작성하면 다음과 같다. 두 가지 테스트 데이터 집합을 정의했고 이를 이용하는 두 개의 매개변수 테스트 메서드가 있다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kd>class</span> <span class=nc>StringRotationTest</span> <span class=o>{</span>
+</span></span></code></pre></div><p>JUnit 5에서는 매개변수 테스트 데이터 정의 및 테스트 작성 방법이 달라졌다. 테스트 클래스에 별도 어노테이션을 붙이지 않는다. 대신 매개변수 테스트 메서드에 <code>@ParameterizedTest</code> 어노테이션을 붙인다. 따라서 한 테스트 클래스 안에 여러 매개변수 테스트를 정의할 수 있게 되었다.</p><p>또한 하나의 테스트 클래스 안에서 여러 테스트 데이터 집합을 정의할 수 있다. 데이터 집합을 정의하는 방법도 다음과 같이 다양하다.</p><ul><li><code>@ValueSource</code><br>테스트 데이터가 간단한 목록일 경우 사용할 수 있다. 값의 타입에 <code>short</code>, <code>byte</code>, <code>int</code>, <code>long</code>, <code>float</code>, <code>double</code>, <code>char</code>, <code>String</code>, <code>Class</code>만 사용할 수 있다는 제한이 있다.</li><li><code>@CvsSource</code><br>매개변수 테스트에 여러 값을 넘겨야 하는 경우 사용할 수 있다. <code>delimiter</code>로 다른 문자를 지정할 수도 있다.</li><li><code>@CvsFileSource</code><br>별도 CVS 파일을 테스트 데이터로 지정할 수도 있다. <code>numLinesToSkip</code>을 지정해 헤더를 건너뛰도록 할 수 있다.</li><li><code>@MethodSource</code><br>매개변수 데이터를 제공할 메서드를 정의하고, 테스트 메서드에서 <code>@MethodSource</code>로 데이터 소스를 지정할 수 있다. 복잡한 객체를 테스트 인자로 넘겨야 하는 경우 유용하다.</li></ul><p>문서를 참조하면 각 방법에 대한 자세한 사항을 알 수 있다.</p><p>위에서 JUnit 4로 작성했던 테스트를 JUnit 5로 다시 작성하면 다음과 같다. 두 가지 테스트 데이터 집합을 정의했고 이를 이용하는 두 개의 매개변수 테스트 메서드가 있다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kd>class</span> <span class=nc>StringRotationTest</span> <span class=o>{</span>
 </span></span><span class=line><span class=cl>  <span class=kd>private</span> <span class=kd>static</span> <span class=n>Stream</span><span class=o>&lt;</span><span class=n>Arguments</span><span class=o>&gt;</span> <span class=nf>rotated</span><span class=o>()</span> <span class=o>{</span>
 </span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>Stream</span><span class=o>.</span><span class=na>of</span><span class=o>(</span>
 </span></span><span class=line><span class=cl>      <span class=n>Arguments</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;abcde&#34;</span><span class=o>,</span> <span class=s>&#34;bcdea&#34;</span><span class=o>),</span>
@@ -107,22 +72,8 @@ JUnit 5 매개변수 테스트
 </span></span><span class=line><span class=cl>    <span class=n>assertFalse</span><span class=o>(</span><span class=n>StringRotation</span><span class=o>.</span><span class=na>isRotated</span><span class=o>(</span><span class=n>input</span><span class=o>,</span> <span class=n>rotated</span><span class=o>));</span>
 </span></span><span class=line><span class=cl>  <span class=o>}</span>
 </span></span><span class=line><span class=cl><span class=o>}</span>
-</span></span></code></pre></div><p>물론 매개변수와 상관 없는 다른 테스트도 여기에 추가할 수도 있다. <code>@ParameterizedTest</code>가 아닌 <code>@Test</code>어노테이션이 붙은 메서드는 한 번만 실행된다. JUnit 4보다 매개변수 테스트를 작성하기가 한결 쉬워졌다.</p><h2 id=참고>참고</h2><ul>
-<li><a href=https://www.baeldung.com/parameterized-tests-junit-5>Guide to JUnit 5 Parameterized Tests</a></li><li><a href=https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests>JUnit 5 Parameterized Tests</a></li><li><a href=https://github.com/junit-team/junit4/wiki/parameterized-tests>JUnit 4 Parameterized Tests</a></li></ul></section><footer class=post-footer>
-<div class="social button-box">
-<a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
+</span></span></code></pre></div><p>물론 매개변수와 상관 없는 다른 테스트도 여기에 추가할 수도 있다. <code>@ParameterizedTest</code>가 아닌 <code>@Test</code>어노테이션이 붙은 메서드는 한 번만 실행된다. JUnit 4보다 매개변수 테스트를 작성하기가 한결 쉬워졌다.</p><h2 id=참고>참고</h2><ul><li><a href=https://www.baeldung.com/parameterized-tests-junit-5>Guide to JUnit 5 Parameterized Tests</a></li><li><a href=https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests>JUnit 5 Parameterized Tests</a></li><li><a href=https://github.com/junit-team/junit4/wiki/parameterized-tests>JUnit 4 Parameterized Tests</a></li></ul></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
-<script async src=//platform.twitter.com/widgets.js></script>
-</div><nav id=article-nav>
-<a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2019/mathjax-server-side-rendering/ id=article-nav-newer> MathJax 서버측 렌더링</a>
-<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2019/check-str-rotation/ id=article-nav-older> 회전 문자열 검사 방법</a>
-</nav></footer></article></main><section class=section>
-<div class=container>
-<aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2019/junit5-parameterized-test/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section>
-<div class="container has-text-centered">
-<p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
-<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
-<footer class=page-bottom>
-<div class=inner>
-<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
+<script async src=//platform.twitter.com/widgets.js></script></div><nav id=article-nav><a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2019/mathjax-server-side-rendering/ id=article-nav-newer>MathJax 서버측 렌더링</a>
+<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2019/check-str-rotation/ id=article-nav-older>회전 문자열 검사 방법</a></nav></footer></article></main><section class=section><div class=container><aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2019/junit5-parameterized-test/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section><div class="container has-text-centered"><p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script><footer class=page-bottom><div class=inner><section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>

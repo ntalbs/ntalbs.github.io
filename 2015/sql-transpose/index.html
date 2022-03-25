@@ -1,39 +1,10 @@
-<!doctype html><html>
-<head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script>
-<meta charset=utf-8>
-<meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
-<meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>SQL에서 행을 열로 바꾸는 방법 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico>
-<link rel=stylesheet href=/css/style.css>
-<link rel=stylesheet href=/css/highlight.css>
-</head><body>
-<div id=progress>
-<div id=bar></div><div class=container>
-<div id=scroll-title>SQL에서 행을 열로 바꾸는 방법</div></div></div><nav class=navbar role=navigation>
-<div class=container>
-<div class=navbar-header>
-<button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
-<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
-</div><div class="navbar-items collapsed" id=nav-items>
-<ul>
-<li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head>
-<div class=container>
-<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main>
-<article class=post>
-<header>
-<p class=post-meta>
-<time datetime=2015-01-09 itemprop=datePublished>2015-01-09</time>
+<!doctype html><html><head><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta charset=utf-8><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg"><meta name=viewport content="width=device-width,initial-scale=1"><title>SQL에서 행을 열로 바꾸는 방법 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/highlight.css></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>SQL에서 행을 열로 바꾸는 방법</div></div></div><nav class=navbar role=navigation><div class=container><div class=navbar-header><button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
+<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a></div><div class="navbar-items collapsed" id=nav-items><ul><li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2015-01-09 itemprop=datePublished>2015-01-09</time>
 on
 <a href=/tags/db/>DB</a>
 <a href=/tags/sql/>SQL</a>
-<a href=/tags/postgresql/>PostgreSQL</a>
-</p><h1 class=post-title>
-SQL에서 행을 열로 바꾸는 방법
-</h1></header><section class=post-content>
-<p>쿼리를 작성하다 보면 행을 열로 또는 열을 행으로 바꾸고 싶은 경우가 생긴다. 데이터 모델을 만들 때 같은 종류의 데이터는 행으로 저장하는 것이 좋지만, 고객은 열로 표현된 형태의 보고서를 보고 싶을 수 있다. 쿼리 결과를 행에서 열로 또는 열에서 행으로 바꾸는 작업은 원리를 이해하면 어렵지 않지만 약간의 기교가 필요하다. 그래서인지 쿼리 결과의 행/열 전환은 SQL 관련 단골 질문이기도 하다.</p><h2 id=개요>개요</h2><p>주문 테이블 <code>orders</code>에 다음과 같이 날짜별 거래 데이터가 들어있다고 하자.</p><pre class=console>
+<a href=/tags/postgresql/>PostgreSQL</a></p><h1 class=post-title>SQL에서 행을 열로 바꾸는 방법</h1></header><section class=post-content><p>쿼리를 작성하다 보면 행을 열로 또는 열을 행으로 바꾸고 싶은 경우가 생긴다. 데이터 모델을 만들 때 같은 종류의 데이터는 행으로 저장하는 것이 좋지만, 고객은 열로 표현된 형태의 보고서를 보고 싶을 수 있다. 쿼리 결과를 행에서 열로 또는 열에서 행으로 바꾸는 작업은 원리를 이해하면 어렵지 않지만 약간의 기교가 필요하다. 그래서인지 쿼리 결과의 행/열 전환은 SQL 관련 단골 질문이기도 하다.</p><h2 id=개요>개요</h2><p>주문 테이블 <code>orders</code>에 다음과 같이 날짜별 거래 데이터가 들어있다고 하자.</p><pre class=console>
 order_date | order_amt
 -----------+----------
 2013-12-22 |      900
@@ -198,23 +169,9 @@ order_date | order_amt
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=s2>&#34;Nov&#34;</span><span class=w> </span><span class=nb>int</span><span class=p>,</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=s2>&#34;Dec&#34;</span><span class=w> </span><span class=nb>int</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w></span><span class=p>);</span><span class=w>
-</span></span></span></code></pre></div><h2 id=정리>정리</h2><p>쿼리로 행/열을 전환하는 방법을 살펴봤다. 약간의 기교가 필요하지만 원리를 파악하면 이해하기 어려울 정도는 아니다. Oracle 11g에서는 <code>pivot</code>, <code>unpivot</code>, PostgreSQL에서는 <code>crosstab</code>을 이용하면 다른 방법보다 깔끔하게 행/열을 전환할 수 있다.</p><h2 id=참고>참고</h2><ul>
-<li><a href=http://oraclecoder.com/tutorials/three-ways-to-transpose-rows-into-columns-in-oracle-sql--160>Three Ways To Transpose Rows Into Columns in Oracle SQL</a>
-Oracle에서 행/열을 전환하는 방법을 설명한다.</li></ul></section><footer class=post-footer>
-<div class="social button-box">
-<a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
+</span></span></span></code></pre></div><h2 id=정리>정리</h2><p>쿼리로 행/열을 전환하는 방법을 살펴봤다. 약간의 기교가 필요하지만 원리를 파악하면 이해하기 어려울 정도는 아니다. Oracle 11g에서는 <code>pivot</code>, <code>unpivot</code>, PostgreSQL에서는 <code>crosstab</code>을 이용하면 다른 방법보다 깔끔하게 행/열을 전환할 수 있다.</p><h2 id=참고>참고</h2><ul><li><a href=http://oraclecoder.com/tutorials/three-ways-to-transpose-rows-into-columns-in-oracle-sql--160>Three Ways To Transpose Rows Into Columns in Oracle SQL</a>
+Oracle에서 행/열을 전환하는 방법을 설명한다.</li></ul></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
-<script async src=//platform.twitter.com/widgets.js></script>
-</div><nav id=article-nav>
-<a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2015/project-euler-003/ id=article-nav-newer> 프로젝트 오일러 3</a>
-<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2015/project-euler-002/ id=article-nav-older> 프로젝트 오일러 2</a>
-</nav></footer></article></main><section class=section>
-<div class=container>
-<aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2015/sql-transpose/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section>
-<div class="container has-text-centered">
-<p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
-<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
-<footer class=page-bottom>
-<div class=inner>
-<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
+<script async src=//platform.twitter.com/widgets.js></script></div><nav id=article-nav><a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2015/project-euler-003/ id=article-nav-newer>프로젝트 오일러 3</a>
+<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2015/project-euler-002/ id=article-nav-older>프로젝트 오일러 2</a></nav></footer></article></main><section class=section><div class=container><aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2015/sql-transpose/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section><div class="container has-text-centered"><p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script><footer class=page-bottom><div class=inner><section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>

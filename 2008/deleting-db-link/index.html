@@ -1,38 +1,9 @@
-<!doctype html><html>
-<head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script>
-<meta charset=utf-8>
-<meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE">
-<meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>DB 링크 삭제 시 제약사항 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico>
-<link rel=stylesheet href=/css/style.css>
-<link rel=stylesheet href=/css/highlight.css>
-</head><body>
-<div id=progress>
-<div id=bar></div><div class=container>
-<div id=scroll-title>DB 링크 삭제 시 제약사항</div></div></div><nav class=navbar role=navigation>
-<div class=container>
-<div class=navbar-header>
-<button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
-<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a>
-</div><div class="navbar-items collapsed" id=nav-items>
-<ul>
-<li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head>
-<div class=container>
-<p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main>
-<article class=post>
-<header>
-<p class=post-meta>
-<time datetime=2008-10-30 itemprop=datePublished>2008-10-30</time>
+<!doctype html><html><head><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta charset=utf-8><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg"><meta name=viewport content="width=device-width,initial-scale=1"><title>DB 링크 삭제 시 제약사항 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/highlight.css></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>DB 링크 삭제 시 제약사항</div></div></div><nav class=navbar role=navigation><div class=container><div class=navbar-header><button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
+<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a></div><div class="navbar-items collapsed" id=nav-items><ul><li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#></a></li></ul></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2008-10-30 itemprop=datePublished>2008-10-30</time>
 on
 <a href=/tags/db/>DB</a>
-<a href=/tags/oracle/>Oracle</a>
-</p><h1 class=post-title>
-DB 링크 삭제 시 제약사항
-</h1></header><section class=post-content>
-<p>불필요한 데이터베이스 링크가 난무하는 것 같아 정리하기로 마음을 먹었다. 일단 개발DB에서 운영DB로의 데이터베이스 링크는 허용할 수 없으므로 이것부터 삭제하기로 했다. 개발DB에 <code>sys</code> 계정으로 로그인한 다음 <code>dba_db_links</code> 테이블을 조회해 개발DB에서 운영DB로 연결되는 데이터베이스 링크를 하나씩 확인했다.</p><p><code>public</code> 데이터베이스 링크를 삭제할 때는 <code>drop public database link ...</code> 명령으로 간단하게 삭제했다. 그리고 <code>xxx</code> 스키마에 있는 데이터베이스 링크를 삭제하기 위해 <code>drop database link xxx.{db_link_name}</code> 명령을 날렸는데, 데이터베이스 링크를 찾을 수 없다며 <code>ora-02024</code> 에러가 발생했다.</p><pre class=console>
+<a href=/tags/oracle/>Oracle</a></p><h1 class=post-title>DB 링크 삭제 시 제약사항</h1></header><section class=post-content><p>불필요한 데이터베이스 링크가 난무하는 것 같아 정리하기로 마음을 먹었다. 일단 개발DB에서 운영DB로의 데이터베이스 링크는 허용할 수 없으므로 이것부터 삭제하기로 했다. 개발DB에 <code>sys</code> 계정으로 로그인한 다음 <code>dba_db_links</code> 테이블을 조회해 개발DB에서 운영DB로 연결되는 데이터베이스 링크를 하나씩 확인했다.</p><p><code>public</code> 데이터베이스 링크를 삭제할 때는 <code>drop public database link ...</code> 명령으로 간단하게 삭제했다. 그리고 <code>xxx</code> 스키마에 있는 데이터베이스 링크를 삭제하기 위해 <code>drop database link xxx.{db_link_name}</code> 명령을 날렸는데, 데이터베이스 링크를 찾을 수 없다며 <code>ora-02024</code> 에러가 발생했다.</p><pre class=console>
 SQL> drop database link xxx.prdtdb;
 drop database link xxx.prdtdb
                    *
@@ -40,25 +11,10 @@ ERROR at line 1:
 ORA-02024: database link not found
 
 SQL>
-</pre><p>순간 약간 당황해서 다시 <code>dba_db_links</code>를 조회했다. '뭔 소리를 하는 거야! 분명이 데이터베이스 링크가 있구만.' 생각하며 다시 시도했지만 마찬가지였다. 이상하다 생각하며 SQL Reference에서 drop database link 구문을 찾아봤더니 바로 해답을 찾을 수 있었다.</p><blockquote>
-<p>Restriction on Dropping Database Links:
+</pre><p>순간 약간 당황해서 다시 <code>dba_db_links</code>를 조회했다. '뭔 소리를 하는 거야! 분명이 데이터베이스 링크가 있구만.' 생각하며 다시 시도했지만 마찬가지였다. 이상하다 생각하며 SQL Reference에서 drop database link 구문을 찾아봤더니 바로 해답을 찾을 수 있었다.</p><blockquote><p>Restriction on Dropping Database Links:
 <span style=background-color:#ff0>You cannot drop a database link in another user's schema, and you cannot qualify dblink with the name of a schema,</span> because periods are permitted in names of database links. Therefore, Oracle Database interprets the entire name, such as ralph.linktosales, as the name of a database link in your schema rather than as a database link named linktosales in the schema ralph.</p></blockquote><p>즉, 데이터베이스 링크 이름에는 원래 <code>"."</code>이 포함될 수 있기 때문에 다른 DB 객체와는 달리 <code>{스키마이름}.{DB링크이름}</code>과 같은 식으로 쓸 수 없다는 얘기고, 그렇다보니 다른 사용자(스키마)의 DB링크는 삭제할 수 없다는 뜻이다.
-사실 가끔씩 <code>dbname.xxx.com</code>과 같은 식의 이름을 가진 DB링크를 보곤 하는데, 조금만 생각했으면 간단히 알 수 있는 것이었다. 요즘은 점점 생각하는 능력이 떨어지는구나.</p><h2 id=참고>참고</h2><ul>
-<li><a href=http://docs.oracle.com/cd/B19306_01/server.102/b14200/statements_8010.htm#i2066689>Oracle® Database SQL Reference 10g Release 2 (10.2) > DROP DATABASE LINK</a></li></ul></section><footer class=post-footer>
-<div class="social button-box">
-<a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
+사실 가끔씩 <code>dbname.xxx.com</code>과 같은 식의 이름을 가진 DB링크를 보곤 하는데, 조금만 생각했으면 간단히 알 수 있는 것이었다. 요즘은 점점 생각하는 능력이 떨어지는구나.</p><h2 id=참고>참고</h2><ul><li><a href=http://docs.oracle.com/cd/B19306_01/server.102/b14200/statements_8010.htm#i2066689>Oracle® Database SQL Reference 10g Release 2 (10.2) > DROP DATABASE LINK</a></li></ul></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
-<script async src=//platform.twitter.com/widgets.js></script>
-</div><nav id=article-nav>
-<a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2008/index-dup-and-clustering-factor/ id=article-nav-newer> 인덱스 중복과 클러스터링 팩터</a>
-<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2008/disabling-xdb-in-oracle/ id=article-nav-older> Oracle XDB 비활성화 방법</a>
-</nav></footer></article></main><section class=section>
-<div class=container>
-<aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2008/deleting-db-link/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section>
-<div class="container has-text-centered">
-<p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
-<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script>
-<footer class=page-bottom>
-<div class=inner>
-<section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
+<script async src=//platform.twitter.com/widgets.js></script></div><nav id=article-nav><a class="article-nav-link-wrap previous" href=https://ntalbs.github.io/2008/index-dup-and-clustering-factor/ id=article-nav-newer>인덱스 중복과 클러스터링 팩터</a>
+<a class="article-nav-link-wrap next" href=https://ntalbs.github.io/2008/disabling-xdb-in-oracle/ id=article-nav-older>Oracle XDB 비활성화 방법</a></nav></footer></article></main><section class=section><div class=container><aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2008/deleting-db-link/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section><div class="container has-text-centered"><p></p></div></section><script src=https://ntalbs.github.io/js/index.js type=text/javascript></script>
+<script src=https://ntalbs.github.io/js/mode.js type=text/javascript></script><footer class=page-bottom><div class=inner><section class=copyright>© 2008-2022 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
