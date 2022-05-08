@@ -46,7 +46,7 @@ h2 {
   font-size: 2.4rem;
   line-height: 1.2em;
   letter-spacing: -1px;
-  margin-top: 1.4em;
+  margin-top: 1.6em;
 }
 h3 {
   font-size: 2rem;
@@ -109,6 +109,15 @@ hr {
   border: 0;
   border-top: 1px dashed #efefef;
   padding: 0;
+}
+figure {
+  text-align: right;
+}
+figure figcaption {
+  font-family: sans-serif;
+  font-style: italic;
+  color: #808080;
+  font-size: 0.6em;
 }
 blockquote {
   -moz-box-sizing: border-box;
@@ -357,7 +366,7 @@ ul.pagination li a {
   box-shadow: var(--background) 0 0 0 5px;
 }
 .post img {
-  max-width: 95%;
+  max-width: 100%;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -708,7 +717,7 @@ selection {
     line-height: 1.6em;
   }
   .post img {
-    max-width: 95%;
+    max-width: 100%;
   }
   .post-template .post {
     padding-bottom: 1rem;
