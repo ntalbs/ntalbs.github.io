@@ -301,7 +301,7 @@ s(m, n) &amp;= p_m + p_{m+1} + ... + p_n \newline
 (2 3 5 7 11 13 17 19 23 29)
 p050=&gt; (take 10 (reductions + primes))
 (2 5 10 17 28 41 58 77 100 129)
-</pre><p>문제를 풀 때는 소수의 누적 합이 몇 번째 소소까지의 합인지도 알아야 하므로 다음과 같이 인덱스와 누적 합을 함께 구해 두는게 좋겠다. 누적 합이 1백만 이하인 경우만 구하면 된다.</p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">ns </span><span class="nv">p050</span>
+</pre><p>문제를 풀 때는 소수의 누적 합이 몇 번째 소수까지의 합인지도 알아야 하므로 다음과 같이 인덱스와 누적 합을 함께 구해 두는게 좋겠다. 누적 합이 1백만 이하인 경우만 구하면 된다.</p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">ns </span><span class="nv">p050</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">clojure.contrib.lazy-seqs</span> <span class="ss">:refer</span> <span class="p">[</span><span class="nv">primes</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl">            <span class="p">[</span><span class="nv">util</span> <span class="ss">:refer</span> <span class="p">[</span><span class="nv">prime?</span><span class="p">]]))</span>
 </span></span><span class="line"><span class="cl">
