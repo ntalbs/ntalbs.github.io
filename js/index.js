@@ -18,7 +18,8 @@
   }
 
   function initProgress (h1) {
-    let threshold = offsetTop(h1) + offsetHeight(h1) - offsetHeight(document.querySelector('nav'))
+    let threshold0 = offsetHeight(document.querySelector('nav'))
+    let threshold1 = offsetTop(h1) + offsetHeight(h1)
     let postContent = document.querySelector('.post-content')
 
     if (!postContent) return
@@ -37,7 +38,9 @@
       bar.style.width = progress + '%'
       bar.style.backgroundColor = color
 
-      if (y <= threshold) {
+      if (y <= threshold0) {
+        document.querySelector('#progress').style.height = '0'
+      } else if (y <= threshold1) {
         document.querySelector('#progress').style.height = '8px'
       } else {
         document.querySelector('#progress').style.height = '36px'
