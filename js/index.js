@@ -53,11 +53,13 @@
     initProgress(h1)
   }
 
-  document.querySelectorAll('[data-toggle=collapse]').forEach(el => el.addEventListener('click', (e) => {
-    let targetId = el.getAttribute('data-target')
+  document.querySelector('[data-toggle=collapse]').addEventListener('click', (e) => {
+    let button = e.target
+    button.classList.toggle('rotated')
+    let targetId = button.getAttribute('data-target')
     let target = document.getElementById(targetId.substring(1)) // remove '#'
     target.classList.toggle('collapsed')
-  }))
+  })
 
   function minHeight () {
     let wh = window.innerHeight

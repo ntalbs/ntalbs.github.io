@@ -743,6 +743,10 @@ selection {
     background-color: transparent;
     font-size: 3.5rem;
     letter-spacing: -3px;
+    transition: all 0.3s ease;
+  }
+  .navbar-toggle.rotated {
+    transform: rotate(45deg);
   }
   .navbar-items {
     clear: both;
