@@ -25,7 +25,7 @@ on
 </span></span><span class=line><span class=cl><span class=nx>clap</span> <span class=p>=</span> <span class=p>{</span> <span class=nx>version</span> <span class=p>=</span> <span class=s2>&#34;3&#34;</span><span class=p>,</span> <span class=nx>features</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;derive&#34;</span><span class=p>]</span> <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>...</span>
 </span></span></code></pre></div><p>그리고 다음과 같이 명령행 인자 값을 저장할 구조체를 만든다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-rust data-lang=rust><span class=line><span class=cl><span class=cp>#[derive(Debug, Parser)]</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w></span><span class=k>struct</span> <span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=k>struct</span> <span class=nc>Arguments</span><span class=w> </span><span class=p>{</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>port</span>: <span class=kt>u16</span><span class=p>,</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>workers</span>: <span class=kt>usize</span><span class=p>,</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
