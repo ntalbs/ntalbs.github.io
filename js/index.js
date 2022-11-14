@@ -130,4 +130,25 @@
   })
 
   document.querySelector('main').style.minHeight = minHeight()
+
+  function isSafari() {
+    let ua = navigator.userAgent.toLowerCase()
+    if (ua.indexOf('safari') >= 0) {
+      if (ua.indexOf('chrome') >= 0) {
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+        return false;
+    }
+  }
+
+  // fix missing math in Safari
+  if (isSafari()) {
+    let post = document.querySelector('main article.with-math')
+    let parent = post.parentElement
+    post.remove()
+    parent.appendChild(post)
+  }
 }())
