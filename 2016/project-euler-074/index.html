@@ -1,6 +1,24 @@
 <!DOCTYPE html><html><head><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3882204692252974" crossorigin="anonymous"></script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta property="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 74 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/highlight.css"><style type="text/css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta charset="utf-8"><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><meta name="description" content="
+자릿수의 계승값을 더해갈 때, 반복이 일어나기 전의 단계가 60번인 경우 찾기
+문제 자세히 보기: [국어] [영어]
+
+각 자릿수의 계승값을 더하는 함수는 다음과 같이 간단히 작성할 수 있다.
+(defn- fact-sum [n]
+  (->> (digits n)
+       (map factorial)
+       (apply +)))
+"><meta name="og:title" content="프로젝트 오일러 74 @ntalbs' stuff"><meta name="og:description" content="
+자릿수의 계승값을 더해갈 때, 반복이 일어나기 전의 단계가 60번인 경우 찾기
+문제 자세히 보기: [국어] [영어]
+
+각 자릿수의 계승값을 더하는 함수는 다음과 같이 간단히 작성할 수 있다.
+(defn- fact-sum [n]
+  (->> (digits n)
+       (map factorial)
+       (apply +)))
+"><meta name="og:url" content="https://ntalbs.github.io/2016/project-euler-074/"><meta name="og:image" content="https://ntalbs.github.io/images/ntalbs.jpg"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 74 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/highlight.css"><style type="text/css">
                             .mjpage .MJX-monospace {
                             font-family: monospace
                             }
