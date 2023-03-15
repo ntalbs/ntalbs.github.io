@@ -5,7 +5,7 @@
 on
 <a href=/tags/db/>DB</a>
 <a href=/tags/postgresql/>PostgreSQL</a>
-<a href=/tags/sql/>SQL</a></p><h1 class=post-title>PostgreSQL 날짜 연산</h1></header><section class=post-content><p>database.sarang.net의 <a href="http://database.sarang.net/?criteria=pgsql">PostgreSQL 게시판</a>에 PostgreSQL에서 <a href="http://database.sarang.net/?inc=read&aid=8678&criteria=pgsql&subcrit=qna&id=&limit=20&keyword=&page=1">날짜 연산 관련 질문</a>이 올라왔다. 답을 생각해보면서 PostgreSQL에서 날짜 관련 함수 및 연산 방법을 간단히 정리해봤다.</p><h2 id=간단한-날짜-관련-함수-및-날짜-연산>간단한 날짜 관련 함수 및 날짜 연산:</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=line><span class=cl><span class=c1>-- 오늘 (date)
+<a href=/tags/sql/>SQL</a></p><h1 class=post-title>PostgreSQL 날짜 연산</h1></header><section class=post-content><p>database.sarang.net의 <a href="http://database.sarang.net/?criteria=pgsql">PostgreSQL 게시판</a>에 PostgreSQL에서 <a href="http://database.sarang.net/?inc=read&amp;aid=8678&amp;criteria=pgsql&amp;subcrit=qna&amp;id=&amp;limit=20&amp;keyword=&amp;page=1">날짜 연산 관련 질문</a>이 올라왔다. 답을 생각해보면서 PostgreSQL에서 날짜 관련 함수 및 연산 방법을 간단히 정리해봤다.</p><h2 id=간단한-날짜-관련-함수-및-날짜-연산>간단한 날짜 관련 함수 및 날짜 연산:</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=line><span class=cl><span class=c1>-- 오늘 (date)
 </span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>select</span><span class=w> </span><span class=k>current_date</span><span class=p>;</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w></span><span class=c1>-- 현재시각 (timestamp)

@@ -7,7 +7,7 @@
 var fnCallback = $Fn(function(bSuccess, sMessage, oData) {
   //...
   if (acrobat.isInstalled) {
-      this.printUrl = oData.redirectURL + &#34;&isSilent=true&#34;;
+      this.printUrl = oData.redirectURL + &#34;&amp;isSilent=true&#34;;
   } else {
       this.printUrl = oData.redirectURL;
   }
@@ -19,7 +19,7 @@ var fnCallback = $Fn(function(bSuccess, sMessage, oData) {
 var fnCallback = $Fn(function(bSuccess, sMessage, oData) {
   //...
   if (acrobat.isInstalled) {
-      this.printUrl = oData.redirectURL + &#34;&isSilent=true&#34;;
+      this.printUrl = oData.redirectURL + &#34;&amp;isSilent=true&#34;;
   } else {
       this.printUrl = oData.redirectURL;
   }
