@@ -161,6 +161,7 @@ blockquote.right-align {
   padding: 5px 10px;
   font-size: 1.4rem;
   letter-spacing: -1px;
+  overflow: auto;
 }
 p code,
 li code {
