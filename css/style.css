@@ -271,13 +271,21 @@ video {
   display: block;
   position: relative;
   float: left;
-}
-.navbar-items li a {
   color: #bbb;
   font-size: 1.8rem;
   padding: 10px 15px;
   display: block;
   position: relative;
+}
+.navbar-items li input {
+  font-size: 1.5rem;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  outline: 0;
+  background-color: #d3d3d3;
+}
+.navbar-items li a {
   text-decoration: none;
 }
 .navbar-items li a:focus,
@@ -705,7 +713,6 @@ selection {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    height: 150px;
   }
   .blog-description {
     font-size: 1.5rem;
@@ -726,6 +733,9 @@ selection {
   }
   .page-head .post-title {
     font-size: 4rem;
+  }
+  .navbar-items li {
+    padding: 10px 10px;
   }
 }
 @media only screen and (max-width: 640px) {
@@ -777,8 +787,6 @@ selection {
   }
   .navbar li {
     float: none;
-  }
-  .navbar li a {
     padding: 10px 20px;
   }
   .post img.right {
@@ -809,10 +817,6 @@ selection {
   }
   .post img {
     max-width: 100%;
-  }
-  .site-head,
-  .page-head {
-    height: 100px;
   }
   .blog-description {
     font-size: 1rem;
