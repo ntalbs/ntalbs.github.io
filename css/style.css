@@ -271,7 +271,6 @@ video {
   display: block;
   position: relative;
   float: left;
-  color: #bbb;
   font-size: 1.8rem;
   padding: 10px 15px;
   display: block;
@@ -286,6 +285,7 @@ video {
   background-color: #d3d3d3;
 }
 .navbar-items li a {
+  color: #bbb;
   text-decoration: none;
 }
 .navbar-items li a:focus,
