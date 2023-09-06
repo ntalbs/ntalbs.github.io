@@ -194,7 +194,7 @@ pre.console {
   font-size: 1.4rem;
   padding: 10px;
   letter-spacing: -1px;
-  overflow: scroll;
+  overflow: auto;
 }
 table {
   font-size: 1.7rem;
