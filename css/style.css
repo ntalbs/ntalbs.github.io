@@ -283,6 +283,7 @@ video {
   border-radius: 5px;
   outline: 0;
   background-color: #d3d3d3;
+  max-width: 200px;
 }
 .navbar-items li a {
   color: #bbb;
