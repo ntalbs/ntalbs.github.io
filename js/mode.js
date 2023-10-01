@@ -3,17 +3,6 @@ const moon = '☾'
 const light = 'light'
 const dark  = 'dark'
 
-let root = document.documentElement
-let navBar = document.getElementById('nav-items')
-let modeSwitch = document.getElementById('mode-switch')
-modeSwitch.style.width = '46px'
-
-modeSwitch.addEventListener('click', (e) => {
-  switchMode(getMode() === light ? dark : light)
-})
-
-switchMode(getMode(), false)
-
 function getMode () {
   let mode = localStorage.getItem('currentMode')
   return !mode ? light: mode;
@@ -21,6 +10,7 @@ function getMode () {
 
 function setMode (mode) {
   localStorage.setItem('currentMode', mode)
+  let modeSwitch = document.getElementById('mode-switch')
   modeSwitch.textContent = (mode===light ? moon : sun)
 }
 
@@ -34,6 +24,8 @@ function switchMode (mode, disqus) {
     makeDark()
     monokai()
   }
+
+  let navBar = document.getElementById('nav-items')
   navBar.classList.add('collapsed')
 
   if (disqus) {
@@ -42,6 +34,7 @@ function switchMode (mode, disqus) {
 }
 
 function makeDark () {
+  let root = document.documentElement;
   root.style.setProperty('--background', "#151d26")
   root.style.setProperty('--text', "#bbb")
   root.style.setProperty('--heading', "#eee")
@@ -67,6 +60,7 @@ function makeDark () {
 }
 
 function makeLight () {
+  let root = document.documentElement;
   root.style.setProperty('--background', "#fff")
   root.style.setProperty('--text', "")
   root.style.setProperty('--heading', "")
@@ -91,6 +85,7 @@ function makeLight () {
 }
 
 function xcode() {
+  let root = document.documentElement;
   root.style.setProperty('--Foreground', '#000000')
   root.style.setProperty('--Background', '#eee')
   root.style.setProperty('--Error', '#000000')
@@ -160,6 +155,7 @@ function xcode() {
 }
 
 function monokai () {
+  let root = document.documentElement;
   root.style.setProperty('--Foreground', '#f8f8f2')
   root.style.setProperty('--Background', '#1c2733')
   root.style.setProperty('--Error', '#1e0010')

@@ -259,6 +259,9 @@ video {
   text-decoration: none;
   color: #eee;
 }
+.navbar-items #mode-switch {
+  width: 46px;
+}
 .navbar-items {
   float: right;
   margin: 0;
