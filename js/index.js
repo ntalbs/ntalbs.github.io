@@ -3,8 +3,6 @@
 
   let modeSwitch = document.getElementById('mode-switch')
 
-  modeSwitch.style.width = '46px'
-
   modeSwitch.addEventListener('click', (e) => {
     switchMode(getMode() === 'light' ? 'dark' : 'light')
   })

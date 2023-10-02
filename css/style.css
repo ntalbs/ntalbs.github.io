@@ -259,9 +259,6 @@ video {
   text-decoration: none;
   color: #eee;
 }
-.navbar-items #mode-switch {
-  width: 46px;
-}
 .navbar-items {
   float: right;
   margin: 0;
@@ -296,6 +293,9 @@ video {
 .navbar-items li a:hover {
   color: #eee;
   outline: none;
+}
+.navbar-items li a#mode-switch {
+  display: inline-block;
 }
 .site-head,
 .page-head {
