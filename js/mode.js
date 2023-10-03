@@ -11,7 +11,9 @@ function getMode () {
 function setMode (mode) {
   localStorage.setItem('currentMode', mode)
   let modeSwitch = document.getElementById('mode-switch')
-  modeSwitch.textContent = (mode===light ? moon : sun)
+
+  document.querySelector("#mode-switch>svg.icon-moon").style.display = (mode===light ? 'inline-block' : 'none')
+  document.querySelector("#mode-switch>svg.icon-sun").style.display = (mode===dark ? 'inline-block' : 'none')
 }
 
 function switchMode (mode, disqus) {

@@ -272,7 +272,7 @@ video {
   position: relative;
   float: left;
   font-size: 1.8rem;
-  padding: 10px 15px;
+  padding: 10px 0 10px 30px;
   display: block;
   position: relative;
 }
@@ -295,7 +295,10 @@ video {
   outline: none;
 }
 .navbar-items li a#mode-switch {
+  background: rgba(0,0,0,0);
   display: inline-block;
+  padding-top: 2px;
+  border: 0;
 }
 .site-head,
 .page-head {
