@@ -10,8 +10,8 @@ on
  +- plugins
      +- coverage-1.2.2.jar
 </pre><h2 id=단위-테스트-실행-설정>단위 테스트 실행 설정</h2><ol><li><code>Hudson 초기화면 > {프로젝트} > Configure</code> 페이지의 Build 섹션에서 Add build step을 클릭해서 <strong>Execute shell</strong> 항목 선택
-<img src=/2010/11-22-hudson-jstestdriver/2010-11-22-1.png class=invert-safe></li><li>Command 항목에 JsTestDriver를 이용해 JavaScript 테스트를 실행시킬 명령 작성
-<img src=/2010/11-22-hudson-jstestdriver/2010-11-22-2.png class=invert-safe><ul><li><code>$WORKSPACE</code> - Hudson 워크스페이스 절대경로</li><li><code>--server http://localhost:4224</code> 테스트 실행시 JsTestDriver가 접근할 JsTestDriver 서버. <strong>여기서는 다음과 같이 미리 JsTestDriver 서버를 띄워 놓고 여기에 IE, FF, Chrome 등의 브라우저를 attach 시켜놓아야 함.</strong>
+<img src=/2010/11-22-hudson-jstestdriver/2010-11-22-1.png class=invert-safe alt="Add build step > Execute shell 그림"></li><li>Command 항목에 JsTestDriver를 이용해 JavaScript 테스트를 실행시킬 명령 작성
+<img src=/2010/11-22-hudson-jstestdriver/2010-11-22-2.png class=invert-safe alt="Execute shell 그림"><ul><li><code>$WORKSPACE</code> - Hudson 워크스페이스 절대경로</li><li><code>--server http://localhost:4224</code> 테스트 실행시 JsTestDriver가 접근할 JsTestDriver 서버. <strong>여기서는 다음과 같이 미리 JsTestDriver 서버를 띄워 놓고 여기에 IE, FF, Chrome 등의 브라우저를 attach 시켜놓아야 함.</strong>
 <code>$ java -jar JsTestDriver-1.2.2.jar --port 4224</code> JsTestDriver 서버, attach한 브라우저가 모두 다른 머신에 있어도 상관 없음</li><li><code>--config $WORKSPACE/trunk/jsTestDriver.conf</code> JsTestDriver 설정 파일 지정</li><li><code>--tests all</code> 모든 테스트를 실행하도록 설정</li><li><code>--testOutput $WORKSPACE/trunk/report</code> 테스트 결과 리포트(테스트 실행 결과 및 커버리지)가 저장될 디렉터리 설정</li><li><code>--reset</code> 테스트 러너를 리셋하도록 설정</li></ul></li></ol></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
 <script async src=//platform.twitter.com/widgets.js></script></div><nav id=article-nav><a class="article-nav-link-wrap previous" href=/2010/hudson-jstestdriver-coverage/ id=article-nav-newer>Hudson에서 JsTestDriver를 이용한 커버리지 분석 설정</a>
