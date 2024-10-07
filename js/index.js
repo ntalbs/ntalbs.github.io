@@ -82,6 +82,7 @@
   // up:   k or C-p
   // prev page: h or C-b
   // next page: l or C-f
+  // slash: search this site
   document.addEventListener('keydown', e => {
     if (e.srcElement.id === 'search') {
       if (e.keyCode === 13 /* Enter */ ) {
@@ -99,6 +100,10 @@
       prevPage()
     } else if (e.keyCode === 76 && !(e.ctrlKey || e.metaKey) /* l */ || (e.ctrlKey && e.keyCode === 70)) {
       nextPage()
+    } else if (e.keyCode === 191) { // '/'
+      window.scrollTo(0,0)
+      e.preventDefault()
+      document.getElementById('search').focus();
     }
   })
 
