@@ -260,6 +260,7 @@ video {
 }
 .navbar-brand:focus,
 .navbar-brand:hover {
+  text-shadow: 0 0 5px;
   text-decoration: none;
   color: #eee;
 }
@@ -297,6 +298,11 @@ video {
 .navbar-items li a:hover {
   color: #eee;
   outline: none;
+  text-shadow: 0 0 8px;
+}
+.navbar-items li a:focus svg,
+.navbar-items li a:hover svg {
+  filter: drop-shadow(0px 0px 5px #fff);
 }
 .navbar-items li a#mode-switch {
   background: rgba(0,0,0,0);
