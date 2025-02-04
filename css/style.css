@@ -685,7 +685,8 @@ selection {
   text-decoration: underline;
 }
 .page-bottom a:hover {
-  color: #555;
+  text-shadow: 0 0 5px;
+  color: #eee;
 }
 .poweredby .icon-ghost {
   font-weight: 700;
