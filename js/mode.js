@@ -63,7 +63,7 @@ function makeDark () {
 
 function makeLight () {
   let root = document.documentElement;
-  root.style.setProperty('--background', "#fff")
+  root.style.setProperty('--background', "#f5f5f5")
   root.style.setProperty('--text', "")
   root.style.setProperty('--heading', "")
   root.style.setProperty('--link', "#666")
