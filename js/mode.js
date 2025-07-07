@@ -70,7 +70,7 @@ function makeLight () {
   root.style.setProperty('--link-hover', "#999")
   root.style.setProperty('--inline-code-bg', "#eee")
   root.style.setProperty('--box-fg', "#808080")
-  root.style.setProperty('--box-bg', "#f5f5f5")
+  root.style.setProperty('--box-bg', "#eee")
   root.style.setProperty('--progress-bg', 'rgba(80,80,80,0.5)')
 
   root.style.setProperty('--archive-ul', "#444")
