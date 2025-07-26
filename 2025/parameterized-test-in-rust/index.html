@@ -24,10 +24,11 @@ on
 </span></span></span><span class=line><span class=cl><span class=go>test test_sum::case_3 ... ok
 </span></span></span><span class=line><span class=cl><span class=go></span><span class=err>
 </span></span></span><span class=line><span class=cl><span class=err></span><span class=go>test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-</span></span></span></code></pre></div><p>마음에 들지 않는다. 매개변수 테스트를 기술하는 방법도 마음에 들지
-않고, 결과가 표시되는 방식도 마음에 들지 않는다.</p><p>각 <code>case</code>가 테스트 결과가 <code>case_1</code>, <code>case_2</code>와 같은 식으로 표시되는데,
-특정 <code>case</code>에 테스트가 실패한다면 어떤 경우 테스트가 실패했는지 알기
-위해 숫자를 보고 위에서부터 하나씩 세어 확인해야 한다.</p><h2 id=매개변수-테스트-매크로-레이아웃>매개변수 테스트 매크로 레이아웃</h2><p>매개변수 테스트를 다음과 같은 식으로 작성할 수 있으면 좋겠다 싶어
+</span></span></span></code></pre></div><p>마음에 들지 않는다. 테스트 케이스를 추가할 때마다 <code>#[case(...)]</code>를
+써야 하는 것 까지는 괜찮다 치더라도, 테스트 함수의 파라미터에
+<code>#[case]</code>를 붙여야 하는 것은 별로다.</p><p>테스트 실행 결과도 <code>case_1</code>, <code>case_2</code>와 같은 식으로 표시되는데, 특정
+<code>case</code>에 테스트가 실패한다면 어떤 경우 테스트가 실패했는지 알기 위해
+숫자를 보고 위에서부터 하나씩 세어 확인해야 해서 불편하다.</p><h2 id=매개변수-테스트-매크로-레이아웃>매개변수 테스트 매크로 레이아웃</h2><p>매개변수 테스트를 다음과 같은 식으로 작성할 수 있으면 좋겠다 싶어
 매크로를 만들어보기로 했다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-rust data-lang=rust><span class=line><span class=cl><span class=cp>#[p_test(
 </span></span></span><span class=line><span class=cl><span class=cp>    (sum_1_1, 1, 1, 2),
 </span></span></span><span class=line><span class=cl><span class=cp>    (sum_2_3, 2, 3, 5),
