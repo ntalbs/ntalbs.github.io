@@ -34,6 +34,7 @@ h6 {
   font-family: 'Open Sans', sans-serif;
   font-weight: bold;
   color: var(--heading);
+  margin-top: 1.6em;
 }
 h1,
 h2.post-title {
@@ -50,7 +51,6 @@ h2 {
   font-size: 2.4rem;
   line-height: 1.2em;
   letter-spacing: -1px;
-  margin-top: 1.6em;
 }
 h3 {
   font-size: 2rem;
@@ -194,11 +194,20 @@ pre {
   letter-spacing: -1px;
   overflow: scroll;
 }
-pre.console {
+pre.console,
+pre.example {
   font-size: 1.4rem;
   padding: 10px;
   letter-spacing: -1px;
   overflow: auto;
+}
+pre.example {
+  border-top: 1px solid #d3d3d3;
+  border-bottom: 1px solid #d3d3d3;
+  filter: brightness(98%);
+}
+pre.example:before {
+  content: "output ==> ";
 }
 table {
   font-size: 1.7rem;
