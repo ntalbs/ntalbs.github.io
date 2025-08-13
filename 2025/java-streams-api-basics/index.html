@@ -9,8 +9,9 @@ on
 은 각각 원시타입 <code class=verbatim>int</code>, <code class=verbatim>long</code>, <code class=verbatim>double</code> 에 대한 스트림이다.</p><p><code class=verbatim>IntStream</code>, <code class=verbatim>LongStream</code>, <code class=verbatim>DoubleStream</code> 은 모두 숫자 스트림이다. 숫자로
 이루어진 스트림을 다룰 때는 <code class=verbatim>IntStream</code>, <code class=verbatim>LongStream</code>, <code class=verbatim>DoubleStream</code> 을
 쓰는 게 여러 모로 편리하다. 숫자 스트림에서는 <code class=verbatim>min/max</code> 에 <code class=verbatim>Comparator</code> 를
-제공하지 않아도 되고, <code class=verbatim>sum/average</code> 도 구할 수 있다. <code class=verbatim>summaryStatistics</code>
-를 이용하면 <code class=verbatim>count/sum/min/average/max</code> 를 한 번에 구할 수 있다.</p><div class="src src-java"><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=k>return</span><span class=w> </span><span class=n>IntStream</span><span class=p>.</span><span class=na>of</span><span class=p>(</span><span class=n>1</span><span class=p>,</span><span class=w> </span><span class=n>3</span><span class=p>,</span><span class=w> </span><span class=n>5</span><span class=p>,</span><span class=w> </span><span class=n>7</span><span class=p>,</span><span class=w> </span><span class=n>9</span><span class=p>)</span><span class=w>
+제공하지 않아도 되고, <code class=verbatim>sum/average</code> 도 간단히 구할 수
+있다. <code class=verbatim>summaryStatistics</code> 를 이용하면 <code class=verbatim>count/sum/min/average/max</code> 를 한
+번에 구할 수 있다.</p><div class="src src-java"><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=k>return</span><span class=w> </span><span class=n>IntStream</span><span class=p>.</span><span class=na>of</span><span class=p>(</span><span class=n>1</span><span class=p>,</span><span class=w> </span><span class=n>3</span><span class=p>,</span><span class=w> </span><span class=n>5</span><span class=p>,</span><span class=w> </span><span class=n>7</span><span class=p>,</span><span class=w> </span><span class=n>9</span><span class=p>)</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=na>summaryStatistics</span><span class=p>();</span></span></span></code></pre></div></div><pre class=example>
 IntSummaryStatistics{count=5, sum=25, min=1, average=5.000000, max=9}
 </pre><p><code class=verbatim>Stream&lt;T></code> 의 각 요소에서 숫자만 뽑아내 새로운 스트림을 만들 때는
@@ -255,7 +256,7 @@ ifmmp-!xpsme
 인라인 스타일에 조사를 붙이면 스타일이 제대로 렌더링 되지 않는 문제가
 있다. <code class=verbatim>ZERO WIDTH SPACE</code> 를 사용해 이 문제를 회피할 수 있지만, 인라인
 스타일을 사용할 때마다 <code class=verbatim>ZERO WIDTH SPACE</code> 를 삽입하는 것도 번거롭고,
-결정적으로 <a href=https://gohugo.io/>Hugo</a>의 Org 렌터러는 여전히 스타일을 깨먹기 때문에 할 수
+결정적으로 <a href=https://gohugo.io/>Hugo</a>의 Org 렌더러는 여전히 스타일을 깨먹기 때문에 할 수
 없이 인라인 스타일이 적용되 텍스트와 조사 사이에 공백을 추가했다.</p><p>코드 블록에 있는 <code class=verbatim>return</code>, <code class=verbatim>Arrays.toString()</code> 등은 ob-java의 출력 결과를
 <a href=https://gohugo.io/>Hugo</a>에서 제대로 렌더링할 수 있게 하기 위함이다.</p></div></div><div id=outline-container-headline-21 class=outline-2><h2 id=headline-21>참고</h2><div id=outline-text-headline-21 class=outline-text-2><ul><li><a href=/2025/org-as-a-notebook/>Org-mode를 노트북으로 사용하기</a></li><li><a href=/2024/writing-blog-post-in-org-mode/>Org-mode로 블로그 쓰기</a></li></ul></div></div></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
