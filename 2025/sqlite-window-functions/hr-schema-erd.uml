@@ -1,0 +1,75 @@
+@startuml
+skinparam linetype ortho
+skinparam backgroundColor transparent
+
+entity Departments #white {
+  *department_id: integer
+  --
+  department_name: string
+  location_id: number
+  manager_id: number
+}
+
+entity Employees #white {
+  *employee_id: number
+  --
+  first_name: string
+  last_name: string
+  email: string
+  phone_number: string
+  hire_date: date
+  job_id: string
+  salary: number
+  commission_pct: number
+  manager_id: number
+  department_id: number
+}
+
+entity Locations #WhiteSmoke {
+  *location_id: number
+  --
+  street_address: string
+  postal_code: string
+  city: string
+  state_province: string
+  country_id: char
+}
+
+entity Countries #WhiteSmoke {
+  *country_id: char
+  --
+  country_name: string
+  region_id: number
+}
+
+entity Regions #WhiteSmoke {
+  *region_id: number
+  --
+  region_name: string
+}
+
+entity Jobs #WhiteSmoke {
+  *job_id: string
+  --
+  job_title: string
+  min_salary: number
+  max_salary: number
+}
+
+entity Job_History #WhiteSmoke {
+  *employee_id: number
+  *start_date: date
+  --
+  end_date: date
+  job_id: string
+  department_id: number
+}
+
+Departments ||-down-|{ Employees
+Departments }-right-|| Locations
+Locations }-right-|| Countries
+Countries }|-right-|| Regions
+Employees ||-right-|| Jobs
+Employees ||-right-|{ Job_History
+
+@enduml
