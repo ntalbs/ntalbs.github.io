@@ -1,0 +1,904 @@
+<!DOCTYPE html><html><head><script src="/js/mode.min.js" type="text/javascript"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><script type="text/javascript">(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jce8mxrx8a")</script><meta charset="UTF-8"><meta http-equiv="content-language" content="ko-KR"><meta name="description" content="요즘 유튜브에 자꾸 수학 문제 풀이 동영상이 눈에 띈다. 그 중 흥미로운 문제를 발견해 정리해보려 한다. 문제는 $\sqrt{\,i\,}$를 를 구하는 것이다.
+$$%math \sqrt{\,i\,} = ? $$
+"><meta name="keywords" content=""><meta name="viewport" content="width=device-width,initial-scale=1"><title>흥미로운 수학 문제: $\sqrt{\,i\,}$ 계산 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/highlight.min.css"><link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3882204692252974" crossorigin="anonymous"></script><style type="text/css">
+                            .mjpage .MJX-monospace {
+                            font-family: monospace
+                            }
+
+                            .mjpage .MJX-sans-serif {
+                            font-family: sans-serif
+                            }
+
+                            .mjpage {
+                            display: inline;
+                            font-style: normal;
+                            font-weight: normal;
+                            line-height: normal;
+                            font-size: 100%;
+                            font-size-adjust: none;
+                            text-indent: 0;
+                            text-align: left;
+                            text-transform: none;
+                            letter-spacing: normal;
+                            word-spacing: normal;
+                            word-wrap: normal;
+                            white-space: nowrap;
+                            float: none;
+                            direction: ltr;
+                            max-width: none;
+                            max-height: none;
+                            min-width: 0;
+                            min-height: 0;
+                            border: 0;
+                            padding: 0;
+                            margin: 0
+                            }
+
+                            .mjpage * {
+                            transition: none;
+                            -webkit-transition: none;
+                            -moz-transition: none;
+                            -ms-transition: none;
+                            -o-transition: none
+                            }
+
+                            .mjx-svg-href {
+                            fill: blue;
+                            stroke: blue
+                            }
+
+                            .MathJax_SVG_LineBox {
+                            display: table!important
+                            }
+
+                            .MathJax_SVG_LineBox span {
+                            display: table-cell!important;
+                            width: 10000em!important;
+                            min-width: 0;
+                            max-width: none;
+                            padding: 0;
+                            border: 0;
+                            margin: 0
+                            }
+
+                            .mjpage__block {
+                            text-align: center;
+                            margin: 1em 0em;
+                            position: relative;
+                            display: block!important;
+                            text-indent: 0;
+                            max-width: none;
+                            max-height: none;
+                            min-width: 0;
+                            min-height: 0;
+                            width: 100%
+                            }</style></head><body><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">흥미로운 수학 문제: <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.513ex" height="3.009ex" style="vertical-align: -0.671ex;" viewBox="0 -1006.6 1512.3 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">\sqrt{\,i\,}</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-221A" x="0" y="31"></use>
+<rect stroke="none" width="678" height="60" x="833" y="772"></rect>
+<g transform="translate(833,0)">
+ <use xlink:href="#MJMATHI-69" x="166" y="0"></use>
+</g>
+</g>
+</svg></span> 계산</div></div></div><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle unselectable" data-toggle="collapse" data-target="#nav-items">+</button>
+<a class="navbar-brand unselectable" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><input id="search" type="search" placeholder="Search this site" autocomplete="off"></li><li><a class="unselectable" href="/archive/">Archive</a></li><li><a class="unselectable" href="/tags/">Tags</a></li><li><a class="unselectable" href="/about/">About</a></li><li><a id="mode-switch" class="unselectable" href="#"><svg data-bs-theme-value="dark" class="icon-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 3c.132.0.263.0.393.0a7.5 7.5.0 007.92 12.446A9 9 0 1112 2.992z"></path></svg>
+<svg data-bs-theme-value="light" class="icon-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 12m-4 0a4 4 0 108 0 4 4 0 10-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7-.7.7m0 11.4.7.7m-12.1-.7-.7.7"></path></svg></a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post with-math"><header><p class="post-meta"><time datetime="2025-11-04" itemprop="datePublished">2025-11-04</time>
+on
+<a href="/tags/%ec%88%98%ed%95%99/">수학</a></p><h1 class="post-title">흥미로운 수학 문제: <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.513ex" height="3.009ex" style="vertical-align: -0.671ex;" viewBox="0 -1006.6 1512.3 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-2-Title">
+<title id="MathJax-SVG-2-Title">\sqrt{\,i\,}</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-221A" x="0" y="31"></use>
+<rect stroke="none" width="678" height="60" x="833" y="772"></rect>
+<g transform="translate(833,0)">
+ <use xlink:href="#MJMATHI-69" x="166" y="0"></use>
+</g>
+</g>
+</svg></span> 계산</h1></header><section class="post-content"><p>요즘 유튜브에 자꾸 수학 문제 풀이 동영상이 눈에 띈다. 그 중 흥미로운
+문제를 발견해 정리해보려 한다. 문제는 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.513ex" height="3.009ex" style="vertical-align: -0.671ex;" viewBox="0 -1006.6 1512.3 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-3-Title">
+<title id="MathJax-SVG-3-Title">\sqrt{\,i\,}</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-221A" x="0" y="31"></use>
+<rect stroke="none" width="678" height="60" x="833" y="772"></rect>
+<g transform="translate(833,0)">
+ <use xlink:href="#MJMATHI-69" x="166" y="0"></use>
+</g>
+</g>
+</svg></span>를 를 구하는 것이다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="7.063ex" height="3.009ex" style="vertical-align: -0.671ex;" viewBox="0 -1006.6 3041.1 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-4-Title">
+<title id="MathJax-SVG-4-Title">%math
+\sqrt{\,i\,} = ?
+</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-221A" x="0" y="1"></use>
+<rect stroke="none" width="678" height="60" x="833" y="742"></rect>
+<g transform="translate(833,0)">
+ <use xlink:href="#MJMATHI-69" x="166" y="0"></use>
+</g>
+ <use xlink:href="#MJMAIN-3D" x="1790" y="0"></use>
+ <use xlink:href="#MJMAIN-3F" x="2568" y="0"></use>
+</g>
+</svg></span></p><h2 id="방법-1">방법 1</h2><p>처음 봤을 땐 '이걸 어떻게 풀지?' 하는 생각밖에 들지 않았지만, 막상 풀이를
+보니 어렵지는 않다. 모든 복소수는 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="5.87ex" height="2.343ex" style="vertical-align: -0.505ex;" viewBox="0 -791.3 2527.4 1008.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-5-Title">
+<title id="MathJax-SVG-5-Title">a + bi</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="751" y="0"></use>
+ <use xlink:href="#MJMATHI-62" x="1752" y="0"></use>
+ <use xlink:href="#MJMATHI-69" x="2181" y="0"></use>
+</g>
+</svg></span> (<span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.261ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 1404.2 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-6-Title">
+<title id="MathJax-SVG-6-Title">a, b</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-2C" x="529" y="0"></use>
+ <use xlink:href="#MJMATHI-62" x="974" y="0"></use>
+</g>
+</svg></span>는 실수) 형태로
+나타낼 수 있다는 점에 풀이의 실마리가 있다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="12.481ex" height="3.009ex" style="vertical-align: -0.671ex;" viewBox="0 -1006.6 5373.8 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-7-Title">
+<title id="MathJax-SVG-7-Title">%math
+\sqrt{\,i\,} = a + bi
+</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-221A" x="0" y="1"></use>
+<rect stroke="none" width="678" height="60" x="833" y="742"></rect>
+<g transform="translate(833,0)">
+ <use xlink:href="#MJMATHI-69" x="166" y="0"></use>
+</g>
+ <use xlink:href="#MJMAIN-3D" x="1790" y="0"></use>
+ <use xlink:href="#MJMATHI-61" x="2846" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="3598" y="0"></use>
+ <use xlink:href="#MJMATHI-62" x="4598" y="0"></use>
+ <use xlink:href="#MJMATHI-69" x="5028" y="0"></use>
+</g>
+</svg></span></p><p>여기서 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.23ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 529.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-8-Title">
+<title id="MathJax-SVG-8-Title">a</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+</g>
+</svg></span>와 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.998ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 429.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-9-Title">
+<title id="MathJax-SVG-9-Title">b</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-62" x="0" y="0"></use>
+</g>
+</svg></span>를 구하면 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.513ex" height="3.009ex" style="vertical-align: -0.671ex;" viewBox="0 -1006.6 1512.3 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-10-Title">
+<title id="MathJax-SVG-10-Title">\sqrt{\,i\,}</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-221A" x="0" y="31"></use>
+<rect stroke="none" width="678" height="60" x="833" y="772"></rect>
+<g transform="translate(833,0)">
+ <use xlink:href="#MJMATHI-69" x="166" y="0"></use>
+</g>
+</g>
+</svg></span>를 구하는 것이 된다. 지금부터는 그냥
+방정식 풀이다. 위 식의 양변을 제곱해 정리하면 다음과 같은 식을 얻는다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="26.091ex" height="3.176ex" style="vertical-align: -0.838ex;" viewBox="0 -1006.6 11233.7 1367.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-11-Title">
+<title id="MathJax-SVG-11-Title">%math
+(a^2 - b^2) + (2ab - 1)i = 0
+</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-28" x="0" y="0"></use>
+<g transform="translate(389,0)">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="748" y="583"></use>
+</g>
+ <use xlink:href="#MJMAIN-2212" x="1595" y="0"></use>
+<g transform="translate(2595,0)">
+ <use xlink:href="#MJMATHI-62" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="607" y="583"></use>
+</g>
+ <use xlink:href="#MJMAIN-29" x="3479" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="4090" y="0"></use>
+ <use xlink:href="#MJMAIN-28" x="5091" y="0"></use>
+ <use xlink:href="#MJMAIN-32" x="5481" y="0"></use>
+ <use xlink:href="#MJMATHI-61" x="5981" y="0"></use>
+ <use xlink:href="#MJMATHI-62" x="6511" y="0"></use>
+ <use xlink:href="#MJMAIN-2212" x="7162" y="0"></use>
+ <use xlink:href="#MJMAIN-31" x="8163" y="0"></use>
+ <use xlink:href="#MJMAIN-29" x="8664" y="0"></use>
+ <use xlink:href="#MJMATHI-69" x="9053" y="0"></use>
+ <use xlink:href="#MJMAIN-3D" x="9676" y="0"></use>
+ <use xlink:href="#MJMAIN-30" x="10733" y="0"></use>
+</g>
+</svg></span></p><p>위 식이 성립하려면 좌변의 실수부와 허수부가 모두 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.162ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 500.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-12-Title">
+<title id="MathJax-SVG-12-Title">0</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-30" x="0" y="0"></use>
+</g>
+</svg></span>이 되어야 한다. 따라서
+다음 두 식을 얻을 수 있다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="14.148ex" height="6.176ex" style="vertical-align: -2.505ex;" viewBox="0 -1580.7 6091.5 2659.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-13-Title">
+<title id="MathJax-SVG-13-Title">%math
+\begin{cases}
+a^2 - b^2 = 0 \newline
+2ab - 1 = 0
+\end{cases}
+</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJSZ3-7B"></use>
+<g transform="translate(917,0)">
+<g transform="translate(-11,0)">
+<g transform="translate(0,532)">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="748" y="513"></use>
+ <use xlink:href="#MJMAIN-2212" x="1205" y="0"></use>
+<g transform="translate(2206,0)">
+ <use xlink:href="#MJMATHI-62" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="607" y="513"></use>
+</g>
+ <use xlink:href="#MJMAIN-3D" x="3367" y="0"></use>
+ <use xlink:href="#MJMAIN-30" x="4423" y="0"></use>
+</g>
+<g transform="translate(0,-668)">
+ <use xlink:href="#MJMAIN-32" x="0" y="0"></use>
+ <use xlink:href="#MJMATHI-61" x="500" y="0"></use>
+ <use xlink:href="#MJMATHI-62" x="1030" y="0"></use>
+ <use xlink:href="#MJMAIN-2212" x="1681" y="0"></use>
+ <use xlink:href="#MJMAIN-31" x="2682" y="0"></use>
+ <use xlink:href="#MJMAIN-3D" x="3460" y="0"></use>
+ <use xlink:href="#MJMAIN-30" x="4517" y="0"></use>
+</g>
+</g>
+</g>
+</g>
+</svg></span></p><p>두 번째 식으로부터 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="6.624ex" height="3.509ex" style="vertical-align: -1.171ex;" viewBox="0 -1006.6 2851.9 1510.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-14-Title">
+<title id="MathJax-SVG-14-Title">b = \frac{1}{2a}</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-62" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-3D" x="707" y="0"></use>
+<g transform="translate(1485,0)">
+<g transform="translate(397,0)">
+<rect stroke="none" width="848" height="60" x="0" y="220"></rect>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-31" x="349" y="629"></use>
+<g transform="translate(60,-417)">
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-61" x="500" y="0"></use>
+</g>
+</g>
+</g>
+</g>
+</svg></span>임을 알 수 있다. 이것을 첫
+번째 식에 대입해 다음과 같이 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.23ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 529.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-15-Title">
+<title id="MathJax-SVG-15-Title">a</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+</g>
+</svg></span>를 구한다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="17.841ex" height="17.509ex" style="vertical-align: -8.171ex;" viewBox="0 -4020.5 7681.4 7538.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-16-Title">
+<title id="MathJax-SVG-16-Title">%math
+\begin{aligned}
+&amp; a^2 - \left(\frac{1}{2a}\right)^2 = 0 \newline
+&amp; a^4 = \frac{1}{4} \newline
+&amp; a^2 = \pm \frac{1}{2}
+\end{aligned}
+</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+<g transform="translate(167,0)">
+<g transform="translate(-11,0)">
+<g transform="translate(0,2237)">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="748" y="583"></use>
+ <use xlink:href="#MJMAIN-2212" x="1205" y="0"></use>
+<g transform="translate(2206,0)">
+ <use xlink:href="#MJSZ3-28"></use>
+<g transform="translate(736,0)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="1150" height="60" x="0" y="220"></rect>
+ <use xlink:href="#MJMAIN-31" x="324" y="676"></use>
+<g transform="translate(60,-687)">
+ <use xlink:href="#MJMAIN-32" x="0" y="0"></use>
+ <use xlink:href="#MJMATHI-61" x="500" y="0"></use>
+</g>
+</g>
+</g>
+ <use xlink:href="#MJSZ3-29" x="2126" y="-1"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="4048" y="1665"></use>
+</g>
+ <use xlink:href="#MJMAIN-3D" x="5801" y="0"></use>
+ <use xlink:href="#MJMAIN-30" x="6857" y="0"></use>
+</g>
+<g transform="translate(0,-357)">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-34" x="748" y="583"></use>
+ <use xlink:href="#MJMAIN-3D" x="1261" y="0"></use>
+<g transform="translate(2039,0)">
+<g transform="translate(397,0)">
+<rect stroke="none" width="620" height="60" x="0" y="220"></rect>
+ <use xlink:href="#MJMAIN-31" x="60" y="676"></use>
+ <use xlink:href="#MJMAIN-34" x="60" y="-698"></use>
+</g>
+</g>
+</g>
+<g transform="translate(0,-2699)">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="748" y="583"></use>
+ <use xlink:href="#MJMAIN-3D" x="1261" y="0"></use>
+ <use xlink:href="#MJMAIN-B1" x="2317" y="0"></use>
+<g transform="translate(3095,0)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="620" height="60" x="0" y="220"></rect>
+ <use xlink:href="#MJMAIN-31" x="60" y="676"></use>
+ <use xlink:href="#MJMAIN-32" x="60" y="-687"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg></span></p><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.23ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 529.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-17-Title">
+<title id="MathJax-SVG-17-Title">a</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+</g>
+</svg></span>는 실수이므로 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.284ex" height="2.509ex" style="vertical-align: -0.338ex;" viewBox="0 -934.9 983.4 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-18-Title">
+<title id="MathJax-SVG-18-Title">a^2</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="748" y="513"></use>
+</g>
+</svg></span>은 음수가 될 수 없다. 따라서 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.466ex" height="3.509ex" style="vertical-align: -1.171ex;" viewBox="0 -1006.6 1492.4 1510.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-19-Title">
+<title id="MathJax-SVG-19-Title">-\frac{1}{2}</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-2212" x="0" y="0"></use>
+<g transform="translate(778,0)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="473" height="60" x="0" y="220"></rect>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-31" x="84" y="629"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="84" y="-589"></use>
+</g>
+</g>
+</g>
+</svg></span>는
+버린다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="10.071ex" height="6.176ex" style="vertical-align: -2.838ex;" viewBox="0 -1437.2 4336.1 2659.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-20-Title">
+<title id="MathJax-SVG-20-Title">%math
+a = \pm \frac{1}{\sqrt{2}}
+</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-3D" x="807" y="0"></use>
+ <use xlink:href="#MJMAIN-B1" x="1863" y="0"></use>
+<g transform="translate(2642,0)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="1454" height="60" x="0" y="220"></rect>
+ <use xlink:href="#MJMAIN-31" x="476" y="676"></use>
+<g transform="translate(60,-920)">
+ <use xlink:href="#MJMAIN-221A" x="0" y="39"></use>
+<rect stroke="none" width="500" height="60" x="833" y="780"></rect>
+ <use xlink:href="#MJMAIN-32" x="833" y="0"></use>
+</g>
+</g>
+</g>
+</g>
+</svg></span></p><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.998ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 429.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-21-Title">
+<title id="MathJax-SVG-21-Title">b</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-62" x="0" y="0"></use>
+</g>
+</svg></span>도 다음과 같이 구할 수 있다. (<span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.23ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 529.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-22-Title">
+<title id="MathJax-SVG-22-Title">a</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+</g>
+</svg></span>와 부호가 같아야 함에 유의한다.)</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="23.624ex" height="14.176ex" style="vertical-align: -6.505ex;" viewBox="0 -3302.9 10171.4 6103.5" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-23-Title">
+<title id="MathJax-SVG-23-Title">%math
+\begin{aligned}
+b &amp;= \frac{1}{2a} = \frac{1}{2 \times \left(\pm \frac{1}{\sqrt 2} \right)} \newline
+&amp;= \pm \frac{1}{\sqrt 2}
+\end{aligned}
+</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+<g transform="translate(167,0)">
+<g transform="translate(-11,0)">
+ <use xlink:href="#MJMATHI-62" x="0" y="1873"></use>
+</g>
+<g transform="translate(419,0)">
+<g transform="translate(0,1873)">
+ <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
+<g transform="translate(1056,0)">
+<g transform="translate(397,0)">
+<rect stroke="none" width="1150" height="60" x="0" y="220"></rect>
+ <use xlink:href="#MJMAIN-31" x="324" y="676"></use>
+<g transform="translate(60,-687)">
+ <use xlink:href="#MJMAIN-32" x="0" y="0"></use>
+ <use xlink:href="#MJMATHI-61" x="500" y="0"></use>
+</g>
+</g>
+</g>
+ <use xlink:href="#MJMAIN-3D" x="3001" y="0"></use>
+<g transform="translate(3780,0)">
+<g transform="translate(397,0)">
+<rect stroke="none" width="5120" height="60" x="0" y="220"></rect>
+ <use xlink:href="#MJMAIN-31" x="2309" y="676"></use>
+<g transform="translate(60,-1170)">
+ <use xlink:href="#MJMAIN-32" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-D7" x="722" y="0"></use>
+<g transform="translate(1723,0)">
+ <use xlink:href="#MJSZ2-28"></use>
+ <use xlink:href="#MJMAIN-B1" x="597" y="0"></use>
+<g transform="translate(1376,0)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="1063" height="60" x="0" y="220"></rect>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-31" x="501" y="629"></use>
+<g transform="translate(60,-566)">
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-221A" x="0" y="16"></use>
+<rect stroke="none" width="353" height="42" x="589" y="535"></rect>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="833" y="0"></use>
+</g>
+</g>
+</g>
+ <use xlink:href="#MJSZ2-29" x="2679" y="-1"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(0,-1636)">
+ <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
+ <use xlink:href="#MJMAIN-B1" x="1334" y="0"></use>
+<g transform="translate(2112,0)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="1454" height="60" x="0" y="220"></rect>
+ <use xlink:href="#MJMAIN-31" x="476" y="676"></use>
+<g transform="translate(60,-920)">
+ <use xlink:href="#MJMAIN-221A" x="0" y="39"></use>
+<rect stroke="none" width="500" height="60" x="833" y="780"></rect>
+ <use xlink:href="#MJMAIN-32" x="833" y="0"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg></span></p><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.23ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 529.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-24-Title">
+<title id="MathJax-SVG-24-Title">a</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+</g>
+</svg></span>와 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.998ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 429.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-25-Title">
+<title id="MathJax-SVG-25-Title">b</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-62" x="0" y="0"></use>
+</g>
+</svg></span>를 모두 구했으므로, <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.513ex" height="3.009ex" style="vertical-align: -0.671ex;" viewBox="0 -1006.6 1512.3 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-26-Title">
+<title id="MathJax-SVG-26-Title">\sqrt{\,i\,}</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-221A" x="0" y="31"></use>
+<rect stroke="none" width="678" height="60" x="833" y="772"></rect>
+<g transform="translate(833,0)">
+ <use xlink:href="#MJMATHI-69" x="166" y="0"></use>
+</g>
+</g>
+</svg></span>를 다음과 같이 나타낼 수
+있다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="23.739ex" height="6.509ex" style="vertical-align: -2.838ex;" viewBox="0 -1580.7 10221 2802.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-27-Title">
+<title id="MathJax-SVG-27-Title">%math
+\sqrt{\,i\,} = \pm \left( \frac{1}{\sqrt2} + \frac{1}{\sqrt2}i \right)
+</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-221A" x="0" y="1"></use>
+<rect stroke="none" width="678" height="60" x="833" y="742"></rect>
+<g transform="translate(833,0)">
+ <use xlink:href="#MJMATHI-69" x="166" y="0"></use>
+</g>
+ <use xlink:href="#MJMAIN-3D" x="1790" y="0"></use>
+ <use xlink:href="#MJMAIN-B1" x="2846" y="0"></use>
+<g transform="translate(3791,0)">
+ <use xlink:href="#MJSZ3-28"></use>
+<g transform="translate(736,0)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="1454" height="60" x="0" y="220"></rect>
+ <use xlink:href="#MJMAIN-31" x="476" y="676"></use>
+<g transform="translate(60,-920)">
+ <use xlink:href="#MJMAIN-221A" x="0" y="39"></use>
+<rect stroke="none" width="500" height="60" x="833" y="780"></rect>
+ <use xlink:href="#MJMAIN-32" x="833" y="0"></use>
+</g>
+</g>
+</g>
+ <use xlink:href="#MJMAIN-2B" x="2652" y="0"></use>
+<g transform="translate(3431,0)">
+<g transform="translate(342,0)">
+<rect stroke="none" width="1454" height="60" x="0" y="220"></rect>
+ <use xlink:href="#MJMAIN-31" x="476" y="676"></use>
+<g transform="translate(60,-920)">
+ <use xlink:href="#MJMAIN-221A" x="0" y="39"></use>
+<rect stroke="none" width="500" height="60" x="833" y="780"></rect>
+ <use xlink:href="#MJMAIN-32" x="833" y="0"></use>
+</g>
+</g>
+</g>
+ <use xlink:href="#MJMATHI-69" x="5347" y="0"></use>
+ <use xlink:href="#MJSZ3-29" x="5692" y="-1"></use>
+</g>
+</g>
+</svg></span></p><p>그러나 이해되지 않는 게 있다. <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.513ex" height="3.009ex" style="vertical-align: -0.671ex;" viewBox="0 -1006.6 1512.3 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-28-Title">
+<title id="MathJax-SVG-28-Title">\sqrt{\,i\,}</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-221A" x="0" y="31"></use>
+<rect stroke="none" width="678" height="60" x="833" y="772"></rect>
+<g transform="translate(833,0)">
+ <use xlink:href="#MJMATHI-69" x="166" y="0"></use>
+</g>
+</g>
+</svg></span>는 분명 하나의
+복소수인데, 어떻게 두 가지로 해석될 수 있는가? 풀이에서 뭔가를 빠뜨린
+것일까, 아니면 복소수의 오묘함에 대한 이해가 부족한 것일까?</p><p>유튜브 풀이 영상에서는 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.23ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 529.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-29-Title">
+<title id="MathJax-SVG-29-Title">a</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-61" x="0" y="0"></use>
+</g>
+</svg></span>가 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.835ex" height="4.176ex" style="vertical-align: -1.838ex;" viewBox="0 -1006.6 2081.8 1798" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-30-Title">
+<title id="MathJax-SVG-30-Title">-\frac{1}{\sqrt2}</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-2212" x="0" y="0"></use>
+<g transform="translate(778,0)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="1063" height="60" x="0" y="220"></rect>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-31" x="501" y="629"></use>
+<g transform="translate(60,-566)">
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-221A" x="0" y="16"></use>
+<rect stroke="none" width="353" height="42" x="589" y="535"></rect>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="833" y="0"></use>
+</g>
+</g>
+</g>
+</g>
+</svg></span>도 될 수 있음을
+고려하지 않았다.</p><h2 id="방법-2">방법 2</h2><p>혹시나 해서 코파일럿에 물어봤더니 다른 풀이 방법도 알려준다. 복소수
+극좌표 형식을 사용하는 방법인데, 훨씬 단순하고 직관적이다. 먼저 임의의
+복소수 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.088ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 468.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-31-Title">
+<title id="MathJax-SVG-31-Title">z</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-7A" x="0" y="0"></use>
+</g>
+</svg></span>는 다음과 같이 나타낼 수 있다.</p><img src="complex-plane.svg" alt="complex plane" style="float:right"><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="28.843ex" height="6.343ex" style="vertical-align: -2.671ex;" viewBox="0 -1580.7 12418.4 2730.8" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-32-Title">
+<title id="MathJax-SVG-32-Title">%math
+\begin{aligned}
+z &amp;= r e^{i\theta} = r(\cos\theta + i \sin\theta)\newline
+|z| &amp;= r
+\end{aligned}
+</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+<g transform="translate(167,0)">
+<g transform="translate(-11,0)">
+ <use xlink:href="#MJMATHI-7A" x="557" y="594"></use>
+<g transform="translate(0,-757)">
+ <use xlink:href="#MJMAIN-7C" x="0" y="0"></use>
+ <use xlink:href="#MJMATHI-7A" x="278" y="0"></use>
+ <use xlink:href="#MJMAIN-7C" x="747" y="0"></use>
+</g>
+</g>
+<g transform="translate(1015,0)">
+<g transform="translate(0,594)">
+ <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
+ <use xlink:href="#MJMATHI-72" x="1334" y="0"></use>
+<g transform="translate(1785,0)">
+ <use xlink:href="#MJMATHI-65" x="0" y="0"></use>
+<g transform="translate(466,412)">
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-69" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-3B8" x="345" y="0"></use>
+</g>
+</g>
+ <use xlink:href="#MJMAIN-3D" x="3206" y="0"></use>
+ <use xlink:href="#MJMATHI-72" x="4262" y="0"></use>
+ <use xlink:href="#MJMAIN-28" x="4713" y="0"></use>
+<g transform="translate(5103,0)">
+ <use xlink:href="#MJMAIN-63"></use>
+ <use xlink:href="#MJMAIN-6F" x="444" y="0"></use>
+ <use xlink:href="#MJMAIN-73" x="945" y="0"></use>
+</g>
+ <use xlink:href="#MJMATHI-3B8" x="6609" y="0"></use>
+ <use xlink:href="#MJMAIN-2B" x="7301" y="0"></use>
+ <use xlink:href="#MJMATHI-69" x="8302" y="0"></use>
+<g transform="translate(8814,0)">
+ <use xlink:href="#MJMAIN-73"></use>
+ <use xlink:href="#MJMAIN-69" x="394" y="0"></use>
+ <use xlink:href="#MJMAIN-6E" x="673" y="0"></use>
+</g>
+ <use xlink:href="#MJMATHI-3B8" x="10210" y="0"></use>
+ <use xlink:href="#MJMAIN-29" x="10679" y="0"></use>
+</g>
+<g transform="translate(0,-757)">
+ <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
+ <use xlink:href="#MJMATHI-72" x="1334" y="0"></use>
+</g>
+</g>
+</g>
+</g>
+</svg></span></p><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.802ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 345.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-33-Title">
+<title id="MathJax-SVG-33-Title">i</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-69" x="0" y="0"></use>
+</g>
+</svg></span>는 실수부는 0이고 허수부는 1이므로 복소평면에서 허수축에 위치한다. 크기는 1이고(<span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="6.357ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 2737.1 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-34-Title">
+<title id="MathJax-SVG-34-Title">|i|
+= 1</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-7C" x="0" y="0"></use>
+ <use xlink:href="#MJMATHI-69" x="278" y="0"></use>
+ <use xlink:href="#MJMAIN-7C" x="624" y="0"></use>
+ <use xlink:href="#MJMAIN-3D" x="1180" y="0"></use>
+ <use xlink:href="#MJMAIN-31" x="2236" y="0"></use>
+</g>
+</svg></span>) 편각은 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.778ex" height="3.176ex" style="vertical-align: -1.171ex;" viewBox="0 -863.1 765.5 1367.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-35-Title">
+<title id="MathJax-SVG-35-Title">\frac{\pi}{2}</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+<g transform="translate(120,0)">
+<rect stroke="none" width="525" height="60" x="0" y="220"></rect>
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-3C0" x="84" y="640"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="121" y="-589"></use>
+</g>
+</g>
+</svg></span>이므로, <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.802ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 345.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-36-Title">
+<title id="MathJax-SVG-36-Title">i</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-69" x="0" y="0"></use>
+</g>
+</svg></span>를 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.703ex" height="2.676ex" style="vertical-align: -0.338ex;" viewBox="0 -1006.6 1594.3 1152.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-37-Title">
+<title id="MathJax-SVG-37-Title">r e^{i\theta}</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-72" x="0" y="0"></use>
+<g transform="translate(451,0)">
+ <use xlink:href="#MJMATHI-65" x="0" y="0"></use>
+<g transform="translate(466,362)">
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-69" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-3B8" x="345" y="0"></use>
+</g>
+</g>
+</g>
+</svg></span> 형식으로
+나타내면 다음과 같다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="8.136ex" height="3.509ex" style="vertical-align: -1.171ex;" viewBox="0 -1006.6 3503.1 1510.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-38-Title">
+<title id="MathJax-SVG-38-Title">%math
+\begin{aligned}
+i = e^{\frac{\pi}{2} i}
+\end{aligned}
+</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+<g transform="translate(167,0)">
+<g transform="translate(-11,0)">
+<g transform="translate(0,-218)">
+ <use xlink:href="#MJMATHI-69" x="0" y="0"></use>
+ <use xlink:href="#MJMAIN-3D" x="623" y="0"></use>
+<g transform="translate(1679,0)">
+ <use xlink:href="#MJMATHI-65" x="0" y="0"></use>
+<g transform="translate(466,508)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="449" height="60" x="0" y="146"></rect>
+ <use transform="scale(0.574)" xlink:href="#MJMATHI-3C0" x="104" y="658"></use>
+ <use transform="scale(0.574)" xlink:href="#MJMAIN-32" x="141" y="-698"></use>
+</g>
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-69" x="974" y="0"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg></span></p><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.266ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 1406 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-39-Title">
+<title id="MathJax-SVG-39-Title">\sqrt{x}</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-221A" x="0" y="-79"></use>
+<rect stroke="none" width="572" height="60" x="833" y="662"></rect>
+ <use xlink:href="#MJMATHI-78" x="833" y="0"></use>
+</g>
+</svg></span>는 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.065ex" height="3.509ex" style="vertical-align: -0.338ex;" viewBox="0 -1365.4 1319.8 1510.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-40-Title">
+<title id="MathJax-SVG-40-Title">x^{\frac{1}{2}}</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMATHI-78" x="0" y="0"></use>
+<g transform="translate(572,508)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="407" height="60" x="0" y="146"></rect>
+ <use transform="scale(0.574)" xlink:href="#MJMAIN-31" x="104" y="647"></use>
+ <use transform="scale(0.574)" xlink:href="#MJMAIN-32" x="104" y="-698"></use>
+</g>
+</g>
+</g>
+</svg></span>이므로 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.513ex" height="3.009ex" style="vertical-align: -0.671ex;" viewBox="0 -1006.6 1512.3 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-41-Title">
+<title id="MathJax-SVG-41-Title">\sqrt{\,i\,}</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-221A" x="0" y="31"></use>
+<rect stroke="none" width="678" height="60" x="833" y="772"></rect>
+<g transform="translate(833,0)">
+ <use xlink:href="#MJMATHI-69" x="166" y="0"></use>
+</g>
+</g>
+</svg></span>는 다음과 같이 나타낼 수 있다.</p><p><span class="mjpage mjpage__block"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="28.806ex" height="24.176ex" style="vertical-align: -11.505ex;" viewBox="0 -5455.7 12402.5 10409.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-42-Title">
+<title id="MathJax-SVG-42-Title">%math
+\begin{aligned}
+\sqrt{\,i\,} &amp;= i^{\frac{1}{2}} = (e^{\frac{\pi}{2} i})^\frac{1}{2} = e^{\frac{\pi}{4} i} \newline
+&amp;= \cos \frac{\pi}{4} + i \sin \frac{\pi}{4} \newline
+&amp;= \frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2} i \newline
+\newline
+\therefore \sqrt{\,i\,} &amp;= \frac{1}{\sqrt{2}} + \frac{1}{\sqrt{2}} i
+\end{aligned}
+</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+<g transform="translate(167,0)">
+<g transform="translate(-11,0)">
+<g transform="translate(945,4093)">
+ <use xlink:href="#MJMAIN-221A" x="0" y="1"></use>
+<rect stroke="none" width="678" height="60" x="833" y="742"></rect>
+<g transform="translate(833,0)">
+ <use xlink:href="#MJMATHI-69" x="166" y="0"></use>
+</g>
+</g>
+<g transform="translate(0,-3777)">
+ <use xlink:href="#MJAMS-2234" x="0" y="0"></use>
+<g transform="translate(945,0)">
+ <use xlink:href="#MJMAIN-221A" x="0" y="1"></use>
+<rect stroke="none" width="678" height="60" x="833" y="742"></rect>
+<g transform="translate(833,0)">
+ <use xlink:href="#MJMATHI-69" x="166" y="0"></use>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(2447,0)">
+<g transform="translate(0,4093)">
+ <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
+<g transform="translate(1334,0)">
+ <use xlink:href="#MJMATHI-69" x="0" y="0"></use>
+<g transform="translate(345,508)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="407" height="60" x="0" y="146"></rect>
+ <use transform="scale(0.574)" xlink:href="#MJMAIN-31" x="104" y="647"></use>
+ <use transform="scale(0.574)" xlink:href="#MJMAIN-32" x="104" y="-698"></use>
+</g>
+</g>
+</g>
+ <use xlink:href="#MJMAIN-3D" x="2704" y="0"></use>
+ <use xlink:href="#MJMAIN-28" x="3760" y="0"></use>
+<g transform="translate(4150,0)">
+ <use xlink:href="#MJMATHI-65" x="0" y="0"></use>
+<g transform="translate(466,508)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="449" height="60" x="0" y="146"></rect>
+ <use transform="scale(0.574)" xlink:href="#MJMATHI-3C0" x="104" y="658"></use>
+ <use transform="scale(0.574)" xlink:href="#MJMAIN-32" x="141" y="-698"></use>
+</g>
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-69" x="974" y="0"></use>
+</g>
+</g>
+<g transform="translate(5650,0)">
+ <use xlink:href="#MJMAIN-29" x="0" y="0"></use>
+<g transform="translate(389,508)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="407" height="60" x="0" y="146"></rect>
+ <use transform="scale(0.574)" xlink:href="#MJMAIN-31" x="104" y="647"></use>
+ <use transform="scale(0.574)" xlink:href="#MJMAIN-32" x="104" y="-698"></use>
+</g>
+</g>
+</g>
+ <use xlink:href="#MJMAIN-3D" x="7065" y="0"></use>
+<g transform="translate(8121,0)">
+ <use xlink:href="#MJMATHI-65" x="0" y="0"></use>
+<g transform="translate(466,515)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="449" height="60" x="0" y="146"></rect>
+ <use transform="scale(0.574)" xlink:href="#MJMATHI-3C0" x="104" y="658"></use>
+ <use transform="scale(0.574)" xlink:href="#MJMAIN-34" x="141" y="-709"></use>
+</g>
+ <use transform="scale(0.707)" xlink:href="#MJMATHI-69" x="974" y="0"></use>
+</g>
+</g>
+</g>
+<g transform="translate(0,2434)">
+ <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
+<g transform="translate(1334,0)">
+ <use xlink:href="#MJMAIN-63"></use>
+ <use xlink:href="#MJMAIN-6F" x="444" y="0"></use>
+ <use xlink:href="#MJMAIN-73" x="945" y="0"></use>
+</g>
+<g transform="translate(2673,0)">
+<g transform="translate(286,0)">
+<rect stroke="none" width="693" height="60" x="0" y="220"></rect>
+ <use xlink:href="#MJMATHI-3C0" x="60" y="676"></use>
+ <use xlink:href="#MJMAIN-34" x="96" y="-698"></use>
+</g>
+</g>
+ <use xlink:href="#MJMAIN-2B" x="3995" y="0"></use>
+ <use xlink:href="#MJMATHI-69" x="4996" y="0"></use>
+<g transform="translate(5508,0)">
+ <use xlink:href="#MJMAIN-73"></use>
+ <use xlink:href="#MJMAIN-69" x="394" y="0"></use>
+ <use xlink:href="#MJMAIN-6E" x="673" y="0"></use>
+</g>
+<g transform="translate(6738,0)">
+<g transform="translate(286,0)">
+<rect stroke="none" width="693" height="60" x="0" y="220"></rect>
+ <use xlink:href="#MJMATHI-3C0" x="60" y="676"></use>
+ <use xlink:href="#MJMAIN-34" x="96" y="-698"></use>
+</g>
+</g>
+</g>
+<g transform="translate(0,-146)">
+ <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
+<g transform="translate(1056,0)">
+<g transform="translate(397,0)">
+<rect stroke="none" width="1454" height="60" x="0" y="220"></rect>
+<g transform="translate(60,681)">
+ <use xlink:href="#MJMAIN-221A" x="0" y="39"></use>
+<rect stroke="none" width="500" height="60" x="833" y="780"></rect>
+ <use xlink:href="#MJMAIN-32" x="833" y="0"></use>
+</g>
+ <use xlink:href="#MJMAIN-32" x="476" y="-687"></use>
+</g>
+</g>
+ <use xlink:href="#MJMAIN-2B" x="3250" y="0"></use>
+<g transform="translate(4028,0)">
+<g transform="translate(342,0)">
+<rect stroke="none" width="1454" height="60" x="0" y="220"></rect>
+<g transform="translate(60,681)">
+ <use xlink:href="#MJMAIN-221A" x="0" y="39"></use>
+<rect stroke="none" width="500" height="60" x="833" y="780"></rect>
+ <use xlink:href="#MJMAIN-32" x="833" y="0"></use>
+</g>
+ <use xlink:href="#MJMAIN-32" x="476" y="-687"></use>
+</g>
+</g>
+ <use xlink:href="#MJMATHI-69" x="5945" y="0"></use>
+</g>
+<g transform="translate(0,-3777)">
+ <use xlink:href="#MJMAIN-3D" x="277" y="0"></use>
+<g transform="translate(1056,0)">
+<g transform="translate(397,0)">
+<rect stroke="none" width="1454" height="60" x="0" y="220"></rect>
+ <use xlink:href="#MJMAIN-31" x="476" y="676"></use>
+<g transform="translate(60,-920)">
+ <use xlink:href="#MJMAIN-221A" x="0" y="39"></use>
+<rect stroke="none" width="500" height="60" x="833" y="780"></rect>
+ <use xlink:href="#MJMAIN-32" x="833" y="0"></use>
+</g>
+</g>
+</g>
+ <use xlink:href="#MJMAIN-2B" x="3250" y="0"></use>
+<g transform="translate(4028,0)">
+<g transform="translate(342,0)">
+<rect stroke="none" width="1454" height="60" x="0" y="220"></rect>
+ <use xlink:href="#MJMAIN-31" x="476" y="676"></use>
+<g transform="translate(60,-920)">
+ <use xlink:href="#MJMAIN-221A" x="0" y="39"></use>
+<rect stroke="none" width="500" height="60" x="833" y="780"></rect>
+ <use xlink:href="#MJMAIN-32" x="833" y="0"></use>
+</g>
+</g>
+</g>
+ <use xlink:href="#MJMATHI-69" x="5945" y="0"></use>
+</g>
+</g>
+</g>
+</g>
+</svg></span></p><p>복소수 극좌표 형식을 사용하면 복잡한 방정식을 풀지 않아도 되고, 답에
+<span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="14.668ex" height="4.843ex" style="vertical-align: -1.838ex;" viewBox="0 -1293.7 6315.2 2085" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-43-Title">
+<title id="MathJax-SVG-43-Title">- \left( \frac{1}{\sqrt2} + \frac{1}{\sqrt2}i \right)</title>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#MJMAIN-2212" x="0" y="0"></use>
+<g transform="translate(945,0)">
+ <use xlink:href="#MJSZ2-28"></use>
+<g transform="translate(597,0)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="1063" height="60" x="0" y="220"></rect>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-31" x="501" y="629"></use>
+<g transform="translate(60,-566)">
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-221A" x="0" y="16"></use>
+<rect stroke="none" width="353" height="42" x="589" y="535"></rect>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="833" y="0"></use>
+</g>
+</g>
+</g>
+ <use xlink:href="#MJMAIN-2B" x="2123" y="0"></use>
+<g transform="translate(2901,0)">
+<g transform="translate(342,0)">
+<rect stroke="none" width="1063" height="60" x="0" y="220"></rect>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-31" x="501" y="629"></use>
+<g transform="translate(60,-566)">
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-221A" x="0" y="16"></use>
+<rect stroke="none" width="353" height="42" x="589" y="535"></rect>
+ <use transform="scale(0.707)" xlink:href="#MJMAIN-32" x="833" y="0"></use>
+</g>
+</g>
+</g>
+ <use xlink:href="#MJMATHI-69" x="4427" y="0"></use>
+ <use xlink:href="#MJSZ2-29" x="4772" y="-1"></use>
+</g>
+</g>
+</svg></span>와 같은
+고스트가 생기지도 않는다.</p><h2 id="참고">참고</h2><ul><li><a href="https://www.youtube.com/watch?v=bAbAJU_l2uY&amp;t=396s">Can you solve this?</a> 위 문제 풀이에 대한 유튜브 동영상.</li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+<a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+<script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap next" href="/2025/sqlite-window-functions/" id="article-nav-older">SQLite 윈도우 함수</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2025/interesting-math-problem-sqrt-i/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="/js/index.min.js" type="text/javascript"></script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2025 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer><svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs id="MathJax_SVG_glyphs"><path stroke-width="1" id="MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path><path stroke-width="1" id="MJMAIN-221A" d="M95 178Q89 178 81 186T72 200T103 230T169 280T207 309Q209 311 212 311H213Q219 311 227 294T281 177Q300 134 312 108L397 -77Q398 -77 501 136T707 565T814 786Q820 800 834 800Q841 800 846 794T853 782V776L620 293L385 -193Q381 -200 366 -200Q357 -200 354 -197Q352 -195 256 15L160 225L144 214Q129 202 113 190T95 178Z"></path><path stroke-width="1" id="MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path stroke-width="1" id="MJMAIN-3F" d="M226 668Q190 668 162 656T124 632L114 621Q116 621 119 620T130 616T145 607T157 591T162 567Q162 544 147 529T109 514T71 528T55 566Q55 625 100 661T199 704Q201 704 210 704T224 705H228Q281 705 320 692T378 656T407 612T416 567Q416 503 361 462Q267 395 247 303Q242 279 242 241V224Q242 205 239 202T222 198T205 201T202 218V249Q204 320 220 371T255 445T292 491T315 537Q317 546 317 574V587Q317 604 315 615T304 640T277 661T226 668ZM162 61Q162 89 180 105T224 121Q247 119 264 104T281 61Q281 31 264 16T222 1Q197 1 180 16T162 61Z"></path><path stroke-width="1" id="MJMATHI-61" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path><path stroke-width="1" id="MJMAIN-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path><path stroke-width="1" id="MJMATHI-62" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path><path stroke-width="1" id="MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path><path stroke-width="1" id="MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path><path stroke-width="1" id="MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path stroke-width="1" id="MJMAIN-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path><path stroke-width="1" id="MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path><path stroke-width="1" id="MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="1" id="MJMAIN-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path><path stroke-width="1" id="MJMAIN-7B" d="M434 -231Q434 -244 428 -250H410Q281 -250 230 -184Q225 -177 222 -172T217 -161T213 -148T211 -133T210 -111T209 -84T209 -47T209 0Q209 21 209 53Q208 142 204 153Q203 154 203 155Q189 191 153 211T82 231Q71 231 68 234T65 250T68 266T82 269Q116 269 152 289T203 345Q208 356 208 377T209 529V579Q209 634 215 656T244 698Q270 724 324 740Q361 748 377 749Q379 749 390 749T408 750H428Q434 744 434 732Q434 719 431 716Q429 713 415 713Q362 710 332 689T296 647Q291 634 291 499V417Q291 370 288 353T271 314Q240 271 184 255L170 250L184 245Q202 239 220 230T262 196T290 137Q291 131 291 1Q291 -134 296 -147Q306 -174 339 -192T415 -213Q429 -213 431 -216Q434 -219 434 -231Z"></path><path stroke-width="1" id="MJSZ3-7B" d="M618 -943L612 -949H582L568 -943Q472 -903 411 -841T332 -703Q327 -682 327 -653T325 -350Q324 -28 323 -18Q317 24 301 61T264 124T221 171T179 205T147 225T132 234Q130 238 130 250Q130 255 130 258T131 264T132 267T134 269T139 272T144 275Q207 308 256 367Q310 436 323 519Q324 529 325 851Q326 1124 326 1154T332 1205Q369 1358 566 1443L582 1450H612L618 1444V1429Q618 1413 616 1411L608 1406Q599 1402 585 1393T552 1372T515 1343T479 1305T449 1257T429 1200Q425 1180 425 1152T423 851Q422 579 422 549T416 498Q407 459 388 424T346 364T297 318T250 284T214 264T197 254L188 251L205 242Q290 200 345 138T416 3Q421 -18 421 -48T423 -349Q423 -397 423 -472Q424 -677 428 -694Q429 -697 429 -699Q434 -722 443 -743T465 -782T491 -816T519 -845T548 -868T574 -886T595 -899T610 -908L616 -910Q618 -912 618 -928V-943Z"></path><path stroke-width="1" id="MJSZ3-28" d="M701 -940Q701 -943 695 -949H664Q662 -947 636 -922T591 -879T537 -818T475 -737T412 -636T350 -511T295 -362T250 -186T221 17T209 251Q209 962 573 1361Q596 1386 616 1405T649 1437T664 1450H695Q701 1444 701 1441Q701 1436 681 1415T629 1356T557 1261T476 1118T400 927T340 675T308 359Q306 321 306 250Q306 -139 400 -430T690 -924Q701 -936 701 -940Z"></path><path stroke-width="1" id="MJSZ3-29" d="M34 1438Q34 1446 37 1448T50 1450H56H71Q73 1448 99 1423T144 1380T198 1319T260 1238T323 1137T385 1013T440 864T485 688T514 485T526 251Q526 134 519 53Q472 -519 162 -860Q139 -885 119 -904T86 -936T71 -949H56Q43 -949 39 -947T34 -937Q88 -883 140 -813Q428 -430 428 251Q428 453 402 628T338 922T245 1146T145 1309T46 1425Q44 1427 42 1429T39 1433T36 1436L34 1438Z"></path><path stroke-width="1" id="MJMAIN-34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"></path><path stroke-width="1" id="MJMAIN-B1" d="M56 320T56 333T70 353H369V502Q369 651 371 655Q376 666 388 666Q402 666 405 654T409 596V500V353H707Q722 345 722 333Q722 320 707 313H409V40H707Q722 32 722 20T707 0H70Q56 7 56 20T70 40H369V313H70Q56 320 56 333Z"></path><path stroke-width="1" id="MJMAIN-D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path><path stroke-width="1" id="MJSZ2-28" d="M180 96T180 250T205 541T266 770T353 944T444 1069T527 1150H555Q561 1144 561 1141Q561 1137 545 1120T504 1072T447 995T386 878T330 721T288 513T272 251Q272 133 280 56Q293 -87 326 -209T399 -405T475 -531T536 -609T561 -640Q561 -643 555 -649H527Q483 -612 443 -568T353 -443T266 -270T205 -41Z"></path><path stroke-width="1" id="MJSZ2-29" d="M35 1138Q35 1150 51 1150H56H69Q113 1113 153 1069T243 944T330 771T391 541T416 250T391 -40T330 -270T243 -443T152 -568T69 -649H56Q43 -649 39 -647T35 -637Q65 -607 110 -548Q283 -316 316 56Q324 133 324 251Q324 368 316 445Q278 877 48 1123Q36 1137 35 1138Z"></path><path stroke-width="1" id="MJMATHI-7A" d="M347 338Q337 338 294 349T231 360Q211 360 197 356T174 346T162 335T155 324L153 320Q150 317 138 317Q117 317 117 325Q117 330 120 339Q133 378 163 406T229 440Q241 442 246 442Q271 442 291 425T329 392T367 375Q389 375 411 408T434 441Q435 442 449 442H462Q468 436 468 434Q468 430 463 420T449 399T432 377T418 358L411 349Q368 298 275 214T160 106L148 94L163 93Q185 93 227 82T290 71Q328 71 360 90T402 140Q406 149 409 151T424 153Q443 153 443 143Q443 138 442 134Q425 72 376 31T278 -11Q252 -11 232 6T193 40T155 57Q111 57 76 -3Q70 -11 59 -11H54H41Q35 -5 35 -2Q35 13 93 84Q132 129 225 214T340 322Q352 338 347 338Z"></path><path stroke-width="1" id="MJMATHI-72" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="1" id="MJMATHI-65" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path><path stroke-width="1" id="MJMATHI-3B8" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"></path><path stroke-width="1" id="MJMAIN-63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z"></path><path stroke-width="1" id="MJMAIN-6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z"></path><path stroke-width="1" id="MJMAIN-73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z"></path><path stroke-width="1" id="MJMAIN-69" d="M69 609Q69 637 87 653T131 669Q154 667 171 652T188 609Q188 579 171 564T129 549Q104 549 87 564T69 609ZM247 0Q232 3 143 3Q132 3 106 3T56 1L34 0H26V46H42Q70 46 91 49Q100 53 102 60T104 102V205V293Q104 345 102 359T88 378Q74 385 41 385H30V408Q30 431 32 431L42 432Q52 433 70 434T106 436Q123 437 142 438T171 441T182 442H185V62Q190 52 197 50T232 46H255V0H247Z"></path><path stroke-width="1" id="MJMAIN-6E" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 122T103 161T103 203Q103 234 103 269T102 328V351Q99 370 88 376T43 385H25V408Q25 431 27 431L37 432Q47 433 65 434T102 436Q119 437 138 438T167 441T178 442H181V402Q181 364 182 364T187 369T199 384T218 402T247 421T285 437Q305 442 336 442Q450 438 463 329Q464 322 464 190V104Q464 66 466 59T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z"></path><path stroke-width="1" id="MJMAIN-7C" d="M139 -249H137Q125 -249 119 -235V251L120 737Q130 750 139 750Q152 750 159 735V-235Q151 -249 141 -249H139Z"></path><path stroke-width="1" id="MJMATHI-3C0" d="M132 -11Q98 -11 98 22V33L111 61Q186 219 220 334L228 358H196Q158 358 142 355T103 336Q92 329 81 318T62 297T53 285Q51 284 38 284Q19 284 19 294Q19 300 38 329T93 391T164 429Q171 431 389 431Q549 431 553 430Q573 423 573 402Q573 371 541 360Q535 358 472 358H408L405 341Q393 269 393 222Q393 170 402 129T421 65T431 37Q431 20 417 5T381 -10Q370 -10 363 -7T347 17T331 77Q330 86 330 121Q330 170 339 226T357 318T367 358H269L268 354Q268 351 249 275T206 114T175 17Q164 -11 132 -11Z"></path><path stroke-width="1" id="MJMATHI-78" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path><path stroke-width="1" id="MJAMS-2234" d="M273 411Q273 437 291 454T334 471Q358 471 375 454T393 411T376 368T333 351Q307 351 290 368T273 411ZM84 38Q110 38 126 21T143 -22Q143 -46 127 -64T83 -82Q57 -82 41 -65T24 -22Q24 4 41 21T84 38ZM524 -22Q524 4 541 21T584 38Q608 38 625 21T643 -22Q643 -45 627 -63T583 -82Q557 -82 541 -65T524 -22Z"></path></defs></svg></body></html>
