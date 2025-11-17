@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2025s on @ntalbs' stuff</title><link>https://ntalbs.github.io/2025/</link><description>Recent content in 2025s on @ntalbs' stuff</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Tue, 04 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://ntalbs.github.io/2025/index.xml" rel="self" type="application/rss+xml"/><item><title>흥미로운 수학 문제: $\sqrt{\,i\,}$ 계산</title><link>https://ntalbs.github.io/2025/interesting-math-problem-sqrt-i/</link><pubDate>Tue, 04 Nov 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/interesting-math-problem-sqrt-i/</guid><description>&lt;p&gt;요즘 유튜브에 자꾸 수학 문제 풀이 동영상이 눈에 띈다. 그 중 흥미로운
+문제를 발견해 정리해보려 한다. 문제는 $\sqrt{\,i\,}$를 를 구하는 것이다.&lt;/p&gt;
+&lt;p&gt;$$%math
+\sqrt{\,i\,} = ?
+$$&lt;/p&gt;</description></item><item><title>SQLite 윈도우 함수</title><link>https://ntalbs.github.io/2025/sqlite-window-functions/</link><pubDate>Sat, 04 Oct 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/sqlite-window-functions/</guid><description>&lt;p&gt;
+&lt;a href="https://sqlite.org/"&gt;SQLite&lt;/a&gt;는 작고 빠른 데이터베이스 엔진이다. 다른 DBMS 처럼 서버
+프로세스들 띄울 필요 없이 명령행 셸(&lt;code class="verbatim"&gt;sqlite3&lt;/code&gt;)로 데이터베이스 파일을
+열어 SQL을 실행할 수 있다. CSV 파일을 바로 SQLite 테이블로 로드할 수
+있어, 간단한 데이터 분석 시 유용하게 사용할 수 있다.&lt;/p&gt;</description></item><item><title>환승 2</title><link>https://ntalbs.github.io/2025/lay-over-2/</link><pubDate>Tue, 16 Sep 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/lay-over-2/</guid><description>&lt;h2 id="1"&gt;1&lt;/h2&gt;
+&lt;p&gt;사촌 동생 다니엘라는 이탈리아 북부 볼차노/보젠(Bolzano/Bozen) 근처에
+산다. 이곳은 알프스 자락에 위치해 매우 아름다운 곳이어서 예전부터 한번
+가보고 싶었지만, 교통이 불편해 쉽게 갈 수 없었다. 구글 맵에서 찾아보니
+항공편이 있을 만한 근처 큰 도시로 밀라노(Milano)와 베네치아(Venezia)가
+보였다. 비행기를 타고 가서도 기차를 3~5시간 타야 한다.&lt;/p&gt;</description></item><item><title>Java 스트림 API 기본</title><link>https://ntalbs.github.io/2025/java-streams-api-basics/</link><pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/java-streams-api-basics/</guid><description>&lt;p&gt;
+Java에 스트림 API가 도입된 것은 2014년 발표된 Java 8부터다. 벌써
+10년도 넘는 세월이 지났지만, 실제로 스트림 API를 사용할 기회는 많지
+않았고, 간단한 작업에도 헤메는 경우가 많았다. 여기 스트림의 기본
+사용법을 정리해 놓고, 필요할 때마다 참고하려 한다.&lt;/p&gt;</description></item><item><title>독서</title><link>https://ntalbs.github.io/2025/reading-books/</link><pubDate>Sun, 27 Jul 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/reading-books/</guid><description>&lt;p&gt;오래간만에 가든 오피스에 가서 책을 뒤적였다. 집에 공간이 부족해 올해
+초 모든 책꽂이를 가든 오피스로 옮겼다. 가든 오피스의 두 벽면을
+책꽂이로 채웠지만, 대부분 아이들 책과 아내 음악책으로 책으로 채워져
+있다. 내 책을 위한 공간은 겨우 두 칸 뿐이다.&lt;/p&gt;</description></item><item><title>Rust 텍스트 블록</title><link>https://ntalbs.github.io/2025/text-blocks-in-rust/</link><pubDate>Wed, 25 Jun 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/text-blocks-in-rust/</guid><description>&lt;h2 id="텍스트-블록"&gt;텍스트 블록&lt;/h2&gt;
+&lt;p&gt;Java에서는 Java 15부터 추가된 텍스트 블록을 사용해 여러 행으로 표현된
+문자열을 다음과 같이 쉽게 정의할 수 있다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;dummy&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&amp;#34;&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; &amp;#34;a&amp;#34;: 10,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; &amp;#34;b&amp;#34;: 20
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; &amp;#34;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;여러 줄의 문자열을 이어붙이지 않아도 되고, 문자열 안에 있는 쌍따옴표를
+이스케이프 없이 그대로 쓸 수 있어 문자열의 최종 모양을 쉽게 파악할 수
+있게 된다. 나는 이게 코드 가독성에 큰 영향을 미치기 때문에 중요하다고
+생각한다.&lt;/p&gt;</description></item><item><title>Org-mode를 노트북으로 사용하기</title><link>https://ntalbs.github.io/2025/org-as-a-notebook/</link><pubDate>Wed, 14 May 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/org-as-a-notebook/</guid><description>&lt;p&gt;&lt;a href="https://jupyter.org/"&gt;주피터 노트북(Jupyter Notebook)&lt;/a&gt;이 세상에
+나온지 꽤 됐지만 그동안 눈길 한 번 주지 않았다. 주피터 노트북에서는
+파이썬을 사용하는 경우가 많은데, 내가 파이썬을 별로 좋아하지 않아서
+그랬던 것 같다. 어찌어찌 하여 쓸 일이 생겼는데, 막상 써 보니 상당히
+괜찮은 것 같았다. 문서에 코드와 그 실행 결과, 설명을 함께 쓸 수 있다는
+점이 마음에 들었다.&lt;/p&gt;</description></item><item><title>유럽 자동차 여행</title><link>https://ntalbs.github.io/2025/driving-in-eu/</link><pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/driving-in-eu/</guid><description>&lt;p&gt;제목은 거창하지만 자동차로 독일에 있는 게제케란 곳을 다녀온 것에
+불과하다. 직접 운전해 유럽을 방문한 것은 처음이었고, 운전석이 오른쪽에
+있는 영국 차로 주행방향이 영국과 반대인 유럽에서 운전한 것도 특별한
+경험이었기에 간단히 정리해보려 한다.&lt;/p&gt;</description></item><item><title>Rust 매개변수 테스트</title><link>https://ntalbs.github.io/2025/parameterized-test-in-rust/</link><pubDate>Mon, 03 Mar 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/parameterized-test-in-rust/</guid><description>&lt;p&gt;Rust에서는 &lt;code&gt;#[test]&lt;/code&gt; 속성을 이용해 테스트 함수를 작성할 수 있지만,
+매개변수 테스트를 위한 별도 지원은 없다. 매개변수 테스트를 작성하려면
+&lt;a href="https://docs.rs/rstest/latest/rstest/"&gt;rstest&lt;/a&gt;와 같은 외부 크레잇을
+사용해야 한다.&lt;/p&gt;</description></item><item><title>세 배열 병합하기</title><link>https://ntalbs.github.io/2025/merging-three-arrays/</link><pubDate>Sun, 02 Feb 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/merging-three-arrays/</guid><description>&lt;p&gt;예전에 코딩 면접에서 정렬되어 있는 배열 세 개를 병합하는 함수를
+구현하라는 문제가 주어진 적이 있다. 한 번에 배열 세 개를 병합하려면
+복잡할테니, 배열 두 개를 먼저 병합한 다음 그걸 세 번째 배열과
+병합하겠다고 했다. 면접관은 그냥 배열 세 개를 직접 병합하는 코드를
+작성하라 했다.&lt;/p&gt;</description></item><item><title>Rust로 구현한 명령행 HTTP 서버</title><link>https://ntalbs.github.io/2025/command-line-http-server-in-rust/</link><pubDate>Fri, 03 Jan 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/command-line-http-server-in-rust/</guid><description>&lt;p&gt;Rust로 명령행 HTTP 서버를 만들어보기로 했다. 간단한 명령행 HTTP 서버는 이미 많이 있지만, 직접 작성해 보면 공부도 될테고 유용하게 사용할 수도 있으며 무엇보다도 재미있을 것 같다.&lt;/p&gt;</description></item></channel></rss>
