@@ -1,4 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>@ntalbs' stuff</title><link>https://ntalbs.github.io/</link><description>Recent content on @ntalbs' stuff</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Tue, 04 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://ntalbs.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>흥미로운 수학 문제: sqrt(i) 계산</title><link>https://ntalbs.github.io/2025/interesting-math-problem-sqrt-i/</link><pubDate>Tue, 04 Nov 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/interesting-math-problem-sqrt-i/</guid><description>&lt;p&gt;요즘 유튜브에 자꾸 수학 문제 풀이 동영상이 눈에 띈다. 그 중 흥미로운
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>@ntalbs' stuff</title><link>https://ntalbs.github.io/</link><description>Recent content on @ntalbs' stuff</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Mon, 08 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://ntalbs.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>오일러 공식</title><link>https://ntalbs.github.io/2025/euler-fomula/</link><pubDate>Mon, 08 Dec 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/euler-fomula/</guid><description>&lt;p&gt;오일러 공식(Euler's formula)는 복소수에서 삼각함수와 복소 지수 함수의
+관계를 나타내는 수학식으로 다음과 같이 나타낸다.&lt;/p&gt;
+&lt;p&gt;$$%math
+\begin{aligned}
+e^{ix} = \cos x + i \sin x
+\end{aligned}
+$$&lt;/p&gt;</description></item><item><title>흥미로운 수학 문제: sqrt(i) 계산</title><link>https://ntalbs.github.io/2025/interesting-math-problem-sqrt-i/</link><pubDate>Tue, 04 Nov 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/interesting-math-problem-sqrt-i/</guid><description>&lt;p&gt;요즘 유튜브에 자꾸 수학 문제 풀이 동영상이 눈에 띈다. 그 중 흥미로운
 문제를 발견해 정리해보려 한다. 문제는 $\sqrt{\,i\,}$를 를 구하는 것이다.&lt;/p&gt;
 &lt;p&gt;$$%math
 \sqrt{\,i\,} = ?

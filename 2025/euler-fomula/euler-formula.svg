@@ -1,0 +1,20 @@
+<svg width="300" height="300" version="1.1" viewBox="-10 0 260 207" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="#000">
+    <path d="m3 113h193m-101-103v195" stroke="#000"/>
+    <path d="m95 113 42-72"/>
+    <path d="m105 96c7 5 8 10 8 17m-18-77h45v77" stroke="#aaa" stroke-width="1" stroke-dasharray="1, 1.5"/>
+    <circle cx="95" cy="113" r="89" stroke-width="0.5"/>
+  </g>
+  <path d="m199 113-10 3 2-3-2-3zm-104-111l3 10-3-2-3 2z" fill="#000"/>
+  <path d="m140 36-2.4 10.2-1.4-3.5-3.6.5z"/>
+  <circle cx="95" cy="24" r="2"/>
+  <circle cx="184" cy="113" r="2"/>
+  <circle cx="140" cy="36" r="2"/>
+  <g font-family="Times" font-size="12px">
+    <text x="75" y="12" fill="#000" font-style="italic">Im<tspan x="187" y="105">Re</tspan></text>
+    <text x="83" y="125" font-style="italic">O</text><text x="175" y="109">1</text>
+    <text x="89" y="21" font-style="italic">i</text>
+    <text x="104" y="47">cos <tspan font-style="italic">θ</tspan></text>
+    <text x="103" y="110"><tspan font-style="italic">θ</tspan></text>
+    <text x="142" y="84">sin <tspan font-style="italic">θ</tspan></text>
+    <text x="143" y="30">e<tspan dy="-4" font-size="8px"><tspan font-style="italic">iθ</tspan></tspan><tspan dy="4"> = cos <tspan font-style="italic">θ</tspan> + <tspan font-style="italic">i</tspan> sin <tspan font-style="italic">θ</tspan></tspan></text></g></svg>
