@@ -1,89 +1,125 @@
-<!DOCTYPE html><html><head><script src="/js/mode.min.js" type="text/javascript"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><script type="text/javascript">(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jce8mxrx8a")</script><meta charset="UTF-8"><meta http-equiv="content-language" content="ko-KR"><meta name="description" content="프로젝트 오일러 20. 100!의 모든 자릿수를 더하면?"><meta name="keywords" content="Clojure,Project Euler,프로젝트  오일러"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 20 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/highlight.min.css"><link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3882204692252974" crossorigin="anonymous"></script><style type="text/css">
-                            .mjpage .MJX-monospace {
-                            font-family: monospace
-                            }
+<!DOCTYPE html><html><head><script src="/js/mode.min.js" type="text/javascript"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><script type="text/javascript">(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jce8mxrx8a")</script><meta charset="UTF-8"><meta http-equiv="content-language" content="ko-KR"><meta name="description" content="프로젝트 오일러 20. 100!의 모든 자릿수를 더하면?"><meta name="keywords" content="Clojure,Project Euler,프로젝트  오일러"><meta name="viewport" content="width=device-width,initial-scale=1"><title>프로젝트 오일러 20 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/highlight.min.css"><link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3882204692252974" crossorigin="anonymous"></script><style id="MJX-SVG-styles">
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
 
-                            .mjpage .MJX-sans-serif {
-                            font-family: sans-serif
-                            }
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
 
-                            .mjpage {
-                            display: inline;
-                            font-style: normal;
-                            font-weight: normal;
-                            line-height: normal;
-                            font-size: 100%;
-                            font-size-adjust: none;
-                            text-indent: 0;
-                            text-align: left;
-                            text-transform: none;
-                            letter-spacing: normal;
-                            word-spacing: normal;
-                            word-wrap: normal;
-                            white-space: nowrap;
-                            float: none;
-                            direction: ltr;
-                            max-width: none;
-                            max-height: none;
-                            min-width: 0;
-                            min-height: 0;
-                            border: 0;
-                            padding: 0;
-                            margin: 0
-                            }
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
 
-                            .mjpage * {
-                            transition: none;
-                            -webkit-transition: none;
-                            -moz-transition: none;
-                            -ms-transition: none;
-                            -o-transition: none
-                            }
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
 
-                            .mjx-svg-href {
-                            fill: blue;
-                            stroke: blue
-                            }
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
 
-                            .MathJax_SVG_LineBox {
-                            display: table!important
-                            }
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
 
-                            .MathJax_SVG_LineBox span {
-                            display: table-cell!important;
-                            width: 10000em!important;
-                            min-width: 0;
-                            max-width: none;
-                            padding: 0;
-                            border: 0;
-                            margin: 0
-                            }
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
 
-                            .mjpage__block {
-                            text-align: center;
-                            margin: 1em 0em;
-                            position: relative;
-                            display: block!important;
-                            text-indent: 0;
-                            max-width: none;
-                            max-height: none;
-                            min-width: 0;
-                            min-height: 0;
-                            width: 100%
-                            }</style></head><body><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">프로젝트 오일러 20</div></div></div><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle unselectable" data-toggle="collapse" data-target="#nav-items">+</button>
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+</style></head><body><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">프로젝트 오일러 20</div></div></div><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle unselectable" data-toggle="collapse" data-target="#nav-items">+</button>
 <a class="navbar-brand unselectable" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><input id="search" type="search" placeholder="Search this site" autocomplete="off"></li><li><a class="unselectable" href="/archive/">Archive</a></li><li><a class="unselectable" href="/tags/">Tags</a></li><li><a class="unselectable" href="/about/">About</a></li><li><a id="mode-switch" class="unselectable" href="#"><svg data-bs-theme-value="dark" class="icon-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 3c.132.0.263.0.393.0a7.5 7.5.0 007.92 12.446A9 9 0 1112 2.992z"></path></svg>
 <svg data-bs-theme-value="light" class="icon-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 12m-4 0a4 4 0 108 0 4 4 0 10-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7-.7.7m0 11.4.7.7m-12.1-.7-.7.7"></path></svg></a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post with-math"><header><p class="post-meta"><time datetime="2015-05-20" itemprop="datePublished">2015-05-20</time>
 on
 <a href="/tags/project-euler/">Project-Euler</a>
-<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 20</h1></header><section class="post-content"><blockquote><p><span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.134ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 1780 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
-<title id="MathJax-SVG-1-Title">100!</title>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
- <use xlink:href="#MJMAIN-31"></use>
- <use xlink:href="#MJMAIN-30" x="500" y="0"></use>
- <use xlink:href="#MJMAIN-30" x="1001" y="0"></use>
- <use xlink:href="#MJMAIN-21" x="1501" y="0"></use>
-</g>
-</svg></span> 의 자릿수를 모두 더하면?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=20">[국어]</a> <a href="https://projecteuler.net/problem=20">[영어]</a></p></blockquote><p>100!은 150자리가 넘는 매우 큰 수라 기본 데이터 타입으로는 이 문제를 해결할 수 없다. 물론 <code>BigInt</code>를 사용하면 아주 쉽게 문제를 풀 수 있다. <a href="/2015/project-euler-016/">문제 16</a>, <a href="/2015/project-euler-013/">문제 13</a>에서 썼던 방법을 응용하면 <code>BigInt</code>를 사용하지 않고 문제를 풀 수 있다.</p><h2 id="방법-1">방법 1</h2><p><code>*'</code>로 곱셈을 하면 <code>long</code>의 범위를 넘는 경우 자동으로 <code>BigInt</code>로 전환된다. 따라서 다음과 같이 <code>factorial</code> 함수를 작성하면 자릿수에 관계 없이 큰 수를 다룰 수 있다. <code>factorial</code> 함수 구현에 대해서는 <a href="/2015/project-euler-015/">문제 15</a>에서도 다루었다.</p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">factorial</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+<a href="/tags/clojure/">Clojure</a></p><h1 class="post-title">프로젝트 오일러 20</h1></header><section class="post-content"><blockquote><p><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="4.023ex" height="1.67ex" role="img" focusable="false" viewBox="0 -716 1778 738" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-1006-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-1006-TEX-N-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path><path id="MJX-1006-TEX-N-21" d="M78 661Q78 682 96 699T138 716T180 700T199 661Q199 654 179 432T158 206Q156 198 139 198Q121 198 119 206Q118 209 98 431T78 661ZM79 61Q79 89 97 105T141 121Q164 119 181 104T198 61Q198 31 181 16T139 1Q114 1 97 16T79 61Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="31" xlink:href="#MJX-1006-TEX-N-31"></use><use data-c="30" xlink:href="#MJX-1006-TEX-N-30" transform="translate(500,0)"></use><use data-c="30" xlink:href="#MJX-1006-TEX-N-30" transform="translate(1000,0)"></use></g><g data-mml-node="mo" transform="translate(1500,0)"><use data-c="21" xlink:href="#MJX-1006-TEX-N-21"></use></g></g></g></svg> 의 자릿수를 모두 더하면?</p><p>문제 자세히 보기: <a href="http://euler.synap.co.kr/prob_detail.php?id=20">[국어]</a> <a href="https://projecteuler.net/problem=20">[영어]</a></p></blockquote><p>100!은 150자리가 넘는 매우 큰 수라 기본 데이터 타입으로는 이 문제를 해결할 수 없다. 물론 <code>BigInt</code>를 사용하면 아주 쉽게 문제를 풀 수 있다. <a href="/2015/project-euler-016/">문제 16</a>, <a href="/2015/project-euler-013/">문제 13</a>에서 썼던 방법을 응용하면 <code>BigInt</code>를 사용하지 않고 문제를 풀 수 있다.</p><h2 id="방법-1">방법 1</h2><p><code>*'</code>로 곱셈을 하면 <code>long</code>의 범위를 넘는 경우 자동으로 <code>BigInt</code>로 전환된다. 따라서 다음과 같이 <code>factorial</code> 함수를 작성하면 자릿수에 관계 없이 큰 수를 다룰 수 있다. <code>factorial</code> 함수 구현에 대해서는 <a href="/2015/project-euler-015/">문제 15</a>에서도 다루었다.</p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">factorial</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">apply </span><span class="nv">*</span><span class="o">'</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="p">(</span><span class="nb">inc </span><span class="nv">n</span><span class="p">))))</span>
 </span></span></code></pre></div><p>100!를 계산한 다음 <a href="/2015/project-euler-016/">문제 16</a>에서 작성한 <code>digits</code> 함수를 이용해 자릿수를 시퀀스로 만들어 모두 더하면 된다.</p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">solve1</span> <span class="p">[]</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nf">factorial</span> <span class="mi">100</span><span class="p">)</span>
@@ -106,4 +142,4 @@ on
 </pre><h2 id="참고">참고</h2><ul><li><a href="https://github.com/ntalbs/euler-clj/blob/mainline/src/p020.clj">프로젝트 오일러 20 풀이 소스 코드</a></li><li><a href="/2015/project-euler-016/">프로젝트 오일러 16</a></li><li><a href="/2015/project-euler-015/">프로젝트 오일러 15</a></li><li><a href="/2015/project-euler-013/">프로젝트 오일러 13</a></li></ul></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="/2015/loading-cache/" id="article-nav-newer">Guava Cache 제대로 사용하기</a>
-<a class="article-nav-link-wrap next" href="/2015/project-euler-019/" id="article-nav-older">프로젝트 오일러 19</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2015/project-euler-020/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="/js/index.min.js" type="text/javascript"></script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2025 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer><svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs id="MathJax_SVG_glyphs"><path stroke-width="1" id="MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="1" id="MJMAIN-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path><path stroke-width="1" id="MJMAIN-21" d="M78 661Q78 682 96 699T138 716T180 700T199 661Q199 654 179 432T158 206Q156 198 139 198Q121 198 119 206Q118 209 98 431T78 661ZM79 61Q79 89 97 105T141 121Q164 119 181 104T198 61Q198 31 181 16T139 1Q114 1 97 16T79 61Z"></path></defs></svg></body></html>
+<a class="article-nav-link-wrap next" href="/2015/project-euler-019/" id="article-nav-older">프로젝트 오일러 19</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2015/project-euler-020/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="/js/index.min.js" type="text/javascript"></script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2026 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer></body></html>

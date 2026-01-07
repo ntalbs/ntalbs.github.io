@@ -1,100 +1,124 @@
-<!DOCTYPE html><html><head><script src="/js/mode.min.js" type="text/javascript"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><script type="text/javascript">(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jce8mxrx8a")</script><meta charset="UTF-8"><meta http-equiv="content-language" content="ko-KR"><meta name="description" content="Emacs를 이용한 단순 반복 작업"><meta name="keywords" content="Emacs"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Emacs를 이용한 단순 반복 작업 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/highlight.min.css"><link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3882204692252974" crossorigin="anonymous"></script><style type="text/css">
-                            .mjpage .MJX-monospace {
-                            font-family: monospace
-                            }
+<!DOCTYPE html><html><head><script src="/js/mode.min.js" type="text/javascript"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta name="google-site-verification" content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><script type="text/javascript">(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jce8mxrx8a")</script><meta charset="UTF-8"><meta http-equiv="content-language" content="ko-KR"><meta name="description" content="Emacs를 이용한 단순 반복 작업"><meta name="keywords" content="Emacs"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Emacs를 이용한 단순 반복 작업 @ntalbs' stuff</title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/highlight.min.css"><link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3882204692252974" crossorigin="anonymous"></script><style id="MJX-SVG-styles">
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
 
-                            .mjpage .MJX-sans-serif {
-                            font-family: sans-serif
-                            }
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
 
-                            .mjpage {
-                            display: inline;
-                            font-style: normal;
-                            font-weight: normal;
-                            line-height: normal;
-                            font-size: 100%;
-                            font-size-adjust: none;
-                            text-indent: 0;
-                            text-align: left;
-                            text-transform: none;
-                            letter-spacing: normal;
-                            word-spacing: normal;
-                            word-wrap: normal;
-                            white-space: nowrap;
-                            float: none;
-                            direction: ltr;
-                            max-width: none;
-                            max-height: none;
-                            min-width: 0;
-                            min-height: 0;
-                            border: 0;
-                            padding: 0;
-                            margin: 0
-                            }
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
 
-                            .mjpage * {
-                            transition: none;
-                            -webkit-transition: none;
-                            -moz-transition: none;
-                            -ms-transition: none;
-                            -o-transition: none
-                            }
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
 
-                            .mjx-svg-href {
-                            fill: blue;
-                            stroke: blue
-                            }
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
 
-                            .MathJax_SVG_LineBox {
-                            display: table!important
-                            }
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
 
-                            .MathJax_SVG_LineBox span {
-                            display: table-cell!important;
-                            width: 10000em!important;
-                            min-width: 0;
-                            max-width: none;
-                            padding: 0;
-                            border: 0;
-                            margin: 0
-                            }
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
 
-                            .mjpage__block {
-                            text-align: center;
-                            margin: 1em 0em;
-                            position: relative;
-                            display: block!important;
-                            text-indent: 0;
-                            max-width: none;
-                            max-height: none;
-                            min-width: 0;
-                            min-height: 0;
-                            width: 100%
-                            }</style></head><body><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">Emacs를 이용한 단순 반복 작업</div></div></div><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle unselectable" data-toggle="collapse" data-target="#nav-items">+</button>
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+</style></head><body><div id="progress"><div id="bar"></div><div class="container"><div id="scroll-title">Emacs를 이용한 단순 반복 작업</div></div></div><nav class="navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle unselectable" data-toggle="collapse" data-target="#nav-items">+</button>
 <a class="navbar-brand unselectable" href="/">@ntalbs' stuff</a></div><div class="navbar-items collapsed" id="nav-items"><ul><li><input id="search" type="search" placeholder="Search this site" autocomplete="off"></li><li><a class="unselectable" href="/archive/">Archive</a></li><li><a class="unselectable" href="/tags/">Tags</a></li><li><a class="unselectable" href="/about/">About</a></li><li><a id="mode-switch" class="unselectable" href="#"><svg data-bs-theme-value="dark" class="icon-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 3c.132.0.263.0.393.0a7.5 7.5.0 007.92 12.446A9 9 0 1112 2.992z"></path></svg>
 <svg data-bs-theme-value="light" class="icon-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 12m-4 0a4 4 0 108 0 4 4 0 10-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7-.7.7m0 11.4.7.7m-12.1-.7-.7.7"></path></svg></a></li></ul></div></div></nav><header class="page-head"><div class="container"><p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class="container" role="main"><article class="post with-math"><header><p class="post-meta"><time datetime="2016-10-12" itemprop="datePublished">2016-10-12</time>
 on
-<a href="/tags/emacs/">Emacs</a></p><h1 class="post-title">Emacs를 이용한 단순 반복 작업</h1></header><section class="post-content"><p>며칠 전 아주 지겨워 보이는 작업을 하게 되었다. 엑셀 파일에 있는 정보를 참고해 설정 파일을 수정하는 일이었다. 설정 파일은 국가별 설정 정보를 담고 있는데 각 국가별 설정에 새로운 필드를 추가해야 하고 필드의 값은 엑셀 파일을 참조해 지정해야 했다.</p><p>딱 봐도 지루하고 짜증나는 일이었다. 설정 파일에서 국가 코드를 확인하고, 엑셀 파일에서 해당 국가 코드를 찾아 그 코드에 매칭되는 정보를 복사한 다음, 설정 파일에 새로운 필드를 추가하고 복사한 값을 붙여넣어야 한다. 설정 파일에는 약 250개의 국가 코드가 있었다. 국가 코드 하나 당 30초씩 걸린다면 <span class="mjpage"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="17.435ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 7506.7 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
-<title id="MathJax-SVG-1-Title">30 \times 250 = 7,500</title>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
- <use xlink:href="#MJMAIN-33"></use>
- <use xlink:href="#MJMAIN-30" x="500" y="0"></use>
- <use xlink:href="#MJMAIN-D7" x="1223" y="0"></use>
-<g transform="translate(2223,0)">
- <use xlink:href="#MJMAIN-32"></use>
- <use xlink:href="#MJMAIN-35" x="500" y="0"></use>
- <use xlink:href="#MJMAIN-30" x="1001" y="0"></use>
-</g>
- <use xlink:href="#MJMAIN-3D" x="4003" y="0"></use>
- <use xlink:href="#MJMAIN-37" x="5059" y="0"></use>
- <use xlink:href="#MJMAIN-2C" x="5560" y="0"></use>
-<g transform="translate(6005,0)">
- <use xlink:href="#MJMAIN-35"></use>
- <use xlink:href="#MJMAIN-30" x="500" y="0"></use>
- <use xlink:href="#MJMAIN-30" x="1001" y="0"></use>
-</g>
-</g>
-</svg></span>초, 125분이 걸릴 것이다. 익숙해지면 속도가 빨라지겠지만 처음에 버벅거릴 것을 고려하면 작업 시간을 두 시간 이상으로 잡는 게 타당할 것이다. 엑셀 파일과 설정 파일을 왔다갔다 하며 두 시간 넘게 작업할 생각을 하니 눈 앞이 노래졌다.</p><p>게다가 작업을 마친 후 중간에 실수가 없었다고 어떻게 장담할 수 있을까? 확인 작업이 필요하다면 시간도 늘어날 뿐 아니라 지겨운 작업을 또 해야 한다. 잠시 눈을 감고 생각해 보았다. 어떻게 하면 이 지겨운 작업을 회피할 수 있을까?</p><p>설정 파일의 각 국가 설정에 새로운 키를 추가하는 것은 비교적 쉬운 일이었다. 키보드 매크로를 이용하면 금방 끝낼 수 있다. 키에 대응될 값이 국가 코드에 따라 다르고 그 값은 엑셀 파일을 참고해야 한다는 점이 문제였다. 잠깐 국가 코드 몇 개를 엑셀 파일에서 찾아봤다. 이런 식이라면 정말 오랫동안 지겨운 작업을 해야 할게 뻔했다.</p><p>그러다 갑자기 'Emacs Lisp으로 함수를 만들어 작업을 해보면 어떨까?' 하는 생각이 떠올랐다. 국가 코드를 입력하면 그에 대응되는 값을 리턴하는 함수는 다음과 같은 식으로 만들 수 있을 것이다.</p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">f</span> <span class="p">(</span><span class="nv">cc</span><span class="p">)</span>
+<a href="/tags/emacs/">Emacs</a></p><h1 class="post-title">Emacs를 이용한 단순 반복 작업</h1></header><section class="post-content"><p>며칠 전 아주 지겨워 보이는 작업을 하게 되었다. 엑셀 파일에 있는 정보를 참고해 설정 파일을 수정하는 일이었다. 설정 파일은 국가별 설정 정보를 담고 있는데 각 국가별 설정에 새로운 필드를 추가해야 하고 필드의 값은 엑셀 파일을 참조해 지정해야 했다.</p><p>딱 봐도 지루하고 짜증나는 일이었다. 설정 파일에서 국가 코드를 확인하고, 엑셀 파일에서 해당 국가 코드를 찾아 그 코드에 매칭되는 정보를 복사한 다음, 설정 파일에 새로운 필드를 추가하고 복사한 값을 붙여넣어야 한다. 설정 파일에는 약 250개의 국가 코드가 있었다. 국가 코드 하나 당 30초씩 걸린다면 <svg style="vertical-align: -0.439ex;" xmlns="http://www.w3.org/2000/svg" width="16.97ex" height="1.968ex" role="img" focusable="false" viewBox="0 -676 7500.7 870" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-829-TEX-N-33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path id="MJX-829-TEX-N-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path><path id="MJX-829-TEX-N-D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path><path id="MJX-829-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path id="MJX-829-TEX-N-35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path><path id="MJX-829-TEX-N-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path id="MJX-829-TEX-N-37" d="M55 458Q56 460 72 567L88 674Q88 676 108 676H128V672Q128 662 143 655T195 646T364 644H485V605L417 512Q408 500 387 472T360 435T339 403T319 367T305 330T292 284T284 230T278 162T275 80Q275 66 275 52T274 28V19Q270 2 255 -10T221 -22Q210 -22 200 -19T179 0T168 40Q168 198 265 368Q285 400 349 489L395 552H302Q128 552 119 546Q113 543 108 522T98 479L95 458V455H55V458Z"></path><path id="MJX-829-TEX-N-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="33" xlink:href="#MJX-829-TEX-N-33"></use><use data-c="30" xlink:href="#MJX-829-TEX-N-30" transform="translate(500,0)"></use></g><g data-mml-node="mo" transform="translate(1222.2,0)"><use data-c="D7" xlink:href="#MJX-829-TEX-N-D7"></use></g><g data-mml-node="mn" transform="translate(2222.4,0)"><use data-c="32" xlink:href="#MJX-829-TEX-N-32"></use><use data-c="35" xlink:href="#MJX-829-TEX-N-35" transform="translate(500,0)"></use><use data-c="30" xlink:href="#MJX-829-TEX-N-30" transform="translate(1000,0)"></use></g><g data-mml-node="mo" transform="translate(4000.2,0)"><use data-c="3D" xlink:href="#MJX-829-TEX-N-3D"></use></g><g data-mml-node="mn" transform="translate(5056,0)"><use data-c="37" xlink:href="#MJX-829-TEX-N-37"></use></g><g data-mml-node="mo" transform="translate(5556,0)"><use data-c="2C" xlink:href="#MJX-829-TEX-N-2C"></use></g><g data-mml-node="mn" transform="translate(6000.7,0)"><use data-c="35" xlink:href="#MJX-829-TEX-N-35"></use><use data-c="30" xlink:href="#MJX-829-TEX-N-30" transform="translate(500,0)"></use><use data-c="30" xlink:href="#MJX-829-TEX-N-30" transform="translate(1000,0)"></use></g></g></g></svg>초, 125분이 걸릴 것이다. 익숙해지면 속도가 빨라지겠지만 처음에 버벅거릴 것을 고려하면 작업 시간을 두 시간 이상으로 잡는 게 타당할 것이다. 엑셀 파일과 설정 파일을 왔다갔다 하며 두 시간 넘게 작업할 생각을 하니 눈 앞이 노래졌다.</p><p>게다가 작업을 마친 후 중간에 실수가 없었다고 어떻게 장담할 수 있을까? 확인 작업이 필요하다면 시간도 늘어날 뿐 아니라 지겨운 작업을 또 해야 한다. 잠시 눈을 감고 생각해 보았다. 어떻게 하면 이 지겨운 작업을 회피할 수 있을까?</p><p>설정 파일의 각 국가 설정에 새로운 키를 추가하는 것은 비교적 쉬운 일이었다. 키보드 매크로를 이용하면 금방 끝낼 수 있다. 키에 대응될 값이 국가 코드에 따라 다르고 그 값은 엑셀 파일을 참고해야 한다는 점이 문제였다. 잠깐 국가 코드 몇 개를 엑셀 파일에서 찾아봤다. 이런 식이라면 정말 오랫동안 지겨운 작업을 해야 할게 뻔했다.</p><p>그러다 갑자기 'Emacs Lisp으로 함수를 만들어 작업을 해보면 어떨까?' 하는 생각이 떠올랐다. 국가 코드를 입력하면 그에 대응되는 값을 리턴하는 함수는 다음과 같은 식으로 만들 수 있을 것이다.</p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">f</span> <span class="p">(</span><span class="nv">cc</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">cond</span> <span class="p">((</span><span class="nf">equal</span> <span class="nv">cc</span> <span class="s">"AT"</span><span class="p">)</span> <span class="s">"DE"</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="p">((</span><span class="nf">equal</span> <span class="nv">cc</span> <span class="s">"DE"</span><span class="p">)</span> <span class="s">"DE"</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="p">((</span><span class="nf">equal</span> <span class="nv">cc</span> <span class="s">"JP"</span><span class="p">)</span> <span class="s">"JP"</span><span class="p">)</span>
@@ -132,4 +156,4 @@ on
 </span></span></code></pre></div><p>다행히 다음 입력 포인트로 이동하는 것은 단순했다. 아홉 줄 아래로 내려간 다음 앞으로 두 칸 이동하면 다음 입력 포인트가 되었다. 함수 마지막에서 다시 자신을 호출해 무한 루프를 만들었다. 그리고 위 함수에 적절한 단축키를 지정했다.</p><p>매핑 값을 입력해야 할 위치에서 단축키를 눌러 함수를 실행시키면 된다. 해당 섹션의 국가 코드를 입력하면 매핑 값이 입력되고 다음 입력 포인트로 커서가 이동한다. 계속 국가 코드만 입력하면 된다. 이렇게 해서 두 시간 동안 눈 빠지게 해야 할 작업을 조금 편하게 할 수 있었다.</p><p>여전히 실수가 개입할 여지가 있긴 하다. 국가 코드를 직접 입력해야 하기 때문이다. 내가 Emacs Lisp을 잘 알았다면 설정파일에서 해당 포인트의 국가 코드를 캡쳐해 사용하도록 할 수 있었을 것이다. 그러나 엑셀 파일과 설정 파일을 왔다갔다 하며 작업하는 것보다는 훨신 나아졌다.</p><p>작업 시간은 두 시간 정도 걸린 것 같았다. 처음 추정했던 작업 시간보다 줄어들지는 않았다. Emacs Lisp에 익숙하지 않아 함수를 작성하는 데 시간이 걸렸기 때문이다. 그러나 두 시간 동안 엑셀 파일과 설정 파일에서 오류를 발견해 수정했다. 일부 국가 코드는 엑셀 파일에만 있고 일부 국가 코드는 설정 파일에만 있는 것을 발견해 차이점을 보고했다. 무엇보다고 작업을 하면서 짜증이 나지 않았고 작업이 끝난 후 녹초가 되지도 않았다.</p></section><footer class="post-footer"><div class="social button-box"><a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
 <script async="" src="//platform.twitter.com/widgets.js"></script></div><nav id="article-nav"><a class="article-nav-link-wrap previous" href="/2016/project-euler-078/" id="article-nav-newer">프로젝트 오일러 78</a>
-<a class="article-nav-link-wrap next" href="/2016/on-call/" id="article-nav-older">On Call</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2016/avoiding-tedious-task-with-emacs/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="/js/index.min.js" type="text/javascript"></script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2025 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer><svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs id="MathJax_SVG_glyphs"><path stroke-width="1" id="MJMAIN-33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path stroke-width="1" id="MJMAIN-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path><path stroke-width="1" id="MJMAIN-D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path><path stroke-width="1" id="MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path stroke-width="1" id="MJMAIN-35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path><path stroke-width="1" id="MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path stroke-width="1" id="MJMAIN-37" d="M55 458Q56 460 72 567L88 674Q88 676 108 676H128V672Q128 662 143 655T195 646T364 644H485V605L417 512Q408 500 387 472T360 435T339 403T319 367T305 330T292 284T284 230T278 162T275 80Q275 66 275 52T274 28V19Q270 2 255 -10T221 -22Q210 -22 200 -19T179 0T168 40Q168 198 265 368Q285 400 349 489L395 552H302Q128 552 119 546Q113 543 108 522T98 479L95 458V455H55V458Z"></path><path stroke-width="1" id="MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></defs></svg></body></html>
+<a class="article-nav-link-wrap next" href="/2016/on-call/" id="article-nav-older">On Call</a></nav></footer></article></main><section class="section"><div class="container"><aside><div id="disqus_thread"></div></aside><script type="text/javascript">var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2016/avoiding-tedious-task-with-emacs/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></section><section class="section"><div class="container has-text-centered"><p></p></div></section><script src="/js/index.min.js" type="text/javascript"></script><footer class="page-bottom"><div class="inner"><section class="copyright">© 2008-2026 <a href="/about">ntalbs</a></section><section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section></div></footer></body></html>

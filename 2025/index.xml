@@ -35,7 +35,7 @@ Java에 스트림 API가 도입된 것은 2014년 발표된 Java 8부터다. 벌
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; }
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; &amp;#34;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;여러 줄의 문자열을 이어붙이지 않아도 되고, 문자열 안에 있는 쌍따옴표를
 이스케이프 없이 그대로 쓸 수 있어 문자열의 최종 모양을 쉽게 파악할 수
 있게 된다. 나는 이게 코드 가독성에 큰 영향을 미치기 때문에 중요하다고
@@ -44,10 +44,10 @@ Java에 스트림 API가 도입된 것은 2014년 발표된 Java 8부터다. 벌
 파이썬을 사용하는 경우가 많은데, 내가 파이썬을 별로 좋아하지 않아서
 그랬던 것 같다. 어찌어찌 하여 쓸 일이 생겼는데, 막상 써 보니 상당히
 괜찮은 것 같았다. 문서에 코드와 그 실행 결과, 설명을 함께 쓸 수 있다는
-점이 마음에 들었다.&lt;/p&gt;</description></item><item><title>유럽 자동차 여행</title><link>https://ntalbs.github.io/2025/driving-in-eu/</link><pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/driving-in-eu/</guid><description>&lt;p&gt;제목은 거창하지만 자동차로 독일에 있는 게제케란 곳을 다녀온 것에
-불과하다. 직접 운전해 유럽을 방문한 것은 처음이었고, 운전석이 오른쪽에
-있는 영국 차로 주행방향이 영국과 반대인 유럽에서 운전한 것도 특별한
-경험이었기에 간단히 정리해보려 한다.&lt;/p&gt;</description></item><item><title>Rust 매개변수 테스트</title><link>https://ntalbs.github.io/2025/parameterized-test-in-rust/</link><pubDate>Mon, 03 Mar 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/parameterized-test-in-rust/</guid><description>&lt;p&gt;Rust에서는 &lt;code&gt;#[test]&lt;/code&gt; 속성을 이용해 테스트 함수를 작성할 수 있지만,
+점이 마음에 들었다.&lt;/p&gt;</description></item><item><title>유럽 자동차 여행</title><link>https://ntalbs.github.io/2025/driving-in-eu/</link><pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/driving-in-eu/</guid><description>&lt;p&gt;제목은 거창하지만 자동차로 독일에 있는 게제케(Geseke)란 곳을 다녀온
+것에 불과하다. 직접 운전해 유럽을 방문한 것은 처음이었고, 운전석이
+오른쪽에 있는 영국 차로 주행방향이 영국과 반대인 유럽에서 운전한 것도
+특별한 경험이었기에 간단히 정리해보려 한다.&lt;/p&gt;</description></item><item><title>Rust 매개변수 테스트</title><link>https://ntalbs.github.io/2025/parameterized-test-in-rust/</link><pubDate>Mon, 03 Mar 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/parameterized-test-in-rust/</guid><description>&lt;p&gt;Rust에서는 &lt;code&gt;#[test]&lt;/code&gt; 속성을 이용해 테스트 함수를 작성할 수 있지만,
 매개변수 테스트를 위한 별도 지원은 없다. 매개변수 테스트를 작성하려면
 &lt;a href="https://docs.rs/rstest/latest/rstest/"&gt;rstest&lt;/a&gt;와 같은 외부 크레잇을
 사용해야 한다.&lt;/p&gt;</description></item><item><title>세 배열 병합하기</title><link>https://ntalbs.github.io/2025/merging-three-arrays/</link><pubDate>Sun, 02 Feb 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/merging-three-arrays/</guid><description>&lt;p&gt;예전에 코딩 면접에서 정렬되어 있는 배열 세 개를 병합하는 함수를
