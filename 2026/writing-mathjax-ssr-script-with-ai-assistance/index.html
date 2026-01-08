@@ -1,0 +1,124 @@
+<!doctype html><html><head><script src=/js/mode.min.js type=text/javascript></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><script type=text/javascript>(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jce8mxrx8a")</script><meta charset=UTF-8><meta http-equiv=content-language content='ko-KR'><meta name=description content="1 예전부터 블로그에 포함된 수식은 mathjax-node-page(이하 mjpage)와 Bash 스크립트 조합해 사용해 SVG로 렌더링했다. mjpage는 Node.js 스크립트로 STDIN으로 소스를 입력받아 렌더링 결과를 STDOUT으로 출력는 방식이라 Bash 스크립트를 함께 사용해야 했다. HTML 파일마다 mjpage를 호출하다 보니 속도가 이만저만 느린 게 아니었다. md5 체크섬을 도입해 변경된 글만 골라 렌더링하도록 개선했지만, 처리 속도는 여전히 만족스럽지 못했다.
+"><meta name=keywords content="MathJax,Hugo,Server-side rendering"><meta name=viewport content="width=device-width,initial-scale=1"><title>AI를 활용한 MathJax 서버측 렌더링 스크립트 작성 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/highlight.min.css><link rel=stylesheet href=https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3882204692252974" crossorigin=anonymous></script></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>AI를 활용한 MathJax 서버측 렌더링 스크립트 작성</div></div></div><nav class=navbar role=navigation><div class=container><div class=navbar-header><button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
+<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a></div><div class="navbar-items collapsed" id=nav-items><ul><li><input id=search type=search placeholder="Search this site" autocomplete=off></li><li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#><svg data-bs-theme-value="dark" class="icon-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3c.132.0.263.0.393.0a7.5 7.5.0 007.92 12.446A9 9 0 1112 2.992z"/></svg>
+<svg data-bs-theme-value="light" class="icon-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-4 0a4 4 0 108 0 4 4 0 10-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7-.7.7m0 11.4.7.7m-12.1-.7-.7.7"/></svg></a></li></ul></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2026-01-08 itemprop=datePublished>2026-01-08</time>
+on
+<a href=/tags/%ec%83%81%eb%85%90/>상념</a></p><h1 class=post-title>AI를 활용한 MathJax 서버측 렌더링 스크립트 작성</h1></header><section class=post-content><h2 id=1>1</h2><p>예전부터 블로그에 포함된 수식은
+<a href=https://github.com/pkra/mathjax-node-page>mathjax-node-page</a>(이하
+<code>mjpage</code>)와 Bash 스크립트 조합해 사용해 SVG로 렌더링했다. <code>mjpage</code>는
+Node.js 스크립트로 STDIN으로 소스를 입력받아 렌더링 결과를 STDOUT으로
+출력는 방식이라 Bash 스크립트를 함께 사용해야 했다. HTML 파일마다
+<code>mjpage</code>를 호출하다 보니 속도가 이만저만 느린 게 아니었다. <code>md5</code>
+체크섬을 도입해 변경된 글만 골라 렌더링하도록 개선했지만, 처리 속도는
+여전히 만족스럽지 못했다.</p><p>블로그 글을 자주 쓰는 편은 아니라 그럭저럭 참고 써왔는데, <code>mjpage</code>에
+문제가 터졌다. 언제부턴가 <code>\cancel{...}</code>을 사용하는 수식에서 스크립트
+에러가 발생했다. 원인은 찾았지만 문제를 해결하지는
+못했다. 임시방편으로 예전에 렌더링에 성공했던 페이지를 복원하고,
+문제의 페이지를 스크립트 실행 대상에서 제외하는 방식으로 문제를
+회피했다. 당장 수식이 깨지는 상황은 면했지만, 근본적인 원인을 해결한
+게 아니었기에 마음 한구석이 늘 찝찝했다.</p><p>게다가 MathJax 3가 출시된 후 <code>mjpage</code> 제작자가 MathJax 3를 쓰라는
+권고와 함께 GitHub 저장소를 아카이빙 해버렸다. 제작자는 MathJax 3로
+비슷한 작업을 쉽게 할 수 있다고 설명했지만, 나는 한두 번 시도해보다
+포기하고 말았다. 문서를 읽어봐도 이해하기가 어려웠고, 시간을 들여
+작업해도 스크립트가 제대로 동작하지 않았다. Node.js에 익숙하지 않았던
+탓도 있을 것이다. 다행히 <code>mjpage</code>는 여전히 Npm으로 설치할 수 있었고,
+대부분의 수식을 문제 없이 렌더링했다. 그렇게 몇 년이 지났다.</p><h2 id=2>2</h2><p>불현듯 AI의 도움을 받아 다시 시도해 봐야겠다는 생각이 들었다. <a href=https://gemini.google.com>구글
+제미니</a>에서 MathJax 3로 서버측 렌더링을
+어떻게 하냐고 물었더니 답을 준다. 설명은 길었지만 도움은 되지
+않았다. 질문을 너무 대충해서 그런가 보다 싶었다. 정적 사이트 생성기로
+블로그를 생성할 때 MathJax3로 수식을 렌더링하고 싶다고 좀더 구체적으로
+물었더니 다시 답을 준다. 여전히 내가 원하는 수준의 답이 아니었다. 내가
+사용하는 Hugo에서 어떻게 해야 하냐고 물으니 그제야 좀 쓸만한 답이
+나오기 시작했다.</p><p>제미니가 알려준 답은 마크다운 파일을 읽어 그 안에 있는 있는 수식을
+SVG로 렌더링하는 방식이었다. 내 블로그 소스 파일이 SVG로 복잡해지는
+것을 원치 않았기에, Hugo가 생성한 HTML을 바탕으로 작업하고 싶다고
+했더니 HTML을 읽어 처리하는 스크립트를 뱉어냈다. HTML 파싱을 위해
+JSDOM을 사용하는 게 보였다. JSDOM으로 DOM을 구성한 뒤 각 노드를
+순회하면서 수식이 포함된 텍스트를 추출해 SVG로 렌더링하는 구조였다.
+이 정도면 조금 손봐서 사용할 수 있을 것 같다.</p><p>제미니가 생성한 스크립트를 수정하기 시작했다. 먼저 입력 디렉터리와
+출력 디렉터리를 분리했다. 제미니가 준 코드는 Hugo가 생성한 HTML을 직접
+덮어쓰는 방식이었지만, 나는 원래 HTML은 그대로 둔 채 수식을 렌더링한
+결과를 별도 디렉터리에 저장하고 싶었다. 그래야 나중에 문제가
+생기더라도 원인을 분석하기가 수월하다. Node.js의 <code>fs</code> 모듈을 사용해
+수식을 렌더링하는 동시에, 입력 디렉터리 구조를 출력 디렉터리에 그대로
+복사하도록 수정했다.</p><p>출력 디렉터리에 가서 확인해보니 파일이 많이 빠져있었다. 아차차,
+제미니가 생성한 스크립트는 HTML 파일만 처리하도록 짜여 있었던
+것이다. 디렉터리 구조 전체를 복사해야 하므로 모든 파일을 읽어
+처리하도록 수정했다. HTML 파일인 경우에는 수식을 렌러링하고, 수식이
+없는 HTML이나 이미지, CSS 등 기타 파일은 복사하도록 했다. 예전에 Bash
+스크립트를 쓸때 생성했던 <code>*.md5</code> 파일까지 함께 복사되는게 보였다. MD5
+방식은 더 이상 사용하지 않을 것이므로 해당 파일들을 건너뛰도록
+처리했다.</p><h2 id=3>3</h2><p>수식 렌더링이 잘 된다. 그런데 수식이 모두 왼쪽으로 정렬되어
+있었다. 예전처럼 중앙 정렬로 바꾸기 위해 직접 코드를 수정했지만 잘
+되지 않았다. 결국 다시 제미니의 도움을 받아 수정했다. 잘
+동작한다. 깨진 수식이 없는지 블로그의 모든 페이지를 점검했다. 예전에는
+수식에서 <code>\cancel{...}</code>을 사용하려면 <code>\require{cancel}</code>을 포함해야
+했는데, 여기서 에러가 발생한다. MathJax 최신 버전에서는 이게 없어도
+<code>\cancel{...}</code>이 잘 작동하므로, 문제가 있는 수식을 모두 찾아 적절히
+수정했다.</p><p>수식을 수정한 다음 제대로 보이는지 확인하려면 렌더링을 다시 해야
+하는데, 그때마다 전체 파일을 다시 처리하려니 시간이 너무 오래
+걸렸다. 예전에는 MD5로 파일의 체크섬으로 파일 변경 여부를
+확인했다. 생각해보니 파일의 수정 시각을 비교하는 방식이 더 간단할 것
+같다. 입력 디렉터리에 있는 파일이 출력 디렉터리에 있는 파일보다 나중에
+수정된 경우에만 처리하도록 스크립트를 수정했다. 출력 디렉터리에
+대응하는 파일이 없는 경우에는 당연히 새로 복사/렌더링을 해야 한다.</p><p>안타깝지만 이 방법은 동작하지 않았다. Hugo로 블로그를 빌드하면 모든
+파일을 다시 생성하기 때문이다. 다시 MD5를 써야 했지만 방식은 예전과
+다르다. <code>.md5</code> 파일을 만드는 대신 <code>math-cache.json</code> 파일을 만들어
+여기에 모든 파일의 MD5를 저장해둔다. 나중에 스크립트를 실행하면
+로딩해둔 다음 각 파일의 MD5를 계산해 캐시에 있는 값과 비교해 파일이
+변경되었는지 확인한다. Bash가 아닌 Node.js에서 하니 이런 작업이
+쉽다. 물론 이것도 제미니가 알려준 방법이다.</p><p>Org-mode로 작성한 파일에서는 수식 블럭이 렌더링되지 않는 문제를
+발견했다. 마크다운에서는 수식 블럭을 <code>$$</code>로 감싸고 Org-mode에서는
+<code>#+BEGIN_LATEX</code>, <code>#+END_LATEX</code>로 감싸는데, HTML로 변환했을 때 구조가
+달랐다. 마크다운은 HTML로 바뀐 후에도 텍스트 노드 안에 수식이 <code>$$</code>로
+감싸여 있지만, Org-mode의 경우 수식 블럭이 <code>&lt;div class="latex-block"></code>
+안에 들어 있었다. 스크립트를 보완해 노드의 클래스가 <code>latex-block</code>인
+경우에도 수식 텍스트를 추출해 렌더링하도록 수정했다.</p><h2 id=4>4</h2><p>일단 일을 시작한 김에 조금 더 욕심을 내서 명령행 인터페이스를
+추가했다. 제미니에게 Node.js에서 널리 사용되는 명령행 인자 파서를
+물어보니 몇 가지를 알려주었다. 나는 그 중
+<a href=https://www.npmjs.com/package/commander>Commander.js</a>를
+선택했다.</p><p>파일을 처리할 때마다 해당 파일 수식을 렌터링 했는지, 그냥 복사만
+했는지, 아니면 건너뛰었는지 (이미 해당 파일이 복사/렌더링 된 경우)
+메시지를 표시했다. 대부분의 경우는 파일 하나 또는 몇 개를 수정하고
+렌더링하기 때문에 모든 파일이 어떻게 처리됐는지 볼 필요는 없다. 렌더링
+된 파일에 대한 메시지만 표시하도록 <code>--quite</code> 옵션이 있으면 유용할 것
+같다. 아에 파일 처리 결과는 출력하지 않게 하는 <code>--quiter</code> 옵션, 캐시
+여부와 상관 없이 무조건 렌더링하게 하는 <code>--force</code> 옵션도 추가했다.</p><p>이것저것 시험해보다 명령행 인터페이스를 다음과 같이
+정의했다. 이 정도면 끌끔하게 CLI를 정의할 수 있는 것 같다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>program</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>description</span><span class=p>(</span><span class=s1>&#39;MathJax renderer. Read HTML and render math formula to SVG.&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>option</span><span class=p>(</span><span class=s1>&#39;--src-dir &lt;path&gt;&#39;</span><span class=p>,</span> <span class=s1>&#39;source directory&#39;</span><span class=p>,</span> <span class=sb>`</span><span class=si>${</span><span class=nx>process</span><span class=p>.</span><span class=nx>env</span><span class=p>.</span><span class=nx>BLOG_BASE_DIR</span><span class=si>}</span><span class=sb>/public`</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>option</span><span class=p>(</span><span class=s1>&#39;--dest-dir &lt;path&gt;&#39;</span><span class=p>,</span> <span class=s1>&#39;destination directory&#39;</span><span class=p>,</span> <span class=sb>`</span><span class=si>${</span><span class=nx>process</span><span class=p>.</span><span class=nx>env</span><span class=p>.</span><span class=nx>BLOG_BASE_DIR</span><span class=si>}</span><span class=sb>/rendered-public`</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>option</span><span class=p>(</span><span class=s1>&#39;-f, --force&#39;</span><span class=p>,</span> <span class=s1>&#39;force render&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>option</span><span class=p>(</span><span class=s1>&#39;-q, --quite&#39;</span><span class=p>,</span> <span class=s1>&#39;print render message only&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>option</span><span class=p>(</span><span class=s1>&#39;--quieter&#39;</span><span class=p>,</span> <span class=s1>&#39;do not print per file message&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>action</span><span class=p>((</span><span class=nx>options</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>render</span><span class=p>(</span><span class=nx>options</span><span class=p>.</span><span class=nx>srcDir</span><span class=p>,</span> <span class=nx>options</span><span class=p>.</span><span class=nx>destDir</span><span class=p>,</span> <span class=nx>options</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>})</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>parse</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>argv</span><span class=p>);</span>
+</span></span></code></pre></div><p>도움말도 깔끔하게 만들어준다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-console data-lang=console><span class=line><span class=cl><span class=go>Usage: render-math [options]
+</span></span></span><span class=line><span class=cl><span class=err>
+</span></span></span><span class=line><span class=cl><span class=go>MathJax renderer. Read HTML and render math formula to SVG.
+</span></span></span><span class=line><span class=cl><span class=err>
+</span></span></span><span class=line><span class=cl><span class=go>Options:
+</span></span></span><span class=line><span class=cl><span class=go>  --src-dir &lt;path&gt;   source directory (default: &#34;/XXX/public&#34;)
+</span></span></span><span class=line><span class=cl><span class=go>  --dest-dir &lt;path&gt;  destination directory (default: &#34;/XXX/rendered-public&#34;)
+</span></span></span><span class=line><span class=cl><span class=go>  -f, --force        force render
+</span></span></span><span class=line><span class=cl><span class=go>  -q, --quite        print render message only
+</span></span></span><span class=line><span class=cl><span class=go>  --quieter          do not print per file message
+</span></span></span><span class=line><span class=cl><span class=go>  -h, --help         display help for command
+</span></span></span></code></pre></div><p>출력에 처리 결과 통계도 추가했다. 전체 파일이 몇 개고, 그 중 몇 개를
+렌더링했는지, 몇 개를 복사했는지, 몇 개를 건너뛰었는지 볼 수 있다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-console data-lang=console><span class=line><span class=cl><span class=go>...
+</span></span></span><span class=line><span class=cl><span class=gp>&gt;</span> Completed. <span class=o>{</span> directories: 453, rendered: 105, copied: 382, skipped: 110, total: <span class=m>1050</span> <span class=o>}</span>
+</span></span></code></pre></div><h2 id=5>5</h2><p>새로 작성한 스크립트로 블로그 전체를 다시 렌더링해 보니, 5초밖에
+걸리지 않는다. 예전에는 30초 이상 걸렸던 작업이니 장족의
+발전이다. 제미니가 생성해 준 코드는 훌륭하다고 할 수는 없었지만,
+기능적으로는 문제가 없었다. 일단 돌아가는 코드가 있다면 이를 바탕으로
+적절히 리팩터링해서 내 마음에 들게 바꿀 수 있다. 그동안 속 썪이던
+문제를 AI를 활용해 단 몇 시간 만에 뚝딱 해결하니 속이 다
+시원하다. 하지만 한편으로는 AI가 내 밥그릇을 위협하는 것 같아 걱정이
+들기도 한다.</p><h2 id=참고>참고</h2><ul><li><a href=/2019/mathjax-server-side-rendering/>MathJax 서버측 렌더링</a>:
+<code>mjpage</code>와 Bash 스크립트를 이용해 MathJax 서버측 렌더링을 구현했던
+이야기</li><li><a href=https://github.com/ntalbs/math-renderer>math-renderer</a>:
+Node.js로 새로 구현한 MathJax 서버측 렌더링 스크립트</li><li><a href=https://github.com/pkra/mathjax-node-page>mathjax-node-page</a></li></ul></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
+<a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
+<script async src=//platform.twitter.com/widgets.js></script></div><nav id=article-nav><a class="article-nav-link-wrap next" href=/2025/euler-fomula/ id=article-nav-older>오일러 공식</a></nav></footer></article></main><section class=section><div class=container><aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2026/writing-mathjax-ssr-script-with-ai-assistance/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section><div class="container has-text-centered"><p></p></div></section><script src=/js/index.min.js type=text/javascript></script><footer class=page-bottom><div class=inner><section class=copyright>© 2008-2026 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
