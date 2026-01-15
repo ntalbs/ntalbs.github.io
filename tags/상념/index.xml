@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>상념 on @ntalbs' stuff</title><link>https://ntalbs.github.io/tags/%EC%83%81%EB%85%90/</link><description>Recent content in 상념 on @ntalbs' stuff</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Thu, 08 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ntalbs.github.io/tags/%EC%83%81%EB%85%90/index.xml" rel="self" type="application/rss+xml"/><item><title>AI를 활용한 MathJax 서버측 렌더링 스크립트 작성</title><link>https://ntalbs.github.io/2026/writing-mathjax-ssr-script-with-ai-assistance/</link><pubDate>Thu, 08 Jan 2026 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2026/writing-mathjax-ssr-script-with-ai-assistance/</guid><description>&lt;h2 id="1"&gt;1&lt;/h2&gt;
 &lt;p&gt;예전부터 블로그에 포함된 수식은
 &lt;a href="https://github.com/pkra/mathjax-node-page"&gt;mathjax-node-page&lt;/a&gt;(이하
-&lt;code&gt;mjpage&lt;/code&gt;)와 Bash 스크립트 조합해 사용해 SVG로 렌더링했다. &lt;code&gt;mjpage&lt;/code&gt;는
+&lt;code&gt;mjpage&lt;/code&gt;)와 Bash 스크립트 함께 사용해 SVG로 렌더링했다. &lt;code&gt;mjpage&lt;/code&gt;는
 Node.js 스크립트로 STDIN으로 소스를 입력받아 렌더링 결과를 STDOUT으로
-출력는 방식이라 Bash 스크립트를 함께 사용해야 했다. HTML 파일마다
+출력하는 방식이라 Bash 스크립트를 함께 사용해야 했다. HTML 파일마다
 &lt;code&gt;mjpage&lt;/code&gt;를 호출하다 보니 속도가 이만저만 느린 게 아니었다. &lt;code&gt;md5&lt;/code&gt;
 체크섬을 도입해 변경된 글만 골라 렌더링하도록 개선했지만, 처리 속도는
 여전히 만족스럽지 못했다.&lt;/p&gt;</description></item><item><title>독서</title><link>https://ntalbs.github.io/2025/reading-books/</link><pubDate>Sun, 27 Jul 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/reading-books/</guid><description>&lt;p&gt;오래간만에 가든 오피스에 가서 책을 뒤적였다. 집에 공간이 부족해 올해
