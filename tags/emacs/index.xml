@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Emacs on @ntalbs' stuff</title><link>https://ntalbs.github.io/tags/emacs/</link><description>Recent content in Emacs on @ntalbs' stuff</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Wed, 14 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://ntalbs.github.io/tags/emacs/index.xml" rel="self" type="application/rss+xml"/><item><title>Org-mode를 노트북으로 사용하기</title><link>https://ntalbs.github.io/2025/org-as-a-notebook/</link><pubDate>Wed, 14 May 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/org-as-a-notebook/</guid><description>&lt;p&gt;&lt;a href="https://jupyter.org/"&gt;주피터 노트북(Jupyter Notebook)&lt;/a&gt;이 세상에
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Emacs on @ntalbs' stuff</title><link>https://ntalbs.github.io/tags/emacs/</link><description>Recent content in Emacs on @ntalbs' stuff</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Sun, 01 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ntalbs.github.io/tags/emacs/index.xml" rel="self" type="application/rss+xml"/><item><title>한글 맞춤법 검사기 Emacs 통합 후기</title><link>https://ntalbs.github.io/2026/integrating-korean-spell-checker-into-emacs/</link><pubDate>Sun, 01 Feb 2026 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2026/integrating-korean-spell-checker-into-emacs/</guid><description>&lt;h2 id="1"&gt;1&lt;/h2&gt;
+&lt;p&gt;Emacs로 글을 쓴 지는 꽤 오래 됐지만, 한국어 맞춤법 검사기가 없어
+아쉬웠다. 워드 프로세서를 썼을 때는 맞춤법 검사기를 사용해 기본적인
+오탈자를 잡아냈지만, Emacs에서는 눈을 크게 뜨고 꼼꼼히 읽으며 오탈자를
+찾아야 한다. 블로그 글도 공개하기 전 여러 번 읽어 보지만, 공개 후 몇
+달이 지나서 오탈자를 발견하는 일도 드물지 않았다. 비록 독자는 많지
+않지만, 내가 쓴 글에 오탈자가 있는 것은 부끄러운 일이다. Emacs에서
+쓸만한 맞춤법 검사기를 쓸 수 있다면 정말 좋을 것 같다.&lt;/p&gt;</description></item><item><title>Org-mode를 노트북으로 사용하기</title><link>https://ntalbs.github.io/2025/org-as-a-notebook/</link><pubDate>Wed, 14 May 2025 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2025/org-as-a-notebook/</guid><description>&lt;p&gt;&lt;a href="https://jupyter.org/"&gt;주피터 노트북(Jupyter Notebook)&lt;/a&gt;이 세상에
 나온지 꽤 됐지만 그동안 눈길 한 번 주지 않았다. 주피터 노트북에서는
 파이썬을 사용하는 경우가 많은데, 내가 파이썬을 별로 좋아하지 않아서
 그랬던 것 같다. 어찌어찌 하여 쓸 일이 생겼는데, 막상 써 보니 상당히

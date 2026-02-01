@@ -1,0 +1,122 @@
+<!doctype html><html><head><script src=/js/mode.min.js type=text/javascript></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><script type=text/javascript>(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jce8mxrx8a")</script><meta charset=UTF-8><meta http-equiv=content-language content='ko-KR'><meta name=description content="1 Emacs로 글을 쓴 지는 꽤 오래 됐지만, 한국어 맞춤법 검사기가 없어 아쉬웠다. 워드 프로세서를 썼을 때는 맞춤법 검사기를 사용해 기본적인 오탈자를 잡아냈지만, Emacs에서는 눈을 크게 뜨고 꼼꼼히 읽으며 오탈자를 찾아야 한다. 블로그 글도 공개하기 전 여러 번 읽어 보지만, 공개 후 몇 달이 지나서 오탈자를 발견하는 일도 드물지 않았다. 비록 독자는 많지 않지만, 내가 쓴 글에 오탈자가 있는 것은 부끄러운 일이다. Emacs에서 쓸만한 맞춤법 검사기를 쓸 수 있다면 정말 좋을 것 같다.
+"><meta name=keywords content="emacs,nodejs,vibe,바이브 코딩"><meta name=viewport content="width=device-width,initial-scale=1"><title>한글 맞춤법 검사기 Emacs 통합 후기 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/highlight.min.css><link rel=stylesheet href=https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3882204692252974" crossorigin=anonymous></script></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>한글 맞춤법 검사기 Emacs 통합 후기</div></div></div><nav class=navbar role=navigation><div class=container><div class=navbar-header><button type=button class="navbar-toggle unselectable" data-toggle=collapse data-target=#nav-items>+</button>
+<a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a></div><div class="navbar-items collapsed" id=nav-items><ul><li><input id=search type=search placeholder="Search this site" autocomplete=off></li><li><a class=unselectable href=/archive/>Archive</a></li><li><a class=unselectable href=/tags/>Tags</a></li><li><a class=unselectable href=/about/>About</a></li><li><a id=mode-switch class=unselectable href=#><svg data-bs-theme-value="dark" class="icon-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3c.132.0.263.0.393.0a7.5 7.5.0 007.92 12.446A9 9 0 1112 2.992z"/></svg>
+<svg data-bs-theme-value="light" class="icon-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-4 0a4 4 0 108 0 4 4 0 10-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7-.7.7m0 11.4.7.7m-12.1-.7-.7.7"/></svg></a></li></ul></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2026-02-01 itemprop=datePublished>2026-02-01</time>
+on
+<a href=/tags/emacs/>emacs</a></p><h1 class=post-title>한글 맞춤법 검사기 Emacs 통합 후기</h1></header><section class=post-content><h2 id=1>1</h2><p>Emacs로 글을 쓴 지는 꽤 오래 됐지만, 한국어 맞춤법 검사기가 없어
+아쉬웠다. 워드 프로세서를 썼을 때는 맞춤법 검사기를 사용해 기본적인
+오탈자를 잡아냈지만, Emacs에서는 눈을 크게 뜨고 꼼꼼히 읽으며 오탈자를
+찾아야 한다. 블로그 글도 공개하기 전 여러 번 읽어 보지만, 공개 후 몇
+달이 지나서 오탈자를 발견하는 일도 드물지 않았다. 비록 독자는 많지
+않지만, 내가 쓴 글에 오탈자가 있는 것은 부끄러운 일이다. Emacs에서
+쓸만한 맞춤법 검사기를 쓸 수 있다면 정말 좋을 것 같다.</p><h2 id=2>2</h2><p>어쩌면 누가 이미 만들어 놨는지도 모른다. 구글 제미니에게 Emacs에서
+사용할 수 있는 한글 맞춤법 검사기가 있는지 물었더니,
+<code>flycheck-hanspell</code>이란 패키지를 알려주었다. 그러나
+<code>flycheck-hanspell</code>은 구할 수 없었다. 이유는 알 수 없지만 작성자가
+삭제하거나 비공개로 전환한 것 같다. 하지만 <code>flycheck-hanspell</code>이
+<code>hanspell</code>이라는 프로그램을 사용한다는 것을 알아냈다.
+<a href=https://www.npmjs.com/package/hanspell>hanspell</a>은 Npm을 통해 설치할
+수 있었다. 이 정도만 해도 큰 수확이었다. 바로 <code>hanspell</code>을 설치했다.</p><p>잠시 <code>hanspell</code>을 <code>flycheck</code>에 통합하는 방법을 찾느라 삽질을 하다가
+그만두었다. <code>flycheck</code>가 기대하는 형식과 <code>hanspell</code>이 출력하는 형식이
+맞지 않는다는 설명을 보았다. 제미니가 추천하는 다른 방식을 살펴보기
+시작했다. 제미니는 영역을 선택해 <code>hanspell</code>을 실행시키고 그 결과를
+해당 영역에 반영하는 방식을 추천했는데, 별로 마음에 들지
+않았다. 이렇게 할 수는 없나, 저렇게 할 수는 없나 질문하며 제미니를
+계속 괴롭히다가 마침내 쓸 만한 형식으로 동작하게 만들었다.</p><p>지금 생각하면 그걸 어떻게 사용했을까 싶을 정도지만 그때만 해도 그 정도면
+상당히 괜찮아 보였다. 메인 버퍼에서 선택한 영역의 텍스트를
+<code>hanspell</code>로 보내고 <code>hanspell</code>이 결과를 알려주면, 그 내용을 별도
+버퍼로 열어 표시하고 내가 내용을 확인하면서 메인 버퍼를 직접 수정하는
+방식이었다. 이후로 맞춤법 검사 결과를 어떻게 하면 좀 더 예쁘게 표시할
+수 있을지를 두고 제미니와 티격태격했다. 제미니가 생성한 코드는 계속
+오류가 발생하고 있었다.</p><h2 id=3>3</h2><p>그러다 한계에 봉착했다. <code>hanspell</code>의 출력은 그냥 텍스트 형식이라서
+데이터로 다루기가 불편했다. 특히 <code>hanspell</code>은 맞춤법 검사 결과와
+검사 결과를 반영한 텍스트를 함께 주는데, 둘 사이를 구분하기가
+어려웠다. 터미널에서 확인하니 두 부분의 색상이 다른 것이 눈에 띄어서
+그걸 이용해 구분하는 것도 시도해 보았지만 성공하지 못했다. 여러 방법을
+시도하다가 결국 <code>hanspell</code> 코드를 수정해 둘 사이에 <code>---</code>를 구분자로
+넣어주고 Emacs에서 이 구분자를 사용해 두 부분을 구분하도록 했다.</p><p>구분에 성공하긴 했지만 마음에 들지 않았다. <code>hanspell</code> 코드는 너무
+복잡했고, 내 머리는 코드를 이해할 정도로 뛰어나지 못했다. 생각해 보니
+직접 만들어도 괜찮을 것 같았다. 다음 맞춤법 검사기로 HTTP 요청을 보낸
+다음, 응답으로 받은 HTML을 분석해 결과를 뽑아내면 된다. 나는
+<a href=https://github.com/jsdom/jsdom>JSDOM</a>을 사용하기로 했다. HTML을
+텍스트로 다루는 것은 내 능력 밖의 일이다. 가장 어려운 일 중 하나인
+패키지 이름 정하기는 제미니의 도움을 받았다.</p><p>이렇게 해서 <a href=https://github.com/ntalbs/hanfix>hanfix</a> 패키지를
+만들었다. 만든 김에 <a href=https://www.npmjs.com/package/hanfix>NPM에도
+공개</a>했다. 사용할 사람은
+없겠지만. <code>hanfix</code>는 맞춤법 검사 결과를 JSON으로 리턴한다. 이제 이
+JSON을 Emacs에서 파싱해 쓰면 맞춤법 결과의 각 요소를 쉽게 끄집어내
+활용할 수 있다. 나중에 알게 되었지만, <code>hanspell</code>도 라이브러리로 사용해
+결과를 JSON으로 얻는 방법이 있긴 했다. <code>hanspell</code>에 결과를 텍스트로
+출력할지 JSON으로 출력할지 선택할 수 있는 명령행 옵션이 있었으면
+어땠을까 하는 생각을 잠시 했다.</p><h2 id=3-1>3</h2><p>마음대로 쓸 수 있는 CLI가 준비되니 욕심이 생겼다. 맞춤법 검사를 할 때
+Emacs가 틀린 부분을 하이라이트 해주고 사용자가 어떻게 처리할지 정할 수
+있으면 좋을 것이다. 제미니에게 물어봤더니 당근 된다며 Emacs Lisp
+코드를 쏟아냈다. 어쩌다 보니 바이브 코딩을 하고 있었다. Emacs Lisp을
+아주 모르는 것은 아니지만 안다고 말하기도 애매하다. AI가 없었다면
+시도할 생각조차 못했을 일이다. 이때까지만 해도 제미니가 쏟아내는
+코드를 읽을 엄두도 내지 않았다.</p><p><img src=hanfix-check.png alt></p><p>제미니가 작성한 코드는 함수 하나에 로직이 왕창 들어 있는 식이었는데
+이해하기가 쉽지 않았다. 그리고 제미니가 만든 코드에는 버그가 있었는데,
+버그를 고쳐 달라고 할 때마다 코드가 점점 더 복잡해졌다. 버그가 있다고
+하면 그 부분을 보완해 완전한 코드를 만들었다고 장담했지만 막상
+실행시켜 보면 해결이 안 된 경우가 대부분이었다. 어느 시점에서 더 이상
+제미니만 믿으면 안 되겠다는 생각이 들었다. 익숙하지 않았지만 Emacs
+Lisp 코드를 들여다보며 리팩터링을 시작했다.</p><p>이 함수는 뭐 하는 거냐, 각 인자는 어떻게 쓰는 거냐, 이런 일을 하고
+싶은데 어떻게 해야 하냐 등을 제미니에게 물었다. Emacs의 도움말에 해당
+함수에 대한 설명이 있긴 하지만, 제미니의 설명이 더 이해하기
+쉬웠다. 기능 전체를 제미니에 맡기는 대신, 단계를 좀 더 자세히 나누어
+설명했다. 전체적인 구조는 내가 직접 생각하고, 각 부분의 세세한 사항을
+제미니에게 물어서 작업했다. 이런 방식으로 전체적인 방향을 내 의도대로
+끌고 가면서도 세세한 부분을 빠르게 처리할 수 있었다.</p><p>놀라운 것은 제미니가 이 모든 것을 기억하고 그에 맞게 답해준다는
+사실이었다. 작은 작업을 처리하는 함수를 만들어 달라고 하면 잘
+만든다. 간단한 작업이니 코드도 간단하다. 그리고 이 작은 함수를 이용해
+큰 함수를 만들라고 하면 또 그렇게 해준다. 내가 왕창 수정한 코드를
+제미니에게 주고 코드 검토를 해달라고 하면 버그도 찾아준다. 어떤 부분이
+이해가 안 되어 자세히 설명해 달라고 하면 그렇게 해준다. 내 옆에 지치지
+않는 고수가 앉아 모든 질문에 답해주고 있는 것과 같다.</p><h2 id=4>4</h2><p>처음에는 선택 영역 또는 커서가 있는 단락을 찾아 그 단락을 검사하는
+방식이었는데, 매번 단락을 선택하는 것은 번거로운 일이니 이 기능을
+자동화하기로 했다. 문서 전체의 맞춤법을 검사하는 옵션, 현재 커서
+위치부터 끝까지 맞춤법을 검사하는 옵션을 추가했다. 다음 맞춤법
+검사기는 한 번에 최대 1,000자까지만 검사할 수 있으므로 Emacs에서
+1,000자 미만으로 텍스트를 끊어 보내도록 했다. 그리고 구색을 맞추기
+위해 도움말도 추가했다.</p><p><img src=hanfix-help.png alt></p><p>물론 제미니가 모든 문제를 해결한 것은 아니다. 제미니가 생성한 코드는
+맞춤법 실행 도중 자꾸 인덱스 에러가 발생했다. 이것을 고쳐달라고 수십
+번을 얘기했고, 그때마다 제미니는 이번에는 완벽하게 고쳤다고 장담했지만
+결과는 마찬가지였다. 결국 코드를 리팩터링하고 이해한 후 직접 고쳐야
+했다. <code>*Messages*</code> 버퍼에 불필요한 메시지가 잔뜩 표시되는 문제도
+마찬가지였다. 제미니는 끝내 고치지 못했고, 제미니가 알려준 정보를
+바탕으로 코드를 직접 수정해 해결했다.</p><p><code>hanfix</code> 실행 파일 위치, 맞춤법 검사 시 무시할 단어 목록, 맞춤법 틀린
+단어 하이라이트 할 색상 등을 옵션으로 사용자가 설정할 수 있으면
+좋겠다는 생각이 들었다. 다른 Emacs 패키지에서 흔히 사용하는
+방법이다. 제미니에게 옵션을 만들고 싶다고 했더니 바로 알려준다. 무시할
+단어 목록은 별도 파일에 저장하고 싶었지만 끝내 실패해, 지금은
+<code>init.el</code>에 저장된다. 무시할 단어 목록이 길어지면 <code>init.el</code> 파일도
+그만큼 지저분해질 것이다. 이 부분은 나중에 고쳐야겠다.</p><p><img src=hanfix-customize.png alt></p><h2 id=5>5</h2><p>마침내 한국어 맞춤법 검사기를 Emacs에 통합했지만, 뭔가
+아쉬웠다. 맞춤법 검사에 사용하는 다음 맞춤법 검사기의 검사 품질이 썩
+마음에 들지는 않았다. 그러다 문득, '아예 제미니를 맞춤법 검사에
+사용하면 어떨까?' 하는 생각이 떠올랐다. 제미니에게 물어보니 좋은
+생각이란다. 어떻게 해야 하는지 제미니에게 물어보니 친절하게 설명해
+주었다. 제미니에게 JSON 형식으로 답해달라고 요구할 수 있으므로
+Emacs에서 직접 HTTP 요청을 보내고 응답을 파싱해 사용하도록 했다.</p><p>역시 맞춤법 검사 품질이 다음 맞춤법 검사기보다 좋았다. 그러나 몇 가지
+문제가 있었다. 하나는 하루에 20회만 호출할 수 있다는 것이다. 처음 API
+호출 쿼터를 조사했을 때는 일일 1,500회까지 호출할 수 있다고 했는데,
+알고보니 그건 아주 예전 데이터였다. 게다가 응답 속도가 끔찍하게
+느렸다. 몇 분을 기다려도 응답을 받지 못하는 경우가 많았고, 응답을 받지
+못해도 호출 회수는 사용한 것으로 기록되었다. 예전 모델을 사용하면 응답
+속도가 조금 빨라지지만 대신 검색 품질을 희생해야 한다.</p><h2 id=6>6</h2><p>제미니의 도움으로 Emacs에 한국어 맞춤법 검사기를 통합했다. 거의 며칠
+동안 여기에만 매달렸던 것 같다. 후반에는 방식을 바꿨지만, 초반 작업
+방식은 거의 바이브 코딩(vibe coding)이라 할 수 있겠다. 요구사항을
+알려주면 제미니가 코드를 생성하고 그걸 실행해 보고 수정 사항을 다시
+알려주는 식이었다. AI가 없었다면 엄두도 못 냈을 일을 시작했고,
+제미니의 도움으로 어느 정도 쓸 만한 형태의 도구를 만들어냈다. 이
+정도면 괜찮은 성취라 할 수 있겠다.</p><p>바이브 코딩은 처음에는 쉬웠지만, 어느 단계를 지나면서 매우
+비효율적으로 바뀌었다. 내가 제미니에게 요청을 제대로 못해서
+그랬던 것인지 AI의 한계 때문이었는지 모르겠다. 한 가지 확실한 것은,
+그게 AI든 사람이든, 남에게 맡긴 일이 내 마음에 들게 완성되는 경우는
+없다는 점이다. 그게 지금까지 짧지 않은 경험을 통해 깨달은 바이다. 내 마음에
+들게 하려면 결국 내가 직접 해야 한다. 아, 직접 한다고 결과가
+항상 만족스러운 것은 아니지만.</p><h2 id=참고>참고</h2><ul><li><a href=https://github.com/ntalbs/hanfix-mode>hanfix-mode</a> hanfix 마이너
+모드. Emacs에서 한국어 맞춤법 검사를 하는 사용자 인터페이스 제공.</li><li><a href=https://github.com/ntalbs/hanfix>hanfix</a> 자바스크립트로 구현한
+Hanfix 한글 맞춤법 검사기. 내부적으로 <a href=https://dic.daum.net/grammar_checker.do>다음 맞춤법
+검사기</a>를 사용.</li><li><a href=/2016/history-of-my-writing-tools/>나의 글쓰기 도구 변천사</a></li><li><a href=/2015/why-emacs/>Emacs를 쓰는 이유?</a></li></ul></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
+<a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
+<script async src=//platform.twitter.com/widgets.js></script></div><nav id=article-nav><a class="article-nav-link-wrap next" href=/2026/writing-mathjax-ssr-script-with-ai-assistance/ id=article-nav-older>AI를 활용한 MathJax 서버 측 렌더링 스크립트 작성</a></nav></footer></article></main><section class=section><div class=container><aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2026/integrating-korean-spell-checker-into-emacs/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><section class=section><div class="container has-text-centered"><p></p></div></section><script src=/js/index.min.js type=text/javascript></script><footer class=page-bottom><div class=inner><section class=copyright>© 2008-2026 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
