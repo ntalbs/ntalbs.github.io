@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2026s on @ntalbs' stuff</title><link>https://ntalbs.github.io/2026/</link><description>Recent content in 2026s on @ntalbs' stuff</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Sun, 01 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ntalbs.github.io/2026/index.xml" rel="self" type="application/rss+xml"/><item><title>한글 맞춤법 검사기 Emacs 통합 후기</title><link>https://ntalbs.github.io/2026/integrating-korean-spell-checker-into-emacs/</link><pubDate>Sun, 01 Feb 2026 00:00:00 +0000</pubDate><guid>https://ntalbs.github.io/2026/integrating-korean-spell-checker-into-emacs/</guid><description>&lt;h2 id="1"&gt;1&lt;/h2&gt;
-&lt;p&gt;Emacs로 글을 쓴 지는 꽤 오래 됐지만, 한국어 맞춤법 검사기가 없어
+&lt;p&gt;Emacs로 글을 쓴 지는 꽤 오래됐지만, 한국어 맞춤법 검사기가 없어
 아쉬웠다. 워드 프로세서를 썼을 때는 맞춤법 검사기를 사용해 기본적인
 오탈자를 잡아냈지만, Emacs에서는 눈을 크게 뜨고 꼼꼼히 읽으며 오탈자를
 찾아야 한다. 블로그 글도 공개하기 전 여러 번 읽어 보지만, 공개 후 몇
