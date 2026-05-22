@@ -1,0 +1,74 @@
+<!doctype html><html><head><script src=/js/mode.min.js type=text/javascript></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><script type=text/javascript>(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jce8mxrx8a")</script><meta charset=UTF-8><meta http-equiv=content-language content='ko-KR'><meta name=description content="나는 Rust를 좋아한다. 그동안 Rust를 공부하며 여러 장난감 프로젝트를 진행했다. 여기 그동안 Rust로 만들었던 장난감 프로젝트를 정리해 보려 한다.
+"><meta name=keywords content="rust,toy project"><meta name=viewport content="width=device-width,initial-scale=1"><title>Rust로 작성한 장난감 프로젝트 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/highlight.min.css><link rel=stylesheet href=https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3882204692252974" crossorigin=anonymous></script></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>Rust로 작성한 장난감 프로젝트</div></div></div><nav class=navbar role=navigation><div class=container><a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a><div class=navbar-items id=nav-items><input id=search type=search class=nav-item placeholder="Search this site" autocomplete=off>
+<a class="nav-item unselectable" href=/archive/>Archive</a>
+<a class="nav-item unselectable" href=/tags/>Tags</a>
+<a class="nav-item unselectable" href=/about/>About</a>
+<a id=mode-switch class="unselectable nav-item" href=#><svg data-bs-theme-value="dark" class="icon-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3c.132.0.263.0.393.0a7.5 7.5.0 007.92 12.446A9 9 0 1112 2.992z"/></svg>
+<svg data-bs-theme-value="light" class="icon-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-4 0a4 4 0 108 0 4 4 0 10-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7-.7.7m0 11.4.7.7m-12.1-.7-.7.7"/></svg></a></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2026-05-22 itemprop=datePublished>2026-05-22</time>
+on
+<a href=/tags/rust/>rust</a></p><h1 class=post-title>Rust로 작성한 장난감 프로젝트</h1></header><section class=post-content><p>나는 Rust를 좋아한다. 그동안 Rust를 공부하며 여러 장난감 프로젝트를
+진행했다. 여기 그동안 Rust로 만들었던 장난감 프로젝트를 정리해 보려
+한다.</p><ol><li><a href=#p-test>p-test</a></li><li><a href=#lsr>lsr</a></li><li><a href=#rup>rup</a></li><li><a href=#prism-rs>prism-rs</a></li><li><a href=#json_parser>json_parser</a></li><li><a href=#reflexive-rs>reflexive-rs</a></li></ol><h2 id=p-test>p-test</h2><p>Rust에서 매개변수 테스트를 작성하려면 어떻게 해야 할까? 방법이 없는
+것은 아니었다. 이미 <a href=https://docs.rs/rstest/latest/rstest/>rstest</a>와
+같이 널리 사용되는 크레잇이 있었다. 그러나 <code>rstest</code>로 테스트를
+작성하는 방식이 마음에 들지 않았다. 내 마음에 들게 매개변수 테스트를
+작성할 수 있도록 매크로를 직접 작성해 보기로 했다.</p><p>내 생각에는 내가 작성한 <code>p-test</code> 매크로가 매개변수 테스트를 표현하는데
+있어 <code>rstest</code>보다 나은 것 같다. 그러나 <code>p-test</code>는 정말 매개변수
+테스트를 표현하는 매크로 하나뿐이고 <code>rstest</code>에는 더 많은 기능이 있다.</p><p>장난감 프로젝트로 만든 것이지만, 개인 Rust 프로젝트에서 매개변수
+테스트가 필요하면 이 녀석을 활용한다. 이 프로젝트로 Rust에서 절차형
+매크로를 만다는 것이 생각보다 어렵지 않음을 알게 되었다.</p><p>코드는 다음 깃헙 저장소에서 확인할 수 있다.</p><ul><li><a href=https://github.com/ntalbs/p-test>p-test</a></li></ul><p><code>p-test</code>는 <a href=https://crates.io/crates/p-test>crates.io</a>에도 공개되어
+있다. 2026-05-22 현재 다운로드 수가 5,800에 조금 못 미친다.</p><p>구현과 관련된 자세한 설명은 다음 글에서 확인할 수 있다.</p><ul><li><a href=/2025/parameterized-test-in-rust/>Rust 매개변수 테스트</a></li></ul><h2 id=lsr>lsr</h2><p><code>ls</code> 명령을 Rust로 구현한 다른
+프로젝트(<a href=https://github.com/eza-community/eza>eza</a>,
+<a href=https://github.com/lsd-rs/lsd>lsd</a> 등)가 이미 있지만, <code>ls</code> 같은
+명령을 어떻게 구현하는지 직접 확인해보고 싶었다. <a href=https://www.amazon.co.uk/Command-Line-Rust-Project-Based-Primer-Writing/dp/1098109430>Command-Line
+Rust</a>란
+책의 마지막 장(14장)을 보면 간단한 <code>ls</code> 클론을 만드는 방법이 나오는데,
+구현의 완성도가 조금 부족한 것 같았다. 내가 하면 더 잘할 수 있을 것
+같다는 생각이 들어 직접 해보기로 했다. <code>lsr</code>은 책에 나오는 명령어
+이름이다. 새로운 이름을 생각하기 귀찮아 그대로 사용했다.</p><p>처음에는 외부 라이브러리를 사용하지 않고 구현해보려 했는데, 파일의
+user와 group 이름을 얻으려면 <a href=https://docs.rs/libc/latest/libc/>libc</a>
+바인딩을 사용해야 하는 것으로 보였다. 외부 라이브러리를 사용하기
+시작하니 결국은 이것저것 외부 라이브러리를 갖다 쓰게 되었다.</p><p>코드는 다음 깃헙 저장소에서 확인할 수 있다.</p><ul><li><a href=https://github.com/ntalbs/lsr>lsr</a></li></ul><p>구현과 관련된 자세한 설명은 다음 글에서 확인할 수 있다.</p><ul><li><a href=/2024/implementing-ls-in-rust-1/>Rust로 ls 명령 구현하기 1</a></li><li><a href=/2024/implementing-ls-in-rust-2/>Rust로 ls 명령 구현하기 2</a></li></ul><h2 id=rup>rup</h2><p>Rust로 간단히 명령행 HTTP 서버를 만들어보기로 했다. 소켓을
+열어 대기하고 HTTP 요청을 파싱해 응답하는 모든 기능을 외부 라이브러리
+없이 구현했다. 하는 김에 명령행 인자 파싱도 직접 구현했다.</p><p>학습 목적으로 구현했지만 실제로도 (Rust 장난감 프로젝트 구현물 중)
+가장 많이 사용한 프로그램이 아닐까 싶다. 테스트 결과 등 개발 서버에
+생성된 HTML 파일을 보고 싶을 때 매우 유용했다.</p><p>코드는 다음 깃헙 저장소에서 확인할 수 있다.</p><ul><li><a href=https://github.com/ntalbs/rup>rup</a></li></ul><p>구현과 관련된 자세한 설명은 다음 글에서 확인할 수 있다.</p><ul><li><a href=/2025/command-line-http-server-in-rust/>Rust로 구현한 명령행 HTTP 서버</a></li></ul><p>위 글에서는 사실 <a href=https://actix.rs/>Actix-Web</a>을 사용해 구현하는
+방법을 설명했다. 원래는 외부 라이브러리를 사용하지 않고 모든 것을 직접
+구현한 명령행 HTTP 서버를 설명하려고 했지만, 글이 너무 길고 복잡해질
+것 같아 방향을 바꾸었다.</p><h2 id=prism-rs>prism-rs</h2><p>스캐너와 파서를 구현할 수 있게 되니 그전에는 상상도 못 했던 것을 할 수
+있게 되었다. 그중 하나가 코드를 읽어 문법을 강조하는 코드
+하이라이터다.</p><p>코드 하이라이터는 코드를 스캔해 토큰 목록을 구한 다음 토큰 타입에 따라
+적절히 렌더링 하면 되므로 파싱은 필요하지 않다.</p><p>보통 코드 하이라이터는 여러 언어를 지원하지만, <code>prism-rs</code>는 Rust만
+지원한다. 다른 언어도 지원하게 만다는 것은 아주 어려워 보이지는 않지만
+그렇다고 아주 간단해 보이지도 않는다.</p><p>언어를 모를 경우 코드를 읽어서 언어를 알아내는 좋은 방법이 있을까?
+흥미로운 문제인 것 같다. 나중에 시도해 봐야겠다.</p><p>코드는 다음 깃헙 저장소에서 확인할 수 있다.</p><ul><li><a href=https://github.com/ntalbs/prism-rs>prism-rs</a></li></ul><p>구현과 관련된 자세한 설명은 다음 글에서 확인할 수 있다.</p><ul><li><a href=/2024/syntax-highlighter-in-rust/>Rust로 구현한 소스 코드 하이라이터</a></li></ul><h2 id=json_parser>json_parser</h2><p>예전에 어느 회사 면접 코딩에서 주어진 문자열이 유효한 JSON인지
+검사하는 함수를 작성하는 문제가 주어진 적이 있다. 몇 가지 조건을
+생각해 구현하긴 했지만 면접관을 만족시키지는 못했다. 나도 내 답이
+만족스럽지 않아 면접관에게 어떻게 하면 되냐고 했더니 면접관이 몇 가지
+조건을 확인하면 된다고 설명했다. 내 생각에 면접관의 답도 별반 나은 것
+같지 않았다.</p><p>면접에는 떨어졌지만 문제를 제대로 풀어보고 싶었다. 얼마 후 <a href=https://craftinginterpreters.com>Crafting
+Interpreter</a>란 책으로 스캐너와
+파서를 구현하는 방법을 알게 되었고 JSON 파서를 제대로 구현해 보기로
+했다. 처음에는 Java로 구현했고, 나중에 Rust를 공부하면서 Rust로
+구현했다. Rust로 구현할 때 <code>enum</code>을 활용했는데, 나중에 보니
+<a href="https://www.amazon.co.uk/Programming-Rust-Fast-Systems-Development/dp/1492052590/ref=pd_lpo_d_sccl_2/520-9081152-8502802">Programming
+Rust</a>에서도
+<code>enum</code>을 설명하면서 JSON을 예로 들어 설명하는데 비슷한 방법을 사용한
+것을 보고 은근히 기분이 좋았다.</p><p>코드는 다음 깃헙 저장소에서 확인할 수 있다.</p><ul><li><a href=https://github.com/ntalbs/json_parser>json_parser</a> JSON 파서 Rust 구현</li><li><a href=https://github.com/ntalbs/json_parser>JsonParser</a> JSON 파서 Java 구현</li></ul><p>물론 두 구현이 완벽한 것은 아니다. 예를 들어 JSON에서는 <code>6.02 e23</code>과
+같은 식으로 숫자를 표현할 수 있지만, 위 두 JSON 파서는 이런 식의 숫자
+표현을 파싱하지 못하고 에러를 내뱉는다.</p><p>다음 글에서 JSON 파서 구현 방법을 설명했다.</p><ul><li><a href=/2021/json-parser-impl-1-scanner/>JSON 파서 구현 1 - 스캐너</a>: JSON 파싱을 위한 스캐너 구현 설명 (Java)</li><li><a href=/2021/json-parser-impl-2-scanner/>JSON 파서 구현 2 - 파서</a>: JSON 파서 구현 설명 (Java)</li></ul><h2 id=reflexive-rs>reflexive-rs</h2><p>Rust로 간단한 웹 요청을 처리하는 프로그램을 만들어보고 싶었지만 특별한
+아이디어가 떠오르지 않았다. 예전에 일했던 팀에 테스트를 위한 에코
+서비스가 있었는데, HTTP 요청이 들어오면 바로 "OK"를 응답하는
+서비스였다. 물론 다른 기능이 있기는 했지만. 생각해 보니 HTTP 요청을
+받으면 HTTP 요청에 들어있는 데이터를 모두 꺼내 JSON 형태로 응답하는
+에코 서비스를 만들어보는 것도 재미있을 것 같았다.</p><p>Rust 웹 프레임워크 사용법을 배울 수 있고, 요청 헤더, 쿼리 파라미터,
+요청 본문 등을 요청에서 뽑아내는 방법도 익힐 수 있고, JSON으로
+응답하려면 Rust에서 JSON을 어떻게 다루는 지도 익힐 수 있다. 웹
+프레임워크로는 <a href=https://actix.rs/>Actix-Web</a>을, JSON 처리에는
+<a href=https://serde.rs/>Serde</a>를 사용했다.</p><p>HTTP 요청에서 헤더와 쿼리 파라미터는 중복될 수 있다. 이를 처리하기
+위해 <code>SingleOrMulti</code>라는 <code>enum</code>을 정의했다. 값이 하나일 때는
+<code>Single</code>을, 값이 여럿일 때는 <code>Multi</code>를 사용하도록 했는데, 내가
+생각해도 우아한 접근법인 것 같다.</p><p>코드는 다음 깃헙 저장소에서 확인할 수 있다.</p><ul><li><a href=https://github.com/ntalbs/reflexive-rs>reflexive-rs</a></li></ul><p>다음 글에서 구현과 관련된 자세한 설명을 확인할 수 있다.</p><ul><li><a href=/2021/echo-server-in-rust>Rust Echo 서버</a></li></ul></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
+<a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
+<script async src=//platform.twitter.com/widgets.js></script></div><nav class=article-nav>&nbsp;
+<a class=prev href=/2026/test-coverage-in-rust/>Rust 테스트 커버리지</a></nav></footer></article></main><section class=section><div class=container><aside><div id=disqus_thread></div></aside><script type=text/javascript>var disqus_shortname="ntalbs-stuff",permalink="https://ntalbs.github.io/2026/toy-projects-in-rust/".replace(/\//g,"/"),disqus_config=function(){this.page.url=permalink,this.page.identifier=permalink};(function(){var e=document,t=e.createElement("script");t.src="https://"+disqus_shortname+".disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></div></section><script src=/js/index.min.js type=text/javascript></script><footer class=page-bottom><div class=inner><section class=copyright>© 2008-2026 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
