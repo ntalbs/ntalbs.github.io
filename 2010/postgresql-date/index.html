@@ -5,8 +5,8 @@
 <a id=mode-switch class="unselectable nav-item" href=#><svg data-bs-theme-value="dark" class="icon-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3c.132.0.263.0.393.0a7.5 7.5.0 007.92 12.446A9 9 0 1112 2.992z"/></svg>
 <svg data-bs-theme-value="light" class="icon-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-4 0a4 4 0 108 0 4 4 0 10-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7-.7.7m0 11.4.7.7m-12.1-.7-.7.7"/></svg></a></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2010-07-09 itemprop=datePublished>2010-07-09</time>
 on
-<a href=/tags/db/>DB</a>
-<a href=/tags/postgresql/>PostgreSQL</a>
+<a href=/tags/db/>Db</a>
+<a href=/tags/postgresql/>Postgre SQL</a>
 <a href=/tags/sql/>SQL</a></p><h1 class=post-title>PostgreSQL 날짜 연산</h1></header><section class=post-content><p>database.sarang.net의 <a href="http://database.sarang.net/?criteria=pgsql">PostgreSQL 게시판</a>에 PostgreSQL에서 <a href="http://database.sarang.net/?inc=read&amp;aid=8678&amp;criteria=pgsql&amp;subcrit=qna&amp;id=&amp;limit=20&amp;keyword=&amp;page=1">날짜 연산 관련 질문</a>이 올라왔다. 답을 생각해보면서 PostgreSQL에서 날짜 관련 함수 및 연산 방법을 간단히 정리해봤다.</p><h2 id=간단한-날짜-관련-함수-및-날짜-연산>간단한 날짜 관련 함수 및 날짜 연산:</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=line><span class=cl><span class=c1>-- 오늘 (date)
 </span></span></span><span class=line><span class=cl><span class=k>select</span><span class=w> </span><span class=k>current_date</span><span class=p>;</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>

@@ -5,9 +5,9 @@
 <a id=mode-switch class="unselectable nav-item" href=#><svg data-bs-theme-value="dark" class="icon-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3c.132.0.263.0.393.0a7.5 7.5.0 007.92 12.446A9 9 0 1112 2.992z"/></svg>
 <svg data-bs-theme-value="light" class="icon-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-4 0a4 4 0 108 0 4 4 0 10-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7-.7.7m0 11.4.7.7m-12.1-.7-.7.7"/></svg></a></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2008-11-01 itemprop=datePublished>2008-11-01</time>
 on
-<a href=/tags/db/>DB</a>
+<a href=/tags/db/>Db</a>
 <a href=/tags/oracle/>Oracle</a>
-<a href=/tags/sqlplus/>SqlPlus</a></p><h1 class=post-title>SQL*Plus에서 '&'가 포함된 문자열을 변수로 인식하지 않게 하기</h1></header><section class=post-content><p>문자열 자체에 <code>&</code>가 포함되어 있는 경우 SQL*Plus에서 <code>&</code> 뒤의 단어를 변수로 인식해 그에 대한 값의 입력을 요구한다.</p><pre class=console>
+<a href=/tags/sqlplus/>SQL plus</a></p><h1 class=post-title>SQL*Plus에서 '&'가 포함된 문자열을 변수로 인식하지 않게 하기</h1></header><section class=post-content><p>문자열 자체에 <code>&</code>가 포함되어 있는 경우 SQL*Plus에서 <code>&</code> 뒤의 단어를 변수로 인식해 그에 대한 값의 입력을 요구한다.</p><pre class=console>
 SQL&gt; update tbl set a = 'hello&amp;world' where ...
 Enter value for world: _  &lt -- 입력을 기다림
 </pre><p>이걸 어떻게 회피할 수 있을까?</p><h2 id=해결-방법-1>해결 방법 1</h2><p>다음 명령을 실행시킨 후 SQL 실행한다.</p><pre class=console>

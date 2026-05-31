@@ -5,7 +5,7 @@
 <a id=mode-switch class="unselectable nav-item" href=#><svg data-bs-theme-value="dark" class="icon-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3c.132.0.263.0.393.0a7.5 7.5.0 007.92 12.446A9 9 0 1112 2.992z"/></svg>
 <svg data-bs-theme-value="light" class="icon-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-4 0a4 4 0 108 0 4 4 0 10-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7-.7.7m0 11.4.7.7m-12.1-.7-.7.7"/></svg></a></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2010-08-01 itemprop=datePublished>2010-08-01</time>
 on
-<a href=/tags/db/>DB</a>
+<a href=/tags/db/>Db</a>
 <a href=/tags/oracle/>Oracle</a>
 <a href=/tags/%ed%8c%81/>팁</a></p><h1 class=post-title>export와 동시에 압축하기</h1></header><section class=post-content><p>다음과 같이 하면 export를 받은 후 압축하지 않고 export와 동시에 압축을 할 수 있다. export 파일 크기가 크고 디스크 용량이 충분하지 않을 때 사용하면 유용하다.</p><h2 id=1-named-pipe를-만든다>1. named pipe를 만든다.</h2><pre class=console>
 $ mknod /tmp/expimp_pipe p
