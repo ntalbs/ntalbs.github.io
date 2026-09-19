@@ -1,39 +1,212 @@
-<!doctype html><html><head><script>const mode=localStorage.getItem("mode")||"light";document.documentElement.dataset.theme=mode</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><script type=text/javascript>(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jce8mxrx8a")</script><meta charset=UTF-8><meta http-equiv=content-language content='ko-KR'><meta name=description content="나는 테스트를 작성하고 커버리지를 높이는 것을 좋아한다. 커버리지 리포트를 보며 테스트 커버리지 수치가 높아지면 기분이 좋다. 붉은 색으로 표시되었던 부분이 초록색으로 바뀌는 것을 보면 묘한 만족감이 든다.
-"><meta name=keywords content="rust,coverage,test"><meta name=viewport content="width=device-width,initial-scale=1"><title>Rust 테스트 커버리지 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.min.98e6aeb7a8cfcd9484dbe690e09ed77cb4434c8e149a69c2b479245e0b1e8adc.css><link rel=stylesheet href=https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3882204692252974" crossorigin=anonymous></script></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>Rust 테스트 커버리지</div></div></div><nav class=navbar role=navigation><div class=container><a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a><div class=navbar-items id=nav-items><input id=search type=search class=nav-item placeholder="Search this site" autocomplete=off>
-<a class="nav-item unselectable" href=/archive/>Archive</a>
-<a class="nav-item unselectable" href=/tags/>Tags</a>
-<a class="nav-item unselectable" href=/about/>About</a>
-<a id=mode-switch class="unselectable nav-item" href=#><svg data-bs-theme-value="dark" class="icon-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3c.132.0.263.0.393.0a7.5 7.5.0 007.92 12.446A9 9 0 1112 2.992z"/></svg>
-<svg data-bs-theme-value="light" class="icon-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-4 0a4 4 0 108 0 4 4 0 10-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7-.7.7m0 11.4.7.7m-12.1-.7-.7.7"/></svg></a></div></div></nav><header class=page-head><div class=container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2026-04-15 itemprop=datePublished>2026-04-15</time>
-on
-<a href=/tags/rust/>Rust</a></p><h1 class=post-title>Rust 테스트 커버리지</h1></header><section class=post-content><p>나는 테스트를 작성하고 커버리지를 높이는 것을 좋아한다. 커버리지
+<!DOCTYPE html>
+<html>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <script>
+ const mode = localStorage.getItem('mode') || 'light';
+ document.documentElement.dataset.theme = mode;
+</script>
+
+
+
+<meta charset="UTF-8">
+<meta http-equiv='content-language' content='ko-KR'>
+<meta name="description" content="나는 테스트를 작성하고 커버리지를 높이는 것을 좋아한다. 커버리지 리포트를 보며 테스트 커버리지 수치가 높아지면 기분이 좋다. 붉은 색으로 표시되었던 부분이 초록색으로 바뀌는 것을 보면 묘한 만족감이 든다.
+">
+<meta name="keywords" content="rust,coverage,test">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rust 테스트 커버리지 @ntalbs&#39; stuff</title>
+<link rel="shortcut icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="/css/style.min.5f2cd34472ad00323bc948acad48f2e3a6ed6c805893a14294a0fcc9fad5c32b.css">
+
+<link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css">
+
+    
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3882204692252974" crossorigin="anonymous"></script>
+
+
+  </head>
+  <body>
+    <div id="progress">
+  <div id="bar"></div>
+  <div class="container">
+    <div id="scroll-title">Rust 테스트 커버리지</div>
+  </div>
+</div>
+
+    <nav class="navbar" role="navigation">
+  <div class="container">
+
+    <a class="navbar-brand unselectable" href="/">@ntalbs&#39; stuff</a>
+
+    <div class="navbar-items" id="nav-items">
+      <input id="search" type="search" class="nav-item" placeholder="Search this site" autocomplete="off">
+
+      
+      <a class="nav-item unselectable" href="/archive/">Archive</a>
+      
+      <a class="nav-item unselectable" href="/tags/">Tags</a>
+      
+      <a class="nav-item unselectable" href="/about/">About</a>
+      
+
+      <a id="mode-switch" class="unselectable nav-item" href="#">
+        <svg data-bs-theme-value="dark" xmlns="http://www.w3.org/2000/svg" class="icon-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none">
+          </path>
+          <path d="M12 3c.132.0.263.0.393.0a7.5 7.5.0 007.92 12.446A9 9 0 1112 2.992z"></path>
+        </svg>
+        <svg data-bs-theme-value="light" xmlns="http://www.w3.org/2000/svg" class="icon-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M12 12m-4 0a4 4 0 108 0 4 4 0 10-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7-.7.7m0 11.4.7.7m-12.1-.7-.7.7"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <p class="blog-description">내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p>
+  </div>
+</header>
+
+    <main class="container" role="main">
+      <article class="post ">
+        <header>
+          <p class="post-meta">
+            <time datetime="2026-04-15" itemprop="datePublished">2026-04-15</time>
+            on
+            
+            <a href="/tags/rust/">Rust</a>
+            
+          </p>
+          <h1 class="post-title">
+            Rust 테스트 커버리지
+          </h1>
+          
+        </header>
+        <section class="post-content">
+          <p>나는 테스트를 작성하고 커버리지를 높이는 것을 좋아한다. 커버리지
 리포트를 보며 테스트 커버리지 수치가 높아지면 기분이 좋다. 붉은 색으로
-표시되었던 부분이 초록색으로 바뀌는 것을 보면 묘한 만족감이 든다.</p><p>예전에는 Rust에서 테스트 커버리지를 보려면
-<a href=https://github.com/xd009642/tarpaulin>tarpaulin</a>을 썼는데, 요즘에는
-<a href=https://github.com/taiki-e/cargo-llvm-cov>cargo-llvm-cov</a>가 대세인
+표시되었던 부분이 초록색으로 바뀌는 것을 보면 묘한 만족감이 든다.</p>
+<p>예전에는 Rust에서 테스트 커버리지를 보려면
+<a href="https://github.com/xd009642/tarpaulin">tarpaulin</a>을 썼는데, 요즘에는
+<a href="https://github.com/taiki-e/cargo-llvm-cov">cargo-llvm-cov</a>가 대세인
 듯 하다. 두 프로젝트의 깃헙 저장소를 확인해보면 <code>cargo-llvm-cov</code>쪽이
-더 활발하게 업데이트되고 있다.</p><p>구글 제미니도 <code>cargo-llvm-cov</code>를 권장한다. 커버리지 리포트도
-<code>cargo-llvm-cov</code>로 생성한 쪽이 훨씬 낫다.</p><h2 id=설치-및-실행>설치 및 실행</h2><p>다음 명령으로 <code>cargo-llvm-cov</code>를 간단히 설치할 수 있다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>cargo install cargo-llvm-cov
-</span></span></code></pre></div><p>이제 다음 명령으로 커버리지 리포트를 생성할 수 있다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>cargo llvm-cov
+더 활발하게 업데이트되고 있다.</p>
+<p>구글 제미니도 <code>cargo-llvm-cov</code>를 권장한다. 커버리지 리포트도
+<code>cargo-llvm-cov</code>로 생성한 쪽이 훨씬 낫다.</p>
+<h2 id="설치-및-실행">설치 및 실행</h2>
+<p>다음 명령으로 <code>cargo-llvm-cov</code>를 간단히 설치할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cargo install cargo-llvm-cov
+</span></span></code></pre></div><p>이제 다음 명령으로 커버리지 리포트를 생성할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cargo llvm-cov
 </span></span></code></pre></div><p>위 명령은 테스트를 실행하고 커버리지 요약 정보를 콘솔에
 표시한다. <code>--open</code> 옵션을 주면 커버리지 리포트를 HTML로 생성한 후
-브라우저로 열어준다.</p><p>브랜치 커버리지를 보려면 <code>--branch</code> 옵션을 추가해야 한다. <code>--branch</code>는
-unstable하므로 Niglty 툴체인을 사용하도록 해야 한다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>cargo +nightly llvm-cov --branch
-</span></span></code></pre></div><p><img src=coverage-report.png alt></p><p>매번 <code>cargo llvm-cov --open</code>과 같이 길게 입력하고 싶지 않다면
-<code>~/.cargo/config.toml</code> 파일에 다음과 같이 <code>alias</code>를 정의할 수 있다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=line><span class=cl><span class=p>[</span><span class=nx>alias</span><span class=p>]</span>
-</span></span><span class=line><span class=cl><span class=nx>cov</span> <span class=p>=</span> <span class=s2>&#34;llvm-cov --html --open&#34;</span>
-</span></span><span class=line><span class=cl><span class=p>...</span>
+브라우저로 열어준다.</p>
+<p>브랜치 커버리지를 보려면 <code>--branch</code> 옵션을 추가해야 한다. <code>--branch</code>는
+unstable하므로 Niglty 툴체인을 사용하도록 해야 한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cargo +nightly llvm-cov --branch
+</span></span></code></pre></div><p><img src="coverage-report.png" alt=""></p>
+<p>매번 <code>cargo llvm-cov --open</code>과 같이 길게 입력하고 싶지 않다면
+<code>~/.cargo/config.toml</code> 파일에 다음과 같이 <code>alias</code>를 정의할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">alias</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">cov</span> <span class="p">=</span> <span class="s2">&#34;llvm-cov --html --open&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
 </span></span></code></pre></div><p>이렇게 하면 <code>cargo cov</code> 명령으로 커버리지 리포트를 만들어 브라우저로
-열게 할 수 있다.</p><h2 id=커버리지-리포트-해석>커버리지 리포트 해석</h2><p>커버리지 리포트는 각 파일별로 Function/Line/Region/Branch 커버리지를
+열게 할 수 있다.</p>
+<h2 id="커버리지-리포트-해석">커버리지 리포트 해석</h2>
+<p>커버리지 리포트는 각 파일별로 Function/Line/Region/Branch 커버리지를
 보여준다. Region 커버리지는 코드 영역이 한 번 이상 실행된 비율을
-나타낸다.</p><p>커버리지 리포트에서 파일을 선택하면 특정 파일에서 실행되지 않은 부분,
-각 라인별 실행 횟수, 각 영역별 실행 횟수 등을 볼 수 있다.</p><p>실행되지 않은 Region을 보면 코드에서 제대로 처리하지 않은 상황을
+나타낸다.</p>
+<p>커버리지 리포트에서 파일을 선택하면 특정 파일에서 실행되지 않은 부분,
+각 라인별 실행 횟수, 각 영역별 실행 횟수 등을 볼 수 있다.</p>
+<p>실행되지 않은 Region을 보면 코드에서 제대로 처리하지 않은 상황을
 발견하는 데 도움이 된다. 한 라인이 여러 영역으로 나뉠 수 있다면 해당
-라인의 실행 횟수뿐 아니라 해당 영역의 실행 횟수도 확인할 수 있다.</p><p><img src=code-coverage.png alt></p><p>한 가지 이해하기 어려운 점은, 리포트 첫 페이지에서는 브랜치 커버리지가
+라인의 실행 횟수뿐 아니라 해당 영역의 실행 횟수도 확인할 수 있다.</p>
+<p><img src="code-coverage.png" alt=""></p>
+<p>한 가지 이해하기 어려운 점은, 리포트 첫 페이지에서는 브랜치 커버리지가
 100%로 나왔는데, 파일 안으로 들어와 보면 빨간색으로 표시된 브랜치, 즉
 실행되지 않은 브랜치가 있다는 것이다. 이런 문제 때문에 <code>--branch</code>
 옵션이 unstable 상태인 것인지, 아니면 내가 리포트를 제대로 이해하지
-못한 것인지 모르겠다.</p></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
-<a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
-<script async src=//platform.twitter.com/widgets.js></script></div><nav class=article-nav><a class=next href=/2026/toy-projects-in-rust/>Rust로 작성한 장난감 프로젝트</a>
-<a class=prev href=/2026/unsecure-vs-insecure/>Unsecure vs. Insecure</a></nav></footer></article></main><section class=section><div class=container id=giscus-area></div></section><template id=giscus-template><script src=https://giscus.app/client.js data-repo=ntalbs/blog-comments data-repo-id=R_kgDOSlRiJA data-category=General data-category-id=DIC_kwDOSlRiJM4C9ovb data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=top data-theme=light_protanopia data-lang=en crossorigin=anonymous async></script></template><script>(function(){let s=localStorage.getItem("mode")||"light",o=s==="light"?"light_protanopia":"dark_protanopia",e=document.getElementById("giscus-template");if(!e)return;let t=e.content.cloneNode(!0),n=t.querySelector("script");n&&n.setAttribute("data-theme",o),document.getElementById("giscus-area").appendChild(t)})()</script><script src=/js/index.min.eee07ae3a502cd3663ac74507273e77390d1ca9aec10ca7f2ad369a4d10e0259.js type=text/javascript></script><footer class=page-bottom><div class=inner><section class=copyright>© 2008-2026 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
+못한 것인지 모르겠다.</p>
+
+        </section>
+        <footer class="post-footer">
+          
+          <div class="social button-box">
+            
+            <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+            <a class="twitter-follow-button" href="https://twitter.com/ntalbs" data-show-count="false">Follow @ntalbs</a>
+            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            
+          </div>
+          
+          <nav class="article-nav">
+            
+            <a class="next" href="/2026/toy-projects-in-rust/"> Rust로 작성한 장난감 프로젝트</a>
+            
+            
+            <a class="prev" href="/2026/unsecure-vs-insecure/"> Unsecure vs. Insecure</a>
+            
+          </nav>
+        </footer>
+      </article>
+    </main>
+    <section class="section">
+  <div class="container" id="giscus-area">
+  </div>
+</section>
+<template id="giscus-template">
+  <script src="https://giscus.app/client.js"
+          data-repo="ntalbs/blog-comments"
+          data-repo-id="R_kgDOSlRiJA"
+          data-category="General"
+          data-category-id="DIC_kwDOSlRiJM4C9ovb"
+          data-mapping="pathname"
+          data-strict="0"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="top"
+          data-theme="light_protanopia"
+          data-lang="en"
+          crossorigin="anonymous"
+          async>
+  </script>
+</template>
+
+<script>
+ (function() {
+   let mode = localStorage.getItem('mode') || 'light';
+   let targetTheme = mode==='light' ? 'light_protanopia' : 'dark_protanopia';
+
+   let template = document.getElementById('giscus-template');
+   if (!template) return;
+
+   let clone = template.content.cloneNode(true);
+   let giscusScript = clone.querySelector('script');
+   if (giscusScript) {
+     giscusScript.setAttribute('data-theme', targetTheme);
+   }
+   document.getElementById('giscus-area').appendChild(clone);
+ })();
+</script>
+
+    
+
+
+
+<script src="/js/index.js" type="text/javascript"></script>
+
+    
+    <footer class="page-bottom">
+  <div class="inner">
+    <section class="copyright">© 2008-2026 <a href="/about">ntalbs</a></section>
+    <section class="poweredby">Powered by <a class="icon-ghost" href="https://gohugo.io">Hugo</a></section>
+  </div>
+</footer>
+
+  </body>
+</html>
