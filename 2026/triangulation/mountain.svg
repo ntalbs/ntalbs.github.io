@@ -1,0 +1,49 @@
+<svg width="500" height="240" viewBox="-20 -20 560 280" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <!-- Background Mountain -->
+    <path d="M 280 150 Q 380 100 440 60 Q 470 20 500 0 Q 515 50 530 50 L 530 150 Z"
+          fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1.5" opacity="0.6" stroke-linejoin="round"/>
+
+    <!-- base -->
+    <line x1="0" y1="150" x2="500" y2="150" stroke="black" stroke-width="0.5"/>
+
+    <!-- vertical -->
+    <line x1="500" y1="0" x2="500" y2="150" stroke="black" stroke-width="0.5"/>
+
+    <!-- hypotenuse -->
+    <line x1="0" y1="150" x2="500" y2="0" stroke="black" stroke-width="0.5"/>
+
+    <!-- A point & label -->
+    <circle cx="0" cy="150" r="5" fill="black" stroke="black" stroke-width="1"/>
+    <text x="0" y="172" text-anchor="middle" dominant-baseline="middle" font-size="1.8em">A</text>
+
+    <!-- right angle -->
+    <path d="M 485 150 l 0 -15 l 15 0" fill="none" stroke="black" stroke-width="1"/>
+
+    <!-- angle A arc (반지름 40) & label alpha -->
+    <path d="M 40 150 A 40 40 0 0 0 38.32 138.32" fill="none" stroke="black" stroke-width="1"/>
+    <text x="60" y="141" text-anchor="middle" dominant-baseline="middle" font-size="1.5em" font-style="italic">α</text>
+
+    <!-- Total base distance D -->
+    <g transform="translate(0, -30)">
+      <g stroke="black" stroke-width="2">
+        <line x1="0" y1="214" x2="0" y2="230"/>
+        <line x1="500" y1="214" x2="500" y2="230"/>
+        <line x1="2" y1="222" x2="498" y2="222"/>
+        <path d="M 7 219 L 1 222 L 7 225" fill="none"/>
+        <path d="M 493 219 L 499 222 L 493 225" fill="none"/>
+      </g>
+      <text x="250" y="238" text-anchor="middle" dominant-baseline="middle" font-size="1.5em" font-style="italic">D</text>
+    </g>
+
+    <!-- Height h -->
+    <g stroke="#f60" stroke-width="2">
+      <line x1="504" y1="0" x2="516" y2="0"/>
+      <line x1="504" y1="150" x2="516" y2="150"/>
+      <line x1="510" y1="2" x2="510" y2="148"/>
+      <path d="M 507 7 L 510 1 L 513 7" fill="none"/>
+      <path d="M 507 143 L 510 149 L 513 143" fill="none"/>
+    </g>
+    <text x="525" y="75" text-anchor="start" dominant-baseline="middle" font-size="1.5em" font-style="italic">h</text>
+  </g>
+</svg>

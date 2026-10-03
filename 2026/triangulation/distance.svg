@@ -1,0 +1,85 @@
+<svg width="250" height="380" viewBox="-20 -50 290 450" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <!--beach-->
+    <path d="M -20 280 l 290 0 l 0 140 l -290 0 Z" fill="#e2c040"  stroke="none" opacity="0.7"/>
+    <!--sea-->
+    <path d="M -20 -50 l 290 0 l 0 330 l -290 0 Z" fill="#209cc0" stroke="none" opacity="0.4"/>
+  </g>
+  <g>
+    <!-- triangle -->
+    <g stroke="black" stroke-width="0.5">
+      <!-- base -->
+      <line x1="0" y1="300" x2="250" y2="300"/>
+
+      <!-- vertical -->
+      <line x1="170" y1="0" x2="170" y2="300" stroke="#f60"/>
+      <path d="M 155 300 l 0 -15 l 30 0 l 0 15" fill="none"/>
+
+      <!-- hypotenuse -->
+      <path d="M 0 300 L 170 0 L 250 300" fill="none"/>
+    </g>
+
+    <!-- angle A arc (반지름 25) & label alpha -->
+    <path d="M 25 300 A 25 25 0 0 0 12.32 278.24" fill="none" stroke="black" stroke-width="1"/>
+    <text x="36" y="285" text-anchor="middle" dominant-baseline="middle" font-size="1.5em" font-style="italic">α</text>
+
+    <!-- angle B arc (반지름 25) & label beta -->
+    <path d="M 225 300 A 25 25 0 0 1 243.55 275.84" fill="none" stroke="black" stroke-width="1"/>
+    <text x="220" y="285" text-anchor="middle" dominant-baseline="middle" font-size="1.5em" font-style="italic">β</text>
+
+    <!-- A point & label -->
+    <circle cx="0" cy="300" r="5" fill="black" stroke="black" stroke-width="1"/>
+    <text x="0" y="322" text-anchor="middle" dominant-baseline="middle" font-size="1.8em">A</text>
+
+    <!-- B point & label -->
+    <circle cx="250" cy="300" r="5" fill="black" stroke="black" stroke-width="1"/>
+    <text x="250" y="322" text-anchor="middle" dominant-baseline="middle" font-size="1.8em">B</text>
+
+    <!-- C point & label -->
+    <circle cx="170" cy="0" r="5" fill="black" stroke="black" stroke-width="1"/>
+    <text x="195" y="5" text-anchor="middle" dominant-baseline="middle" font-size="1.8em">C</text>
+
+    <!-- d label -->
+    <text x="185" y="150" text-anchor="middle" dominant-baseline="middle" font-size="1.8em" font-style="italic">d</text>
+
+    <!-- Distance x (A to vertical line) -->
+    <g stroke="black" stroke-width="0.8">
+      <line x1="0" y1="332" x2="0" y2="348"/>
+      <line x1="170" y1="332" x2="170" y2="348"/>
+      <line x1="2" y1="340" x2="168" y2="340"/>
+      <path d="M 7 337 L 1 340 L 7 343" fill="none"/>
+      <path d="M 163 337 L 169 340 L 163 343" fill="none"/>
+    </g>
+    <text x="85" y="350" text-anchor="middle" dominant-baseline="middle" font-size="1.5em" font-style="italic">x</text>
+
+    <!-- Distance y (vertical line to B) -->
+    <g stroke="black" stroke-width="0.8">
+      <line x1="170" y1="332" x2="170" y2="348"/>
+      <line x1="250" y1="332" x2="250" y2="348"/>
+      <line x1="172" y1="340" x2="248" y2="340"/>
+      <path d="M 177 337 L 171 340 L 177 343" fill="none"/>
+      <path d="M 243 337 L 249 340 L 243 343" fill="none"/>
+    </g>
+    <text x="210" y="350" text-anchor="middle" dominant-baseline="middle" font-size="1.5em" font-style="italic">y</text>
+
+    <!-- Total Distance l (A to B) -->
+    <g stroke="black" stroke-width="1">
+      <line x1="0" y1="362" x2="0" y2="378"/>
+      <line x1="250" y1="362" x2="250" y2="378"/>
+      <line x1="2" y1="370" x2="248" y2="370"/>
+      <path d="M 7 367 L 1 370 L 7 373" fill="none"/>
+      <path d="M 243 367 L 249 370 L 243 373" fill="none"/>
+    </g>
+    <text x="125" y="386" text-anchor="middle" dominant-baseline="middle" font-size="1.5em" font-style="italic">l</text>
+
+    <!-- C 점 위치(170, 0)에 그리는 배 아이콘 -->
+    <g fill="#5c3d1e" stroke="#3d2814" stroke-width="1">
+      <!-- 선체 (배 밑바닥) -->
+      <path d="M 158 -5 L 182 -5 L 188 -18 L 152 -18 Z" />
+      <!-- 돛대 -->
+      <line x1="170" y1="-18" x2="170" y2="-38" stroke="#3d2814" stroke-width="1.5" />
+      <!-- 돛 -->
+      <path d="M 170 -36 L 184 -27 L 170 -18 Z" fill="#ffffff" stroke="#3d2814" />
+    </g>
+  </g>
+</svg>
