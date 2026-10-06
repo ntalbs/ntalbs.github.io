@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://ntalbs.github.io/sitemap.xml
+Sitemap: https://ntalbs.github.io/sitemap-v2.xml
