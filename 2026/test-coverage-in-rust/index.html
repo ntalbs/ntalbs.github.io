@@ -19,7 +19,7 @@ on
 표시한다. <code>--open</code> 옵션을 주면 커버리지 리포트를 HTML로 생성한 후
 브라우저로 열어준다.</p><p>브랜치 커버리지를 보려면 <code>--branch</code> 옵션을 추가해야 한다. <code>--branch</code>는
 unstable하므로 Niglty 툴체인을 사용하도록 해야 한다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>cargo +nightly llvm-cov --branch
-</span></span></code></pre></div><p><img src=coverage-report.png alt></p><p>매번 <code>cargo llvm-cov --open</code>과 같이 길게 입력하고 싶지 않다면
+</span></span></code></pre></div><p><img src=coverage-report.png alt="커버리지 리포트"></p><p>매번 <code>cargo llvm-cov --open</code>과 같이 길게 입력하고 싶지 않다면
 <code>~/.cargo/config.toml</code> 파일에 다음과 같이 <code>alias</code>를 정의할 수 있다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=line><span class=cl><span class=p>[</span><span class=nx>alias</span><span class=p>]</span>
 </span></span><span class=line><span class=cl><span class=nx>cov</span> <span class=p>=</span> <span class=s2>&#34;llvm-cov --html --open&#34;</span>
 </span></span><span class=line><span class=cl><span class=p>...</span>
@@ -29,7 +29,7 @@ unstable하므로 Niglty 툴체인을 사용하도록 해야 한다.</p><div cla
 나타낸다.</p><p>커버리지 리포트에서 파일을 선택하면 특정 파일에서 실행되지 않은 부분,
 각 라인별 실행 횟수, 각 영역별 실행 횟수 등을 볼 수 있다.</p><p>실행되지 않은 Region을 보면 코드에서 제대로 처리하지 않은 상황을
 발견하는 데 도움이 된다. 한 라인이 여러 영역으로 나뉠 수 있다면 해당
-라인의 실행 횟수뿐 아니라 해당 영역의 실행 횟수도 확인할 수 있다.</p><p><img src=code-coverage.png alt></p><p>한 가지 이해하기 어려운 점은, 리포트 첫 페이지에서는 브랜치 커버리지가
+라인의 실행 횟수뿐 아니라 해당 영역의 실행 횟수도 확인할 수 있다.</p><p><img src=code-coverage.png alt="코드 커버리지"></p><p>한 가지 이해하기 어려운 점은, 리포트 첫 페이지에서는 브랜치 커버리지가
 100%로 나왔는데, 파일 안으로 들어와 보면 빨간색으로 표시된 브랜치, 즉
 실행되지 않은 브랜치가 있다는 것이다. 이런 문제 때문에 <code>--branch</code>
 옵션이 unstable 상태인 것인지, 아니면 내가 리포트를 제대로 이해하지
