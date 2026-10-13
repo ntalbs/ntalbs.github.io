@@ -1,4 +1,4 @@
-<!doctype html><html><head><script>const mode=localStorage.getItem("mode")||"light";document.documentElement.dataset.theme=mode</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><script type=text/javascript>(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jce8mxrx8a")</script><meta charset=UTF-8><meta http-equiv=content-language content='ko-KR'><meta name=description content="Rust에서 매개변수 테스트를 쉽게 작성할 수 있도록 하는 p-test 애트리뷰트 매크로를 만드는 방법을 설명한다"><meta name=keywords content="rust,proc-macro,attribute-like-macro"><meta name=viewport content="width=device-width,initial-scale=1"><title>Rust 매개변수 테스트 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3882204692252974" crossorigin=anonymous></script></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>Rust 매개변수 테스트</div></div></div><nav class=navbar role=navigation><div class=container><a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a><div class=navbar-items id=nav-items><input id=search type=search class=nav-item placeholder="Search this site" autocomplete=off>
+<!doctype html><html><head><script>const mode=localStorage.getItem("mode")||"light";document.documentElement.dataset.theme=mode</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><script type=text/javascript>(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jce8mxrx8a")</script><meta charset=UTF-8><meta http-equiv=content-language content='ko-KR'><meta name=description content="Rust에서 매개변수 테스트를 쉽게 작성할 수 있도록 하는 p-test 애트리뷰트 매크로를 만드는 방법을 설명한다"><meta name=keywords content="rust,proc-macro,attribute-like-macro"><meta name=viewport content="width=device-width,initial-scale=1"><title>Rust 매개변수 테스트 @ntalbs' stuff</title><link rel="shortcut icon" href=/favicon.ico><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3882204692252974" crossorigin=anonymous></script></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>Rust 매개변수 테스트</div></div></div><nav class=navbar role=navigation><div class=container><a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a><div class=navbar-items id=nav-items><input id=search type=search class=nav-item placeholder="Search this site" autocomplete=off>
 <a class="nav-item unselectable" href=/archive/>Archive</a>
 <a class="nav-item unselectable" href=/tags/>Tags</a>
 <a class="nav-item unselectable" href=/about/>About</a>
@@ -28,7 +28,7 @@ on
 </span></span></span><span class=line><span class=cl><span class=err>
 </span></span></span><span class=line><span class=cl><span class=go>test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 </span></span></span></code></pre></div><p>마음에 들지 않는다. 테스트 케이스를 추가할 때마다 <code>#[case(...)]</code>를
-써야 하는 것 까지는 괜찮다 치더라도, 테스트 함수의 파라미터에
+써야 하는 것까지는 괜찮다 치더라도, 테스트 함수의 파라미터에
 <code>#[case]</code>를 붙여야 하는 것은 별로다.</p><p>테스트 실행 결과도 <code>case_1</code>, <code>case_2</code>와 같은 식으로 표시되는데, 특정
 <code>case</code>에 테스트가 실패한다면 어떤 경우 테스트가 실패했는지 알기 위해
 숫자를 보고 위에서부터 하나씩 세어 확인해야 해서 불편하다.</p><h2 id=매개변수-테스트-매크로-레이아웃>매개변수 테스트 매크로 레이아웃</h2><p>매개변수 테스트를 다음과 같은 식으로 작성할 수 있으면 좋겠다 싶어
@@ -42,7 +42,7 @@ on
 </span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
 </span></span></span></code></pre></div><p><code>p_test</code> 속성에 튜플의 리스트를 지정하며, 각 튜플은 테스트 케이스를
 나타낸다. 튜플의 첫 번째 요소는 테스트 케이스 이름으로 매크로를
-확장했을 때 테스트 함수로 전환될 것이다.</p><p>그 다음부터는 인자 목록인데, 매개변수 테스트 함수 <code>test_sum</code>의 인자로
+확장했을 때 테스트 함수로 전환될 것이다.</p><p>그다음부터는 인자 목록인데, 매개변수 테스트 함수 <code>test_sum</code>의 인자로
 사용된다. 이 예에서는 마지막 인자를 <code>expected</code>로 사용했지만, 사실 인자
 순서는 중요하지 않고 <code>test_sum</code> 함수의 인자와 순서가 같으면 된다.</p><h2 id=크레잇-생성>크레잇 생성</h2><p>절차형 매크로는 별도 크레잇에 정의해야 한다. 매크로를 위한 크레잇을
 다음과 같이 생성한다. 이름은 <code>p-test</code>로 정했다. parameterized나
@@ -89,7 +89,7 @@ parameterized_test 같은 이름은 이미 다른 크레잇이 선점해 쓸 수
 </span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>test_sum</span><span class=p>(</span><span class=mi>4</span><span class=p>,</span><span class=w> </span><span class=mi>5</span><span class=p>,</span><span class=w> </span><span class=mi>9</span><span class=p>);</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
-</span></span></span></code></pre></div><p><code>item</code>에 대해서는 특별한 작업이 없다. 코드를 그대로 복사해주면
+</span></span></span></code></pre></div><p><code>item</code>에 대해서는 특별한 작업이 없다. 코드를 그대로 복사해 주면
 된다. 그러나 <code>attr</code>은 직접 파싱해 원하는 형태로 코드를 생성해야 한다.</p><h2 id=속성-파싱>속성 파싱</h2><p>속성을 파싱한 데이터를 담아둘 구조체가 필요하다. 먼저 각 테스트
 케이스를 담을 <code>TestCase</code> 구조체를 다음과 같이 정의한다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-rust data-lang=rust><span class=line><span class=cl><span class=k>struct</span> <span class=nc>TestCase</span><span class=w> </span><span class=p>{</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>name</span>: <span class=nc>Ident</span><span class=p>,</span><span class=w>

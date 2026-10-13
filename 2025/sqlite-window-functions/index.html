@@ -1,17 +1,17 @@
-<!doctype html><html><head><script>const mode=localStorage.getItem("mode")||"light";document.documentElement.dataset.theme=mode</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><script type=text/javascript>(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jce8mxrx8a")</script><meta charset=UTF-8><meta http-equiv=content-language content='ko-KR'><meta name=description content="SQLite에서 Window 함수 사용법을 설명한다."><meta name=keywords content><meta name=viewport content="width=device-width,initial-scale=1"><title>SQLite 윈도우 함수 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3882204692252974" crossorigin=anonymous></script></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>SQLite 윈도우 함수</div></div></div><nav class=navbar role=navigation><div class=container><a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a><div class=navbar-items id=nav-items><input id=search type=search class=nav-item placeholder="Search this site" autocomplete=off>
+<!doctype html><html><head><script>const mode=localStorage.getItem("mode")||"light";document.documentElement.dataset.theme=mode</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><script type=text/javascript>(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jce8mxrx8a")</script><meta charset=UTF-8><meta http-equiv=content-language content='ko-KR'><meta name=description content="SQLite에서 Window 함수 사용법을 설명한다."><meta name=keywords content><meta name=viewport content="width=device-width,initial-scale=1"><title>SQLite 윈도우 함수 @ntalbs' stuff</title><link rel="shortcut icon" href=/favicon.ico><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3882204692252974" crossorigin=anonymous></script></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>SQLite 윈도우 함수</div></div></div><nav class=navbar role=navigation><div class=container><a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a><div class=navbar-items id=nav-items><input id=search type=search class=nav-item placeholder="Search this site" autocomplete=off>
 <a class="nav-item unselectable" href=/archive/>Archive</a>
 <a class="nav-item unselectable" href=/tags/>Tags</a>
 <a class="nav-item unselectable" href=/about/>About</a>
 <a id=mode-switch class="unselectable nav-item" href=#><svg data-bs-theme-value="dark" class="icon-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3c.132.0.263.0.393.0a7.5 7.5.0 007.92 12.446A9 9 0 1112 2.992z"/></svg>
 <svg data-bs-theme-value="light" class="icon-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-4 0a4 4 0 108 0 4 4 0 10-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7-.7.7m0 11.4.7.7m-12.1-.7-.7.7"/></svg></a></div></div></nav><header class=page-head><div class=container><div class=single-line-text-container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2025-10-04 itemprop=datePublished>2025-10-04</time>
 on
-<a href=/tags/sql/>SQL</a></p><h1 class=post-title>SQLite 윈도우 함수</h1></header><section class=post-content><p><a href=https://sqlite.org/>SQLite</a>는 작고 빠른 데이터베이스 엔진이다. 다른 DBMS 처럼 서버
+<a href=/tags/sql/>SQL</a></p><h1 class=post-title>SQLite 윈도우 함수</h1></header><section class=post-content><p><a href=https://sqlite.org/>SQLite</a>는 작고 빠른 데이터베이스 엔진이다. 다른 DBMS처럼 서버
 프로세스들 띄울 필요 없이 명령행 셸(<code class=verbatim>sqlite3</code>)로 데이터베이스 파일을
 열어 SQL을 실행할 수 있다. CSV 파일을 바로 SQLite 테이블로 로드할 수
 있어, 간단한 데이터 분석 시 유용하게 사용할 수 있다.</p><p>SQLite에서 지원하는 SQL 수준은 매우 초보적이었던 것으로 기억하는 데,
 최근 다시 보니 윈도우 함수뿐 아니라 재귀적 CTE(Common Table
 Expressin)까지 지원한다는 사실을 알게 되었다. 이 글에서는 예전 기억을
-되살리며 SQLite에서 윈도우 함수를 간단히 테스트 해보려 한다.</p><p>Oracle 데이터베이스로 SQL을 배울 때 사용했던 HR 스키마(<a href=https://github.com/oracle-samples/db-sample-schemas/tree/main/human_resources>Human
+되살리며 SQLite에서 윈도우 함수를 간단히 테스트해보려 한다.</p><p>Oracle 데이터베이스로 SQL을 배울 때 사용했던 HR 스키마(<a href=https://github.com/oracle-samples/db-sample-schemas/tree/main/human_resources>Human
 Resources Sample Schema</a>)를 사용할 것이다. ERD는 다음과
 같다. 상용 ERD 도구를 이용하면 테이블 관계를 나타낼 때 어떤 컬럼이
 이용되는지까지 표시할 수 있지만, PlantUML에서는 그렇게까지는 못 하는
@@ -71,7 +71,7 @@ Human Resources   203     Susan Jacobs      Human Resources Representative   650
 Administration    200     Jennifer Whalen   Administration Assistant         4400
 </pre></div></div><div id=outline-container-headline-4 class=outline-3><h3 id=headline-4>연도별 누적 직원 수</h3><div id=outline-text-headline-4 class=outline-text-3><p>회사가 성장함에 따라 직원수가 늘어났다. 시간이 지남에 따라 직원이
 어떻게 늘어났는지 확인하기 위해 연도별 누적 직원 수가 필요하다고
-생각해보자. 이 문제 역시 윈도우 함수를 사용하면 간단히 해결할 수
+생각해 보자. 이 문제 역시 윈도우 함수를 사용하면 간단히 해결할 수
 있다. 연도별로 <code class=verbatim>group by</code> 해 연도별 직원수를 구한 다음, 윈도우 함수로
 누적 합계를 구하면 된다.</p><p>날짜 함수는 DB마다 다르다. SQLite에서는 <code class=verbatim>strftime</code> 함수를 사용해
 날짜에서 연도를 뽑아낼 수 있다.</p><div class="src src-sql"><div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=line><span class=cl><span class=k>select</span><span class=w> </span><span class=n>yyyy</span><span class=w>
@@ -154,16 +154,16 @@ Frame Specifications</a>를 참조하기 바란다.</p><p>위 쿼리에서 두 �
 2017  96   19
 2018  107  11
 </pre></div></div></div></div><div id=outline-container-headline-6 class=outline-2><h2 id=headline-6>결론</h2><div id=outline-text-headline-6 class=outline-text-2><p>SQLite에서 몇 가지 예제를 통해 윈도우 함수 사용법을 간단히
-확인해봤다. 한 가지 주목할 점은 <code class=verbatim>sum</code>, <code class=verbatim>count</code> 와 같은 일반 집계
+확인해 봤다. 한 가지 주목할 점은 <code class=verbatim>sum</code>, <code class=verbatim>count</code> 와 같은 일반 집계
 함수(aggregate function) 뒤에 <code class=verbatim>over</code> 절을 추가하면, 집계 함수가 <code class=verbatim>over</code> 절로
 명시한 윈도우 프레임 안의 행에 대해 동작한다는 점이다.</p><p>여기서 살펴본 예제만으로 윈도우 함수를 제대로 알기에는 무리가
 있겠지만, 윈도우, 파티션, 프레임 등의 개념을 이해하고 나면 윈도우
 함수를 활용하는 것이 재미있어진다. 윈도우 함수를 활용하면 쿼리로
 불가능해 보이는 작업도 간단히 해결할 수 있는 경우가 많다.</p></div></div><div id=outline-container-headline-7 class=outline-2><h2 id=headline-7>사족</h2><div id=outline-text-headline-7 class=outline-text-2><p>이 글은 <a href=https://www.gnu.org/software/emacs/>Emacs</a>에서 <a href=https://orgmode.org/>org-mode</a>(<a href=https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-sqlite.html>ob-sqlite</a>)를 사용해 작성했다. 쿼리를
-실행하면 결과과 본문에 삽입되며, 쿼리를 쉽게 수정하고 실행할 수
+실행하면 결과가 본문에 삽입되며, 쿼리를 쉽게 수정하고 실행할 수
 있다. SQLite 셸에서 복잡한 쿼리를 편집하는 것은 매우 불편하므로,
 Emacs에서 쿼리를 편집/실행할 수 있다는 것은 큰 장점이 아닐 수 없다.</p><p>그러나 몇 가지 불편한 점도 있었다. 일단 Emacs에 내장된 sql-mode가 별로
-훌륭하지 않은 듯 하다. 쿼리를 편집할 때 제멋대로 들여쓰기를 바꿔버리는
+훌륭하지 않은 듯하다. 쿼리를 편집할 때 제멋대로 들여쓰기를 바꿔버리는
 문제가 있는데, org-mode에서 편집할 때만 그런 것 같다. 내 Emacs 설정이
 잘못되어 그런 것인지도 모르겠다.</p><p>코드블록에서 Sqlite에 대해 쿼리를 실행하려면 언어를 <code class=verbatim>sqlite</code> 로 설정해야
 하는데, 이렇게 하면 HTML로 렌더링했을 때 언어가 SQL로 인식되지 않아

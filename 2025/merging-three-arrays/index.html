@@ -1,4 +1,4 @@
-<!doctype html><html><head><script>const mode=localStorage.getItem("mode")||"light";document.documentElement.dataset.theme=mode</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><script type=text/javascript>(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jce8mxrx8a")</script><meta charset=UTF-8><meta http-equiv=content-language content='ko-KR'><meta name=description content="세 개의 배열을 병합하는 함수를 구현하는 방법을 설명한다"><meta name=keywords content="java,coding-quiz"><meta name=viewport content="width=device-width,initial-scale=1"><title>세 배열 병합하기 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3882204692252974" crossorigin=anonymous></script></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>세 배열 병합하기</div></div></div><nav class=navbar role=navigation><div class=container><a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a><div class=navbar-items id=nav-items><input id=search type=search class=nav-item placeholder="Search this site" autocomplete=off>
+<!doctype html><html><head><script>const mode=localStorage.getItem("mode")||"light";document.documentElement.dataset.theme=mode</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><script type=text/javascript>(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jce8mxrx8a")</script><meta charset=UTF-8><meta http-equiv=content-language content='ko-KR'><meta name=description content="세 개의 배열을 병합하는 함수를 구현하는 방법을 설명한다"><meta name=keywords content="java,coding-quiz"><meta name=viewport content="width=device-width,initial-scale=1"><title>세 배열 병합하기 @ntalbs' stuff</title><link rel="shortcut icon" href=/favicon.ico><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3882204692252974" crossorigin=anonymous></script></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>세 배열 병합하기</div></div></div><nav class=navbar role=navigation><div class=container><a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a><div class=navbar-items id=nav-items><input id=search type=search class=nav-item placeholder="Search this site" autocomplete=off>
 <a class="nav-item unselectable" href=/archive/>Archive</a>
 <a class="nav-item unselectable" href=/tags/>Tags</a>
 <a class="nav-item unselectable" href=/about/>About</a>
@@ -7,17 +7,17 @@
 on
 <a href=/tags/%ec%83%81%eb%85%90/>상념</a></p><h1 class=post-title>세 배열 병합하기</h1></header><section class=post-content><p>예전에 코딩 면접에서 정렬되어 있는 배열 세 개를 병합하는 함수를
 구현하라는 문제가 주어진 적이 있다. 한 번에 배열 세 개를 병합하려면
-복잡할테니, 배열 두 개를 먼저 병합한 다음 그걸 세 번째 배열과
+복잡할 테니, 배열 두 개를 먼저 병합한 다음 그걸 세 번째 배열과
 병합하겠다고 했다. 면접관은 그냥 배열 세 개를 직접 병합하는 코드를
-작성하라 했다.</p><p>세 배열 요소를 비교해가며 병합하려면 코드가 너무 복잡해질 것 같은
+작성하라 했다.</p><p>세 배열 요소를 비교해 가며 병합하려면 코드가 너무 복잡해질 것 같은
 걱정이 앞섰다. 복잡성을 회피하기 위한 방법을 생각했지만, 그게 짧은
 시간 안에 생각날 리가 없었다. 결국은 버벅거리다가 배열 병합은 시작도
-하지 못하고 면접 시간을 모두 써 버리고 말았다. 결과는 당연히 탈락!</p><p>세 수를 비교하려면 당장 경우의 수가 많아진다. 여기에 배열1이 먼저
-끝난 경우, 배열2가 먼저 끝난 경우, 배열3가 먼저 끝난 경우, 배열1, 2가
-끝난 경우, 배열2, 3이 끝난 경우 등의 조합도 고려해야 할 것이다. 아마도
-면접관은 이런 복잡성을 어떻게 다루는 지 보고 싶어 했던 게 아닐까.</p><p>갑자기 이 문제가 생각나, 다시 풀어보고 싶어졌다. 무식하게 모든 경우의
+하지 못하고 면접 시간을 모두 써 버리고 말았다. 결과는 당연히 탈락!</p><p>세 수를 비교하려면 당장 경우의 수가 많아진다. 여기에 배열 1이 먼저
+끝난 경우, 배열 2가 먼저 끝난 경우, 배열 3가 먼저 끝난 경우, 배열 1, 2가
+끝난 경우, 배열 2, 3이 끝난 경우 등의 조합도 고려해야 할 것이다. 아마도
+면접관은 이런 복잡성을 어떻게 다루는지 보고 싶어 했던 게 아닐까.</p><p>갑자기 이 문제가 생각나, 다시 풀어보고 싶어졌다. 무식하게 모든 경우의
 수를 다 처리하도록 코드를 작성하면 되는 것 아닌가. 경우의 수가
-많아진다고 해도 그게 수십 수백가지가 아니라면 코드도 지나치게
+많아진다고 해도 그게 수십 수백 가지가 아니라면 코드도 지나치게
 복잡해지지는 않으리라.</p><p>함수는 다음과 같은 모양이 될 것이다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kt>int</span><span class=o>[]</span><span class=w> </span><span class=nf>merge3</span><span class=p>(</span><span class=kt>int</span><span class=o>[]</span><span class=w> </span><span class=n>xs</span><span class=p>,</span><span class=w> </span><span class=kt>int</span><span class=o>[]</span><span class=w> </span><span class=n>ys</span><span class=p>,</span><span class=w> </span><span class=kt>int</span><span class=o>[]</span><span class=w> </span><span class=n>zs</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=kt>int</span><span class=o>[]</span><span class=w> </span><span class=n>merged</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>new</span><span class=w> </span><span class=kt>int</span><span class=o>[</span><span class=n>xs</span><span class=p>.</span><span class=na>length</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=n>ys</span><span class=p>.</span><span class=na>length</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=n>zs</span><span class=p>.</span><span class=na>length</span><span class=o>]</span><span class=p>;</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=kt>int</span><span class=w> </span><span class=n>i</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>0</span><span class=p>,</span><span class=w> </span><span class=n>j</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>0</span><span class=p>,</span><span class=w> </span><span class=n>k</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>0</span><span class=p>;</span><span class=w>
@@ -28,8 +28,8 @@ on
 </span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
 </span></span></span></code></pre></div><p><code>i</code>는 배열 <code>xs</code>, <code>j</code>는 배열 <code>ys</code>, <code>k</code>는 배열 <code>zs</code>를 위한
 인덱스다. <code>n</code>은 배열 <code>merged</code>를 위한 인덱스다. 여기까지 코드를 써놓고
-생각해보니, 각 배열의 요소를 비교해서 가장 작은 값만 알아내면 그만
-아닌가. 면접때는 이 부분을 너무 복잡하게 생각했는데, 지금 생각해보니
+생각해 보니, 각 배열의 요소를 비교해서 가장 작은 값만 알아내면 그만
+아닌가. 면접 때는 이 부분을 너무 복잡하게 생각했는데, 지금 생각해 보니
 그냥 <code>if</code> 세 번이면 끝난다. 즉,</p><ul><li><code>xs[i]</code>가 가장 작으면 이걸 <code>merged[n]</code>에 넣고 <code>i</code>를 증가</li><li><code>ys[j]</code>가 가장 작으면 이걸 <code>merged[n]</code>에 넣고 <code>j</code>를 증가</li><li><code>zs[k]</code>가 가장 작으면 이걸 <code>merged[n]</code>에 넣고 <code>k</code>를 증가</li></ul><p>하면 되는 것이다. 이걸 코드로 옮기면 다음과 같다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kt>int</span><span class=o>[]</span><span class=w> </span><span class=nf>merge3</span><span class=p>(</span><span class=kt>int</span><span class=o>[]</span><span class=w> </span><span class=n>xs</span><span class=p>,</span><span class=w> </span><span class=kt>int</span><span class=o>[]</span><span class=w> </span><span class=n>ys</span><span class=p>,</span><span class=w> </span><span class=kt>int</span><span class=o>[]</span><span class=w> </span><span class=n>zs</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c1>// ...</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=k>for</span><span class=w> </span><span class=p>(</span><span class=kt>int</span><span class=w> </span><span class=n>n</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>0</span><span class=p>;</span><span class=w> </span><span class=n>n</span><span class=w> </span><span class=o>&lt;</span><span class=w> </span><span class=n>merged</span><span class=p>.</span><span class=na>length</span><span class=p>;</span><span class=w> </span><span class=n>n</span><span class=o>++</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
@@ -45,9 +45,9 @@ on
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=k>return</span><span class=w> </span><span class=n>merged</span><span class=p>;</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
 </span></span></span></code></pre></div><p>아직 해야 할 일이 남아 있다. 세 배열 중 하나 또는 둘의 처리가 끝난
-경우도 고려해야 한다. 먼저 <code>xs</code>가 끝난 경우부터 처리해보자. <code>i</code>가
-<code>xs.length</code>와 같다면 <code>xs</code>를 <code>merged</code>에 모두 병합했다는 뜻이다.</p><p>이 상태에서 <code>ys</code>도 모두 병합했다면 <code>zs</code>를 계속 병합해주면 된다. <code>ys</code>
-병합은 안 끝났지만 <code>zs</code> 병합이 끝났다면 <code>ys</code>를 계속 병합해주면
+경우도 고려해야 한다. 먼저 <code>xs</code>가 끝난 경우부터 처리해 보자. <code>i</code>가
+<code>xs.length</code>와 같다면 <code>xs</code>를 <code>merged</code>에 모두 병합했다는 뜻이다.</p><p>이 상태에서 <code>ys</code>도 모두 병합했다면 <code>zs</code>를 계속 병합해 주면 된다. <code>ys</code>
+병합은 안 끝났지만 <code>zs</code> 병합이 끝났다면 <code>ys</code>를 계속 병합해 주면
 된다. <code>ys</code>, <code>zs</code> 모두 병합이 안 끝났다면 두 배열 요소를 비교해
 <code>merged</code>로 병합하고 병합한 배열의 인덱스를 증가하면 된다. 이걸 코드로
 옮기면 다음과 같다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kt>int</span><span class=o>[]</span><span class=w> </span><span class=nf>merge3</span><span class=p>(</span><span class=kt>int</span><span class=o>[]</span><span class=w> </span><span class=n>xs</span><span class=p>,</span><span class=w> </span><span class=kt>int</span><span class=o>[]</span><span class=w> </span><span class=n>ys</span><span class=p>,</span><span class=w> </span><span class=kt>int</span><span class=o>[]</span><span class=w> </span><span class=n>zs</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
@@ -170,7 +170,7 @@ on
 </span></span></span></code></pre></div><p>생각보다 복잡하지 않다. 면접 때 지레 겁을 먹고 포기했던 것이다. 간단히
 테스트를 돌려보니 모두 통과한다. 코드에 버그가 숨어 있을지도
 모르겠다. 그러나 면접 때 이 정도로 코드를 작성했다면 떨어지지 않았을
-것 같다.</p><p>교훈: 지레 겁먹고 포기하지 말자. 직접 부딛혀보면 처음 느꼈던 것과
+것 같다.</p><p>교훈: 지레 겁먹고 포기하지 말자. 직접 부딪혀보면 처음 느꼈던 것과
 달리 쉬운 경우도 많다.</p></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
 <a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
 <script async src=//platform.twitter.com/widgets.js></script></div><nav class=article-nav><a class=next href=/2025/parameterized-test-in-rust/>Rust 매개변수 테스트</a>

@@ -1,6 +1,6 @@
 <!doctype html><html><head><script>const mode=localStorage.getItem("mode")||"light";document.documentElement.dataset.theme=mode</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><script type=text/javascript>(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jce8mxrx8a")</script><meta charset=UTF-8><meta http-equiv=content-language content='ko-KR'><meta name=description content='텍스트 블록 Java에서는 Java 15부터 추가된 텍스트 블록을 사용해 여러 행으로 표현된 문자열을 다음과 같이 쉽게 정의할 수 있다.
-void dummy() { String json = """ { "a": 10, "b": 20 } """; System.out.println(json); } 여러 줄의 문자열을 이어붙이지 않아도 되고, 문자열 안에 있는 쌍따옴표를 이스케이프 없이 그대로 쓸 수 있어 문자열의 최종 모양을 쉽게 파악할 수 있게 된다. 나는 이게 코드 가독성에 큰 영향을 미치기 때문에 중요하다고 생각한다.
-'><meta name=keywords content="rust,multiline string,text block"><meta name=viewport content="width=device-width,initial-scale=1"><title>Rust 텍스트 블록 @ntalbs' stuff</title><link rel="shortcut icon" href=/images/favicon.ico><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3882204692252974" crossorigin=anonymous></script></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>Rust 텍스트 블록</div></div></div><nav class=navbar role=navigation><div class=container><a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a><div class=navbar-items id=nav-items><input id=search type=search class=nav-item placeholder="Search this site" autocomplete=off>
+void dummy() { String json = """ { "a": 10, "b": 20 } """; System.out.println(json); } 여러 줄의 문자열을 이어 붙이지 않아도 되고, 문자열 안에 있는 큰따옴표를 이스케이프 없이 그대로 쓸 수 있어 문자열의 최종 모양을 쉽게 파악할 수 있게 된다. 나는 이게 코드 가독성에 큰 영향을 미치기 때문에 중요하다고 생각한다.
+'><meta name=keywords content="rust,multiline string,text block"><meta name=viewport content="width=device-width,initial-scale=1"><title>Rust 텍스트 블록 @ntalbs' stuff</title><link rel="shortcut icon" href=/favicon.ico><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3882204692252974" crossorigin=anonymous></script></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>Rust 텍스트 블록</div></div></div><nav class=navbar role=navigation><div class=container><a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a><div class=navbar-items id=nav-items><input id=search type=search class=nav-item placeholder="Search this site" autocomplete=off>
 <a class="nav-item unselectable" href=/archive/>Archive</a>
 <a class="nav-item unselectable" href=/tags/>Tags</a>
 <a class="nav-item unselectable" href=/about/>About</a>
@@ -17,18 +17,18 @@ on
 </span></span></span><span class=line><span class=cl><span class=s>        &#34;&#34;&#34;</span><span class=p>;</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=n>json</span><span class=p>);</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
-</span></span></span></code></pre></div><p>여러 줄의 문자열을 이어붙이지 않아도 되고, 문자열 안에 있는 쌍따옴표를
+</span></span></span></code></pre></div><p>여러 줄의 문자열을 이어 붙이지 않아도 되고, 문자열 안에 있는 큰따옴표를
 이스케이프 없이 그대로 쓸 수 있어 문자열의 최종 모양을 쉽게 파악할 수
 있게 된다. 나는 이게 코드 가독성에 큰 영향을 미치기 때문에 중요하다고
 생각한다.</p><p>Rust에서도 여러 행으로 된 문자열을 간단히 표현할 수 있다. 문자열에
-쌍따옴표나 역슬래시(<code>\</code>)가 없다면 그냥 문자열을 여러 줄로 써주면 된다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-rust data-lang=rust><span class=line><span class=cl><span class=kd>let</span><span class=w> </span><span class=n>text</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;hello
+큰따옴표나 역슬래시(<code>\</code>)가 없다면 그냥 문자열을 여러 줄로 써주면 된다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-rust data-lang=rust><span class=line><span class=cl><span class=kd>let</span><span class=w> </span><span class=n>text</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&#34;hello
 </span></span></span><span class=line><span class=cl><span class=s>world&#34;</span><span class=p>;</span><span class=w>
 </span></span></span></code></pre></div><p>문자열에 포함된 역슬래시를 이스케이프가 아닌 문자열의 일부로 사용하고
 싶다면 raw string을 사용하면 된다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-rust data-lang=rust><span class=line><span class=cl><span class=kd>let</span><span class=w> </span><span class=n>text</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=sa>r</span><span class=s>&#34;C:\Program Files\Neptune
 </span></span></span><span class=line><span class=cl><span class=s>C:\Program Files\Uranus&#34;</span><span class=p>;</span><span class=w>
-</span></span></span></code></pre></div><p>문자열 안에서 이스케이프 없이 쌍따옴표를 사용하려면 어떻게 해야 할까?
-raw string에서는 이스케이프를 인식하지 않지만 쌍따옴표가 문자열을
-끝내버리기 때문에 문자열의 일부로 쌍따옴표를 사용할 수 없게 된다.</p><p>해결책은 raw string의 시작과 끝에 <code>#</code>를 붙여주는 것이다. 따라서 맨
+</span></span></span></code></pre></div><p>문자열 안에서 이스케이프 없이 큰따옴표를 사용하려면 어떻게 해야 할까?
+raw string에서는 이스케이프를 인식하지 않지만 큰따옴표가 문자열을
+끝내버리기 때문에 문자열의 일부로 큰따옴표를 사용할 수 없게 된다.</p><p>해결책은 raw string의 시작과 끝에 <code>#</code>를 붙여주는 것이다. 따라서 맨
 처음 보았던 JSON 문자열 예제를 Rust에서는 다음과 같이 쓸 수 있다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-rust data-lang=rust><span class=line><span class=cl><span class=k>fn</span> <span class=nf>dump</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>let</span><span class=w> </span><span class=n>text</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=sa>r</span><span class=s>#&#34;
 </span></span></span><span class=line><span class=cl><span class=s>        {
@@ -38,8 +38,8 @@ raw string에서는 이스케이프를 인식하지 않지만 쌍따옴표가 �
 </span></span></span><span class=line><span class=cl><span class=s>        &#34;#</span><span class=p>;</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=fm>println!</span><span class=p>(</span><span class=s>&#34;</span><span class=si>{text}</span><span class=s>&#34;</span><span class=p>);</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
-</span></span></span></code></pre></div><p>이게 끝인가? 위 코드를 실행시켜보면 약간 실망하게 된다.</p><p>코드에서 문자열 모양을 예쁘게 나타내기 위해 <code>r#"</code>를 쓴 다음 줄을
-바꾸었는데, 이게 문자열에도 그대로 들어가있다. 또한 코드 들여쓰기
+</span></span></span></code></pre></div><p>이게 끝인가? 위 코드를 실행시켜 보면 약간 실망하게 된다.</p><p>코드에서 문자열 모양을 예쁘게 나타내기 위해 <code>r#"</code>를 쓴 다음 줄을
+바꾸었는데, 이게 문자열에도 그대로 들어가 있다. 또한 코드 들여쓰기
 레벨을 맞추기 위해 문자열도 들여쓰기를 했는데 이것 역시 문자열에
 그대로 남아 있다.</p><p>문자열에 불필요한 줄바꿈과 들여쓰기를 없애려면 다음과 같이 수정해야
 한다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-rust data-lang=rust><span class=line><span class=cl><span class=k>fn</span> <span class=nf>dump</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
@@ -54,7 +54,7 @@ raw string에서는 이스케이프를 인식하지 않지만 쌍따옴표가 �
 할 수는 없을까?</p><h2 id=text-매크로>text! 매크로</h2><p><a href=https://crates.io/>crates.io</a>에서 간단히 검색해 몇몇 크레잇을
 찾았지만, 내가 원하는 형대가 아니었다. 직접 매크로를 만들어서 공개하면
 좋겠다는 생각이 들었다.</p><p>잽싸게 <code>text!</code> 매크로를 만들어봤다. 아주 초보적인 구현이다. 매크로를
-만드는 좀더 자세한 방법은 <a href=/2025/parameterized-test-in-rust/>Rust 매개변수
+만드는 좀 더 자세한 방법은 <a href=/2025/parameterized-test-in-rust/>Rust 매개변수
 테스트</a>를 참조하기 바란다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-rust data-lang=rust><span class=line><span class=cl><span class=k>use</span><span class=w> </span><span class=n>proc_macro</span>::<span class=n>TokenStream</span><span class=p>;</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=k>use</span><span class=w> </span><span class=n>regex</span>::<span class=n>Regex</span><span class=p>;</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=k>use</span><span class=w> </span><span class=n>syn</span>::<span class=p>{</span><span class=n>parse_macro_input</span><span class=p>,</span><span class=w> </span><span class=n>LitStr</span><span class=p>};</span><span class=w>
@@ -112,7 +112,7 @@ raw string에서는 이스케이프를 인식하지 않지만 쌍따옴표가 �
 있었다. 그리고 <a href=https://crates.io/crates/serde_json>serde_json</a>을
 포함해 엄청나게 많은 다른 크레잇에서 이미 indoc 크레잇이 사용하고 있는
 것도 보였다.</p><p>처음부터 이걸 발견했다면 직접 매크로를 구현한다며 삽질을 하지는
-않았을텐데. <code>text!</code> 매크로를 수정해 공개하는 것은 무의미해졌다.</p><p>이렇게 해서 내 두 번째 공개 크레잇이 될 뻔했던 <code>text_blocks</code>는
+않았을 텐데. <code>text!</code> 매크로를 수정해 공개하는 것은 무의미해졌다.</p><p>이렇게 해서 내 두 번째 공개 크레잇이 될 뻔했던 <code>text_blocks</code>는
 태어나자마자 빛도 보지 못하고 휴지통으로 직행하게 되었다.</p><h2 id=참고>참고</h2><ul><li><a href=https://crates.io/crates/indoc>indoc</a> 구현하려 했던 모든 기능을
 이미 구현했고, 다른 프로젝트에서도 많이 사용되고 있다.</li><li><a href=/2025/parameterized-test-in-rust/>Rust 매개변수 테스트</a> 매개변수
 테스트를 작성할 때 유용하게 사용할 수 있는 속성형
