@@ -58,7 +58,7 @@ Rust</a>에서도
 <code>enum</code>을 설명하면서 JSON을 예로 들어 설명하는데 비슷한 방법을 사용한
 것을 보고 은근히 기분이 좋았다.</p><p>코드는 다음 깃헙 저장소에서 확인할 수 있다.</p><ul><li><a href=https://github.com/ntalbs/json_parser>json_parser</a> JSON 파서 Rust 구현</li><li><a href=https://github.com/ntalbs/json_parser>JsonParser</a> JSON 파서 Java 구현</li></ul><p>물론 두 구현이 완벽한 것은 아니다. 예를 들어 JSON에서는 <code>6.02 e23</code>과
 같은 식으로 숫자를 표현할 수 있지만, 위 두 JSON 파서는 이런 식의 숫자
-표현을 파싱하지 못하고 에러를 내뱉는다.</p><p>다음 글에서 JSON 파서 구현 방법을 설명했다.</p><ul><li><a href=/2021/json-parser-impl-1-scanner/>JSON 파서 구현 1 - 스캐너</a>: JSON 파싱을 위한 스캐너 구현 설명 (Java)</li><li><a href=/2021/json-parser-impl-2-scanner/>JSON 파서 구현 2 - 파서</a>: JSON 파서 구현 설명 (Java)</li></ul><h2 id=reflexive-rs>reflexive-rs</h2><p>Rust로 간단한 웹 요청을 처리하는 프로그램을 만들어보고 싶었지만 특별한
+표현을 파싱하지 못하고 에러를 내뱉는다.</p><p>다음 글에서 JSON 파서 구현 방법을 설명했다.</p><ul><li><a href=/2021/json-parser-impl-1-scanner/>JSON 파서 구현 1 - 스캐너</a>: JSON 파싱을 위한 스캐너 구현 설명 (Java)</li><li><a href=/2021/json-parser-impl-2-parser/>JSON 파서 구현 2 - 파서</a>: JSON 파서 구현 설명 (Java)</li></ul><h2 id=reflexive-rs>reflexive-rs</h2><p>Rust로 간단한 웹 요청을 처리하는 프로그램을 만들어보고 싶었지만 특별한
 아이디어가 떠오르지 않았다. 예전에 일했던 팀에 테스트를 위한 에코
 서비스가 있었는데, HTTP 요청이 들어오면 바로 "OK"를 응답하는
 서비스였다. 물론 다른 기능이 있기는 했지만. 생각해 보니 HTTP 요청을
