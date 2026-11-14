@@ -1,0 +1,107 @@
+<!doctype html><html><head><script>const mode=localStorage.getItem("mode")||"light";document.documentElement.dataset.theme=mode</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-2098194-3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-2098194-3")</script><meta name=google-site-verification content="U8HPz3to00q8wRxuKaw82QsuVvOzGyPxcWhySSYAjOE"><script type=text/javascript>(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jce8mxrx8a")</script><meta charset=UTF-8><meta http-equiv=content-language content='ko-KR'><meta name=description content="Emacs에서 MathJax 수식을 SVG로 미리보기 할 수 있는 mathjax-preview 패키지를 만들었다. AI를 활용한 개발 과정과 수식 탐색 알고리즘 구현 경험을 소개한다."><meta name=keywords content="emacs,mathjax,latex"><meta name=viewport content="width=device-width,initial-scale=1"><title>Emacs에서 MathJax 수식 미리보기 @ntalbs' stuff</title><link rel="shortcut icon" href=/favicon.ico><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3882204692252974" crossorigin=anonymous></script></head><body><div id=progress><div id=bar></div><div class=container><div id=scroll-title>Emacs에서 MathJax 수식 미리보기</div></div></div><nav class=navbar role=navigation><div class=container><a class="navbar-brand unselectable" href=/>@ntalbs' stuff</a><div class=navbar-items id=nav-items><input id=search type=search class=nav-item placeholder="Search this site" autocomplete=off>
+<a class="nav-item unselectable" href=/archive/>Archive</a>
+<a class="nav-item unselectable" href=/tags/>Tags</a>
+<a class="nav-item unselectable" href=/about/>About</a>
+<a id=mode-switch class="unselectable nav-item" href=#><svg data-bs-theme-value="dark" class="icon-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3c.132.0.263.0.393.0a7.5 7.5.0 007.92 12.446A9 9 0 1112 2.992z"/></svg>
+<svg data-bs-theme-value="light" class="icon-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-4 0a4 4 0 108 0 4 4 0 10-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7-.7.7m0 11.4.7.7m-12.1-.7-.7.7"/></svg></a></div></div></nav><header class=page-head><div class=container><div class=single-line-text-container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2026-11-14 itemprop=datePublished>2026-11-14</time>
+on
+<a href=/tags/emacs/>Emacs</a></p><h1 class=post-title>Emacs에서 MathJax 수식 미리보기</h1></header><section class=post-content><h2 id=1>1</h2><p>블로그에 사용할 간단한 다이어그램은 Emacs에서 SVG로 직접 작성하기도
+한다. <a href=/2026/triangulation/>삼각측량</a>에 사용한 그림은 모두 한 땀 한
+땀 Emacs로 작성한 SVG다. SVG를 브라우저에서 열어 확인할 수도 있지만,
+<code>C-c C-c</code>를 눌러 Emacs 안에서 바로 확인할 수도 있다. Emacs가 SVG를
+바로 표시할 수 있다는 사실과 MathJax 수식을 SVG로 렌더링한다는 사실을
+연결하자 머리에 반짝 불이 들어왔다. MathJax 수식을 Emacs에서 바로
+보여줄 수 있다면? 그래서 mathjax-preview 패키지를 만들기로 했다.</p><h2 id=2>2</h2><p>이제 Emacs 패키지를 만드는 것은 더 이상 어려운 일이 아니다. 예전에도
+<a href=https://gemini.google.com/app>구글 제미니</a>의 도움을 받아
+<a href=https://github.com/ntalbs/hanfix-mode>hanfix-mode</a>를 만들어 MELPA에
+공개했다. 제미니에게 내 요구사항을 설명하니 바로 MathJax 수식 렌더링을
+처리할 Node.js 스크립트와 Emacs Lisp 패키지 코드를
+생성해냈다. 실행해 보니 역시나 제대로 작동하지 않았다. 그래도 코드를
+살펴보니 어디를 어떻게 수정해야 할지 감이 왔다.</p><p>Node.js 스크립트부터 손을 봤다. 우선 CommonJS 형식으로 생성된 것을 ES
+Module 형식으로 바꿨다. 변수 이름도 내 마음에 들게 바꿨다.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=p>...</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>svgString</span> <span class=o>=</span> <span class=nx>adaptor</span><span class=p>.</span><span class=nx>outerHTML</span><span class=p>(</span><span class=nx>node</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>...</span>
+</span></span></code></pre></div><p>생성된 코드는 <code>outerHTML()</code>을 사용하고 있었는데, 이 함수는
+<code>&lt;mjx-container></code> 요소까지 포함한 HTML을 리턴한다. 내가 필요한 것은 그
+안에 들어 있는 SVG이므로 <code>innerHTML(node)</code>을 사용하도록 수정했다.</p><p>수식 렌더링은 MathJax가 다 해준다. 이 스크립트는 문자열을 받아
+MathJax에 전달하고 렌더링 결과를 출력하는 작업만 하면 된다. 간단한
+스크립트이기는 하지만, NPM에 공개해두면 다른 사용자가
+<code>mathjax-preview</code>를 설치할 때 도움이 될 것이다. 명령행 인자를 처리하는
+부분을 다듬고 코드를 깔끔하게 정리한 다음
+<a href=https://www.npmjs.com/package/rendermj>rendermj</a>란 이름으로 NPM에
+공개했다.</p><h2 id=3>3</h2><p>제미니가 알려준 Emacs Lisp 코드는 손볼 곳이 많았다. 마음에 들지 않는
+부분을 제미니에게 다시 생성해달라고 요청했다.</p><ul><li>제미니는 이 패키지를 마이너 모드로 만들었는데, 버퍼에서 포인트에
+위치한 수식을 꺼내 미리보기를 하는 기능만 제공하므로 굳이 마이너
+모드로 만들 필요는 없어 보였다. 그냥 미리보기 기능만 제공하는
+패키지로 수정했다.</li><li><code>rendermj</code>를 백엔드 프로세스로 띄웠는데, <code>rendermj</code>와
+<code>mathjax-preview</code>를 모두 수정하는 과정이었으므로 <code>rendermj</code>가
+백그라운드 프로세스로 떠있는 것은 테스트하는 데 불편했다. 그리고
+굳이 백그라운드 프로세스로 떠있을 필요도 없어 보여 수정했다.</li><li>미리보기를 오버레이로 보여주도록 했는데, 오버레이보다는 별도 버퍼로
+보이는 편이 나을 것 같았다. 버퍼로 보이도록 수정해 달라고 했더니
+미리보기 버퍼를 오른쪽으로 열도록 코드를 생성했다. 미리보기 버퍼가
+윈도우 아래쪽에 열리도록 다시 수정했다.</li><li>미리보기 버퍼에 MathJax 수식 소스와 렌더링 결과가 함께 표시되었고,
+이전에 미리보기 한 내용이 계속 쌓였다. MathJax 수식 소스는 표시하지
+않도록 하고 현재 렌더링한 결과만 보이도록 수정했다.</li><li><code>mathjax-preview</code> 패키지와 <code>rendermj</code> 간 주고받는 데이터를 Base64로
+인코딩하도록 했는데 불필요해 보여 제거했다. 또한 임시 파일을 통해
+데이터를 주고받도록 했는데, 임시 버퍼를 사용하도록 바꾸었다.</li><li>미리보기 버퍼에서 수식 렌더링 결과를 버퍼 중앙 배치하도록
+수정했는데, 윈도우 크기 변경 시 업데이트 되지 않았다. 윈도우 크기가
+바뀌면 버퍼도 다시 그리도록 하려니 코드가 너무 복잡해지는 것
+같았다. 별로 중요하지 않은 기능 때문에 코드를 지나치게 복잡하게
+만들고 싶지 않아 왼쪽에 적절히 여백을 주는 선에서 마무리했다.</li><li>미리보기 버퍼를 Read-only로 수정하고 버퍼 높이도 적절히 조정했다.</li></ul><p>대부분 제미니가 생성한 코드를 테스트하고, 수정할 부분을 설명해 다시
+코드를 생성하는 방식으로 진행했다. 지난번
+<a href=https://github.com/ntalbs/hanfix-mode>hanfix-mode</a>를 만들던 때도
+그랬지만, 제미니가 생성한 코드가 괄호를 제대로 맞추지 못하는 경우가
+많았다. 괄호가 안 맞는다고 알려줘도 제미니가 끝내 올바른 코드를
+생성하지 못해 직접 코드를 읽고 괄호를 맞춰줘야 하는 경우가
+잦았다. 복잡한 코드도 곧잘 생성하면서 괄호 짝 하나 제대로 맞추지
+못한다는 게 이해되지 않았다.</p><h2 id=4>4</h2><p>인라인 수식은 <code>\(..수식..\)</code>과 같이 <code>\(</code>와 <code>\)</code>로 감싸거나
+<code>$..수식..$</code>와 같이 <code>$</code>로 감싼다. 블록 수식은 <code>\[..수식..\]</code>과 같이
+<code>\[</code>과 <code>\]</code>로 감싸거나 <code>$$..수식..$$</code>과 같이 <code>$$</code>로 감싼다. <code>\(</code>,
+<code>\)</code>와 <code>\[</code>, <code>\]</code>의 경우 시작 태그와 끝 태그가 달라 문제가 없지만
+<code>$</code>와 <code>$$</code>의 경우 시작과 끝이 동일하므로 <code>$</code> 또는 <code>$$</code>만 보고 그게
+수식의 시작을 뜻하는지 끝을 뜻하는지 알 수 없다.</p><p><code>\(...\)</code> 또는 <code>\[...\]</code>로 수식을 감싼 경우에는 다음과 같은 로직으로
+포인트에 위치한 수식을 알아낼 수 있다.</p><ol><li>현재 포인트에서 문서 앞쪽으로 거슬러 올라가며 <code>\(</code> 또는 <code>\[</code> 검색.</li><li><code>\(</code> 또는 <code>\[</code>의 위치를 시작 위치로 하고, 여기에 대응하는 <code>\)</code> 또는
+<code>\]</code>를 검색.</li><li>현재 포인트가 위 1, 2의 범위 안에 있는지 검사. 범위 안이면 1, 2
+범위의 텍스트가 수식 소스가 됨. 범위 안이 아니면 포인트에는 렌더링할
+수식이 없음.</li></ol><p>그러나 <code>$</code> 또는 <code>$$</code>가 사용된 경우에는 위와 같은 로직으로 포인트가
+수식에 있는지 여부를 판단할 수 없으므로, 좀 더 복잡한 과정을 거쳐야
+한다.</p><p>현재 구현에서는 인라인 수식이 단락을 넘어가지 않는다고 가정하므로,
+포인트가 속한 단락의 시작부터 <code>$</code>를 검색해 짝을 이루는 위치를 찾고 각
+쌍의 범위를 구한다음, 수집한 범위 중 포인트를 포함하는 범위가 있는지
+확인해야 한다. <code>$</code> 쌍을 구할 때 <code>\$</code>와 같이 이스케이프된 <code>$</code> 또는
+<code>$$</code>는 포함하지 않도록 주의해야 한다. 이 방법도 완벽한 것은 아니지만
+적어도 포인트 앞뒤로 <code>$</code>가 있다고 무조건 수식으로 인식하는 문제는 피할
+수 있다.</p><p><code>$$</code>도 기본 로직은 동일하지만 검색 범위를 문서 전체로 확장해야
+한다. 일반 문서에서는 문제가 없겠지만, 문서가 매우 크다면 성능에
+영향을 줄 수도 있다.</p><p>해당 로직을 제미니에게 설명했더니 코드를 금방 생성했지만, 역시 괄호
+짝을 잘 맞추지 못했다. 할 수 없이 코드를 읽으며 괄호를 직접 맞춰줘야
+했다.</p><h2 id=5>5</h2><p><code>mathjax-preview-at-point</code>는 커서가 위치한 곳의 수식을 찾아 렌더링
+하도록 했는데, 위에서 설명한 것과 같이 <code>$</code> 또는 <code>$$</code>를 사용하는
+경우에는 수식을 제대로 인식하지 못할 수 있다. 이런 경우에는 사용자가
+미리보기 할 수식을 직접 선택할 수 있도록 하면 좋을 것 같았다. 그래서
+<code>mathjax-preview-at-point</code>와 매칭되는 <code>mathjax-preview-region</code> 함수를
+구현했다. 테스트해 보니 잘 동작했다. <code>mathjax-preview-at-point</code>에는
+<code>C-c j p</code>를, <code>mathjax-preview-region</code>에는 <code>C-c j r</code>을 단축키로
+지정했다.</p><p><img src=mathjax-preview.png alt="MathJax Preview"></p><p>이리저리 테스트하다 보니 생각이 바뀌었다. <code>mathjax-preview-region</code>
+함수 안에서는 사용자가 선택 영역이 있는지 확인하는데, 생각해 보니
+사용자 선택 영역이 있으면 <code>mathjax-preview-region</code>을 호출하고 선택
+영역이 없다면 <code>mathjax-preview-at-point</code>를 호출하도록 하면 굳이
+사용자에게 두 가지 함수를 노출할 필요가 없어진다. 다시
+<code>mathjax-preview</code>란 함수 하나만 사용자에게 노출하고 다른 함수는
+숨겼다. <code>mathjax-preview</code>는 사용자 선택 영역 유무에 따라
+<code>mathjax-preview-at-point</code> 또는 <code>mathjax-preview-region</code>을
+호출한다. 키 바인딩은 <code>C-c j p</code>면 충분하다.</p><h2 id=6>6</h2><p>패키지를 어느 정도 완성해 MELPA에 공개하기 위해 PR을 준비하는데,
+체크리스트에 내 패키지가 공개 저장소(GitHub 같은)에서 한 달 이상
+유지보수되고 있어야 한다는 항목이 있었다. 이 항목은 <code>hanfix-mode</code>를
+공개하던 올해 초만 해도 없었다. 아쉽지만 MELPA 등록은 한 달 정도
+기다려야겠다.</p><p>AI 덕분에 예전보다 훨씬 적은 노력으로 Emacs 패키지를 만들 수
+있다. 그렇다고 개발자의 역할이 없어지는 것은 아니다. 요구사항을 정확히
+전달하고, AI가 생성한 코드가 요구사항대로 동작하는지 확인해야
+한다. 필요한 부분과 불필요한 부분을 판단하고 AI를 원하는 방향으로
+이끌어야 한다.</p><h2 id=참고>참고</h2><ul><li><a href=https://github.com/ntalbs/rendermj>rendermj</a> MathJax 수식을 SVG로
+렌더링하는 명령행 도구. <a href=https://www.npmjs.com/package/rendermj>NPM에도
+공개</a>되어 있다.</li><li><a href=https://github.com/ntalbs/mathjax-preview>mathjax-preview</a> MELPA에
+등록하려면 한 달을 기다려야 한다.</li></ul></section><footer class=post-footer><div class="social button-box"><a href=https://twitter.com/share class=twitter-share-button data-show-count=false>Tweet</a>
+<a class=twitter-follow-button href=https://twitter.com/ntalbs data-show-count=false>Follow @ntalbs</a>
+<script async src=//platform.twitter.com/widgets.js></script></div><nav class=article-nav>&nbsp;
+<a class=prev href=/2026/triangulation/>삼각측량</a></nav></footer></article></main><section class=section><div class=container id=giscus-area></div></section><template id=giscus-template><script src=https://giscus.app/client.js data-repo=ntalbs/blog-comments data-repo-id=R_kgDOSlRiJA data-category=General data-category-id=DIC_kwDOSlRiJM4C9ovb data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=top data-theme=light_protanopia data-lang=en crossorigin=anonymous async></script></template><script>(function(){let s=localStorage.getItem("mode")||"light",o=s==="light"?"light_protanopia":"dark_protanopia",e=document.getElementById("giscus-template");if(!e)return;let t=e.content.cloneNode(!0),n=t.querySelector("script");n&&n.setAttribute("data-theme",o),document.getElementById("giscus-area").appendChild(t)})()</script><script src=/js/index.min.js type=text/javascript></script><footer class=page-bottom><div class=inner><section class=copyright>© 2008-2026 <a href=/about>ntalbs</a></section><section class=poweredby>Powered by <a class=icon-ghost href=https://gohugo.io>Hugo</a></section></div></footer></body></html>
