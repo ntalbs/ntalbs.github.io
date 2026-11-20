@@ -5,7 +5,7 @@
 <a id=mode-switch class="unselectable nav-item" href=#><svg data-bs-theme-value="dark" class="icon-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3c.132.0.263.0.393.0a7.5 7.5.0 007.92 12.446A9 9 0 1112 2.992z"/></svg>
 <svg data-bs-theme-value="light" class="icon-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-4 0a4 4 0 108 0 4 4 0 10-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7-.7.7m0 11.4.7.7m-12.1-.7-.7.7"/></svg></a></div></div></nav><header class=page-head><div class=container><div class=single-line-text-container><p class=blog-description>내 이 세상 도처에서 쉴 곳을 찾아보았으나, 마침내 찾아낸, 컴퓨터가 있는 구석방보다 나은 곳은 없더라.</p></div></div></header><main class=container role=main><article class=post><header><p class=post-meta><time datetime=2026-11-14 itemprop=datePublished>2026-11-14</time>
 on
-<a href=/tags/emacs/>Emacs</a></p><h1 class=post-title>Emacs에서 MathJax 수식 미리보기</h1></header><section class=post-content><h2 id=1>1</h2><p>블로그에 사용할 간단한 다이어그램은 Emacs에서 SVG로 직접 작성하기도
+<a href=/tags/emacs/>Emacs</a></p><h1 class=post-title>Emacs에서 MathJax 수식 미리보기</h1><figure class=feature-image><img src=mathjax-preview.png alt="MathJax Preview"></figure></header><section class=post-content><h2 id=1>1</h2><p>블로그에 사용할 간단한 다이어그램은 Emacs에서 SVG로 직접 작성하기도
 한다. <a href=/2026/triangulation/>삼각측량</a>에 사용한 그림은 모두 한 땀 한
 땀 Emacs로 작성한 SVG다. SVG를 브라우저에서 열어 확인할 수도 있지만,
 <code>C-c C-c</code>를 눌러 Emacs 안에서 바로 확인할 수도 있다. Emacs가 SVG를
@@ -82,7 +82,7 @@ MathJax에 전달하고 렌더링 결과를 출력하는 작업만 하면 된다
 <code>mathjax-preview-at-point</code>와 매칭되는 <code>mathjax-preview-region</code> 함수를
 구현했다. 테스트해 보니 잘 동작했다. <code>mathjax-preview-at-point</code>에는
 <code>C-c j p</code>를, <code>mathjax-preview-region</code>에는 <code>C-c j r</code>을 단축키로
-지정했다.</p><p><img src=mathjax-preview.png alt="MathJax Preview"></p><p>이리저리 테스트하다 보니 생각이 바뀌었다. <code>mathjax-preview-region</code>
+지정했다.</p><p>이리저리 테스트하다 보니 생각이 바뀌었다. <code>mathjax-preview-region</code>
 함수 안에서는 사용자가 선택 영역이 있는지 확인하는데, 생각해 보니
 사용자 선택 영역이 있으면 <code>mathjax-preview-region</code>을 호출하고 선택
 영역이 없다면 <code>mathjax-preview-at-point</code>를 호출하도록 하면 굳이
