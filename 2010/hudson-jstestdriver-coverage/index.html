@@ -9,9 +9,7 @@ on
 </span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;coverage&#34;</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>jar</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;plugins/coverage-1.2.2.jar&#34;</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>module</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;com.google.jstestdriver.coverage.CoverageModule&#34;</span><span class=w>
-</span></span></span></code></pre></div><h2 id=hudson-설정>Hudson 설정</h2><ol><li>HTML Publisher Plugin을 설치
-(<a href=http://wiki.hudson-ci.org/display/HUDSON/HTML+Publisher+Plugin>http://wiki.hudson-ci.org/display/HUDSON/HTML+Publisher+Plugin</a> 참조)
-LCOV의 <code>genhtml</code>로 생성한 HTML 리포트를 Hudson에서 보는 데 필요하다
+</span></span></span></code></pre></div><h2 id=hudson-설정>Hudson 설정</h2><ol><li>HTML Publisher Plugin을 설치<br>LCOV의 <code>genhtml</code>로 생성한 HTML 리포트를 Hudson에서 보는 데 필요하다
 플러그인을 설치한 다음 Hudson을 재시작해야 한다.</li><li>프로젝트 설정 페이지의 Build 섹션에 genhtml 실행 명령 추가
 <img src=2010-11-24-1.png class=invert-safe alt="Execute shell 스크린샷">
 이렇게 하면 빌드 실행 후 <code>report/js_coverage_report</code> 디렉터리에 HTML 형식의 테스트 커버리지 리포트가 생성된다.<blockquote><p><strong>JsTestDriver 실행 시 주의사항</strong><br>coverage를 설정한 경우 임의의 위치에서 JsTestDriver를 실행시키면 <code>com.google.jstestdriver.coverage.CoverageModule</code> 클래스를 찾지 못하는 문제(<code>ClassNotFoundException</code>)가 발생한다. 실행 위치를 JsTestDriver 설치 디렉터리(<code>/opt/jsTestDriver</code>)로 옮긴 다음 JsTestDriver를 실행하면 이런 문제가 발생하지 않는다.
